@@ -1,51 +1,50 @@
-﻿module std.process;
+﻿// Written in the D programming language
 
-export extern(D)
-{ 
+/*
+ *  Copyright (C) 2003-2009 by Digital Mars, http://www.digitalmars.com
+ *  Written by Matthew Wilson and Walter Bright
+ *
+ *  Incorporating idea (for execvpe() on Linux) from Russ Lewis
+ *
+ *  Updated: 21st August 2004
+ *
+ *  This software is provided 'as-is', without any express or implied
+ *  warranty. In no событие will the authors be held liable for any damages
+ *  arising from the use of this software.
+ *
+ *  Permission is granted to anyone to use this software for any purpose,
+ *  including commercial applications, and to alter it and redistribute it
+ *  freely, subject to the following restrictions:
+ *
+ *  o  The origin of this software must not be misrepresented; you must not
+ *     claim that you wrote the original software. If you use this software
+ *     in a product, an acknowledgment in the product documentation would be
+ *     appreciated but is not required.
+ *  o  Altered source versions must be plainly marked as such, and must not
+ *     be misrepresented as being the original software.
+ *  o  This notice may not be removed or altered from any source
+ *     distribution.
+ */
 
-    цел система (ткст команда)
-    {
-    return cast(цел) system(cast(ткст) команда);
-    }
-    alias система сис;
+/**
+ * Macros:
+ *	WIKI=Phobos/StdProcess
+ */
 
-    цел пауза()
-    {
-        система("pause");
-         return 0;
-    }
-    alias пауза пз;
+module std.process;
 
-    цел пускпрог(цел режим, ткст путь, ткст[] арги)
-    {
-    return cast(цел) spawnvp(cast(цел) режим, cast(ткст) путь, cast(ткст[]) арги);
-    }
-
-    цел выппрог(ткст путь, ткст[] арги)
-    {
-    return cast(цел)  execv(cast(ткст) путь, cast(ткст[]) арги);
-    }
-
-    цел выппрог(ткст путь, ткст[] арги, ткст[] перемср)
-    {
-    return cast(цел) execve(cast(ткст) путь, cast(ткст[]) арги, cast(ткст[]) перемср);
-    }
-
-    цел выппрогcp(ткст путь, ткст[] арги)
-    {
-    return cast(цел) execvp(cast(ткст) путь, cast(ткст[]) арги);
-    }
-
-    цел выппрогср(ткст путь, ткст[] арги, ткст[] перемср)
-    {
-    return cast(цел) execve(cast(ткст) путь, cast(ткст[]) арги, cast(ткст[]) перемср);
-    }
-}
-
-//////////////////////////////////////
 private import std.string;
 private import cidrus;
 
+//alias system sys;
+alias система сис;
+/*alias сис система;
+alias spawnvp отдпроцп;
+alias execv выпп;
+alias execve выппс;
+alias execvp выппроцп;
+alias execvpe выппроцпс;
+*/
 extern(C)
 {
     int spawnl(int, char *, char *,...);
@@ -56,7 +55,7 @@ extern(C)
     int spawnve(int, char *, char **, char **);
     int spawnvp(int, char *, char **);
     int spawnvpe(int, char *, char **, char **);
-    int execl(char *, char *,...);
+	int execl(char *, char *,...);
 int execle(char *, char *,...);
 int execlp(char *, char *,...);
 int execlpe(char *, char *,...);
@@ -67,12 +66,17 @@ int execvpe(char *, char **, char **);
 }
 enum { _P_WAIT, _P_NOWAIT, _P_OVERLAY };
 
+проц пауза(){сис("пауза");}
 
 /**
  * Execute command in a _command shell.
  *
  * Returns: exit status of command
  */
+цел система (ткст команда)
+{
+return cast(цел) system(cast(string) команда);
+}
 
 int system(string command)
 {
@@ -95,11 +99,11 @@ private void toAStringz(char[][] a, char**az)
 //{
 //    int spawnvp(int mode, string pathname, string[] argv)
 //    {
-//  char** argv_ = cast(char**)alloca((char*).sizeof * (1 + argv.length));
+//	char** argv_ = cast(char**)alloca((char*).sizeof * (1 + argv.length));
 //
-//  toAStringz(argv, argv_);
+//	toAStringz(argv, argv_);
 //
-//  return spawnvp(mode, toStringz(pathname), argv_);
+//	return spawnvp(mode, toStringz(pathname), argv_);
 //    }
 //}
 
@@ -107,6 +111,11 @@ private void toAStringz(char[][] a, char**az)
 
 alias _P_WAIT P_WAIT;
 alias _P_NOWAIT P_NOWAIT;
+
+цел пускпрог(цел режим, ткст путь, ткст[] арги)
+{
+return cast(int) spawnvp(cast(int) режим, cast(string) путь, cast(string[]) арги);
+}
 
 int spawnvp(int mode, string pathname, string[] argv)
 {
@@ -173,9 +182,9 @@ Lerror:
     retval = getErrno;
     char[80] buf = void;
     throw new Exception(
-        "Не удалось ответвить " ~ toString(pathname) ~ "; "
+        "Cannot ответви " ~ toString(pathname) ~ "; "
                       ~ toString(strerror_r(retval, buf.ptr, buf.length))
-                      ~ " [ошном " ~ toString(retval) ~ "]");
+                      ~ " [errno " ~ toString(retval) ~ "]");
 }   // _spawnvp
 private
 {
@@ -195,6 +204,11 @@ int  exitstatus(int status) { return (status & 0xff00) >> 8; }
  * The 'p' versions of exec search the PATH environment variable
  * setting for the program.
  */
+цел выппрог(ткст путь, ткст[] арги)
+{
+return cast(цел) execv(cast(string) путь, cast(string[]) арги);
+}
+
 int execv(string pathname, string[] argv)
 {
     auto argv_ = cast(char**)alloca((char*).sizeof * (1 + argv.length));
@@ -205,6 +219,11 @@ int execv(string pathname, string[] argv)
 }
 
 /** ditto */
+цел выппрог(ткст путь, ткст[] арги, ткст[] перемср)
+{
+return cast(цел) execve(cast(string) путь, cast(string[]) арги, cast(string[]) перемср);
+}
+
 int execve(string pathname, string[] argv, string[] envp)
 {
     auto argv_ = cast(char**)alloca((char*).sizeof * (1 + argv.length));
@@ -217,6 +236,11 @@ int execve(string pathname, string[] argv, string[] envp)
 }
 
 /** ditto */
+цел выппрогcp(ткст путь, ткст[] арги)
+{
+return cast(цел) execvp(cast(string) путь, cast(string[]) арги);
+}
+
 int execvp(string pathname, string[] argv)
 {
     auto argv_ = cast(char**)alloca((char*).sizeof * (1 + argv.length));
@@ -227,6 +251,11 @@ int execvp(string pathname, string[] argv)
 }
 
 /** ditto */
+цел выппрогср(ткст путь, ткст[] арги, ткст[] перемср)
+{
+return cast(цел) execve(cast(string) путь, cast(string[]) арги, cast(string[]) перемср);
+}
+
 int execvpe(string pathname, string[] argv, string[] envp)
 {
 version (Posix)
@@ -240,7 +269,7 @@ version (Posix)
     else
     {
         // No, so must traverse PATHs, looking for first match
-    string[]    envPaths    =   std.string.split(std.string.toString(cidrus.дайсреду("PATH")), ":");
+	string[]    envPaths    =   std.string.split(std.string.toString(cidrus.дайсреду("PATH")), ":");
         int         iRet        =   0;
 
         // Note: if any call to execve() succeeds, this process will cease 
@@ -313,3 +342,5 @@ version(MainTest)
         }
     }
 }
+
+/* ////////////////////////////////////////////////////////////////////////// */

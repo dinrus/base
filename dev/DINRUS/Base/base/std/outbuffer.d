@@ -1,4 +1,20 @@
-﻿module std.outbuffer;
+﻿// Written in the D programming language
+
+/**
+ * Boilerplate:
+ *	$(std_boilerplate.html)
+ * Macros:
+ *	WIKI = Phobos/StdOutbuffer
+ * Copyright:
+ *	Copyright (c) 2001-2005 by Digital Mars
+ *	All Rights Reserved
+ *	www.digitalmars.com
+ */
+
+
+// Written by Walter Bright
+
+module std.outbuffer;
 
 private
 {
@@ -15,269 +31,324 @@ private
  * To control the byte order (endianness), use a class derived
  * from OutBuffer.
  */
-export extern (D) class БуферВывода
+alias OutBuffer БуферВывода;
+
+class OutBuffer
 {
+alias data данные;
+alias offset смещение;
+alias toBytes вБайты;
+alias reserve врезерв;
+alias write пиши;
+alias fill0 занули;
+alias alignSize раскладиРазм;
+alias align2 расклад2;
+alias align4 расклад4;
+alias toString вТкст;
+alias vprintf ввыводф;
+alias эхо выводф;
+alias spread простели;
 
+    ubyte data[];
+    uint offset;
 
-
-ббайт данные[];
-бцел смещение;
-
-invariant
+    invariant
     {
-	//say(format("this = %p, смещение = %x, данные.length = %u\n", this, смещение, данные.length));
-	assert(смещение <= данные.length);
-	assert(данные.length <= смЁмкость(данные.ptr));
+	//эхо("this = %p, offset = %x, data.length = %u\n", this, offset, data.length);
+	assert(offset <= data.length);
+	assert(data.length <= runtime.capacity(data.ptr));
     }
 
-	export this()
+    this()
     {
-	//say("in OutBuffer constructor\n");
-	}
+	//эхо("in OutBuffer constructor\n");
+    }
 
-export	ббайт[] вБайты() { return данные[0 .. смещение]; }
+    /*********************************
+     * Convert to array of bytes.
+     */
 
-export	проц резервируй(бцел члобайт)
+    ubyte[] toBytes() { return data[0 .. offset]; }
+
+    /***********************************
+     * Preallocate nbytes more to the size of the internal buffer.
+     *
+     * This is a
+     * speed optimization, a good guess at the maximum size of the resulting
+     * buffer will improve performance by eliminating reallocations and copying.
+     */
+
+
+    void reserve(uint nbytes)
 	in
 	{
-	    assert(смещение + члобайт >= смещение);
+	    assert(offset + nbytes >= offset);
 	}
 	out
 	{
-	    assert(смещение + члобайт <= данные.length);
-	    assert(данные.length <= смЁмкость(данные.ptr));
+	    assert(offset + nbytes <= data.length);
+	    assert(data.length <= runtime.capacity(data.ptr));
 	}
 	body
 	{
-	    if (данные.length < смещение + члобайт)
+	    if (data.length < offset + nbytes)
 	    {
-		данные.length = (смещение + члобайт) * 2;
-		setTypeInfo(null, данные.ptr);
+		//cidrus.эхо("OutBuffer.reserve: ptr = %p, length = %d, offset = %d, nbytes = %d, capacity = %d\n", data.ptr, data.length, offset, nbytes, runtime.capacity(data.ptr));
+		data.length = (offset + nbytes) * 2;
+		//cidrus.эхо("OutBuffer.reserve: ptr = %p, length = %d, capacity = %d\n", data.ptr, data.length, runtime.capacity(data.ptr));
+		runtime.hasPointers(data.ptr);
 	    }
 	}
 
- export   проц пиши(ббайт[] байты)
+    /*************************************
+     * Append data to the internal buffer.
+     */
+
+    void write(ubyte[] bytes)
 	{
-	    резервируй(байты.length);
-	    данные[смещение .. смещение + байты.length] = байты;
-	    смещение += байты.length;
+	    reserve(bytes.length);
+	    data[offset .. offset + bytes.length] = bytes;
+	    offset += bytes.length;
 	}
 
-  export  проц пиши(ббайт b)		/// ditto
+    void write(ubyte b)		/// ditto
 	{
-	    резервируй(ббайт.sizeof);
-	    this.данные[смещение] = b;
-	    смещение += ббайт.sizeof;
+	    reserve(ubyte.sizeof);
+	    this.data[offset] = b;
+	    offset += ubyte.sizeof;
 	}
 
-  export  проц пиши(байт b) { пиши(cast(ббайт)b); }		/// ditto
- export   проц пиши(сим c) { пиши(cast(ббайт)c); }		/// ditto
+    void write(byte b) { write(cast(ubyte)b); }		/// ditto
+    void write(char c) { write(cast(ubyte)c); }		/// ditto
 
- export   проц пиши(бкрат w)		/// ditto
+    void write(ushort w)		/// ditto
     {
-	резервируй(бкрат.sizeof);
-	*cast(бкрат *)&данные[смещение] = w;
-	смещение += бкрат.sizeof;
+	reserve(ushort.sizeof);
+	*cast(ushort *)&data[offset] = w;
+	offset += ushort.sizeof;
     }
 
-  export  проц пиши(крат т) { пиши(cast(бкрат)т); }		/// ditto
+    void write(short s) { write(cast(ushort)s); }		/// ditto
 
-  export  проц пиши(шим c)		/// ditto
+    void write(wchar c)		/// ditto
     {
-	резервируй(шим.sizeof);
-	*cast(шим *)&данные[смещение] = c;
-	смещение += шим.sizeof;
+	reserve(wchar.sizeof);
+	*cast(wchar *)&data[offset] = c;
+	offset += wchar.sizeof;
     }
 
-  export  проц пиши(бцел w)		/// ditto
+    void write(uint w)		/// ditto
     {
-	резервируй(бцел.sizeof);
-	*cast(бцел *)&данные[смещение] = w;
-	смещение += бцел.sizeof;
+	reserve(uint.sizeof);
+	*cast(uint *)&data[offset] = w;
+	offset += uint.sizeof;
     }
 
-  export  проц пиши(цел i) { пиши(cast(бцел)i); }		/// ditto
+    void write(int i) { write(cast(uint)i); }		/// ditto
 
-  export  проц пиши(бдол l)		/// ditto
+    void write(ulong l)		/// ditto
     {
-	резервируй(бдол.sizeof);
-	*cast(бдол *)&данные[смещение] = l;
-	смещение += бдол.sizeof;
+	reserve(ulong.sizeof);
+	*cast(ulong *)&data[offset] = l;
+	offset += ulong.sizeof;
     }
 
-  export  проц пиши(дол l) { пиши(cast(бдол)l); }		/// ditto
+    void write(long l) { write(cast(ulong)l); }		/// ditto
 
-   export проц пиши(плав f)		/// ditto
+    void write(float f)		/// ditto
     {
-	резервируй(плав.sizeof);
-	*cast(плав *)&данные[смещение] = f;
-	смещение += плав.sizeof;
+	reserve(float.sizeof);
+	*cast(float *)&data[offset] = f;
+	offset += float.sizeof;
     }
 
-   export проц пиши(дво f)		/// ditto
+    void write(double f)		/// ditto
     {
-	резервируй(дво.sizeof);
-	*cast(дво *)&данные[смещение] = f;
-	смещение += дво.sizeof;
+	reserve(double.sizeof);
+	*cast(double *)&data[offset] = f;
+	offset += double.sizeof;
     }
 
-  export  проц пиши(реал f)		/// ditto
+    void write(real f)		/// ditto
     {
-	резервируй(реал.sizeof);
-	*cast(реал *)&данные[смещение] = f;
-	смещение += реал.sizeof;
+	reserve(real.sizeof);
+	*cast(real *)&data[offset] = f;
+	offset += real.sizeof;
     }
 
-   export проц пиши(ткст т)		/// ditto
+    void write(string s)		/// ditto
     {
-	пиши(cast(ббайт[])т);
+	write(cast(ubyte[])s);
     }
 
-   export проц пиши(БуферВывода буф)		/// ditto
+    void write(OutBuffer buf)		/// ditto
     {
-	пиши(буф.вБайты());
+	write(buf.toBytes());
     }
 
     /****************************************
-     * Добавка члобайт of 0 to the internal буфер.
+     * Append nbytes of 0 to the internal buffer.
      */
 
-  export  проц занули(бцел члобайт)
+    void fill0(uint nbytes)
     {
-	резервируй(члобайт);
-	данные[смещение .. смещение + члобайт] = 0;
-	смещение += члобайт;
+	reserve(nbytes);
+	data[offset .. offset + nbytes] = 0;
+	offset += nbytes;
     }
 
     /**********************************
      * 0-fill to align on power of 2 boundary.
      */
 
-  export  проц расклад(бцел мера)
+    void alignSize(uint alignsize)
     in
     {
-	assert(мера && (мера & (мера - 1)) == 0);
+	assert(alignsize && (alignsize & (alignsize - 1)) == 0);
     }
     out
     {
-	assert((смещение & (мера - 1)) == 0);
+	assert((offset & (alignsize - 1)) == 0);
     }
     body
-    {   бцел члобайт;
+    {   uint nbytes;
 
-	члобайт = смещение & (мера - 1);
-	if (члобайт)
-	    занули(мера - члобайт);
+	nbytes = offset & (alignsize - 1);
+	if (nbytes)
+	    fill0(alignsize - nbytes);
     }
 
     /****************************************
-     * Optimize common special case расклад(2)
+     * Optimize common special case alignSize(2)
      */
 
-  export  проц расклад2()
+    void align2()
     {
-	if (смещение & 1)
-	    пиши(cast(байт)0);
+	if (offset & 1)
+	    write(cast(byte)0);
     }
 
     /****************************************
-     * Optimize common special case расклад(4)
+     * Optimize common special case alignSize(4)
      */
 
-   export проц расклад4()
+    void align4()
     {
-	if (смещение & 3)
-	{   бцел члобайт = (4 - смещение) & 3;
-	    занули(члобайт);
+	if (offset & 3)
+	{   uint nbytes = (4 - offset) & 3;
+	    fill0(nbytes);
 	}
     }
 
     /**************************************
-     * Convert internal буфер to array of симs.
+     * Convert internal buffer to array of chars.
      */
 
-   export ткст вТкст()
+    char[] toString()
     {
-	//эхо("БуферВывода.вТкст()\n");
-	return cast(сим[])данные[0 .. смещение];
+	//эхо("OutBuffer.toString()\n");
+	return cast(char[])data[0 .. offset];
     }
 
     /*****************************************
-     * Добавка output of C'т vprintf() to internal буфер.
+     * Append output of C's vprintf() to internal buffer.
      */
-
-  export  проц ввыводф(ткст формат, спис_ва арги)
+    void vprintf(string format, va_list args)
     {
-	сим[128] буфер;
-	сим* p;
-	бцел psize;
-	цел count;
+	char[128] buffer;
+	char* p;
+	uint psize;
+	int count;
 
-	auto f = std.string.вТкст0(формат);
-	p = буфер.ptr;
-	psize = буфер.length;
+	auto f = toStringz(format);
+	p = buffer.ptr;
+	psize = buffer.length;
 	for (;;)
-		{
-			count = _vsnprintf(p,psize,f,арги);
-			if (count != -1)
-				break;
-			psize *= 2;
-			p = cast(сим *) cidrus.alloca(psize);	// буфер too small, try again with larger размер
-		}
-	пиши(p[0 .. count]);
+	{
+	    version(Win32)
+	    {
+		count = _vsnprintf(p,psize,f,args);
+		if (count != -1)
+		    break;
+		psize *= 2;
+		p = cast(char *) cidrus.разместа(psize);	// buffer too small, try again with larger size
+	    }
+	    version(Posix)
+	    {
+		count = vsnprintf(p,psize,f,args);
+		if (count == -1)
+		    psize *= 2;
+		else if (count >= psize)
+		    psize = count + 1;
+		else
+		    break;
+		/+
+		if (p != buffer)
+		    c.stdlib.free(p);
+		p = (char *) c.stdlib.malloc(psize);	// buffer too small, try again with larger size
+		+/
+		p = cast(char *) разместа(psize);	// buffer too small, try again with larger size
+	    }
+	}
+	write(p[0 .. count]);
+	/+
+	version (Posix)
+	{
+	    if (p != buffer)
+		c.stdlib.free(p);
+	}
+	+/
     }
 
     /*****************************************
-     * Добавка output of C'т эхо() to internal буфер.
+     * Append output of C's эхо() to internal buffer.
      */
 
-  export  проц выводф(ткст формат, ...)
+    void эхо(string format, ...)
     {
-	спис_ва ap;
-	ap = cast(спис_ва)&формат;
-	ap += формат.sizeof;
-	ввыводф(формат, ap);
+	va_list ap;
+	ap = cast(va_list)&format;
+	ap += format.sizeof;
+	vprintf(format, ap);
     }
 
     /*****************************************
-     * At смещение index целo буфер, создай члобайт of space by shifting upwards
-     * all данные past index.
+     * At offset index into buffer, create nbytes of space by shifting upwards
+     * all data past index.
      */
 
-  export  проц простели(бцел индекс, бцел члобайт)
+    void spread(uint index, uint nbytes)
 	in
 	{
-	    assert(индекс <= смещение);
+	    assert(index <= offset);
 	}
 	body
 	{
-	    резервируй(члобайт);
+	    reserve(nbytes);
 
 	    // This is an overlapping copy - should use memmove()
-	    for (бцел i = смещение; i > индекс; )
+	    for (uint i = offset; i > index; )
 	    {
 		--i;
-		данные[i + члобайт] = данные[i];
+		data[i + nbytes] = data[i];
 	    }
-	    смещение += члобайт;
+	    offset += nbytes;
 	}
-
-	export ~this(){}
 }
 
 unittest
 {
     //эхо("Starting OutBuffer test\n");
 
-    БуферВывода buf = new БуферВывода();
+    OutBuffer buf = new OutBuffer();
 
     //эхо("buf = %p\n", buf);
     //эхо("buf.offset = %x\n", buf.offset);
-    assert(buf.смещение == 0);
-    buf.пиши("hello");
-    buf.пиши(cast(byte)0x20);
-    buf.пиши("world");
+    assert(buf.offset == 0);
+    buf.write("hello");
+    buf.write(cast(byte)0x20);
+    buf.write("world");
     buf.эхо(" %d", 6);
     //эхо("buf = '%.*s'\n", buf.toString());
-    assert(cmp(buf.вТкст(), "hello world 6") == 0);
+    assert(cmp(buf.toString(), "hello world 6") == 0);
 }

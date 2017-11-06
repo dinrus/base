@@ -375,6 +375,17 @@ copy %this%\DinrusSpecBuild.lib  %LDIR%
 
 del %this%\*.lib %this%\*.obj
 
+:::Making DinrusStd.lib
+cd .\std\mk
+del *.obj
+%DINRUS%\dmd -run compile.d
+if exist DinrusStd.lib copy DinrusStd.lib  %LDIR%
+if not exist DinrusStd.lib pause
+if not exist %R%\std mkdir %R%\std
+copy ..\*.d  %R%\std\*.di 
+del *.lib *.exe *.map
+cd %this%
+:::Cleaning
 %DMD% %this%\clean.d
 %this%\clean
 ::: same with the Dll - to bin folder

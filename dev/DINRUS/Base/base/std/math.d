@@ -3,179 +3,12 @@
 
 module std.math;
 
-import std.math2;
-
-export extern(D)
-{
-креал син(креал x){return sin(x);}
-вреал син(вреал x){return sin(x);}
-реал абс(креал x){return abs(x);}
-реал абс(вреал x){return abs(x);}
-креал квкор(креал x){return sqrt(x);}
-креал кос(креал x){return cos(x);}
-креал конъюнк(креал y){return conj(y);}
-вреал конъюнк(вреал y){return conj(y);}
-реал кос(вреал x){return cos(x);}
-реал степень(реал а, бцел н){return pow(а, н);}
-
-цел квадрат(цел а){return std.math2.sqr(а);}
-дол квадрат(цел а){return std.math2.sqr(а);}
-цел сумма(цел[] ч){return std.math2.sum(ч);}
-дол сумма(дол[] ч){return std.math2.sum(ч);}
-цел меньш_из(цел[] ч){return std.math2.min(ч);}
-дол меньш_из(дол[] ч){return std.math2.min(ч);}
-цел меньш_из(цел а, цел б){return std.math2.min(а, б);}
-дол меньш_из(дол а, дол б){return std.math2.min(а, б);}
-цел больш_из(цел[] ч){return std.math2.max(ч);}
-дол больш_из(дол[] ч){return std.math2.max(ч);}
-цел больш_из(цел а, цел б){return std.math2.max(а, б);}
-дол больш_из(дол а, дол б){return std.math2.max(а, б);}
-
-реал абс(реал x){return abs(x);}
-дол абс(дол x){return abs(x);}
-цел абс(цел x){return abs(x);}
-реал кос(реал x){return cos(x);}
-реал син(реал x){return sin(x);}
-реал тан(реал x){return tan(x);}
-реал акос(реал x){return acos(x);}
-реал асин(реал x){return asin(x);}
-реал атан(реал x){return atan(x);}
-реал атан2(реал y, реал x){return atan2(x, y);}
-реал гкос(реал x){return cosh(x);}
-реал гсин(реал x){return sinh(x);}
-реал гтан(реал x){return tanh(x);}
-реал гакос(реал x){return acosh(x);}
-реал гасин(реал x){return asinh(x);}
-реал гатан(реал x){return atanh(x);}
-дол округливдол(реал x){return rndtol(x);}
-реал округливближдол(реал x){return rndtonl(x);}
-плав квкор(плав x){return sqrt(x);}
-дво квкор(дво x){return sqrt(x);}
-реал квкор(реал x){return sqrt(x);}
-реал эксп(реал x){return exp(x);}
-реал экспм1(реал x){return expm1(x);}
-реал эксп2(реал x){return exp2(x);}
-креал экспи(реал x){return expi(x);}
-реал прэксп(реал знач, out цел эксп){return frexp(знач, эксп);}
-цел илогб(реал x){return ilogb(x);}
-реал лдэксп(реал н, цел эксп){return ldexp(н, эксп);}
-реал лог(реал x){return log(x);}
-реал лог10(реал x){return log10(x);}
-реал лог1п(реал x){return log1p(x);}
-реал лог2(реал x){return log2(x);}
-реал логб(реал x){return logb(x);}
-реал модф(реал x, inout реал y){return modf(x, y);}
-реал скалбн(реал x, цел н){return scalbn(x,н);}
-реал кубкор(реал x){return cbrt(x);}
-реал фабс(реал x){return fabs(x);}
-реал гипот(реал x, реал y){return hypot(x, y);}
-реал фцош(реал x){return erf(x);}
-реал лгамма(реал x){return lgamma(x);}
-реал тгамма(реал x){return tgamma(x);}
-реал потолок(реал x){return ceil(x);}
-реал пол(реал x){return floor(x);}
-реал ближцел(реал x){return nearbyint(x);}
-
-цел окрвцел(реал x)
-{
-    //version(Naked_D_InlineAsm_X86)
-   // {
-        цел n;
-        asm
-        {
-            fld x;
-            fistp n;
-        }
-        return n;
-  //  }
-  //  else
-  //  {
-   //     return cidrus.lrintl(x);
-   // }
-}
-реал окрвреал(реал x){return rint(x);}
-дол окрвдол(реал x){return lrint(x);}
-реал округли(реал x){return round(x);}
-дол докругли(реал x){return lround(x);}
-реал упрости(реал x){return trunc(x);}
-реал остаток(реал x, реал y){return remainder(x, y);}
-бул нч_ли(реал x){return cast(бул) isnan(x);}
-бул конечен_ли(реал р){return cast(бул) isfinite(р);}
-
-бул субнорм_ли(плав п){return cast(бул) issubnormal(п);}
-бул субнорм_ли(дво п){return cast(бул) issubnormal(п);}
-бул субнорм_ли(реал п){return cast(бул) issubnormal(п);}
-бул беск_ли(реал р){return cast(бул) isinf(р);}
-бул идентичен_ли(реал р, реал д){return isIdentical(р, д);}
-бул битзнака(реал р){ if(1 == signbit(р)){return да;} return нет;}
-реал копируйзнак(реал кому, реал у_кого){return copysign(кому, у_кого);}
-реал нч(ткст тэгп){return nan(тэгп);}
-реал следщБольш(реал р){return nextUp(р);}
-дво следщБольш(дво р){return nextUp(р);}
-плав следщБольш(плав р){return nextUp(р);}
-реал следщМеньш(реал р){return nextUp(р);}
-дво следщМеньш(дво р){return nextUp(р);}
-плав следщМеньш(плав р){return nextUp(р);}
-реал следщза(реал а, реал б){return nextafter(а, б);}
-плав следщза(плав а, плав б){return nextafter(а, б);}
-дво следщза(дво а, дво б){return nextafter(а, б);}
-реал пдельта(реал а, реал б){return fdim(а, б);}
-реал пбольш_из(реал а, реал б){return fmax(а, б);}
-реал пменьш_из(реал а, реал б){return fmin(а, б);}
-
-реал степень(реал а, цел н){return pow(а, н);}
-реал степень(реал а, реал н){return pow(а, н);}
-
-import std.math2;
-
-бул правны(реал а, реал б){return std.math2.feq(а, б);}
-бул правны(реал а, реал б, реал эпс){return std.math2.feq(а, б, эпс);}
-
-реал квадрат(цел а){return std.math2.sqr(а);}
-реал дробь(реал а){return std.math2.frac(а);}
-цел знак(цел а){return std.math2.sign(а);}
-цел знак(дол а){return std.math2.sign(а);}
-цел знак(реал а){return std.math2.sign(а);}
-реал цикл8градус(реал ц){return std.math2.cycle2deg(ц);}
-реал цикл8радиан(реал ц){return std.math2.cycle2rad(ц);}
-реал цикл8градиент(реал ц){return std.math2.cycle2grad(ц);}
-реал градус8цикл(реал г){return std.math2.deg2cycle(г);}
-реал градус8радиан(реал г){return std.math2.deg2rad(г);}
-реал градус8градиент(реал г){return std.math2.deg2grad(г);}
-реал радиан8градус(реал р){return std.math2.rad2deg(р);}
-реал радиан8цикл(реал р){return std.math2.rad2cycle(р);}
-реал радиан8градиент(реал р){return std.math2.rad2grad(р);}
-реал градиент8градус(реал г){return std.math2.grad2deg(г);}
-реал градиент8цикл(реал г){return std.math2.grad2cycle(г);}
-реал градиент8радиан(реал г){return std.math2.grad2rad(г);}
-реал сариф(реал[] ч){return std.math2.avg(ч);}
-реал сумма(реал[] ч){return std.math2.sum(ч);}
-реал меньш_из(реал[] ч){return std.math2.min(ч);}
-реал меньш_из(реал а, реал б){return std.math2.min(а, б);}
-реал больш_из(реал[] ч){return std.math2.max(ч);}
-реал больш_из(реал а, реал б){return std.math2.max(а, б);}
-реал акот(реал р){return std.math2.acot(р);}
-реал асек(реал р){return std.math2.asec(р);}
-реал акосек(реал р){return std.math2.acosec(р);}
-реал кот(реал р){return std.math2.cot(р);}
-реал сек(реал р){return std.math2.sec(р);}
-реал косек(реал р){return std.math2.cosec(р);}
-реал гкот(реал р){return std.math2.coth(р);}
-реал гсек(реал р){return std.math2.sech(р);}
-реал гкосек(реал р){return std.math2.cosech(р);}
-реал гакот(реал р){return std.math2.acoth(р);}
-реал гасек(реал р){return std.math2.asech(р);}
-реал гакосек(реал р){return std.math2.acosech(р);}
-реал ткст8реал(ткст т){return std.math2.atof(т);}
-
-}
-
 //debug=math;           // uncomment to turn on debugging эхо's
 
 private import cidrus, exception;
 private import std.string;
 
-//private import std.traits;
+private import std.traits;
 
 version(GNU){
     // GDC can't actually do inline asm.
@@ -190,7 +23,7 @@ version(GNU){
 }
 
 version(DigitalMars){
-    version=INLINE_YL2X;  // x87 has opcodes for these
+    version=INLINE_YL2X;	// x87 has opcodes for these
 }
 
 private:
@@ -1378,9 +1211,9 @@ real ldexp(real n, int exp);    /* intrinsic */
 real log(real x)
 {
     version (INLINE_YL2X)
-  return yl2x(x, LN2);
+	return yl2x(x, LN2);
     else
-  return cidrus.логд(x);
+	return cidrus.логд(x);
 }
 
 unittest
@@ -1402,9 +1235,9 @@ unittest
 real log10(real x)
 {
     version (INLINE_YL2X)
-  return yl2x(x, LOG2);
+	return yl2x(x, LOG2);
     else
-  return cidrus.лог10д(x);
+	return cidrus.лог10д(x);
 }
 
 unittest
@@ -1444,9 +1277,9 @@ real log1p(real x)              { return cidrus.лог1пд(x); }
 real log2(real x)
 {
     version (INLINE_YL2X)
-  return yl2x(x, 1);
+	return yl2x(x, 1);
     else
-  return cidrus.лог2д(x);
+	return cidrus.лог2д(x);
 }
 
 
@@ -2985,10 +2818,10 @@ body
                 ;
             }
         }
-  else
-  {
-      static assert(0);
-  }
+	else
+	{
+	    static assert(0);
+	}
     }
     else
     {
@@ -3017,15 +2850,15 @@ unittest
  * translate to a single x87 instruction.
  */
 
-real yl2x(real x, real y);  // y * log2(x)
-real yl2xp1(real x, real y);  // y * log2(x + 1)
+real yl2x(real x, real y);	// y * log2(x)
+real yl2xp1(real x, real y);	// y * log2(x + 1)
 
 unittest
 {
     version (INLINE_YL2X)
     {
-  assert(yl2x(1024, 1) == 10);
-  assert(yl2xp1(1023, 1) == 10);
+	assert(yl2x(1024, 1) == 10);
+	assert(yl2xp1(1023, 1) == 10);
     }
 }
 

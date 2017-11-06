@@ -23,16 +23,6 @@
 
 module std.uni;
 
-export extern(D)
-{
-
-бул юпроп_ли(дим с){return cast(бул) isUniLower(с);}
-бул юзаг_ли(дим с){return cast(бул) isUniUpper(с);}
-дим в_юпроп(дим с){return toUniLower(с);}
-дим в_юзаг(дим с){return toUniUpper(с);}
-бул юцб_ли(дим с){return cast(бул) isUniAlpha(с);}
-}
-
 /**
  * Returns !=0 if c is a Unicode lower case character.
  */

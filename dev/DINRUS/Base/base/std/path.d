@@ -1,75 +1,27 @@
 ﻿// Написано на языке программирования Динрус. Разработчик Виталий Кулич.
 
+/**
+ * Macros:
+ *	WIKI = Phobos/StdPath
+ * Copyright:
+ *	Placed into public domain.
+ *	http://www.digitalmars.com
+ *
+ * Grzegorz Adam Hankiewicz added some documentation.
+ *
+ * This module is used to parse file names. All the operations
+ * work only on strings; they don't perform any input/output
+ * operations. This means that if a path contains a directory name
+ * with a dot, functions like getExt() will work with it just as
+ * if it was a file. To differentiate these cases,
+ * use the std.file module first (i.e. std.file.isDir()).
+ */
+
 module std.path;
 
+//debug=path;		// uncomment to turn on debugging эхо's
+//private import std.io;
 
-export extern(D)
-{
-
-ткст извлекиРасш(ткст полнимя){return getExt(полнимя);}
-//getExt(r"d:\путь\foo.bat") // "bat"     getExt(r"d:\путь.two\bar") // null
-ткст дайИмяПути(ткст полнимя){return getName(полнимя);}
-//getName(r"d:\путь\foo.bat") => "d:\путь\foo"     getName(r"d:\путь.two\bar") => null
-ткст извлекиИмяПути(ткст пимя){return getBaseName(пимя);}//getBaseName(r"d:\путь\foo.bat") => "foo.bat"
-ткст извлекиПапку(ткст пимя){return getDirName(пимя);}
-//getDirName(r"d:\путь\foo.bat") => "d:\путь"     getDirName(getDirName(r"d:\путь\foo.bat")) => r"d:\"
-ткст извлекиМеткуДиска(ткст пимя){return getDrive(пимя);}
-ткст устДефРасш(ткст пимя, ткст расш){return defaultExt(пимя, расш);}
-ткст добРасш(ткст фимя, ткст расш){return addExt(фимя, расш);}
-бул абсПуть_ли(ткст путь){return cast(бул) isabs(путь);}
-ткст слейПути(ткст п1, ткст п2){return join(п1, п2);}
-бул сравниПути(дим п1, дим п2){return cast(бул) fncharmatch(п1, п2);}
-бул сравниПутьОбразец(ткст фимя, ткст образец){return cast(бул) fnmatch(фимя, образец);}
-ткст разверниТильду(ткст путь){return expandTilde(путь);}
-
-struct Путь 
-{
-	private
-	{
-		ткст м_путь;
-		ткст м_расш;
-	}
-
-export:
-
-	проц opCall(ткст путь)
-	 {м_путь = путь;}
-
-	ткст расширение()
-	{
-		return м_расш = getExt(м_путь);
-	}
-
-	ткст добавьРасширение(ткст нрасш)
-	{
-		return м_путь = addExt(м_путь, нрасш);
-	}
-
-	ткст имя()
-	{
-		return getName(м_путь);
-	}
-
-	ткст меткаДиска()
-	{
-		return getDrive(м_путь);
-	}
-
-	ткст объединиС(ткст с)
-	{
-		return join(м_путь, с);
-	}
-
-	бул сравниС(ткст путь)
-	{
-		return cast(бул) fnmatch(м_путь, путь);
-	}
- }
-}
-
-
-
-///////////////////////////////////////////////
 private import std.string;
 
 version(Posix)
@@ -157,6 +109,18 @@ version (Posix) alias std.string.cmp fcmp;
  * }
  * -----
  */
+alias getExt дайРасш;
+alias getName дайИмя;
+alias getDirName дайИмяПапки;
+alias getDrive дайДиск;
+alias defaultExt устДефРасш;
+alias addExt добРасш;
+alias isabs абс_ли;
+alias join объедени; 
+alias fncharmatch  сверьсимиф;
+alias fnmatch сверьиф;  
+alias expandTilde раскройТильду;
+//alias expandFromEnvironment раскойИзСреды;//приват
 
 string getExt(string fullname)
 {

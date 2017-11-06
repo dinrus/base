@@ -1,68 +1,38 @@
-
+﻿
 module std.conv;
-import rt.charset;
-
-export extern(D)
-{
-
-    ///////////////////////////////////////////////////////
-    ткст0 вВин16н(ткст с, бцел кодСтр = 0)
-    {
-    return cast(усим) rt.charset.toMBSz(cast(char[]) с, cast(uint) кодСтр);
-    }
-    ////////////////////////////////////////////////////////////
-    ткст изВин16н(ткст0 с, цел кодСтр = 0)
-    {
-    return cast(сим[]) rt.charset.fromMBSz(cast(char*) с, cast(int) кодСтр); 
-    }
-
-    цел вЦел(ткст т)
-    {return toInt(т);}
-
-    бцел вБцел(ткст т)
-    {return toUint(т);}
-
-    дол вДол(ткст т)
-    {return toLong(т);}
-
-    бдол вБдол(ткст т)
-    {return toUlong(т);}
-
-    крат вКрат(ткст т)
-    {return toShort(т);}
-
-    бкрат вБкрат(ткст т)
-    {return toUshort(т);}
-
-    байт вБайт(ткст т)
-    {return toByte(т);}
-
-    ббайт вБбайт(ткст т)
-    {return toUbyte(т);}
-
-    плав вПлав(ткст т)
-    {return toFloat(т);}
-
-    дво вДво(ткст т)
-    {return toDouble(т);}
-
-    реал вРеал(ткст т)
-    {return toReal(т);}
-
-}
-
-////////////////////////////////////////////////////////////////////////////
-
 private import std.string;  // for atof(), toString()
 private import std.math;  // for fabs(), cidrus.isnan()
 private import std.io; // for writefln() and эхо()
 import cidrus, sys.WinFuncs, std.utf;
 
-//debug=conv;       // uncomment to turn on debugging эхо's
+//debug=conv;		// uncomment to turn on debugging эхо's
 const ОШДИАП             = 34; 
+alias toInt вЦел;
+alias toUint вБцел;
+alias toLong вДол;
+alias toUlong вБдол;
+alias toShort вКрат;
+alias toUshort вБкрат;  
+alias toByte вБайт;
+alias toUbyte ВБбайт; 
+alias toFloat вПлав;   
+alias toDouble вДво; 
+alias toReal вРеал;
+alias ConvError ОшПреобразования;
+alias ConvOverflowError ОшПереполненияПриПреобр;
  
 /* ************* Exceptions *************** */
 
+/**
+ * Thrown on conversion errors, which happens on deviation from the grammar.
+ */
+deprecated class ConvError : Исключение
+{
+    this(char[] s)
+    {
+	super( s);
+    }
+}
 
 class ОшибкаПреобразования:Исключение
 {
@@ -75,6 +45,16 @@ private void conv_error(char[] s)
     throw new ОшибкаПреобразования(s);
 }
 
+/**
+ * Thrown on conversion overflow errors.
+ */
+deprecated class ConvOverflowError : Исключение
+{
+    this(char[] s)
+    {
+	super("Ошибка: переполнение " ~ s);
+    }
+}
 
 class ОшибкаПереполненияПриПреобразовании:Исключение
 {
@@ -95,45 +75,45 @@ int toInt(char[] s)
     int length = s.length;
 
     if (!length)
-    goto Lerr;
+	goto Lerr;
 
     int sign = 0;
     int v = 0;
 
     for (int i = 0; i < length; i++)
     {
-    char c = s[i];
-    if (c >= '0' && c <= '9')
-    {
-        if (v < int.max/10 || (v == int.max/10 && c + sign <= '7'))
-        v = v * 10 + (c - '0');
-        else
-        goto Loverflow;
-    }
-    else if (c == '-' && i == 0)
-    {
-        sign = -1;
-        if (length == 1)
-        goto Lerr;
-    }
-    else if (c == '+' && i == 0)
-    {
-        if (length == 1)
-        goto Lerr;
-    }
-    else
-        goto Lerr;
+	char c = s[i];
+	if (c >= '0' && c <= '9')
+	{
+	    if (v < int.max/10 || (v == int.max/10 && c + sign <= '7'))
+		v = v * 10 + (c - '0');
+	    else
+		goto Loverflow;
+	}
+	else if (c == '-' && i == 0)
+	{
+	    sign = -1;
+	    if (length == 1)
+		goto Lerr;
+	}
+	else if (c == '+' && i == 0)
+	{
+	    if (length == 1)
+		goto Lerr;
+	}
+	else
+	    goto Lerr;
     }
     if (sign == -1)
     {
-    if (cast(uint)v > 0x80000000)
-        goto Loverflow;
-    v = -v;
+	if (cast(uint)v > 0x80000000)
+	    goto Loverflow;
+	v = -v;
     }
     else
     {
-    if (cast(uint)v > 0x7FFFFFFF)
-        goto Loverflow;
+	if (cast(uint)v > 0x7FFFFFFF)
+	    goto Loverflow;
     }
     return v;
 
@@ -177,36 +157,36 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "xx",
-    "123h",
-    "2147483648",
-    "-2147483649",
-    "5656566565",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"xx",
+	"123h",
+	"2147483648",
+	"-2147483649",
+	"5656566565",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toInt(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toInt(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -220,22 +200,22 @@ uint toUint(char[] s)
     int length = s.length;
 
     if (!length)
-    goto Lerr;
+	goto Lerr;
 
     uint v = 0;
 
     for (int i = 0; i < length; i++)
     {
-    char c = s[i];
-    if (c >= '0' && c <= '9')
-    {
-        if (v < uint.max/10 || (v == uint.max/10 && c <= '5'))
-        v = v * 10 + (c - '0');
-        else
-        goto Loverflow;
-    }
-    else
-        goto Lerr;
+	char c = s[i];
+	if (c >= '0' && c <= '9')
+	{
+	    if (v < uint.max/10 || (v == uint.max/10 && c <= '5'))
+		v = v * 10 + (c - '0');
+	    else
+		goto Loverflow;
+	}
+	else
+	    goto Lerr;
     }
     return v;
 
@@ -273,36 +253,36 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "+5",
-    "-78",
-    "xx",
-    "123h",
-    "4294967296",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"+5",
+	"-78",
+	"xx",
+	"123h",
+	"4294967296",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toUint(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toUint(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -315,45 +295,45 @@ long toLong(char[] s)
     int length = s.length;
 
     if (!length)
-    goto Lerr;
+	goto Lerr;
 
     int sign = 0;
     long v = 0;
 
     for (int i = 0; i < length; i++)
     {
-    char c = s[i];
-    if (c >= '0' && c <= '9')
-    {
-        if (v < long.max/10 || (v == long.max/10 && c + sign <= '7'))
-        v = v * 10 + (c - '0');
-        else
-        goto Loverflow;
-    }
-    else if (c == '-' && i == 0)
-    {
-        sign = -1;
-        if (length == 1)
-        goto Lerr;
-    }
-    else if (c == '+' && i == 0)
-    {
-        if (length == 1)
-        goto Lerr;
-    }
-    else
-        goto Lerr;
+	char c = s[i];
+	if (c >= '0' && c <= '9')
+	{
+	    if (v < long.max/10 || (v == long.max/10 && c + sign <= '7'))
+		v = v * 10 + (c - '0');
+	    else
+		goto Loverflow;
+	}
+	else if (c == '-' && i == 0)
+	{
+	    sign = -1;
+	    if (length == 1)
+		goto Lerr;
+	}
+	else if (c == '+' && i == 0)
+	{
+	    if (length == 1)
+		goto Lerr;
+	}
+	else
+	    goto Lerr;
     }
     if (sign == -1)
     {
-    if (cast(ulong)v > 0x8000000000000000)
-        goto Loverflow;
-    v = -v;
+	if (cast(ulong)v > 0x8000000000000000)
+	    goto Loverflow;
+	v = -v;
     }
     else
     {
-    if (cast(ulong)v > 0x7FFFFFFFFFFFFFFF)
-        goto Loverflow;
+	if (cast(ulong)v > 0x7FFFFFFFFFFFFFFF)
+	    goto Loverflow;
     }
     return v;
 
@@ -403,35 +383,35 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "xx",
-    "123h",
-    "9223372036854775808",
-    "-9223372036854775809",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"xx",
+	"123h",
+	"9223372036854775808",
+	"-9223372036854775809",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toLong(errors[j]);
-        эхо("l = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toLong(errors[j]);
+	    эхо("l = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -445,22 +425,22 @@ ulong toUlong(char[] s)
     int length = s.length;
 
     if (!length)
-    goto Lerr;
+	goto Lerr;
 
     ulong v = 0;
 
     for (int i = 0; i < length; i++)
     {
-    char c = s[i];
-    if (c >= '0' && c <= '9')
-    {
-        if (v < ulong.max/10 || (v == ulong.max/10 && c <= '5'))
-        v = v * 10 + (c - '0');
-        else
-        goto Loverflow;
-    }
-    else
-        goto Lerr;
+	char c = s[i];
+	if (c >= '0' && c <= '9')
+	{
+	    if (v < ulong.max/10 || (v == ulong.max/10 && c <= '5'))
+		v = v * 10 + (c - '0');
+	    else
+		goto Loverflow;
+	}
+	else
+	    goto Lerr;
     }
     return v;
 
@@ -505,36 +485,36 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "+5",
-    "-78",
-    "xx",
-    "123h",
-    "18446744073709551616",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"+5",
+	"-78",
+	"xx",
+	"123h",
+	"18446744073709551616",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toUlong(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toUlong(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -548,7 +528,7 @@ short toShort(char[] s)
     int v = toInt(s);
 
     if (v != cast(short)v)
-    goto Loverflow;
+	goto Loverflow;
 
     return cast(short)v;
 
@@ -589,35 +569,35 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "xx",
-    "123h",
-    "32768",
-    "-32769",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"xx",
+	"123h",
+	"32768",
+	"-32769",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toShort(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toShort(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -631,7 +611,7 @@ ushort toUshort(char[] s)
     uint v = toUint(s);
 
     if (v != cast(ushort)v)
-    goto Loverflow;
+	goto Loverflow;
 
     return cast(ushort)v;
 
@@ -666,36 +646,36 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "+5",
-    "-78",
-    "xx",
-    "123h",
-    "65536",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"+5",
+	"-78",
+	"xx",
+	"123h",
+	"65536",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toUshort(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toUshort(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -709,7 +689,7 @@ byte toByte(char[] s)
     int v = toInt(s);
 
     if (v != cast(byte)v)
-    goto Loverflow;
+	goto Loverflow;
 
     return cast(byte)v;
 
@@ -750,35 +730,35 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "xx",
-    "123h",
-    "128",
-    "-129",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"xx",
+	"123h",
+	"128",
+	"-129",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toByte(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toByte(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -792,7 +772,7 @@ ubyte toUbyte(char[] s)
     uint v = toUint(s);
 
     if (v != cast(ubyte)v)
-    goto Loverflow;
+	goto Loverflow;
 
     return cast(ubyte)v;
 
@@ -827,36 +807,36 @@ unittest
 
     static char[][] errors =
     [
-    "",
-    "-",
-    "+",
-    "-+",
-    " ",
-    " 0",
-    "0 ",
-    "- 0",
-    "1-",
-    "+5",
-    "-78",
-    "xx",
-    "123h",
-    "256",
+	"",
+	"-",
+	"+",
+	"-+",
+	" ",
+	" 0",
+	"0 ",
+	"- 0",
+	"1-",
+	"+5",
+	"-78",
+	"xx",
+	"123h",
+	"256",
     ];
 
     for (int j = 0; j < errors.length; j++)
     {
-    i = 47;
-    try
-    {
-        i = toUbyte(errors[j]);
-        эхо("i = %d\n", i);
-    }
-    catch (Исключение e)
-    {
-        debug(conv) e.print();
-        i = 3;
-    }
-    assert(i == 3);
+	i = 47;
+	try
+	{
+	    i = toUbyte(errors[j]);
+	    эхо("i = %d\n", i);
+	}
+	catch (Исключение e)
+	{
+	    debug(conv) e.print();
+	    i = 3;
+	}
+	assert(i == 3);
     }
 }
 
@@ -874,16 +854,16 @@ float toFloat(in char[] s)
     //writefln("toFloat('%s')", s);
     разм = s;
     if (std.ctype.isspace(*разм))
-    goto Lerr;
+	goto Lerr;
 
     // BUG: should set __locale_decpoint to "." for DMC
 
     устНомош(0);
     f = стрнапз(разм, &endptr);
     if (дайНомош() == ОШДИАП)
-    goto Lerr;
+	goto Lerr;
     if (endptr && (endptr == разм || *endptr != 0))
-    goto Lerr;
+	goto Lerr;
 
     return f;
         
@@ -927,11 +907,11 @@ unittest
     bool ok = false;
     try
     {
-    toFloat("\x00");
+	toFloat("\x00");
     }
     catch (ОшибкаПреобразования e)
     {
-    ok = true;
+	ok = true;
     }
     assert(ok);
 }
@@ -949,16 +929,16 @@ double toDouble(in char[] s)
     //writefln("toDouble('%s')", s);
     разм = s;
     if (std.ctype.isspace(*разм))
-    goto Lerr;
+	goto Lerr;
 
     // BUG: should set __locale_decpoint to "." for DMC
 
     устНомош(0);
     f = стрнад(разм, &endptr);
     if (дайНомош() == ОШДИАП)
-    goto Lerr;
+	goto Lerr;
     if (endptr && (endptr == разм || *endptr != 0))
-    goto Lerr;
+	goto Lerr;
 
     return f;
         
@@ -1005,11 +985,11 @@ unittest
     bool ok = false;
     try
     {
-    toDouble("\x00");
+	toDouble("\x00");
     }
     catch (ОшибкаПреобразования e)
     {
-    ok = true;
+	ok = true;
     }
     assert(ok);
 }
@@ -1026,16 +1006,16 @@ real toReal(in char[] s)
     //writefln("toReal('%s')", s);
     разм = s;
     if (std.ctype.isspace(*разм))
-    goto Lerr;
+	goto Lerr;
 
     // BUG: should set __locale_decpoint to "." for DMC
 
     устНомош(0);
     f = стрнадлд(разм, &endptr);
     if (дайНомош() == ОШДИАП)
-    goto Lerr;
+	goto Lerr;
     if (endptr && (endptr == разм || *endptr != 0))
-    goto Lerr;
+	goto Lerr;
 
     return f;
         
@@ -1087,11 +1067,11 @@ unittest
     bool ok = false;
     try
     {
-    toReal("\x00");
+	toReal("\x00");
     }
     catch (ОшибкаПреобразования e)
     {
-    ok = true;
+	ok = true;
     }
     assert(ok);
 }

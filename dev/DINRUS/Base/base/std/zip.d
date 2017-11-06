@@ -1,405 +1,554 @@
+﻿// Написано на языке программирования Динрус. Разработчик Виталий Кулич.
+
+/**
+ * Read/write data in the $(LINK2 http://www.info-_zip.org, zip archive) format.
+ * Makes use of the etc.c.zlib compression library.
+ *
+ * Bugs: 
+ *	$(UL
+ *	$(LI Multi-disk zips not supported.)
+ *	$(LI Only Zip version 20 formats are supported.)
+ *	$(LI Only supports compression modes 0 (no compression) and 8 (deflate).)
+ *	$(LI Does not support encryption.)
+ *	$(LI $(BUGZILLA 592))
+ *	$(LI $(BUGZILLA 1832))
+ *	$(LI $(BUGZILLA 2137))
+ *	$(LI $(BUGZILLA 2138))
+ *	)
+ *
+ * Macros:
+ *	WIKI = Phobos/StdZip
+ */
+
 module std.zip;
-import  std.intrinsic;
 
+private import std.zlib;
+private import std.date;
+private import std.intrinsic;
 
-class ЗипИскл : Исключение
+//debug=print;
+
+/** Thrown on error.
+ */
+class ZipException : Exception
 {
-    this(ткст сооб)
+    this(string msg)
     {
-	super(сооб,__FILE__,__LINE__);
+	super(msg,__FILE__,__LINE__);
+    }
+}
+alias ZlibException ИсклЗип;
+/**
+ * A member of the ZipArchive.
+ */
+alias ArchiveMember ЧленАрхива;
+
+class ArchiveMember
+{
+alias flags флаги;
+alias compressionMethod методСжатия;
+alias time время;
+alias crc32 кс32;
+alias compressedSize сжатыйРазмер;
+alias expandedSize расжатыйРазмер;
+alias diskNumber номерДиска;
+alias internalAttributes внутренниеАтры;
+alias externalAttributes внешниеАтры; 
+alias name имя;
+alias extra экстра;
+alias compressedData сжатыеДанные;
+alias expandedData расжатыеДанные;
+
+    ushort madeVersion = 20;	/// Read Only
+    ushort extractVersion = 20;	/// Read Only
+    ushort flags;		/// Read/Write: normally set to 0
+    ushort compressionMethod;	/// Read/Write: 0 for compression, 8 for deflate
+    std.date.DosFileTime time;	/// Read/Write: Last modified time of the member. It's in the DOS дата/time format.
+    uint crc32;			/// Read Only: cyclic redundancy check (CRC) value
+    uint compressedSize;	/// Read Only: size of data of member in compressed form.
+    uint expandedSize;		/// Read Only: size of data of member in expanded form.
+    ushort diskNumber;		/// Read Only: should be 0.
+    ushort internalAttributes;	/// Read/Write
+    uint externalAttributes;	/// Read/Write
+
+    private uint offset;
+
+    /**
+     * Read/Write: Usually the file name of the archive member; it is used to
+     * index the archive directory for the member. Each member must have a unique
+     * name[]. Do not change without removing member from the directory first.
+     */
+    string name;
+
+    ubyte[] extra;		/// Read/Write: extra data for this member.
+    string comment;		/// Read/Write: comment associated with this member.
+    ubyte[] compressedData;	/// Read Only: data of member in compressed form.
+    ubyte[] expandedData;	/// Read/Write: data of member in uncompressed form.
+
+    debug(print)
+    {
+    void print()
+    {
+	эхо("name = '%.*s'\n", name);
+	эхо("\tcomment = '%.*s'\n", comment);
+	эхо("\tmadeVersion = x%04x\n", madeVersion);
+	эхо("\textractVersion = x%04x\n", extractVersion);
+	эхо("\tflags = x%04x\n", flags);
+	эхо("\tcompressionMethod = %d\n", compressionMethod);
+	эхо("\ttime = %d\n", time);
+	эхо("\tstdcrc32 = x%08x\n", crc32);
+	эхо("\texpandedSize = %d\n", expandedSize);
+	эхо("\tcompressedSize = %d\n", compressedSize);
+	эхо("\tinternalAttributes = x%04x\n", internalAttributes);
+	эхо("\texternalAttributes = x%08x\n", externalAttributes);
+    }
     }
 }
 
-export extern (D)
- struct ЧленАрхиваЗИП //ArchiveMember
+/**
+ * Object representing the entire archive.
+ * ZipArchives are collections of ArchiveMembers.
+ */
+alias ZipArchive ЗипАрхив;
+class ZipArchive
 {
-export:
-    бкрат версияСборки = 20;
-    бкрат версияИзвлечения = 20;
-    бкрат флаги;
-    бкрат методСжатия;
-    ФВремяДос время;
-    бцел цпи32;
-    бцел сжатыйРазмер;
-    бцел расжатыйРазмер;
-    бкрат номерДиска;
-    бкрат внутренниеАтрибуты;
-    бцел внешниеАтрибуты;
-    private бцел смещение;
-    ткст имя;
-    ббайт[] экстра;
-    ткст комментарий;
-    ббайт[] сжатыеДанные;
-    ббайт[] расжатыеДанные;
+alias data данные;
+alias endrecOffset смещкКонцуЗап;
+alias diskNumber номерДиска;
+//alias diskStartDir 
+alias numEntries числоЗаписей;
+alias totalEntries всегоЗаписей;
+alias comment комментарий;
+alias directory папка;
+alias addMember добавитьЧлен;
+alias deleteMember удалитьЧлен;
+alias build построить;
+alias expand развернуть;
 
-    проц выведи()
+    ubyte[] data;	/// Read Only: array representing the entire contents of the archive.
+    uint endrecOffset;
+
+    uint diskNumber;	/// Read Only: 0 since multi-disk zip archives are not supported.
+    uint diskStartDir;	/// Read Only: 0 since multi-disk zip archives are not supported.
+    uint numEntries;	/// Read Only: number of ArchiveMembers in the directory.
+    uint totalEntries;	/// Read Only: same as totalEntries.
+    string comment;	/// Read/Write: the archive comment. Must be less than 65536 bytes in length.
+
+    /**
+     * Read Only: array indexed by the name of each member of the archive.
+     * Example:
+     *  All the members of the archive can be accessed with a foreach loop:
+     * --------------------
+     * ZipArchive archive = new ZipArchive(data);
+     * foreach (ArchiveMember am; archive.directory)
+     * {
+     *     writefln("member name is '%s'", am.name);
+     * }
+     * --------------------
+     */
+    ArchiveMember[string] directory;
+
+    debug (print)
     {
-	win.скажи(фм("имя = '%s'\n", имя));
-	win.скажи(фм("\tкомментарий = '%s'\n", комментарий));
-	win.скажи(фм("\tверсияСборки = %d\n", версияСборки));
-	win.скажи(фм("\tверсияИзвлечения = %d\n", версияИзвлечения));
-	win.скажи(фм("\tфлаги = %d\n", флаги));
-	win.скажи(фм("\tметодСжатия = %d\n", методСжатия));
-	win.скажи(фм("\tвремя = %d\n", время));
-	win.скажи(фм("\tцпи32 = %d\n", цпи32));
-	win.скажи(фм("\tрасжатыйРазмер = %d\n", расжатыйРазмер));
-	win.скажи(фм("\tсжатыйРазмер = %d\n", сжатыйРазмер));
-	win.скажи(фм("\tвнутренниеАрибуты = %d\n", внутренниеАтрибуты));
-	win.скажи(фм("\tвнешниеАтрибуты = %d\n", внешниеАтрибуты));
+    void print()
+    {
+	эхо("\tdiskNumber = %u\n", diskNumber);
+	эхо("\tdiskStartDir = %u\n", diskStartDir);
+	эхо("\tnumEntries = %u\n", numEntries);
+	эхо("\ttotalEntries = %u\n", totalEntries);
+	эхо("\tcomment = '%.*s'\n", comment);
+    }
     }
 
-}
+    /* ============ Creating a new archive =================== */
 
-export extern (D)
- class АрхивЗИП
-{
-export:
-
- extern  (C) extern
- {
-    ббайт[] данные;
-    бцел смещКПоследнЗаписи;
-
-    бцел номерДиска;
-    бцел стартПапкаДиска;
-    бцел члоЗаписей;
-    бцел всегоЗаписей;
-    ткст комментарий;
-   ЧленАрхиваЗИП[ткст] папка;
-}
-
-    проц выведи()
-    {
-	win.скажи(фм("\tномерДиска = %u\n", номерДиска));
-	win.скажи(фм("\tстартПапкаДиска = %u\n", стартПапкаДиска));
-	win.скажи(фм("\tчлоЗаписей = %u\n", члоЗаписей));
-	win.скажи(фм("\tвсегоЗаписей = %u\n", всегоЗаписей));
-	win.скажи(фм("\tкомментарий = '%.*т'\n", комментарий));
-    }
-
-     this()
+    /** Constructor to use when creating a new archive.
+     */
+    this()
     {
     }
 
-
-    проц добавьЧлен(ЧленАрхиваЗИП de)
+    /** Add de to the archive.
+     */
+    void addMember(ArchiveMember de)
     {
-	папка[de.имя] = de;
+	directory[de.name] = de;
     }
 
-    проц удалиЧлен(ЧленАрхиваЗИП de)
+    /** Delete de from the archive.
+     */
+    void deleteMember(ArchiveMember de)
     {
-	папка.remove(de.имя);
+	directory.remove(de.name);
     }
 
-     проц[] строй()
-    {	бцел i;
-	бцел папкаOffset;
+    /**
+     * Construct an archive out of the current members of the archive.
+     *
+     * Fills in the properties data[], diskNumber, diskStartDir, numEntries,
+     * totalEntries, and directory[].
+     * For each ArchiveMember, fills in properties std.crc32, compressedSize,
+     * compressedData[].
+     *
+     * Returns: array representing the entire archive.
+     */
+    void[] build()
+    {	uint i;
+	uint directoryOffset;
 
-	if (комментарий.length > 0xFFFF)
-	    throw new ЗипИскл("комментарий архива длиннее 65535");
+	if (comment.length > 0xFFFF)
+	    throw new ZipException("archive comment longer than 65535");
 
-
-	бцел размАрхива = 0;
-	бцел размПапки = 0;
-	foreach (ЧленАрхиваЗИП de; папка)
+	// Compress each member; compute size
+	uint archiveSize = 0;
+	uint directorySize = 0;
+	foreach (ArchiveMember de; directory)
 	{
-	    de.расжатыйРазмер = de.расжатыеДанные.length;
-	    switch (de.методСжатия)
+	    de.expandedSize = de.expandedData.length;
+	    switch (de.compressionMethod)
 	    {
 		case 0:
-		    de.сжатыеДанные = de.расжатыеДанные;
+		    de.compressedData = de.expandedData;
 		    break;
 
 		case 8:
-		    de.сжатыеДанные = cast(ббайт[])std.zlib.compress(cast(проц[])de.расжатыеДанные);
-		    de.сжатыеДанные = de.сжатыеДанные[2 .. de.сжатыеДанные.length - 4];
+		    de.compressedData = cast(ubyte[])std.zlib.compress(cast(void[])de.expandedData);
+		    de.compressedData = de.compressedData[2 .. de.compressedData.length - 4];
 		    break;
 
 		default:
-		    throw new ЗипИскл("неподдерживаемый метод сжатия");
+		    throw new ZipException("unsupported compression method");
 	    }
-	    de.сжатыйРазмер = de.сжатыеДанные.length;
-	    de.цпи32 = std.zlib.crc32(0, cast(проц[])de.расжатыеДанные);
+	    de.compressedSize = de.compressedData.length;
+	    de.crc32 = std.zlib.crc32(0, cast(void[])de.expandedData);
 
-	    размАрхива += 30 + de.имя.length +
-				de.экстра.length +
-				de.сжатыйРазмер;
-	    размПапки += 46 + de.имя.length +
-				de.экстра.length +
-				de.комментарий.length;
+	    archiveSize += 30 + de.name.length +
+				de.extra.length +
+				de.compressedSize;
+	    directorySize += 46 + de.name.length +
+				de.extra.length +
+				de.comment.length;
 	}
 
-	данные = new ббайт[размАрхива + размПапки + 22 + комментарий.length];
+	data = new ubyte[archiveSize + directorySize + 22 + comment.length];
 
+	// Populate the data[]
 
-
-
+	// Store each archive member
 	i = 0;
-	foreach (ЧленАрхиваЗИП de; папка)
+	foreach (ArchiveMember de; directory)
 	{
-	    de.смещение = i;
-	    данные[i .. i + 4] = cast(ббайт[])"PK\x03\x04";
-	    поставьБкрат(i + 4,  de.версияИзвлечения);
-	    поставьБкрат(i + 6,  de.флаги);
-	    поставьБкрат(i + 8,  de.методСжатия);
-	    поставьБцел  (i + 10, cast(бцел)de.время);
-	    поставьБцел  (i + 14, de.цпи32);
-	    поставьБцел  (i + 18, de.сжатыйРазмер);
-	    поставьБцел  (i + 22, de.расжатыеДанные.length);
-	    поставьБкрат(i + 26, cast(бкрат)de.имя.length);
-	    поставьБкрат(i + 28, cast(бкрат)de.экстра.length);
+	    de.offset = i;
+	    data[i .. i + 4] = cast(ubyte[])"PK\x03\x04";
+	    putUshort(i + 4,  de.extractVersion);
+	    putUshort(i + 6,  de.flags);
+	    putUshort(i + 8,  de.compressionMethod);
+	    putUint  (i + 10, cast(uint)de.time);
+	    putUint  (i + 14, de.crc32);
+	    putUint  (i + 18, de.compressedSize);
+	    putUint  (i + 22, de.expandedData.length);
+	    putUshort(i + 26, cast(ushort)de.name.length);
+	    putUshort(i + 28, cast(ushort)de.extra.length);
 	    i += 30;
 
-	    данные[i .. i + de.имя.length] = cast(ббайт[])de.имя[];
-	    i += de.имя.length;
-	    данные[i .. i + de.экстра.length] = cast(ббайт[])de.экстра[];
-	    i += de.экстра.length;
-	    данные[i .. i + de.сжатыйРазмер] = de.сжатыеДанные[];
-	    i += de.сжатыйРазмер;
+	    data[i .. i + de.name.length] = cast(ubyte[])de.name[];
+	    i += de.name.length;
+	    data[i .. i + de.extra.length] = cast(ubyte[])de.extra[];
+	    i += de.extra.length;
+	    data[i .. i + de.compressedSize] = de.compressedData[];
+	    i += de.compressedSize;
 	}
 
-
-	папкаOffset = i;
-	члоЗаписей = 0;
-	foreach (ЧленАрхиваЗИП de; папка)
+	// Write directory
+	directoryOffset = i;
+	numEntries = 0;
+	foreach (ArchiveMember de; directory)
 	{
-	    данные[i .. i + 4] = cast(ббайт[])"PK\x01\x02";
-	    поставьБкрат(i + 4,  de.версияСборки);
-	    поставьБкрат(i + 6,  de.версияИзвлечения);
-	    поставьБкрат(i + 8,  de.флаги);
-	    поставьБкрат(i + 10, de.методСжатия);
-	    поставьБцел  (i + 12, cast(бцел)de.время);
-	    поставьБцел  (i + 16, de.цпи32);
-	    поставьБцел  (i + 20, de.сжатыйРазмер);
-	    поставьБцел  (i + 24, de.расжатыйРазмер);
-	    поставьБкрат(i + 28, cast(бкрат)de.имя.length);
-	    поставьБкрат(i + 30, cast(бкрат)de.экстра.length);
-	    поставьБкрат(i + 32, cast(бкрат)de.комментарий.length);
-	    поставьБкрат(i + 34, de.номерДиска);
-	    поставьБкрат(i + 36, de.внутренниеАтрибуты);
-	    поставьБцел  (i + 38, de.внешниеАтрибуты);
-	    поставьБцел  (i + 42, de.смещение);
+	    data[i .. i + 4] = cast(ubyte[])"PK\x01\x02";
+	    putUshort(i + 4,  de.madeVersion);
+	    putUshort(i + 6,  de.extractVersion);
+	    putUshort(i + 8,  de.flags);
+	    putUshort(i + 10, de.compressionMethod);
+	    putUint  (i + 12, cast(uint)de.time);
+	    putUint  (i + 16, de.crc32);
+	    putUint  (i + 20, de.compressedSize);
+	    putUint  (i + 24, de.expandedSize);
+	    putUshort(i + 28, cast(ushort)de.name.length);
+	    putUshort(i + 30, cast(ushort)de.extra.length);
+	    putUshort(i + 32, cast(ushort)de.comment.length);
+	    putUshort(i + 34, de.diskNumber);
+	    putUshort(i + 36, de.internalAttributes);
+	    putUint  (i + 38, de.externalAttributes);
+	    putUint  (i + 42, de.offset);
 	    i += 46;
 
-	    данные[i .. i + de.имя.length] = cast(ббайт[])de.имя[];
-	    i += de.имя.length;
-	    данные[i .. i + de.экстра.length] = cast(ббайт[])de.экстра[];
-	    i += de.экстра.length;
-	    данные[i .. i + de.комментарий.length] = cast(ббайт[])de.комментарий[];
-	    i += de.комментарий.length;
-	    члоЗаписей++;
+	    data[i .. i + de.name.length] = cast(ubyte[])de.name[];
+	    i += de.name.length;
+	    data[i .. i + de.extra.length] = cast(ubyte[])de.extra[];
+	    i += de.extra.length;
+	    data[i .. i + de.comment.length] = cast(ubyte[])de.comment[];
+	    i += de.comment.length;
+	    numEntries++;
 	}
-	всегоЗаписей = члоЗаписей;
+	totalEntries = numEntries;
 
-
-	смещКПоследнЗаписи = i;
-	данные[i .. i + 4] = cast(ббайт[])"PK\x05\x06";
-	поставьБкрат(i + 4,  cast(бкрат)номерДиска);
-	поставьБкрат(i + 6,  cast(бкрат)стартПапкаДиска);
-	поставьБкрат(i + 8,  cast(бкрат)члоЗаписей);
-	поставьБкрат(i + 10, cast(бкрат)всегоЗаписей);
-	поставьБцел  (i + 12, размПапки);
-	поставьБцел  (i + 16, папкаOffset);
-	поставьБкрат(i + 20, cast(бкрат)комментарий.length);
+	// Write end record
+	endrecOffset = i;
+	data[i .. i + 4] = cast(ubyte[])"PK\x05\x06";
+	putUshort(i + 4,  cast(ushort)diskNumber);
+	putUshort(i + 6,  cast(ushort)diskStartDir);
+	putUshort(i + 8,  cast(ushort)numEntries);
+	putUshort(i + 10, cast(ushort)totalEntries);
+	putUint  (i + 12, directorySize);
+	putUint  (i + 16, directoryOffset);
+	putUshort(i + 20, cast(ushort)comment.length);
 	i += 22;
 
+	// Write archive comment
+	assert(i + comment.length == data.length);
+	data[i .. data.length] = cast(ubyte[])comment[];
 
-	assert(i + комментарий.length == данные.length);
-	данные[i .. данные.length] = cast(ббайт[])комментарий[];
-
-	return cast(проц[])данные;
+	return cast(void[])data;
     }
 
+    /* ============ Reading an existing archive =================== */
 
-    this(проц[] буфер)
-    {	цел iend;
-	цел i;
-	цел endcommentlength;
-	бцел размПапки;
-	бцел папкаOffset;
+    /**
+     * Constructor to use when reading an existing archive.
+     *
+     * Fills in the properties data[], diskNumber, diskStartDir, numEntries,
+     * totalEntries, comment[], and directory[].
+     * For each ArchiveMember, fills in
+     * properties madeVersion, extractVersion, flags, compressionMethod, time,
+     * std.crc32, compressedSize, expandedSize, compressedData[], diskNumber,
+     * internalAttributes, externalAttributes, name[], extra[], comment[].
+     * Use expand() to get the expanded data for each ArchiveMember.
+     *
+     * Параметры:
+     *	buffer = the entire contents of the archive.
+     */
 
-	this.данные = cast(ббайт[]) буфер;
+    this(void[] buffer)
+    {	int iend;
+	int i;
+	int endcommentlength;
+	uint directorySize;
+	uint directoryOffset;
 
+	this.data = cast(ubyte[]) buffer;
 
-	iend = данные.length - 66000;
+	// Find 'end record index' by searching backwards for signature
+	iend = data.length - 66000;
 	if (iend < 0)
 	    iend = 0;
-	for (i = данные.length - 22; 1; i--)
+	for (i = data.length - 22; 1; i--)
 	{
 	    if (i < iend)
-		throw new ЗипИскл("нет записи о конце");
+		throw new ZipException("no end record");
 
-	    if (данные[i .. i + 4] == cast(ббайт[])"PK\x05\x06")
+	    if (data[i .. i + 4] == cast(ubyte[])"PK\x05\x06")
 	    {
-		endcommentlength = ДайБкрат(i + 20);
-		if (i + 22 + endcommentlength > данные.length)
+		endcommentlength = getUshort(i + 20);
+		if (i + 22 + endcommentlength > data.length)
 		    continue;
-		комментарий = cast(ткст)(данные[i + 22 .. i + 22 + endcommentlength]);
-		смещКПоследнЗаписи = i;
+		comment = cast(string)(data[i + 22 .. i + 22 + endcommentlength]);
+		endrecOffset = i;
 		break;
 	    }
 	}
 
+	// Read end record data
+	diskNumber = getUshort(i + 4);
+	diskStartDir = getUshort(i + 6);
 
-	номерДиска = ДайБкрат(i + 4);
-	стартПапкаДиска = ДайБкрат(i + 6);
+	numEntries = getUshort(i + 8);
+	totalEntries = getUshort(i + 10);
 
-	члоЗаписей = ДайБкрат(i + 8);
-	всегоЗаписей = ДайБкрат(i + 10);
+	if (numEntries != totalEntries)
+	    throw new ZipException("multiple disk zips not supported");
 
-	if (члоЗаписей != всегоЗаписей)
-	    throw new ЗипИскл("зип на несколько дисков не поддерживается");
+	directorySize = getUint(i + 12);
+	directoryOffset = getUint(i + 16);
 
-	размПапки = ДайБцел(i + 12);
-	папкаOffset = ДайБцел(i + 16);
+	if (directoryOffset + directorySize > i)
+	    throw new ZipException("corrupted directory");
 
-	if (папкаOffset + размПапки > i)
-	    throw new ЗипИскл("повреждённая папка");
-
-	i = папкаOffset;
-	for (цел n = 0; n < члоЗаписей; n++)
+	i = directoryOffset;
+	for (int n = 0; n < numEntries; n++)
 	{
+	    /* The format of an entry is:
+	     *	'PK' 1, 2
+	     *	directory info
+	     *	path
+	     *	extra data
+	     *	comment
+	     */
 
-	    бцел смещение;
-	    бцел длинаим;
-	    бцел экстрадлин;
-	    бцел комментарийlen;
+	    uint offset;
+	    uint namelen;
+	    uint extralen;
+	    uint commentlen;
 
-	    if (данные[i .. i + 4] != cast(ббайт[])"PK\x01\x02")
-		throw new ЗипИскл("неверная запись папки 1");
-	    ЧленАрхиваЗИП de;
-	    de.версияСборки = ДайБкрат(i + 4);
-	    de.версияИзвлечения = ДайБкрат(i + 6);
-	    de.флаги = ДайБкрат(i + 8);
-	    de.методСжатия = ДайБкрат(i + 10);
-	    de.время = cast(ФВремяДос)ДайБцел(i + 12);
-	    de.цпи32 = ДайБцел(i + 16);
-	    de.сжатыйРазмер = ДайБцел(i + 20);
-	    de.расжатыйРазмер = ДайБцел(i + 24);
-	    длинаим = ДайБкрат(i + 28);
-	    экстрадлин = ДайБкрат(i + 30);
-	    комментарийlen = ДайБкрат(i + 32);
-	    de.номерДиска = ДайБкрат(i + 34);
-	    de.внутренниеАтрибуты = ДайБкрат(i + 36);
-	    de.внешниеАтрибуты = ДайБцел(i + 38);
-	    de.смещение = ДайБцел(i + 42);
+	    if (data[i .. i + 4] != cast(ubyte[])"PK\x01\x02")
+		throw new ZipException("invalid directory entry 1");
+	    ArchiveMember de = new ArchiveMember();
+	    de.madeVersion = getUshort(i + 4);
+	    de.extractVersion = getUshort(i + 6);
+	    de.flags = getUshort(i + 8);
+	    de.compressionMethod = getUshort(i + 10);
+	    de.time = cast(DosFileTime)getUint(i + 12);
+	    de.crc32 = getUint(i + 16);
+	    de.compressedSize = getUint(i + 20);
+	    de.expandedSize = getUint(i + 24);
+	    namelen = getUshort(i + 28);
+	    extralen = getUshort(i + 30);
+	    commentlen = getUshort(i + 32);
+	    de.diskNumber = getUshort(i + 34);
+	    de.internalAttributes = getUshort(i + 36);
+	    de.externalAttributes = getUint(i + 38);
+	    de.offset = getUint(i + 42);
 	    i += 46;
 
-	    if (i + длинаим + экстрадлин + комментарийlen > папкаOffset + размПапки)
-		throw new ЗипИскл("неверная запись папки 2");
+	    if (i + namelen + extralen + commentlen > directoryOffset + directorySize)
+		throw new ZipException("invalid directory entry 2");
 
-	    de.имя = cast(ткст)(данные[i .. i + длинаим]);
-	    i += длинаим;
-	    de.экстра = данные[i .. i + экстрадлин];
-	    i += экстрадлин;
-	    de.комментарий = cast(ткст)(данные[i .. i + комментарийlen]);
-	    i += комментарийlen;
+	    de.name = cast(string)(data[i .. i + namelen]);
+	    i += namelen;
+	    de.extra = data[i .. i + extralen];
+	    i += extralen;
+	    de.comment = cast(string)(data[i .. i + commentlen]);
+	    i += commentlen;
 
-	    папка[de.имя] = de;
+	    directory[de.name] = de;
 	}
-	if (i != папкаOffset + размПапки)
-	    throw new ЗипИскл("неверная запись папки 3");
+	if (i != directoryOffset + directorySize)
+	    throw new ZipException("invalid directory entry 3");
     }
 
+    /*****
+     * Decompress the contents of archive member de and return the expanded
+     * data.
+     *
+     * Fills in properties extractVersion, flags, compressionMethod, time,
+     * std.crc32, compressedSize, expandedSize, expandedData[], name[], extra[].
+     */
+    ubyte[] expand(ArchiveMember de)
+    {	uint namelen;
+	uint extralen;
 
-    ббайт[]расжать(ЧленАрхиваЗИП de)
-    {	бцел длинаим;
-	бцел экстрадлин;
+	if (data[de.offset .. de.offset + 4] != cast(ubyte[])"PK\x03\x04")
+	    throw new ZipException("invalid directory entry 4");
 
-	if (данные[de.смещение .. de.смещение + 4] != cast(ббайт[])"PK\x03\x04")
-	    throw new ЗипИскл("неверная запись папки 4");
+	// These values should match what is in the main zip archive directory
+	de.extractVersion = getUshort(de.offset + 4);
+	de.flags = getUshort(de.offset + 6);
+	de.compressionMethod = getUshort(de.offset + 8);
+	de.time = cast(DosFileTime)getUint(de.offset + 10);
+	de.crc32 = getUint(de.offset + 14);
+	de.compressedSize = getUint(de.offset + 18);
+	de.expandedSize = getUint(de.offset + 22);
+	namelen = getUshort(de.offset + 26);
+	extralen = getUshort(de.offset + 28);
 
+	debug(print)
+	{
+	    эхо("\t\texpandedSize = %d\n", de.expandedSize);
+	    эхо("\t\tcompressedSize = %d\n", de.compressedSize);
+	    эхо("\t\tnamelen = %d\n", namelen);
+	    эхо("\t\textralen = %d\n", extralen);
+	}
 
-	de.версияИзвлечения = ДайБкрат(de.смещение + 4);
-	de.флаги = ДайБкрат(de.смещение + 6);
-	de.методСжатия = ДайБкрат(de.смещение + 8);
-	de.время = cast(ФВремяДос)ДайБцел(de.смещение + 10);
-	de.цпи32 = ДайБцел(de.смещение + 14);
-	de.сжатыйРазмер = ДайБцел(de.смещение + 18);
-	de.расжатыйРазмер = ДайБцел(de.смещение + 22);
-	длинаим = ДайБкрат(de.смещение + 26);
-	экстрадлин = ДайБкрат(de.смещение + 28);
+	if (de.flags & 1)
+	    throw new ZipException("encryption not supported");
 
-	    win.скажи(фм("\t\tрасжатыйРазмер = %d\n", de.расжатыйРазмер));
-	    win.скажи(фм("\t\tсжатыйРазмер = %d\n", de.сжатыйРазмер));
-	    win.скажи(фм("\t\tдлинаим = %d\n", длинаим));
-	    win.скажи(фм("\t\tэкстрадлин = %d\n", экстрадлин));
+	int i;
+	i = de.offset + 30 + namelen + extralen;
+	if (i + de.compressedSize > endrecOffset)
+	    throw new ZipException("invalid directory entry 5");
 
-	if (de.флаги & 1)
-	    throw new ЗипИскл("кодирование не поддерживается");
+	de.compressedData = data[i .. i + de.compressedSize];
+	debug(print) arrayPrint(de.compressedData);
 
-	цел i;
-	i = de.смещение + 30 + длинаим + экстрадлин;
-	if (i + de.сжатыйРазмер > смещКПоследнЗаписи)
-	    throw new ЗипИскл("неверная запись папки 5");
+	switch (de.compressionMethod)
+	{
+	    case 0:
+		de.expandedData = de.compressedData;
+		return de.expandedData;
 
-	de.сжатыеДанные = данные[i .. i + de.сжатыйРазмер];
-	debug(print) arrayPrint(de.сжатыеДанные);
+	    case 8:
+		// -15 is a magic value used to decompress zip files.
+		// It has the effect of not requiring the 2 byte header
+		// and 4 byte trailer.
+		de.expandedData = cast(ubyte[])std.zlib.uncompress(cast(void[])de.compressedData, de.expandedSize, -15);
+		return de.expandedData;
 
-	switch (de.методСжатия)
-		{
-			case 0:
-			de.расжатыеДанные = de.сжатыеДанные;
-			return de.расжатыеДанные;
-
-			case 8:
-
-
-
-			de.расжатыеДанные = cast(ббайт[])std.zlib.uncompress(cast(проц[])de.сжатыеДанные, de.расжатыйРазмер, -15);
-			return de.расжатыеДанные;
-
-			default:
-			throw new ЗипИскл("неподдерживаемый метод сжатия");
-		}
+	    default:
+		throw new ZipException("unsupported compression method");
+	}
     }
 
-    бкрат ДайБкрат(цел i)
+    /* ============ Utility =================== */
+
+    ushort getUshort(int i)
     {
 	version (LittleEndian)
 	{
-	    return *cast(бкрат *)&данные[i];
+	    return *cast(ushort *)&data[i];
 	}
 	else
 	{
-	    ббайт b0 = данные[i];
-	    ббайт b1 = данные[i + 1];
+	    ubyte b0 = data[i];
+	    ubyte b1 = data[i + 1];
 	    return (b1 << 8) | b0;
 	}
     }
 
-    бцел ДайБцел(цел i)
+    uint getUint(int i)
     {
 	version (LittleEndian)
 	{
-	    return *cast(бцел *)&данные[i];
+	    return *cast(uint *)&data[i];
 	}
 	else
 	{
-	    return bswap(*cast(бцел *)&данные[i]);
+	    return bswap(*cast(uint *)&data[i]);
 	}
     }
 
-    проц поставьБкрат(цел i, бкрат us)
+    void putUshort(int i, ushort us)
     {
 	version (LittleEndian)
 	{
-	    *cast(бкрат *)&данные[i] = us;
+	    *cast(ushort *)&data[i] = us;
 	}
 	else
 	{
-	    данные[i] = cast(ббайт)us;
-	    данные[i + 1] = cast(ббайт)(us >> 8);
+	    data[i] = cast(ubyte)us;
+	    data[i + 1] = cast(ubyte)(us >> 8);
 	}
     }
 
-    проц поставьБцел(цел i, бцел ui)
+    void putUint(int i, uint ui)
     {
 	version (BigEndian)
 	{
 	    ui = bswap(ui);
 	}
-	*cast(бцел *)&данные[i] = ui;
+	*cast(uint *)&data[i] = ui;
+    }
+}
+
+debug(print)
+{
+    void arrayPrint(ubyte[] array)
+    {
+	эхо("array %p,%d\n", cast(void*)array, array.length);
+	for (int i = 0; i < array.length; i++)
+	{
+	    эхо("%02x ", array[i]);
+	    if (((i + 1) & 15) == 0)
+		эхо("\n");
+	}
+	эхо("\n");
     }
 }

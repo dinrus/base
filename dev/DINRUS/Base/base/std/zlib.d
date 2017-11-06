@@ -1,102 +1,70 @@
+﻿/**
+ * Compress/decompress data using the $(LINK2 http://www._zlib.net, zlib library).
+ *
+ * References:
+ *	$(LINK2 http://en.wikipedia.org/wiki/Zlib, Wikipedia)
+ * License:
+ *	Public Domain
+ *
+ * Macros:
+ *	WIKI = Phobos/StdZlib
+ */
+
 
 module std.zlib;
 
-export extern(D)
-{
+//debug=zlib;		// uncomment to turn on debugging эхо's
 
-    бцел адлер32(бцел адлер, проц[] буф){return adler32(адлер, буф);}
-    бцел цпи32(бцел кс, проц[] буф){return crc32(кс, буф);}
-
-    проц[] сожмиЗлиб(проц[] истбуф, цел ур = цел.init)
-        {
-        if(ур) return compress(истбуф, ур);
-        else return compress(истбуф);
-        }
-
-    проц[] разожмиЗлиб(проц[] истбуф, бцел итдлин = 0u, цел винбиты = 15){return uncompress(истбуф, итдлин, винбиты);}
-
-
-
-    }
-
-export extern(D) class Сжатие
-    {
-    private Compress zc;
-
-    export:
-        enum
-        {
-            БЕЗ_СЛИВА      = 0,
-            СИНХ_СЛИВ    = 2,
-            ПОЛН_СЛИВ    = 3,
-            ФИНИШ       = 4,
-        }
-
-        this(цел ур){zc = new Compress(ур);}
-        this(){zc = new Compress();}
-        ~this(){delete zc;}
-        проц[] сжать(проц[] буф){return  zc.compress(буф);}
-        проц[] слей(цел режим = ФИНИШ){return  zc.flush(режим);}
-    }
-
-    export extern(D) class Расжатие
-    {
-    private UnCompress zc;
-
-    export:
-
-        this(бцел размБуфЦели){zc = new UnCompress(размБуфЦели);}
-        this(){zc = new UnCompress;}
-        ~this(){delete zc;}
-        проц[] расжать(проц[] буф){return  zc.uncompress(буф);}
-        проц[] слей(){return  zc.flush();}
-    }
-
-
-/////////////////////////////////
 private import zlib;
 
+alias adler32 адлер32;
+alias crc32 кс32;
+alias compress сжать;
+alias uncompress расжать;
+alias Compress Сжатие;
+alias UnCompress Расжатие;
+// Values for 'mode'
 
 enum
 {
-    Z_NO_FLUSH      = 0,
-    Z_SYNC_FLUSH    = 2,
-    Z_FULL_FLUSH    = 3,
-    Z_FINISH        = 4,
+	Z_NO_FLUSH      = 0,
+	Z_SYNC_FLUSH    = 2,
+	Z_FULL_FLUSH    = 3,
+	Z_FINISH        = 4,
 }
 
 enum
 {
-    З_БЕЗ_СЛИВА      = 0,
-    З_СИНХ_СЛИВ    = 2,
-    З_ПОЛН_СЛИВ    = 3,
-    З_ФИНИШ       = 4,
+	З_БЕЗ_СЛИВА      = 0,
+	З_СИНХ_СЛИВ    = 2,
+	З_ПОЛН_СЛИВ    = 3,
+	З_ФИНИШ       = 4,
 }
 /*************************************
- * Errors throw a ИсклЗлиб.
+ * Errors throw a ZlibException.
  */
 
-class ИсклЗлиб : Exception
+class ZlibException : Exception
 {
     this(int errnum)
-    {   char[] msg;
+    {	char[] msg;
 
-    switch (errnum)
-    {
-        case Z_STREAM_END:      msg = "конец потока"; break;
-        case Z_NEED_DICT:       msg = "нужен словарь"; break;
-        case Z_ERRNO:       msg = "номош"; break;
-        case Z_STREAM_ERROR:    msg = "ошибка потока"; break;
-        case Z_DATA_ERROR:      msg = "ошибка данных"; break;
-        case Z_MEM_ERROR:       msg = "ошибка памяти"; break;
-        case Z_BUF_ERROR:       msg = "ошибка буфера"; break;
-        case Z_VERSION_ERROR:   msg = "ошибка версии"; break;
-        default:            msg = "неизвестная ошибка"; break;
-    }
-    super(msg,__FILE__,__LINE__);
+	switch (errnum)
+	{
+	    case Z_STREAM_END:		msg = "конец потока"; break;
+	    case Z_NEED_DICT:		msg = "нужен словарь"; break;
+	    case Z_ERRNO:		msg = "номош"; break;
+	    case Z_STREAM_ERROR:	msg = "ошибка потока"; break;
+	    case Z_DATA_ERROR:		msg = "ошибка данных"; break;
+	    case Z_MEM_ERROR:		msg = "ошибка памяти"; break;
+	    case Z_BUF_ERROR:		msg = "ошибка буфера"; break;
+	    case Z_VERSION_ERROR:	msg = "ошибка версии"; break;
+	    default:			msg = "неизвестная ошибка";	break;
+	}
+	super(msg,__FILE__,__LINE__);
     }
 }
-
+alias ZlibException ИсклЗлиб;
 /**************************************************
  * Compute the Adler32 checksum of the data in buf[]. adler is the starting
  * value when computing a cumulative checksum.
@@ -164,8 +132,8 @@ body
     destbuf = new ubyte[destlen];
     err = zlib.compress2(destbuf.ptr, &destlen, cast(ubyte *)srcbuf, srcbuf.length, level);
     if (err)
-    {   delete destbuf;
-    throw new ИсклЗлиб(err);
+    {	delete destbuf;
+	throw new ZlibException(err);
     }
 
     destbuf.length = destlen;
@@ -195,46 +163,46 @@ void[] uncompress(void[] srcbuf, uint destlen = 0u, int winbits = 15)
     ubyte[] destbuf;
 
     if (!destlen)
-    destlen = srcbuf.length * 2 + 1;
+	destlen = srcbuf.length * 2 + 1;
 
     while (1)
     {
-    zlib.z_stream zs;
+	zlib.z_stream zs;
 
-    destbuf = new ubyte[destlen];
-    
-    zs.next_in = cast(ubyte*) srcbuf;
-    zs.avail_in = srcbuf.length;
+	destbuf = new ubyte[destlen];
+	
+	zs.next_in = cast(ubyte*) srcbuf;
+	zs.avail_in = srcbuf.length;
 
-    zs.next_out = destbuf.ptr;
-    zs.avail_out = destlen;
+	zs.next_out = destbuf.ptr;
+	zs.avail_out = destlen;
 
-    err = zlib.inflateInit2(&zs, winbits);
-    if (err)
-    {   delete destbuf;
-        throw new ИсклЗлиб(err);
-    }
-    err = zlib.inflate(&zs, Z_NO_FLUSH);
-    switch (err)
-    {
-        case Z_OK:
-        zlib.inflateEnd(&zs);
-        destlen = destbuf.length * 2;
-        continue;
+	err = zlib.inflateInit2(&zs, winbits);
+	if (err)
+	{   delete destbuf;
+	    throw new ZlibException(err);
+	}
+	err = zlib.inflate(&zs, Z_NO_FLUSH);
+	switch (err)
+	{
+	    case Z_OK:
+		zlib.inflateEnd(&zs);
+		destlen = destbuf.length * 2;
+		continue;
 
-        case Z_STREAM_END:
-        destbuf.length = zs.total_out;
-        err = zlib.inflateEnd(&zs);
-        if (err != Z_OK)
-            goto Lerr;
-        return destbuf;
+	    case Z_STREAM_END:
+		destbuf.length = zs.total_out;
+		err = zlib.inflateEnd(&zs);
+		if (err != Z_OK)
+		    goto Lerr;
+		return destbuf;
 
-        default:
-        zlib.inflateEnd(&zs);
-        Lerr:
-        delete destbuf;
-        throw new ИсклЗлиб(err);
-    }
+	    default:
+		zlib.inflateEnd(&zs);
+	    Lerr:
+		delete destbuf;
+		throw new ZlibException(err);
+	}
     }
     assert(0);
 }
@@ -262,9 +230,9 @@ void arrayPrint(ubyte[] array)
     //эхо("array %p,%d\n", (void*)array, array.length);
     for (int i = 0; i < array.length; i++)
     {
-    эхо("%02x ", array[i]);
-    if (((i + 1) & 15) == 0)
-        эхо("\n");
+	эхо("%02x ", array[i]);
+	if (((i + 1) & 15) == 0)
+	    эхо("\n");
     }
     эхо("\n\n");
 }
@@ -286,11 +254,11 @@ alias flush слей;
 
     void error(int err)
     {
-    if (inited)
-    {   deflateEnd(&zs);
-        inited = 0;
-    }
-    throw new ИсклЗлиб(err);
+	if (inited)
+	{   deflateEnd(&zs);
+	    inited = 0;
+	}
+	throw new ZlibException(err);
     }
 
   public:
@@ -301,11 +269,11 @@ alias flush слей;
     this(int level)
     in
     {
-    assert(1 <= level && level <= 9);
+	assert(1 <= level && level <= 9);
     }
     body
     {
-    this.level = level;
+	this.level = level;
     }
 
     /// ditto
@@ -314,15 +282,15 @@ alias flush слей;
     }
 
     ~this()
-    {   int err;
+    {	int err;
 
-    if (inited)
-    {
-        inited = 0;
-        err = deflateEnd(&zs);
-        if (err)
-        error(err);
-    }
+	if (inited)
+	{
+	    inited = 0;
+	    err = deflateEnd(&zs);
+	    if (err)
+		error(err);
+	}
     }
 
     /**
@@ -331,106 +299,106 @@ alias flush слей;
      * returned from successive calls to this should be concatenated together.
      */
     void[] compress(void[] buf)
-    {   int err;
-    ubyte[] destbuf;
+    {	int err;
+	ubyte[] destbuf;
 
-    if (buf.length == 0)
-        return null;
+	if (buf.length == 0)
+	    return null;
 
-    if (!inited)
-    {
-        err = deflateInit(&zs, level);
-        if (err)
-        error(err);
-        inited = 1;
-    }
+	if (!inited)
+	{
+	    err = deflateInit(&zs, level);
+	    if (err)
+		error(err);
+	    inited = 1;
+	}
 
-    destbuf = new ubyte[zs.avail_in + buf.length];
-    zs.next_out = destbuf.ptr;
-    zs.avail_out = destbuf.length;
+	destbuf = new ubyte[zs.avail_in + buf.length];
+	zs.next_out = destbuf.ptr;
+	zs.avail_out = destbuf.length;
 
-    if (zs.avail_in)
-        buf = cast(void[])zs.next_in[0 .. zs.avail_in] ~ buf;
+	if (zs.avail_in)
+	    buf = cast(void[])zs.next_in[0 .. zs.avail_in] ~ buf;
 
-    zs.next_in = cast(ubyte*) buf.ptr;
-    zs.avail_in = buf.length;
+	zs.next_in = cast(ubyte*) buf.ptr;
+	zs.avail_in = buf.length;
 
-    err = deflate(&zs, Z_NO_FLUSH);
-    if (err != Z_STREAM_END && err != Z_OK)
-    {   delete destbuf;
-        error(err);
-    }
-    destbuf.length = destbuf.length - zs.avail_out;
-    return destbuf;
+	err = deflate(&zs, Z_NO_FLUSH);
+	if (err != Z_STREAM_END && err != Z_OK)
+	{   delete destbuf;
+	    error(err);
+	}
+	destbuf.length = destbuf.length - zs.avail_out;
+	return destbuf;
     }
 
     /***
      * Compress and return any remaining data.
      * The returned data should be appended to that returned by compress().
      * Параметры:
-     *  mode = one of the following: 
-     *      $(DL
-            $(DT Z_SYNC_FLUSH )
-            $(DD Syncs up flushing to the следщ byte boundary.
-            Used when more data is to be compressed later on.)
-            $(DT Z_FULL_FLUSH )
-            $(DD Syncs up flushing to the следщ byte boundary.
-            Used when more data is to be compressed later on,
-            and the decompressor needs to be restartable at this
-            point.)
-            $(DT Z_FINISH)
-            $(DD (default) Used when finished compressing the data. )
-        )
+     *	mode = one of the following: 
+     *		$(DL
+		    $(DT Z_SYNC_FLUSH )
+		    $(DD Syncs up flushing to the следщ byte boundary.
+			Used when more data is to be compressed later on.)
+		    $(DT Z_FULL_FLUSH )
+		    $(DD Syncs up flushing to the следщ byte boundary.
+			Used when more data is to be compressed later on,
+			and the decompressor needs to be restartable at this
+			point.)
+		    $(DT Z_FINISH)
+		    $(DD (default) Used when finished compressing the data. )
+		)
      */
     void[] flush(int mode = Z_FINISH)
     in
     {
-    assert(mode == Z_FINISH || mode == Z_SYNC_FLUSH || mode == Z_FULL_FLUSH);
+	assert(mode == Z_FINISH || mode == Z_SYNC_FLUSH || mode == Z_FULL_FLUSH);
     }
     body
     {
-    void[] destbuf;
-    ubyte[512] tmpbuf = void;
-    int err;
+	void[] destbuf;
+	ubyte[512] tmpbuf = void;
+	int err;
 
-    if (!inited)
-        return null;
+	if (!inited)
+	    return null;
 
-    /* may be  zs.avail_out+<some constant>
-     * zs.avail_out is set nonzero by deflate in previous compress()
-     */
-    //tmpbuf = new void[zs.avail_out];
-    zs.next_out = tmpbuf.ptr;
-    zs.avail_out = tmpbuf.length;
+	/* may be  zs.avail_out+<some constant>
+	 * zs.avail_out is set nonzero by deflate in previous compress()
+	 */
+	//tmpbuf = new void[zs.avail_out];
+	zs.next_out = tmpbuf.ptr;
+	zs.avail_out = tmpbuf.length;
 
-    while( (err = deflate(&zs, mode)) != Z_STREAM_END)
-    {
-        if (err == Z_OK)
-        {
-        if (zs.avail_out != 0 && mode != Z_FINISH)
-            break;
-        else if(zs.avail_out == 0)
-        {
-            destbuf ~= tmpbuf;
-            zs.next_out = tmpbuf.ptr;
-            zs.avail_out = tmpbuf.length;
-            continue;
-        }
-        err = Z_BUF_ERROR;
-        }
-        delete destbuf;
-        error(err);
-    }
-    destbuf ~= tmpbuf[0 .. (tmpbuf.length - zs.avail_out)];
+	while( (err = deflate(&zs, mode)) != Z_STREAM_END)
+	{
+	    if (err == Z_OK)
+	    {
+		if (zs.avail_out != 0 && mode != Z_FINISH)
+		    break;
+		else if(zs.avail_out == 0)
+		{
+		    destbuf ~= tmpbuf;
+		    zs.next_out = tmpbuf.ptr;
+		    zs.avail_out = tmpbuf.length;
+		    continue;
+		}
+		err = Z_BUF_ERROR;
+	    }
+	    delete destbuf;
+	    error(err);
+	}
+	destbuf ~= tmpbuf[0 .. (tmpbuf.length - zs.avail_out)];
 
-    if (mode == Z_FINISH)
-    {
-        err = deflateEnd(&zs);
-        inited = 0;
-        if (err)
-        error(err);
-    }
-    return destbuf;
+	if (mode == Z_FINISH)
+	{
+	    err = deflateEnd(&zs);
+	    inited = 0;
+	    if (err)
+		error(err);
+	}
+	return destbuf;
     }
 }
 
@@ -451,11 +419,11 @@ alias flush слей;
 
     void error(int err)
     {
-    if (inited)
-    {   inflateEnd(&zs);
-        inited = 0;
-    }
-    throw new ИсклЗлиб(err);
+	if (inited)
+	{   inflateEnd(&zs);
+	    inited = 0;
+	}
+	throw new ZlibException(err);
     }
 
   public:
@@ -465,7 +433,7 @@ alias flush слей;
      */
     this(uint destbufsize)
     {
-    this.destbufsize = destbufsize;
+	this.destbufsize = destbufsize;
     }
 
     /** ditto */
@@ -474,16 +442,16 @@ alias flush слей;
     }
 
     ~this()
-    {   int err;
+    {	int err;
 
-    if (inited)
-    {
-        inited = 0;
-        err = inflateEnd(&zs);
-        if (err)
-        error(err);
-    }
-    done = 1;
+	if (inited)
+	{
+	    inited = 0;
+	    err = inflateEnd(&zs);
+	    if (err)
+		error(err);
+	}
+	done = 1;
     }
 
     /**
@@ -494,42 +462,42 @@ alias flush слей;
     void[] uncompress(void[] buf)
     in
     {
-    assert(!done);
+	assert(!done);
     }
     body
-    {   int err;
-    ubyte[] destbuf;
+    {	int err;
+	ubyte[] destbuf;
 
-    if (buf.length == 0)
-        return null;
+	if (buf.length == 0)
+	    return null;
 
-    if (!inited)
-    {
-        err = inflateInit(&zs);
-        if (err)
-        error(err);
-        inited = 1;
-    }
+	if (!inited)
+	{
+	    err = inflateInit(&zs);
+	    if (err)
+		error(err);
+	    inited = 1;
+	}
 
-    if (!destbufsize)
-        destbufsize = buf.length * 2;
-    destbuf = new ubyte[zs.avail_in * 2 + destbufsize];
-    zs.next_out = destbuf.ptr;
-    zs.avail_out = destbuf.length;
+	if (!destbufsize)
+	    destbufsize = buf.length * 2;
+	destbuf = new ubyte[zs.avail_in * 2 + destbufsize];
+	zs.next_out = destbuf.ptr;
+	zs.avail_out = destbuf.length;
 
-    if (zs.avail_in)
-        buf = cast(void[])zs.next_in[0 .. zs.avail_in] ~ buf;
+	if (zs.avail_in)
+	    buf = cast(void[])zs.next_in[0 .. zs.avail_in] ~ buf;
 
-    zs.next_in = cast(ubyte*) buf;
-    zs.avail_in = buf.length;
+	zs.next_in = cast(ubyte*) buf;
+	zs.avail_in = buf.length;
 
-    err = inflate(&zs, Z_NO_FLUSH);
-    if (err != Z_STREAM_END && err != Z_OK)
-    {   delete destbuf;
-        error(err);
-    }
-    destbuf.length = destbuf.length - zs.avail_out;
-    return destbuf;
+	err = inflate(&zs, Z_NO_FLUSH);
+	if (err != Z_STREAM_END && err != Z_OK)
+	{   delete destbuf;
+	    error(err);
+	}
+	destbuf.length = destbuf.length - zs.avail_out;
+	return destbuf;
     }
 
     /**
@@ -540,48 +508,48 @@ alias flush слей;
     void[] flush()
     in
     {
-    assert(!done);
+	assert(!done);
     }
     out
     {
-    assert(done);
+	assert(done);
     }
     body
     {
-    ubyte[] extra;
-    ubyte[] destbuf;
-    int err;
+	ubyte[] extra;
+	ubyte[] destbuf;
+	int err;
 
-    done = 1;
-    if (!inited)
-        return null;
+	done = 1;
+	if (!inited)
+	    return null;
 
       L1:
-    destbuf = new ubyte[zs.avail_in * 2 + 100];
-    zs.next_out = destbuf.ptr;
-    zs.avail_out = destbuf.length;
+	destbuf = new ubyte[zs.avail_in * 2 + 100];
+	zs.next_out = destbuf.ptr;
+	zs.avail_out = destbuf.length;
 
-    err = zlib.inflate(&zs, Z_NO_FLUSH);
-    if (err == Z_OK && zs.avail_out == 0)
-    {
-        extra ~= destbuf;
-        goto L1;
-    }
-    if (err != Z_STREAM_END)
-    {
-        delete destbuf;
-        if (err == Z_OK)
-        err = Z_BUF_ERROR;
-        error(err);
-    }
-    destbuf = destbuf.ptr[0 .. zs.next_out - destbuf.ptr];
-    err = zlib.inflateEnd(&zs);
-    inited = 0;
-    if (err)
-        error(err);
-    if (extra.length)
-        destbuf = extra ~ destbuf;
-    return destbuf;
+	err = zlib.inflate(&zs, Z_NO_FLUSH);
+	if (err == Z_OK && zs.avail_out == 0)
+	{
+	    extra ~= destbuf;
+	    goto L1;
+	}
+	if (err != Z_STREAM_END)
+	{
+	    delete destbuf;
+	    if (err == Z_OK)
+		err = Z_BUF_ERROR;
+	    error(err);
+	}
+	destbuf = destbuf.ptr[0 .. zs.next_out - destbuf.ptr];
+	err = zlib.inflateEnd(&zs);
+	inited = 0;
+	if (err)
+	    error(err);
+	if (extra.length)
+	    destbuf = extra ~ destbuf;
+	return destbuf;
     }
 }
 
@@ -592,22 +560,22 @@ private import std.random;
 
 unittest // by Dave
 {
-    debug(zlib) эхо("unittest\n");
+    debug(zlib) эхо("std.zlib.unittest\n");
 
     bool CompressThenUncompress (ubyte[] src)
     {
       try {
-    ubyte[] dst = cast(ubyte[])compress(cast(void[])src);
-    double ratio = (dst.length / cast(double)src.length);
-    debug(zlib) writef("src.length:  ", src.length, ", dst: ", dst.length, ", Ratio = ", ratio);
-    ubyte[] uncompressedBuf;
-    uncompressedBuf = cast(ubyte[])uncompress(cast(void[])dst);
-    assert(src.length == uncompressedBuf.length);
-    assert(src == uncompressedBuf);
+	ubyte[] dst = cast(ubyte[])std.zlib.compress(cast(void[])src);
+	double ratio = (dst.length / cast(double)src.length);
+	debug(zlib) writef("src.length:  ", src.length, ", dst: ", dst.length, ", Ratio = ", ratio);
+	ubyte[] uncompressedBuf;
+	uncompressedBuf = cast(ubyte[])std.zlib.uncompress(cast(void[])dst);
+	assert(src.length == uncompressedBuf.length);
+	assert(src == uncompressedBuf);
       }
       catch {
-    debug(zlib) writefln(" ... Exception thrown when src.length = ", src.length, ".");
-    return false;
+	debug(zlib) writefln(" ... Exception thrown when src.length = ", src.length, ".");
+	return false;
       }
       return true;
     }
@@ -641,7 +609,7 @@ unittest // by Dave
         }
     }
 
-    debug(zlib) эхо("PASSED unittest\n");
+    debug(zlib) эхо("PASSED std.zlib.unittest\n");
 }
 
 
@@ -661,6 +629,4 @@ unittest // by Artem Rebrov
     //writefln("output = '%s'", cast(char[])output);
     assert( output[] == input[] );
 }
-
-
 

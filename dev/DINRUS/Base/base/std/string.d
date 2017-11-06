@@ -1,226 +1,11 @@
-﻿module std.string;
-import exception, std.format;
-
-typedef extern (D) ткст function(дим) Обрвызов_диэксп_Дим;
-
-export extern(D)
-{
-
-	бул вОбразце(дим с, ткст образец){return cast(бул) inPattern(с, образец);}
-	бул вОбразце(дим с, ткст[] образец){return cast(бул) inPattern(с, образец);}
-
-	
-	ткст фм(...)//////
-	{
-	auto args = _arguments;
-    auto argptr = _argptr;
-   // ткст fmt = null;
-    //разборСпискаАргументов(args, argptr, fmt);
-
-    ткст т;
-
-    проц putc(дим c)
-    {
-	std.utf.encode(т, c);
-    }
-
-		форматДелай(&putc, args, argptr);
-		return т;
-	}
-alias фм форматируй;
-
-	ткст форматируйс(ткст т, ...)
-	{
-
-	т_мера i;
-
-		проц putc(дим c)
-		{
-		if (c <= 0x7F)
-		{
-			if (i >= т.length)
-			throw new ГранМасОшиб("std.string.форматируйс", __LINE__);
-			т[i] = cast(сим)c;
-			++i;
-		}
-		else
-		{   сим[4] буф;
-			ткст b;
-
-			b = std.utf.toUTF8(буф, c);
-			if (i + b.length > т.length)
-		throw new ГранМасОшиб("std.string.форматируйс", __LINE__);
-			т[i..i+b.length] = b[];
-			i += b.length;
-		}
-		}
-
-		форматДелай(&putc, _arguments, _argptr);
-		return т[0 .. i];
-	}
-
-бул пробел_ли(дим т)
-	{
-	return cast(бул)(iswhite(cast(дим) т));
-	}
-	/////////////////////////////
-	дол ткствцел(ткст т)
-	{
-	return cast(дол)(atoi(cast(сим[]) т));
-	}
-	/////////////////////////////////
-	реал ткствдробь(ткст т)
-	{
-	return cast(реал)(atof(cast(сим[]) т));
-	}
-	/////////////////////////////////////
-	цел сравни(ткст s1, ткст s2)
-	{
-	return cast(цел)(cmp(cast(сим[]) s1, cast(сим[]) s2));
-	}
-	///////////////////////////////////////
-	цел сравнлюб(ткст s1, ткст s2)
-	{
-	return cast(цел)(icmp(cast(сим[]) s1, cast(сим[]) s2));
-	}
-	/////////////////////////////////////////////
-	сим* вТкст0(ткст т)
-	{
-	return cast(сим*)(toStringz(cast(сим[]) т));
-	}
-	/////////////////////////////////////////////
-	цел найди(ткст т, дим c)
-	{
-	return cast(цел)(find(cast(сим[]) т, cast(дим) c));
-	}
-	/////////////////////////////////////////////////
-	цел найдлюб(ткст т, дим c)
-	{
-	return cast(цел)(ifind(cast(сим[]) т, cast(дим) c));
-	}
-	////////////////////////////////////////////////
-	цел найдрек(ткст т, дим c)
-	{
-	return cast(цел)(rfind(cast(сим[]) т, cast(дим) c));
-	}
-	///////////////////////////////////////////////
-	цел найдлюбрек(ткст т, дим c)
-	{
-	return cast(цел)(irfind(cast(сим[]) т, cast(дим) c));
-	}
-	/////////////////////////////////////////////////
-	цел найди(ткст т, ткст тзам)
-	{
-	return cast(цел)(find(cast(сим[]) т, cast(сим[]) тзам));
-	}
-	/////////////////////////////////////////////////
-	цел найдлюб(ткст т, ткст тзам)
-	{
-	return  cast(цел)(ifind(cast(сим[]) т, cast(сим[]) тзам));
-	}
-	/////////////////////////////////////////////////
-	цел найдрек(ткст т, ткст тзам)
-	{
-	return  cast(цел)(rfind(cast(сим[]) т, cast(сим[]) тзам));
-	}
-	///////////////////////////////////////////////
-	цел найдлюбрек(ткст т, ткст тзам)
-	{
-	return  cast(цел)(irfind(cast(сим[]) т, cast(сим[]) тзам));
-	}
-	//////////////////////////////////////////////
-	ткст впроп(ткст т)
-	{
-	return cast(ткст)(tolower(cast(ткст) т));
-	}
-	//////////////////////////////////////////////////
-	ткст взаг(ткст т)
-	{
-	return cast(ткст)(toupper(cast(ткст) т));
-	}
-	////////////////////////////////////////////////////
-	ткст озаг(ткст т){return capitalize(т);}
-	////////////////////////////////////////////////////
-	ткст озагслова(ткст т){return capwords(т);}
-	/////////////////////////////////////////////
-	ткст повтори(ткст т, т_мера м){return repeat(т, м);}
-	///////////////////////////////////////////
-	ткст объедини(ткст[] слова, ткст разд){return  join(слова, разд);}
-	///////////////////////////////////////
-	ткст[] разбей(ткст т){ткст м_т = т; return split(м_т);}
-	ткст[] разбейдоп(ткст т, ткст разделитель){ткст м_т = т; ткст м_разделитель = разделитель; return split(м_т, м_разделитель);}
-	//////////////////////////////
-	ткст[] разбейнастр(ткст т){return splitlines(т);}
-	////////////////////////
-	ткст уберислева(ткст т){return  stripl(т);}
-	ткст уберисправа(ткст т){return  stripr(т);}
-	ткст убери(ткст т){return  strip(т);}
-	///////////////////////////
-	ткст убериразгр(ткст т){return  chomp(т);}
-	ткст уберигран(ткст т){return  chop(т);}
-	/////////////////
-	ткст полев(ткст т, цел ширина){return  ljustify(т, ширина);}
-	ткст поправ(ткст т, цел ширина){return  rjustify(т, ширина);}
-	ткст вцентр(ткст т, цел ширина){return  center(т, ширина);}
-	ткст занули(ткст т, цел ширина){return  zfill(т, ширина);}
-
-	ткст замени(ткст т, ткст с, ткст на){ ткст м_т = т.dup; ткст м_с = т.dup; ткст м_на = т.dup; return  replace(м_т, м_с, м_на);}
-	ткст заменисрез(ткст т, ткст срез, ткст замена){ткст м_т = т; ткст м_срез = срез; ткст м_замена = замена; return  replaceSlice(м_т, м_срез, м_замена);}
-	ткст вставь(ткст т, т_мера индекс, ткст подст){ return  insert(т, индекс, подст);}
-	т_мера счесть(ткст т, ткст подст){return  count(т, подст);}
+﻿
+// Written in the D programming language.
 
 
-	ткст заменитабнапбел(ткст стр, цел размтаб=8){return expandtabs(стр, размтаб);}
-	ткст заменипбелнатаб(ткст стр, цел размтаб=8){return entab(стр, размтаб);}
-	ткст постройтранстаб(ткст из, ткст в){return maketrans(из, в);}
-	ткст транслируй(ткст т, ткст табтранс, ткст удсим){return translate(т, табтранс, удсим);}
+module std.string;
+//public import rt.core.string;
 
-
-	т_мера посчитайсимв(ткст т, ткст образец){return  countchars(т, образец);}
-	ткст удалисимв(ткст т, ткст образец){return  removechars(т, образец);}
-	ткст сквиз(ткст т, ткст образец= null){return  squeeze(cast(сим[]) т, cast(сим[]) образец);}
-	ткст следщ(ткст т){return succ(т);}
-
-	ткст тз(ткст ткт, ткст из, ткст в, ткст модифф = null){return tr(ткт, из, в, модифф);}
-	бул чис_ли(in ткст т, in бул раздВкл = false){return cast(бул) isNumeric(т, раздВкл);}
-	т_мера колном(ткст ткт, цел размтаб=8){return column(ткт, размтаб);}
-	ткст параграф(ткст т, цел колонки = 80, ткст первотступ = null, ткст отступ = null, цел размтаб = 8){return wrap(т, колонки, первотступ, отступ, размтаб);}
-	ткст эладр_ли(ткст т){return  isEmail(т);}
-	ткст урл_ли(ткст т){return  isURL(т);}
-	ткст целВЮ8(ткст врем, бцел знач){return intToUtf8(врем, знач);}
-	ткст бдолВЮ8(ткст врем, бцел знач){return ulongToUtf8(врем, знач);}
-
-	ткст вТкст(бул с){return toString(с);}
-	ткст вТкст(сим с)
-	{
-		ткст результат = new сим[2];
-		результат[0] = с;
-		результат[1] = 0;
-		return результат[0 .. 1];
-	}
-	ткст вТкст(ббайт с){return toString(с);}
-	ткст вТкст(бкрат с){return toString(с);}
-	ткст вТкст(бцел с){return toString(с);}
-	ткст вТкст(бдол с){return toString(с);}
-	ткст вТкст(байт с){return toString(с);}
-	ткст вТкст(крат с){return toString(с);}
-	ткст вТкст(цел с){return toString(с);}
-	ткст вТкст(дол с){return toString(с);}
-	ткст вТкст(плав с){return toString(с);}
-	ткст вТкст(дво с){return toString(с);}
-	ткст вТкст(реал с){return toString(с);}
-	ткст вТкст(вплав с){return toString(с);}
-	ткст вТкст(вдво с){return toString(с);}
-	ткст вТкст(вреал с){return toString(с);}
-	ткст вТкст(кплав с){return toString(с);}
-	ткст вТкст(кдво с){return toString(с);}
-	ткст вТкст(креал с){return toString(с);}
-	ткст вТкст(дол знач, бцел корень){return toString(знач, корень);}
-	ткст вТкст(бдол знач, бцел корень){return toString(знач, корень);}
-	ткст вТкст(сим *с){return toString(с);}
-}/////extern D
-
-////////////////////////
+//debug=string;		// uncomment to turn on debugging printf's
 
 private import std.io, sys.WinFuncs;
 private import cidrus;//, rt.console;
@@ -230,7 +15,70 @@ private import std.format;
 private import std.ctype;
 private import tpl.args;
 
+	/+alias iswhite пробел_ли;
+	 alias atoi алфнац;
+	 alias atof алфнапз;
+	 alias cmp сравни;
+	 alias icmp сравнлюб;
+	 alias toCharz вСим0;
+	 alias toStringz вТкст0;
+	 alias find найди;
+	 alias ifind найдлюб;
+	 alias rfind найдрек;
+	 alias irfind найдлюбрек;
+	 alias toupper взаг;+/
+	 alias capitalize озаг;
+	 alias capwords озагслова;
+	 alias repeat повтори;
+	 alias join объедени;
+	 alias split разбей;
+	 alias splitlines разбейнастр;
+	 alias stripl уберислев;
+	 alias stripr уберисправ;
+	 alias strip убери;
+	 alias chomp убериразгр;
+	 alias chop уберигран;
+	 alias ljustify полев;
+	 alias rjustify поправ;
+	 alias center вцентр;
+	 alias zfill занули;
+	 alias replace замени;
+	 alias replaceSlice заменисрез;
+	 alias insert вставь;
+	 alias count счесть;
+	 alias expandtabs заменитабнапбел;
+	 alias entab заменипбелнатаб;
+	 alias maketrans постройтранстаб;
+	 alias translate транслируй;
+	 alias toString вТкст;
+	 alias format форматируй;
+	 alias форматируй фм;
+	 alias sformat форматируйс;
+	 alias inPattern вОбразце;
+	 alias countchars посчитайсимв;
+	 alias removechars удалисимв;
+	 alias squeeze сквиз;
+	 alias succ следщ;
+	 alias isNumeric число_ли;
+	 alias column колном;
+	 alias wrap параграф;
+	 alias isEmail эладр_ли;
+	 alias isURL урл_ли;
+	 alias intToUtf8 целВУтф8;
+	 alias ulongToUtf8 бдолВУтф8;
 
+
+
+/* ************* Exceptions *************** */
+
+/// Thrown on errors in string functions.
+class СтрокИскл : Exception
+{
+    this(char[] msg)	/// Constructor
+    {
+	super("Неудачная операция с текстом: "~msg);
+	}
+}
 
 /* ************* Constants *************** */
 
@@ -239,7 +87,8 @@ const char[10] digits    = "0123456789";			/// 0..9
 const char[8]  octdigits = "01234567";				/// 0..7
 const char[92] lowercase = "abcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюя";	/// a..z а..я
 const char[92] uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";	/// A..Z А..Я
-const char[184] letters   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz" "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";	/// A..Za..z
+const char[184] letters   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+			   "abcdefghijklmnopqrstuvwxyz" "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";	/// A..Za..z
 
 const char[6] whitespace = " \t\v\r\n\f";			/// ASCII whitespace
 
@@ -2848,7 +2697,7 @@ char[] format(...)
 	std.utf.encode(s, c);
     }
 
-    std.format.форматДелай(&putc, _arguments, _argptr);
+    std.format.doFormat(&putc, _arguments, _argptr);
     return s;
 }
 
@@ -2882,7 +2731,7 @@ char[] sformat(char[] s, ...)
 	}
     }
 
-    std.format.форматДелай(&putc, _arguments, _argptr);
+    std.format.doFormat(&putc, _arguments, _argptr);
     return s[0 .. i];
 }
 
@@ -4316,3 +4165,89 @@ body
 
 // function to compare two strings
 alias  object.stringCompare cmp;
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+*		RUSSIFICATION SUIT										*
+*****************************************************************/
+
+/////////////////////////////////
+бул пробел_ли(дим s)
+{
+return cast(бул)(iswhite(cast(dchar) s));
+}
+/////////////////////////////
+дол алфнац(сим[] s)
+{
+return cast(дол)(atoi(cast(char[]) s));
+}
+/////////////////////////////////
+реал алфнапз(сим[] s)
+{
+return cast(реал)(atof(cast(char[]) s));
+}
+/////////////////////////////////////
+цел сравни(сим[] s1, сим[] s2)
+{
+return cast(цел)(cmp(cast(char[]) s1, cast(char[]) s2));
+}
+///////////////////////////////////////
+цел сравнлюб(сим[] s1, сим[] s2)
+{
+return cast(цел)(icmp(cast(char[]) s1, cast(char[]) s2));
+}
+/////////////////////////////////////////////
+сим* вТкст0(сим[] s)
+{
+return cast(сим*)(toStringz(cast(char[]) s));
+}
+/////////////////////////////////////////////
+цел найди(сим[] s, дим c)
+{
+return cast(цел)(find(cast(char[]) s, cast(dchar) c));
+}
+/////////////////////////////////////////////////
+цел найдлюб(сим[] s, дим c)
+{
+return cast(цел)(ifind(cast(char[]) s, cast(dchar) c));
+}
+////////////////////////////////////////////////
+цел найдрек(сим[] s, дим c)
+{
+return cast(цел)(rfind(cast(char[]) s, cast(dchar) c));
+}
+///////////////////////////////////////////////
+цел найдлюбрек(сим[] s, дим c)
+{
+return cast(цел)(irfind(cast(char[]) s, cast(dchar) c));
+}
+/////////////////////////////////////////////////
+цел найди(сим[] s, сим[] sub)
+{
+return cast(цел)(find(cast(char[]) s, cast(char[]) sub));
+}
+/////////////////////////////////////////////////
+цел найдлюб(сим[] s, сим[] sub)
+{
+return  cast(цел)(ifind(cast(char[]) s, cast(char[]) sub));
+}
+/////////////////////////////////////////////////
+цел найдрек(сим[] s, сим[] sub)
+{
+return  cast(цел)(rfind(cast(char[]) s, cast(char[]) sub));
+}
+///////////////////////////////////////////////
+цел найдлюбрек(сим[] s, сим[] sub)
+{
+return  cast(цел)(irfind(cast(char[]) s, cast(char[]) sub));
+}
+//////////////////////////////////////////////
+ткст впроп(ткст s)
+{
+return cast(ткст)(tolower(cast(string) s));
+}
+//////////////////////////////////////////////////
+ткст взаг(ткст s)
+{
+return cast(ткст)(toupper(cast(string) s));
+}
+////////////////////////////////////////////////////

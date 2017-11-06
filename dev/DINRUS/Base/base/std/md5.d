@@ -1,75 +1,98 @@
-﻿module std.md5;
+﻿/* md5.d - RSA Data Security, Inc., MD5 message-digest algorithm
+ * Derived from the RSA Data Security, Inc. MD5 Message-Digest Algorithm.
+ */
+
+/**
+ * Computes MD5 digests of arbitrary data. MD5 digests are 16 byte quantities that are like a checksum or crc, but are more robust. 
+ *
+ * There are two ways to do this. The first does it all in one function call to
+ * sum(). The second is for when the data is buffered. 
+ *
+ * Bugs:
+ * MD5 digests have been demonstrated to not be unique.
+ *
+ * Author:
+ * The routines and algorithms are derived from the
+ * $(I RSA Data Security, Inc. MD5 Message-Digest Algorithm).
+ *
+ * References:
+ *	$(LINK2 http://en.wikipedia.org/wiki/Md5, Wikipedia on MD5)
+ *
+ * Macros:
+ *	WIKI = Phobos/StdMd5
+ */
+
+/++++++++++++++++++++++++++++++++
+ Example:
+
+--------------------
+// This code is derived from the
+// RSA Data Security, Inc. MD5 Message-Digest Algorithm.
+
+import std.md5;
+
+private import std.io;
+private import std.string;
+private import cidrus;
 
 
-export extern(D)
+int main(char[][] args)
 {
-
-  проц суммаМД5(ббайт[16] дайджест, проц[] данные){sum(дайджест, данные);}
-  проц выведиМД5Дайджест(ббайт дайджест[16]){printDigest(дайджест);}
-  ткст дайджестМД5вТкст(ббайт[16] дайджест){return digestToString(дайджест);}
-  
-struct  КонтекстМД5
-{
-
-private MD5_CTX ктс;
-
-export:
-
-    /**
-     * MD5 initialization. Begins an MD5 operation, writing a new context.
-     */
-    проц старт(){ ктс.start();}
-
-    /** MD5 block update operation. Continues an MD5 message-digest
-      operation, processing another message block, and updating the
-      context.
-     */
-    проц обнови (проц[] ввод){ ктс.update(ввод);}
-
-    /** MD5 finalization. Ends an MD5 message-digest operation, writing the
-     * the message to digest and zeroing the context.
-     */
-    проц заверши (ббайт[16] дайджест){ктс.finish(дайджест);}
-
+    foreach (char[] арг; args)
+	 MDFile(арг);
+    return 0;
 }
 
-}
-
-unittest
+/* Digests a file and prints the результат. */
+void MDFile(char[] filename)
 {
-    debug(md5) эхо("unittest\n");
+    фук file;
+    MD5_CTX context;
+    int len;
+    ubyte[4 * 1024] buffer;
+    ubyte digest[16];
 
-    ббайт[16] дайджест;
+    if ((file = fopen(std.string.toStringz(filename), "rb")) == null)
+	writefln("%s can't be opened", filename);
+    else
+    {
+	context.start();
+	while ((len = fread(buffer, 1, buffer.sizeof, file)) != 0)
+	    context.update(buffer[0 .. len]);
+	context.finish(digest);
+	fclose(file);
 
-    суммаМД5 (дайджест, "");
-    assert(дайджест == cast(ббайт[])x"d41d8cd98f00b204e9800998ecf8427e");
-
-    суммаМД5 (дайджест, "a");
-    assert(дайджест == cast(ббайт[])x"0cc175b9c0f1b6a831c399e269772661");
-
-    суммаМД5 (дайджест, "abc");
-    assert(дайджест == cast(ббайт[])x"900150983cd24fb0d6963f7d28e17f72");
-
-    суммаМД5 (дайджест, "message дайджест");
-    assert(дайджест == cast(ббайт[])x"f96b697d7cb7938d525a2f31aaf161d0");
-
-    суммаМД5 (дайджест, "abcdefghijklmnopqrstuvwxyz");
-    assert(дайджест == cast(ббайт[])x"c3fcd3d76192e4007dfb496cca67e13b");
-
-    суммаМД5 (дайджест, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
-    assert(дайджест == cast(ббайт[])x"d174ab98d277d9f5a5611c2c9f419d9f");
-
-    суммаМД5 (дайджест,
-	"1234567890123456789012345678901234567890"
-	"1234567890123456789012345678901234567890");
-    assert(дайджест == cast(ббайт[])x"57edf4a22be3c955ac49da2e2107b67a");
-
-    assert(дайджестМД5вТкст(cast(ббайт[16])x"c3fcd3d76192e4007dfb496cca67e13b")
-        == "C3FCD3D76192E4007DFB496CCA67E13B");
+	writefln("MD5 (%s) = %s", filename, digestToString(digest));
+    }
 }
+--------------------
+ +/
 
+/* Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
+rights reserved.
 
-////////////////////////////////
+License to copy and use this software is granted provided that it
+is identified as the "RSA Data Security, Inc. MD5 Message-Digest
+Algorithm" in all material mentioning or referencing this software
+or this function.
+
+License is also granted to make and use derivative works provided
+that such works are identified as "derived from the RSA Data
+Security, Inc. MD5 Message-Digest Algorithm" in all material
+mentioning or referencing the derived work.
+
+RSA Data Security, Inc. makes no representations concerning either
+the merchantability of this software or the suitability of this
+software for any particular purpose. It is provided "as is"
+without express or implied warranty of any kind.
+These notices must be retained in any copies of any part of this
+documentation and/or software.
+ */
+
+module std.md5;
+
+//debug=md5;		// uncomment to turn on debugging эхо's
+
 import std.string;
 
 /***************************************
@@ -91,7 +114,7 @@ void sum(ubyte[16] digest, void[] data)
 void printDigest(ubyte digest[16])
 {
     foreach (ubyte u; digest)
-  эхо("%02x", u);
+	эхо("%02x", u);
 }
 
 /****************************************
@@ -105,9 +128,9 @@ char[] digestToString(ubyte[16] digest)
 
     foreach (ubyte u; digest)
     {
-  результат[i] = ЦИФРЫ16[u >> 4];
-  результат[i + 1] = ЦИФРЫ16[u & 15];
-  i += 2;
+	результат[i] = ЦИФРЫ16[u >> 4];
+	результат[i + 1] = ЦИФРЫ16[u & 15];
+	i += 2;
     }
     return результат;
 }
@@ -123,8 +146,8 @@ struct MD5_CTX
     /* magic initialization constants */
     [0x67452301,0xefcdab89,0x98badcfe,0x10325476];
 
-    ulong count;  /* number of bits, modulo 2^64 */
-    ubyte buffer[64]; /* input buffer */
+    ulong count;	/* number of bits, modulo 2^64 */
+    ubyte buffer[64];	/* input buffer */
 
     static ubyte[64] PADDING =
     [
@@ -137,30 +160,30 @@ struct MD5_CTX
      */
     private static
     {
-  uint F(uint x, uint y, uint z) { return (x & y) | (~x & z); }
-  uint G(uint x, uint y, uint z) { return (x & z) | (y & ~z); }
-  uint H(uint x, uint y, uint z) { return x ^ y ^ z; }
-  uint I(uint x, uint y, uint z) { return y ^ (x | ~z); }
+	uint F(uint x, uint y, uint z) { return (x & y) | (~x & z); }
+	uint G(uint x, uint y, uint z) { return (x & z) | (y & ~z); }
+	uint H(uint x, uint y, uint z) { return x ^ y ^ z; }
+	uint I(uint x, uint y, uint z) { return y ^ (x | ~z); }
     }
 
     /* ROTATE_LEFT rotates x left n bits.
      */
     static uint ROTATE_LEFT(uint x, uint n)
     {
-  version (X86)
-  {
-      asm
-      {   naked     ;
-    mov ECX,EAX   ;
-    mov EAX,4[ESP]  ;
-    rol EAX,CL    ;
-    ret 4   ;
-      }
-  }
-  else
-  {
-      return (x << n) | (x >> (32-n));
-  }
+	version (X86)
+	{
+	    asm
+	    {   naked			;
+		mov	ECX,EAX		;
+		mov	EAX,4[ESP]	;
+		rol	EAX,CL		;
+		ret	4		;
+	    }
+	}
+	else
+	{
+	    return (x << n) | (x >> (32-n));
+	}
     }
 
     /* FF, GG, HH, and II transformations for rounds 1, 2, 3, and 4.
@@ -168,30 +191,30 @@ struct MD5_CTX
      */
     static void FF(inout uint a, uint b, uint c, uint d, uint x, uint s, uint ac)
     {
-  a += F (b, c, d) + x + cast(uint)(ac);
-  a = ROTATE_LEFT (a, s);
-  a += b;
+	a += F (b, c, d) + x + cast(uint)(ac);
+	a = ROTATE_LEFT (a, s);
+	a += b;
     }
 
     static void GG(inout uint a, uint b, uint c, uint d, uint x, uint s, uint ac)
     {
-  a += G (b, c, d) + x + cast(uint)(ac);
-  a = ROTATE_LEFT (a, s);
-  a += b;
+	a += G (b, c, d) + x + cast(uint)(ac);
+	a = ROTATE_LEFT (a, s);
+	a += b;
     }
 
     static void HH(inout uint a, uint b, uint c, uint d, uint x, uint s, uint ac)
     {
-  a += H (b, c, d) + x + cast(uint)(ac);
-  a = ROTATE_LEFT (a, s);
-  a += b;
+	a += H (b, c, d) + x + cast(uint)(ac);
+	a = ROTATE_LEFT (a, s);
+	a += b;
     }
 
     static void II(inout uint a, uint b, uint c, uint d, uint x, uint s, uint ac)
     {
-  a += I (b, c, d) + x + cast(uint)(ac);
-  a = ROTATE_LEFT (a, s);
-  a += b;
+	a += I (b, c, d) + x + cast(uint)(ac);
+	a = ROTATE_LEFT (a, s);
+	a += b;
     }
 
     /**
@@ -199,7 +222,7 @@ struct MD5_CTX
      */
     void start()
     {
-  *this = MD5_CTX.init;
+	*this = MD5_CTX.init;
     }
 
     /** MD5 block update operation. Continues an MD5 message-digest
@@ -222,20 +245,20 @@ struct MD5_CTX
       /* Transform as many times as possible. */
       if (inputLen >= partLen)
       {
-      cidrus.memcpy(&buffer[index], input.ptr, partLen);
-      transform (buffer.ptr);
+	    cidrus.memcpy(&buffer[index], input.ptr, partLen);
+	    transform (buffer.ptr);
 
-      for (i = partLen; i + 63 < inputLen; i += 64)
-         transform ((cast(ubyte[])input)[i .. i + 64].ptr);
+	    for (i = partLen; i + 63 < inputLen; i += 64)
+	       transform ((cast(ubyte[])input)[i .. i + 64].ptr);
 
-      index = 0;
+	    index = 0;
       }
       else
-      i = 0;
+	    i = 0;
 
       /* Buffer remaining input */
       if (inputLen - i)
-      cidrus.memcpy(&buffer[index], &input[i], inputLen-i);
+	    cidrus.memcpy(&buffer[index], &input[i], inputLen-i);
     }
 
     /** MD5 finalization. Ends an MD5 message-digest operation, writing the
@@ -273,30 +296,30 @@ struct MD5_CTX
     /* Constants for MD5Transform routine. */
     enum
     {
-  S11 = 7,
-  S12 = 12,
-  S13 = 17,
-  S14 = 22,
-  S21 = 5,
-  S22 = 9,
-  S23 = 14,
-  S24 = 20,
-  S31 = 4,
-  S32 = 11,
-  S33 = 16,
-  S34 = 23,
-  S41 = 6,
-  S42 = 10,
-  S43 = 15,
-  S44 = 21,
+	S11 = 7,
+	S12 = 12,
+	S13 = 17,
+	S14 = 22,
+	S21 = 5,
+	S22 = 9,
+	S23 = 14,
+	S24 = 20,
+	S31 = 4,
+	S32 = 11,
+	S33 = 16,
+	S34 = 23,
+	S41 = 6,
+	S42 = 10,
+	S43 = 15,
+	S44 = 21,
     }
 
     private void transform (ubyte* /*[64]*/ block)
     {
       uint a = state[0],
-     b = state[1],
-     c = state[2],
-     d = state[3];
+	   b = state[1],
+	   c = state[2],
+	   d = state[3];
       uint[16] x;
 
       Decode (x.ptr, block, 64);
@@ -387,16 +410,16 @@ struct MD5_CTX
      */
     private static void Encode (ubyte *output, uint *input, uint len)
     {
-  uint i, j;
+	uint i, j;
 
-  for (i = 0, j = 0; j < len; i++, j += 4)
-  {
-      uint u = input[i];
-      output[j]   = cast(ubyte)(u);
-      output[j+1] = cast(ubyte)(u >> 8);
-      output[j+2] = cast(ubyte)(u >> 16);
-      output[j+3] = cast(ubyte)(u >> 24);
-  }
+	for (i = 0, j = 0; j < len; i++, j += 4)
+	{
+	    uint u = input[i];
+	    output[j]   = cast(ubyte)(u);
+	    output[j+1] = cast(ubyte)(u >> 8);
+	    output[j+2] = cast(ubyte)(u >> 16);
+	    output[j+3] = cast(ubyte)(u >> 24);
+	}
     }
 
     /* Decodes input (ubyte) into output (uint). Assumes len is
@@ -404,26 +427,26 @@ struct MD5_CTX
      */
     private static void Decode (uint *output, ubyte *input, uint len)
     {
-  uint i, j;
+	uint i, j;
 
-  for (i = 0, j = 0; j < len; i++, j += 4)
-  {
-      version (LittleEndian)
-      {
-    output[i] = *cast(uint*)&input[j];
-      }
-      else
-      {
-    output[i] = (cast(uint)input[j]) | ((cast(uint)input[j+1]) << 8) |
-      ((cast(uint)input[j+2]) << 16) | ((cast(uint)input[j+3]) << 24);
-      }
-  }
+	for (i = 0, j = 0; j < len; i++, j += 4)
+	{
+	    version (LittleEndian)
+	    {
+		output[i] = *cast(uint*)&input[j];
+	    }
+	    else
+	    {
+		output[i] = (cast(uint)input[j]) | ((cast(uint)input[j+1]) << 8) |
+			((cast(uint)input[j+2]) << 16) | ((cast(uint)input[j+3]) << 24);
+	    }
+	}
     }
 }
 
 unittest
 {
-    debug(md5) эхо("unittest\n");
+    debug(md5) эхо("std.md5.unittest\n");
 
     ubyte[16] digest;
 
@@ -446,12 +469,11 @@ unittest
     assert(digest == cast(ubyte[])x"d174ab98d277d9f5a5611c2c9f419d9f");
 
     sum (digest,
-  "1234567890123456789012345678901234567890"
-  "1234567890123456789012345678901234567890");
+	"1234567890123456789012345678901234567890"
+	"1234567890123456789012345678901234567890");
     assert(digest == cast(ubyte[])x"57edf4a22be3c955ac49da2e2107b67a");
 
     assert(digestToString(cast(ubyte[16])x"c3fcd3d76192e4007dfb496cca67e13b")
         == "C3FCD3D76192E4007DFB496CCA67E13B");
 }
-
 

@@ -1,19 +1,14 @@
+﻿// Written in the D programming language
+
+/**
+ * Macros:
+ *	WIKI = Phobos/StdRandom
+ */
+
+// random.d
+// www.digitalmars.com
 
 module std.random;
-
-
-export extern(D)
-{
-
-    проц случсей(бцел семя, бцел индекс){rand_seed(cast(бцел) семя, cast(бцел) индекс);}
-    бцел случайно(){return cast(бцел) rand();}
-    бцел случген(бцел семя, бцел индекс, реал члоциклов)
-        {
-        return cast(бцел) randomGen(cast(бцел) семя, cast(бцел) индекс, cast(бцел) члоциклов);
-        }
-
-    }
-    /////////////////////////
 import std.io, cidrus: exit;
 // Segments of the code in this file Copyright (c) 1997 by Rick Booth
 // From "Inner Loops" by Rick Booth, Addison-Wesley
@@ -38,16 +33,20 @@ alias seed семя;
 alias index индекс;
 /**
  * The random number generator is seeded at program startup with a random value.
-* This ensures that each program generates a different sequence of random
-* numbers. To generate a repeatable sequence, use rand_seed() to start the
-* sequence. seed and index start it, and each successive value increments index.
-* This means that the $(I n)th random number of the sequence can be directly
-* generated
-* by passing index + $(I n) to rand_seed().
-*
-* Note: This is more random, but slower, than C's rand() function.
-* To use C's rand() instead, import cidrus.
+ This ensures that each program generates a different sequence of random
+ numbers. To generate a repeatable sequence, use rand_seed() to start the
+ sequence. seed and index start it, and each successive value increments index.
+ This means that the $(I n)th random number of the sequence can be directly
+ generated
+ by passing index + $(I n) to rand_seed().
+
+ Note: This is more random, but slower, than C's rand() function.
+ To use C's rand() instead, import cidrus.
  */
+проц случсей(бцел семя, бцел индекс)
+{
+rand_seed(cast(uint) семя, cast(uint) индекс);
+}
 
 void rand_seed(uint seed, uint index)
 {
@@ -59,6 +58,10 @@ void rand_seed(uint seed, uint index)
  * Get the следщ random number in sequence.
  * BUGS: shares a global single состояние, not multithreaded
  */
+бцел случайно()
+{
+return cast(бцел) rand();
+}
 
 uint rand()
 {
@@ -96,6 +99,11 @@ uint rand()
         loword  = hihold;                           // old hiword is loword
     }
     return hiword;
+}
+
+бцел случген(бцел семя, бцел индекс, реал члоциклов)
+{
+return cast(бцел) randomGen(cast(uint) семя, cast(uint) индекс, cast(uint) члоциклов);
 }
 
 uint randomGen(uint seed, uint index, real ncycles)

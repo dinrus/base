@@ -1,14 +1,4 @@
-﻿module std.demangle;
-
-
-export extern (D)
- ткст разманглируй(ткст имя){return demangle(имя);}
-
-
-
-
-
-// Написано на языке программирования Динрус. Разработчик Виталий Кулич.
+﻿// Написано на языке программирования Динрус. Разработчик Виталий Кулич.
 
 /*
  * Placed into the Public Domain.
@@ -26,15 +16,17 @@ export extern (D)
  *	Frits van Bommel
  */
 
+module std.demangle;
 
 //debug=demangle;		// uncomment to turn on debugging эхо's
 
 private import std.ctype, sys.WinFuncs;
 private import std.string;
 private import std.utf;
+
 private import std.io;
 
-class ИсклРазманглирования : Exception
+private class MangleException : Exception
 {
     this()
     {
@@ -97,7 +89,7 @@ string demangle(string name)
     static void error()
     {
 	writefln("error(%d)", номош);
-	throw new ИсклРазманглирования();
+	throw new MangleException();
     }
 
     static ubyte ascii2hex(char c)
@@ -150,7 +142,7 @@ string demangle(string name)
 		if (ni != nisave + i)
 		    err = true;
 	    }
-	    catch (ИсклРазманглирования me)
+	    catch (MangleException me)
 	    {
 		err = true;
 	    }
@@ -496,7 +488,7 @@ string demangle(string name)
 	    goto Lnot;
 	return результат;
     }
-    catch (ИсклРазманглирования e)
+    catch (MangleException e)
     {
     }
 

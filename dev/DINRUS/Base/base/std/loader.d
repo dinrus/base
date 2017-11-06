@@ -1,625 +1,52 @@
 ﻿
 // Написано на языке программирования Динрус. Разработчик Виталий Кулич.
 
+/* /////////////////////////////////////////////////////////////////////////////
+ * File:        loader.d (originally from synsoft.win32..loader)
+ *
+ * Purpose:     Win32 exception classes
+ *
+ * Created      18th October 2003
+ * Updated:     24th April 2004
+ *
+ * Author:      Matthew Wilson
+ *
+ * Copyright 2004-2005 by Matthew Wilson and Synesis Software
+ * Written by Matthew Wilson
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no событие will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, in both source and binary form, subject to the following
+ * restrictions:
+ *
+ * -  The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * -  Altered source versions must be plainly marked as such, and must not
+ *    be misrepresented as being the original software.
+ * -  This notice may not be removed or altered from any source
+ *    distribution.
+ *
+ * ////////////////////////////////////////////////////////////////////////// */
+
+
+
+/** \file D/std/loader.d This file contains the \c D standard library 
+ * executable module loader library, and the ExeModule class.
+ */
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
 module std.loader;
-	import  cidrus,win, std.io, std.process, std.string, std.file;
 
-    export extern(D)
-    {
-
-	цел иницМодуль(){return std.loader.ExeModule_Init();}
-	проц деиницМодуль(){return std.loader.ExeModule_Uninit();}
-	ук загрузиМодуль(in ткст имямод){return cast(ук) адаптВыхУкз(std.loader.ExeModule_Load(имямод));}
-	ук добавьСсылНаМодуль(ук умодуль){return cast(ук) std.loader.ExeModule_AddRef(cast(HXModule) умодуль);}
-	проц отпустиМодуль(inout ук умодуль){return std.loader.ExeModule_Release(cast(HXModule) умодуль);}
-	ук дайСимволИМодуля(inout ук умодуль, in ткст имяСимвола){return std.loader.ExeModule_GetSymbol(cast(HXModule) умодуль, имяСимвола);}
-	ткст ошибкаИМодуля(){return std.loader.ExeModule_Error();}
-
-}
-
-	//Загрузчик от Derelict'а	........................................
-
-char* toCString(char[] str)
-{
-    return std.string.toStringz(str);
-}
-
-char[] toDString(char* cstr)
-{
-        return std.string.toString(cstr);
-}
-
-int findStr(char[] str, char[] match)
-{
-        return std.string.find(str, match);
-}
-
-char[][] splitStr(char[] str, char[] delim)
-{
-    return std.string.split(str, delim);
-}
-
-char[] stripWhiteSpace(char[] str)
-{
-        return std.string.strip(str);
-}
-
-
-class ИсключениеЗагрузкиБиблиотеки
-{
-
-    ткст м_назвСовмБиб;
-
-  static проц выведи(in ткст[] назвыБиб, in ткст[] причины)
-    {
-        ткст сооб = "Не удалось загрузить одну (или более) ДЛЛ:";
-        foreach(i, n; назвыБиб)
-        {
-            сооб ~= "\n\t" ~ n ~ " - ";
-            if(i < причины.length)
-                сооб ~= причины[i];
-            else
-                сооб ~= "Неизвестно";
-        }
-        throw new Исключение(сооб);
-    }
-
-    this(ткст сооб)
-    {
-	м_назвСовмБиб = "";
-        throw new Исключение(сооб,__FILE__, __LINE__);
-
-    }
-
-    this(ткст сооб, ткст назвСовмБиб)
-    {
-	м_назвСовмБиб = назвСовмБиб;
-        throw new Исключение(сооб,__FILE__, __LINE__);
-
-    }
-
-    ткст имяБиб()
-    {
-        return м_назвСовмБиб;
-    }
-
-
-}
-
-class ИсключениеНеверногоУкНаБиб
-{
-public:
-
-    this(ткст назвСовмБиб)
-    {
-        throw new Исключение("Попытка применить указатель на незагруженную ДЛЛ " ~ назвСовмБиб,__FILE__, __LINE__);
-        м_назвСовмБиб = назвСовмБиб;
-    }
-
-    ткст имяБиб()
-    {
-        return м_назвСовмБиб;
-    }
-
-private:
-    ткст м_назвСовмБиб;
-}
-
-export ткст дайТкстОшибки()
-    {
-        // adapted from Tango
-
-        бцел ошкод = ДайПоследнююОшибку();
-
-        ткст буфСооб;
-        бцел i = ФорматируйСообА(
-            ПФорматСооб.РазмБуф | ПФорматСооб.ИзСист | ПФорматСооб.ИгнорВставки,
-            null,
-            ошкод,
-            СДЕЛАЙИДЪЯЗ(ПЯзык.НЕЙТРАЛЬНЫЙ, ППодъяз.ДЕФОЛТ),
-            буфСооб,
-            0,
-            null);
-
-        ткст text = буфСооб;
-        ОсвободиЛок(cast(лук) буфСооб);
-
-        if(i >= 2)
-            i -= 2;
-        return text[0 .. i];
-    }
-
-export extern(D)
- class Биб
-{
-private{
-    ук _укз;
-    ткст _имя;
-	}
-export:
-    ткст имя()
-    {
-        return _имя;
-    }
-
-  this(ук укз, ткст имя)
-    {
-        _укз = адаптВхоУкз(укз);
-        _имя = имя;
-    }
-}
-
-export extern(D)
- Биб загрузиБиб(ткст имяб)
-in
-{
-    assert(имяб !is null);
-}
-body
-{
-    ук хэндл = ЗагрузиБиблиотекуА(имяб);
-    if(хэндл is null)
-        throw new Исключение("Не удалось загрузить библиотеку " ~ имяб ~ ": " ~ дайТкстОшибки(),__FILE__, __LINE__);
-    return new Биб(хэндл, имяб);
-}
-
-export extern(D)
- Биб загрузиБиб(ткст[] именаб)
-in
-{
-   try	{
-   assert(именаб !is null);
-   }
-   catch(Исключение пи){std.io.инфо("Не заданы имена для загрузки в функции загрузиБиб"); выход(0);}
-}
-body
-{
-    char[][] незагрБибы;
-    char[][] причины;
-
-    foreach(ткст имяб; именаб)
-    {
-        ук хэндл = ЗагрузиБиблиотекуА(имяб);
-        if(хэндл !is null)
-        {
-            return new Биб(хэндл, имяб);
-        }
-        else
-        {
-            незагрБибы ~= имяб;
-            причины ~= дайТкстОшибки();
-        }
-
-    }
-    ИсключениеЗагрузкиБиблиотеки.выведи(незагрБибы, причины);
-    return null; // to shut the compiler up
-}
-
-export extern(D)
- проц выгрузиБиб(Биб биб)
-{
-    if(биб !is null && биб._укз !is null)
-        ОсвободиБиблиотеку(биб._укз);
-        биб._укз = null;
-}
-
-export extern(D)
- ук дайПроцИзБиб(Биб биб, ткст имяПроц)
-in
-{
-    assert(биб !is null);
-    assert(имяПроц !is null);
-}
-body
-{
-    if(биб._укз is null)
-        new ИсключениеНеверногоУкНаБиб(биб._имя);
-		ук proc = ДайАдресПроц(биб._укз, имяПроц);
-        if(null is proc)
-            ОбработайНедостачуПроц(биб._имя, имяПроц);
-
-        return proc;
-}
-
-alias бул function(ткст имяБиб, ткст имяПроц) ОбрвызНедостСимвола;
-alias ОбрвызНедостСимвола ОбрвызНедостПроц;
-
-private ОбрвызНедостСимвола обрвызНедостПроц;
-
-проц ОбработайНедостачуПроц(ткст имяБиб, ткст имяСимвола)
-{
-    бул результат = нет;
-    if(обрвызНедостПроц !is null)
-        результат = обрвызНедостПроц(имяБиб, имяСимвола);
-    if(!результат)
-        new ИсключениеЗагрузкиБиблиотеки(имяБиб, имяСимвола);
-}
-
-export extern(D)
- struct ЖанБибгр {
-export:
-
-   проц заряжай(ткст винБибы, проц function(Биб) пользовательскийЗагр, ткст текстВерсии = "") {
-        assert (пользовательскийЗагр !is null);
-        this.винБибы = винБибы;
-        this.пользовательскийЗагр = пользовательскийЗагр;
-        this.текстВерсии = текстВерсии;
-    }
-
-    проц загружай(ткст текстНазвБиб = null)
-    {
-        if (мояБиб !is null) return;
-        зарегестрированныеЗагрузчики ~= this;
-        if (текстНазвБиб is null) текстНазвБиб = винБибы;
-
-            if(текстНазвБиб is null || текстНазвБиб == "")
-            {
-                throw new Исключение("std.loader.ЖанБибгр.загружай: Название несуществующей библиотеки!");
-            }
-
-        ткст[] назвыБиб = текстНазвБиб.splitStr(",");
-        foreach (б; назвыБиб)
-			{
-				б = б.stripWhiteSpace();
-			}
-
-        загружай(назвыБиб);
-    }
-
-    проц загружай(ткст[] назвыБиб)
-    {
-        мояБиб = загрузиБиб(назвыБиб);
-
-        if(пользовательскийЗагр is null)
-        {
-            // this should never, ever, happen
-            throw new Исключение("std.loader.ЖанБибгр.загружай: Кошмар! Внутренняя функция загрузки сконфигурирована с ошибками...",__FILE__, __LINE__);
-        }
-
-        пользовательскийЗагр(мояБиб);
-
-    }
-
-    ткст строкаВерсии()
-    {
-        return текстВерсии;
-    }
-
-    проц выгружай()
-    {
-        if (мояБиб !is null) {
-            выгрузиБиб(мояБиб);
-            мояБиб = null;
-        }
-    }
-
-    бул загружено()
-    {
-        return (мояБиб !is null);
-    }
-
-    ткст имяБиб()
-    {
-        return загружено ? мояБиб.имя : null;
-    }
-
-    static ~this()
-    {
-        foreach (x; зарегестрированныеЗагрузчики) {
-            x.выгружай();
-        }
-    }
-
-    private {
-        static ЖанБибгр*[] зарегестрированныеЗагрузчики;
-
-        Биб мояБиб;
-        ткст винБибы;
-        ткст текстВерсии = "";
-
-        проц function(Биб) пользовательскийЗагр;
-    }
-}
-
-export extern(D)
- struct ЗавЖанБибгр {
-export:
-
-    проц заряжай(ЖанБибгр* dependence,  проц function(Биб) пользовательскийЗагр) {
-        assert (dependence !is null);
-        assert (пользовательскийЗагр !is null);
-
-        this.dependence = dependence;
-        this.пользовательскийЗагр = пользовательскийЗагр;
-    }
-
-    проц загружай()
-    {
-        assert (dependence.загружено);
-        пользовательскийЗагр(dependence.мояБиб);
-    }
-
-    ткст строкаВерсии()
-    {
-        return dependence.строкаВерсии;
-    }
-
-    проц выгружай()
-    {
-    }
-
-    бул загружено()
-    {
-        return dependence.загружено;
-    }
-
-    ткст имяБиб()
-    {
-        return dependence.имяБиб;
-    }
-
-    private {
-        ЖанБибгр*              dependence;
-        проц function(Биб)    пользовательскийЗагр;
-    }
-}
-
-struct Вяз(T) {
-    проц opCall(ткст n, Биб lib) {
-        *fptr = дайПроцИзБиб(lib, n);
-    }
-        ук* fptr;
-}
-
-
-template вяжи(T) {
-    Вяз!(T) вяжи(inout T a) {
-        Вяз!(T) рез;
-        рез.fptr = cast(ук*)&a;
-        return рез;
-    }
-}
-
-export extern(D)
- бул создайБибИзДлл(ткст имяБ, ткст имяД = null, ткст путь = null, ткст расшД = "dll")
-{
-
-if(имяД == null) имяД = имяБ;
-сис(std.string.фм("implib/system %s.lib %s%s.%s", имяБ, путь, имяД, расшД));
-return да;
-}
-
-export extern(D)
- бул создайЛистинг(ткст имяБ)
-{
-сис(std.string.фм("d:\\dinrus\\bin\\lib -l %s.lib", имяБ));
-if(естьФайл(имяБ~".lst"))удалиФайл(имяБ~".lib");
-	else throw new Исключение("Неудачная генерация листинга",имяБ, __LINE__);
-return  да;
-}
-
-export extern(D)
- цел генМакетИмпорта(ткст имяМ, ткст[] список)
-{
-	СИСТВРЕМЯ систВремя;
-	цел счёт = 1;
-
-	ДайМестнВремя(&систВремя);
-	ткст дата = std.string.вТкст(систВремя.день)~"."~std.string.вТкст(систВремя.месяц)~"."~std.string.вТкст(систВремя.год);
-	ткст время = std.string.вТкст(систВремя.час)~" ч. "~std.string.вТкст(систВремя.минута)~" мин.";
-
-	ткст заг = std.string.фм("
-	/*******************************************************************************
-	*  Файл генерирован автоматически с помощью либпроцессора Динрус               *
-	*  Дата:%s                                           Время: %s\n
-	*******************************************************************************/
-
-", дата, время);
-
-	ткст имп = std.string.фм("
-	module lib.%s;
-
-	import std.loader;
-
-	проц грузи(Биб биб)
-	{
-
-	", имяМ);
-
-	ткст связка(ткст[] список)
-	{
-	ткст вяз;
-
-		foreach(выр; список)
-			{
-			auto рез = убери(выр);
-			вяз ~= std.string.фм("
-		//вяжи(функция_%s)(%s биб);\r\n", счёт, рез);
-			счёт++;
-			}
-		return вяз;
-	}
-
-	ткст вяз = связка(список);
-
-	ткст имя = std.string.взаг(имяМ);
-
-	ткст закр ="
-	}\r\n\r\n";
-
-
-	ткст жб = std.string.фм("ЖанБибгр %s;\r\n", имя);
-
-	ткст гр = std.string.фм("
-		static this()
-		{
-			%s.заряжай(\"%s.dll\", &грузи );
-		}\r\n",имя, имяМ);
-
-	ткст гн = "
-	extern(C)
-	{\r\n\r\n";
-
-	ткст функ()
-	{
-	ткст ф;
-		for(цел ц = 1; ц < счёт; ц++ )
-		{
-		  ф ~= std.string.фм("
-		//проц function() функция_%s; \r\n", ц);
-		}
-		return  ф;
-	}
-
-	ткст ф = функ();
-
-	ткст итог = заг~имп~вяз~закр~жб~гр~гн~ф~закр;
-
-	пишиФайл(имяМ~".d", итог);
-	инфо(std.string.фм("Сгенерирован макет импорта динамической библиотеки %s,
-			результирующий текст которого был записан в файл %s",std.string.взаг(имяМ), имяМ~".d"));
-	return 0;
-}
-
-ткст удалитьДубликатыИзТМас(ткст текст)
-{
-    ткст строка_итог;
-    ткст[] список;
-	список = разбейнастр(текст);
-	цел и;
-	int[ткст] предшстр;
-	ткст следщстр = "";
-	цел проходка = 0;
-	цел взято = -1;
-	бул взят = нет;
-
-	for( ; и < список.length ; )
-	{
-	//if(auto т = _сравни(строка, предшстр) == 0) delete список[и]; предшстр = "";
-
-		foreach(строка; список)
-		{
-			while(проходка == 0){ goto старт;}
-
-
-		if(строка in предшстр) {delete строка; //_скажинс("удалена предшествующая");
-		}
-
-		старт:
-
-			if(строка == следщстр || строка != пусто)
-			{
-				while(!взят)
-				{
-				if(строка  in предшстр)
-							{
-								//_скажинс("А я  тоже грю, конца не будет! ");
-							    следщстр = пусто;
-								взят = да;
-								break;
-							}
-				//if(строка in предшстр){ _скажинс("бряк!"); break;}
-					if(auto т = сравни(строка, список[и]) == 0  )
-					{
-					//_скажинс(std.string.фм("да: %s = %s ; и она будет взята из списка в результат\n", строка, список[и])) ;
-					строка_итог ~= строка~"\r\n";
-					взято++;
-					предшстр[строка] = взято;
-
-				    	foreach(стр; список)
-						{
-
-							if(!(стр  in предшстр))
-							{
-									//_скажинс("Я нужен! А он? ");
-
-									следщстр = стр;
-									взят = да;
-									break;
-							}
-						}
-					//_скажинс("Бастилия взята!");
-					взят = да;
-
-					}
-				}
-
-			}
-			взят = нет;
-			if(!(строка in предшстр) && строка != следщстр && строка != пусто)
-			{
-			следщстр = строка;
-			//_скажинс("Я нужен!");
-			}
-			else {
-			     foreach(стрк; список)
-						{
-							if(стрк  in предшстр)
-								//_скажинс("Типа конец, что ли? ");
-							    следщстр = пусто;
-								взят = да;
-								break;
-                        }
-					}
-			проходка++;
-			и++;
-			//_скажинс(std.string.фм("проходка %s\n, следщстр = %s", проходка, следщстр)) ;
-		}
-
-	}
-return строка_итог;
-}
-
-ткст[] обработатьЛистинг(ткст имяЛ)
-{
- ткст буф = cast(ткст) читайФайл(имяЛ~".lst");
-  win.скажинс(буф);
-  ткст[] список = разбейнастр(буф);
-  ткст строка_итог;
-
-
-  foreach(строка; список)
-	{
-	auto рез = убери(строка);
-	if(рез == "Publics by name		module"||рез == "Publics by module"||рез == "") {рез = пусто;}
-	if(рез != пусто) строка_итог ~= рез~"\n";
-
-	}
-
-	список = пусто;
-	список = разбей(строка_итог);
-	строка_итог = пусто;
-
-	foreach(строка; список)
-	{
-	auto рез = убери(строка);
-	if(рез != пусто) строка_итог ~= "\""~рез~"\",\r\n";
-
-	}
-	auto итог = удалитьДубликатыИзТМас(строка_итог);
-	 удалиФайл(имяЛ~".lst");
-	список = пусто;
-	список = разбей(итог);
- return список;
-}
-
-export extern(D) проц обработай(ткст имяБ,ткст расшД = "dll", ткст путь = пусто, ткст имяД = пусто )
-{
-ткст[] список;
-if(естьФайл(имяБ~".d")) удалиФайл(имяБ~".d");
-if(создайБибИзДлл(имяБ, имяД, путь,расшД))
-{
-   if(естьФайл(имяБ~".lib"))создайЛистинг(имяБ);
-   else exception.ошибка("Листинг файла не найден");
-
-     if(естьФайл(имяБ~".lst"))список = обработатьЛистинг(имяБ);
-	 else exception.ошибка("Листинг файла не обработан");
- }
- else exception.ошибка("Не удалось создать библиотеку импорта");
-if(список != пусто) генМакетИмпорта(имяБ, список);
-//_удалиФайл(имяБ~".lst");
-}
-///////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////////
+ * Imports
+ */
 
 private import std.string, std.utf;
 private import cidrus;
@@ -649,14 +76,14 @@ else version(Posix)
 
     extern (C)
     {
-    alias void* HModule_;
+	alias void* HModule_;
     }
 }
 else
 {
-    const int platform_not_discriminated = 0;
+	const int platform_not_discriminated = 0;
 
-    static assert(platform_not_discriminated);
+	static assert(platform_not_discriminated);
 }
 
 /** The platform-independent module хэндл. Note that this has to be
@@ -810,20 +237,20 @@ version(Windows)
 
     private string ExeModule_Error_()
     {
-    return sysErrorString(s_lastError);
+	return sysErrorString(s_lastError);
     }
 
     private string ExeModule_GetPath_(HXModule hModule)
     {
         char    szFileName[260]; // Need to use a constant here
 
-    // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/getmodulefilename.asp
+	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/getmodulefilename.asp
         uint cch = GetModuleFileNameA(cast(HModule_)hModule, szFileName.ptr, szFileName.length);
 
-    if (cch == 0)
-    {
+	if (cch == 0)
+	{
             record_error_();
-    }
+	}
         return szFileName[0 .. cch].dup;
     }
 }
@@ -879,8 +306,8 @@ else version(Posix)
     }
     body
     {
-    ExeModuleInfo*   mi_p = moduleName in s_modules;
-    ExeModuleInfo   mi = mi_p is null ? null : *mi_p;
+	ExeModuleInfo*   mi_p = moduleName in s_modules;
+	ExeModuleInfo   mi = mi_p is null ? null : *mi_p;
 
         if(null !is mi)
         {
@@ -1019,9 +446,9 @@ else version(Posix)
 }
 else
 {
-    const int platform_not_discriminated = 0;
+	const int platform_not_discriminated = 0;
 
-    static assert(platform_not_discriminated);
+	static assert(platform_not_discriminated);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -1034,20 +461,20 @@ public class ExeModuleException
 public:
     this(string message)
     {
-        super("Неудачное подключение к модулю:"~message,__FILE__,__LINE__);     
+        super("Неудачное подключение к модулю:"~message,__FILE__,__LINE__);		
     }
 
     this(uint errcode)
     {
       version (Posix)
       {
-    char[80] buf = void;
-    super(std.string.toString(strerror_r(errcode, buf.ptr, buf.length)).dup);
+	char[80] buf = void;
+	super(std.string.toString(strerror_r(errcode, buf.ptr, buf.length)).dup);
       }
       else
       {
-    super(строшиб(errcode));
-      }
+	super(строшиб(errcode));
+	  }
     }
 }
 
@@ -1071,19 +498,19 @@ public:
         }
         else
         {
-        version (Windows)
-        {
-        string path = Path();
-        m_hModule = cast(HXModule)LoadLibraryA(toStringz(path));
-        if (m_hModule == null)
-            throw new ExeModuleException(GetLastError());
-        }
-        else version (Posix)
-        {
-        m_hModule = ExeModule_AddRef(hModule);
-        }
-        else
-        static assert(0);
+	    version (Windows)
+	    {
+		string path = Path();
+		m_hModule = cast(HXModule)LoadLibraryA(toStringz(path));
+		if (m_hModule == null)
+		    throw new ExeModuleException(GetLastError());
+	    }
+	    else version (Posix)
+	    {
+		m_hModule = ExeModule_AddRef(hModule);
+	    }
+	    else
+		static assert(0);
         }
     }
 
@@ -1094,22 +521,22 @@ public:
     }
     body
     {
-    version (Windows)
-    {
-        m_hModule = cast(HXModule)LoadLibraryA(toStringz(moduleName));
-        if (null is m_hModule)
-        throw new ExeModuleException(GetLastError());
-    }
-    else version (Posix)
-    {
-        m_hModule = ExeModule_Load(moduleName);
-        if (null is m_hModule)
-        throw new ExeModuleException(ExeModule_Error());
-    }
-    else
-    {
-        static assert(0);       // unsupported system
-    }
+	version (Windows)
+	{
+	    m_hModule = cast(HXModule)LoadLibraryA(toStringz(moduleName));
+	    if (null is m_hModule)
+		throw new ExeModuleException(GetLastError());
+	}
+	else version (Posix)
+	{
+	    m_hModule = ExeModule_Load(moduleName);
+	    if (null is m_hModule)
+		throw new ExeModuleException(ExeModule_Error());
+	}
+	else
+	{
+	    static assert(0);		// unsupported system
+	}
     }
     ~this()
     {
@@ -1128,17 +555,17 @@ public:
     {
         if(null !is m_hModule)
         {
-        version (Windows)
-        {
-        if(!FreeLibrary(cast(HModule_)m_hModule))
-            throw new ExeModuleException(GetLastError());
-        }
-        else version (Posix)
-        {
-        ExeModule_Release(m_hModule);
-        }
-        else
-        static assert(0);
+	    version (Windows)
+	    {
+		if(!FreeLibrary(cast(HModule_)m_hModule))
+		    throw new ExeModuleException(GetLastError());
+	    }
+	    else version (Posix)
+	    {
+		ExeModule_Release(m_hModule);
+	    }
+	    else
+		static assert(0);
         }
     }
 /// @}
@@ -1153,27 +580,27 @@ public:
      */
     void *getSymbol(in string symbolName)
     {
-    version (Windows)
-    {
-        void *symbol = GetProcAddress(cast(HModule_)m_hModule, toStringz(symbolName));
-        if(null is symbol)
-        {
-        throw new ExeModuleException(GetLastError());
-        }
-    }
-    else version (Posix)
-    {
-        void *symbol = ExeModule_GetSymbol(m_hModule, symbolName);
+	version (Windows)
+	{
+	    void *symbol = GetProcAddress(cast(HModule_)m_hModule, toStringz(symbolName));
+	    if(null is symbol)
+	    {
+		throw new ExeModuleException(GetLastError());
+	    }
+	}
+	else version (Posix)
+	{
+	    void *symbol = ExeModule_GetSymbol(m_hModule, symbolName);
 
-        if(null is symbol)
-        {
-        throw new ExeModuleException(ExeModule_Error());
-        }
-    }
-    else
-    {
-        static assert(0);
-    }
+	    if(null is symbol)
+	    {
+		throw new ExeModuleException(ExeModule_Error());
+	    }
+	}
+	else
+	{
+	    static assert(0);
+	}
 
         return symbol;
     }
@@ -1206,23 +633,23 @@ public:
     {
         assert(null != m_hModule);
 
-    version (Windows)
-    {
-        char szFileName[260]; // Need to use a constant here
+	version (Windows)
+	{
+	    char szFileName[260]; // Need to use a constant here
 
-        // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/getmodulefilename.asp
-        uint cch = GetModuleFileNameA(cast(HModule_)m_hModule, szFileName.ptr, szFileName.length);
-        if (cch == 0)
-        throw new ExeModuleException(GetLastError());
+	    // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/getmodulefilename.asp
+	    uint cch = GetModuleFileNameA(cast(HModule_)m_hModule, szFileName.ptr, szFileName.length);
+	    if (cch == 0)
+		throw new ExeModuleException(GetLastError());
 
-        return szFileName[0 .. cch].dup;
-    }
-    else version (Posix)
-    {
-        return ExeModule_GetPath_(m_hModule);
-    }
-    else
-        static assert(0);
+	    return szFileName[0 .. cch].dup;
+	}
+	else version (Posix)
+	{
+	    return ExeModule_GetPath_(m_hModule);
+	}
+	else
+	    static assert(0);
     }
 /// @}
 
@@ -1273,4 +700,3 @@ version(TestMain)
 }
 
 /* ////////////////////////////////////////////////////////////////////////// */
-

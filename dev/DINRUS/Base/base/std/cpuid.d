@@ -1,71 +1,6 @@
 ﻿module std.cpuid;
 
-export extern(D)
-
-{
-
-         struct Процессор
-        {
-            export:
-
-            ткст производитель()    {return vendor();}
-            ткст название()         {return processor();}
-            бул поддержкаММЭкс()    {return mmx();}
-            бул поддержкаФЭксСР()   {return fxsr();}
-            бул поддержкаССЕ()      {return sse();}
-            бул поддержкаССЕ2()     {return sse2();}
-            бул поддержкаССЕ3()     {return sse3();}
-            бул поддержкаСССЕ3()    {return ssse3();}
-            бул поддержкаАМД3ДНау() {return amd3dnow();}
-            бул поддержкаАМД3ДНауЭкст(){return amd3dnowExt();}
-            бул поддержкаАМДММЭкс() {return amdMmx();}
-            бул являетсяИА64()      {return ia64();}
-            бул являетсяАМД64()     {return amd64();}
-            бул поддержкаГиперПоточности(){return hyperThreading();}
-            бцел потоковНаЦПБ()     {return threadsPerCPU();}
-            бцел ядерНаЦПБ()        {return coresPerCPU();}
-            бул являетсяИнтел()     {return intel();}
-            бул являетсяАМД()       {return amd();}
-            бцел поколение()        {return stepping();}
-            бцел модель()           {return model();}
-            бцел семейство()        {return family();}
-            ткст вТкст()            {return о_ЦПУ();}
-        }
-
-        ткст о_ЦПУ()
-        {
-
-            ткст feats;
-            if (mmx)            feats ~= "MMX ";
-            if (fxsr)           feats ~= "FXSR ";
-            if (sse)            feats ~= "SSE ";
-            if (sse2)           feats ~= "SSE2 ";
-            if (sse3)           feats ~= "SSE3 ";
-            if (ssse3)          feats ~= "SSSE3 ";
-            if (amd3dnow)           feats ~= "3DNow! ";
-            if (amd3dnowExt)        feats ~= "3DNow!+ ";
-            if (amdMmx)         feats ~= "MMX+ ";
-            if (ia64)           feats ~= "IA-64 ";
-            if (amd64)          feats ~= "AMD64 ";
-            if (hyperThreading)     feats ~= "HTT";
-
-            ткст цпу = фм(
-                "\t\tИНФОРМАЦИЯ О ЦПУ ДАННОГО КОМПЬЮТЕРА\n\t**************************************************************\n\t"~
-                " Производитель   \t|   %s                                 \n\t"~"--------------------------------------------------------------\n\t", vendor(),
-                " Процессор       \t|   %s                                 \n\t"~"--------------------------------------------------------------\n\t", processor(),
-                " Сигнатура     \t| Семейство %d | Модель %d | Поколение %d \n\t"~"--------------------------------------------------------------\n\t", family(), model(), stepping(),
-                " Функции         \t|   %s                                 \n\t"~"--------------------------------------------------------------\n\t", feats,
-                " Многопоточность \t|  %d-поточный / %d-ядерный            \n\t"~"**************************************************************", threadsPerCPU(), coresPerCPU());
-            return цпу;
-
-        }
-
- }
-
-
- /////////////////////////////////////////////
-
- private import cidrus : strlen;
+private import cidrus : strlen;
 import base, std.string: format;
 
 //debug = НА_КОНСОЛЬ;
@@ -75,29 +10,29 @@ version(D_InlineAsm_X86)
  /// Returns everything as a printable string
     char[] toString()
     {
-    char[] feats;
-    if (mmx)            feats ~= "MMX ";
-    if (fxsr)           feats ~= "FXSR ";
-    if (sse)            feats ~= "SSE ";
-    if (sse2)           feats ~= "SSE2 ";
-    if (sse3)           feats ~= "SSE3 ";
-    if (ssse3)          feats ~= "SSSE3 ";
-    if (amd3dnow)           feats ~= "3DNow! ";
-    if (amd3dnowExt)        feats ~= "3DNow!+ ";
-    if (amdMmx)         feats ~= "MMX+ ";
-    if (ia64)           feats ~= "IA-64 ";
-    if (amd64)          feats ~= "AMD64 ";
-    if (hyperThreading)     feats ~= "HTT";
+	char[] feats;
+	if (mmx)			feats ~= "MMX ";
+	if (fxsr)			feats ~= "FXSR ";
+	if (sse)			feats ~= "SSE ";
+	if (sse2)			feats ~= "SSE2 ";
+	if (sse3)			feats ~= "SSE3 ";
+	if (ssse3)			feats ~= "SSSE3 ";
+	if (amd3dnow)			feats ~= "3DNow! ";
+	if (amd3dnowExt)		feats ~= "3DNow!+ ";
+	if (amdMmx)			feats ~= "MMX+ ";
+	if (ia64)			feats ~= "IA-64 ";
+	if (amd64)			feats ~= "AMD64 ";
+	if (hyperThreading)		feats ~= "HTT";
 
-    return format(
-        "Производитель:    %s\n", vendor(),
-        "Процессор: %s\n", processor(),
-        "Сигнатура:        Семейство=%d Модель=%d Степпинг=%d\n", family(), model(), stepping(),
-        "Средства:         %s\n", feats,
-        "Многопоточность:   %d нитей / %d ядер\n", threadsPerCPU(), coresPerCPU());
+	return format(
+		"Производитель:    %s\n", vendor(),
+		"Процессор: %s\n", processor(),
+		"Сигнатура:        Семейство=%d Модель=%d Степпинг=%d\n", family(), model(), stepping(),
+		"Средства:         %s\n", feats,
+		"Многопоточность:   %d нитей / %d ядер\n", threadsPerCPU(), coresPerCPU());
 
     }
-    
+	
     /// Returns vendor string
     char[] vendor()             {return vendorStr;}
     /// Returns processor string
@@ -191,8 +126,8 @@ version(D_InlineAsm_X86)
     uint maxThreads=1;
     uint maxCores=1;
     uint manufac=OTHER;
-    
-    
+	
+	
       enum
         {
             _SPC =      8,
@@ -238,8 +173,8 @@ version(D_InlineAsm_X86)
          */
         char[] stripl(char[] s)
         {
-            //debug(НА_КОНСОЛЬ) эхо("%s \n", s);
-            
+			//debug(НА_КОНСОЛЬ) эхо("%s \n", s);
+			
             uint i;
 
             for (i = 0; i < s.length; i++)
@@ -252,8 +187,8 @@ version(D_InlineAsm_X86)
 
         char[] stripr(char[] s) /// ditto
         {
-        
-            //debug(НА_КОНСОЛЬ) эхо("%s \n", s);
+		
+			//debug(НА_КОНСОЛЬ) эхо("%s \n", s);
 
             uint i;
 
@@ -267,9 +202,9 @@ version(D_InlineAsm_X86)
 
         char[] strip(char[] s) /// ditto
         {
-        char[] res = stripr(stripl(s));
-            //debug(НА_КОНСОЛЬ) эхо("%s \n", res);
-        return res;
+		char[] res = stripr(stripl(s));
+			//debug(НА_КОНСОЛЬ) эхо("%s \n", res);
+		return res;
         }
 
         char[] toString(char *s)
@@ -331,11 +266,11 @@ version(D_InlineAsm_X86)
         }
 
         if (buffer[0] == char.init) // no support
-        {
-          return "";
-            }
-        else return strip(buffer);
-        
+		{
+		  return "";
+			}
+		else return strip(buffer);
+		
     }
 
      void getFeatureFlags()
@@ -464,7 +399,7 @@ else
     static this()
     {
 
-        getVendorString();
+		getVendorString();
         processorStr = cast(string) getProcessorString();
         getFeatureFlags();
 
@@ -517,7 +452,7 @@ else
         {
                 threadFn();
         }
-        
+		
     }
-    
-    
+	
+	

@@ -1,41 +1,18 @@
-﻿module std.crc32;
+﻿/*
+ * Copyright (c) 2001, 2002
+ * Pavel "EvilOne" Minayev
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation.  Author makes no representations about
+ * the suitability of this software for any purpose. It is provided
+ * "as is" without express or implied warranty.
+ */
 
-
-export extern(D)
-{
-		бцел иницЦПИ32(){return init_crc32();}
-		бцел обновиЦПИ32(ббайт зн, бцел црц){return update_crc32(зн, црц);}
-		бцел обновиЦПИ32(сим зн, бцел црц){return update_crc32(зн, црц);}
-		бцел ткстЦПИ32(ткст т){return crc32(т);}
-
-		struct ЦПИ32 
-		{
-			export:
-
-			бцел иниц()
-			{
-				return init_crc32();
-			}
-
-			бцел обнови(ббайт зн, бцел црц)
-			{
-				return update_crc32(зн, црц);
-			}
-
-			бцел обнови(сим зн, бцел црц)
-			{
-				return update_crc32(зн, црц);
-			}
-
-			бцел вЦПИ32(ткст т)
-			{
-				return crc32(т);
-			}
-		}
-}
-
-
-///////////////////////////////////////////////////////
+// CRC-32 calculation
+module std.crc32;
 
 private uint[256] crc32_table =
 [

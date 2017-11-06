@@ -1,33 +1,17 @@
-﻿module std.base64;
+﻿/**
+ * Encodes/decodes MIME base64 data.
+ *
+ * Macros:
+ *	WIKI=Phobos/StdBase64
+ * References:
+ *	<a href="http://en.wikipedia.org/wiki/Base64">Wikipedia Base64</a>$(BR)
+ *	<a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>$(BR)
+ */
 
-const ткст РМАССИВСИМ = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя0123456789+/";
-const ткст МАССИВСИМ = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя0123456789+/";
+module std.base64;
 
-export extern(D){
-
-	бцел кодируйДлину64(бцел сдлин)
-		{
-		return cast(бцел) encodeLength(cast(бцел) сдлин);
-		}
-
-	ткст кодируй64(ткст стр, ткст буф = ткст.init)
-		{
-		if(буф)	return cast(ткст) encode(cast(сим[]) стр, cast(сим[]) буф);
-		else return cast(ткст) encode(cast(сим[])стр);
-		}
-
-	бцел раскодируйДлину64(бцел кдлин)
-		{
-		return cast(бцел) decodeLength(cast(бцел) кдлин);
-		}
-
-	ткст раскодируй64(ткст кстр, ткст буф = ткст.init)
-		{
-		if(буф) return cast(ткст) decode(cast(сим[]) кстр, cast(сим[]) буф);
-		else return cast(ткст) decode(cast(сим[]) кстр);
-		}
-}
-//////////////////////////////////////////////
+/**
+ */
 
 import sys.WinFuncs, std.utf, exception;
 
@@ -249,10 +233,6 @@ char[] decode(char[] estr)
 {
 	return decode(estr, new char[decodeLength(estr.length)]);
 }
-
-
-
-
 
 
 
