@@ -20,9 +20,10 @@ extern(C):
 const ткст КОНФИГ_РЕБИЛДА;
 const ткст КОНФИГ_РУЛАДЫ;
 const ткст КОНФИГ_РУЛАДЫДОП;
+const ткст КОНФИГ_РУЛАДЫДОП_ГИП;
 const ткст КОНФИГ_ДИНРУС;
 const ткст КОНФИГ_ДИНРУСДОП;
-const ткст КОНФИГ_ДИНРУСДОПГИП;
+const ткст КОНФИГ_ДИНРУСДОП_ГИП;
 const ткст КОНФ, СЦ_ИНИ;
 
 static this()
@@ -82,7 +83,7 @@ gui=-L/subsystem:windows
 [liblink]
 safe=yes
 oneatatime=yes
-cmd=%DINRUS%\\lib.exe -c -p512 $o $i
+cmd=%DINRUS%\\dmlib.exe -c -p512 $o $i
 response=@
 
 libdir=
@@ -113,7 +114,7 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus.lib
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib
 LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
@@ -129,11 +130,11 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus.lib -L+DinrusWin32.lib+DinrusConc.lib+import.lib+DinrusTango.lib+DinrusDbi.lib+DinrusWinDLL.lib+DinrusStd.lib
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusTango.lib+DinrusDbi.lib+DinrusWinDLL.lib+import.lib
 LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
-КОНФИГ_ДИНРУСДОПГИП =рг(
+КОНФИГ_ДИНРУСДОП_ГИП =рг(
 	"
 [Version]
 version=7.51 Build 020
@@ -145,7 +146,7 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus.lib -L+DinrusWin32.lib+DinrusConc.lib+import.lib+DinrusTango.lib+DinrusDbi.lib -L/exet:nt/su:windows:4.0
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusTango.lib+DinrusDbi.lib+WX.lib+import.lib -L/exet:nt/su:windows:4.0
 LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
@@ -177,7 +178,23 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\rulada_eng\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\rulada_eng\" -O -version=Rulada -defaultlib=rulada.lib -debuglib=rulada.lib -L+derelict.lib+tango.lib+auxc.lib+auxd.lib+amigos.lib+arc.lib+gtkD.lib+dgui.lib+DD-dwt.lib
+DFLAGS=\"-I%DINRUS%\\..\\imp\\rulada_eng\" -O -version=Rulada -defaultlib=rulada.lib -debuglib=rulada.lib -L+derelict.lib+tango.lib+auxc.lib+auxd.lib+amigos.lib+arc.lib+gtkD.lib+dgui.lib+DD-dwt.lib+DinrusWX.lib
+LINKCMD=%DINRUS%\\dmlink.exe
+	");
+	
+КОНФИГ_РУЛАДЫДОП_ГИП =рг(
+	"
+[Version]
+version=7.51 Build 020
+
+#RULADA CONSOLE FULL
+
+[Environment]
+PATH=%DINRUS%\\..
+BIN=%DINRUS%
+INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
+LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\rulada_eng\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
+DFLAGS=\"-I%DINRUS%\\..\\imp\\rulada_eng\" -O -version=Rulada -defaultlib=rulada.lib -debuglib=rulada.lib -L+derelict.lib+tango.lib+auxc.lib+auxd.lib+amigos.lib+arc.lib+gtkD.lib+dgui.lib+DD-dwt.lib+DinrusWX.lib -L/exet:nt/su:windows:4.0
 LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
@@ -228,7 +245,7 @@ return нет;
 	try
 	{
 	запиши_в(КОНФ, КОНФИГ_РЕБИЛДА);
-	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУСДОПГИП);
+	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУСДОП_ГИП);
 	}
 	catch(ФайлИскл фи)
 	{
@@ -268,6 +285,22 @@ return нет;
 	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
 	нс;
 	скажинс(" ВЕРСИЯ = РУЛАДА КОНСОЛЬ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ");
+}
+
+проц версияРуладаДоп_ГИП()
+{
+	try
+	{
+	запиши_в(КОНФ, КОНФИГ_РЕБИЛДА);
+	запиши_в(СЦ_ИНИ, КОНФИГ_РУЛАДЫДОП_ГИП);	
+	}
+	catch(ФайлИскл фи)
+	{
+	}
+
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
+	нс;
+	скажинс(" ВЕРСИЯ = РУЛАДА КОНСОЛЬ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ для ГИП");
 }
 /+
 	

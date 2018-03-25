@@ -303,7 +303,7 @@ cls
 @goto Geom
 
 :IO
-goto DRwin32
+goto finish
 %LS% -d %this%\import\io\*.d %this%\import\io\device\*.d %this%\import\io\stream\*.d>>%this%\io.rsp
 %DMD% -lib -of%this%\io.lib @%this%\io.rsp
 @if exist %this%\io.lib del %this%\io.rsp
@@ -322,8 +322,8 @@ if exist %this%\win32.rsp del %this%\win32.rsp
 if not exist %this%\DinrusWin32.lib pause
 copy %this%\DinrusWin32.lib /b  %LDIR%\DinrusWin32.lib /b
 
-:skip
-::goto finish
+::skip
+goto finish
 
 :Dinrus.Arc.dll
 :::Making Dinrus.Arc.dll
@@ -367,6 +367,8 @@ cd %this%
 :::Copying Dinrus.lib to main Dinrus lib folder
 :%LIB% -p256  Dinrus.lib %LDIR%\import.lib
 copy %this%\Dinrus.lib %LDIR%
+copy %this%\Dinrus.lib %LDIR%\Dinrus_dbg.lib
+
 copy %this%\Dinrus.Base.dll %DINRUS%
 
 
@@ -374,6 +376,8 @@ copy %this%\Dinrus.Base.dll %DINRUS%
 copy %this%\DinrusSpecBuild.lib  %LDIR%
 
 del %this%\*.lib %this%\*.obj
+
+goto exes
 
 :::Making DinrusStd.lib
 cd .\std\mk
@@ -390,8 +394,11 @@ cd %this%
 %this%\clean
 ::: same with the Dll - to bin folder
 
+:exes
+
 ::del *.lib *.dll
 cd %this%\Exe
 mk.bat
+pause
 exit
 
