@@ -782,7 +782,7 @@ struct D_CRITICAL_SECTION
     //CRITICAL_SECTION cs;
 }
 +/
-alias проц (*ФИНАЛИЗАТОР_СМ)(ук p, бул dummy);
+alias проц function(ук p, бул dummy) ФИНАЛИЗАТОР_СМ;
 
 //Функции, экспортируемые рантаймом
 extern(C)
