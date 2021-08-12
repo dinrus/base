@@ -1,0 +1,1042 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ou/include/ou/customization.h",
+			"settings":
+			{
+				"buffer_size": 5282,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ode/src/odeou.cpp",
+			"settings":
+			{
+				"buffer_size": 4094,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ode/src/odeou.h",
+			"settings":
+			{
+				"buffer_size": 3167,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ou/include/ou/namespace.h",
+			"settings":
+			{
+				"buffer_size": 2194,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/lib/vc_lib/mswu/wx/setup.h",
+			"settings":
+			{
+				"buffer_size": 45052,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "rulada_eng/wx/FileDialog.di",
+			"settings":
+			{
+				"buffer_size": 4774,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dinrus/object.di",
+			"settings":
+			{
+				"buffer_size": 43607,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dinrus/base.di",
+			"settings":
+			{
+				"buffer_size": 37803,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/object.di",
+			"settings":
+			{
+				"buffer_size": 89099,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "/**\n* Универсальный рантаймный модуль языка программирования Динрус,\n* поддерживающий совместимость с английской версией.\n* Разработчик Виталий Кулич\n*/\nmodule base;\npublic import exception;\n//version = Dinrus;\nversion = Unicode;\n\nversion(Dinrus1)\n{\n\tversion(Win32)\n\t{\n\n\t\tversion(SHARED)\n\t\t{\n\t\tpragma(lib, \"DinrusDllMain.lib\");\n\t\textern (Windows) BOOL DllMain(экз экземп, бдол резон, ук резерв);\n\t\t}\n\t\telse\n\t\t{\n\t\tversion = EXE_BUILD;\n\t\t}\n\n\t\tversion(EXE_BUILD)\n\t\t{\n\t\tpragma(lib, \"DinrusExeMain.lib\");\n\t\textern (C) цел main(цел аргчло, ткст0 *аргткст);\n\t\t}\n\n\t}\n}\n\nversion(Windows)\n{\n\tversion = ЛитлЭндиан;\n\tint useWfuncs = 1;\n\talias useWfuncs __ЮНИКОД__;\n}\n\n/* ************* КОНСТАНТЫ *************** */\nconst бул нет = false;\nconst бул да = true;\nconst пусто = null;\nalias пусто NULL;\n//const неук = проц; //получить тип от инициализатора не удаётся...\n\n/** Cтрока, используемая для разделения в пути названий папок.\n* для  Windows это обратный слэш, для Linux - прямой. */\nconst сим[1] РАЗДПАП = '\\\\';\n/** Альтернативная версия разделителя, используемая на Windows (слэш).\n *  Для Linux - пустая константа. */\nconst сим[1] АЛЬТРАЗДПАП = '/';\n/** Строка разделитель пути. На Windows точка с запятой, на\n *  Linux - двоеточие. */\nconst сим[1] РАЗДПСТР = ';';\n/** Строка, используемая для разделения строк, \\r\\n на Windows и \\n\n * на Linux. */\nconst сим[2] РАЗДСТР = \"\\r\\n\"; /// Строка-разделитель строк.\nconst сим[1] ТЕКПАП = '.';\t /// Строка, представляющая текущую папку.\nconst сим[2] РОДПАП = \"..\"; /// Строка, представляющая родительскую папку (папку на уровень выше).\n\nconst сим[16] ЦИФРЫ16 = \"0123456789ABCDEF\";\t\t\t/// 0..9A..F\nconst сим[10] ЦИФРЫ    = \"0123456789\";\t\t\t/// 0..9\nconst сим[8]  ЦИФРЫ8 = \"01234567\";\t\t\t\t/// 0..7\nconst сим[92] ПРОПИСНЫЕ = \"abcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюя\";\t/// а..z а..я\nconst сим[92] СТРОЧНЫЕ = \"ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ\";\t/// A..Z А..Я\nconst сим[184] БУКВЫ   = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя\";\t/// A..Za..zА..Яа..я\n\nconst сим[6] ПРОБЕЛЫ = \" \\t\\v\\r\\n\\f\";\t\t\t/// пробелы в ASCII\n\nversion(Dinrus1) mixin(\"const сим[3] РС = \\\\u2028;\"); /// Разделитель строк Unicode.\nconst дим РСд = 0x2028;  /// определено\nversion(Dinrus1) const сим[3] РА = \\u2029; /// Разделитель абзацев Unicode.\nconst дим РАд = 0x2029;  /// определено\nversion(Dinrus1) static assert(РС[0] == РА[0] && РС[1] == РА[1]);\n\n/// Метка перехода на новую строку для данной системы\nversion (Windows)\nconst сим[2] НОВСТР = РАЗДСТР;\nelse version (Posix)\n    const сим[1] НОВСТР = '\\n';\n\n\n/// Перечень меток порядка байтов UTF (BOM)\nenum МПБ {\n\n    Ю8,\t\t/// UTF-8\n    Ю16ЛЕ,\t/// UTF-16 Little Эндиан\n    Ю16БЕ,\t/// UTF-16 Big Эндиан\n    Ю32ЛЕ,\t/// UTF-32 Little Эндиан\n    Ю32БЕ,\t/// UTF-32 Big Эндиан\n    Нет\n}\n\nprivate const цел ЧМПБ = 5;\n\nЭндиан[ЧМПБ] МПБЭндиан =\n    [ _эндиан,\n      Эндиан.Литл, Эндиан.Биг,\n      Эндиан.Литл, Эндиан.Биг\n    ];\n\nббайт[][ЧМПБ] МеткиПорядкаБайтов =\n    [ [0xEF, 0xBB, 0xBF],\n      [0xFF, 0xFE],\n      [0xFE, 0xFF],\n      [0xFF, 0xFE, 0x00, 0x00],\n      [0x00, 0x00, 0xFE, 0xFF]\n    ];\n\n\n\nconst{\n\n    version(ЛитлЭндиан)\n    {\n        private const цел Эндиан_Амбьент =   1;\n    }\n\n    version(БигЭндиан)\n    {\n        private const цел Эндиан_Амбьент =   2;\n    }\n\nenum Эндиан\n{\n    Неизвестно =   0,                   //!< Неизвестный эндиан-ness. Указывает на ошибку\n    Литл  =   1,                   //!< архитектура Литтл эндиан\n    Биг     =   2 ,                  //!< архитектура Биг эндиан \n    Мидл  =   3   ,                //!< архитектура Миддл эндиан \n    БайтСекс =   4,\n    Амбьент =   Эндиан_Амбьент \n}\n\n    /*\n    \tenum Эндиан\n    \t {\n    \t\tБигЭндиан,\t/// порядок байта, когда его завершает наибольший - старший - бит\n    \t\tЛитлЭндиан\t/// порядок байта, когда в конце него находится младший бит\n    \t }\n\n    \t*/\n    version(ЛитлЭндиан)\n    {\n        /// Исконная \"эндианность\" системы\n        Эндиан _эндиан = Эндиан.Литл;\n    }\n    else\n    {\n        Эндиан _эндиан = Эндиан.Биг;\n    }\n\n}\n\nalias дол т_время;\nalias бцел ФВремяДос;\nconst т_время т_время_нч = cast(т_время) дол.min;\nalias сим рсим;\nalias ткст рткст;\n/+\nalias typeof(delegate) делегат;\nalias typeof(function) функция;\nalias typeof(struct)    структ;\nalias typeof(union)       союз;\n+/\n\nversion(ЛитлЭндиан) {\n    static assert(реал.mant_dig == 53 || реал.mant_dig==64\n\t\t\t\t  || реал.mant_dig == 113,\n\t\t\t\t  \"Только 64-битные, 80-битные и 128-битные реалы\"~\n\t\t\t\t  \" поддерживаются для процессоров ЛитлЭндиан\");\n} else {\n    static assert(реал.mant_dig == 53 || реал.mant_dig==106\n\t\t\t\t  || реал.mant_dig == 113,\n\t\t\t\t  \"Только 64-битные и 128-битные реалы поддерживаются для процессоров БигЭндиан.\"~\n\t\t\t\t  \" дво-дво реалы имеют частичную поддержку.\");\n}\n\n// Константы, используемые для извлечения компонентов из их представлений.\n// Они обслуживают встроеннные свойства плавающей точки.\ntemplate плавТрэтс(T) {\n // МАСКАВЫР - это бкрат маска для выделения экспонентной части (без знака)\n // СТП2ЧИСМАНТ = pow(2, реал.mant_dig): ЭТО ЗНАЧЕНИЕ, при котором\n //  (smallest_denormal)*СТП2ЧИСМАНТ == реал.min\n // ПОЗВЫР_КРАТ - индекс экспоненты, предсталенной как массив из ushort (бкрат).\n // ПОЗЗНАКА_БАЙТ - индекс знака, представленный как массив из ббайт (беззначных байтов).\n static if (T.mant_dig == 24) { // float (плав)\n\n        const бкрат МАСКАВЫР = 0x7F80;\n        const бкрат БИАСВЫР = 0x3F00;\n        const uint МАСКАВЫР_ЦЕЛ = 0x7F80_0000;\n        const uint МАСКАМАНТИССЫ_ЦЕЛ = 0x007F_FFFF;\n        const реал СТП2ЧИСМАНТ = 0x1p+24;\n    version(ЛитлЭндиан) {\n      const ПОЗВЫР_КРАТ = 1;\n    } else {\n      const ПОЗВЫР_КРАТ = 0;\n    }\n } else static if (T.mant_dig == 53) { // double, или реал==double\n        const бкрат МАСКАВЫР = 0x7FF0;\n        const бкрат БИАСВЫР = 0x3FE0;\n        const uint МАСКАВЫР_ЦЕЛ = 0x7FF0_0000;\n const uint МАСКАМАНТИССЫ_ЦЕЛ = 0x000F_FFFF; // только для MSB\n        const реал СТП2ЧИСМАНТ = 0x1p+53;\n  version(ЛитлЭндиан) {       \n            const ПОЗВЫР_КРАТ = 3;\n            const ПОЗЗНАКА_БАЙТ = 7;\n    } else {\n      const ПОЗВЫР_КРАТ = 0;\n      const ПОЗЗНАКА_БАЙТ = 0;\n    }\n } else static if (T.mant_dig == 64) { // real80\n        const бкрат МАСКАВЫР = 0x7FFF;\n        const бкрат БИАСВЫР = 0x3FFE;\n        const реал СТП2ЧИСМАНТ = 0x1p+63;\n version(ЛитлЭндиан) {\n        \n            const ПОЗВЫР_КРАТ = 4;\n            const ПОЗЗНАКА_БАЙТ = 9;\n    } else {\n      const ПОЗВЫР_КРАТ = 0;\n      const ПОЗЗНАКА_БАЙТ = 0;\n    }\n } else static if (реал.mant_dig == 113){ // quadruple\n        const бкрат МАСКАВЫР = 0x7FFF;\n        const реал СТП2ЧИСМАНТ = 0x1p+113;\n\tversion(ЛитлЭндиан) {\n            const ПОЗВЫР_КРАТ = 7;\n            const ПОЗЗНАКА_БАЙТ = 15;\n    } else {\n      const ПОЗВЫР_КРАТ = 0;\n      const ПОЗЗНАКА_БАЙТ = 0;\n    }\n } else static if (реал.mant_dig == 106) { // doubledouble\n        const бкрат МАСКАВЫР = 0x7FF0;\n        const реал СТП2ЧИСМАНТ = 0x1p+53;  // doubledouble denormals are strange\n        // and the exponent byte is not unique\n\tversion(ЛитлЭндиан) {\n            const ПОЗВЫР_КРАТ = 7; // [3] is also an exp short\n            const ПОЗЗНАКА_БАЙТ = 15;\n  } else {\n            const ПОЗВЫР_КРАТ = 0; // [4] is also an exp short\n            const ПОЗЗНАКА_БАЙТ = 0;\n        }\n    }\n}\n\n// Применяется ко всем типам с плавающей запятой\nversion(ЛитлЭндиан) {\n    const МАНТИССА_МЗЧ = 0; //LSB\n    const МАНТИССА_БЗЧ = 1; //MSB\n} else {\n    const МАНТИССА_МЗЧ = 1;\n    const МАНТИССА_БЗЧ = 0;\n}\n\n/**\n*Константы математического характера\n*/\n\nconst реал ЛОГ2Т =      0x1.a934f0979a3715fcp+1;\nconst реал ЛОГ2Е =      0x1.71547652b82fe178p+0;\nconst реал ЛОГ2 =       0x1.34413509f79fef32p-2;\nconst реал ЛОГ10Е =     0.43429448190325182765;\nconst реал ЛН2 =        0x1.62e42fefa39ef358p-1;\nconst реал ЛН10 =       2.30258509299404568402;\nconst реал ПИ =         0x1.921fb54442d1846ap+1;\nconst реал ПИ_2 =       1.57079632679489661923;\nconst реал ПИ_4 =       0.78539816339744830962;\nconst реал М_1_ПИ =     0.31830988618379067154;\nconst реал М_2_ПИ =     0.63661977236758134308;\nconst реал М_2_КВКОРПИ = 1.12837916709551257390;\nconst реал КВКОР2 =      1.41421356237309504880;\nconst реал КВКОР1_2 =    0.70710678118654752440;\n\nconst реал E =          2.7182818284590452354L;\n\nconst реал МАКСЛОГ = 0x1.62e42fefa39ef358p+13L;  /** лог(реал.max) */\nconst реал МИНЛОГ = -0x1.6436716d5406e6d8p+13L; /** лог(реал.min*реал.epsilon) */\nconst реал ОЙЛЕРГАММА = 0.57721_56649_01532_86060_65120_90082_40243_10421_59335_93992L; /** Euler-Mascheroni constant 0.57721566.. */\n\nconst ткст ИМЕЙЛ =\nr\"[а-zA-Z]([.]?([[а-zA-Z0-9_]-]+)*)?@([[а-zA-Z0-9_]\\-_]+\\.)+[а-zA-Z]{2,6}\";\n\nconst ткст УРЛ =  r\"(([h|H][t|T]|[f|F])[t|T][p|P]([s|S]?)\\:\\/\\/|~/|/)?([\\w]+:\\w+@)?(([а-zA-Z]{1}([\\w\\-]+\\.)+([\\w]{2,5}))(:[\\d]{1,5})?)?((/?\\w+/)+|/?)(\\w+\\.[\\w]{3,4})?([,]\\w+)*((\\?\\w+=\\w+)?(&\\w+=\\w+)*([,]\\w*)*)?\";\n\nenum{\n    ЧасовВДне    = 24,\n    МинутВЧасе = 60,\n    МсекВМинуте    = 60 * 1000,\n    МсекВЧасе      = 60 * МсекВМинуте,\n    МсекВДень       = 86400000,\n    ТиковВМсек     = 1,\n    ТиковВСекунду = 1000,\n    ТиковВМинуту = ТиковВСекунду * 60,\n    ТиковВЧас   = ТиковВМинуту * 60,\n    ТиковВДень    = ТиковВЧас  * 24,\n}\n\nenum ПМангл : сим{\n    Тпроц     = 'v',\n    Тбул     = 'g',\n    Тбайт     = 'b',\n    Тббайт    = 'h',\n    Ткрат    = 's',\n    Тбкрат   = 't',\n    Тцел      = 'i',\n    Тбцел     = 'k',\n    Тдол     = 'l',\n    Тбдол    = 'm',\n    Тплав    = 'f',\n    Тдво   = 'd',\n    Треал     = 'e',\n\n    Твплав   = 'o',\n    Твдво  = 'p',\n    Твреал    = 'j',\n    Ткплав   = 'q',\n    Ткдво  = 'r',\n    Ткреал    = 'c',\n\n    Тсим     = 'a',\n    Тшим    = 'u',\n    Тдим    = 'w',\n\n    Тмассив    = 'A',\n    Тсмассив   = 'G',\n    Тамассив   = 'H',\n    Туказатель  = 'P',\n    Тфункция = 'F',\n    Тидент    = 'I',\n    Ткласс    = 'C',\n    Тструкт   = 'S',\n    Тперечень     = 'E',\n    Ттипдеф  = 'T',\n    Тделегат = 'D',\n\n    Тконст    = 'x',\n    Тинвариант = 'y',\n}\n\nenum{\n    СБОЙ_ОП = ~cast(т_мера)0\n}\n\nenum{   РАЗМЕР_СТРАНИЦЫ =    4096,\n    РАЗМЕР_ПОДАЧИ = (4096*16),\n    РАЗМЕР_ПУЛА =   (4096*256),\n}\nconst т_мера МАСКА_СТРАНИЦЫ = РАЗМЕР_СТРАНИЦЫ - 1;\n\n/**\n * Элементы бит-поля, представляющего атрибуты блока памяти. Ими\n * можно манипулировать функциями СМ дайАтр, устАтр, удалиАтр.\n */\nenum ПАтрБлока : бцел\n{\n    Финализовать = 0b0000_0001, /// Финализовать данные этого блока при сборке.\n    НеСканировать  = 0b0000_0010, /// Не сканировать при сборке данный блок.\n    НеПеремещать  = 0b0000_0100,  /// Не перемещать данный блок при сборке.\n    МожноДобавить  = 0b0000_1000,\n    БезНутра = 0b0001_0000,\n    ВсеБиты = 0b1111_1111\n}\n\n\ninterface ИнфоОтслежИскл\n{\n    цел opApply( цел delegate( inout ткст ) );\n}\n\nversion( Windows )\n{\n    alias wchar wint_t, wchar_t, wctype_t, wctrans_t;\n\n    const wchar WEOF = 0xFFFF;\n    alias WEOF ШКФ;\n}\nelse\n{\n    alias dchar wint_t, wchar_t,  wctype_t, wctrans_t;\n\n    const dchar WEOF = 0xFFFF;\n    alias WEOF ШКФ;\n}\n\n//Базовые типы языка Динрус\nversion( X86_64 )\n{\n    alias ulong т_мера, size_t;\n    alias long  т_дельтаук, ptrdiff_t;\n}\nelse\n{\n    alias uint  т_мера, size_t;\n    alias int  т_дельтаук, ptrdiff_t;\n}\n\nalias т_мера т_хэш, hash_t;\n\n\nalias char[] ткст;\nalias char[] *уткст;\n\nalias wchar[] шткст;\nalias wchar[] *ушткст;\n\nalias dchar[] юткст;\nalias dchar[] *уюткст;\n\nversion(Dinrus2)\n{\nalias ткст2  = immutable(сим)[];\nalias ткст2 string;\nalias шткст2 = immutable(шим)[];\nalias шткст2 wstring;\nalias юткст2 = immutable(дим)[];\nalias юткст2 dstring;\n}\nelse{\nalias ткст string;\nalias шткст wstring;\nalias юткст dstring;\n }\n\nalias bool бул, бит, bit, BOOLEAN;\nalias bool *убул, PBOOLEAN;\n\nalias int цел, т_рав, т_фпоз,\n\tequals_t, fexcept_t, fpos_t;\nalias int *уцел;\n\nalias uint бцел;\nalias uint *убцел;\n\nalias long дол;\nalias long *удол;\n\nalias ulong бдол;\nalias ulong *убдол;\nalias real реал;\nalias real *уреал;\n\nalias double дво, double_t;\nalias double *удво;\n\nalias char сим;\nalias char *усим, ткст0;\n\nalias wchar шим;\nalias wchar *ушим, шткст0;\n\n////////////////////////////////////////////////\n\n\nalias dchar дим;\nalias dchar *удим;\n\nalias byte байт;\nalias byte *убайт;\n\nalias ubyte ббайт;\nalias ubyte *уббайт;\n\nalias short крат;\nalias short *украт;\n\nalias ushort бкрат;\nalias ushort *убкрат;\n\nalias float плав, float_t;\nalias float *уплав;\n\nalias void проц;\nalias void *ук, спис_ва;\nversion(Dinrus1) alias спис_ва va_list;\n\nalias ук  ДЕСКР;\nalias ДЕСКР гук, лук, экз;\n\n\nversion (Windows) alias ук Дескр;\n//else\n  //  typedef цел Дескр = -1;\n\n\n\nalias ireal вреал;\nalias ireal *увреал;\n\nalias idouble вдво;\nalias idouble *увдво;\n\nalias ifloat вплав;\nalias ifloat *увплав;\n\nalias creal креал;\nalias creal *укреал;\n\nalias cdouble кдво;\nalias cdouble *укдво;\n\nalias cfloat кплав;\nalias cfloat *укплав;\n\n\n//ип = импортируемая переменная\nextern(C)\n{\n    alias  extern int ипЦ;\n    alias extern uint ипбЦ;\n    alias extern double ипД2;\n    alias extern float ипП;\n    alias extern void ип;\n    alias extern void *ипУ;\n    alias extern byte ипБ;\n    alias extern ubyte ипбБ;\n    alias extern char ипС;\n    alias extern char *ипуС;\n    alias extern wchar ипШ;\n    alias extern wchar *ипуШ;\n    alias extern long ипД;\n    alias extern ulong ипбД;\n}\n\nalias extern(D) int function() функЦ;\nalias extern(D) uint  function() функбЦ;\nalias extern(D) double  function() функД2;\nalias extern(D) float  function() функП;\nalias extern(D) void  function() функ;\nalias extern(D) void *function() функУ;\nalias extern(D) byte  function() функБ;\nalias extern(D) ubyte  function() функбБ;\nalias extern(D) char  function() функС;\nalias extern(D) char *function() функуС;\nalias extern(D) wchar  function() функШ;\nalias extern(D)  wchar *function() функуШ;\nalias extern(D)  Object  function() функО;\nalias extern(D)  long  function() функД;\nalias extern(D)  ulong  function() функбД;\n\nalias extern (Windows) проц function(цел) винфунк_Ц;\nalias extern (Windows) проц function(цел, цел) винфунк_ЦЦ;\nalias extern (Windows) проц function(цел, цел, цел) винфунк_ЦЦЦ;\nalias extern (Windows) проц function(цел, цел, цел, цел) винфунк_ЦЦЦЦ;\nalias extern (Windows) проц function(цел, цел, цел, цел, цел) винфунк_ЦЦЦЦЦ;\nalias extern (Windows) проц function(сим, цел, цел) винфунк_СЦЦ;\nalias extern (Windows) проц function(ббайт, цел, цел) винфунк_бБЦЦ;\n\n\nalias extern (Windows) проц function(бцел, цел, цел, цел) винфунк_бЦЦЦЦ;\n\nalias extern(Windows) цел  function() винфункЦ;\nalias extern (Windows) цел function(сим, цел, цел) винфункЦ_СЦЦ;\nalias extern (Windows) цел function(ббайт, цел, цел) винфункЦ_бБЦЦ;\nalias extern (Windows) цел function(цел) винфункЦ_Ц;\nalias extern (Windows) цел function(цел, цел) винфункЦ_ЦЦ;\nalias extern (Windows) цел function(цел, цел, цел) винфункЦ_ЦЦЦ;\nalias extern (Windows) цел function(цел, цел, цел, цел) винфункЦ_ЦЦЦЦ;\nalias extern (Windows) цел function (ук, бцел, бцел, цел) винфункЦ_УбЦбЦЦ;\n\nalias extern(Windows) бцел  function() винфункбЦ;\nalias extern(Windows) бцел function (ук, бцел, бцел, цел) винфункбЦ_УбЦбЦЦ;\nalias  extern (Windows) бцел function(ук) винфункбЦ_У;\n\nalias extern(Windows) дво  function() винфункД2;\nalias extern(Windows) плав  function() винфункП;\nalias extern(Windows) проц  function() винфунк;\nalias extern(Windows) ук   function() винфункУ;\nalias extern(Windows) байт  function() винфункБ;\nalias extern(Windows) ббайт  function() винфункбБ;\nalias extern(Windows) сим  function() винфункС;\nalias extern(Windows) усим function() винфункуС;\nalias extern(Windows) шим  function() винфункШ;\nalias extern(Windows) ушим function() винфункуШ;\nalias extern(Windows) дол  function() винфункД;\nalias extern(Windows) бдол  function() винфункбД;\n\nalias extern(Windows) бул  function() винфункБ2;\nalias extern(Windows) бул function(бцел) винфункБ2_бЦ;\n\n//alias extern (Windows) struct винструкт;\n//alias extern (Windows) class винкласс;\n\nalias винфункЦ_УбЦбЦЦ ОКОНПРОЦ;\nalias винфункбЦ_УбЦбЦЦ ОТКРФЛХУКПРОЦ;\nalias винфункБ2_бЦ ОБРАБПРОЦ;\nalias винфункЦ УДПРОЦ;\nalias УДПРОЦ ДЛГПРОЦ;\nalias УДПРОЦ ТАЙМЕРПРОЦ;\nalias УДПРОЦ СЕРСТРПРОЦ;\nalias УДПРОЦ РИССТПРОЦ;\nalias бцел СОКЕТ, т_локаль, ЦВЕТ, МАСКА_ДОСТУПА, ЦВПредст;\n//typedef СОКЕТ т_сокет = cast(СОКЕТ)~0;\nalias цел т_длинсок;\nalias шим ОЛЕСИМ;\nalias ОЛЕСИМ олес;\n\nalias ук УКисть, УКурсор, УПеро, УПиктограмма, УИконка, УШрифт, УОК, УСписокКартинок, УБитмап;\nalias ук УкТОКЕН_ДОСТУПА, УкБИД;\nalias бул РЕЖИМ_ОТСЛЕЖИВАНИЯ_КОНТЕКСТА_БЕЗОПАСНОСТИ;\nalias бкрат УПР_ДЕСКРИПТОРА_БЕЗОПАСНОСТИ;\n\nalias проц  function( ткст файл, т_мера строка, ткст сооб = пусто ) типПроверОбр;\nalias ИнфоОтслежИскл function( ук укз = пусто ) типСледОбр;\nalias проц delegate( ук, ук ) сканФн;\nalias бул function() ТестерМодулей;\nalias бул function(Объект) ОбработчикСборки;\nalias проц delegate( Исключение ) ОбработчикИсключения;\nalias extern(D) проц delegate() ddel;\nalias extern(D) проц delegate(цел, цел) dint;\nalias проц delegate() ПередВходом, ПередВыходом;\nalias проц delegate(Объект) ДСобыт, DEvent;\n\nextern (D) alias цел delegate(ук) т_дг, dg_t;\nextern (D) alias цел delegate(ук, ук) т_дг2, dg2_t;\n\nalias проц delegate( ук, ук ) фнСканВсеНити;\n\nversion(Dinrus1)\n{\n    extern  (C){\n\n\t\tversion( Windows )\n\t\t{\n\t\t\talias int   c_long;\n\t\t\talias uint  c_ulong;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstatic if( (ук).sizeof > int.sizeof )\n\t\t\t{\n\t\t\t\talias long  c_long;\n\t\t\t\talias ulong c_ulong;\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\talias int   c_long;\n\t\t\t\talias uint  c_ulong;\n\t\t\t}\n\t\t}\n\n\t\talias int sig_atomic_t;\n\n\t\talias byte      int8_t;\n\t\talias short     int16_t;\n\t\talias int       int32_t;\n\t\talias long      int64_t;\n\t\t//alias cent      int128_t;\n\n\t\talias ubyte     uint8_t;\n\t\talias ushort    uint16_t;\n\t\talias uint      uint32_t;\n\t\talias ulong     uint64_t;\n\t\t//alias ucent     uint128_t;\n\n\t\talias byte      int_least8_t;\n\t\talias short     int_least16_t;\n\t\talias int       int_least32_t;\n\t\talias long      int_least64_t;\n\n\t\talias ubyte     uint_least8_t;\n\t\talias ushort    uint_least16_t;\n\t\talias uint      uint_least32_t;\n\t\talias ulong     uint_least64_t;\n\n\t\talias byte      int_fast8_t;\n\t\talias int       int_fast16_t;\n\t\talias int       int_fast32_t;\n\t\talias long      int_fast64_t;\n\n\t\talias ubyte     uint_fast8_t;\n\t\talias uint      uint_fast16_t;\n\t\talias uint      uint_fast32_t;\n\t\talias ulong     uint_fast64_t;\n\n\t\tversion( X86_64 )\n\t\t{\n\t\t\talias long  intptr_t;\n\t\t\talias ulong uintptr_t;\n\t\t}\n\t\telse\n\t\t{\n\t\t\talias int   intptr_t;\n\t\t\talias uint  uintptr_t;\n\t\t}\n\n\t\talias long      intmax_t, т_максцел;\n\t\talias ulong     uintmax_t, т_максбцел;\n\t}\n\n\t////////////////////////////\n\n/* Тип для возвратного значения динамических массивов.\n */\nalias long т_дмВозврат;\n\nstruct СМСтат\n{\n    т_мера размерПула;        // общий размер пула\n    т_мера испРазмер;        // выделено байтов\n    т_мера свобБлоки;      // число блоков, помеченных FREE\n    т_мера размСпискаСвобБлоков;    // всего памяти в списках освобождения\n    т_мера блокиСтр;\n}\nalias СМСтат GCStats;\n/**\n * Содержит инфоагрегат о блоке управляемой памяти. Назначение этой\n * структуры заключается в поддержке более эффективного стиля опроса\n * в тех экземплярах, где требуется более подробная информация.\n *\n * основа = Указатель на основание опрашиваемого блока.\n * размер = Размер блока, вычисляемый от основания.\n * атр = Биты установленных на блоке памяти атрибутов.\n */\n\nstruct ИнфОБл\n{\n    ук  основа;\n    т_мера размер;\n    бцел   атр;\n}\nalias ИнфОБл BlkInfo;\n/**\n * Элементы бит-поля, представляющего атрибуты блока памяти. Ими\n * можно манипулировать функциями дайАтр, устАтр, удалиАтр.\n */\n\nstruct Пространство\n{\n    ук Низ;\n    ук Верх;\n};\n\nstruct Массив\n{\n\tт_мера длина;\n\tбайт *данные;\n\tук укз;\n}\nalias Массив Array ;\n\n\nstruct Complex\n{\n    реал re;\n    реал im;\n}\n\nstruct Комплексное\n{\n    реал ре;\n    реал вообр;\n}\n\nstruct aaA\n{\n    //aaA *left;\n    //aaA *right;\n    //hash_t hash;\n    aaA *next;\n    hash_t hash;\n    /* key   */\n    /* value */\n}\n\nstruct BB\n{\n    aaA*[] b;\n    size_t nodes;       // общее число узлов aaA\n    TypeInfo keyti;     // TODO: заменить на TypeInfo_AssociativeArray, если  доступно через _aaGet()\n    aaA*[4] binit;      // начальное значение с[]\n}\n\n/* Это тип Ассоциативный Массив, который действительно виден программисту,\n * хотя он и правда, уплотнён.\n */\n\nstruct AA\n{\n    BB* a;\n}\n\n/+class Амас\n{\n    private AA амас;\n\n\n}+/\n\nstruct D_CRITICAL_SECTION\n{\n    D_CRITICAL_SECTION *next;\n    //CRITICAL_SECTION cs;\n}\n\nalias проц function(ук p, бул dummy) ФИНАЛИЗАТОР_СМ;\n\n\n//Функции, экспортируемые рантаймом\nextern(C)\n{\n\n    цел printf(усим, ...);\n    alias printf эхо;\n    проц _d_monitor_create(Object);\n    проц _d_monitor_destroy(Object);\n    проц _d_monitor_lock(Object);\n    int  _d_monitor_unlock(Object);\n    //asm\n    проц _minit();\n\n//exception\n    проц onAssertError( ткст file, т_мера line );\n    проц onAssertErrorMsg( ткст file, т_мера line, ткст msg );\n    проц onArrayBoundsError( ткст file, т_мера line );\n    проц onFinalizeError( ClassInfo info, Исключение ex );\n    проц onOutOfMemoryError();\n    проц onSwitchError( ткст file, т_мера line );\n    проц onUnicodeError( ткст msg, т_мера idx );\n    проц onRangeError( string file, т_мера line );\n    проц onHiddenFuncError( Object o );\n    проц _d_assert( ткст file, uint line );\n    static проц _d_assert_msg( ткст msg, ткст file, uint line );\n    проц _d_array_bounds( ткст file, uint line );\n    проц _d_switch_error( ткст file, uint line );\n    проц _d_OutOfMemory();\n\n    //ИнфоОтслежИскл контекстТрассировки( ук ptr = null );\n    //бул устСледОбр( типСледОбр h );\n    бул устПроверОбр( типПроверОбр h );\n\n}\n\nextern (C)\n{\n\n//complex.c\n    Complex _complex_div(Complex x, Complex y);\n    Complex _complex_mul(Complex x, Complex y);\n    // long double _complex_abs(Complex z);\n    Complex _complex_sqrt(Complex z);\n\n//critical.c\n    проц _d_criticalenter(D_CRITICAL_SECTION *dcs);\n    проц _d_criticalexit(D_CRITICAL_SECTION *dcs);\n    проц _STI_critical_init();\n    проц _STD_critical_term();\n\n//rt.adi\n    char[] _adReverseChar(char[] а);\n    шткст _adReverseWchar(шткст а);\n    проц[] _adReverse(Array а, size_t szelem);\n    char[] _adSortChar(char[] а);\n    шткст _adSortWchar(шткст а);\n    int _adEq(Array a1, Array a2, TypeInfo ti);\n    int _adEq2(Array a1, Array a2, TypeInfo ti);\n    int _adCmp(Array a1, Array a2, TypeInfo ti);\n    int _adCmp2(Array a1, Array a2, TypeInfo ti);\n    int _adCmpChar(Array a1, Array a2);\n\n//rt.aaA\n    size_t _aaLen(AA aa);\n    ук _aaGet(AA* aa, TypeInfo keyti, size_t valuesize, ...);\n    ук _aaGetRvalue(AA aa, TypeInfo keyti, size_t valuesize, ...);\n    ук _aaIn(AA aa, TypeInfo keyti, ...);\n    проц _aaDel(AA aa, TypeInfo keyti, ...);\n    т_дмВозврат _aaValues(AA aa, size_t keysize, size_t valuesize);\n    ук _aaRehash(AA* paa, TypeInfo keyti);\n    проц _aaBalance(AA* paa);\n    т_дмВозврат _aaKeys(AA aa, size_t keysize);\n    int _aaApply(AA aa, size_t keysize, т_дг дг);\n    int _aaApply2(AA aa, size_t keysize, т_дг2 дг);\n    BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...);\n    int _aaEqual(TypeInfo_AssociativeArray ti, AA e1, AA e2);\n\n//rt.aApply\n    int _aApplycd1(char[] aa, т_дг дг);\n    int _aApplywd1(шткст aa, т_дг дг);\n    int _aApplycw1(char[] aa, т_дг дг);\n    int _aApplywc1(шткст aa, т_дг дг);\n    int _aApplydc1(юткст aa, т_дг дг);\n    int _aApplydw1(юткст aa, т_дг дг);\n    int _aApplycd2(char[] aa, т_дг2 дг);\n    int _aApplywd2(шткст aa, т_дг2 дг);\n    int _aApplycw2(char[] aa, т_дг2 дг);\n    int _aApplywc2(шткст aa, т_дг2 дг);\n    int _aApplydc2(юткст aa, т_дг2 дг);\n    int _aApplydw2(юткст aa, т_дг2 дг);\n\n//rt.aApplyR\n    int _aApplyRcd1(in char[] aa, т_дг дг);\n    int _aApplyRwd1(in шткст aa, т_дг дг);\n    int _aApplyRcw1(in char[] aa, т_дг дг);\n    int _aApplyRwc1(in шткст aa, т_дг дг);\n    int _aApplyRdc1(in юткст aa, т_дг дг);\n    int _aApplyRdw1(in юткст aa, т_дг дг);\n    int _aApplyRcd2(in char[] aa, т_дг2 дг);\n    int _aApplyRwd2(in шткст aa, т_дг2 дг);\n    int _aApplyRcw2(in char[] aa, т_дг2 дг);\n    int _aApplyRwc2(in шткст aa, т_дг2 дг);\n    int _aApplyRdc2(in юткст aa, т_дг2 дг);\n    int _aApplyRdw2(in юткст aa, т_дг2 дг);\n\n//rt.alloca\n    ук __alloca(int nbytes);\n\n//rt.arraycast\n    проц[] _d_arraycast(size_t tsize, size_t fsize, проц[] а);\n    проц[] _d_arraycast_frombit(uint tsize, проц[] а);\n\n//rt.arraycat\n    byte[] _d_arraycopy(size_t size, byte[] from, byte[] to);\n\n//rt.cast\n    Object _d_toObject(ук p);\n    Object _d_interface_cast(ук p, ClassInfo c);\n    Object _d_dynamic_cast(Object o, ClassInfo c);\n    int _d_isbaseof2(ClassInfo oc, ClassInfo c, ref  size_t offset);\n    int _d_isbaseof(ClassInfo oc, ClassInfo c);\n    ук _d_interface_vtbl(ClassInfo ic, Object o);\n\n//rt.lifetime\n    Object _d_newclass(ClassInfo ci);\n    проц _d_delinterface(ук p);\n    проц _d_delclass(Object *p);\n    ulong _d_newarrayT(TypeInfo ti, size_t length);\n    ulong _d_newarrayiT(TypeInfo ti, size_t length);\n    ulong _d_newarraymT(TypeInfo ti, int ndims, ...);\n    ulong _d_newarraymiT(TypeInfo ti, int ndims, ...);\n    ук  _d_allocmemory(size_t nbytes);\n    проц _d_delarray(Array *p);\n    проц _d_delmemory(проц  *p);\n    проц _d_callfinalizer(ук p);\n    проц ртФинализуй(ук  p, бул det = да);\n    extern (C) проц rt_finalize_gc(ук p);\n\n    byte[] _d_arraysetlengthT(TypeInfo ti, size_t newlength, Array *p);\n    byte[] _d_arraysetlengthiT(TypeInfo ti, size_t newlength, Array *p);\n    long _d_arrayappendT(TypeInfo ti, Array *px, byte[] y);\n    byte[] _d_arrayappendcT(TypeInfo ti, inout byte[] x, ...);\n    byte[] _d_arraycatT(TypeInfo ti, byte[] x, byte[] y);\n    byte[] _d_arraycatnT(TypeInfo ti, uint n, ...);\n    ук  _d_arrayliteralT(TypeInfo ti, size_t length, ...);\n    long _adDupT(TypeInfo ti, Array а);\n\n//rt.hash\n    hash_t rt_hash_str(ук bStart,size_t длина, hash_t seed=cast(hash_t)0);\n    hash_t rt_hash_block(size_t *bStart,size_t длина, hash_t seed=cast(hash_t)0);\n    uint rt_hash_utf8(char[] str, uint seed=0);\n    uint rt_hash_utf16(шткст str, uint seed=0);\n    uint rt_hash_utf32(юткст str, uint seed=0);\n    hash_t rt_hash_combine( hash_t val1, hash_t val2 );\n    uint rt_hash_str_neutral32(ук bStart,uint длина, uint seed=0);\n    ulong rt_hash_str_neutral64(ук bStart,ulong длина, ulong seed=0);\n    uint rt_hash_combine32( uint знач, uint seed );\n    ulong rt_hash_combine64( ulong value, ulong level);\n\n//rt.qsort\n    long _adSort(Array а, TypeInfo ti);\n\n//rt.memset\n    short *_memset16(short *p, short value, size_t count);\n    int *_memset32(int *p, int value, size_t count);\n    long *_memset64(long *p, long value, size_t count);\n    cdouble *_memset128(cdouble *p, cdouble value, size_t count);\n    реал *_memset80(реал *p, реал value, size_t count);\n    creal *_memset160(creal *p, creal value, size_t count);\n    ук _memsetn(ук p, ук value, int count, size_t sizelem);\n\n//rt.switch\n    int _d_switch_string(char[][] table, char[] ca);\n    int _d_switch_ustring(шим[][] table, шткст ca);\n    int _d_switch_dstring(дим[][] table, юткст ca);\n\n\n\n//object\n    проц _d_monitorrelease(Object h);\n\n\n    проц _d_notify_release(Object o);\n    проц _moduleCtor();\n    проц _moduleCtor2(ModuleInfo[] mi, int skip);\n    проц _moduleDtor();\n    проц _moduleUnitTests();\n    проц _moduleIndependentCtors();\n\n    проц создайМонитор(Объект о);\n    проц разрушьМонитор(Объект о) ;\n    проц блокируйМонитор(Объект о) ;\n    цел разблокируйМонитор(Объект о) ;\n\n    проц _d_monitordelete(Object h, бул det);\n    проц удалиМонитор(Объект о, бул уд);\n\n    проц _d_monitorenter(Object h);\n    проц войдиВМонитор(Объект о);\n\n    проц _d_monitorexit(Object h);\n    проц выйдиИзМонитора(Объект о);\n    проц _d_monitor_devt(Monitor* m, Object h);\n    проц событиеМонитора(Монитор* м, Объект о);\n    проц rt_attachDisposeEvent(Object h, ДСобыт e);\n    проц rt_detachDisposeEvent(Object h, ДСобыт e);\n    int _fatexit(ук);\n\n//runtime\n    сим[][] ртПолучиАрги(цел аргчло, сим **аргткст);\n    бул рт_вЗадержке();\n    бул ртПущен();\n    бул ртОстановлен();\n    бул ртСтарт(ПередВходом передвхо = пусто, ОбработчикИсключения дг = пусто);\n\tпроц ртСтоп(); \n    проц  ртСоздайОбработчикСледа( Следопыт h );\n    Исключение.ИнфОСледе ртСоздайКонтекстСледа( ук  ptr );\n    проц  ртУстановиОбработчикСборки(ОбработчикСборки h);\n    ук ртНизСтэка();\n    ук ртВерхСтэка();\n    проц ртСканируйСтатДан( сканФн scan );\n    проц _d_callinterfacefinalizer(ук p);\n    size_t gc_newCapacity(size_t newlength, size_t size);\n    ткст _d_arrayappendcd(inout ткст x, дим c);\n    шткст _d_arrayappendwd(inout шткст x, дим c);\n    //проц устСовместнПам( убайт буф);\n    //убайт получиСовместнПам();\n\n\n//thread\n\n    проц thread_init();\n    проц thread_attachThis();\n    проц thread_detachThis();\n    проц thread_joinAll();\n\n    бул thread_needLock();\n    проц thread_suspendAll();\n    проц thread_resumeAll();\n    проц thread_scanAll( фнСканВсеНити scan, ук текВерхСтека = null );\n    проц thread_yield();\n    проц thread_sleep(double период);\n    проц fiber_entryPoint();\n    проц fiber_switchContext( ук* oldp, ук newp );\n\n//gc\n\n    бул смПроверь(ук p);\n    бул смУменьши();\n    бул смДобавьКорень( ук p );\n    бул смДобавьПространство( ук p, т_мера разм );\n    бул смДобавьПространство2( ук p, ук разм );\n    бул смУдалиКорень( ук p );\n    бул смУдалиПространство( ук p );\n    т_мера смЁмкость(ук p);\n    бул смМонитор(ddel начало, dint конец );\n    бул смСтат();\n    СМСтат смДайСтат();\n    проц[] смПразместиМас(т_мера члобайт);\n    проц[] смПереместиМас(ук  p, т_мера члобайт);\n    бул устИнфОТипе(ИнфОТипе иот, ук  p);\n    ук  дайУкНаСМ();\n    бул укНаСМ(ук  p);\n    бул сбросьУкНаСМ();\n    бцел смДайАтр( ук  p );\n    бцел смУстАтр( ук  p, ПАтрБлока а );\n    бцел смУдалиАтр( ук  p, ПАтрБлока а );\n    ук  смПразмести( т_мера разм, бцел ba = 0 );\n    ук  смКразмести( т_мера разм, бцел ba = 0 );\n    ук  смПеремести( ук  p, т_мера разм, бцел ba = 0 );\n    т_мера смРасширь( ук p, т_мера mx, т_мера разм );\n    т_мера смРезервируй( т_мера разм );\n    бул смОсвободи( ук  p );\n    ук  смАдрес( ук  p );\n    т_мера смРазмер( ук  p );\n    ук  смСоздайСлабУк( Объект к );\n    бул смУдалиСлабУк( ук  wp );\n    Объект смДайСлабУк( ук  wp );\n    ИнфОБл смОпроси( ук  p );\n    бул смВключи();\n    бул смОтключи();\n    бул смСобери();\n\n\n    проц setTypeInfo(TypeInfo ti, ук p);\n    ук getGCHandle();\n    проц setGCHandle(ук p);\n    проц endGCHandle();\n\nbool isGCEnabled();\n    проц gc_init();\n    проц gc_term();\n    size_t gc_capacity(ук p);\n    проц gc_minimize();\n    проц gc_addRoot( ук p );\n    проц gc_addRange( ук p, size_t разм );\n    проц gc_removeRoot( ук p );\n    проц gc_removeRange( ук p );\n    проц gc_monitor(ddel begin, dint end );\n    GCStats gc_stats();\nпроц _d_gc_addrange(ук pbot, ук ptop);\nпроц _d_gc_removerange(ук pbot);\n    uint gc_getAttr( ук p );\n    uint gc_setAttr( ук p, uint а );\n    uint gc_clrAttr( ук p, uint а );\n    ук gc_malloc( size_t разм, uint ba = 0 );\n    ук gc_calloc( size_t разм, uint ba = 0 );\n    ук gc_realloc( ук p, size_t разм, uint ba = 0 );\n    size_t gc_extend( ук p, size_t mx, size_t разм );\n    size_t gc_reserve( size_t разм );\n    проц gc_free( ук p );\n    ук gc_addrOf( ук p );\n    size_t gc_sizeOf( ук p );\n    ук gc_weakpointerCreate( Object к );\n    проц gc_weakpointerDestroy( ук wp );\n    Object gc_weakpointerGet( ук wp );\n    BlkInfo gc_query( ук p );\n    проц gc_enable();\n    проц gc_disable();\n    проц gc_collect();\n    проц gc_check(ук p);\n    проц gc_addRangeOld( ук  p, ук разм );\n\n\n    ткст[] дайАргиКС();\n}\n\nextern (Windows) ук ДайДескрТекущейНити();\n//extern (Windows) проц d_throw(Object *o);\n\nextern (C) //Возвращает массив определённого типа с заданным количеством элементов\n{\n    ткст симмас(цел к);\n    байт[] байтмас(цел к);\n    ббайт[] ббайтмас(цел к);\n    плав[] плавмас(цел к);\n    дво[] двомас(цел к);\n    ткст[] ткстмас(цел к);//выдаёт ошибку; причина неясна\n    бдол[] бдолмас(цел к);\n    дол[] долмас(цел к);\n    цел[] целмас(цел к);\n    бцел[] бцелмас(цел к);\n    крат[] кратмас(цел к);\n    бкрат[] бкратмас(цел к);\n\n    проц ошибка(ткст сооб, ткст файл = пусто, т_мера строка = 0 );\n\n    проц ошибкаПодтверждения(ткст файл, т_мера строка);\n    проц ошибкаГраницМассива(ткст файл, т_мера строка);\n    проц ошибкаФинализации(ИнфОКлассе инфо, Исключение ис);\n    проц ошибкаНехваткиПамяти();\n    проц ошибкаПереключателя(ткст файл, т_мера строка);\n    проц ошибкаЮникод(ткст сооб, т_мера индкс);\n    проц ошибкаДиапазона(ткст файл, т_мера строка);\n    проц ошибкаСкрытойФункции(Объект о);\n\t\n\tпроц ошибнс(ткст ткт);\n\tпроц скажибд(бдол ткт);\n\talias скажибд скажи;\n\tпроц скажинсбд(бдол ткт);\n\talias скажинсбд скажинс;\n\tпроц скажи(ткст ткт);\n\tпроц скажинс(ткст ткт);\n\tпроц нс();\n\tпроц таб();\t\n}\n\n\n\t//static if(БЕЗ_ВИН_БАЗЫ){}\n\t//else{\n\t\talias цел LONG, BOOL, WINBOOL, HFILE, INT, LONG32, INT32;\n\t\talias уцел PINT, LPINT, LPLONG, PWINBOOL, LPWINBOOL, PBOOL, LPBOOL, PLONG, PLONG32, PINT32;\n\t\talias LONG HRESULT, SCODE, LPARAM, LRESULT;\n\n\t\talias бцел ЛКИД, DWORD, UINT, ULONG, FLONG, LCID, ULONG32, DWORD32, UINT32, LCTYPE;\n\t\talias убцел PULONG, PUINT, PLCID, LPUINT, PULONG32, PDWORD32, PUINT32;\n\t\talias UINT WPARAM;\n\t\talias DWORD   COLORREF;\n\t\talias DWORD *PDWORD, LPDWORD, LPCOLORREF;\n\n\t\talias дол LONGLONG, USN, LONG64, INT64;\n\t\talias удол PLONGLONG,PLONG64, PINT64;\n\n\t\talias бдол ULONG64, DWORD64, UINT64, DWORDLONG, ULONGLONG;\n\t\talias убдол PULONG64, PDWORD64, PUINT64, PDWORDLONG, PULONGLONG;\n\n\t\talias сим CHAR, CCHAR;\n\t\talias ткст0 PSZ, PCHAR;\n\t\talias CHAR *LPSTR, PSTR, LPCSTR, PCSTR;\n\t\t//alias LPSTR LPTCH, PTCH, PTSTR, LPTSTR, LPCTSTR;\n\n\t\talias шим WCHAR, OLECHAR;\n\t\talias шткст0 PWCHAR, LPWCH, PWCH, LPWSTR, PWSTR, LPCWSTR, PCWSTR, LPOLESTR, LPCOLESTR;\n\n\t\talias PSTR* PZPSTR;\n\t\talias PWSTR* PZPWSTR;\n\n\tenum : BOOL\n\t{\n\t\tFALSE = 0,\n\t\tTRUE = 1,\n\t}\n\n/**Здесь используется УТФ-8 (UTF-8)\n* Это двухбайтная кодировка Юникода. Но она у нас\n* идёт как тип char.\n* wchar - это УТФ-16\n* dchar - это УТФ-32\n* Чтобы писать по китайски, надо использовать последний вариант.\n* Конечно, размеры полученных программ будут пропорциональны.\n* (Наверное, для русского языка лучше придерживаться текущего положения\n* вещей.)\n*/\n\t\tversion(Unicode) {\n\t\t\talias WCHAR TCHAR, _TCHAR;\n\t\t} else {\n\t\t\talias CHAR TCHAR, _TCHAR;\n\t\t}\n\n\t\talias TCHAR* PTCH, PTBYTE, LPTCH, PTSTR, LPTSTR, LP, PTCHAR, LPCTSTR;\n\t\talias TCHAR* PCTCH, LPCTCH, PCTSTR;\n\t\talias TCHAR        TBYTE;\n\n\t\talias байт FCHAR, INT8;\n\t\talias убайт PINT8;\n\n\t\talias ббайт BYTE, UCHAR,UINT8;\n\t\talias уббайт PUINT8;\n\t\talias UCHAR *PUCHAR;\n\t\talias BYTE *PBYTE, LPBYTE;\n\n\t\talias крат SHORT,INT16;\n\t\talias украт PSHORT, PINT16;\n\n\t\talias  бкрат ИДЯз, WORD, USHORT, LANGID, FSHORT,UINT16;\n\t\talias убкрат PUINT16;\n\t\talias USHORT *PUSHORT;\n\t\talias WORD    ATOM, АТОМ;\n\t\talias WORD *PWORD, LPWORD;\n\n\t\talias плав  FLOAT;\n\t\talias уплав PFLOAT;\n\n\t\talias проц VOID;\n\n\t\talias ук HANDLE, PVOID, LPVOID, LPCVOID, PVOID64, PCVOID;\n\t\talias HANDLE HINST, HGLOBAL, HLOCAL, HWND, HINSTANCE, HGDIOBJ, HACCEL, HBITMA, HBRUSH, HCOLORSPACE, HDC, HGLRC, HDESK, HENHMETAFILE, HFONT, HICON, HMENU, HMETAFILE, HPALETTE, HPEN, HRGN, HRSRC, HMONITOR, HSTR, HTASK, HWINSTA, HKEY, HKL, HBITMAP;\n\n\t\talias HANDLE* PHANDLE, LPHANDLE;\n\n\t\talias HINSTANCE HMODULE;\n\t\talias HICON HCURSOR;\n\t\talias HKEY *PHKEY;\n\n\t\t// ULONG_PTR должен способствовать сохранению указателя в виде целочисленного типа\n\t\tversion (Win64)\n\t\t{\n\t\t\talias long __int3264;\n\t\t\tconst ulong ADDRESS_TAG_BIT = 0x40000000000;\n\n\t\t\talias long INT_PTR, LONG_PTR;\n\t\t\talias long* PINT_PTR, PLONG_PTR;\n\t\t\talias ulong UINT_PTR, ULONG_PTR, HANDLE_PTR;\n\t\t\talias ulong* PUINT_PTR, PULONG_PTR;\n\t\t\talias int HALF_PTR;\n\t\t\talias int* PHALF_PTR;\n\t\t\talias uint UHALF_PTR;\n\t\t\talias uint* PUHALF_PTR;\n\t\t}\n\t\telse // Win32\n\t\t{\n\t\t\talias int __int3264;\n\t\t\tconst uint ADDRESS_TAG_BIT = 0x80000000;\n\n\t\t\talias int INT_PTR, LONG_PTR;\n\t\t\talias int* PINT_PTR, PLONG_PTR;\n\t\t\talias uint UINT_PTR, ULONG_PTR, HANDLE_PTR;\n\t\t\talias uint* PUINT_PTR, PULONG_PTR;\n\t\t\talias short HALF_PTR;\n\t\t\talias short* PHALF_PTR;\n\t\t\talias ushort UHALF_PTR;\n\t\t\talias ushort* PUHALF_PTR;\n\t\t}\n\n\n\t\talias ULONG_PTR SIZE_T, DWORD_PTR;\n\t\talias ULONG_PTR* PSIZE_T, PDWORD_PTR;\n\t\talias LONG_PTR SSIZE_T;\n\t\talias LONG_PTR* PSSIZE_T;\n\n\n\n\t\t/////////////////////////////////////\n\t\textern(Windows)\n\t\t{\n\n\t\t\talias UINT SOCKET;\n\t\t\talias int socklen_t;\n\n\t\t}\n\n\t\talias DWORD ACCESS_MASK;\n\t\talias ACCESS_MASK *PACCESS_MASK;\n\t\talias ACCESS_MASK REGSAM;\n\n\t\talias extern (Windows) int function() FARPROC, NEARPROC, PROC, ПРОЦУК;\n\t\textern (Windows) \n\t\t{ \n\t\t\tversion (0)\n\t\t\t{   // Properly prototyped versions\n\t\t\t\talias BOOL function(HWND, UINT, WPARAM, LPARAM) DLGPROC;\n\t\t\t\talias VOID function(HWND, UINT, UINT, DWORD) TIMERPROC;\n\t\t\t\talias BOOL function(HDC, LPARAM, int) GRAYSTRINGPROC;\n\t\t\t\talias BOOL function(HWND, LPARAM) WNDENUMPROC;\n\t\t\t\talias LRESULT function(int code, WPARAM wParam, LPARAM lParam) HOOKPROC;\n\t\t\t\talias VOID function(HWND, UINT, DWORD, LRESULT) SENDASYNCPROC;\n\t\t\t\talias BOOL function(HWND, LPCSTR, HANDLE) PROPENUMPROCA;\n\t\t\t\talias BOOL function(HWND, LPCWSTR, HANDLE) PROPENUMPROCW;\n\t\t\t\talias BOOL function(HWND, LPSTR, HANDLE, DWORD) PROPENUMPROCEXA;\n\t\t\t\talias BOOL function(HWND, LPWSTR, HANDLE, DWORD) PROPENUMPROCEXW;\n\t\t\t\talias int function(LPSTR lpch, int ichCurrent, int cch, int code)\n\t\t\t\t\tEDITWORDBREAKPROCA;\n\t\t\t\talias int function(LPWSTR lpch, int ichCurrent, int cch, int code)\n\t\t\t\t\tEDITWORDBREAKPROCW;\n\t\t\t\talias BOOL function(HDC hdc, LPARAM lData, WPARAM wData, int cx, int cy)\n\t\t\t\t\tDRAWSTATEPROC;\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\talias FARPROC DLGPROC;\n\t\t\t\talias FARPROC TIMERPROC;\n\t\t\t\talias FARPROC GRAYSTRINGPROC;\n\t\t\t\talias FARPROC WNDENUMPROC;\n\t\t\t\talias FARPROC HOOKPROC;\n\t\t\t\talias FARPROC SENDASYNCPROC;\n\t\t\t\talias FARPROC EDITWORDBREAKPROCA;\n\t\t\t\talias FARPROC EDITWORDBREAKPROCW;\n\t\t\t\talias FARPROC PROPENUMPROCA;\n\t\t\t\talias FARPROC PROPENUMPROCW;\n\t\t\t\talias FARPROC PROPENUMPROCEXA;\n\t\t\t\talias FARPROC PROPENUMPROCEXW;\n\t\t\t\talias FARPROC DRAWSTATEPROC;\n\t\t\t}\n\t\t}\n\n\t//}\n}\n///////////////////////////////////",
+			"file": "/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/base.di",
+			"file_size": 49226,
+			"file_write_time": 132629972225517578,
+			"settings":
+			{
+				"buffer_size": 37742,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/src/taskbaricon.cpp",
+			"settings":
+			{
+				"buffer_size": 4708,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/include/wx/event.h",
+			"settings":
+			{
+				"buffer_size": 114683,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "dinrus/exception.di",
+			"settings":
+			{
+				"buffer_size": 7294,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/dinrus/dinrus32/imp",
+		"/D/dinrus/dinrus32/imp/dinrus"
+	],
+	"file_history":
+	[
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/obj/base.di",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusViz/src/mdi.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/stdafx.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/staticbox.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/evthandler.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/platform.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/defs.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/glcanvas.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusViz/framework.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusViz/pch.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusViz/src/stdafx.cpp",
+		"/D/LLVM/dist/qt5/qtbase/src/corelib/kernel/qobject.h",
+		"/D/dinrus/dinrus32/imp/dinrus/io/device/Device.di",
+		"/D/dinrus/dinrus32/imp/dinrus/base.di",
+		"/D/dinrus/dinrus32/imp/dinrus/io/Console.di",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/gdicmn.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/taskbaricon.cpp",
+		"/D/dinrus/dinrus32/imp/rulada_eng/tango/stdc/stringz.di",
+		"/D/dinrus/dinrus32/imp/rulada_eng/tango/text/convert/Format.di",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/font.cpp",
+		"/D/dinrus/dinrus32/imp/dinrus/object.di",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/dataview.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/gbsizer.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/docview.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/aui/dockart.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/src/aui/dockart.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/aui/aui.h",
+		"/D/dinrus/dinrus32/dev/dinrus/DinrusWX/DinrusWX_28/wxWidgets-2.8.12/include/wx/aui/auibar.h",
+		"/E/msys32/mingw32/include/openssl/bio.h",
+		"/D/dinrus/dinrus32/imp/dinrus/dllMain.di",
+		"/D/dinrus/dinrus32/imp/dinrus/dinrus.di",
+		"/C/Users/Виталий/AppData/Local/Temp/_tc/coreutils-8.32/src/remove.h",
+		"/C/Users/Виталий/AppData/Local/Temp/_tc/coreutils-8.32/src/rm.c",
+		"/C/Users/Виталий/AppData/Local/Temp/_tc/uppsrc/ide/Annotations.cpp",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/TempFile.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/ThreadPipe.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/protocol/Allocator.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/protocol/Reader.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/net/device/Berkeley.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/src/object.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/src/object.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/Console.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/FileScan.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/sys/SharedLib.d",
+		"/D/LLVM/include/processthreadsapi.h",
+		"/D/LLVM/include/minwinbase.h",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/SerialPort.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/Array.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/File.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/device/FileMap.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusBase/src/stream.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/src/tpl/com.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/object.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/core/sys/windows/winsvc.d",
+		"/D/dinrus/mingw32/dmd2/src/druntime/src/core/sys/windows/winsvc.d",
+		"/D/dinrus/dinrus32/imp/dinrus/sys/WinFuncs.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusBase/export/stdrus.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/text/convert/DateTime.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/Path.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/FileSystem.d",
+		"/D/dinrus/dinrus32/imp/dinrus/cidrus.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/io/Buffer.d",
+		"/D/dinrus/dinrus32/imp/dinrus/exception.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/base.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/sync.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/DinrusD2Runtime.visualdproj",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/Dinrus2.visualdproj",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusD2Runtime/src/stream.di",
+		"/D/COMPILERS/NSIS/Examples/nsDialogs/example.nsi",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusTango/src/sys/Process.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/tpl/com.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/osutil.d",
+		"/D/dinrus/dinrus32/imp/dinrus/win32/basetsd.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/sys/WinStructs.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/sys/WinFuncs.d",
+		"/D/dinrus/dinrus32/imp/dinrus/win32/winnt.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Runtime/DinrusGetka/src/lib/c/bzlib/blocksort.c",
+		"/D/dinrus/dinrus32/imp/dinrus/sys/memory.di",
+		"/D/dinrus/dinrus32/imp0/dinrus/tpl/stream.di",
+		"/D/dinrus/dinrus32/imp/rulada_eng/tango/sys/win32/Types.di",
+		"/D/dinrus/dinrus32/imp/rulada_eng/tango/sys/HomeFolder.di",
+		"/D/dinrus/dinrus32/imp/dinrus/win32/winerror.di",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/tpl/singleton.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/tpl/singleton.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/stdrus.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/object.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/static/util/worktools.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/Exe/scConfig.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/static/ini.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/object_.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/base.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/cidrus.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/exception.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/linetoken.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/thread.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/sync.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/win.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/worktools.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/stdrus.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/dinrus.d",
+		"/D/dinrus/dinrus32/dev/dinrus/DigitalMars/core/_PRINTF.C",
+		"/D/dinrus/dinrus32/imp/dinrus/win.di",
+		"/F/VS/duilib/DuiLib/Core/UIBase.h",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/sys/com/com.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/sys/com/com.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/base.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/clean.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/runtime.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/static/core/Type/Boolean.d",
+		"/D/dinrus/mingw32/library/grDevices/demo/hclColors.R",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/static/util/booltype.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/static/util/str.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/fdt.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/pathex.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/str.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/fileex.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/booltype.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/sys/WinConsts.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/sys/WinConsts.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/sys/WinStructs.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/tpl/com.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/fileex.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/fdt.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/linetoken.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/util/pathex.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/series.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/src/util/booltype.d",
+		"/D/dinrus/dinrus32/dev/dinrus/Base/strict/export/core/Type/Boolean.d"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 115.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"version(Dinrus2",
+			"alias",
+			"dstring",
+			"wxUSE_GLCANVAS",
+			"GetColour",
+			"GetColor",
+			"wxDockArt",
+			"ткст2",
+			"проц*",
+			"path_",
+			"getSymbol_",
+			"loadedLibs",
+			"MultiByteToWideChar",
+			"LoadLibraryW",
+			"LoadLibraryA",
+			"FreeLibrary",
+			"GetProcAddress",
+			"freeAddrinfo",
+			"getAddrinfo",
+			"match",
+			"CONTEXT",
+			"DWORD",
+			"FILE_FLAG_DELETE_ON_CLOSE",
+			"WideCharToMultiByte",
+			"baudRates",
+			"_ports",
+			"INVALID_HANDLE_VALUE",
+			"mmFile",
+			"DWORD",
+			"CreateFileMappingA",
+			"MapViewOfFile",
+			"FlushViewOfFile",
+			"UnmapViewOfFile",
+			"Convenience function в_",
+			"null",
+			"SetLastError",
+			"DWORD",
+			"открой файл for",
+			"открой файл for reading",
+			"/*shared*/ reading",
+			"no sharing",
+			"can't exist",
+			"создай if necessary",
+			"создай or упрости",
+			"must exist",
+			"Созд if necessary",
+			"Do not создай",
+			"Зап on an existing файл",
+			"Чит an existing файл",
+			"debug",
+			"адаптВыхУкз",
+			"адаптВыхУкз(файлУк)",
+			"адаптВхоУкз(буф)",
+			"пишиБлок",
+			"writesize",
+			"пишиРовно",
+			"Файл",
+			"jblock",
+			"j",
+			"i",
+			"iblock",
+			"block",
+			"ensureMapped",
+			"map",
+			"unmap",
+			"mapped",
+			"errNo",
+			"err1",
+			"hi",
+			"sizelow",
+			"sizehi",
+			"BOM_buffer",
+			"bom",
+			"the number of читай bytes",
+			"TreadLine",
+			"std.string.формат",
+			"hFile",
+			"initial_map",
+			"hFileMap",
+			"namez",
+			"dwDesiredAccess",
+			"flProtect",
+			"dwCreationDisposition",
+			"dwShareMode",
+			"dwDesiredAccess2",
+			"экспort",
+			"orig_pos",
+			"rdlen",
+			"blockSize",
+			"pos",
+			"in which case the",
+			"oFormatCallback",
+			"argptr",
+			"format",
+			"psize",
+			"returns number of bytes written",
+			"writes данные to stream",
+			"together with its length",
+			"writes a",
+			"throws ИсключениеЗаписи on error",
+			"читай симacter as is",
+			"number of симs читай so far",
+			"ifmt",
+			"suppрезs",
+			"res",
+			"strlen",
+			"neg",
+			"exp",
+			"expneg",
+			"frac",
+			"ошибка",
+			"width",
+			"ширина",
+			"GetLogicalDriveStringsA",
+			"suffix_",
+			"strlen",
+			"LOCALE_",
+			"wide",
+			"dt",
+			"lcid",
+			"toNullEndedArray",
+			"chunks",
+			"ВнитриКавычек",
+			"InsопрeQuotes",
+			"FindDelimiter",
+			"Start",
+			"dwProcessId",
+			"CloseHandle"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"version(Dinrus1) alias",
+			"ткст",
+			"ук",
+			"путь_",
+			"дайСимвол_",
+			"загруженныеБибл",
+			"МультиБайтВШирСим",
+			"ЗагрузиБиблиотеку",
+			"ЗагрузиБиблиотекуА",
+			"ОсвободиБиблиотеку",
+			"ДайАдресПроц",
+			"выместиИнфОбАдре",
+			"дайИнфОбАдр",
+			"свер",
+			"бцел",
+			"ПФайл.УдалитьПриЗакрытии",
+			"ШирСимВМультиБайт",
+			"бодРейты",
+			"_порты",
+			"НЕВЕРНХЭНДЛ",
+			"рпФайл",
+			"бцел",
+			"СоздайМаппингФайла",
+			"ВидФайлаВКарту",
+			"СлейВидФайла",
+			"ВидФайлаИзКарты",
+			"Вспомогательная функция для",
+			"пусто",
+			"УстановиПоследнОшибку",
+			"бцел",
+			"открыть файл для",
+			"открыть файл для чтения",
+			" совместное чтение",
+			"без совместнго использования",
+			"не может существовать",
+			"создать при необходимости",
+			"создать или упростить",
+			"должен существовать",
+			"Создать при необходимости",
+			"Не создавать",
+			"Записать существующий файл",
+			"Читать существующий файл",
+			"debug(Stream)",
+			"файлУк",
+			"буф",
+			"размЗаписи",
+			"йблок",
+			"й",
+			"и",
+			"иблок",
+			"блок",
+			"проверьКартирован",
+			"картируй",
+			"раскартируй",
+			"картировано",
+			"номОш",
+			"ош1",
+			"выш",
+			"разммин",
+			"разммакс",
+			"БОМ_буфер",
+			"бом",
+			"число считаннных байтов",
+			"ТредЛайн",
+			"std.string.format",
+			"уФайл",
+			"начмап",
+			"уФМап",
+			"имян",
+			"желДост",
+			"фЗащ",
+			"диспозСоздания",
+			"совмРеж",
+			"желДост2",
+			"export",
+			"исхпоз",
+			"длинчтен",
+			"размБлока",
+			"поз",
+			"в случае чего",
+			"аргук",
+			"формат",
+			"празм",
+			"возвращает число записанных байтов",
+			"записывает данные в поток",
+			"вместе с его длиной",
+			"записывает",
+			"выводя при ошибке ИсключениеЗаписи",
+			"считать символ как есть",
+			"число уже считанных символов",
+			"ифмт",
+			"подавить",
+			"рез",
+			"длинтекс",
+			"отриц",
+			"эксп",
+			"отрицэксп",
+			"дробь",
+			"ширина",
+			"суффикс_",
+			"ПЛокаль.",
+			"шир",
+			"дв",
+			"лкид",
+			"вМассивСНулевымКонцом",
+			"чанки",
+			"ВнутриКавычек",
+			"ВнитриКавычек",
+			"НайденРазграничитель",
+			"Старт",
+			"идПроцесса",
+			"ЗакройДескр",
+			"ПрервиПроцесс",
+			"ЖДИ_ПРОВАЛ",
+			"ЖДИ_ОБЪЕКТ_0",
+			"БЕСК",
+			"процесс-ветвь",
+			"Процесс-ветвь",
+			"ДайПоследнююОшибку",
+			"ДайКодВыходаПроцесса",
+			"ЖдиОдинОбъект",
+			"бцел",
+			"кодВыхода",
+			"процесс",
+			"вБуфСНулевымКонцом",
+			"пэкзек",
+			"процесс",
+			"принимаемого этим методом"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 11,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ou/include/ou/customization.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4752,
+								4780
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ode/src/odeou.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ode/src/odeou.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3167,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/CPP/CPP_DINRUS_PROJs/ode-0.13/ou/include/ou/namespace.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1995,
+								1995
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/lib/vc_lib/mswu/wx/setup.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 45052,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 23490.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "rulada_eng/wx/FileDialog.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4774,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2925,
+								2925
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "dinrus/object.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 43607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "dinrus/base.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37803,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7151.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/object.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 89099,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/Runtime/Dinrus2/src/base.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37742,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								37742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/src/taskbaricon.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4708,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1215,
+								1253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/D/dinrus/dinrus32/dev/dinrus/DinrusViz/DinrusVizWXC/include/wx/event.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 114683,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25681,
+								25681
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 49406.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "dinrus/exception.di",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/D/D.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 121.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ViewImports.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 62.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
