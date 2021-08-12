@@ -1,5 +1,0 @@
-name = testgsl
-
-[test/main.d]
-target = testgsl
-

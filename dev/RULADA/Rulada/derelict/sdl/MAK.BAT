@@ -1,1 +1,0 @@
-%DINRUS%\dmd -lib -ofDerelictSDL.lib sdl.d sdlfuncs.d sdltypes.d rotozoom.d keysym.d -Lrulada.lib

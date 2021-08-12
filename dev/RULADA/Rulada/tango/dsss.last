@@ -1,6 +1,0 @@
-tango
-name = tango
-type=library
-[tango]
-target= tango
-buildflags=-d -Lrulada.lib -I%DINRUS%\..\imp\rulada

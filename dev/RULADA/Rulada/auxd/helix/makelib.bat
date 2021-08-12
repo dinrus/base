@@ -1,1 +1,0 @@
-dmd -lib -H -ofhelix.lib -Dddoc basic.d color.d config.d linalgebra.d random.d

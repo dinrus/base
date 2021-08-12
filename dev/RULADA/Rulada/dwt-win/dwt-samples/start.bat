@@ -1,1 +1,0 @@
-\dm\bin\dsss build -full>>build.log
