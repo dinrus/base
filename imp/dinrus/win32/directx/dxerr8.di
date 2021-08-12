@@ -23,12 +23,12 @@ module win32.directx.dxerr8;
 private import win32.windef;
 
 extern (Windows) {
-	сим* DXGetErrorString8A (HRESULT);
+	char* DXGetErrorString8A (HRESULT);
 	WCHAR* DXGetErrorString8W (HRESULT);
-	сим* DXGetErrorDescription8A (HRESULT);
+	char* DXGetErrorDescription8A (HRESULT);
 	WCHAR* DXGetErrorDescription8W (HRESULT);
-	HRESULT DXTraceA (сим*, DWORD, HRESULT, сим*, BOOL);
-	HRESULT DXTraceW (сим*, DWORD, HRESULT, WCHAR*, BOOL);
+	HRESULT DXTraceA (char*, DWORD, HRESULT, char*, BOOL);
+	HRESULT DXTraceW (char*, DWORD, HRESULT, WCHAR*, BOOL);
 }
 
 version (Unicode) {

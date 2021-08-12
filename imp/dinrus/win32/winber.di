@@ -11,7 +11,7 @@
 module win32.winber;
 
 /* Comment from MinGW
-  winber.h - Header file for the Windows LDAP Basic Кодировка Rules API
+  winber.h - Header file for the Windows LDAP Basic Encoding Rules API
 
   Written by Filip Navara <xnavara@volny.cz>
 
@@ -32,13 +32,13 @@ module win32.winber;
  */
 struct BerElement;
 
-alias цел ber_int_t, ber_slen_t;
-alias бцел ber_uint_t, ber_len_t, ber_tag_t;
+alias int ber_int_t, ber_slen_t;
+alias uint ber_uint_t, ber_len_t, ber_tag_t;
 
 align(4):
 struct BerValue {
 	ber_len_t bv_len;
-	сим*     bv_val;
+	char*     bv_val;
 }
 alias BerValue LDAP_BERVAL, BERVAL;
 alias BerValue* PLDAP_BERVAL, PBERVAL;
@@ -53,16 +53,16 @@ const ber_tag_t
  */
 extern (C) {
 	BerElement* ber_init(BerValue*);
-	цел ber_printf(BerElement*, сим*, ...);
-	цел ber_flatten(BerElement*, BerValue**);
-	ber_tag_t ber_scanf(BerElement*, сим*, ...);
+	int ber_printf(BerElement*, char*, ...);
+	int ber_flatten(BerElement*, BerValue**);
+	ber_tag_t ber_scanf(BerElement*, char*, ...);
 	ber_tag_t ber_peek_tag(BerElement*, ber_len_t*);
 	ber_tag_t ber_skip_tag(BerElement*, ber_len_t*);
-	ber_tag_t ber_first_element(BerElement*, ber_len_t*, сим**);
-	ber_tag_t ber_next_element(BerElement*, ber_len_t*, сим*);
-	проц ber_bvfree(BerValue*);
-	проц ber_bvecfree(BerValue**);
-	проц ber_free(BerElement*, цел);
+	ber_tag_t ber_first_element(BerElement*, ber_len_t*, char**);
+	ber_tag_t ber_next_element(BerElement*, ber_len_t*, char*);
+	void ber_bvfree(BerValue*);
+	void ber_bvecfree(BerValue**);
+	void ber_free(BerElement*, int);
 	BerValue* ber_bvdup(BerValue*);
-	BerElement* ber_alloc_t(цел);
+	BerElement* ber_alloc_t(int);
 }

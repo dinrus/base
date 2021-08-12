@@ -24,7 +24,7 @@ private import win32.rpcdce;
 
 struct  STATSTG {
 	LPOLESTR pwcsName;
-	DWORD тип;
+	DWORD type;
 	ULARGE_INTEGER cbSize;
 	FILETIME mtime;
 	FILETIME ctime;
@@ -106,9 +106,9 @@ struct RemSTGMEDIUM {
 	DWORD tymed;
 	DWORD dwHandleType;
 	ULONG pData;
-	бцел pUnkForRelease;
-	бцел cbData;
-	BYTE данные[1];
+	uint pUnkForRelease;
+	uint cbData;
+	BYTE data[1];
 }
 
 struct HLITEM {
@@ -186,7 +186,7 @@ struct BIND_OPTS2 {
 	DWORD dwTickCountDeadline;
 	DWORD dwTrackFlags;
 	DWORD dwClassContext;
-	LCID локаль;
+	LCID locale;
 	COSERVERINFO* pServerInfo;
 }
 alias BIND_OPTS2* LPBIND_OPTS2;
@@ -217,7 +217,7 @@ enum LOCKTYPE {
 	LOCK_ONLYONCE  = 4
 }
 
-alias бцел RPCOLEDATAREP;
+alias uint RPCOLEDATAREP;
 
 struct  RPCOLEMESSAGE {
 	PVOID reserved1;
@@ -247,8 +247,8 @@ enum MKREDUCE {
 }
 
 struct RemSNB {
-	бцел ulCntStr;
-	бцел ulCntChar;
+	uint ulCntStr;
+	uint ulCntChar;
 	OLECHAR rgString[1];
 }
 
@@ -281,12 +281,12 @@ enum SERVERCALL {
 
 struct CAUB {
 	ULONG cElems;
-	ббайт* pElems;
+	ubyte* pElems;
 }
 
 struct CAI {
 	ULONG cElems;
-	крат* pElems;
+	short* pElems;
 }
 
 struct CAUI {
@@ -296,7 +296,7 @@ struct CAUI {
 
 struct CAL {
 	ULONG cElems;
-	цел* pElems;
+	int* pElems;
 }
 
 struct CAUL {
@@ -306,12 +306,12 @@ struct CAUL {
 
 struct CAFLT {
 	ULONG cElems;
-	плав* pElems;
+	float* pElems;
 }
 
 struct CADBL {
 	ULONG cElems;
-	дво* pElems;
+	double* pElems;
 }
 
 struct CACY {
@@ -393,16 +393,16 @@ struct PROPVARIANT {
 	union {
 		CHAR cVal;
 		UCHAR bVal;
-		крат iVal;
+		short iVal;
 		USHORT uiVal;
 		VARIANT_BOOL boolVal;
-		цел lVal;
+		int lVal;
 		ULONG ulVal;
-		плав fltVal;
+		float fltVal;
 		SCODE scode;
 		LARGE_INTEGER hVal;
 		ULARGE_INTEGER uhVal;
-		дво dblVal;
+		double dblVal;
 		CY cyVal;
 		DATE date;
 		FILETIME filetime;
@@ -497,10 +497,10 @@ enum EOLE_AUTHENTICATION_CAPABILITIES {
 struct SOLE_AUTHENTICATION_INFO {
 	DWORD dwAuthnSvc;
 	DWORD dwAuthzSvc;
-	проц* pAuthInfo;
+	void* pAuthInfo;
 }
 
-const проц* COLE_DEFAULT_AUTHINFO = cast( проц* )(-1 );
+const void* COLE_DEFAULT_AUTHINFO = cast( void* )(-1 );
 
 struct SOLE_AUTHENTICATION_LIST {
 	DWORD cAuthInfo;
@@ -572,8 +572,8 @@ interface IEnumUnknown : public IUnknown {
 }
 
 interface ISequentialStream : public IUnknown {
-	HRESULT Read(проц*, ULONG, ULONG*);
-	HRESULT Write(проц* , ULONG, ULONG*);
+	HRESULT Read(void*, ULONG, ULONG*);
+	HRESULT Write(void* , ULONG, ULONG*);
 }
 
 interface IStream : public ISequentialStream {
@@ -592,7 +592,7 @@ interface IMarshal : public IUnknown {
 	HRESULT GetUnmarshalClass(REFIID, PVOID, DWORD, PVOID, DWORD, CLSID*);
 	HRESULT GetMarshalSizeMax(REFIID, PVOID, DWORD, PVOID, PDWORD, ULONG*);
 	HRESULT MarshalInterface(IStream, REFIID, PVOID, DWORD, PVOID, DWORD);
-	HRESULT UnmarshalInterface(IStream, REFIID, проц**);
+	HRESULT UnmarshalInterface(IStream, REFIID, void**);
 	HRESULT ReleaseMarshalData(IStream);
 	HRESULT DisconnectObject(DWORD);
 }
@@ -602,27 +602,27 @@ interface IStdMarshalInfo : public IUnknown {
 }
 
 interface IMalloc : public IUnknown {
-	проц* Alloc(ULONG);
-	проц* Realloc(проц*, ULONG);
-	проц Free(проц*);
-	ULONG GetSize(проц*);
-	цел DidAlloc(проц*);
-	проц HeapMinimize();
+	void* Alloc(ULONG);
+	void* Realloc(void*, ULONG);
+	void Free(void*);
+	ULONG GetSize(void*);
+	int DidAlloc(void*);
+	void HeapMinimize();
 }
 
 interface IMallocSpy : public IUnknown {
 	ULONG PreAlloc(ULONG);
-	проц* PostAlloc(проц*);
-	проц* PreFree(проц*, BOOL);
-	проц PostFree(BOOL);
-	ULONG PreRealloc(проц*, ULONG, проц**, BOOL);
-	проц* PostRealloc(проц*, BOOL);
-	проц* PreGetSize(проц*, BOOL);
+	void* PostAlloc(void*);
+	void* PreFree(void*, BOOL);
+	void PostFree(BOOL);
+	ULONG PreRealloc(void*, ULONG, void**, BOOL);
+	void* PostRealloc(void*, BOOL);
+	void* PreGetSize(void*, BOOL);
 	ULONG PostGetSize(ULONG, BOOL);
-	проц* PreDidAlloc(проц*, BOOL);
-	цел PostDidAlloc(проц*, BOOL, цел);
-	проц PreHeapMinimize();
-	проц PostHeapMinimize();
+	void* PreDidAlloc(void*, BOOL);
+	int PostDidAlloc(void*, BOOL, int);
+	void PreHeapMinimize();
+	void PostHeapMinimize();
 }
 
 interface IMessageFilter : public IUnknown {
@@ -707,16 +707,16 @@ interface IAdviseSink : public IUnknown {
 	HRESULT QueryInterface(REFIID, PVOID*);
 	ULONG AddRef();
 	ULONG Release();
-	проц OnDataChange(FORMATETC*, STGMEDIUM*);
-	проц OnViewChange(DWORD, LONG);
-	проц OnRename(IMoniker*);
-	проц OnSave();
-	проц OnClose();
+	void OnDataChange(FORMATETC*, STGMEDIUM*);
+	void OnViewChange(DWORD, LONG);
+	void OnRename(IMoniker*);
+	void OnSave();
+	void OnClose();
 }
 
 interface IAdviseSink2 : public IAdviseSink
 {
-	проц OnLinkSrcChange(IMoniker*);
+	void OnLinkSrcChange(IMoniker*);
 }
 
 interface IDataObject : public IUnknown {
@@ -774,12 +774,12 @@ interface IRpcChannelBuffer : public IUnknown {
 
 interface IRpcProxyBuffer : public IUnknown {
 	HRESULT Connect(IRpcChannelBuffer*);
-	проц Disconnect();
+	void Disconnect();
 }
 
 interface IRpcStubBuffer : public IUnknown {
 	HRESULT Connect(LPUNKNOWN);
-	проц Disconnect();
+	void Disconnect();
 	HRESULT Invoke(RPCOLEMESSAGE*, LPRPCSTUBBUFFER);
 	LPRPCSTUBBUFFER IsIIDSupported(REFIID);
 	ULONG CountRefs();
@@ -821,12 +821,12 @@ interface IROTData : public IUnknown {
 }
 
 interface IChannelHook : public IUnknown {
-	проц ClientGetSize(REFGUID, REFIID, PULONG);
-	проц ClientFillBuffer(REFGUID, REFIID, PULONG, PVOID);
-	проц ClientNotify(REFGUID, REFIID, ULONG, PVOID, DWORD, HRESULT);
-	проц ServerNotify(REFGUID, REFIID, ULONG, PVOID, DWORD);
-	проц ServerGetSize(REFGUID, REFIID, HRESULT, PULONG);
-	проц ServerFillBuffer(REFGUID, REFIID, PULONG, PVOID, HRESULT);
+	void ClientGetSize(REFGUID, REFIID, PULONG);
+	void ClientFillBuffer(REFGUID, REFIID, PULONG, PVOID);
+	void ClientNotify(REFGUID, REFIID, ULONG, PVOID, DWORD, HRESULT);
+	void ServerNotify(REFGUID, REFIID, ULONG, PVOID, DWORD);
+	void ServerGetSize(REFGUID, REFIID, HRESULT, PULONG);
+	void ServerFillBuffer(REFGUID, REFIID, PULONG, PVOID, HRESULT);
 }
 
 interface IPropertyStorage : public IUnknown {
@@ -869,8 +869,8 @@ interface IClassActivator : public IUnknown {
 }
 
 interface IFillLockBytes : public IUnknown {
-	HRESULT FillAppend(проц* , ULONG, PULONG);
-	HRESULT FillAt(ULARGE_INTEGER, проц* , ULONG, PULONG);
+	HRESULT FillAppend(void* , ULONG, PULONG);
+	HRESULT FillAt(ULARGE_INTEGER, void* , ULONG, PULONG);
 	HRESULT SetFillSize(ULARGE_INTEGER);
 	HRESULT Terminate(BOOL);
 }
@@ -889,336 +889,336 @@ interface ILayoutStorage : public IUnknown {
 interface IGlobalInterfaceTable : public IUnknown {
 	HRESULT RegisterInterfaceInGlobal(IUnknown*, REFIID, DWORD*);
 	HRESULT RevokeInterfaceFromGlobal(DWORD);
-	HRESULT GetInterfaceFromGlobal(DWORD, REFIID, проц**);
+	HRESULT GetInterfaceFromGlobal(DWORD, REFIID, void**);
 }
 
 /+
 // These are probably unnecessary for D.
 extern (Windows) {
-HRESULT IMarshal_GetUnmarshalClass_Proxy(IMarshal*, REFIID, проц*, DWORD, проц*, DWORD, CLSID*);
-проц IMarshal_GetUnmarshalClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IMarshal_GetMarshalSizeMax_Proxy(IMarshal*, REFIID, проц*, DWORD, проц*, DWORD, DWORD*);
-проц IMarshal_GetMarshalSizeMax_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IMarshal_MarshalInterface_Proxy(IMarshal*, IStream*, REFIID, проц*, DWORD, проц*, DWORD);
-проц IMarshal_MarshalInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IMarshal_UnmarshalInterface_Proxy(IMarshal*, IStream*, REFIID, проц**);
-проц IMarshal_UnmarshalInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IMarshal_GetUnmarshalClass_Proxy(IMarshal*, REFIID, void*, DWORD, void*, DWORD, CLSID*);
+void IMarshal_GetUnmarshalClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IMarshal_GetMarshalSizeMax_Proxy(IMarshal*, REFIID, void*, DWORD, void*, DWORD, DWORD*);
+void IMarshal_GetMarshalSizeMax_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IMarshal_MarshalInterface_Proxy(IMarshal*, IStream*, REFIID, void*, DWORD, void*, DWORD);
+void IMarshal_MarshalInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IMarshal_UnmarshalInterface_Proxy(IMarshal*, IStream*, REFIID, void**);
+void IMarshal_UnmarshalInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMarshal_ReleaseMarshalData_Proxy(IMarshal*, IStream*);
-проц IMarshal_ReleaseMarshalData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMarshal_ReleaseMarshalData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMarshal_DisconnectObject_Proxy(IMarshal*, DWORD);
-проц IMarshal_DisconnectObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMalloc_Alloc_Proxy(IMalloc*, ULONG);
-проц IMalloc_Alloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMalloc_Realloc_Proxy(IMalloc*, проц*, ULONG);
-проц IMalloc_Realloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IMalloc_Free_Proxy(IMalloc*, проц*);
-проц IMalloc_Free_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-ULONG IMalloc_GetSize_Proxy(IMalloc*, проц*);
-проц IMalloc_GetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-цел IMalloc_DidAlloc_Proxy(IMalloc*, проц*);
-проц IMalloc_DidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IMalloc_HeapMinimize_Proxy(IMalloc*);
-проц IMalloc_HeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMarshal_DisconnectObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMalloc_Alloc_Proxy(IMalloc*, ULONG);
+void IMalloc_Alloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMalloc_Realloc_Proxy(IMalloc*, void*, ULONG);
+void IMalloc_Realloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMalloc_Free_Proxy(IMalloc*, void*);
+void IMalloc_Free_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+ULONG IMalloc_GetSize_Proxy(IMalloc*, void*);
+void IMalloc_GetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+int IMalloc_DidAlloc_Proxy(IMalloc*, void*);
+void IMalloc_DidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMalloc_HeapMinimize_Proxy(IMalloc*);
+void IMalloc_HeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 ULONG IMallocSpy_PreAlloc_Proxy(IMallocSpy*, ULONG cbRequest);
-проц IMallocSpy_PreAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMallocSpy_PostAlloc_Proxy(IMallocSpy*, проц*);
-проц IMallocSpy_PostAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMallocSpy_PreFree_Proxy(IMallocSpy*, проц*, BOOL);
-проц IMallocSpy_PreFree_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IMallocSpy_PostFree_Proxy(IMallocSpy*, BOOL);
-проц IMallocSpy_PostFree_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-ULONG IMallocSpy_PreRealloc_Proxy(IMallocSpy*, проц*, ULONG, проц**, BOOL);
-проц IMallocSpy_PreRealloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMallocSpy_PostRealloc_Proxy(IMallocSpy*, проц*, BOOL);
-проц IMallocSpy_PostRealloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMallocSpy_PreGetSize_Proxy(IMallocSpy*, проц*, BOOL);
-проц IMallocSpy_PreGetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMallocSpy_PreAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMallocSpy_PostAlloc_Proxy(IMallocSpy*, void*);
+void IMallocSpy_PostAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMallocSpy_PreFree_Proxy(IMallocSpy*, void*, BOOL);
+void IMallocSpy_PreFree_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMallocSpy_PostFree_Proxy(IMallocSpy*, BOOL);
+void IMallocSpy_PostFree_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+ULONG IMallocSpy_PreRealloc_Proxy(IMallocSpy*, void*, ULONG, void**, BOOL);
+void IMallocSpy_PreRealloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMallocSpy_PostRealloc_Proxy(IMallocSpy*, void*, BOOL);
+void IMallocSpy_PostRealloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMallocSpy_PreGetSize_Proxy(IMallocSpy*, void*, BOOL);
+void IMallocSpy_PreGetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 ULONG IMallocSpy_PostGetSize_Proxy(IMallocSpy*, ULONG, BOOL);
-проц IMallocSpy_PostGetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц* IMallocSpy_PreDidAlloc_Proxy(IMallocSpy*, проц*, BOOL);
-проц IMallocSpy_PreDidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-цел IMallocSpy_PostDidAlloc_Proxy(IMallocSpy*, проц*, BOOL, цел);
-проц IMallocSpy_PostDidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IMallocSpy_PreHeapMinimize_Proxy(IMallocSpy* );
-проц IMallocSpy_PreHeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IMallocSpy_PostHeapMinimize_Proxy(IMallocSpy*);
-проц IMallocSpy_PostHeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IStdMarshalInfo_GetClassForHandler_Proxy(IStdMarshalInfo*, DWORD, проц*, CLSID*);
-проц IStdMarshalInfo_GetClassForHandler_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMallocSpy_PostGetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void* IMallocSpy_PreDidAlloc_Proxy(IMallocSpy*, void*, BOOL);
+void IMallocSpy_PreDidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+int IMallocSpy_PostDidAlloc_Proxy(IMallocSpy*, void*, BOOL, int);
+void IMallocSpy_PostDidAlloc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMallocSpy_PreHeapMinimize_Proxy(IMallocSpy* );
+void IMallocSpy_PreHeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMallocSpy_PostHeapMinimize_Proxy(IMallocSpy*);
+void IMallocSpy_PostHeapMinimize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IStdMarshalInfo_GetClassForHandler_Proxy(IStdMarshalInfo*, DWORD, void*, CLSID*);
+void IStdMarshalInfo_GetClassForHandler_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 DWORD IExternalConnection_AddConnection_Proxy(IExternalConnection*, DWORD, DWORD);
-проц IExternalConnection_AddConnection_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IExternalConnection_AddConnection_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 DWORD IExternalConnection_ReleaseConnection_Proxy(IExternalConnection*, DWORD, DWORD, BOOL);
-проц IExternalConnection_ReleaseConnection_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IExternalConnection_ReleaseConnection_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumUnknown_RemoteNext_Proxy(IEnumUnknown*, ULONG, IUnknown**, ULONG*);
-проц IEnumUnknown_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumUnknown_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumUnknown_Skip_Proxy(IEnumUnknown*, ULONG);
-проц IEnumUnknown_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumUnknown_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumUnknown_Reset_Proxy(IEnumUnknown* );
-проц IEnumUnknown_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumUnknown_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumUnknown_Clone_Proxy(IEnumUnknown*, IEnumUnknown**);
-проц IEnumUnknown_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumUnknown_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_RegisterObjectBound_Proxy(IBindCtx*, IUnknown*punk);
-проц IBindCtx_RegisterObjectBound_Stub(IRpcStubBuffer*, IRpcChannelBuffer*_pRpcChannelBuffer, PRPC_MESSAGE, PDWORD);
+void IBindCtx_RegisterObjectBound_Stub(IRpcStubBuffer*, IRpcChannelBuffer*_pRpcChannelBuffer, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_RevokeObjectBound_Proxy(IBindCtx*, IUnknown*punk);
-проц IBindCtx_RevokeObjectBound_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_RevokeObjectBound_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_ReleaseBoundObjects_Proxy(IBindCtx*);
-проц IBindCtx_ReleaseBoundObjects_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_ReleaseBoundObjects_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_SetBindOptions_Proxy(IBindCtx*, BIND_OPTS*);
-проц IBindCtx_SetBindOptions_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_SetBindOptions_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_GetBindOptions_Proxy(IBindCtx*, BIND_OPTS*pbindopts);
-проц IBindCtx_GetBindOptions_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_GetBindOptions_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_GetRunningObjectTable_Proxy(IBindCtx*, IRunningObjectTable**);
-проц IBindCtx_GetRunningObjectTable_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_GetRunningObjectTable_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_RegisterObjectParam_Proxy(IBindCtx*, LPCSTR, IUnknown*);
-проц IBindCtx_RegisterObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_RegisterObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_GetObjectParam_Proxy(IBindCtx*, LPCSTR, IUnknown**);
-проц IBindCtx_GetObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_GetObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_EnumObjectParam_Proxy(IBindCtx*, IEnumString**);
-проц IBindCtx_EnumObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_EnumObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IBindCtx_RevokeObjectParam_Proxy(IBindCtx*, LPCSTR);
-проц IBindCtx_RevokeObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IBindCtx_RevokeObjectParam_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumMoniker_RemoteNext_Proxy(IEnumMoniker*, ULONG, IMoniker**, ULONG*);
-проц IEnumMoniker_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumMoniker_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumMoniker_Skip_Proxy(IEnumMoniker*, ULONG);
-проц IEnumMoniker_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumMoniker_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumMoniker_Reset_Proxy(IEnumMoniker*);
-проц IEnumMoniker_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumMoniker_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumMoniker_Clone_Proxy(IEnumMoniker*, IEnumMoniker**);
-проц IEnumMoniker_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumMoniker_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunnableObject_GetRunningClass_Proxy(IRunnableObject*, LPCLSID);
-проц IRunnableObject_GetRunningClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunnableObject_GetRunningClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunnableObject_Run_Proxy(IRunnableObject*, LPBINDCTX);
-проц IRunnableObject_Run_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunnableObject_Run_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 BOOL IRunnableObject_IsRunning_Proxy(IRunnableObject*);
-проц IRunnableObject_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunnableObject_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunnableObject_LockRunning_Proxy(IRunnableObject*, BOOL, BOOL);
-проц IRunnableObject_LockRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunnableObject_LockRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunnableObject_SetContainedObject_Proxy(IRunnableObject*, BOOL);
-проц IRunnableObject_SetContainedObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunnableObject_SetContainedObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_Register_Proxy(IRunningObjectTable*, DWORD, IUnknown*, IMoniker*, DWORD*);
-проц IRunningObjectTable_Register_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_Register_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_Revoke_Proxy(IRunningObjectTable*, DWORD);
-проц IRunningObjectTable_Revoke_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_Revoke_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_IsRunning_Proxy(IRunningObjectTable*, IMoniker*);
-проц IRunningObjectTable_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_GetObject_Proxy(IRunningObjectTable*, IMoniker*, IUnknown**);
-проц IRunningObjectTable_GetObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_GetObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_NoteChangeTime_Proxy(IRunningObjectTable*, DWORD, FILETIME*);
-проц IRunningObjectTable_NoteChangeTime_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_NoteChangeTime_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_GetTimeOfLastChange_Proxy(IRunningObjectTable*, IMoniker*, FILETIME*);
-проц IRunningObjectTable_GetTimeOfLastChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_GetTimeOfLastChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRunningObjectTable_EnumRunning_Proxy(IRunningObjectTable*, IEnumMoniker**);
-проц IRunningObjectTable_EnumRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRunningObjectTable_EnumRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersist_GetClassID_Proxy(IPersist*, CLSID*);
-проц IPersist_GetClassID_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersist_GetClassID_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStream_IsDirty_Proxy(IPersistStream*);
-проц IPersistStream_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStream_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStream_Load_Proxy(IPersistStream*, IStream*);
-проц IPersistStream_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStream_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStream_Save_Proxy(IPersistStream*, IStream*, BOOL);
-проц IPersistStream_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStream_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStream_GetSizeMax_Proxy(IPersistStream*, ULARGE_INTEGER*);
-проц IPersistStream_GetSizeMax_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStream_GetSizeMax_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_RemoteBindToObject_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, IUnknown**);
-проц IMoniker_RemoteBindToObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_RemoteBindToObject_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_RemoteBindToStorage_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, IUnknown**);
-проц IMoniker_RemoteBindToStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_RemoteBindToStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_Reduce_Proxy(IMoniker*, IBindCtx*, DWORD, IMoniker**, IMoniker**);
-проц IMoniker_Reduce_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_Reduce_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_ComposeWith_Proxy(IMoniker*, IMoniker*, BOOL, IMoniker**);
-проц IMoniker_ComposeWith_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_ComposeWith_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_Enum_Proxy(IMoniker*, BOOL, IEnumMoniker**);
-проц IMoniker_Enum_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_Enum_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_IsEqual_Proxy(IMoniker*, IMoniker*);
-проц IMoniker_IsEqual_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_IsEqual_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_Hash_Proxy(IMoniker*, DWORD*);
-проц IMoniker_Hash_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_Hash_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_IsRunning_Proxy(IMoniker*, IBindCtx*, IMoniker*, IMoniker*);
-проц IMoniker_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_IsRunning_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_GetTimeOfLastChange_Proxy(IMoniker*, IBindCtx*, IMoniker*, FILETIME*);
-проц IMoniker_GetTimeOfLastChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_GetTimeOfLastChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_Inverse_Proxy(IMoniker*, IMoniker**);
-проц IMoniker_Inverse_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_Inverse_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_CommonPrefixWith_Proxy(IMoniker*, IMoniker*, IMoniker**);
-проц IMoniker_CommonPrefixWith_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_CommonPrefixWith_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_RelativePathTo_Proxy(IMoniker*, IMoniker*, IMoniker**);
-проц IMoniker_RelativePathTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_RelativePathTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_GetDisplayName_Proxy(IMoniker*, IBindCtx*, IMoniker*, LPCSTR*);
-проц IMoniker_GetDisplayName_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_GetDisplayName_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_ParseDisplayName_Proxy(IMoniker*, IBindCtx*, IMoniker*, LPCSTR, ULONG*, IMoniker**);
-проц IMoniker_ParseDisplayName_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_ParseDisplayName_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IMoniker_IsSystemMoniker_Proxy(IMoniker*, DWORD*);
-проц IMoniker_IsSystemMoniker_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMoniker_IsSystemMoniker_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IROTData_GetComparisonData_Proxy(IROTData*, BYTE*, ULONG cbMax, ULONG*);
-проц IROTData_GetComparisonData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IROTData_GetComparisonData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumString_RemoteNext_Proxy(IEnumString*, ULONG, LPCSTR*rgelt, ULONG*);
-проц IEnumString_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumString_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumString_Skip_Proxy(IEnumString*, ULONG);
-проц IEnumString_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumString_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumString_Reset_Proxy(IEnumString*);
-проц IEnumString_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumString_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumString_Clone_Proxy(IEnumString*, IEnumString**);
-проц IEnumString_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumString_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_RemoteRead_Proxy(IStream*, BYTE*, ULONG, ULONG*);
-проц IStream_RemoteRead_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_RemoteRead_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_RemoteWrite_Proxy(IStream*, BYTE*pv, ULONG, ULONG*);
-проц IStream_RemoteWrite_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_RemoteWrite_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_RemoteSeek_Proxy(IStream*, LARGE_INTEGER, DWORD, ULARGE_INTEGER*);
-проц IStream_RemoteSeek_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_RemoteSeek_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_SetSize_Proxy(IStream*, ULARGE_INTEGER);
-проц IStream_SetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_SetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_RemoteCopyTo_Proxy(IStream*, IStream*, ULARGE_INTEGER, ULARGE_INTEGER*, ULARGE_INTEGER*);
-проц IStream_RemoteCopyTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_RemoteCopyTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_Commit_Proxy(IStream*, DWORD);
-проц IStream_Commit_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_Commit_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_Revert_Proxy(IStream*);
-проц IStream_Revert_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_Revert_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_LockRegion_Proxy(IStream*, ULARGE_INTEGER, ULARGE_INTEGER, DWORD);
-проц IStream_LockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_LockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_UnlockRegion_Proxy(IStream*, ULARGE_INTEGER, ULARGE_INTEGER, DWORD);
-проц IStream_UnlockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_UnlockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_Stat_Proxy(IStream*, STATSTG*, DWORD);
-проц IStream_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStream_Clone_Proxy(IStream*, IStream**);
-проц IStream_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStream_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATSTG_RemoteNext_Proxy(IEnumSTATSTG*, ULONG, STATSTG*, ULONG*);
-проц IEnumSTATSTG_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATSTG_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATSTG_Skip_Proxy(IEnumSTATSTG*, ULONG celt);
-проц IEnumSTATSTG_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATSTG_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATSTG_Reset_Proxy(IEnumSTATSTG*);
-проц IEnumSTATSTG_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATSTG_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATSTG_Clone_Proxy(IEnumSTATSTG*, IEnumSTATSTG**);
-проц IEnumSTATSTG_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATSTG_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_CreateStream_Proxy(IStorage*, OLECHAR*, DWORD, DWORD, DWORD, IStream**);
-проц IStorage_CreateStream_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IStorage_RemoteOpenStream_Proxy(IStorage*, OLECHAR*, бцел, BYTE*, DWORD, DWORD, IStream**);
-проц IStorage_RemoteOpenStream_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_CreateStream_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IStorage_RemoteOpenStream_Proxy(IStorage*, OLECHAR*, uint, BYTE*, DWORD, DWORD, IStream**);
+void IStorage_RemoteOpenStream_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_CreateStorage_Proxy(IStorage*, OLECHAR*, DWORD, DWORD, DWORD, IStorage**);
-проц IStorage_CreateStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_CreateStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_OpenStorage_Proxy(IStorage*, OLECHAR*, IStorage*, DWORD, SNB, DWORD, IStorage**);
-проц IStorage_OpenStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_OpenStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_CopyTo_Proxy(IStorage*, DWORD, IID*, SNB, IStorage*);
-проц IStorage_CopyTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_CopyTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_MoveElementTo_Proxy(IStorage*, OLECHAR*, IStorage*, OLECHAR*, DWORD);
-проц IStorage_MoveElementTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_MoveElementTo_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_Commit_Proxy(IStorage*, DWORD);
-проц IStorage_Commit_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_Commit_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_Revert_Proxy(IStorage*);
-проц IStorage_Revert_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IStorage_RemoteEnumElements_Proxy(IStorage*, DWORD, бцел, BYTE*, DWORD, IEnumSTATSTG**);
-проц IStorage_RemoteEnumElements_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_Revert_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IStorage_RemoteEnumElements_Proxy(IStorage*, DWORD, uint, BYTE*, DWORD, IEnumSTATSTG**);
+void IStorage_RemoteEnumElements_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_DestroyElement_Proxy(IStorage*, OLECHAR*);
-проц IStorage_DestroyElement_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_DestroyElement_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_RenameElement_Proxy(IStorage*, OLECHAR*, OLECHAR*);
-проц IStorage_RenameElement_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_RenameElement_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_SetElementTimes_Proxy(IStorage*, OLECHAR*, FILETIME*, FILETIME*, FILETIME*);
-проц IStorage_SetElementTimes_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_SetElementTimes_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_SetClass_Proxy(IStorage*, REFCLSID);
-проц IStorage_SetClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_SetClass_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_SetStateBits_Proxy(IStorage*, DWORD, DWORD);
-проц IStorage_SetStateBits_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_SetStateBits_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IStorage_Stat_Proxy(IStorage*, STATSTG*, DWORD);
-проц IStorage_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IStorage_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistFile_IsDirty_Proxy(IPersistFile*);
-проц IPersistFile_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistFile_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistFile_Load_Proxy(IPersistFile*, LPCOLESTR, DWORD);
-проц IPersistFile_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistFile_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistFile_Save_Proxy(IPersistFile*, LPCOLESTR pszFileName, BOOL);
-проц IPersistFile_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistFile_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistFile_SaveCompleted_Proxy(IPersistFile*, LPCOLESTR);
-проц IPersistFile_SaveCompleted_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistFile_SaveCompleted_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistFile_GetCurFile_Proxy(IPersistFile*, LPCSTR*);
-проц IPersistFile_GetCurFile_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistFile_GetCurFile_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_IsDirty_Proxy(IPersistStorage*);
-проц IPersistStorage_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_IsDirty_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_InitNew_Proxy(IPersistStorage*, IStorage*);
-проц IPersistStorage_InitNew_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_InitNew_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_Load_Proxy(IPersistStorage*, IStorage*);
-проц IPersistStorage_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_Load_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_Save_Proxy(IPersistStorage*, IStorage*, BOOL);
-проц IPersistStorage_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_Save_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_SaveCompleted_Proxy(IPersistStorage*, IStorage*);
-проц IPersistStorage_SaveCompleted_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_SaveCompleted_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPersistStorage_HandsOffStorage_Proxy(IPersistStorage*);
-проц IPersistStorage_HandsOffStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IPersistStorage_HandsOffStorage_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_RemoteReadAt_Proxy(ILockBytes*, ULARGE_INTEGER, BYTE*, ULONG, ULONG*);
-проц ILockBytes_RemoteReadAt_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_RemoteReadAt_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_RemoteWriteAt_Proxy(ILockBytes*, ULARGE_INTEGER, BYTE*pv, ULONG, ULONG*);
-проц ILockBytes_RemoteWriteAt_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_RemoteWriteAt_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_Flush_Proxy(ILockBytes*);
-проц ILockBytes_Flush_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_Flush_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_SetSize_Proxy(ILockBytes*, ULARGE_INTEGER);
-проц ILockBytes_SetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_SetSize_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_LockRegion_Proxy(ILockBytes*, ULARGE_INTEGER, ULARGE_INTEGER, DWORD);
-проц ILockBytes_LockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_LockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_UnlockRegion_Proxy(ILockBytes*, ULARGE_INTEGER, ULARGE_INTEGER, DWORD);
-проц ILockBytes_UnlockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_UnlockRegion_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT ILockBytes_Stat_Proxy(ILockBytes*, STATSTG*, DWORD);
-проц ILockBytes_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void ILockBytes_Stat_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumFORMATETC_RemoteNext_Proxy(IEnumFORMATETC*, ULONG, FORMATETC*, ULONG*);
-проц IEnumFORMATETC_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumFORMATETC_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumFORMATETC_Skip_Proxy(IEnumFORMATETC*, ULONG);
-проц IEnumFORMATETC_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumFORMATETC_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumFORMATETC_Reset_Proxy(IEnumFORMATETC*);
-проц IEnumFORMATETC_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumFORMATETC_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumFORMATETC_Clone_Proxy(IEnumFORMATETC*, IEnumFORMATETC**);
-проц IEnumFORMATETC_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumFORMATETC_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumFORMATETC_Next_Proxy(IEnumFORMATETC*, ULONG, FORMATETC*, ULONG*);
 HRESULT IEnumFORMATETC_Next_Stub(IEnumFORMATETC*, ULONG, FORMATETC*, ULONG*);
 HRESULT IEnumSTATDATA_RemoteNext_Proxy(IEnumSTATDATA*, ULONG, STATDATA*, ULONG*);
-проц IEnumSTATDATA_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATDATA_RemoteNext_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATDATA_Skip_Proxy(IEnumSTATDATA*, ULONG);
-проц IEnumSTATDATA_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATDATA_Skip_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATDATA_Reset_Proxy(IEnumSTATDATA*);
-проц IEnumSTATDATA_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATDATA_Reset_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATDATA_Clone_Proxy(IEnumSTATDATA*, IEnumSTATDATA**);
-проц IEnumSTATDATA_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IEnumSTATDATA_Clone_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IEnumSTATDATA_Next_Proxy(IEnumSTATDATA*, ULONG, STATDATA*, ULONG*);
 HRESULT IEnumSTATDATA_Next_Stub(IEnumSTATDATA*, ULONG, STATDATA*, ULONG*);
 HRESULT IRootStorage_SwitchToFile_Proxy(IRootStorage*, LPCSTR);
-проц IRootStorage_SwitchToFile_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink_RemoteOnDataChange_Proxy(IAdviseSink*, FORMATETC*, RemSTGMEDIUM*);
-проц IAdviseSink_RemoteOnDataChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink_RemoteOnViewChange_Proxy(IAdviseSink*, DWORD, LONG);
-проц IAdviseSink_RemoteOnViewChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink_RemoteOnRename_Proxy(IAdviseSink*, IMoniker*);
-проц IAdviseSink_RemoteOnRename_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink_RemoteOnSave_Proxy(IAdviseSink*);
-проц IAdviseSink_RemoteOnSave_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRootStorage_SwitchToFile_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink_RemoteOnDataChange_Proxy(IAdviseSink*, FORMATETC*, RemSTGMEDIUM*);
+void IAdviseSink_RemoteOnDataChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink_RemoteOnViewChange_Proxy(IAdviseSink*, DWORD, LONG);
+void IAdviseSink_RemoteOnViewChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink_RemoteOnRename_Proxy(IAdviseSink*, IMoniker*);
+void IAdviseSink_RemoteOnRename_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink_RemoteOnSave_Proxy(IAdviseSink*);
+void IAdviseSink_RemoteOnSave_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IAdviseSink_RemoteOnClose_Proxy(IAdviseSink*);
-проц IAdviseSink_RemoteOnClose_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink_OnDataChange_Proxy(IAdviseSink*, FORMATETC*, STGMEDIUM*);
-проц IAdviseSink_OnDataChange_Stub(IAdviseSink*, FORMATETC*, RemSTGMEDIUM*);
-проц IAdviseSink_OnViewChange_Proxy(IAdviseSink*, DWORD, LONG);
-проц IAdviseSink_OnViewChange_Stub(IAdviseSink*, DWORD, LONG);
-проц IAdviseSink_OnRename_Proxy(IAdviseSink*, IMoniker*);
-проц IAdviseSink_OnRename_Stub(IAdviseSink*, IMoniker*);
-проц IAdviseSink_OnSave_Proxy(IAdviseSink*);
-проц IAdviseSink_OnSave_Stub(IAdviseSink*);
-проц IAdviseSink_OnClose_Proxy(IAdviseSink*);
+void IAdviseSink_RemoteOnClose_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink_OnDataChange_Proxy(IAdviseSink*, FORMATETC*, STGMEDIUM*);
+void IAdviseSink_OnDataChange_Stub(IAdviseSink*, FORMATETC*, RemSTGMEDIUM*);
+void IAdviseSink_OnViewChange_Proxy(IAdviseSink*, DWORD, LONG);
+void IAdviseSink_OnViewChange_Stub(IAdviseSink*, DWORD, LONG);
+void IAdviseSink_OnRename_Proxy(IAdviseSink*, IMoniker*);
+void IAdviseSink_OnRename_Stub(IAdviseSink*, IMoniker*);
+void IAdviseSink_OnSave_Proxy(IAdviseSink*);
+void IAdviseSink_OnSave_Stub(IAdviseSink*);
+void IAdviseSink_OnClose_Proxy(IAdviseSink*);
 HRESULT IAdviseSink_OnClose_Stub(IAdviseSink*);
-проц IAdviseSink2_RemoteOnLinkSrcChange_Proxy(IAdviseSink2*, IMoniker*);
-проц IAdviseSink2_RemoteOnLinkSrcChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IAdviseSink2_OnLinkSrcChange_Proxy(IAdviseSink2*, IMoniker*);
-проц IAdviseSink2_OnLinkSrcChange_Stub(IAdviseSink2*, IMoniker*);
+void IAdviseSink2_RemoteOnLinkSrcChange_Proxy(IAdviseSink2*, IMoniker*);
+void IAdviseSink2_RemoteOnLinkSrcChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IAdviseSink2_OnLinkSrcChange_Proxy(IAdviseSink2*, IMoniker*);
+void IAdviseSink2_OnLinkSrcChange_Stub(IAdviseSink2*, IMoniker*);
 HRESULT IDataObject_RemoteGetData_Proxy(IDataObject*, FORMATETC*, RemSTGMEDIUM**);
-проц IDataObject_RemoteGetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_RemoteGetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_RemoteGetDataHere_Proxy(IDataObject*, FORMATETC*, RemSTGMEDIUM**);
-проц IDataObject_RemoteGetDataHere_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_RemoteGetDataHere_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_QueryGetData_Proxy(IDataObject*, FORMATETC*);
-проц IDataObject_QueryGetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_QueryGetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_GetCanonicalFormatEtc_Proxy(IDataObject*, FORMATETC*, FORMATETC*);
-проц IDataObject_GetCanonicalFormatEtc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_GetCanonicalFormatEtc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_RemoteSetData_Proxy(IDataObject*, FORMATETC*, RemSTGMEDIUM*, BOOL);
-проц IDataObject_RemoteSetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_RemoteSetData_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_EnumFormatEtc_Proxy(IDataObject*, DWORD, IEnumFORMATETC**);
-проц IDataObject_EnumFormatEtc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_EnumFormatEtc_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_DAdvise_Proxy(IDataObject*, FORMATETC*, DWORD, IAdviseSink*, DWORD*);
-проц IDataObject_DAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_DAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_DUnadvise_Proxy(IDataObject*, DWORD);
-проц IDataObject_DUnadvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_DUnadvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_EnumDAdvise_Proxy(IDataObject*, IEnumSTATDATA**);
-проц IDataObject_EnumDAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataObject_EnumDAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataObject_GetData_Proxy(IDataObject*, FORMATETC*, STGMEDIUM*);
 HRESULT IDataObject_GetData_Stub(IDataObject*, FORMATETC*, RemSTGMEDIUM**);
 HRESULT IDataObject_GetDataHere_Proxy(IDataObject*, FORMATETC*, STGMEDIUM*);
@@ -1226,68 +1226,68 @@ HRESULT IDataObject_GetDataHere_Stub(IDataObject*, FORMATETC*, RemSTGMEDIUM**);
 HRESULT IDataObject_SetData_Proxy(IDataObject*, FORMATETC*, STGMEDIUM*, BOOL);
 HRESULT IDataObject_SetData_Stub(IDataObject*, FORMATETC*, RemSTGMEDIUM*, BOOL);
 HRESULT IDataAdviseHolder_Advise_Proxy(IDataAdviseHolder*, IDataObject*, FORMATETC*, DWORD, IAdviseSink*, DWORD*);
-проц IDataAdviseHolder_Advise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataAdviseHolder_Advise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataAdviseHolder_Unadvise_Proxy(IDataAdviseHolder*, DWORD);
-проц IDataAdviseHolder_Unadvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataAdviseHolder_Unadvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataAdviseHolder_EnumAdvise_Proxy(IDataAdviseHolder*, IEnumSTATDATA**);
-проц IDataAdviseHolder_EnumAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataAdviseHolder_EnumAdvise_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IDataAdviseHolder_SendOnDataChange_Proxy(IDataAdviseHolder*, IDataObject*, DWORD, DWORD);
-проц IDataAdviseHolder_SendOnDataChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IDataAdviseHolder_SendOnDataChange_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 DWORD IMessageFilter_HandleInComingCall_Proxy(IMessageFilter*, DWORD, HTASK, DWORD, LPINTERFACEINFO);
-проц IMessageFilter_HandleInComingCall_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMessageFilter_HandleInComingCall_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 DWORD IMessageFilter_RetryRejectedCall_Proxy(IMessageFilter*, HTASK, DWORD, DWORD);
-проц IMessageFilter_RetryRejectedCall_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMessageFilter_RetryRejectedCall_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 DWORD IMessageFilter_MessagePending_Proxy(IMessageFilter*, HTASK, DWORD, DWORD);
-проц IMessageFilter_MessagePending_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IMessageFilter_MessagePending_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcChannelBuffer_GetBuffer_Proxy(IRpcChannelBuffer*, RPCOLEMESSAGE*, REFIID);
-проц IRpcChannelBuffer_GetBuffer_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcChannelBuffer_GetBuffer_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcChannelBuffer_SendReceive_Proxy(IRpcChannelBuffer*, RPCOLEMESSAGE*, ULONG*);
-проц IRpcChannelBuffer_SendReceive_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcChannelBuffer_SendReceive_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcChannelBuffer_FreeBuffer_Proxy(IRpcChannelBuffer*, RPCOLEMESSAGE*);
-проц IRpcChannelBuffer_FreeBuffer_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IRpcChannelBuffer_GetDestCtx_Proxy(IRpcChannelBuffer*, DWORD*, проц**);
-проц IRpcChannelBuffer_GetDestCtx_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcChannelBuffer_FreeBuffer_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IRpcChannelBuffer_GetDestCtx_Proxy(IRpcChannelBuffer*, DWORD*, void**);
+void IRpcChannelBuffer_GetDestCtx_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcChannelBuffer_IsConnected_Proxy(IRpcChannelBuffer*);
-проц IRpcChannelBuffer_IsConnected_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcChannelBuffer_IsConnected_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcProxyBuffer_Connect_Proxy(IRpcProxyBuffer*, IRpcChannelBuffer*pRpcChannelBuffer);
-проц IRpcProxyBuffer_Connect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IRpcProxyBuffer_Disconnect_Proxy(IRpcProxyBuffer*);
-проц IRpcProxyBuffer_Disconnect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcProxyBuffer_Connect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcProxyBuffer_Disconnect_Proxy(IRpcProxyBuffer*);
+void IRpcProxyBuffer_Disconnect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcStubBuffer_Connect_Proxy(IRpcStubBuffer*, IUnknown*);
-проц IRpcStubBuffer_Connect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IRpcStubBuffer_Disconnect_Proxy(IRpcStubBuffer*);
-проц IRpcStubBuffer_Disconnect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_Connect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_Disconnect_Proxy(IRpcStubBuffer*);
+void IRpcStubBuffer_Disconnect_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IRpcStubBuffer_Invoke_Proxy(IRpcStubBuffer*, RPCOLEMESSAGE*, IRpcChannelBuffer*);
-проц IRpcStubBuffer_Invoke_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_Invoke_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 IRpcStubBuffer*IRpcStubBuffer_IsIIDSupported_Proxy(IRpcStubBuffer*, REFIID);
-проц IRpcStubBuffer_IsIIDSupported_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_IsIIDSupported_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 ULONG IRpcStubBuffer_CountRefs_Proxy(IRpcStubBuffer*);
-проц IRpcStubBuffer_CountRefs_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IRpcStubBuffer_DebugServerQueryInterface_Proxy(IRpcStubBuffer*, проц**);
-проц IRpcStubBuffer_DebugServerQueryInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц IRpcStubBuffer_DebugServerRelease_Proxy(IRpcStubBuffer*, проц*);
-проц IRpcStubBuffer_DebugServerRelease_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-HRESULT IPSFactoryBuffer_CreateProxy_Proxy(IPSFactoryBuffer*, IUnknown*, REFIID, IRpcProxyBuffer**, проц**);
-проц IPSFactoryBuffer_CreateProxy_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_CountRefs_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IRpcStubBuffer_DebugServerQueryInterface_Proxy(IRpcStubBuffer*, void**);
+void IRpcStubBuffer_DebugServerQueryInterface_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void IRpcStubBuffer_DebugServerRelease_Proxy(IRpcStubBuffer*, void*);
+void IRpcStubBuffer_DebugServerRelease_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+HRESULT IPSFactoryBuffer_CreateProxy_Proxy(IPSFactoryBuffer*, IUnknown*, REFIID, IRpcProxyBuffer**, void**);
+void IPSFactoryBuffer_CreateProxy_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
 HRESULT IPSFactoryBuffer_CreateStub_Proxy(IPSFactoryBuffer*, REFIID, IUnknown*, IRpcStubBuffer**);
-проц IPSFactoryBuffer_CreateStub_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
-проц SNB_to_xmit(SNB*, RemSNB**);
-проц SNB_from_xmit(RemSNB*, SNB*);
-проц SNB_free_inst(SNB*);
-проц SNB_free_xmit(RemSNB*);
+void IPSFactoryBuffer_CreateStub_Stub(IRpcStubBuffer*, IRpcChannelBuffer*, PRPC_MESSAGE, PDWORD);
+void SNB_to_xmit(SNB*, RemSNB**);
+void SNB_from_xmit(RemSNB*, SNB*);
+void SNB_free_inst(SNB*);
+void SNB_free_xmit(RemSNB*);
 HRESULT IEnumUnknown_Next_Proxy(IEnumUnknown*, ULONG, IUnknown**, ULONG*);
 HRESULT IEnumUnknown_Next_Stub(IEnumUnknown*, ULONG, IUnknown**, ULONG*);
 HRESULT IEnumMoniker_Next_Proxy(IEnumMoniker*, ULONG, IMoniker**, ULONG*);
 HRESULT IEnumMoniker_Next_Stub(IEnumMoniker*, ULONG, IMoniker**, ULONG*);
-HRESULT IMoniker_BindToObject_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, проц**);
+HRESULT IMoniker_BindToObject_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, void**);
 HRESULT IMoniker_BindToObject_Stub(IMoniker*, IBindCtx*, IMoniker*, REFIID, IUnknown**);
-HRESULT IMoniker_BindToStorage_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, проц**);
+HRESULT IMoniker_BindToStorage_Proxy(IMoniker*, IBindCtx*, IMoniker*, REFIID, void**);
 HRESULT IMoniker_BindToStorage_Stub(IMoniker*, IBindCtx*, IMoniker*, REFIID, IUnknown**);
 HRESULT IEnumString_Next_Proxy(IEnumString*, ULONG, LPCSTR*, ULONG*);
 HRESULT IEnumString_Next_Stub(IEnumString*, ULONG, LPCSTR*, ULONG*);
-HRESULT IStream_Read_Proxy(IStream*, проц*, ULONG, ULONG*);
+HRESULT IStream_Read_Proxy(IStream*, void*, ULONG, ULONG*);
 HRESULT IStream_Read_Stub(IStream*, BYTE*, ULONG, ULONG*);
-HRESULT IStream_Write_Proxy(IStream*, проц*, ULONG, ULONG*);
+HRESULT IStream_Write_Proxy(IStream*, void*, ULONG, ULONG*);
 HRESULT IStream_Write_Stub(IStream*, BYTE*, ULONG, ULONG*);
 HRESULT IStream_Seek_Proxy(IStream*, LARGE_INTEGER, DWORD, ULARGE_INTEGER*);
 HRESULT IStream_Seek_Stub(IStream*, LARGE_INTEGER, DWORD, ULARGE_INTEGER*);
@@ -1295,13 +1295,13 @@ HRESULT IStream_CopyTo_Proxy(IStream*, IStream*, ULARGE_INTEGER, ULARGE_INTEGER*
 HRESULT IStream_CopyTo_Stub(IStream*, IStream*, ULARGE_INTEGER, ULARGE_INTEGER*, ULARGE_INTEGER*);
 HRESULT IEnumSTATSTG_Next_Proxy(IEnumSTATSTG*, ULONG, STATSTG*, ULONG*);
 HRESULT IEnumSTATSTG_Next_Stub(IEnumSTATSTG*, ULONG, STATSTG*, ULONG*);
-HRESULT IStorage_OpenStream_Proxy(IStorage*, OLECHAR*, проц*, DWORD, DWORD, IStream**);
-HRESULT IStorage_OpenStream_Stub(IStorage*, OLECHAR*, бцел, BYTE*, DWORD, DWORD, IStream** );
-HRESULT IStorage_EnumElements_Proxy(IStorage*, DWORD, проц*, DWORD, IEnumSTATSTG**);
-HRESULT IStorage_EnumElements_Stub(IStorage*, DWORD, бцел, BYTE*, DWORD, IEnumSTATSTG**);
-HRESULT ILockBytes_ReadAt_Proxy(ILockBytes*, ULARGE_INTEGER, проц*, ULONG, ULONG*);
+HRESULT IStorage_OpenStream_Proxy(IStorage*, OLECHAR*, void*, DWORD, DWORD, IStream**);
+HRESULT IStorage_OpenStream_Stub(IStorage*, OLECHAR*, uint, BYTE*, DWORD, DWORD, IStream** );
+HRESULT IStorage_EnumElements_Proxy(IStorage*, DWORD, void*, DWORD, IEnumSTATSTG**);
+HRESULT IStorage_EnumElements_Stub(IStorage*, DWORD, uint, BYTE*, DWORD, IEnumSTATSTG**);
+HRESULT ILockBytes_ReadAt_Proxy(ILockBytes*, ULARGE_INTEGER, void*, ULONG, ULONG*);
 HRESULT ILockBytes_ReadAt_Stub(ILockBytes*, ULARGE_INTEGER, BYTE*, ULONG, ULONG*);
-HRESULT ILockBytes_WriteAt_Proxy(ILockBytes*, ULARGE_INTEGER, проц*, ULONG, ULONG*);
+HRESULT ILockBytes_WriteAt_Proxy(ILockBytes*, ULARGE_INTEGER, void*, ULONG, ULONG*);
 HRESULT ILockBytes_WriteAt_Stub(ILockBytes*, ULARGE_INTEGER, BYTE*, ULONG, ULONG*);
 }
 +/

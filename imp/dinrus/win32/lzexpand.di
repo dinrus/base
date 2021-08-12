@@ -26,12 +26,12 @@ enum : LONG {
 extern (Windows):
 deprecated {
 	LONG CopyLZFile(INT, INT);
-	проц LZDone();
+	void LZDone();
 	INT LZStart();
 }
 INT GetExpandedNameA(LPSTR, LPSTR);
 INT GetExpandedNameW(LPWSTR, LPWSTR);
-проц LZClose(INT);
+void LZClose(INT);
 LONG LZCopy(INT, INT);
 INT LZInit(INT);
 INT LZOpenFileA(LPSTR, LPOFSTRUCT, WORD);

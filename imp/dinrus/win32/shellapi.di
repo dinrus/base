@@ -257,7 +257,7 @@ struct SHELLEXECUTEINFOA {
 	LPCSTR    lpFile;
 	LPCSTR    lpParameters;
 	LPCSTR    lpDirectory;
-	цел       nShow;
+	int       nShow;
 	HINSTANCE hInstApp;
 	PVOID     lpIDList;
 	LPCSTR    lpClass;
@@ -276,7 +276,7 @@ struct SHELLEXECUTEINFOW {
 	LPCWSTR   lpFile;
 	LPCWSTR   lpParameters;
 	LPCWSTR   lpDirectory;
-	цел       nShow;
+	int       nShow;
 	HINSTANCE hInstApp;
 	PVOID     lpIDList;
 	LPCWSTR   lpClass;
@@ -313,7 +313,7 @@ alias SHFILEOPSTRUCTW* LPSHFILEOPSTRUCTW;
 
 struct SHFILEINFOA {
 	HICON          hIcon;
-	цел            iIcon;
+	int            iIcon;
 	DWORD          dwAttributes;
 	CHAR[MAX_PATH] szDisplayName;
 	CHAR[80]       szTypeName;
@@ -321,7 +321,7 @@ struct SHFILEINFOA {
 
 struct SHFILEINFOW {
 	HICON           hIcon;
-	цел             iIcon;
+	int             iIcon;
 	DWORD           dwAttributes;
 	WCHAR[MAX_PATH] szDisplayName;
 	WCHAR[80]       szTypeName;
@@ -329,15 +329,15 @@ struct SHFILEINFOW {
 
 struct SHQUERYRBINFO {
 	DWORD cbSize = SHQUERYRBINFO.sizeof;
-	дол  i64Size;
-	дол  i64NumItems;
+	long  i64Size;
+	long  i64NumItems;
 }
 alias SHQUERYRBINFO* LPSHQUERYRBINFO;
 
 extern (Windows) {
-	LPWSTR* CommandLineToArgvW(LPCWSTR, цел*);
-	проц DragAcceptFiles(HWND, BOOL);
-	проц DragFinish(HDROP);
+	LPWSTR* CommandLineToArgvW(LPCWSTR, int*);
+	void DragAcceptFiles(HWND, BOOL);
+	void DragFinish(HDROP);
 	UINT DragQueryFileA(HDROP, UINT, LPSTR, UINT);
 	UINT DragQueryFileW(HDROP, UINT, LPWSTR, UINT);
 	BOOL DragQueryPoint(HDROP, LPPOINT);
@@ -346,22 +346,22 @@ extern (Windows) {
 	HICON ExtractAssociatedIconW(HINSTANCE, LPCWSTR, PWORD);
 	HICON ExtractIconA(HINSTANCE, LPCSTR, UINT);
 	HICON ExtractIconW(HINSTANCE, LPCWSTR, UINT);
-	UINT ExtractIconExA(LPCSTR, цел, HICON*, HICON*, UINT);
-	UINT ExtractIconExW(LPCWSTR, цел, HICON*, HICON*, UINT);
+	UINT ExtractIconExA(LPCSTR, int, HICON*, HICON*, UINT);
+	UINT ExtractIconExW(LPCWSTR, int, HICON*, HICON*, UINT);
 	HINSTANCE FindExecutableA(LPCSTR, LPCSTR, LPSTR);
 	HINSTANCE FindExecutableW(LPCWSTR, LPCWSTR, LPWSTR);
 	UINT SHAppBarMessage(DWORD, PAPPBARDATA);
 	BOOL Shell_NotifyIconA(DWORD, PNOTIFYICONDATAA);
 	BOOL Shell_NotifyIconW(DWORD, PNOTIFYICONDATAW);
-	цел ShellAboutA(HWND, LPCSTR, LPCSTR, HICON);
-	цел ShellAboutW(HWND, LPCWSTR, LPCWSTR, HICON);
+	int ShellAboutA(HWND, LPCSTR, LPCSTR, HICON);
+	int ShellAboutW(HWND, LPCWSTR, LPCWSTR, HICON);
 	HINSTANCE ShellExecuteA(HWND, LPCSTR, LPCSTR, LPCSTR, LPCSTR, INT);
 	HINSTANCE ShellExecuteW(HWND, LPCWSTR, LPCWSTR, LPCWSTR, LPCWSTR, INT);
 	BOOL ShellExecuteExA(LPSHELLEXECUTEINFOA);
 	BOOL ShellExecuteExW(LPSHELLEXECUTEINFOW);
-	цел SHFileOperationA(LPSHFILEOPSTRUCTA);
-	цел SHFileOperationW(LPSHFILEOPSTRUCTW);
-	проц SHFreeNameMappings(HANDLE);
+	int SHFileOperationA(LPSHFILEOPSTRUCTA);
+	int SHFileOperationW(LPSHFILEOPSTRUCTW);
+	void SHFreeNameMappings(HANDLE);
 	DWORD SHGetFileInfoA(LPCSTR, DWORD, SHFILEINFOA*, UINT, UINT);
 	DWORD SHGetFileInfoW(LPCWSTR, DWORD, SHFILEINFOW*, UINT, UINT);
 	HRESULT SHQueryRecycleBinA(LPCSTR,  LPSHQUERYRBINFO);

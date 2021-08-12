@@ -110,15 +110,15 @@ struct DXGI_SWAP_CHAIN_DESC {
 
 interface IDXGIObject : IUnknown {
 	extern(Windows) :
-	HRESULT SetPrivateData(REFGUID Name, UINT DataSize, проц* pData);
+	HRESULT SetPrivateData(REFGUID Name, UINT DataSize, void* pData);
 	HRESULT SetPrivateDataInterface(REFGUID Name, IUnknown pUnknown);
-	HRESULT GetPrivateData(REFGUID Name, UINT* pDataSize, проц* pData);
-	HRESULT GetParent(REFIID riid, проц** ppParent);
+	HRESULT GetPrivateData(REFGUID Name, UINT* pDataSize, void* pData);
+	HRESULT GetParent(REFIID riid, void** ppParent);
 }
 
 interface IDXGIDeviceSubObject : IDXGIObject {
 	extern(Windows) :
-	HRESULT GetDevice(REFIID riid, проц** ppDevice);
+	HRESULT GetDevice(REFIID riid, void** ppDevice);
 }
 
 interface IDXGIResource : IDXGIDeviceSubObject {
@@ -150,7 +150,7 @@ interface IDXGIOutput : IDXGIObject {
 	HRESULT FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
 	HRESULT WaitForVBlank();
 	HRESULT TakeOwnership(IUnknown pDevice, BOOL Exclusive);
-	проц ReleaseOwnership();
+	void ReleaseOwnership();
 	HRESULT GetGammaControlCapabilities(DXGI_GAMMA_CONTROL_CAPABILITIES* pGammaCaps);
 	HRESULT SetGammaControl(DXGI_GAMMA_CONTROL* pArray);
 	HRESULT GetGammaControl(DXGI_GAMMA_CONTROL* pArray);
@@ -170,7 +170,7 @@ enum {
 interface IDXGISwapChain : IDXGIDeviceSubObject {
 	extern(Windows) :
 	HRESULT Present(UINT SyncInterval, UINT Flags);
-	HRESULT GetBuffer(UINT Buffer, REFIID riid, проц** ppSurface);
+	HRESULT GetBuffer(UINT Buffer, REFIID riid, void** ppSurface);
 	HRESULT SetFullscreenState(BOOL Fullscreen, IDXGIOutput pTarget);
 	HRESULT GetFullscreenState(BOOL* pFullscreen, IDXGIOutput* ppTarget);
 	HRESULT GetDesc(DXGI_SWAP_CHAIN_DESC* pDesc);

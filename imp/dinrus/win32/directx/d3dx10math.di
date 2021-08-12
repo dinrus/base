@@ -19,31 +19,31 @@ private import win32.windows;
 private import win32.directx.d3dx10;
 
 struct D3DVECTOR {
-	плав x;
-	плав y;
-	плав z;
+	float x;
+	float y;
+	float z;
 }
 
 struct D3DMATRIX {
 	union {
 		struct {
-			плав _11, _12, _13, _14;
-			плав _21, _22, _23, _24;
-			плав _31, _32, _33, _34;
-			плав _41, _42, _43, _44;
+			float _11, _12, _13, _14;
+			float _21, _22, _23, _24;
+			float _31, _32, _33, _34;
+			float _41, _42, _43, _44;
 		}
-		плав[4][4] m;
+		float[4][4] m;
 	}
 }
 
 const D3DX_PI = 3.14159265358979323846;
 const D3DX_1BYPI = 1.0 / D3DX_PI;
 
-плав D3DXToRadian(плав degree) {
+float D3DXToRadian(float degree) {
 	return degree * (D3DX_PI / 180.0);
 }
 
-плав D3DXToDegree(плав radian) {
+float D3DXToDegree(float radian) {
 	return radian * (180.0 / D3DX_PI);
 }
 
@@ -65,12 +65,12 @@ const D3DX_16F_FRAC_MASK	= 0x03FF;
 struct D3DXFLOAT16 {
 	//TODO
 protected:
-    WORD значение;
+    WORD value;
 }
 
 struct D3DXVECTOR2 {
 	//TODO
-	плав x, y;
+	float x, y;
 }
 
 struct D3DXVECTOR2_16F {
@@ -80,7 +80,7 @@ struct D3DXVECTOR2_16F {
 
 struct D3DXVECTOR3 {
 	//TODO
-	плав x, y, z;
+	float x, y, z;
 }
 
 struct D3DXVECTOR3_16F {
@@ -90,7 +90,7 @@ struct D3DXVECTOR3_16F {
 
 struct D3DXVECTOR4 {
 	//TODO
-	плав x, y, z, w;
+	float x, y, z, w;
 }
 
 struct D3DXVECTOR4_16F {
@@ -102,12 +102,12 @@ struct D3DXMATRIX {
 	//TODO
 	union {
 		struct {
-			плав _11, _12, _13, _14;
-			плав _21, _22, _23, _24;
-			плав _31, _32, _33, _34;
-			плав _41, _42, _43, _44;
+			float _11, _12, _13, _14;
+			float _21, _22, _23, _24;
+			float _31, _32, _33, _34;
+			float _41, _42, _43, _44;
 		}
-		плав[4][4] m;
+		float[4][4] m;
 	}
 }
 
@@ -115,46 +115,46 @@ struct D3DXMATRIX {
 
 struct D3DXQUATERNION {
 	//TODO
-	плав x, y, z, w;
+	float x, y, z, w;
 }
 
 struct D3DXPLANE {
 	//TODO
-	плав a, b, c, d;
+	float a, b, c, d;
 }
 
 struct D3DXCOLOR {
 	//TODO
-	плав r, g, b, a;
+	float r, g, b, a;
 }
 
 extern(Windows) {
-	D3DXFLOAT16* D3DXFloat32To16Array(D3DXFLOAT16* pOut, плав* pIn, UINT n);
-	плав* D3DXFloat16To32Array(плав* pOut, D3DXFLOAT16* pIn, UINT n);
+	D3DXFLOAT16* D3DXFloat32To16Array(D3DXFLOAT16* pOut, float* pIn, UINT n);
+	float* D3DXFloat16To32Array(float* pOut, D3DXFLOAT16* pIn, UINT n);
 }
 
-плав D3DXVec2Length(D3DXVECTOR2* pV) {
+float D3DXVec2Length(D3DXVECTOR2* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return sqrtf((pV.x * pV.x) + (pV.y * pV.y));
 }
 
-плав D3DXVec2LengthSq(D3DXVECTOR2* pV) {
+float D3DXVec2LengthSq(D3DXVECTOR2* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return (pV.x * pV.x) + (pV.y * pV.y);
 }
 
-плав D3DXVec2Dot(D3DXVECTOR2* pV1, D3DXVECTOR2* pV2) {
+float D3DXVec2Dot(D3DXVECTOR2* pV1, D3DXVECTOR2* pV2) {
 	debug(D3DX10_DEBUG) {
 		if ((pV1 is null) || (pV2 is null)) return 0.0;
 	}
 	return (pV1.x * pV2.x) + (pV1.y * pV2.y);
 }
 
-плав D3DXVec2CCW(D3DXVECTOR2* pV1, D3DXVECTOR2* pV2) {
+float D3DXVec2CCW(D3DXVECTOR2* pV1, D3DXVECTOR2* pV2) {
 	debug(D3DX10_DEBUG) {
 		if ((pV1 is null) || (pV2 is null)) return 0.0;
 	}
@@ -197,7 +197,7 @@ D3DXVECTOR2* D3DXVec2Maximize(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* 
 	return pOut;
 }
 
-D3DXVECTOR2* D3DXVec2Scale(D3DXVECTOR2* pOut, D3DXVECTOR2* pV, плав s) {
+D3DXVECTOR2* D3DXVec2Scale(D3DXVECTOR2* pOut, D3DXVECTOR2* pV, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV is null)) return null;
 	}
@@ -206,7 +206,7 @@ D3DXVECTOR2* D3DXVec2Scale(D3DXVECTOR2* pOut, D3DXVECTOR2* pV, плав s) {
 	return pOut;
 }
 
-D3DXVECTOR2* D3DXVec2Lerp(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, плав s) {
+D3DXVECTOR2* D3DXVec2Lerp(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV1 is null) || (pV2 is null)) return null;
 	}
@@ -217,9 +217,9 @@ D3DXVECTOR2* D3DXVec2Lerp(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2,
 
 extern(Windows) {
 	D3DXVECTOR2* D3DXVec2Normalize(D3DXVECTOR2* pOut, D3DXVECTOR2* pV);
-	D3DXVECTOR2* D3DXVec2Hermite(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pT1, D3DXVECTOR2* pV2, D3DXVECTOR2* pT2, плав s);
-	D3DXVECTOR2* D3DXVec2CatmullRom(D3DXVECTOR2* pOut, D3DXVECTOR2* pV0, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, D3DXVECTOR2* pV3, плав s);
-	D3DXVECTOR2* D3DXVec2BaryCentric(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, D3DXVECTOR2* pV3, плав f, плав g);
+	D3DXVECTOR2* D3DXVec2Hermite(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pT1, D3DXVECTOR2* pV2, D3DXVECTOR2* pT2, float s);
+	D3DXVECTOR2* D3DXVec2CatmullRom(D3DXVECTOR2* pOut, D3DXVECTOR2* pV0, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, D3DXVECTOR2* pV3, float s);
+	D3DXVECTOR2* D3DXVec2BaryCentric(D3DXVECTOR2* pOut, D3DXVECTOR2* pV1, D3DXVECTOR2* pV2, D3DXVECTOR2* pV3, float f, float g);
 	D3DXVECTOR4* D3DXVec2Transform(D3DXVECTOR4* pOut, D3DXVECTOR2* pV, D3DXMATRIX* pM);
 	D3DXVECTOR2* D3DXVec2TransformCoord(D3DXVECTOR2* pOut, D3DXVECTOR2* pV, D3DXMATRIX* pM);
 	D3DXVECTOR2* D3DXVec2TransformNormal(D3DXVECTOR2* pOut, D3DXVECTOR2* pV, D3DXMATRIX* pM);
@@ -228,21 +228,21 @@ extern(Windows) {
 	D3DXVECTOR2* D3DXVec2TransformNormalArray(D3DXVECTOR2* pOut, UINT OutStride, D3DXVECTOR2* pV, UINT VStride, D3DXMATRIX* pM, UINT n);
 }
 
-плав D3DXVec3Length(D3DXVECTOR3* pV) {
+float D3DXVec3Length(D3DXVECTOR3* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return sqrtf((pV.x * pV.x) + (pV.y * pV.y) + (pV.z * pV.z));
 }
 
-плав D3DXVec3LengthSq(D3DXVECTOR3* pV) {
+float D3DXVec3LengthSq(D3DXVECTOR3* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return (pV.x * pV.x) + (pV.y * pV.y) + (pV.z * pV.z);
 }
 
-плав D3DXVec3Dot(D3DXVECTOR3* pV1, D3DXVECTOR3* pV2) {
+float D3DXVec3Dot(D3DXVECTOR3* pV1, D3DXVECTOR3* pV2) {
 	debug(D3DX10_DEBUG) {
 		if ((pV1 is null) || (pV2 is null)) return 0.0;
 	}
@@ -301,7 +301,7 @@ D3DXVECTOR3* D3DXVec3Maximize(D3DXVECTOR3* pOut, D3DXVECTOR3* pV1, D3DXVECTOR3* 
 	return pOut;
 }
 
-D3DXVECTOR3* D3DXVec3Scale(D3DXVECTOR3* pOut, D3DXVECTOR3* pV, плав s) {
+D3DXVECTOR3* D3DXVec3Scale(D3DXVECTOR3* pOut, D3DXVECTOR3* pV, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV is null)) return null;
 	}
@@ -311,7 +311,7 @@ D3DXVECTOR3* D3DXVec3Scale(D3DXVECTOR3* pOut, D3DXVECTOR3* pV, плав s) {
 	return pOut;
 }
 
-D3DXVECTOR3* D3DXVec3Lerp(D3DXVECTOR3* pOut, D3DXVECTOR3* pV1, D3DXVECTOR3* pV2, плав s) {
+D3DXVECTOR3* D3DXVec3Lerp(D3DXVECTOR3* pOut, D3DXVECTOR3* pV1, D3DXVECTOR3* pV2, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV1 is null) || (pV2 is null)) return null;
 	}
@@ -338,21 +338,21 @@ extern(Windows) {
 	D3DXVECTOR3* D3DXVec3UnprojectArray(D3DXVECTOR3* pOut, UINT OutStride, D3DXVECTOR3* pV, UINT VStride, D3D10_VIEWPORT* pViewport, D3DXMATRIX* pProjection, D3DXMATRIX* pView, D3DXMATRIX* pWorld, UINT n);
 }
 
-плав D3DXVec4Length(D3DXVECTOR4* pV) {
+float D3DXVec4Length(D3DXVECTOR4* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return sqrtf((pV.x * pV.x) + (pV.y * pV.y) + (pV.z * pV.z) + (pV.w * pV.w));
 }
 
-плав D3DXVec4LengthSq(D3DXVECTOR4* pV) {
+float D3DXVec4LengthSq(D3DXVECTOR4* pV) {
 	debug(D3DX10_DEBUG) {
 		if (pV is null) return 0.0;
 	}
 	return (pV.x * pV.x) + (pV.y * pV.y) + (pV.z * pV.z) + (pV.w * pV.w);
 }
 
-плав D3DXVec4Dot(D3DXVECTOR4* pV1, D3DXVECTOR4* pV2) {
+float D3DXVec4Dot(D3DXVECTOR4* pV1, D3DXVECTOR4* pV2) {
 	debug(D3DX10_DEBUG) {
 		if ((pV1 is null) || (pV2 is null)) return 0.0;
 	}
@@ -403,7 +403,7 @@ D3DXVECTOR4* D3DXVec4Maximize(D3DXVECTOR4* pOut, D3DXVECTOR4* pV1, D3DXVECTOR4* 
 	return pOut;
 }
 
-D3DXVECTOR4* D3DXVec4Scale(D3DXVECTOR4* pOut, D3DXVECTOR4* pV, плав s) {
+D3DXVECTOR4* D3DXVec4Scale(D3DXVECTOR4* pOut, D3DXVECTOR4* pV, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV is null)) return null;
 	}
@@ -414,7 +414,7 @@ D3DXVECTOR4* D3DXVec4Scale(D3DXVECTOR4* pOut, D3DXVECTOR4* pV, плав s) {
 	return pOut;
 }
 
-D3DXVECTOR4* D3DXVec4Lerp(D3DXVECTOR4* pOut, D3DXVECTOR4* pV1, D3DXVECTOR4* pV2, плав s) {
+D3DXVECTOR4* D3DXVec4Lerp(D3DXVECTOR4* pOut, D3DXVECTOR4* pV1, D3DXVECTOR4* pV2, float s) {
 	debug(D3DX10_DEBUG) {
 		if ((pOut is null) || (pV1 is null) || (pV2 is null)) return null;
 	}
@@ -493,21 +493,21 @@ extern(Windows) {
 	D3DXMATRIX* D3DXMatrixReflect(D3DXMATRIX* pOut, D3DXPLANE* pPlane);
 }
 
-плав D3DXQuaternionLength(D3DXQUATERNION *pQ) {
+float D3DXQuaternionLength(D3DXQUATERNION *pQ) {
 	debug(D3DX10_DEBUG) {
 		if (pQ is null) return 0.0f;
 	}
     return sqrtf((pQ.x * pQ.x) + (pQ.y * pQ.y) + (pQ.z * pQ.z) + (pQ.w * pQ.w));
 }
 
-плав D3DXQuaternionLengthSq(D3DXQUATERNION *pQ) {
+float D3DXQuaternionLengthSq(D3DXQUATERNION *pQ) {
 	debug(D3DX10_DEBUG) {
 		if(pQ is null) return 0.0f;
 	}
     return (pQ.x * pQ.x) + (pQ.y * pQ.y) + (pQ.z * pQ.z) + (pQ.w * pQ.w);
 }
 
-плав D3DXQuaternionDot(D3DXQUATERNION *pQ1, D3DXQUATERNION *pQ2) {
+float D3DXQuaternionDot(D3DXQUATERNION *pQ1, D3DXQUATERNION *pQ2) {
 	debug(D3DX10_DEBUG) {
 		if((pQ1 is null) || (pQ2 is null)) return 0.0f;
 	}
@@ -523,7 +523,7 @@ D3DXQUATERNION* D3DXQuaternionIdentity(D3DXQUATERNION *pOut) {
     return pOut;
 }
 
-бул D3DXQuaternionIsIdentity(D3DXQUATERNION *pQ) {
+bool D3DXQuaternionIsIdentity(D3DXQUATERNION *pQ) {
 	debug(D3DX10_DEBUG) {
 		if(pQ is null) return false;
 	}
@@ -542,7 +542,7 @@ D3DXQUATERNION* D3DXQuaternionConjugate(D3DXQUATERNION *pOut, D3DXQUATERNION *pQ
 }
 
 extern(Windows) {
-	проц D3DXQuaternionToAxisAngle(D3DXQUATERNION* pQ, D3DXVECTOR3* pAxis, FLOAT* pAngle);
+	void D3DXQuaternionToAxisAngle(D3DXQUATERNION* pQ, D3DXVECTOR3* pAxis, FLOAT* pAngle);
 	D3DXQUATERNION* D3DXQuaternionRotationMatrix(D3DXQUATERNION* pOut, D3DXMATRIX* pM);
 	D3DXQUATERNION* D3DXQuaternionRotationAxis(D3DXQUATERNION* pOut, D3DXVECTOR3* pV, FLOAT Angle);
 	D3DXQUATERNION* D3DXQuaternionRotationYawPitchRoll(D3DXQUATERNION* pOut, FLOAT Yaw, FLOAT Pitch, FLOAT Roll);
@@ -553,32 +553,32 @@ extern(Windows) {
 	D3DXQUATERNION* D3DXQuaternionExp(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ);
 	D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, FLOAT t);
 	D3DXQUATERNION* D3DXQuaternionSquad(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ1, D3DXQUATERNION* pA, D3DXQUATERNION* pB, D3DXQUATERNION* pC, FLOAT t);
-	проц D3DXQuaternionSquadSetup(D3DXQUATERNION* pAOut, D3DXQUATERNION* pBOut, D3DXQUATERNION* pCOut, D3DXQUATERNION* pQ0, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, D3DXQUATERNION* pQ3);
+	void D3DXQuaternionSquadSetup(D3DXQUATERNION* pAOut, D3DXQUATERNION* pBOut, D3DXQUATERNION* pCOut, D3DXQUATERNION* pQ0, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, D3DXQUATERNION* pQ3);
 	D3DXQUATERNION* D3DXQuaternionBaryCentric(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, D3DXQUATERNION* pQ3, FLOAT f, FLOAT g);
 }
 
-плав D3DXPlaneDot(D3DXPLANE *pP, D3DXVECTOR4 *pV) {
+float D3DXPlaneDot(D3DXPLANE *pP, D3DXVECTOR4 *pV) {
 	debug(D3DX10_DEBUG) {
 		if((pP is null) || (pV is null)) return 0.0f;
 	}
     return (pP.a * pV.x) + (pP.b * pV.y) + (pP.c * pV.z) + (pP.d * pV.w);
 }
 
-плав D3DXPlaneDotCoord(D3DXPLANE *pP, D3DXVECTOR3 *pV) {
+float D3DXPlaneDotCoord(D3DXPLANE *pP, D3DXVECTOR3 *pV) {
 	debug(D3DX10_DEBUG) {
 		if((pP is null) || (pV is null)) return 0.0f;
 	}
     return (pP.a * pV.x) + (pP.b * pV.y) + (pP.c * pV.z) + pP.d;
 }
 
-плав D3DXPlaneDotNormal(D3DXPLANE *pP, D3DXVECTOR3 *pV) {
+float D3DXPlaneDotNormal(D3DXPLANE *pP, D3DXVECTOR3 *pV) {
 	debug(D3DX10_DEBUG) {
 		if((pP is null) || (pV is null)) return 0.0f;
 	}
     return (pP.a * pV.x) + (pP.b * pV.y) + (pP.c * pV.z);
 }
 
-D3DXPLANE* D3DXPlaneScale(D3DXPLANE *pOut, D3DXPLANE *pP, плав s) {
+D3DXPLANE* D3DXPlaneScale(D3DXPLANE *pOut, D3DXPLANE *pP, float s) {
 	debug(D3DX10_DEBUG) {
 		if((pOut is null) || (pP is null)) return null;
 	}
@@ -631,7 +631,7 @@ D3DXCOLOR* D3DXColorSubtract(D3DXCOLOR* pOut, D3DXCOLOR* pC1, D3DXCOLOR* pC2) {
     return pOut;
 }
 
-D3DXCOLOR* D3DXColorScale(D3DXCOLOR* pOut, D3DXCOLOR* pC, плав s) {
+D3DXCOLOR* D3DXColorScale(D3DXCOLOR* pOut, D3DXCOLOR* pC, float s) {
 	debug(D3DX10_DEBUG) {
 		if((pOut is null) || (pC is null)) return null;
 	}
@@ -653,7 +653,7 @@ D3DXCOLOR* D3DXColorModulate(D3DXCOLOR* pOut, D3DXCOLOR* pC1, D3DXCOLOR* pC2) {
     return pOut;
 }
 
-D3DXCOLOR* D3DXColorLerp(D3DXCOLOR* pOut, D3DXCOLOR* pC1, D3DXCOLOR* pC2, плав s) {
+D3DXCOLOR* D3DXColorLerp(D3DXCOLOR* pOut, D3DXCOLOR* pC1, D3DXCOLOR* pC2, float s) {
 	debug(D3DX10_DEBUG) {
 		if((pOut is null) || (pC1 is null) || (pC2 is null)) return null;
 	}
@@ -665,9 +665,9 @@ D3DXCOLOR* D3DXColorLerp(D3DXCOLOR* pOut, D3DXCOLOR* pC1, D3DXCOLOR* pC2, пла
 }
 
 extern(Windows) {
-	D3DXCOLOR* D3DXColorAdjustSaturation(D3DXCOLOR* pOut, D3DXCOLOR* pC, плав s);
-	D3DXCOLOR* D3DXColorAdjustContrast(D3DXCOLOR* pOut, D3DXCOLOR* pC, плав c);
-	FLOAT D3DXFresnelTerm(плав CosTheta, плав RefractionIndex);     
+	D3DXCOLOR* D3DXColorAdjustSaturation(D3DXCOLOR* pOut, D3DXCOLOR* pC, float s);
+	D3DXCOLOR* D3DXColorAdjustContrast(D3DXCOLOR* pOut, D3DXCOLOR* pC, float c);
+	FLOAT D3DXFresnelTerm(float CosTheta, float RefractionIndex);     
 }
 
 extern (C) const win32.basetyps.GUID IID_ID3DXMatrixStack = {0xc7885ba7, 0xf990, 0x4fe7, [0x92, 0x2d, 0x85, 0x15, 0xe4, 0x77, 0xdd, 0x85]};
@@ -680,14 +680,14 @@ interface ID3DXMatrixStack : win32.unknwn.IUnknown {
 	HRESULT LoadMatrix(D3DXMATRIX* pM );
 	HRESULT MultMatrix(D3DXMATRIX* pM );
 	HRESULT MultMatrixLocal(D3DXMATRIX* pM );
-	HRESULT RotateAxis(D3DXVECTOR3* pV, плав Angle);
-	HRESULT RotateAxisLocal(D3DXVECTOR3* pV, плав Angle);
-	HRESULT RotateYawPitchRoll(плав Yaw, плав Pitch, плав Roll);
-	HRESULT RotateYawPitchRollLocal(плав Yaw, плав Pitch, плав Roll);
-	HRESULT Scale(плав x, плав y, плав z);
-	HRESULT ScaleLocal(плав x, плав y, плав z);
-	HRESULT Translate(плав x, плав y, плав z );
-	HRESULT TranslateLocal(плав x, плав y, плав z);
+	HRESULT RotateAxis(D3DXVECTOR3* pV, float Angle);
+	HRESULT RotateAxisLocal(D3DXVECTOR3* pV, float Angle);
+	HRESULT RotateYawPitchRoll(float Yaw, float Pitch, float Roll);
+	HRESULT RotateYawPitchRollLocal(float Yaw, float Pitch, float Roll);
+	HRESULT Scale(float x, float y, float z);
+	HRESULT ScaleLocal(float x, float y, float z);
+	HRESULT Translate(float x, float y, float z );
+	HRESULT TranslateLocal(float x, float y, float z);
 	D3DXMATRIX* GetTop();
 }
 
@@ -697,25 +697,25 @@ const D3DXSH_MINORDER = 2;
 const D3DXSH_MAXORDER = 6;
 
 extern(Windows) {
-	плав* D3DXSHEvalDirection(плав* pOut, UINT Order, D3DXVECTOR3* pDir);
-	плав* D3DXSHRotate(плав* pOut, UINT Order, D3DXMATRIX* pMatrix, плав* pIn);
-	плав* D3DXSHRotateZ(плав* pOut, UINT Order, плав Angle, плав* pIn);
-	плав* D3DXSHAdd(плав* pOut, UINT Order, плав* pA, плав* pB);
-	плав* D3DXSHScale(плав* pOut, UINT Order, плав* pIn, плав Scale);
-	плав D3DXSHDot(UINT Order, плав* pA, плав* pB);
-	плав* D3DXSHMultiply2(плав* pOut, плав* pF, плав* pG);
-	плав* D3DXSHMultiply3(плав* pOut, плав* pF, плав* pG);
-	плав* D3DXSHMultiply4(плав* pOut, плав* pF, плав* pG);
-	плав* D3DXSHMultiply5(плав* pOut, плав* pF, плав* pG);
-	плав* D3DXSHMultiply6(плав* pOut, плав* pF, плав* pG);
-	HRESULT D3DXSHEvalDirectionalLight(UINT Order, D3DXVECTOR3* pDir, плав RIntensity, плав GIntensity, плав BIntensity, плав* pROut, плав* pGOut, плав* pBOut);
-	HRESULT D3DXSHEvalSphericalLight(UINT Order, D3DXVECTOR3* pPos, плав Radius, плав RIntensity, плав GIntensity, плав BIntensity, плав* pROut, плав* pGOut, плав* pBOut);
-	HRESULT D3DXSHEvalConeLight(UINT Order, D3DXVECTOR3* pDir, плав Radius, плав RIntensity, плав GIntensity, плав BIntensity, плав* pROut, плав* pGOut, плав* pBOut);
-	HRESULT D3DXSHEvalHemisphereLight(UINT Order, D3DXVECTOR3* pDir, D3DXCOLOR Top, D3DXCOLOR Bottom, плав* pROut, плав* pGOut, плав* pBOut);
-	BOOL D3DXIntersectTri(D3DXVECTOR3* p0, D3DXVECTOR3* p1, D3DXVECTOR3* p2, D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, плав* pU, плав* pV, плав* pDist);
-	BOOL D3DXSphereBoundProbe(D3DXVECTOR3* pCenter, плав Radius, D3DXVECTOR3* pRayPosition, D3DXVECTOR3* pRayDirection);
+	float* D3DXSHEvalDirection(float* pOut, UINT Order, D3DXVECTOR3* pDir);
+	float* D3DXSHRotate(float* pOut, UINT Order, D3DXMATRIX* pMatrix, float* pIn);
+	float* D3DXSHRotateZ(float* pOut, UINT Order, float Angle, float* pIn);
+	float* D3DXSHAdd(float* pOut, UINT Order, float* pA, float* pB);
+	float* D3DXSHScale(float* pOut, UINT Order, float* pIn, float Scale);
+	float D3DXSHDot(UINT Order, float* pA, float* pB);
+	float* D3DXSHMultiply2(float* pOut, float* pF, float* pG);
+	float* D3DXSHMultiply3(float* pOut, float* pF, float* pG);
+	float* D3DXSHMultiply4(float* pOut, float* pF, float* pG);
+	float* D3DXSHMultiply5(float* pOut, float* pF, float* pG);
+	float* D3DXSHMultiply6(float* pOut, float* pF, float* pG);
+	HRESULT D3DXSHEvalDirectionalLight(UINT Order, D3DXVECTOR3* pDir, float RIntensity, float GIntensity, float BIntensity, float* pROut, float* pGOut, float* pBOut);
+	HRESULT D3DXSHEvalSphericalLight(UINT Order, D3DXVECTOR3* pPos, float Radius, float RIntensity, float GIntensity, float BIntensity, float* pROut, float* pGOut, float* pBOut);
+	HRESULT D3DXSHEvalConeLight(UINT Order, D3DXVECTOR3* pDir, float Radius, float RIntensity, float GIntensity, float BIntensity, float* pROut, float* pGOut, float* pBOut);
+	HRESULT D3DXSHEvalHemisphereLight(UINT Order, D3DXVECTOR3* pDir, D3DXCOLOR Top, D3DXCOLOR Bottom, float* pROut, float* pGOut, float* pBOut);
+	BOOL D3DXIntersectTri(D3DXVECTOR3* p0, D3DXVECTOR3* p1, D3DXVECTOR3* p2, D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, float* pU, float* pV, float* pDist);
+	BOOL D3DXSphereBoundProbe(D3DXVECTOR3* pCenter, float Radius, D3DXVECTOR3* pRayPosition, D3DXVECTOR3* pRayDirection);
 	BOOL D3DXBoxBoundProbe(D3DXVECTOR3* pMin, D3DXVECTOR3* pMax, D3DXVECTOR3* pRayPosition, D3DXVECTOR3* pRayDirection);
-	HRESULT D3DXComputeBoundingSphere(D3DXVECTOR3* pFirstPosition, DWORD NumVertices, DWORD dwStride, D3DXVECTOR3* pCenter, плав* pRadius);
+	HRESULT D3DXComputeBoundingSphere(D3DXVECTOR3* pFirstPosition, DWORD NumVertices, DWORD dwStride, D3DXVECTOR3* pCenter, float* pRadius);
 	HRESULT D3DXComputeBoundingBox(D3DXVECTOR3* pFirstPosition, DWORD NumVertices, DWORD dwStride, D3DXVECTOR3* pMin, D3DXVECTOR3* pMax);
 }
 
@@ -726,4 +726,4 @@ enum D3DX_CPU_OPTIMIZATION {
 	D3DX_SSE_OPTIMIZED
 }
 
-extern(Windows) D3DX_CPU_OPTIMIZATION D3DXCpuOptimizations(бул Enable);
+extern(Windows) D3DX_CPU_OPTIMIZATION D3DXCpuOptimizations(bool Enable);

@@ -17,12 +17,12 @@ private import win32.windef;
 private import win32.basetyps; // for GUID
 
 alias byte SCHAR, SQLSCHAR;
-alias цел SDWORD, SLONG, SQLINTEGER;
-alias крат SWORD, SSHORT, RETCODE, SQLSMALLINT;
+alias int SDWORD, SLONG, SQLINTEGER;
+alias short SWORD, SSHORT, RETCODE, SQLSMALLINT;
 alias ULONG UDWORD;
 alias USHORT UWORD, SQLUSMALLINT;
-alias дво SDOUBLE, LDOUBLE;
-alias плав SFLOAT;
+alias double SDOUBLE, LDOUBLE;
+alias float SFLOAT;
 alias PVOID PTR, HENV, HDBC, HSTMT, SQLPOINTER;
 alias UCHAR SQLCHAR;
 // #ifndef _WIN64
@@ -34,9 +34,9 @@ typedef HANDLE SQLHANDLE;
 alias SQLHANDLE SQLHENV, SQLHDBC, SQLHSTMT, SQLHDESC;
 /*
 } else {
-alias проц* SQLHENV;
-alias проц* SQLHDBC;
-alias проц* SQLHSTMT;
+alias void* SQLHENV;
+alias void* SQLHDBC;
+alias void* SQLHSTMT;
 }
 */
 alias SQLSMALLINT SQLRETURN;
@@ -47,7 +47,7 @@ alias SQLINTEGER SQLLEN, SQLROWOFFSET;
 alias SQLUINTEGER SQLROWCOUNT, SQLULEN;
 alias DWORD SQLTRANSID;
 alias SQLUSMALLINT SQLSETPOSIROW;
-alias шим SQLWCHAR;
+alias wchar SQLWCHAR;
 
 version(Unicode) {
 	alias SQLWCHAR SQLTCHAR;
@@ -55,35 +55,35 @@ version(Unicode) {
 	alias SQLCHAR  SQLTCHAR;
 }
 //static if (ODBCVER >= 0x0300) {
-alias ббайт  SQLDATE, SQLDECIMAL;
-alias дво SQLDOUBLE, SQLFLOAT;
-alias ббайт  SQLNUMERIC;
-alias плав  SQLREAL;
-alias ббайт  SQLTIME, SQLTIMESTAMP, SQLVARCHAR;
-alias дол   ODBCINT64, SQLBIGINT;
-alias бдол  SQLUBIGINT;
+alias ubyte  SQLDATE, SQLDECIMAL;
+alias double SQLDOUBLE, SQLFLOAT;
+alias ubyte  SQLNUMERIC;
+alias float  SQLREAL;
+alias ubyte  SQLTIME, SQLTIMESTAMP, SQLVARCHAR;
+alias long   ODBCINT64, SQLBIGINT;
+alias ulong  SQLUBIGINT;
 //}
 
 struct DATE_STRUCT {
-	SQLSMALLINT год;
-	SQLUSMALLINT месяц;
-	SQLUSMALLINT день;
+	SQLSMALLINT year;
+	SQLUSMALLINT month;
+	SQLUSMALLINT day;
 }
 
 struct TIME_STRUCT {
-	SQLUSMALLINT час;
-	SQLUSMALLINT минута;
-	SQLUSMALLINT секунда;
+	SQLUSMALLINT hour;
+	SQLUSMALLINT minute;
+	SQLUSMALLINT second;
 }
 
 struct TIMESTAMP_STRUCT {
-	SQLSMALLINT год;
-	SQLUSMALLINT месяц;
-	SQLUSMALLINT день;
-	SQLUSMALLINT час;
-	SQLUSMALLINT минута;
-	SQLUSMALLINT секунда;
-	SQLUINTEGER фракция;
+	SQLSMALLINT year;
+	SQLUSMALLINT month;
+	SQLUSMALLINT day;
+	SQLUSMALLINT hour;
+	SQLUSMALLINT minute;
+	SQLUSMALLINT second;
+	SQLUINTEGER fraction;
 }
 
 //static if (ODBCVER >= 0x0300) {
@@ -108,16 +108,16 @@ enum SQLINTERVAL {
 }
 
 struct SQL_YEAR_MONTH_STRUCT {
-	SQLUINTEGER год;
-	SQLUINTEGER месяц;
+	SQLUINTEGER year;
+	SQLUINTEGER month;
 }
 
 struct SQL_DAY_SECOND_STRUCT {
-	SQLUINTEGER день;
-	SQLUINTEGER час;
-	SQLUINTEGER минута;
-	SQLUINTEGER секунда;
-	SQLUINTEGER фракция;
+	SQLUINTEGER day;
+	SQLUINTEGER hour;
+	SQLUINTEGER minute;
+	SQLUINTEGER second;
+	SQLUINTEGER fraction;
 }
 
 struct SQL_INTERVAL_STRUCT {

@@ -31,72 +31,70 @@ const __W32API_MINOR_VERSION = 12;
  *	translation or in MinGW, but this is here ready to start adding them.
  */
 version (WindowsVista) {
-	const бцел
+	const uint
 		_WIN32_WINNT   = 0x600,
-		_WIN32_WINDOWS = бцел.max;
+		_WIN32_WINDOWS = uint.max;
 
 } else version (Windows2003) {
-	const бцел
+	const uint
 		_WIN32_WINNT   = 0x502,
-		_WIN32_WINDOWS = бцел.max;
+		_WIN32_WINDOWS = uint.max;
 
 } else version (WindowsXP) {
-	const бцел
+	const uint
 		_WIN32_WINNT   = 0x501,
-		_WIN32_WINDOWS = бцел.max;
+		_WIN32_WINDOWS = uint.max;
 
 } else {
 	/*	for earlier Windows versions, separate version identifiers into
 	 *	the NT and 9x lines
 	 */
 	version (Windows2000) {
-		const бцел _WIN32_WINNT = 0x500;
+		const uint _WIN32_WINNT = 0x500;
 	} else {
-		const бцел _WIN32_WINNT = 0x400;
-		version = Unicode;
+		const uint _WIN32_WINNT = 0x400;
 	}
 
 	version (WindowsNTonly) {
-		const бцел _WIN32_WINDOWS = бцел.max;
+		const uint _WIN32_WINDOWS = uint.max;
 	} else version (WindowsME) {
-		const бцел _WIN32_WINDOWS = 0x500;
+		const uint _WIN32_WINDOWS = 0x500;
 	} else version (Windows98) {
-		const бцел _WIN32_WINDOWS = 0x410;
+		const uint _WIN32_WINDOWS = 0x410;
 	} else {
-		const бцел _WIN32_WINDOWS = 0x400;
-		version = Unicode;
+		const uint _WIN32_WINDOWS = 0x400;
 	}
 }
 
 // Just a bit of syntactic sugar for the static ifs
-const бцел WINVER = _WIN32_WINDOWS < _WIN32_WINNT ?
+const uint WINVER = _WIN32_WINDOWS < _WIN32_WINNT ?
                     _WIN32_WINDOWS : _WIN32_WINNT;
-const бул _WIN32_WINNT_ONLY = _WIN32_WINDOWS == бцел.max;
+const bool _WIN32_WINNT_ONLY = _WIN32_WINDOWS == uint.max;
 
 version (IE7) {
-	const бцел _WIN32_IE = 0x700;
+	const uint _WIN32_IE = 0x700;
 } else version (IE602) {
-	const бцел _WIN32_IE = 0x603;
+	const uint _WIN32_IE = 0x603;
 } else version (IE601) {
-	const бцел _WIN32_IE = 0x601;
+	const uint _WIN32_IE = 0x601;
 } else version (IE6) {
-	const бцел _WIN32_IE = 0x600;
+	const uint _WIN32_IE = 0x600;
 } else version (IE56) {
-	const бцел _WIN32_IE = 0x560;
+	const uint _WIN32_IE = 0x560;
 } else version (IE501) {
-	const бцел _WIN32_IE = 0x501;
+	const uint _WIN32_IE = 0x501;
 } else version (IE5) {
-	const бцел _WIN32_IE = 0x500;
+	const uint _WIN32_IE = 0x500;
 } else version (IE401) {
-	const бцел _WIN32_IE = 0x401;
+	const uint _WIN32_IE = 0x401;
 } else version (IE4) {
-	const бцел _WIN32_IE = 0x400;
+	const uint _WIN32_IE = 0x400;
 } else version (IE3) {
-	const бцел _WIN32_IE = 0x300;
+	const uint _WIN32_IE = 0x300;
 } else static if (WINVER >= 0x410) {
-	const бцел _WIN32_IE = 0x400;
+	const uint _WIN32_IE = 0x400;
 } else {
-	const бцел _WIN32_IE = 0;
+	const uint _WIN32_IE = 0;
 }
 
 debug (WindowsUnitTest) {

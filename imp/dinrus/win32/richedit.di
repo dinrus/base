@@ -15,9 +15,9 @@ private import win32.wingdi; // for LF_FACESIZE
 align(4):
 
 version(Unicode) {
-	const шим[] RICHEDIT_CLASS = "RichEdit20W";
+	const wchar[] RICHEDIT_CLASS = "RichEdit20W";
 } else {
-	const сим[] RICHEDIT_CLASS  = "RichEdit20A";
+	const char[] RICHEDIT_CLASS  = "RichEdit20A";
 }
 
 const RICHEDIT_CLASS10A = "RICHEDIT";
@@ -55,7 +55,7 @@ const DWORD
 const CFM_EFFECTS = CFM_BOLD | CFM_ITALIC | CFM_UNDERLINE | CFM_COLOR
   | CFM_STRIKEOUT | CFE_PROTECTED | CFM_LINK;
 
-// флаги for EM_SETIMEOPTIONS
+// flags for EM_SETIMEOPTIONS
 const LPARAM
 	IMF_FORCENONE         = 1,
 	IMF_FORCEENABLE       = 2,
@@ -307,7 +307,7 @@ struct CHARFORMATA {
 	COLORREF crTextColor;
 	BYTE bCharSet;
 	BYTE bPitchAndFamily;
-	сим szFaceName[LF_FACESIZE];
+	char szFaceName[LF_FACESIZE];
 }
 struct CHARFORMATW {
 	UINT cbSize = this.sizeof;
@@ -330,7 +330,7 @@ struct CHARFORMAT2A {
 	COLORREF crTextColor;
 	BYTE bCharSet;
 	BYTE bPitchAndFamily;
-	сим szFaceName[LF_FACESIZE];
+	char szFaceName[LF_FACESIZE];
 	WORD wWeight;
 	SHORT sSpacing;
 	COLORREF crBackColor;
@@ -539,14 +539,14 @@ struct PUNCTUATION {
 
 struct GETTEXTEX {
 	DWORD cb;
-	DWORD флаги;
+	DWORD flags;
 	UINT codepage;
 	LPCSTR lpDefaultChar;
 	LPBOOL lpUsedDefaultChar;
 }
 
 extern (Windows) {
-alias LONG function(сим*,LONG,BYTE,INT) EDITWORDBREAKPROCEX;
+alias LONG function(char*,LONG,BYTE,INT) EDITWORDBREAKPROCEX;
 }
 
 /* Defines for EM_SETTYPOGRAPHYOPTIONS */
@@ -562,7 +562,7 @@ const GTL_NUMCHARS = 8;
 const GTL_NUMBYTES = 16;
 
 struct GETTEXTLENGTHEX {
-	DWORD флаги;
+	DWORD flags;
 	UINT codepage;
 }
 

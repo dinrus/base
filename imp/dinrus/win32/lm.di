@@ -45,7 +45,7 @@ version (WindowsVista) {
 
 // FIXME: Everything in these next files seems to be deprecated!
 import win32.lmaudit;
-import win32.lmchdev; // can't найди many docs for functions from this file.
+import win32.lmchdev; // can't find many docs for functions from this file.
 import win32.lmconfig;
 import win32.lmerrlog;
 import win32.lmsvc;

@@ -11,12 +11,12 @@ module win32.tlhelp32;
 
 private import win32.windef;
 
-enum : бцел {
+enum : uint {
 	HF32_DEFAULT = 1,
 	HF32_SHARED
 }
 
-enum : бцел {
+enum : uint {
 	LF32_FIXED    = 0x1,
 	LF32_FREE     = 0x2,
 	LF32_MOVEABLE = 0x4
@@ -24,7 +24,7 @@ enum : бцел {
 
 const MAX_MODULE_NAME32 = 255;
 
-enum : бцел {
+enum : uint {
 	TH32CS_SNAPHEAPLIST = 0x1,
 	TH32CS_SNAPPROCESS  = 0x2,
 	TH32CS_SNAPTHREAD   = 0x4,
@@ -131,8 +131,8 @@ version(Unicode) {
 		BYTE *modBaseAddr;
 		DWORD modBaseSize;
 		HMODULE hModule;
-		сим szModule[MAX_MODULE_NAME32 + 1];
-		сим szExePath[MAX_PATH];
+		char szModule[MAX_MODULE_NAME32 + 1];
+		char szExePath[MAX_PATH];
 	}
 	alias MODULEENTRY32* PMODULEENTRY32;
 	alias MODULEENTRY32* LPMODULEENTRY32;

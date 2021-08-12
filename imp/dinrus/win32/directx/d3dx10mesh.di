@@ -61,7 +61,7 @@ struct D3DX10_INTERSECT_INFO {
 
 interface ID3DX10MeshBuffer : IUnknown {
 	extern(Windows) :
-    HRESULT Map(проц** ppData, SIZE_T* pSize);
+    HRESULT Map(void** ppData, SIZE_T* pSize);
     HRESULT Unmap();
     SIZE_T GetSize();
 }
@@ -73,9 +73,9 @@ interface ID3DX10Mesh : IUnknown {
     UINT GetVertexBufferCount();
     UINT GetFlags();
     HRESULT GetVertexDescription(D3D10_INPUT_ELEMENT_DESC** ppDesc, UINT* pDeclCount);
-    HRESULT SetVertexData(UINT iBuffer, проц* pData);
+    HRESULT SetVertexData(UINT iBuffer, void* pData);
     HRESULT GetVertexBuffer(UINT iBuffer, ID3DX10MeshBuffer** ppVertexBuffer);
-    HRESULT SetIndexData(проц* pData, UINT cIndices);
+    HRESULT SetIndexData(void* pData, UINT cIndices);
     HRESULT GetIndexBuffer(ID3DX10MeshBuffer** ppIndexBuffer);
     HRESULT SetAttributeData(UINT* pData);
     HRESULT GetAttributeBuffer(ID3DX10MeshBuffer** ppAttributeBuffer);
@@ -91,8 +91,8 @@ interface ID3DX10Mesh : IUnknown {
     HRESULT CloneMesh(UINT Flags, LPCSTR pPosSemantic, D3D10_INPUT_ELEMENT_DESC* pDesc, UINT  DeclCount, ID3DX10Mesh** ppCloneMesh);
     HRESULT Optimize(UINT Flags, UINT * pFaceRemap, ID3D10Blob* ppVertexRemap);
     HRESULT GenerateAttributeBufferFromTable();
-	HRESULT Intersect(D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, UINT* pHitCount, UINT* pFaceIndex, плав* pU, плав* pV, плав* pDist, ID3D10Blob* ppAllHits);
-	HRESULT IntersectSubset(UINT AttribId, D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, UINT* pHitCount, UINT* pFaceIndex, плав* pU, плав* pV, плав* pDist, ID3D10Blob* ppAllHits);
+	HRESULT Intersect(D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, UINT* pHitCount, UINT* pFaceIndex, float* pU, float* pV, float* pDist, ID3D10Blob* ppAllHits);
+	HRESULT IntersectSubset(UINT AttribId, D3DXVECTOR3* pRayPos, D3DXVECTOR3* pRayDir, UINT* pHitCount, UINT* pFaceIndex, float* pU, float* pV, float* pDist, ID3D10Blob* ppAllHits);
     HRESULT CommitToDevice();
     HRESULT DrawSubset(UINT AttribId);
     HRESULT DrawSubsetInstanced(UINT AttribId, UINT InstanceCount, UINT StartInstanceLocation);
@@ -137,15 +137,15 @@ interface ID3DX10SkinInfo : IUnknown {
 	HRESULT AddBones(UINT Count);
 	HRESULT RemoveBone(UINT Index);
 	HRESULT RemapBones(UINT NewBoneCount, UINT* pBoneRemap);
-	HRESULT AddBoneInfluences(UINT BoneIndex, UINT InfluenceCount, UINT* pIndices, плав* pWeights);
+	HRESULT AddBoneInfluences(UINT BoneIndex, UINT InfluenceCount, UINT* pIndices, float* pWeights);
 	HRESULT ClearBoneInfluences(UINT BoneIndex);
 	UINT GetBoneInfluenceCount(UINT BoneIndex);
-	HRESULT GetBoneInfluences(UINT BoneIndex, UINT Offset, UINT Count, UINT* pDestIndices, плав* pDestWeights);
+	HRESULT GetBoneInfluences(UINT BoneIndex, UINT Offset, UINT Count, UINT* pDestIndices, float* pDestWeights);
 	HRESULT FindBoneInfluenceIndex(UINT BoneIndex, UINT VertexIndex, UINT* pInfluenceIndex);
-	HRESULT SetBoneInfluence(UINT BoneIndex, UINT InfluenceIndex, плав Weight);
-	HRESULT GetBoneInfluence(UINT BoneIndex, UINT InfluenceIndex, плав* pWeight);
-	HRESULT Compact(UINT MaxPerVertexInfluences, UINT ScaleMode, плав MinWeight);
-	HRESULT DoSoftwareSkinning(UINT StartVertex, UINT VertexCount, проц* pSrcVertices, UINT SrcStride, проц* pDestVertices, UINT DestStride, D3DXMATRIX* pBoneMatrices, D3DXMATRIX* pInverseTransposeBoneMatrices, D3DX10_SKINNING_CHANNEL* pChannelDescs, UINT NumChannels);
+	HRESULT SetBoneInfluence(UINT BoneIndex, UINT InfluenceIndex, float Weight);
+	HRESULT GetBoneInfluence(UINT BoneIndex, UINT InfluenceIndex, float* pWeight);
+	HRESULT Compact(UINT MaxPerVertexInfluences, UINT ScaleMode, float MinWeight);
+	HRESULT DoSoftwareSkinning(UINT StartVertex, UINT VertexCount, void* pSrcVertices, UINT SrcStride, void* pDestVertices, UINT DestStride, D3DXMATRIX* pBoneMatrices, D3DXMATRIX* pInverseTransposeBoneMatrices, D3DX10_SKINNING_CHANNEL* pChannelDescs, UINT NumChannels);
 }
 
 HRESULT D3DX10CreateSkinInfo(ID3DX10SkinInfo* ppSkinInfo);

@@ -74,17 +74,17 @@ enum MSHLFLAGS {
 }
 
 struct FLAGGED_WORD_BLOB {
-	бцел fFlags;
-	бцел clSize;
-	бкрат asData[1];
+	uint fFlags;
+	uint clSize;
+	ushort asData[1];
 }
 
 //alias WCHAR OLECHAR;
 //alias LPWSTR LPOLESTR;
 //alias LPCWSTR LPCOLESTR;
 
-alias бкрат VARTYPE;
-alias крат VARIANT_BOOL;
+alias ushort VARTYPE;
+alias short VARIANT_BOOL;
 alias VARIANT_BOOL _VARIANT_BOOL;
 const VARIANT_BOOL VARIANT_TRUE = -1; // 0xffff;
 const VARIANT_BOOL VARIANT_FALSE = 0;
@@ -97,13 +97,13 @@ alias HANDLE HCONTEXT, HMETAFILEPICT;
 
 union CY {
 	struct {
-		бцел Lo;
-		цел Hi;
+		uint Lo;
+		int Hi;
 	}
 	LONGLONG int64;
 }
 
-alias дво DATE;
+alias double DATE;
 struct  BSTRBLOB {
 	ULONG cbSize;
 	PBYTE pData;
@@ -114,7 +114,7 @@ alias BSTRBLOB* LPBSTRBLOB;
 // According to the 2003 SDK, this should be in propidl.h, not here.
 struct CLIPDATA {
 	ULONG cbSize;
-	цел ulClipFmt;
+	int ulClipFmt;
 	PBYTE pClipData;
 }
 
@@ -186,35 +186,35 @@ enum VARENUM {
 };
 
 struct BYTE_SIZEDARR {
-	бцел clSize;
+	uint clSize;
 	byte* pData;
 }
 
 struct WORD_SIZEDARR {
-	бцел clSize;
-	бкрат* pData;
+	uint clSize;
+	ushort* pData;
 }
 
 struct DWORD_SIZEDARR {
-бцел clSize;
-бцел* pData;
+uint clSize;
+uint* pData;
 }
 
 struct HYPER_SIZEDARR {
-	бцел clSize;
+	uint clSize;
 	hyper* pData;
 }
 
-alias дво DOUBLE;
+alias double DOUBLE;
 
 
 struct DECIMAL {
 	USHORT wReserved;
 	union {
 		struct {
-			ббайт scale; // valid значения are 0 to 28
-			ббайт sign; // 0 for positive, DECIMAL_NEG for negatives.
-			const ббайт DECIMAL_NEG = 0x80;
+			ubyte scale; // valid values are 0 to 28
+			ubyte sign; // 0 for positive, DECIMAL_NEG for negatives.
+			const ubyte DECIMAL_NEG = 0x80;
 		}
 		USHORT signscale;
 	}
@@ -227,5 +227,5 @@ struct DECIMAL {
 		ULONGLONG Lo64;
 	}
 	// #define DECIMAL_SETZERO(d) {(d).Lo64=(d).Hi32=(d).signscale=0;}
-	проц setZero() { Lo64 = 0; Hi32 = 0; signscale = 0; }
+	void setZero() { Lo64 = 0; Hi32 = 0; signscale = 0; }
 }

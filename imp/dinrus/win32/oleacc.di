@@ -159,7 +159,7 @@ const SELFLAG_VALID = 0x0000001F;
 
 interface IAccessible : public IDispatch {
 	HRESULT get_accParent(IDispatch**);
-	HRESULT get_accChildCount(цел*);
+	HRESULT get_accChildCount(int*);
 	HRESULT get_accChild(VARIANT, IDispatch **);
 	HRESULT get_accName(VARIANT, BSTR*);
 	HRESULT get_accValue(VARIANT, BSTR*);
@@ -167,16 +167,16 @@ interface IAccessible : public IDispatch {
 	HRESULT get_accRole(VARIANT, VARIANT*);
 	HRESULT get_accState(VARIANT, VARIANT*);
 	HRESULT get_accHelp(VARIANT, BSTR*);
-	HRESULT get_accHelpTopic(BSTR*, VARIANT, цел*);
+	HRESULT get_accHelpTopic(BSTR*, VARIANT, int*);
 	HRESULT get_accKeyboardShortcut(VARIANT, BSTR*);
 	HRESULT get_accFocus(VARIANT*);
 	HRESULT get_accSelection(VARIANT*);
 	HRESULT get_accDefaultAction(VARIANT, BSTR*);
 
-	HRESULT accSelect(цел, VARIANT);
-	HRESULT accLocation(цел*, цел*, цел*, цел*, VARIANT);
-	HRESULT accNavigate(цел, VARIANT, VARIANT*);
-	HRESULT accHitTest(цел, цел, VARIANT*);
+	HRESULT accSelect(int, VARIANT);
+	HRESULT accLocation(int*, int*, int*, int*, VARIANT);
+	HRESULT accNavigate(int, VARIANT, VARIANT*);
+	HRESULT accHitTest(int, int, VARIANT*);
 	HRESULT accDoDefaultAction(VARIANT);
 
 	HRESULT put_accName(VARIANT, BSTR);
@@ -189,18 +189,18 @@ extern (Windows) {
 	HRESULT AccessibleChildren(IAccessible*, LONG, LONG, VARIANT*, LONG*);
 	HRESULT AccessibleObjectFromEvent(HWND, DWORD, DWORD, IAccessible*, VARIANT*);
 	HRESULT AccessibleObjectFromPoint(POINT, IAccessible**, VARIANT*);
-	HRESULT AccessibleObjectFromWindow(HWND, DWORD, REFIID, проц**);
-	HRESULT CreateStdAccessibleObject(HWND, LONG, REFIID, проц**);
-	HRESULT CreateStdAccessibleProxyA(HWND, LPCSTR, LONG, REFIID, проц**);
-	HRESULT CreateStdAccessibleProxyW(HWND, LPCWSTR, LONG, REFIID, проц**);
+	HRESULT AccessibleObjectFromWindow(HWND, DWORD, REFIID, void**);
+	HRESULT CreateStdAccessibleObject(HWND, LONG, REFIID, void**);
+	HRESULT CreateStdAccessibleProxyA(HWND, LPCSTR, LONG, REFIID, void**);
+	HRESULT CreateStdAccessibleProxyW(HWND, LPCWSTR, LONG, REFIID, void**);
 
-	проц GetOleaccVersionInfo(DWORD*, DWORD*);
+	void GetOleaccVersionInfo(DWORD*, DWORD*);
 	UINT GetRoleTextA(DWORD, LPSTR, UINT);
 	UINT GetRoleTextW(DWORD, LPWSTR, UINT);
 	UINT GetStateTextA(DWORD, LPSTR, UINT);
 	UINT GetStateTextW(DWORD, LPWSTR, UINT);
 	LRESULT LresultFromObject(REFIID, WPARAM, LPUNKNOWN);
-	HRESULT ObjectFromLresult(LRESULT, REFIID, WPARAM, проц**);
+	HRESULT ObjectFromLresult(LRESULT, REFIID, WPARAM, void**);
 	HRESULT WindowFromAccessibleObject(IAccessible*, HWND*);
 }
 

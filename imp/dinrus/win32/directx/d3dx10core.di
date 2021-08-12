@@ -61,10 +61,10 @@ extern(C) const GUID IID_ID3DX10Sprite = {0xba0b762d, 0x8d28, 0x43ec, [0xb9, 0xd
 
 interface ID3DX10Sprite : IUnknown {
 	extern(Windows) :
-	HRESULT Begin(UINT флаги);
+	HRESULT Begin(UINT flags);
 	HRESULT DrawSpritesBuffered(D3DX10_SPRITE* pSprites, UINT cSprites);
 	HRESULT Flush();
-	HRESULT DrawSpritesImmediate(D3DX10_SPRITE* pSprites, UINT cSprites, UINT cbSprite, UINT флаги);
+	HRESULT DrawSpritesImmediate(D3DX10_SPRITE* pSprites, UINT cSprites, UINT cbSprite, UINT flags);
 	HRESULT End();
 	HRESULT GetViewTransform(D3DXMATRIX* pViewTransform);
 	HRESULT SetViewTransform(D3DXMATRIX* pViewTransform);
@@ -79,7 +79,7 @@ interface ID3DX10DataLoader {
 /* TODO: fix vtbl[0] bug
 	extern(Windows) :
 	HRESULT Load();
-	HRESULT Decompress(проц** ppData, SIZE_T* pcBytes);
+	HRESULT Decompress(void** ppData, SIZE_T* pcBytes);
 	HRESULT Destroy();
 	*/
 }
@@ -87,8 +87,8 @@ interface ID3DX10DataLoader {
 interface ID3DX10DataProcessor {
 /* TODO: fix vtbl[0] bug
 	extern(Windows) :
-	HRESULT Process(проц* pData, SIZE_T cBytes);
-	HRESULT CreateDeviceObject(проц** ppDataObject);
+	HRESULT Process(void* pData, SIZE_T cBytes);
+	HRESULT CreateDeviceObject(void** ppDataObject);
 	HRESULT Destroy();
 	*/
 }
@@ -97,7 +97,7 @@ extern(C) const GUID IID_ID3DX10ThreadPump = {0xc93fecfa, 0x6967, 0x478a, [0xab,
 
 interface ID3DX10ThreadPump : IUnknown {
 	extern(Windows) :
-	HRESULT AddWorkItem(ID3DX10DataLoader pDataLoader, ID3DX10DataProcessor pDataProcessor, HRESULT *pHResult, проц **ppDeviceObject);
+	HRESULT AddWorkItem(ID3DX10DataLoader pDataLoader, ID3DX10DataProcessor pDataProcessor, HRESULT *pHResult, void **ppDeviceObject);
 	UINT GetWorkItemCount();
 	HRESULT WaitForAllItems();
 	HRESULT ProcessDeviceWorkItems(UINT iWorkItemCount);
@@ -194,8 +194,8 @@ version(Unicode) {
 
 extern(Windows) {
 	HRESULT D3DX10UnsetAllDeviceObjects(ID3D10Device pDevice);
-//TODO 	HRESULT D3DX10ReflectShader(проц *pShaderBytecode, SIZE_T BytecodeLength, ID3D10ShaderReflection1 *ppReflector);
-	HRESULT D3DX10DisassembleShader(проц *pShader, SIZE_T BytecodeLength, BOOL EnableColorCode,
+//TODO 	HRESULT D3DX10ReflectShader(void *pShaderBytecode, SIZE_T BytecodeLength, ID3D10ShaderReflection1 *ppReflector);
+	HRESULT D3DX10DisassembleShader(void *pShader, SIZE_T BytecodeLength, BOOL EnableColorCode,
 		LPCSTR pComments, ID3D10Blob* ppDisassembly);
 	HRESULT D3DX10DisassembleEffect(ID3D10Effect pEffect, BOOL EnableColorCode, ID3D10Blob* ppDisassembly);
 }
@@ -210,10 +210,5 @@ HRESULT MAKE_D3DSTATUS(T)(T code) {
 	return MAKE_HRESULT(0, _FACD3D, code);
 }
 
-const HRESULT
-D3DERR_INVALIDCALL, 
-D3DERR_WASSTILLDRAWING;
-static this(){
-D3DERR_INVALIDCALL = MAKE_D3DHRESULT(2156);
-D3DERR_WASSTILLDRAWING = MAKE_D3DHRESULT(540);
-}
+const D3DERR_INVALIDCALL = MAKE_D3DHRESULT(2156);
+const D3DERR_WASSTILLDRAWING = MAKE_D3DHRESULT(540);

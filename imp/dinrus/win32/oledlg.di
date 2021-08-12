@@ -13,7 +13,7 @@ import win32.commdlg, win32.dlgs, win32.ole2, win32.prsht, win32.shellapi,
   win32.windows;
 private import win32.winbase, win32.objidl, win32.objfwd, win32.winnt;
 
-// FIXME: удали inherited methods from interface definitions
+// FIXME: remove inherited methods from interface definitions
 
 const PS_MAXLINKTYPES=8;
 
@@ -434,12 +434,12 @@ struct OLEUIPASTESPECIALW {
 	HRSRC hResource;
 	LPDATAOBJECT lpSrcDataObj;
 	LPOLEUIPASTEENTRYW arrPasteEntries;
-	цел cPasteEntries;
+	int cPasteEntries;
 	UINT *arrLinkTypes;
-	цел cLinkTypes;
+	int cLinkTypes;
 	UINT cClsidExclude;
 	LPCLSID lpClsidExclude;
-	цел nSelectedIndex;
+	int nSelectedIndex;
 	BOOL fLink;
 	HGLOBAL hMetaPict;
 	SIZEL sizel;
@@ -458,12 +458,12 @@ struct OLEUIPASTESPECIALA {
 	HRSRC hResource;
 	LPDATAOBJECT lpSrcDataObj;
 	LPOLEUIPASTEENTRYA arrPasteEntries;
-	цел cPasteEntries;
+	int cPasteEntries;
 	UINT* arrLinkTypes;
-	цел cLinkTypes;
+	int cLinkTypes;
 	UINT cClsidExclude;
 	LPCLSID lpClsidExclude;
-	цел nSelectedIndex;
+	int nSelectedIndex;
 	BOOL fLink;
 	HGLOBAL hMetaPict;
 	SIZEL sizel;
@@ -543,7 +543,7 @@ struct OLEUICHANGEICONW {
 	HGLOBAL hMetaPict;
 	CLSID clsid;
 	WCHAR szIconExe[MAX_PATH];
-	цел cchIconExe;
+	int cchIconExe;
 }
 alias OLEUICHANGEICONW* POLEUICHANGEICONW, LPOLEUICHANGEICONW;
 
@@ -560,7 +560,7 @@ struct OLEUICHANGEICONA {
 	HGLOBAL hMetaPict;
 	CLSID clsid;
 	CHAR szIconExe[MAX_PATH];
-	цел cchIconExe;
+	int cchIconExe;
 }
 alias OLEUICHANGEICONA* POLEUICHANGEICONA, LPOLEUICHANGEICONA;
 
@@ -696,8 +696,8 @@ interface IOleUIObjInfoW : public IUnknown
 	HRESULT GetObjectInfo(DWORD, PDWORD, LPWSTR*, LPWSTR*, LPWSTR*, LPWSTR*);
 	HRESULT GetConvertInfo(DWORD, CLSID*, PWORD, CLSID*, LPCLSID*, UINT*);
 	HRESULT ConvertObject(DWORD, REFCLSID);
-	HRESULT GetViewInfo(DWORD, HGLOBAL*, PDWORD, цел*);
-	HRESULT SetViewInfo(DWORD, HGLOBAL, DWORD, цел, BOOL);
+	HRESULT GetViewInfo(DWORD, HGLOBAL*, PDWORD, int*);
+	HRESULT SetViewInfo(DWORD, HGLOBAL, DWORD, int, BOOL);
 }
 alias IOleUIObjInfoW *LPOLEUIOBJINFOW;
 
@@ -709,8 +709,8 @@ interface IOleUIObjInfoA : public IUnknown
 	HRESULT GetObjectInfo(DWORD, PDWORD, LPSTR*, LPSTR*, LPSTR*, LPSTR*);
 	HRESULT GetConvertInfo(DWORD, CLSID*, PWORD, CLSID*, LPCLSID*, UINT*);
 	HRESULT ConvertObject(DWORD, REFCLSID);
-	HRESULT GetViewInfo(DWORD, HGLOBAL*, PDWORD, цел*);
-	HRESULT SetViewInfo(DWORD, HGLOBAL, DWORD, цел, BOOL);
+	HRESULT GetViewInfo(DWORD, HGLOBAL*, PDWORD, int*);
+	HRESULT SetViewInfo(DWORD, HGLOBAL, DWORD, int, BOOL);
 }
 alias IOleUIObjInfoA *LPOLEUIOBJINFOA;
 
@@ -778,8 +778,8 @@ struct OLEUIVIEWPROPSW {
 	LPARAM lCustData;
 	DWORD dwReserved2[3];
 	OLEUIOBJECTPROPSW* lpOP;
-	цел nScaleMin;
-	цел nScaleMax;
+	int nScaleMin;
+	int nScaleMax;
 }
 alias OLEUIVIEWPROPSW* POLEUIVIEWPROPSW, LPOLEUIVIEWPROPSW;
 
@@ -791,8 +791,8 @@ struct OLEUIVIEWPROPSA {
 	LPARAM lCustData;
 	DWORD dwReserved2[3];
 	OLEUIOBJECTPROPSA *lpOP;
-	цел nScaleMin;
-	цел nScaleMax;
+	int nScaleMin;
+	int nScaleMax;
 }
 alias OLEUIVIEWPROPSA* POLEUIVIEWPROPSA, LPOLEUIVIEWPROPSA;
 
@@ -864,13 +864,13 @@ extern (Windows) {
 	UINT OleUIObjectPropertiesA(LPOLEUIOBJECTPROPSA);
 	UINT OleUIPasteSpecialW(LPOLEUIPASTESPECIALW);
 	UINT OleUIPasteSpecialA(LPOLEUIPASTESPECIALA);
-	BOOL OleUIUpdateLinksW(LPOLEUILINKCONTAINERW, HWND, LPWSTR, цел);
-	BOOL OleUIUpdateLinksA(LPOLEUILINKCONTAINERA, HWND, LPSTR, цел);
+	BOOL OleUIUpdateLinksW(LPOLEUILINKCONTAINERW, HWND, LPWSTR, int);
+	BOOL OleUIUpdateLinksA(LPOLEUILINKCONTAINERA, HWND, LPSTR, int);
 }
 
 extern (C) {
-	цел OleUIPromptUserW(цел, HWND, ...);
-	цел OleUIPromptUserA(цел, HWND, ...);
+	int OleUIPromptUserW(int, HWND, ...);
+	int OleUIPromptUserA(int, HWND, ...);
 }
 
 version(Unicode) {

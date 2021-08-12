@@ -11,7 +11,7 @@ module win32.rpcnterr;
 
 import win32.winerror;
 
-enum : бцел {
+enum : uint {
 	RPC_S_OK                     = ERROR_SUCCESS,
 	RPC_S_INVALID_ARG            = ERROR_INVALID_PARAMETER,
 	RPC_S_OUT_OF_MEMORY          = ERROR_OUTOFMEMORY,

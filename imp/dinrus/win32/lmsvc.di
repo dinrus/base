@@ -149,8 +149,8 @@ extern (Windows) {
 		  PBYTE*);
 	}
 }
-//MACRO #define SERVICE_IP_CODE(t, n) ((дол)SERVICE_IP_QUERY_HINT|(дол)(n|(t<<SERVICE_IP_WAITTIME_ШИФТ)))
-//MACRO #define SERVICE_CCP_CODE(t, n) ((дол)SERVICE_CCP_QUERY_HINT|(дол)(n|(t<<SERVICE_IP_WAITTIME_ШИФТ)))
-//MACRO #define SERVICE_UIC_CODE(c, m) ((дол)(((дол)c<<16)|(дол)(USHORT)m))
-//MACRO #define SERVICE_NT_CCP_CODE(t, n) (((дол)SERVICE_CCP_QUERY_HINT)|((дол)(n))|(((t)&LOWER_HINT_MASK)<<SERVICE_IP_WAITTIME_ШИФТ)|(((t)&UPPER_HINT_MASK)<<SERVICE_NTIP_WAITTIME_ШИФТ))
+//MACRO #define SERVICE_IP_CODE(t, n) ((long)SERVICE_IP_QUERY_HINT|(long)(n|(t<<SERVICE_IP_WAITTIME_ШИФТ)))
+//MACRO #define SERVICE_CCP_CODE(t, n) ((long)SERVICE_CCP_QUERY_HINT|(long)(n|(t<<SERVICE_IP_WAITTIME_ШИФТ)))
+//MACRO #define SERVICE_UIC_CODE(c, m) ((long)(((long)c<<16)|(long)(USHORT)m))
+//MACRO #define SERVICE_NT_CCP_CODE(t, n) (((long)SERVICE_CCP_QUERY_HINT)|((long)(n))|(((t)&LOWER_HINT_MASK)<<SERVICE_IP_WAITTIME_ШИФТ)|(((t)&UPPER_HINT_MASK)<<SERVICE_NTIP_WAITTIME_ШИФТ))
 //MACRO #define SERVICE_NT_WAIT_GET(c) ((((c)&UPPER_GET_HINT_MASK)>>SERVICE_NTIP_WAITTIME_ШИФТ)|(((c)&LOWER_GET_HINT_MASK)>>SERVICE_IP_WAITTIME_ШИФТ))

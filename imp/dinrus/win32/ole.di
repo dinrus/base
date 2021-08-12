@@ -159,7 +159,7 @@ alias LONG LHSERVER, LHCLIENTDOC, LHSERVERDOC;
 
 struct OLEOBJECTVTBL {
 	extern (Windows) {
-		проц* function(LPOLEOBJECT, OLE_LPCSTR) QueryProtocol;
+		void* function(LPOLEOBJECT, OLE_LPCSTR) QueryProtocol;
 		OLESTATUS function(LPOLEOBJECT) Release;
 		OLESTATUS function(LPOLEOBJECT, BOOL) Show;
 		OLESTATUS function(LPOLEOBJECT, UINT, BOOL, BOOL) DoVerb;
@@ -216,7 +216,7 @@ alias OLEOBJECT* LPOLEOBJECT;
 //#endif
 
 struct OLECLIENTVTBL {
-	цел function(LPOLECLIENT, OLE_NOTIFICATION, LPOLEOBJECT) CallBack;
+	int function(LPOLECLIENT, OLE_NOTIFICATION, LPOLEOBJECT) CallBack;
 }
 alias OLECLIENTVTBL* LPOLECLIENTVTBL;
 
@@ -226,8 +226,8 @@ struct OLECLIENT {
 alias OLECLIENT* LPOLECLIENT;
 
 struct OLESTREAMVTBL {
-	DWORD function(LPOLESTREAM, проц*, DWORD) Get;
-	DWORD function(LPOLESTREAM, проц*, DWORD) Put;
+	DWORD function(LPOLESTREAM, void*, DWORD) Get;
+	DWORD function(LPOLESTREAM, void*, DWORD) Put;
 }
 alias OLESTREAMVTBL* LPOLESTREAMVTBL;
 
@@ -300,7 +300,7 @@ extern (Windows) {
 	OLESTATUS OleReconnect(LPOLEOBJECT);
 	OLESTATUS OleGetLinkUpdateOptions(LPOLEOBJECT, OLEOPT_UPDATE*);
 	OLESTATUS OleSetLinkUpdateOptions(LPOLEOBJECT, OLEOPT_UPDATE);
-	проц* OleQueryProtocol(LPOLEOBJECT, LPCSTR);
+	void* OleQueryProtocol(LPOLEOBJECT, LPCSTR);
 	OLESTATUS OleQueryReleaseStatus(LPOLEOBJECT);
 	OLESTATUS OleQueryReleaseError(LPOLEOBJECT);
 	OLE_RELEASE_METHOD OleQueryReleaseMethod(LPOLEOBJECT);

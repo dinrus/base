@@ -48,7 +48,7 @@ enum : UINT {
 	CDM_SETDEFEXT    // = CDM_FIRST + 6
 }
 
-// флаги for ChooseColor
+// flags for ChooseColor
 enum : DWORD {
 	CC_RGBINIT              = 0x0001,
 	CC_FULLOPEN             = 0x0002,
@@ -61,7 +61,7 @@ enum : DWORD {
 	CC_ANYCOLOR             = 0x0100
 }
 
-// флаги for ChooseFont
+// flags for ChooseFont
 enum : DWORD {
 	CF_SCREENFONTS          = 0x00000001,
 	CF_PRINTERFONTS         = 0x00000002,
@@ -93,7 +93,7 @@ enum : DWORD {
 	CF_NOVERTFONTS          = 0x01000000
 }
 
-// Font тип for ChooseFont
+// Font type for ChooseFont
 enum : WORD {
 	BOLD_FONTTYPE      = 0x0100,
 	ITALIC_FONTTYPE    = 0x0200,
@@ -109,7 +109,7 @@ enum : UINT {
 	WM_CHOOSEFONT_SETFLAGS   = WM_USER + 102
 }
 
-// флаги for OpenFileName
+// flags for OpenFileName
 enum : DWORD {
 	OFN_SHAREWARN            = 0,
 	OFN_SHARENOWARN          = 0x000001,
@@ -237,7 +237,7 @@ enum : UINT {
 	WM_PSD_YAFULLPAGERECT // = WM_USER + 6
 }
 
-enum : цел {
+enum : int {
 	CD_LBSELNOITEMS = -1,
 	CD_LBSELCHANGE,
 	CD_LBSELSUB,
@@ -251,31 +251,31 @@ const WORD DN_DEFAULTPRN = 1;
 // the controls. These seem to be totally unnecessary -- and at least one of MinGW or
 // Windows Docs is buggy!
 
-цел CommDlg_OpenSave_GetSpec(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
+int CommDlg_OpenSave_GetSpec(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_GETSPEC, wParam, lParam);
 }
 
-цел CommDlg_OpenSave_GetFilePath(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
+int CommDlg_OpenSave_GetFilePath(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_GETFILEPATH, wParam, lParam);
 }
 
-цел CommDlg_OpenSave_GetFolderPath(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
+int CommDlg_OpenSave_GetFolderPath(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_GETFOLDERPATH, wParam, lParam);
 }
 
-цел CommDlg_OpenSave_GetFolderIDList(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
+int CommDlg_OpenSave_GetFolderIDList(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_GETFOLDERIDLIST, wParam, lParam);
 }
 
-проц CommDlg_OpenSave_SetControlText(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
+void CommDlg_OpenSave_SetControlText(HWND hWndControl, LPARAM lparam, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_SETCONTROLTEXT, wParam, lParam);
 }
 
-проц CommDlg_OpenSave_HideControl(HWND hWndControl, WPARAM wParam) {
+void CommDlg_OpenSave_HideControl(HWND hWndControl, WPARAM wParam) {
 	return SendMessage(hWndControl, CDM_HIDECONTROL, wParam, 0);
 }
 
-проц CommDlg_OpenSave_SetDefExt(HWND hWndControl, TCHAR* lparam) {
+void CommDlg_OpenSave_SetDefExt(HWND hWndControl, TCHAR* lparam) {
 	return SendMessage(hWndControl, CDM_SETCONTROLTEXT, 0, cast(LPARAM)lParam);
 }
 
@@ -617,8 +617,8 @@ extern (Windows) {
 	DWORD CommDlgExtendedError();
 	HWND FindTextA(LPFINDREPLACEA);
 	HWND FindTextW(LPFINDREPLACEW);
-	крат GetFileTitleA(LPCSTR, LPSTR, WORD);
-	крат GetFileTitleW(LPCWSTR, LPWSTR, WORD);
+	short GetFileTitleA(LPCSTR, LPSTR, WORD);
+	short GetFileTitleW(LPCWSTR, LPWSTR, WORD);
 	BOOL GetOpenFileNameA(LPOPENFILENAMEA);
 	BOOL GetOpenFileNameW(LPOPENFILENAMEW);
 	BOOL GetSaveFileNameA(LPOPENFILENAMEA);

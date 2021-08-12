@@ -26,7 +26,7 @@ private import win32.windef; // for HMONITOR
 
 // FIXME: clean up Windows version support
 
-template MAKEINTATOM_T(цел i) {
+template MAKEINTATOM_T(int i) {
 	const LPTSTR MAKEINTATOM_T = cast(LPTSTR) i;
 }
 
@@ -950,7 +950,7 @@ const CTLCOLOR_STATIC=6;
 const CTLCOLOR_MAX=7;
 
 // For GetSystemMetrics()
-enum : цел {
+enum : int {
 	SM_CXSCREEN = 0,
 	SM_CYSCREEN,
 	SM_CXVSCROLL,
@@ -1027,7 +1027,7 @@ enum : цел {
 	SM_CYMENUCHECK,
 	SM_SLOWMACHINE,
 	SM_MIDEASTENABLED,
-	// The next значения aren't supported in Win95.
+	// The next values aren't supported in Win95.
 	SM_MOUSEWHEELPRESENT,
 	SM_XVIRTUALSCREEN,
 	SM_YVIRTUALSCREEN,
@@ -1478,14 +1478,14 @@ static if (_WIN32_WINNT >= 0x500) {
 		WM_QUERYUISTATE		=	0x0129
 	}
 
-	// LOWORD(wParam) значения in WM_*UISTATE*
+	// LOWORD(wParam) values in WM_*UISTATE*
 	enum {
 		UIS_SET			=	1,
 		UIS_CLEAR		=	2,
 		UIS_INITIALIZE	=	3
 	}
 
-	// HIWORD(wParam) значения in WM_*UISTATE*
+	// HIWORD(wParam) values in WM_*UISTATE*
 	enum {
 		UISF_HIDEFOCUS	=	0x1,
 		UISF_HIDEACCEL	=	0x2
@@ -1495,7 +1495,7 @@ static if (_WIN32_WINNT >= 0x500) {
 
 static if (_WIN32_WINNT >= 0x501) {
 
-	// HIWORD(wParam) значения in WM_*UISTATE*
+	// HIWORD(wParam) values in WM_*UISTATE*
 	enum {
 		UISF_ACTIVE		=	0x4
 	}
@@ -1625,7 +1625,7 @@ SHORT GET_WHEEL_DELTA_WPARAM(WPARAM wparam)
 return cast(SHORT) HIWORD(wparam);
 }
 
-const WHEEL_PAGESCROLL = бцел.max;
+const WHEEL_PAGESCROLL = uint.max;
 }
 const BM_CLICK=245;
 const BM_GETCHECK=240;
@@ -2572,27 +2572,27 @@ const RIDEV_APPKEYS      = 0x00000400;
 // ---------
 extern (Windows) {
 	alias BOOL function (HWND, UINT, WPARAM, LPARAM)    DLGPROC;
-	alias проц function (HWND, UINT, UINT, DWORD)       TIMERPROC;
-	alias BOOL function (HDC, LPARAM, цел)              GRAYSTRINGPROC;
-	alias LRESULT function (цел, WPARAM, LPARAM)        HOOKPROC;
+	alias void function (HWND, UINT, UINT, DWORD)       TIMERPROC;
+	alias BOOL function (HDC, LPARAM, int)              GRAYSTRINGPROC;
+	alias LRESULT function (int, WPARAM, LPARAM)        HOOKPROC;
 	alias BOOL function (HWND, LPCSTR, HANDLE)          PROPENUMPROCA;
 	alias BOOL function (HWND, LPCWSTR, HANDLE)         PROPENUMPROCW;
 	alias BOOL function (HWND, LPSTR, HANDLE, DWORD)    PROPENUMPROCEXA;
 	alias BOOL function (HWND, LPWSTR, HANDLE, DWORD)   PROPENUMPROCEXW;
-	alias цел function (LPSTR, цел, цел, цел)           EDITWORDBREAKPROCA;
-	alias цел function (LPWSTR, цел, цел, цел)          EDITWORDBREAKPROCW;
+	alias int function (LPSTR, int, int, int)           EDITWORDBREAKPROCA;
+	alias int function (LPWSTR, int, int, int)          EDITWORDBREAKPROCW;
 	alias LRESULT function (HWND, UINT, WPARAM, LPARAM) WNDPROC;
-	alias BOOL function (HDC, LPARAM, WPARAM, цел, цел) DRAWSTATEPROC;
+	alias BOOL function (HDC, LPARAM, WPARAM, int, int) DRAWSTATEPROC;
 	alias BOOL function (HWND, LPARAM)                  WNDENUMPROC;
 	alias BOOL function (HWND, LPARAM)                  ENUMWINDOWSPROC;
-	alias проц function (LPHELPINFO)                    MSGBOXCALLBACK;
+	alias void function (LPHELPINFO)                    MSGBOXCALLBACK;
 
 	static if (WINVER >= 0x410) {
 		alias BOOL function (HMONITOR, HDC, LPRECT, LPARAM) MONITORENUMPROC;
 	}
 	alias BOOL function (LPSTR, LPARAM)                 NAMEENUMPROCA;
 	alias BOOL function (LPWSTR, LPARAM)                NAMEENUMPROCW;
-	alias проц function (HWND, UINT, DWORD, LRESULT)    SENDASYNCPROC;
+	alias void function (HWND, UINT, DWORD, LRESULT)    SENDASYNCPROC;
 
 	alias NAMEENUMPROCA DESKTOPENUMPROCA;
 	alias NAMEENUMPROCW DESKTOPENUMPROCW;
@@ -2620,7 +2620,7 @@ alias ACCESSTIMEOUT* LPACCESSTIMEOUT;
 
 struct ANIMATIONINFO {
 	UINT cbSize = ANIMATIONINFO.sizeof;
-	цел  iMinAnimate;
+	int  iMinAnimate;
 }
 alias ANIMATIONINFO* LPANIMATIONINFO;
 
@@ -2629,10 +2629,10 @@ struct CREATESTRUCTA {
 	HINSTANCE hInstance;
 	HMENU     hMenu;
 	HWND      hwndParent;
-	цел       cy;
-	цел       cx;
-	цел       y;
-	цел       x;
+	int       cy;
+	int       cx;
+	int       y;
+	int       x;
 	LONG      style;
 	LPCSTR    lpszName;
 	LPCSTR    lpszClass;
@@ -2645,10 +2645,10 @@ struct CREATESTRUCTW {
 	HINSTANCE hInstance;
 	HMENU     hMenu;
 	HWND      hwndParent;
-	цел       cy;
-	цел       cx;
-	цел       y;
-	цел       x;
+	int       cy;
+	int       cx;
+	int       y;
+	int       x;
 	LONG      style;
 	LPCWSTR   lpszName;
 	LPCWSTR   lpszClass;
@@ -2700,11 +2700,11 @@ struct COPYDATASTRUCT {
 alias COPYDATASTRUCT* PCOPYDATASTRUCT;
 
 struct CURSORSHAPE {
-	цел xHotSpot;
-	цел yHotSpot;
-	цел cx;
-	цел cy;
-	цел cbWidth;
+	int xHotSpot;
+	int yHotSpot;
+	int cx;
+	int cy;
+	int cbWidth;
 	BYTE Planes;
 	BYTE BitsPixel;
 }
@@ -2714,14 +2714,14 @@ struct CWPRETSTRUCT {
 	LRESULT lResult;
 	LPARAM lParam;
 	WPARAM wParam;
-	DWORD сообщение;
+	DWORD message;
 	HWND hwnd;
 }
 
 struct CWPSTRUCT {
 	LPARAM lParam;
 	WPARAM wParam;
-	UINT сообщение;
+	UINT message;
 	HWND hwnd;
 }
 alias CWPSTRUCT* PCWPSTRUCT;
@@ -2731,7 +2731,7 @@ struct DEBUGHOOKINFO {
 	DWORD idThreadInstaller;
 	LPARAM lParam;
 	WPARAM wParam;
-	цел code;
+	int code;
 }
 alias DEBUGHOOKINFO* PDEBUGHOOKINFO, LPDEBUGHOOKINFO;
 
@@ -2748,10 +2748,10 @@ align(2):
 struct DLGITEMTEMPLATE {
 	DWORD style;
 	DWORD dwExtendedStyle;
-	крат x;
-	крат y;
-	крат cx;
-	крат cy;
+	short x;
+	short y;
+	short cx;
+	short cy;
 	WORD id;
 }
 alias DLGITEMTEMPLATE* LPDLGITEMTEMPLATE;
@@ -2760,10 +2760,10 @@ struct DLGTEMPLATE {
 	DWORD style;
 	DWORD dwExtendedStyle;
 	WORD  cdit;
-	крат x;
-	крат y;
-	крат cx;
-	крат cy;
+	short x;
+	short y;
+	short cx;
+	short cy;
 }
 alias DLGTEMPLATE* LPDLGTEMPLATE, LPDLGTEMPLATEA, LPDLGTEMPLATEW;
 alias DLGTEMPLATE* LPCDLGTEMPLATE;
@@ -2785,9 +2785,9 @@ alias DRAWITEMSTRUCT* LPDRAWITEMSTRUCT, PDRAWITEMSTRUCT;
 
 struct DRAWTEXTPARAMS {
 	UINT cbSize = DRAWTEXTPARAMS.sizeof;
-	цел  iTabLength;
-	цел  iLeftMargin;
-	цел  iRightMargin;
+	int  iTabLength;
+	int  iLeftMargin;
+	int  iRightMargin;
 	UINT uiLengthDrawn;
 }
 alias DRAWTEXTPARAMS* LPDRAWTEXTPARAMS;
@@ -2804,7 +2804,7 @@ alias PAINTSTRUCT* LPPAINTSTRUCT;
 
 struct MSG {
 	HWND   hwnd;
-	UINT   сообщение;
+	UINT   message;
 	WPARAM wParam;
 	LPARAM lParam;
 	DWORD  time;
@@ -2831,8 +2831,8 @@ alias NMHDR* LPNMHDR;
 struct WNDCLASSA {
 	UINT      style;
 	WNDPROC   lpfnWndProc;
-	цел       cbClsExtra;
-	цел       cbWndExtra;
+	int       cbClsExtra;
+	int       cbWndExtra;
 	HINSTANCE hInstance;
 	HICON     hIcon;
 	HCURSOR   hCursor;
@@ -2845,8 +2845,8 @@ alias WNDCLASSA* LPWNDCLASSA, PWNDCLASSA;
 struct WNDCLASSW {
 	UINT      style;
 	WNDPROC   lpfnWndProc;
-	цел       cbClsExtra;
-	цел       cbWndExtra;
+	int       cbClsExtra;
+	int       cbWndExtra;
 	HINSTANCE hInstance;
 	HICON     hIcon;
 	HCURSOR   hCursor;
@@ -2860,8 +2860,8 @@ struct WNDCLASSEXA {
 	UINT      cbSize = WNDCLASSEXA.sizeof;
 	UINT      style;
 	WNDPROC   lpfnWndProc;
-	цел       cbClsExtra;
-	цел       cbWndExtra;
+	int       cbClsExtra;
+	int       cbWndExtra;
 	HINSTANCE hInstance;
 	HICON     hIcon;
 	HCURSOR   hCursor;
@@ -2876,8 +2876,8 @@ struct WNDCLASSEXW {
 	UINT      cbSize = WNDCLASSEXW.sizeof;
 	UINT      style;
 	WNDPROC   lpfnWndProc;
-	цел       cbClsExtra;
-	цел       cbWndExtra;
+	int       cbClsExtra;
+	int       cbWndExtra;
 	HINSTANCE hInstance;
 	HICON     hIcon;
 	HCURSOR   hCursor;
@@ -2929,18 +2929,18 @@ alias  MENUITEMINFOW* LPCMENUITEMINFOW;
 struct SCROLLINFO {
 	UINT cbSize = this.sizeof;
 	UINT fMask;
-	цел nMin;
-	цел nMax;
+	int nMin;
+	int nMax;
 	UINT nPage;
-	цел nPos;
-	цел nTrackPos;
+	int nPos;
+	int nTrackPos;
 }
 alias SCROLLINFO* LPSCROLLINFO;
 alias SCROLLINFO* LPCSCROLLINFO;
 
 struct WINDOWPLACEMENT {
 	UINT length;
-	UINT флаги;
+	UINT flags;
 	UINT showCmd;
 	POINT ptMinPosition;
 	POINT ptMaxPosition;
@@ -2950,7 +2950,7 @@ alias WINDOWPLACEMENT* LPWINDOWPLACEMENT, PWINDOWPLACEMENT;
 
 struct MENUITEMTEMPLATEHEADER {
 	WORD versionNumber;
-	WORD смещение;
+	WORD offset;
 }
 
 struct MENUITEMTEMPLATE {
@@ -2959,14 +2959,14 @@ struct MENUITEMTEMPLATE {
 	WCHAR mtString[1];
 }
 
-alias проц MENUTEMPLATE, MENUTEMPLATEA, MENUTEMPLATEW;
+alias void MENUTEMPLATE, MENUTEMPLATEA, MENUTEMPLATEW;
 
 alias MENUTEMPLATE* LPMENUTEMPLATEA, LPMENUTEMPLATEW, LPMENUTEMPLATE;
 
 struct HELPINFO {
 	UINT cbSize = this.sizeof;
-	цел iContextType;
-	цел iCtrlId;
+	int iContextType;
+	int iCtrlId;
 	HANDLE hItemHandle;
 	DWORD dwContextId;
 	POINT MousePos;
@@ -3032,28 +3032,28 @@ alias HIGHCONTRASTW* LPHIGHCONTRASTW;
 
 struct ICONMETRICSA {
 	UINT cbSize = this.sizeof;
-	цел iHorzSpacing;
-	цел iVertSpacing;
-	цел iTitleWrap;
+	int iHorzSpacing;
+	int iVertSpacing;
+	int iTitleWrap;
 	LOGFONTA lfFont;
 }
 alias ICONMETRICSA* LPICONMETRICSA;
 
 struct ICONMETRICSW {
 	UINT cbSize = this.sizeof;
-	цел iHorzSpacing;
-	цел iVertSpacing;
-	цел iTitleWrap;
+	int iHorzSpacing;
+	int iVertSpacing;
+	int iTitleWrap;
 	LOGFONTW lfFont;
 }
 alias ICONMETRICSW* LPICONMETRICSW;
 
 struct MINIMIZEDMETRICS {
 	UINT cbSize = this.sizeof;
-	цел iWidth;
-	цел iHorzGap;
-	цел iVertGap;
-	цел iArrange;
+	int iWidth;
+	int iHorzGap;
+	int iVertGap;
+	int iArrange;
 }
 alias MINIMIZEDMETRICS* LPMINIMIZEDMETRICS;
 
@@ -3070,17 +3070,17 @@ alias MOUSEKEYS* LPMOUSEKEYS;
 
 struct NONCLIENTMETRICSA {
 	UINT cbSize = this.sizeof;
-	цел iBorderWidth;
-	цел iScrollWidth;
-	цел iScrollHeight;
-	цел iCaptionWidth;
-	цел iCaptionHeight;
+	int iBorderWidth;
+	int iScrollWidth;
+	int iScrollHeight;
+	int iCaptionWidth;
+	int iCaptionHeight;
 	LOGFONTA lfCaptionFont;
-	цел iSmCaptionWidth;
-	цел iSmCaptionHeight;
+	int iSmCaptionWidth;
+	int iSmCaptionHeight;
 	LOGFONTA lfSmCaptionFont;
-	цел iMenuWidth;
-	цел iMenuHeight;
+	int iMenuWidth;
+	int iMenuHeight;
 	LOGFONTA lfMenuFont;
 	LOGFONTA lfStatusFont;
 	LOGFONTA lfMessageFont;
@@ -3089,17 +3089,17 @@ alias NONCLIENTMETRICSA* LPNONCLIENTMETRICSA;
 
 struct NONCLIENTMETRICSW {
 	UINT cbSize = this.sizeof;
-	цел iBorderWidth;
-	цел iScrollWidth;
-	цел iScrollHeight;
-	цел iCaptionWidth;
-	цел iCaptionHeight;
+	int iBorderWidth;
+	int iScrollWidth;
+	int iScrollHeight;
+	int iCaptionWidth;
+	int iCaptionHeight;
 	LOGFONTW lfCaptionFont;
-	цел iSmCaptionWidth;
-	цел iSmCaptionHeight;
+	int iSmCaptionWidth;
+	int iSmCaptionHeight;
 	LOGFONTW lfSmCaptionFont;
-	цел iMenuWidth;
-	цел iMenuHeight;
+	int iMenuWidth;
+	int iMenuHeight;
 	LOGFONTW lfMenuFont;
 	LOGFONTW lfStatusFont;
 	LOGFONTW lfMessageFont;
@@ -3194,7 +3194,7 @@ struct TPMPARAMS {
 alias TPMPARAMS* LPTPMPARAMS;
 
 struct EVENTMSG {
-	UINT сообщение;
+	UINT message;
 	UINT paramL;
 	UINT paramH;
 	DWORD time;
@@ -3205,11 +3205,11 @@ alias EVENTMSG* PEVENTMSGMSG, LPEVENTMSGMSG, PEVENTMSG, LPEVENTMSG;
 struct WINDOWPOS {
 	HWND hwnd;
 	HWND hwndInsertAfter;
-	цел x;
-	цел y;
-	цел cx;
-	цел cy;
-	UINT флаги;
+	int x;
+	int y;
+	int cx;
+	int cy;
+	UINT flags;
 }
 alias WINDOWPOS* PWINDOWPOS, LPWINDOWPOS;
 
@@ -3223,10 +3223,10 @@ struct MDICREATESTRUCTA {
 	LPCSTR szClass;
 	LPCSTR szTitle;
 	HANDLE hOwner;
-	цел x;
-	цел y;
-	цел cx;
-	цел cy;
+	int x;
+	int y;
+	int cx;
+	int cy;
 	DWORD style;
 	LPARAM lParam;
 }
@@ -3236,10 +3236,10 @@ struct MDICREATESTRUCTW {
 	LPCWSTR szClass;
 	LPCWSTR szTitle;
 	HANDLE hOwner;
-	цел x;
-	цел y;
-	цел cx;
-	цел cy;
+	int x;
+	int y;
+	int cx;
+	int cy;
 	DWORD style;
 	LPARAM lParam;
 }
@@ -3298,23 +3298,23 @@ struct MULTIKEYHELPW {
 alias MULTIKEYHELPW* PMULTIKEYHELPW, LPMULTIKEYHELPW;
 
 struct HELPWININFOA {
-	цел wStructSize;
-	цел x;
-	цел y;
-	цел dx;
-	цел dy;
-	цел wMax;
+	int wStructSize;
+	int x;
+	int y;
+	int dx;
+	int dy;
+	int wMax;
 	CHAR rgchMember[2];
 }
 alias HELPWININFOA* PHELPWININFOA, LPHELPWININFOA;
 
 struct HELPWININFOW {
-	цел wStructSize;
-	цел x;
-	цел y;
-	цел dx;
-	цел dy;
-	цел wMax;
+	int wStructSize;
+	int x;
+	int y;
+	int dx;
+	int dy;
+	int wMax;
 	WCHAR rgchMember[2];
 }
 alias HELPWININFOW* PHELPWININFOW, LPHELPWININFOW;
@@ -3327,13 +3327,13 @@ alias STYLESTRUCT* LPSTYLESTRUCT;
 
 struct ALTTABINFO {
 	DWORD cbSize = this.sizeof;
-	цел   cItems;
-	цел   cColumns;
-	цел   cRows;
-	цел   iColFocus;
-	цел   iRowFocus;
-	цел   cxItem;
-	цел   cyItem;
+	int   cItems;
+	int   cColumns;
+	int   cRows;
+	int   iColFocus;
+	int   iRowFocus;
+	int   cxItem;
+	int   cyItem;
 	POINT ptStart;
 }
 alias ALTTABINFO* PALTTABINFO, LPALTTABINFO;
@@ -3351,7 +3351,7 @@ alias COMBOBOXINFO* PCOMBOBOXINFO, LPCOMBOBOXINFO;
 
 struct CURSORINFO {
 	DWORD cbSize = this.sizeof;
-	DWORD флаги;
+	DWORD flags;
 	HCURSOR hCursor;
 	POINT ptScreenPos;
 }
@@ -3365,10 +3365,10 @@ struct MENUBARINFO {
 	byte bf_; // Simulated bitfield
 //	BOOL  fBarFocused:1;
 //	BOOL  fFocused:1;
-	бул fBarFocused() { return (bf_ & 1) == 1; }
-	бул fFocused() { return (bf_ & 2) == 2; }
-	проц fBarFocused(бул b) { bf_ = cast(byte)((bf_ & 0xFE) | b); }
-	проц fFocused(бул b) { bf_ = cast(byte)(b ? (bf_ | 2) : bf_ & 0xFD); }
+	bool fBarFocused() { return (bf_ & 1) == 1; }
+	bool fFocused() { return (bf_ & 2) == 2; }
+	void fBarFocused(bool b) { bf_ = cast(byte)((bf_ & 0xFE) | b); }
+	void fFocused(bool b) { bf_ = cast(byte)(b ? (bf_ | 2) : bf_ & 0xFD); }
 }
 alias MENUBARINFO* PMENUBARINFO;
 
@@ -3389,10 +3389,10 @@ const CCHILDREN_SCROLLBAR=5;
 struct SCROLLBARINFO {
 	DWORD cbSize = this.sizeof;
 	RECT  rcScrollBar;
-	цел   dxyLineButton;
-	цел   xyThumbTop;
-	цел   xyThumbBottom;
-	цел   reserved;
+	int   dxyLineButton;
+	int   xyThumbTop;
+	int   xyThumbBottom;
+	int   reserved;
 	DWORD rgstate[CCHILDREN_SCROLLBAR+1];
 }
 alias SCROLLBARINFO* PSCROLLBARINFO, LPSCROLLBARINFO;
@@ -3457,7 +3457,7 @@ alias MONITORINFOEXW* LPMONITORINFOEXW;
 struct KBDLLHOOKSTRUCT {
 	DWORD vkCode;
 	DWORD scanCode;
-	DWORD флаги;
+	DWORD flags;
 	DWORD time;
 	DWORD dwExtraInfo;
 }
@@ -3479,8 +3479,8 @@ alias FLASHWINFO* PFLASHWINFO;
 static if ((_WIN32_WINNT >= 0x500) || (_WIN32_WINDOWS >= 0x490)) {
 
 struct MOUSEMOVEPOINT {
-	цел x;
-	цел y;
+	int x;
+	int y;
 	DWORD time;
 	ULONG_PTR dwExtraInfo;
 }
@@ -3515,7 +3515,7 @@ struct HARDWAREINPUT {
 alias HARDWAREINPUT* PHARDWAREINPUT;
 
 struct INPUT {
-	DWORD тип;
+	DWORD type;
 	union {
 		MOUSEINPUT mi;
 		KEYBDINPUT ki;
@@ -3528,7 +3528,7 @@ alias INPUT* PINPUT, LPINPUT;
 static if (WINVER >= 0x500) {
 struct GUITHREADINFO {
 	DWORD cbSize = this.sizeof;
-	DWORD флаги;
+	DWORD flags;
 	HWND hwndActive;
 	HWND hwndFocus;
 	HWND hwndCapture;
@@ -3539,7 +3539,7 @@ struct GUITHREADINFO {
 }
 alias GUITHREADINFO* PGUITHREADINFO, LPGUITHREADINFO;
 extern (Windows) {
-alias проц function (HWINEVENTHOOK, DWORD, HWND, LONG, LONG, DWORD, DWORD) WINEVENTPROC;
+alias void function (HWINEVENTHOOK, DWORD, HWND, LONG, LONG, DWORD, DWORD) WINEVENTPROC;
 }
 
 }// (WINVER >= 0x500)
@@ -3603,7 +3603,7 @@ struct RAWINPUT {
 		RAWKEYBOARD keyboard;
 		RAWHID      hid;
 	}
-	_data данные;
+	_data data;
 }
 alias RAWINPUT* PRAWINPUT, LPRAWINPUT;
 
@@ -3660,7 +3660,7 @@ struct RID_DEVICE_INFO {
 struct MSLLHOOKSTRUCT {
 	POINT pt;
 	DWORD mouseData;
-	DWORD флаги;
+	DWORD flags;
 	DWORD time;
 	ULONG_PTR dwExtraInfo;
 }
@@ -3694,12 +3694,12 @@ BOOL AppendMenuA(HMENU, UINT, UINT_PTR, LPCSTR);
 BOOL AppendMenuW(HMENU, UINT, UINT_PTR, LPCWSTR);
 UINT ArrangeIconicWindows(HWND);
 BOOL AttachThreadInput(DWORD, DWORD, BOOL);
-HDWP BeginDeferWindowPos(цел);
+HDWP BeginDeferWindowPos(int);
 HDC BeginPaint(HWND, LPPAINTSTRUCT);
 BOOL BringWindowToTop(HWND);
 BOOL CallMsgFilterA(LPMSG, INT);
 BOOL CallMsgFilterW(LPMSG, INT);
-LRESULT CallNextHookEx(HHOOK, цел, WPARAM, LPARAM);
+LRESULT CallNextHookEx(HHOOK, int, WPARAM, LPARAM);
 LRESULT CallWindowProcA(WNDPROC, HWND, UINT, WPARAM, LPARAM);
 LRESULT CallWindowProcW(WNDPROC, HWND, UINT, WPARAM, LPARAM);
 WORD CascadeWindows(HWND, UINT, LPCRECT, UINT, HWND*);
@@ -3732,10 +3732,10 @@ LPSTR CharUpperA(LPSTR);
 LPWSTR CharUpperW(LPWSTR);
 DWORD CharUpperBuffA(LPSTR, DWORD);
 DWORD CharUpperBuffW(LPWSTR, DWORD);
-BOOL CheckDlgButton(HWND, цел, UINT);
+BOOL CheckDlgButton(HWND, int, UINT);
 DWORD CheckMenuItem(HMENU, UINT, UINT);
 BOOL CheckMenuRadioItem(HMENU, UINT, UINT, UINT, UINT);
-BOOL CheckRadioButton(HWND, цел, цел, цел);
+BOOL CheckRadioButton(HWND, int, int, int);
 HWND ChildWindowFromPoint(HWND, POINT);
 HWND ChildWindowFromPointEx(HWND, POINT, UINT);
 BOOL ClientToScreen(HWND, LPPOINT);
@@ -3744,17 +3744,17 @@ BOOL CloseClipboard();
 BOOL CloseDesktop(HDESK);
 BOOL CloseWindow(HWND);
 BOOL CloseWindowStation(HWINSTA);
-цел CopyAcceleratorTableA(HACCEL, LPACCEL, цел);
-цел CopyAcceleratorTableW(HACCEL, LPACCEL, цел);
+int CopyAcceleratorTableA(HACCEL, LPACCEL, int);
+int CopyAcceleratorTableW(HACCEL, LPACCEL, int);
 
 HICON CopyIcon(HICON);
-HANDLE CopyImage(HANDLE, UINT, цел, цел, UINT);
+HANDLE CopyImage(HANDLE, UINT, int, int, UINT);
 BOOL CopyRect(LPRECT, LPCRECT);
-цел CountClipboardFormats();
-HACCEL CreateAcceleratorTableA(LPACCEL, цел);
-HACCEL CreateAcceleratorTableW(LPACCEL, цел);
-BOOL CreateCaret(HWND, HBITMAP, цел, цел);
-HCURSOR CreateCursor(HINSTANCE, цел, цел, цел, цел, PCVOID, PCVOID);
+int CountClipboardFormats();
+HACCEL CreateAcceleratorTableA(LPACCEL, int);
+HACCEL CreateAcceleratorTableW(LPACCEL, int);
+BOOL CreateCaret(HWND, HBITMAP, int, int);
+HCURSOR CreateCursor(HINSTANCE, int, int, int, int, PCVOID, PCVOID);
 
 HDESK CreateDesktopA(LPCSTR, LPCSTR, LPDEVMODEA, DWORD, ACCESS_MASK, LPSECURITY_ATTRIBUTES);
 HDESK CreateDesktopW(LPCWSTR, LPCWSTR, LPDEVMODEW, DWORD, ACCESS_MASK, LPSECURITY_ATTRIBUTES);
@@ -3764,23 +3764,23 @@ HWND CreateDialogParamW(HINSTANCE, LPCWSTR, HWND, DLGPROC, LPARAM);
 HWND CreateDialogIndirectParamA(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
 HWND CreateDialogIndirectParamW(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
 
-HICON CreateIcon(HINSTANCE, цел, цел, BYTE, BYTE, BYTE*, BYTE*);
+HICON CreateIcon(HINSTANCE, int, int, BYTE, BYTE, BYTE*, BYTE*);
 HICON CreateIconFromResource(PBYTE, DWORD, BOOL, DWORD);
-HICON CreateIconFromResourceEx(PBYTE, DWORD, BOOL, DWORD, цел, цел, UINT);
+HICON CreateIconFromResourceEx(PBYTE, DWORD, BOOL, DWORD, int, int, UINT);
 HICON CreateIconIndirect(PICONINFO);
-HWND CreateMDIWindowA(LPCSTR, LPCSTR, DWORD, цел, цел, цел, цел, HWND, HINSTANCE, LPARAM);
-HWND CreateMDIWindowW(LPCWSTR, LPCWSTR, DWORD, цел, цел, цел, цел, HWND, HINSTANCE, LPARAM);
+HWND CreateMDIWindowA(LPCSTR, LPCSTR, DWORD, int, int, int, int, HWND, HINSTANCE, LPARAM);
+HWND CreateMDIWindowW(LPCWSTR, LPCWSTR, DWORD, int, int, int, int, HWND, HINSTANCE, LPARAM);
 HMENU CreateMenu();
 HMENU CreatePopupMenu();
 
-HWND CreateWindowExA(DWORD, LPCSTR, LPCSTR, DWORD, цел, цел, цел, цел, HWND, HMENU, HINSTANCE, LPVOID);
-HWND CreateWindowExW(DWORD, LPCWSTR, LPCWSTR, DWORD, цел, цел, цел, цел, HWND, HMENU, HINSTANCE, LPVOID);
+HWND CreateWindowExA(DWORD, LPCSTR, LPCSTR, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE, LPVOID);
+HWND CreateWindowExW(DWORD, LPCWSTR, LPCWSTR, DWORD, int, int, int, int, HWND, HMENU, HINSTANCE, LPVOID);
 
 HWINSTA CreateWindowStationA(LPSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES);
 HWINSTA CreateWindowStationW(LPWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES);
 LRESULT DefDlgProcA(HWND, UINT, WPARAM, LPARAM);
 LRESULT DefDlgProcW(HWND, UINT, WPARAM, LPARAM);
-HDWP DeferWindowPos(HDWP, HWND, HWND, цел, цел, цел, цел, UINT);
+HDWP DeferWindowPos(HDWP, HWND, HWND, int, int, int, int, UINT);
 LRESULT DefFrameProcA(HWND, HWND, UINT, WPARAM, LPARAM);
 LRESULT DefFrameProcW(HWND, HWND, UINT, WPARAM, LPARAM);
 
@@ -3797,10 +3797,10 @@ BOOL DestroyIcon(HICON);
 BOOL DestroyMenu(HMENU);
 BOOL DestroyWindow(HWND);
 
-цел DialogBoxParamA(HINSTANCE, LPCSTR, HWND, DLGPROC, LPARAM);
-цел DialogBoxParamW(HINSTANCE, LPCWSTR, HWND, DLGPROC, LPARAM);
-цел DialogBoxIndirectParamA(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
-цел DialogBoxIndirectParamW(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
+int DialogBoxParamA(HINSTANCE, LPCSTR, HWND, DLGPROC, LPARAM);
+int DialogBoxParamW(HINSTANCE, LPCWSTR, HWND, DLGPROC, LPARAM);
+int DialogBoxIndirectParamA(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
+int DialogBoxIndirectParamW(HINSTANCE, LPCDLGTEMPLATE, HWND, DLGPROC, LPARAM);
 
 } // extern (Windows)
 
@@ -3830,32 +3830,32 @@ HWND CreateDialogIndirectW(HINSTANCE h, LPCDLGTEMPLATE t, HWND w , DLGPROC f)
 }
 
 
-HWND CreateWindowA(LPCSTR a, LPCSTR b, DWORD c, цел d, цел e, цел f, цел g, HWND h, HMENU i, HINSTANCE j, LPVOID k)
+HWND CreateWindowA(LPCSTR a, LPCSTR b, DWORD c, int d, int e, int f, int g, HWND h, HMENU i, HINSTANCE j, LPVOID k)
 {
 	return CreateWindowExA(0, a, b, c, d, e, f, g, h, i, j, k);
 }
 
-HWND CreateWindowW(LPCWSTR a, LPCWSTR b, DWORD c, цел d, цел e, цел f, цел g, HWND h, HMENU i, HINSTANCE j, LPVOID k)
+HWND CreateWindowW(LPCWSTR a, LPCWSTR b, DWORD c, int d, int e, int f, int g, HWND h, HMENU i, HINSTANCE j, LPVOID k)
 {
 	return CreateWindowExW(0, a, b, c, d, e, f, g, h, i, j, k);
 }
 
-цел DialogBoxA(HINSTANCE i, LPCSTR t, HWND p, DLGPROC f)
+int DialogBoxA(HINSTANCE i, LPCSTR t, HWND p, DLGPROC f)
 {
 	return DialogBoxParamA(i, t, p, f, 0);
 }
 
-цел DialogBoxW(HINSTANCE i, LPCWSTR t, HWND p, DLGPROC f)
+int DialogBoxW(HINSTANCE i, LPCWSTR t, HWND p, DLGPROC f)
 {
 	return DialogBoxParamW(i, t, p, f, 0);
 }
 
-цел DialogBoxIndirectA(HINSTANCE i, LPCDLGTEMPLATE t, HWND p, DLGPROC f)
+int DialogBoxIndirectA(HINSTANCE i, LPCDLGTEMPLATE t, HWND p, DLGPROC f)
 {
 	return DialogBoxIndirectParamA(i, t, p, f, 0);
 }
 
-цел DialogBoxIndirectW(HINSTANCE i, LPCDLGTEMPLATE t, HWND p, DLGPROC f)
+int DialogBoxIndirectW(HINSTANCE i, LPCDLGTEMPLATE t, HWND p, DLGPROC f)
 {
 	return DialogBoxIndirectParamW(i, t, p, f, 0);
 }
@@ -3869,36 +3869,36 @@ alias GetWindow GetNextWindow;
 extern (Windows):
 LONG DispatchMessageA( MSG*);
 LONG DispatchMessageW( MSG*);
-цел DlgDirListA(HWND, LPSTR, цел, цел, UINT);
-цел DlgDirListW(HWND, LPWSTR, цел, цел, UINT);
-цел DlgDirListComboBoxA(HWND, LPSTR, цел, цел, UINT);
-цел DlgDirListComboBoxW(HWND, LPWSTR, цел, цел, UINT);
-BOOL DlgDirSelectComboBoxExA(HWND, LPSTR, цел, цел);
-BOOL DlgDirSelectComboBoxExW(HWND, LPWSTR, цел, цел);
-BOOL DlgDirSelectExA(HWND, LPSTR, цел, цел);
-BOOL DlgDirSelectExW(HWND, LPWSTR, цел, цел);
+int DlgDirListA(HWND, LPSTR, int, int, UINT);
+int DlgDirListW(HWND, LPWSTR, int, int, UINT);
+int DlgDirListComboBoxA(HWND, LPSTR, int, int, UINT);
+int DlgDirListComboBoxW(HWND, LPWSTR, int, int, UINT);
+BOOL DlgDirSelectComboBoxExA(HWND, LPSTR, int, int);
+BOOL DlgDirSelectComboBoxExW(HWND, LPWSTR, int, int);
+BOOL DlgDirSelectExA(HWND, LPSTR, int, int);
+BOOL DlgDirSelectExW(HWND, LPWSTR, int, int);
 BOOL DragDetect(HWND, POINT);
 DWORD DragObject(HWND, HWND, UINT, DWORD, HCURSOR);
-BOOL DrawAnimatedRects(HWND, цел, LPCRECT, LPCRECT);
+BOOL DrawAnimatedRects(HWND, int, LPCRECT, LPCRECT);
 BOOL DrawCaption(HWND, HDC, LPCRECT, UINT);
 BOOL DrawEdge(HDC, LPRECT, UINT, UINT);
 BOOL DrawFocusRect(HDC, LPCRECT);
 BOOL DrawFrameControl(HDC, LPRECT, UINT, UINT);
-BOOL DrawIcon(HDC, цел, цел, HICON);
-BOOL DrawIconEx(HDC, цел, цел, HICON, цел, цел, UINT, HBRUSH, UINT);
+BOOL DrawIcon(HDC, int, int, HICON);
+BOOL DrawIconEx(HDC, int, int, HICON, int, int, UINT, HBRUSH, UINT);
 BOOL DrawMenuBar(HWND);
-BOOL DrawStateA(HDC, HBRUSH, DRAWSTATEPROC, LPARAM, WPARAM, цел, цел, цел, цел, UINT);
-BOOL DrawStateW(HDC, HBRUSH, DRAWSTATEPROC, LPARAM, WPARAM, цел, цел, цел, цел, UINT);
-цел DrawTextA(HDC, LPCSTR, цел, LPRECT, UINT);
-цел DrawTextW(HDC, LPCWSTR, цел, LPRECT, UINT);
-цел DrawTextExA(HDC, LPSTR, цел, LPRECT, UINT, LPDRAWTEXTPARAMS);
-цел DrawTextExW(HDC, LPWSTR, цел, LPRECT, UINT, LPDRAWTEXTPARAMS);
+BOOL DrawStateA(HDC, HBRUSH, DRAWSTATEPROC, LPARAM, WPARAM, int, int, int, int, UINT);
+BOOL DrawStateW(HDC, HBRUSH, DRAWSTATEPROC, LPARAM, WPARAM, int, int, int, int, UINT);
+int DrawTextA(HDC, LPCSTR, int, LPRECT, UINT);
+int DrawTextW(HDC, LPCWSTR, int, LPRECT, UINT);
+int DrawTextExA(HDC, LPSTR, int, LPRECT, UINT, LPDRAWTEXTPARAMS);
+int DrawTextExW(HDC, LPWSTR, int, LPRECT, UINT, LPDRAWTEXTPARAMS);
 BOOL EmptyClipboard();
 BOOL EnableMenuItem(HMENU, UINT, UINT);
 BOOL EnableScrollBar(HWND, UINT, UINT);
 BOOL EnableWindow(HWND, BOOL);
 BOOL EndDeferWindowPos(HDWP);
-BOOL EndDialog(HWND, цел);
+BOOL EndDialog(HWND, int);
 BOOL EndMenu();
 BOOL EndPaint(HWND, PAINTSTRUCT*);
 BOOL EnumChildWindows(HWND, ENUMWINDOWSPROC, LPARAM);
@@ -3912,10 +3912,10 @@ BOOL EnumDisplaySettingsW(LPCWSTR, DWORD, PDEVMODEW);
 BOOL EnumDisplayDevicesA(LPCSTR, DWORD, PDISPLAY_DEVICEA, DWORD);
 BOOL EnumDisplayDevicesW(LPCWSTR, DWORD, PDISPLAY_DEVICEW, DWORD);
 
-цел EnumPropsA(HWND, PROPENUMPROCA);
-цел EnumPropsW(HWND, PROPENUMPROCW);
-цел EnumPropsExA(HWND, PROPENUMPROCEXA, LPARAM);
-цел EnumPropsExW(HWND, PROPENUMPROCEXW, LPARAM);
+int EnumPropsA(HWND, PROPENUMPROCA);
+int EnumPropsW(HWND, PROPENUMPROCW);
+int EnumPropsExA(HWND, PROPENUMPROCEXA, LPARAM);
+int EnumPropsExW(HWND, PROPENUMPROCEXW, LPARAM);
 
 BOOL EnumThreadWindows(DWORD, WNDENUMPROC, LPARAM);
 BOOL EnumWindows(WNDENUMPROC, LPARAM);
@@ -3930,11 +3930,11 @@ HWND FindWindowExW(HWND, HWND, LPCWSTR, LPCWSTR);
 HWND FindWindowW(LPCWSTR, LPCWSTR);
 BOOL FlashWindow(HWND, BOOL);
 
-цел FrameRect(HDC, LPCRECT, HBRUSH);
-BOOL FrameRgn(HDC, HRGN, HBRUSH, цел, цел);
+int FrameRect(HDC, LPCRECT, HBRUSH);
+BOOL FrameRgn(HDC, HRGN, HBRUSH, int, int);
 HWND GetActiveWindow();
 HWND GetAncestor(HWND, UINT);
-SHORT GetAsyncKeyState(цел);
+SHORT GetAsyncKeyState(int);
 HWND GetCapture();
 UINT GetCaretBlinkTime();
 BOOL GetCaretPos(LPPOINT);
@@ -3942,15 +3942,15 @@ BOOL GetClassInfoA(HINSTANCE, LPCSTR, LPWNDCLASSA);
 BOOL GetClassInfoExA(HINSTANCE, LPCSTR, LPWNDCLASSEXA);
 BOOL GetClassInfoW(HINSTANCE, LPCWSTR, LPWNDCLASSW);
 BOOL GetClassInfoExW(HINSTANCE, LPCWSTR, LPWNDCLASSEXW);
-DWORD GetClassLongA(HWND, цел);
-DWORD GetClassLongW(HWND, цел);
-цел GetClassNameA(HWND, LPSTR, цел);
-цел GetClassNameW(HWND, LPWSTR, цел);
-WORD GetClassWord(HWND, цел);
+DWORD GetClassLongA(HWND, int);
+DWORD GetClassLongW(HWND, int);
+int GetClassNameA(HWND, LPSTR, int);
+int GetClassNameW(HWND, LPWSTR, int);
+WORD GetClassWord(HWND, int);
 BOOL GetClientRect(HWND, LPRECT);
 HANDLE GetClipboardData(UINT);
-цел GetClipboardFormatNameA(UINT, LPSTR, цел);
-цел GetClipboardFormatNameW(UINT, LPWSTR, цел);
+int GetClipboardFormatNameA(UINT, LPSTR, int);
+int GetClipboardFormatNameW(UINT, LPWSTR, int);
 HWND GetClipboardOwner();
 HWND GetClipboardViewer();
 BOOL GetClipCursor(LPRECT);
@@ -3958,12 +3958,12 @@ BOOL GetCursorPos(LPPOINT);
 HDC GetDC(HWND);
 HDC GetDCEx(HWND, HRGN, DWORD);
 HWND GetDesktopWindow();
-цел GetDialogBaseUnits();
-цел GetDlgCtrlID(HWND);
-HWND GetDlgItem(HWND, цел);
-UINT GetDlgItemInt(HWND, цел, PBOOL, BOOL);
-UINT GetDlgItemTextA(HWND, цел, LPSTR, цел);
-UINT GetDlgItemTextW(HWND, цел, LPWSTR, цел);
+int GetDialogBaseUnits();
+int GetDlgCtrlID(HWND);
+HWND GetDlgItem(HWND, int);
+UINT GetDlgItemInt(HWND, int, PBOOL, BOOL);
+UINT GetDlgItemTextA(HWND, int, LPSTR, int);
+UINT GetDlgItemTextW(HWND, int, LPWSTR, int);
 UINT GetDoubleClickTime();
 HWND GetFocus();
 HWND GetForegroundWindow();
@@ -3972,27 +3972,27 @@ BOOL GetIconInfo(HICON, PICONINFO);
 BOOL GetInputState();
 UINT GetKBCodePage();
 HKL GetKeyboardLayout(DWORD);
-UINT GetKeyboardLayoutList(цел, HKL*);
+UINT GetKeyboardLayoutList(int, HKL*);
 BOOL GetKeyboardLayoutNameA(LPSTR);
 BOOL GetKeyboardLayoutNameW(LPWSTR);
 BOOL GetKeyboardState(PBYTE);
-цел GetKeyboardType(цел);
-цел GetKeyNameTextA(LONG, LPSTR, цел);
-цел GetKeyNameTextW(LONG, LPWSTR, цел);
-SHORT GetKeyState(цел);
+int GetKeyboardType(int);
+int GetKeyNameTextA(LONG, LPSTR, int);
+int GetKeyNameTextW(LONG, LPWSTR, int);
+SHORT GetKeyState(int);
 HWND GetLastActivePopup(HWND);
 HMENU GetMenu(HWND);
 LONG GetMenuCheckMarkDimensions();
 DWORD GetMenuContextHelpId(HMENU);
 UINT GetMenuDefaultItem(HMENU, UINT, UINT);
-цел GetMenuItemCount(HMENU);
-UINT GetMenuItemID(HMENU, цел);
+int GetMenuItemCount(HMENU);
+UINT GetMenuItemID(HMENU, int);
 BOOL GetMenuItemInfoA(HMENU, UINT, BOOL, LPMENUITEMINFOA);
 BOOL GetMenuItemInfoW(HMENU, UINT, BOOL, LPMENUITEMINFOW);
 BOOL GetMenuItemRect(HWND, HMENU, UINT, LPRECT);
 UINT GetMenuState(HMENU, UINT, UINT);
-цел GetMenuStringA(HMENU, UINT, LPSTR, цел, UINT);
-цел GetMenuStringW(HMENU, UINT, LPWSTR, цел, UINT);
+int GetMenuStringA(HMENU, UINT, LPSTR, int, UINT);
+int GetMenuStringW(HMENU, UINT, LPWSTR, int, UINT);
 BOOL GetMessageA(LPMSG, HWND, UINT, UINT);
 BOOL GetMessageW(LPMSG, HWND, UINT, UINT);
 LONG GetMessageExtraInfo();
@@ -4004,46 +4004,46 @@ HWND GetNextDlgTabItem(HWND, HWND, BOOL);
 
 HWND GetOpenClipboardWindow();
 HWND GetParent(HWND);
-цел GetPriorityClipboardFormat(UINT*, цел);
+int GetPriorityClipboardFormat(UINT*, int);
 HANDLE GetPropA(HWND, LPCSTR);
 HANDLE GetPropW(HWND, LPCWSTR);
 
 DWORD GetQueueStatus(UINT);
-BOOL GetScrollInfo(HWND, цел, LPSCROLLINFO);
-цел GetScrollPos(HWND, цел);
-BOOL GetScrollRange(HWND, цел, LPINT, LPINT);
+BOOL GetScrollInfo(HWND, int, LPSCROLLINFO);
+int GetScrollPos(HWND, int);
+BOOL GetScrollRange(HWND, int, LPINT, LPINT);
 
-HMENU GetSubMenu(HMENU, цел);
-DWORD GetSysColor(цел);
-HBRUSH GetSysColorBrush(цел);
+HMENU GetSubMenu(HMENU, int);
+DWORD GetSysColor(int);
+HBRUSH GetSysColorBrush(int);
 
 HMENU GetSystemMenu(HWND, BOOL);
-цел GetSystemMetrics(цел);
-DWORD GetTabbedTextExtentA(HDC, LPCSTR, цел, цел, LPINT);
-DWORD GetTabbedTextExtentW(HDC, LPCWSTR, цел, цел, LPINT);
-LONG GetWindowLongA(HWND, цел);
-LONG GetWindowLongW(HWND, цел);
+int GetSystemMetrics(int);
+DWORD GetTabbedTextExtentA(HDC, LPCSTR, int, int, LPINT);
+DWORD GetTabbedTextExtentW(HDC, LPCWSTR, int, int, LPINT);
+LONG GetWindowLongA(HWND, int);
+LONG GetWindowLongW(HWND, int);
 
 HDESK GetThreadDesktop(DWORD);
 HWND GetTopWindow(HWND);
 BOOL GetUpdateRect(HWND, LPRECT, BOOL);
-цел GetUpdateRgn(HWND, HRGN, BOOL);
-BOOL GetUserObjectInformationA(HANDLE, цел, PVOID, DWORD, PDWORD);
-BOOL GetUserObjectInformationW(HANDLE, цел, PVOID, DWORD, PDWORD);
+int GetUpdateRgn(HWND, HRGN, BOOL);
+BOOL GetUserObjectInformationA(HANDLE, int, PVOID, DWORD, PDWORD);
+BOOL GetUserObjectInformationW(HANDLE, int, PVOID, DWORD, PDWORD);
 BOOL GetUserObjectSecurity(HANDLE, PSECURITY_INFORMATION, PSECURITY_DESCRIPTOR, DWORD, PDWORD);
 HWND GetWindow(HWND, UINT);
 DWORD GetWindowContextHelpId(HWND);
 HDC GetWindowDC(HWND);
 BOOL GetWindowPlacement(HWND, WINDOWPLACEMENT*);
 BOOL GetWindowRect(HWND, LPRECT);
-цел GetWindowRgn(HWND, HRGN);
-цел GetWindowTextA(HWND, LPSTR, цел);
-цел GetWindowTextLengthA(HWND);
-цел GetWindowTextLengthW(HWND);
-цел GetWindowTextW(HWND, LPWSTR, цел);
-WORD GetWindowWord(HWND, цел);
-BOOL GetAltTabInfoA(HWND, цел, PALTTABINFO, LPSTR, UINT);
-BOOL GetAltTabInfoW(HWND, цел, PALTTABINFO, LPWSTR, UINT);
+int GetWindowRgn(HWND, HRGN);
+int GetWindowTextA(HWND, LPSTR, int);
+int GetWindowTextLengthA(HWND);
+int GetWindowTextLengthW(HWND);
+int GetWindowTextW(HWND, LPWSTR, int);
+WORD GetWindowWord(HWND, int);
+BOOL GetAltTabInfoA(HWND, int, PALTTABINFO, LPSTR, UINT);
+BOOL GetAltTabInfoW(HWND, int, PALTTABINFO, LPWSTR, UINT);
 BOOL GetComboBoxInfo(HWND, PCOMBOBOXINFO);
 BOOL GetCursorInfo(PCURSORINFO);
 BOOL GetLastInputInfo(PLASTINPUTINFO);
@@ -4055,11 +4055,11 @@ BOOL GetTitleBarInfo(HWND, PTITLEBARINFO);
 BOOL GetWindowInfo(HWND, PWINDOWINFO);
 UINT GetWindowModuleFileNameA(HWND, LPSTR, UINT);
 UINT GetWindowModuleFileNameW(HWND, LPWSTR, UINT);
-BOOL GrayStringA(HDC, HBRUSH, GRAYSTRINGPROC, LPARAM, цел, цел, цел, цел, цел);
-BOOL GrayStringW(HDC, HBRUSH, GRAYSTRINGPROC, LPARAM, цел, цел, цел, цел, цел);
+BOOL GrayStringA(HDC, HBRUSH, GRAYSTRINGPROC, LPARAM, int, int, int, int, int);
+BOOL GrayStringW(HDC, HBRUSH, GRAYSTRINGPROC, LPARAM, int, int, int, int, int);
 BOOL HideCaret(HWND);
 BOOL HiliteMenuItem(HWND, HMENU, UINT, UINT);
-BOOL InflateRect(LPRECT, цел, цел);
+BOOL InflateRect(LPRECT, int, int);
 BOOL InSendMessage();
 BOOL InsertMenuA(HMENU, UINT, UINT, UINT, LPCSTR);
 BOOL InsertMenuW(HMENU, UINT, UINT, UINT, LPCWSTR);
@@ -4082,7 +4082,7 @@ BOOL IsChild(HWND, HWND);
 BOOL IsClipboardFormatAvailable(UINT);
 BOOL IsDialogMessageA(HWND, LPMSG);
 BOOL IsDialogMessageW(HWND, LPMSG);
-UINT IsDlgButtonChecked(HWND, цел);
+UINT IsDlgButtonChecked(HWND, int);
 BOOL IsIconic(HWND);
 BOOL IsMenu(HMENU);
 BOOL IsRectEmpty(LPCRECT);
@@ -4091,7 +4091,7 @@ BOOL IsWindowEnabled(HWND);
 BOOL IsWindowUnicode(HWND);
 BOOL IsWindowVisible(HWND);
 BOOL IsZoomed(HWND);
-проц keybd_event(BYTE, BYTE, DWORD, DWORD);
+void keybd_event(BYTE, BYTE, DWORD, DWORD);
 BOOL KillTimer(HWND, UINT);
 HACCEL LoadAcceleratorsA(HINSTANCE, LPCSTR);
 HACCEL LoadAcceleratorsW(HINSTANCE, LPCWSTR);
@@ -4103,37 +4103,37 @@ HCURSOR LoadCursorFromFileW(LPCWSTR);
 HCURSOR LoadCursorW(HINSTANCE, LPCWSTR);
 HICON LoadIconA(HINSTANCE, LPCSTR);
 HICON LoadIconW(HINSTANCE, LPCWSTR);
-HANDLE LoadImageA(HINSTANCE, LPCSTR, UINT, цел, цел, UINT);
-HANDLE LoadImageW(HINSTANCE, LPCWSTR, UINT, цел, цел, UINT);
+HANDLE LoadImageA(HINSTANCE, LPCSTR, UINT, int, int, UINT);
+HANDLE LoadImageW(HINSTANCE, LPCWSTR, UINT, int, int, UINT);
 HKL LoadKeyboardLayoutA(LPCSTR, UINT);
 HKL LoadKeyboardLayoutW(LPCWSTR, UINT);
 HMENU LoadMenuA(HINSTANCE, LPCSTR);
 HMENU LoadMenuIndirectA( MENUTEMPLATE*);
 HMENU LoadMenuIndirectW( MENUTEMPLATE*);
 HMENU LoadMenuW(HINSTANCE, LPCWSTR);
-цел LoadStringA(HINSTANCE, UINT, LPSTR, цел);
-цел LoadStringW(HINSTANCE, UINT, LPWSTR, цел);
+int LoadStringA(HINSTANCE, UINT, LPSTR, int);
+int LoadStringW(HINSTANCE, UINT, LPWSTR, int);
 BOOL LockWindowUpdate(HWND);
-цел LookupIconIdFromDirectory(PBYTE, BOOL);
-цел LookupIconIdFromDirectoryEx(PBYTE, BOOL, цел, цел, UINT);
+int LookupIconIdFromDirectory(PBYTE, BOOL);
+int LookupIconIdFromDirectoryEx(PBYTE, BOOL, int, int, UINT);
 BOOL MapDialogRect(HWND, LPRECT);
 UINT MapVirtualKeyA(UINT, UINT);
 UINT MapVirtualKeyExA(UINT, UINT, HKL);
 UINT MapVirtualKeyExW(UINT, UINT, HKL);
 UINT MapVirtualKeyW(UINT, UINT);
-цел MapWindowPoints(HWND, HWND, LPPOINT, UINT);
-цел MenuItemFromPoint(HWND, HMENU, POINT);
+int MapWindowPoints(HWND, HWND, LPPOINT, UINT);
+int MenuItemFromPoint(HWND, HMENU, POINT);
 BOOL MessageBeep(UINT);
-цел MessageBoxA(HWND, LPCSTR, LPCSTR, UINT);
-цел MessageBoxW(HWND, LPCWSTR, LPCWSTR, UINT);
-цел MessageBoxExA(HWND, LPCSTR, LPCSTR, UINT, WORD);
-цел MessageBoxExW(HWND, LPCWSTR, LPCWSTR, UINT, WORD);
-цел MessageBoxIndirectA(MSGBOXPARAMSA*);
-цел MessageBoxIndirectW(MSGBOXPARAMSW*);
+int MessageBoxA(HWND, LPCSTR, LPCSTR, UINT);
+int MessageBoxW(HWND, LPCWSTR, LPCWSTR, UINT);
+int MessageBoxExA(HWND, LPCSTR, LPCSTR, UINT, WORD);
+int MessageBoxExW(HWND, LPCWSTR, LPCWSTR, UINT, WORD);
+int MessageBoxIndirectA(MSGBOXPARAMSA*);
+int MessageBoxIndirectW(MSGBOXPARAMSW*);
 BOOL ModifyMenuA(HMENU, UINT, UINT, UINT, LPCSTR);
 BOOL ModifyMenuW(HMENU, UINT, UINT, UINT, LPCWSTR);
-проц mouse_event(DWORD, DWORD, DWORD, DWORD, ULONG_PTR);
-BOOL MoveWindow(HWND, цел, цел, цел, цел, BOOL);
+void mouse_event(DWORD, DWORD, DWORD, DWORD, ULONG_PTR);
+BOOL MoveWindow(HWND, int, int, int, int, BOOL);
 DWORD MsgWaitForMultipleObjects(DWORD, HANDLE*, BOOL, DWORD, DWORD);
 DWORD MsgWaitForMultipleObjectsEx(DWORD, HANDLE*, DWORD, DWORD, DWORD);
 DWORD OemKeyScan(WORD);
@@ -4141,7 +4141,7 @@ BOOL OemToCharA(LPCSTR, LPSTR);
 BOOL OemToCharBuffA(LPCSTR, LPSTR, DWORD);
 BOOL OemToCharBuffW(LPCSTR, LPWSTR, DWORD);
 BOOL OemToCharW(LPCSTR, LPWSTR);
-BOOL OffsetRect(LPRECT, цел, цел);
+BOOL OffsetRect(LPRECT, int, int);
 BOOL OpenClipboard(HWND);
 HDESK OpenDesktopA(LPSTR, DWORD, BOOL, DWORD);
 HDESK OpenDesktopW(LPWSTR, DWORD, BOOL, DWORD);
@@ -4154,7 +4154,7 @@ BOOL PeekMessageA(LPMSG, HWND, UINT, UINT, UINT);
 BOOL PeekMessageW(LPMSG, HWND, UINT, UINT, UINT);
 BOOL PostMessageA(HWND, UINT, WPARAM, LPARAM);
 BOOL PostMessageW(HWND, UINT, WPARAM, LPARAM);
-проц PostQuitMessage(цел);
+void PostQuitMessage(int);
 BOOL PostThreadMessageA(DWORD, UINT, WPARAM, LPARAM);
 BOOL PostThreadMessageW(DWORD, UINT, WPARAM, LPARAM);
 BOOL PtInRect(LPCRECT, POINT);
@@ -4168,21 +4168,21 @@ ATOM RegisterClassExA(WNDCLASSEXA*);
 ATOM RegisterClassExW(WNDCLASSEXW*);
 UINT RegisterClipboardFormatA(LPCSTR);
 UINT RegisterClipboardFormatW(LPCWSTR);
-BOOL RegisterHotKey(HWND, цел, UINT, UINT);
+BOOL RegisterHotKey(HWND, int, UINT, UINT);
 UINT RegisterWindowMessageA(LPCSTR);
 UINT RegisterWindowMessageW(LPCWSTR);
 BOOL ReleaseCapture();
-цел ReleaseDC(HWND, HDC);
+int ReleaseDC(HWND, HDC);
 BOOL RemoveMenu(HMENU, UINT, UINT);
 HANDLE RemovePropA(HWND, LPCSTR);
 HANDLE RemovePropW(HWND, LPCWSTR);
 BOOL ReplyMessage(LRESULT);
 BOOL ScreenToClient(HWND, LPPOINT);
-BOOL ScrollDC(HDC, цел, цел, LPCRECT, LPCRECT, HRGN, LPRECT);
-BOOL ScrollWindow(HWND, цел, цел, LPCRECT, LPCRECT);
-цел ScrollWindowEx(HWND, цел, цел, LPCRECT, LPCRECT, HRGN, LPRECT, UINT);
-LONG SendDlgItemMessageA(HWND, цел, UINT, WPARAM, LPARAM);
-LONG SendDlgItemMessageW(HWND, цел, UINT, WPARAM, LPARAM);
+BOOL ScrollDC(HDC, int, int, LPCRECT, LPCRECT, HRGN, LPRECT);
+BOOL ScrollWindow(HWND, int, int, LPCRECT, LPCRECT);
+int ScrollWindowEx(HWND, int, int, LPCRECT, LPCRECT, HRGN, LPRECT, UINT);
+LONG SendDlgItemMessageA(HWND, int, UINT, WPARAM, LPARAM);
+LONG SendDlgItemMessageW(HWND, int, UINT, WPARAM, LPARAM);
 LRESULT SendMessageA(HWND, UINT, WPARAM, LPARAM);
 BOOL SendMessageCallbackA(HWND, UINT, WPARAM, LPARAM, SENDASYNCPROC, DWORD);
 BOOL SendMessageCallbackW(HWND, UINT, WPARAM, LPARAM, SENDASYNCPROC, DWORD);
@@ -4194,18 +4194,18 @@ BOOL SendNotifyMessageW(HWND, UINT, WPARAM, LPARAM);
 HWND SetActiveWindow(HWND);
 HWND SetCapture(HWND hWnd);
 BOOL SetCaretBlinkTime(UINT);
-BOOL SetCaretPos(цел, цел);
-DWORD SetClassLongA(HWND, цел, LONG);
-DWORD SetClassLongW(HWND, цел, LONG);
-WORD SetClassWord(HWND, цел, WORD);
+BOOL SetCaretPos(int, int);
+DWORD SetClassLongA(HWND, int, LONG);
+DWORD SetClassLongW(HWND, int, LONG);
+WORD SetClassWord(HWND, int, WORD);
 HANDLE SetClipboardData(UINT, HANDLE);
 HWND SetClipboardViewer(HWND);
 HCURSOR SetCursor(HCURSOR);
-BOOL SetCursorPos(цел, цел);
-проц SetDebugErrorLevel(DWORD);
-BOOL SetDlgItemInt(HWND, цел, UINT, BOOL);
-BOOL SetDlgItemTextA(HWND, цел, LPCSTR);
-BOOL SetDlgItemTextW(HWND, цел, LPCWSTR);
+BOOL SetCursorPos(int, int);
+void SetDebugErrorLevel(DWORD);
+BOOL SetDlgItemInt(HWND, int, UINT, BOOL);
+BOOL SetDlgItemTextA(HWND, int, LPCSTR);
+BOOL SetDlgItemTextW(HWND, int, LPCWSTR);
 BOOL SetDoubleClickTime(UINT);
 HWND SetFocus(HWND);
 BOOL SetForegroundWindow(HWND);
@@ -4218,68 +4218,68 @@ BOOL SetMenuItemBitmaps(HMENU, UINT, UINT, HBITMAP, HBITMAP);
 BOOL SetMenuItemInfoA(HMENU, UINT, BOOL, LPCMENUITEMINFOA);
 BOOL SetMenuItemInfoW( HMENU, UINT, BOOL, LPCMENUITEMINFOW);
 LPARAM SetMessageExtraInfo(LPARAM);
-BOOL SetMessageQueue(цел);
+BOOL SetMessageQueue(int);
 HWND SetParent(HWND, HWND);
 BOOL SetProcessWindowStation(HWINSTA);
 BOOL SetPropA(HWND, LPCSTR, HANDLE);
 BOOL SetPropW(HWND, LPCWSTR, HANDLE);
-BOOL SetRect(LPRECT, цел, цел, цел, цел);
+BOOL SetRect(LPRECT, int, int, int, int);
 BOOL SetRectEmpty(LPRECT);
-цел SetScrollInfo(HWND, цел, LPCSCROLLINFO, BOOL);
-цел SetScrollPos(HWND, цел, цел, BOOL);
-BOOL SetScrollRange(HWND, цел, цел, цел, BOOL);
-BOOL SetSysColors(цел, INT* , COLORREF* );
+int SetScrollInfo(HWND, int, LPCSCROLLINFO, BOOL);
+int SetScrollPos(HWND, int, int, BOOL);
+BOOL SetScrollRange(HWND, int, int, int, BOOL);
+BOOL SetSysColors(int, INT* , COLORREF* );
 BOOL SetSystemCursor(HCURSOR, DWORD);
 BOOL SetThreadDesktop(HDESK);
 UINT SetTimer(HWND, UINT, UINT, TIMERPROC);
-BOOL SetUserObjectInformationA(HANDLE, цел, PVOID, DWORD);
-BOOL SetUserObjectInformationW(HANDLE, цел, PVOID, DWORD);
+BOOL SetUserObjectInformationA(HANDLE, int, PVOID, DWORD);
+BOOL SetUserObjectInformationW(HANDLE, int, PVOID, DWORD);
 BOOL SetUserObjectSecurity(HANDLE, PSECURITY_INFORMATION, PSECURITY_DESCRIPTOR);
 BOOL SetWindowContextHelpId(HWND, DWORD);
-LONG SetWindowLongA(HWND, цел, LONG);
-LONG SetWindowLongW(HWND, цел, LONG);
+LONG SetWindowLongA(HWND, int, LONG);
+LONG SetWindowLongW(HWND, int, LONG);
 BOOL SetWindowPlacement(HWND hWnd, WINDOWPLACEMENT*);
-BOOL SetWindowPos(HWND, HWND, цел, цел, цел, цел, UINT);
-цел SetWindowRgn(HWND, HRGN, BOOL);
-HHOOK SetWindowsHookA(цел, HOOKPROC);
-HHOOK SetWindowsHookW(цел, HOOKPROC);
-HHOOK SetWindowsHookExA(цел, HOOKPROC, HINSTANCE, DWORD);
-HHOOK SetWindowsHookExW(цел, HOOKPROC, HINSTANCE, DWORD);
+BOOL SetWindowPos(HWND, HWND, int, int, int, int, UINT);
+int SetWindowRgn(HWND, HRGN, BOOL);
+HHOOK SetWindowsHookA(int, HOOKPROC);
+HHOOK SetWindowsHookW(int, HOOKPROC);
+HHOOK SetWindowsHookExA(int, HOOKPROC, HINSTANCE, DWORD);
+HHOOK SetWindowsHookExW(int, HOOKPROC, HINSTANCE, DWORD);
 BOOL SetWindowTextA(HWND, LPCSTR);
 BOOL SetWindowTextW(HWND, LPCWSTR);
-WORD SetWindowWord(HWND, цел, WORD);
+WORD SetWindowWord(HWND, int, WORD);
 BOOL ShowCaret(HWND);
-цел ShowCursor(BOOL);
+int ShowCursor(BOOL);
 BOOL ShowOwnedPopups(HWND, BOOL);
-BOOL ShowScrollBar(HWND, цел, BOOL);
-BOOL ShowWindow(HWND, цел);
-BOOL ShowWindowAsync(HWND, цел);
+BOOL ShowScrollBar(HWND, int, BOOL);
+BOOL ShowWindow(HWND, int);
+BOOL ShowWindowAsync(HWND, int);
 BOOL SubtractRect(LPRECT, LPCRECT, LPCRECT);
 BOOL SwapMouseButton(BOOL);
 BOOL SwitchDesktop(HDESK);
 BOOL SystemParametersInfoA(UINT, UINT, PVOID, UINT);
 BOOL SystemParametersInfoW(UINT, UINT, PVOID, UINT);
-LONG TabbedTextOutA(HDC, цел, цел, LPCSTR, цел, цел, LPINT, цел);
-LONG TabbedTextOutW(HDC, цел, цел, LPCWSTR, цел, цел, LPINT, цел);
+LONG TabbedTextOutA(HDC, int, int, LPCSTR, int, int, LPINT, int);
+LONG TabbedTextOutW(HDC, int, int, LPCWSTR, int, int, LPINT, int);
 WORD TileWindows(HWND, UINT, LPCRECT, UINT, HWND* );
-цел ToAscii(UINT, UINT, PBYTE, LPWORD, UINT);
-цел ToAsciiEx(UINT, UINT, PBYTE, LPWORD, UINT, HKL);
-цел ToUnicode(UINT, UINT, PBYTE, LPWSTR, цел, UINT);
-цел ToUnicodeEx(UINT, UINT, PBYTE, LPWSTR, цел, UINT, HKL);
+int ToAscii(UINT, UINT, PBYTE, LPWORD, UINT);
+int ToAsciiEx(UINT, UINT, PBYTE, LPWORD, UINT, HKL);
+int ToUnicode(UINT, UINT, PBYTE, LPWSTR, int, UINT);
+int ToUnicodeEx(UINT, UINT, PBYTE, LPWSTR, int, UINT, HKL);
 BOOL TrackMouseEvent(LPTRACKMOUSEEVENT);
-BOOL TrackPopupMenu(HMENU, UINT, цел, цел, цел, HWND, LPCRECT);
-BOOL TrackPopupMenuEx(HMENU, UINT, цел, цел, HWND, LPTPMPARAMS);
-цел TranslateAcceleratorA(HWND, HACCEL, LPMSG);
-цел TranslateAcceleratorW(HWND, HACCEL, LPMSG);
+BOOL TrackPopupMenu(HMENU, UINT, int, int, int, HWND, LPCRECT);
+BOOL TrackPopupMenuEx(HMENU, UINT, int, int, HWND, LPTPMPARAMS);
+int TranslateAcceleratorA(HWND, HACCEL, LPMSG);
+int TranslateAcceleratorW(HWND, HACCEL, LPMSG);
 BOOL TranslateMDISysAccel(HWND, LPMSG);
 BOOL TranslateMessage( MSG*);
-BOOL UnhookWindowsHook(цел, HOOKPROC);
+BOOL UnhookWindowsHook(int, HOOKPROC);
 BOOL UnhookWindowsHookEx(HHOOK);
 BOOL UnionRect(LPRECT, LPCRECT, LPCRECT);
 BOOL UnloadKeyboardLayout(HKL);
 BOOL UnregisterClassA(LPCSTR, HINSTANCE);
 BOOL UnregisterClassW(LPCWSTR, HINSTANCE);
-BOOL UnregisterHotKey(HWND, цел);
+BOOL UnregisterHotKey(HWND, int);
 BOOL UpdateWindow(HWND);
 BOOL ValidateRect(HWND, LPCRECT);
 BOOL ValidateRgn(HWND, HRGN);
@@ -4296,32 +4296,32 @@ BOOL WinHelpA(HWND, LPCSTR, UINT, DWORD);
 BOOL WinHelpW(HWND, LPCWSTR, UINT, DWORD);
 
 extern (C) {
-	цел wsprintfA(LPSTR, LPCSTR, ...);
-	цел wsprintfW(LPWSTR, LPCWSTR, ...);
+	int wsprintfA(LPSTR, LPCSTR, ...);
+	int wsprintfW(LPWSTR, LPCWSTR, ...);
 }
 
 
 // These shouldn't be necessary for D.
-typedef сим* va_list_;
-цел wvsprintfA(LPSTR, LPCSTR, va_list_ arglist);
-цел wvsprintfW(LPWSTR, LPCWSTR, va_list_ arglist);
+typedef char* va_list_;
+int wvsprintfA(LPSTR, LPCSTR, va_list_ arglist);
+int wvsprintfW(LPWSTR, LPCWSTR, va_list_ arglist);
 
 
 static if (_WIN32_WINDOWS == 0x400) {
 // On Win95, there's only one version.
-цел BroadcastSystemMessage(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
+int BroadcastSystemMessage(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
 }
 static if (_WIN32_WINNT >= 0x400) {
-цел BroadcastSystemMessageA(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
-цел BroadcastSystemMessageW(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
+int BroadcastSystemMessageA(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
+int BroadcastSystemMessageW(DWORD, LPDWORD, UINT, WPARAM, LPARAM);
 }
 static if (_WIN32_WINNT >= 0x501) {
-цел BroadcastSystemMessageExA(DWORD, LPDWORD, UINT, WPARAM, LPARAM, PBSMINFO);
-цел BroadcastSystemMessageExW(DWORD, LPDWORD, UINT, WPARAM, LPARAM, PBSMINFO);
+int BroadcastSystemMessageExA(DWORD, LPDWORD, UINT, WPARAM, LPARAM, PBSMINFO);
+int BroadcastSystemMessageExW(DWORD, LPDWORD, UINT, WPARAM, LPARAM, PBSMINFO);
 }
 
 static if (_WIN32_WINNT >= 0x403) {
-UINT SendInput(UINT, LPINPUT, цел);
+UINT SendInput(UINT, LPINPUT, int);
 }
 static if (_WIN32_WINNT >= 0x500) {
 BOOL AnimateWindow(HWND, DWORD, DWORD);
@@ -4334,7 +4334,7 @@ BOOL LockWorkStation();
 HDEVNOTIFY RegisterDeviceNotificationA(HANDLE, LPVOID, DWORD);
 HDEVNOTIFY RegisterDeviceNotificationW(HANDLE, LPVOID, DWORD);
 BOOL SetProcessDefaultLayout(DWORD);
-проц SwitchToThisWindow(HWND, BOOL);
+void SwitchToThisWindow(HWND, BOOL);
 BOOL SetLayeredWindowAttributes(HWND, COLORREF, BYTE, DWORD);
 BOOL UpdateLayeredWindow(HWND, HDC, POINT*, SIZE*, HDC, POINT*, COLORREF, BLENDFUNCTION*, DWORD);
 BOOL UserHandleGrantAccess(HANDLE, HANDLE, BOOL);
@@ -4366,7 +4366,7 @@ static if (WINVER >= 0x410) {
 }
 static if (WINVER >= 0x500) {
 BOOL GetGUIThreadInfo(DWORD, LPGUITHREADINFO);
-проц NotifyWinEvent(DWORD, HWND, LONG, LONG);
+void NotifyWinEvent(DWORD, HWND, LONG, LONG);
 HWINEVENTHOOK SetWinEventHook(UINT, UINT, HMODULE, WINEVENTPROC, DWORD, DWORD, UINT);
 BOOL UnhookWinEvent(HWINEVENTHOOK);
 BOOL UnregisterDeviceNotification(HANDLE);
@@ -4381,14 +4381,14 @@ DWORD InSendMessageEx(LPVOID);
 static if ((_WIN32_WINNT >= 0x500) || (_WIN32_WINDOWS >= 0x490)) {
 BOOL AllowSetForegroundWindow(DWORD);
 BOOL LockSetForegroundWindow(UINT);
-цел GetMouseMovePointsEx(UINT, LPMOUSEMOVEPOINT, LPMOUSEMOVEPOINT, цел, DWORD);
+int GetMouseMovePointsEx(UINT, LPMOUSEMOVEPOINT, LPMOUSEMOVEPOINT, int, DWORD);
 }
 
 version (Win64) {
-LONG_PTR GetWindowLongPtrA(HWND, цел);
-LONG_PTR GetWindowLongPtrW(HWND, цел);
-LONG_PTR SetWindowLongPtrA(HWND, цел, LONG_PTR);
-LONG_PTR SetWindowLongPtrW(HWND, цел, LONG_PTR);
+LONG_PTR GetWindowLongPtrA(HWND, int);
+LONG_PTR GetWindowLongPtrW(HWND, int);
+LONG_PTR SetWindowLongPtrA(HWND, int, LONG_PTR);
+LONG_PTR SetWindowLongPtrW(HWND, int, LONG_PTR);
 } else {
 alias GetWindowLongA GetWindowLongPtrA;
 alias GetWindowLongW GetWindowLongPtrW;

@@ -22,19 +22,19 @@ private import win32.winerror;  // for SCODE
 
 private {
 	// These replace C macros.
-	template ITF_ERROR_SCODE_FOR_D(цел c)
+	template ITF_ERROR_SCODE_FOR_D(int c)
 	{
 		const SCODE ITF_ERROR_SCODE_FOR_D
 		  = (SEVERITY_ERROR << 31) | (FACILITY_ITF << 16) | c;
 	}
 
-	template ITF_SUCCESS_SCODE_FOR_D(цел c)
+	template ITF_SUCCESS_SCODE_FOR_D(int c)
 	{
 		const SCODE ITF_SUCCESS_SCODE_FOR_D
 		  = (SEVERITY_SUCCESS << 31) | (FACILITY_ITF << 16) | c;
 	}
 
-	template STD_CTL_SCODE(цел c)
+	template STD_CTL_SCODE(int c)
 	{
 		const SCODE STD_CTL_SCODE
 		  = (SEVERITY_ERROR << 31) | (FACILITY_CONTROL << 16) | c;
@@ -309,13 +309,13 @@ alias IPropertyPage2 *LPPROPERTYPAGE2;
 
 alias IPicture *LPPICTURE;
 alias IPictureDisp *LPPICTUREDISP;
-alias цел OLE_XPOS_PIXELS;
-alias цел OLE_YPOS_PIXELS;
-alias цел OLE_XSIZE_PIXELS;
-alias цел OLE_YSIZE_PIXELS;
-alias плав OLE_XPOS_CONTAINER;
-alias плав OLE_YPOS_CONTAINER;
-alias плав OLE_XSIZE_CONTAINER;
+alias int OLE_XPOS_PIXELS;
+alias int OLE_YPOS_PIXELS;
+alias int OLE_XSIZE_PIXELS;
+alias int OLE_YSIZE_PIXELS;
+alias float OLE_XPOS_CONTAINER;
+alias float OLE_YPOS_CONTAINER;
+alias float OLE_XSIZE_CONTAINER;
 
 alias VARIANT_BOOL OLE_OPTEXCLUSIVE;
 alias VARIANT_BOOL OLE_CANCELBOOL;
@@ -332,8 +332,8 @@ enum OLE_TRISTATE {
 struct OCPFIPARAMS {
 	ULONG cbStructSize;
 	HWND hWndOwner;
-	цел x;
-	цел y;
+	int x;
+	int y;
 	LPCOLESTR lpszCaption;
 	ULONG cObjects;
 	LPUNKNOWN *lplpUnk;
@@ -367,8 +367,8 @@ struct PICTDESC
 		}
 		struct wmf {
 			HMETAFILE hmeta;
-			цел xExt;
-			цел yExt;
+			int xExt;
+			int yExt;
 		}
 		struct icon {
 			HICON hicon;

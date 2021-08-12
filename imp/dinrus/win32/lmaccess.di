@@ -18,7 +18,7 @@ pragma(lib, "netapi32.lib");
 
 private import win32.lmcons, win32.windef;
 
-const шим[]
+const wchar[]
 	GROUP_SPECIALGRP_USERS  = "USERS",
 	GROUP_SPECIALGRP_ADMINS = "ADMINS",
 	GROUP_SPECIALGRP_GUESTS = "GUESTS",

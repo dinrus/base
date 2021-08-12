@@ -15,28 +15,28 @@ private import win32.w32api;
 
 const size_t MAX_PATH = 260;
 
-бкрат MAKEWORD(ббайт a, ббайт b) {
-	return cast(бкрат) ((b << 8) | a);
+ushort MAKEWORD(ubyte a, ubyte b) {
+	return cast(ushort) ((b << 8) | a);
 }
 
-бцел MAKELONG(бкрат a, бкрат b) {
-	return cast(бцел) ((b << 16) | a);
+uint MAKELONG(ushort a, ushort b) {
+	return cast(uint) ((b << 16) | a);
 }
 
-бкрат LOWORD(бцел l) {
-	return cast(бкрат) l;
+ushort LOWORD(uint l) {
+	return cast(ushort) l;
 }
 
-бкрат HIWORD(бцел l) {
-	return cast(бкрат) (l >>> 16);
+ushort HIWORD(uint l) {
+	return cast(ushort) (l >>> 16);
 }
 
-ббайт LOBYTE(бкрат w) {
-	return cast(ббайт) w;
+ubyte LOBYTE(ushort w) {
+	return cast(ubyte) w;
 }
 
-ббайт HIBYTE(бкрат w) {
-	return cast(ббайт) (w >>> 8);
+ubyte HIBYTE(ushort w) {
+	return cast(ubyte) (w >>> 8);
 }
 
 template max(T) {
@@ -52,18 +52,18 @@ template min(T) {
 }
 
 /*
-const проц* NULL = null;
-alias ббайт   BYTE;
-alias ббайт*  PBYTE, LPBYTE;
-alias бкрат  USHORT, WORD, ATOM;
-alias бкрат* PUSHORT, PWORD, LPWORD;
-alias бцел    ULONG, DWORD, UINT, COLORREF;
-alias бцел*   PULONG, PDWORD, LPDWORD, PUINT, LPUINT;
-alias цел     WINBOOL, BOOL, INT, LONG, HFILE, HRESULT;
-alias цел*    PWINBOOL, LPWINBOOL, PBOOL, LPBOOL, PINT, LPINT, LPLONG;
-alias плав   FLOAT;
-alias плав*  PFLOAT;
-alias проц*   PCVOID, LPCVOID;
+const void* NULL = null;
+alias ubyte   BYTE;
+alias ubyte*  PBYTE, LPBYTE;
+alias ushort  USHORT, WORD, ATOM;
+alias ushort* PUSHORT, PWORD, LPWORD;
+alias uint    ULONG, DWORD, UINT, COLORREF;
+alias uint*   PULONG, PDWORD, LPDWORD, PUINT, LPUINT;
+alias int     WINBOOL, BOOL, INT, LONG, HFILE, HRESULT;
+alias int*    PWINBOOL, LPWINBOOL, PBOOL, LPBOOL, PINT, LPINT, LPLONG;
+alias float   FLOAT;
+alias float*  PFLOAT;
+alias void*   PCVOID, LPCVOID;
 
 alias UINT_PTR WPARAM;
 alias LONG_PTR LPARAM, LRESULT;
@@ -79,10 +79,10 @@ static if (WINVER >= 0x500) {
 }
 
 struct RECT {
-	LONG лево;
-	LONG верх;
-	LONG право;
-	LONG низ;
+	LONG left;
+	LONG top;
+	LONG right;
+	LONG bottom;
 }
 alias RECT RECTL;
 alias RECT* PRECT, LPRECT, LPCRECT, PRECTL, LPRECTL, LPCRECTL;

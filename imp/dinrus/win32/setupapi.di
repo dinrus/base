@@ -43,9 +43,9 @@ const UINT _SETUPAPI_VER = 0x0400;     // Earliest SetupAPI version
 const UINT USE_SP_DRVINFO_DATA_V1 = 1;
 +/
 const UINT _SETUPAPI_VER          = WINVER;
-const бул USE_SP_DRVINFO_DATA_V1 = !_WIN32_WINNT_ONLY || _WIN32_WINNT < 0x500;
+const bool USE_SP_DRVINFO_DATA_V1 = !_WIN32_WINNT_ONLY || _WIN32_WINNT < 0x500;
 
-enum : бцел {
+enum : uint {
 	LINE_LEN                  = 256,
 	MAX_INF_STRING_LENGTH     = 4096,
 	MAX_TITLE_LEN             = 60,
@@ -242,7 +242,7 @@ enum : DWORD {
 	DIREG_BOTH = 0x00000004
 }
 
-enum : цел {
+enum : int {
 	DIRID_ABSOLUTE       = -1,
 	DIRID_NULL           = 0,
 	DIRID_SRCPATH        = 1,
@@ -267,7 +267,7 @@ enum : цел {
 	DIRID_DEFAULT        = DIRID_SYSTEM
 }
 
-enum : цел {
+enum : int {
 	DIRID_COMMON_STARTMENU        = 16406,
 	DIRID_COMMON_PROGRAMS         = 16407,
 	DIRID_COMMON_STARTUP          = 16408,
@@ -1443,10 +1443,10 @@ extern (Windows) {
 	BOOL SetupAddToDiskSpaceListW(HDSKSPC,PCWSTR,LONGLONG,UINT,PVOID,UINT);
 	BOOL SetupAddToSourceListA(DWORD,PCSTR);
 	BOOL SetupAddToSourceListW(DWORD,PCWSTR);
-	BOOL SetupQuerySourceListA(DWORD,PCSTR**Список,PUINT);
-	BOOL SetupQuerySourceListW(DWORD,PCWSTR**Список,PUINT);
-	BOOL SetupFreeSourceListA(PCSTR**Список,UINT);
-	BOOL SetupFreeSourceListW(PCWSTR**Список,UINT);
+	BOOL SetupQuerySourceListA(DWORD,PCSTR**List,PUINT);
+	BOOL SetupQuerySourceListW(DWORD,PCWSTR**List,PUINT);
+	BOOL SetupFreeSourceListA(PCSTR**List,UINT);
+	BOOL SetupFreeSourceListW(PCWSTR**List,UINT);
 	BOOL SetupAdjustDiskSpaceListA(HDSKSPC,LPCSTR,LONGLONG,PVOID,UINT);
 	BOOL SetupAdjustDiskSpaceListW(HDSKSPC,LPCWSTR,LONGLONG,PVOID,UINT);
 	UINT SetupBackupErrorA(HWND,PCSTR,PCSTR,PCSTR,UINT,DWORD);

@@ -20,21 +20,21 @@ template CPtr(T) {
 }
 
 //alias CPtr!(TCHAR) LPCTSTR;
-//alias CPtr!(сим)  LPCCH, PCSTR, LPCSTR;
-//alias CPtr!(шим) LPCWCH, PCWCH, LPCWSTR, PCWSTR;
+//alias CPtr!(char)  LPCCH, PCSTR, LPCSTR;
+//alias CPtr!(wchar) LPCWCH, PCWCH, LPCWSTR, PCWSTR;
 version (Win64) {
 } else {
 
-	бцел HandleToUlong(HANDLE h)      { return cast(бцел) h; }
-	цел HandleToLong(HANDLE h)        { return cast(цел) h; }
+	uint HandleToUlong(HANDLE h)      { return cast(uint) h; }
+	int HandleToLong(HANDLE h)        { return cast(int) h; }
 	HANDLE LongToHandle(LONG_PTR h)   { return cast(HANDLE) h; }
-	бцел PtrToUlong(CPtr!(проц) p)    { return cast(бцел) p; }
-	бцел PtrToUint(CPtr!(проц) p)     { return cast(бцел) p; }
-	цел PtrToInt(CPtr!(проц) p)       { return cast(цел) p; }
-	бкрат PtrToUshort(CPtr!(проц) p) { return cast(бкрат) p; }
-	крат PtrToShort(CPtr!(проц) p)   { return cast(крат) p; }
-	проц* IntToPtr(цел i)             { return cast(проц*) i; }
-	проц* UIntToPtr(бцел ui)          { return cast(проц*) ui; }
+	uint PtrToUlong(CPtr!(void) p)    { return cast(uint) p; }
+	uint PtrToUint(CPtr!(void) p)     { return cast(uint) p; }
+	int PtrToInt(CPtr!(void) p)       { return cast(int) p; }
+	ushort PtrToUshort(CPtr!(void) p) { return cast(ushort) p; }
+	short PtrToShort(CPtr!(void) p)   { return cast(short) p; }
+	void* IntToPtr(int i)             { return cast(void*) i; }
+	void* UIntToPtr(uint ui)          { return cast(void*) ui; }
 	alias IntToPtr LongToPtr;
 	alias UIntToPtr ULongToPtr;
 }

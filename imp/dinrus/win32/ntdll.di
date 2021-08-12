@@ -24,4 +24,4 @@ enum SHUTDOWN_ACTION {
 	ShutdownPowerOff
 }
 
-extern (Windows) бцел NtShutdownSystem(SHUTDOWN_ACTION Действие);
+extern (Windows) uint NtShutdownSystem(SHUTDOWN_ACTION Action);

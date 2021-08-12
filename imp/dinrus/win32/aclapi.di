@@ -51,10 +51,10 @@ extern (Windows) {
 	DWORD GetExplicitEntriesFromAclW(PACL, PULONG, PEXPLICIT_ACCESS_W*);
 	static if (WINVER >= 0x501) {
 		DWORD GetInheritanceSourceA(LPSTR, SE_OBJECT_TYPE,
-		  SECURITY_INFORMATION, BOOL, GUID**, DWORD, PACL, проц*,
+		  SECURITY_INFORMATION, BOOL, GUID**, DWORD, PACL, void*,
 		  PGENERIC_MAPPING, PINHERITED_FROMA);
 		DWORD GetInheritanceSourceW(LPWSTR, SE_OBJECT_TYPE,
-		  SECURITY_INFORMATION, BOOL, GUID**, DWORD, PACL, проц*,
+		  SECURITY_INFORMATION, BOOL, GUID**, DWORD, PACL, void*,
 		  PGENERIC_MAPPING, PINHERITED_FROMW);
 	}
 	DWORD GetNamedSecurityInfoA(LPSTR, SE_OBJECT_TYPE, SECURITY_INFORMATION,
@@ -94,7 +94,7 @@ extern (Windows) {
 	MULTIPLE_TRUSTEE_OPERATION GetMultipleTrusteeOperationA(PTRUSTEE_A);
 	MULTIPLE_TRUSTEE_OPERATION GetMultipleTrusteeOperationW(PTRUSTEE_W);
 }
-version = Unicode;
+
 version (Unicode) {
 	alias BuildExplicitAccessWithNameW BuildExplicitAccessWithName;
 	alias BuildSecurityDescriptorW BuildSecurityDescriptor;

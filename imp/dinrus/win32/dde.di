@@ -14,7 +14,7 @@ pragma(lib, "dinrus.lib");
 
 private import win32.windef;
 
-enum : бцел {
+enum : uint {
 	WM_DDE_FIRST     = 0x03E0,
 	WM_DDE_INITIATE  = WM_DDE_FIRST,
 	WM_DDE_TERMINATE,
@@ -29,124 +29,124 @@ enum : бцел {
 }
 
 struct DDEACK {
-	ббайт bAppReturnCode;
-	ббайт _bf;
+	ubyte bAppReturnCode;
+	ubyte _bf;
 
-	ббайт reserved() { return cast(ббайт) (_bf & 0x3F); }
-	бул  fBusy()    { return cast(бул)  (_bf & 0x40); }
-	бул  fAck()     { return cast(бул)  (_bf & 0x80); }
+	ubyte reserved() { return cast(ubyte) (_bf & 0x3F); }
+	bool  fBusy()    { return cast(bool)  (_bf & 0x40); }
+	bool  fAck()     { return cast(bool)  (_bf & 0x80); }
 
-	ббайт reserved(ббайт r) {
-		_bf = cast(ббайт) ((_bf & ~0x3F) | (r & 0x3F));
-		return cast(ббайт)(r & 0x3F);
+	ubyte reserved(ubyte r) {
+		_bf = cast(ubyte) ((_bf & ~0x3F) | (r & 0x3F));
+		return cast(ubyte)(r & 0x3F);
 	}
 
-	бул fBusy(бул f) { _bf = cast(ббайт) ((_bf & ~0x40) | (f << 6)); return f; }
-	бул fAck(бул f)  { _bf = cast(ббайт) ((_bf & ~0x80) | (f << 7)); return f; }
+	bool fBusy(bool f) { _bf = cast(ubyte) ((_bf & ~0x40) | (f << 6)); return f; }
+	bool fAck(bool f)  { _bf = cast(ubyte) ((_bf & ~0x80) | (f << 7)); return f; }
 }
 
 struct DDEADVISE {
-	бкрат _bf;
-	крат  cfFormat;
+	ushort _bf;
+	short  cfFormat;
 
-	бкрат reserved()  { return cast(бкрат) (_bf & 0x3FFF); }
-	бул   fDeferUpd() { return cast(бул)   (_bf & 0x4000); }
-	бул   fAckReq()   { return cast(бул)   (_bf & 0x8000); }
+	ushort reserved()  { return cast(ushort) (_bf & 0x3FFF); }
+	bool   fDeferUpd() { return cast(bool)   (_bf & 0x4000); }
+	bool   fAckReq()   { return cast(bool)   (_bf & 0x8000); }
 
-	бкрат reserved(бкрат r) {
-		_bf = cast(бкрат) ((_bf & ~0x3FFF) | (r & 0x3FFF));
-		return cast(бкрат)(r & 0x3FFF);
+	ushort reserved(ushort r) {
+		_bf = cast(ushort) ((_bf & ~0x3FFF) | (r & 0x3FFF));
+		return cast(ushort)(r & 0x3FFF);
 	}
 
-	бул   fDeferUpd(бул f) { _bf = cast(бкрат) ((_bf & ~0x4000) | (f << 14)); return f; }
-	бул   fAckReq(бул f)   { _bf = cast(бкрат) ((_bf & ~0x8000) | (f << 15)); return f; }
+	bool   fDeferUpd(bool f) { _bf = cast(ushort) ((_bf & ~0x4000) | (f << 14)); return f; }
+	bool   fAckReq(bool f)   { _bf = cast(ushort) ((_bf & ~0x8000) | (f << 15)); return f; }
 }
 
 struct DDEDATA {
-	бкрат _bf;
-	крат  cfFormat;
+	ushort _bf;
+	short  cfFormat;
 	byte   _Value;
 
-	бкрат unused()    { return cast(бкрат) (_bf & 0x0FFF); }
-	бул   fResponse() { return cast(бул)   (_bf & 0x1000); }
-	бул   fRelease()  { return cast(бул)   (_bf & 0x2000); }
-	бул   reserved()  { return cast(бул)   (_bf & 0x4000); }
-	бул   fAckReq()   { return cast(бул)   (_bf & 0x8000); }
+	ushort unused()    { return cast(ushort) (_bf & 0x0FFF); }
+	bool   fResponse() { return cast(bool)   (_bf & 0x1000); }
+	bool   fRelease()  { return cast(bool)   (_bf & 0x2000); }
+	bool   reserved()  { return cast(bool)   (_bf & 0x4000); }
+	bool   fAckReq()   { return cast(bool)   (_bf & 0x8000); }
 
 	byte*  Value() { return &_Value; }
 
-	бкрат unused(бкрат r) {
-		_bf = cast(бкрат) ((_bf & ~0x0FFF) | (r & 0x0FFF));
-		return cast(бкрат)(r & 0x0FFF);
+	ushort unused(ushort r) {
+		_bf = cast(ushort) ((_bf & ~0x0FFF) | (r & 0x0FFF));
+		return cast(ushort)(r & 0x0FFF);
 	}
 
-	бул   fResponse(бул f) { _bf = cast(бкрат) ((_bf & ~0x1000) | (f << 12)); return f; }
-	бул   fRelease(бул f)  { _bf = cast(бкрат) ((_bf & ~0x2000) | (f << 13)); return f; }
-	бул   reserved(бул f)  { _bf = cast(бкрат) ((_bf & ~0x4000) | (f << 14)); return f; }
-	бул   fAckReq(бул f)   { _bf = cast(бкрат) ((_bf & ~0x8000) | (f << 15)); return f; }
+	bool   fResponse(bool f) { _bf = cast(ushort) ((_bf & ~0x1000) | (f << 12)); return f; }
+	bool   fRelease(bool f)  { _bf = cast(ushort) ((_bf & ~0x2000) | (f << 13)); return f; }
+	bool   reserved(bool f)  { _bf = cast(ushort) ((_bf & ~0x4000) | (f << 14)); return f; }
+	bool   fAckReq(bool f)   { _bf = cast(ushort) ((_bf & ~0x8000) | (f << 15)); return f; }
 }
 
 struct DDEPOKE {
-	бкрат _bf;
-	крат  cfFormat;
+	ushort _bf;
+	short  cfFormat;
 	byte   _Value;
 
-	бкрат unused()    { return cast(бкрат) (_bf & 0x1FFF); }
-	бул   fRelease()  { return cast(бул)   (_bf & 0x2000); }
-	ббайт  fReserved() { return cast(ббайт)  ((_bf & 0xC000) >>> 14); }
+	ushort unused()    { return cast(ushort) (_bf & 0x1FFF); }
+	bool   fRelease()  { return cast(bool)   (_bf & 0x2000); }
+	ubyte  fReserved() { return cast(ubyte)  ((_bf & 0xC000) >>> 14); }
 
 	byte*  Value() { return &_Value; }
 
-	бкрат unused(бкрат u) {
-		_bf = cast(бкрат) ((_bf & ~0x1FFF) | (u & 0x1FFF));
-		return cast(бкрат)(u & 0x1FFF);
+	ushort unused(ushort u) {
+		_bf = cast(ushort) ((_bf & ~0x1FFF) | (u & 0x1FFF));
+		return cast(ushort)(u & 0x1FFF);
 	}
 
-	бул   fRelease(бул f)   { _bf = cast(бкрат) ((_bf & ~0x2000) | (f << 13)); return f; }
-	ббайт  fReserved(ббайт r) { _bf = cast(бкрат) ((_bf & ~0xC000) | (r << 14)); return r; }
+	bool   fRelease(bool f)   { _bf = cast(ushort) ((_bf & ~0x2000) | (f << 13)); return f; }
+	ubyte  fReserved(ubyte r) { _bf = cast(ushort) ((_bf & ~0xC000) | (r << 14)); return r; }
 }
 
 deprecated struct DDELN {
-	бкрат _bf;
-	крат  cfFormat;
+	ushort _bf;
+	short  cfFormat;
 
-	бкрат unused()    { return cast(бкрат) (_bf & 0x1FFF); }
-	бул   fRelease()  { return cast(бул)   (_bf & 0x2000); }
-	бул   fDeferUpd() { return cast(бул)   (_bf & 0x4000); }
-	бул   fAckReq()   { return cast(бул)   (_bf & 0x8000); }
+	ushort unused()    { return cast(ushort) (_bf & 0x1FFF); }
+	bool   fRelease()  { return cast(bool)   (_bf & 0x2000); }
+	bool   fDeferUpd() { return cast(bool)   (_bf & 0x4000); }
+	bool   fAckReq()   { return cast(bool)   (_bf & 0x8000); }
 
-	бкрат unused(бкрат u) {
-		_bf = cast(бкрат)((_bf & ~0x1FFF) | (u & 0x1FFF));
-		return cast(бкрат)(u & 0x1FFF);
+	ushort unused(ushort u) {
+		_bf = cast(ushort)((_bf & ~0x1FFF) | (u & 0x1FFF));
+		return cast(ushort)(u & 0x1FFF);
 	}
 
-	бул   fRelease(бул f)  { _bf = cast(бкрат) ((_bf & ~0x2000) | (f << 13)); return f; }
-	бул   fDeferUpd(бул f) { _bf = cast(бкрат) ((_bf & ~0x4000) | (f << 14)); return f; }
-	бул   fAckReq(бул f)   { _bf = cast(бкрат) ((_bf & ~0x8000) | (f << 15)); return f; }
+	bool   fRelease(bool f)  { _bf = cast(ushort) ((_bf & ~0x2000) | (f << 13)); return f; }
+	bool   fDeferUpd(bool f) { _bf = cast(ushort) ((_bf & ~0x4000) | (f << 14)); return f; }
+	bool   fAckReq(bool f)   { _bf = cast(ushort) ((_bf & ~0x8000) | (f << 15)); return f; }
 }
 
 deprecated struct DDEUP {
-	бкрат _bf;
-	крат  cfFormat;
+	ushort _bf;
+	short  cfFormat;
 	byte   _rgb;
 
-	бкрат unused()    { return cast(бкрат) (_bf & 0x0FFF); }
-	бул   fAck()      { return cast(бул)   (_bf & 0x1000); }
-	бул   fRelease()  { return cast(бул)   (_bf & 0x2000); }
-	бул   fReserved() { return cast(бул)   (_bf & 0x4000); }
-	бул   fAckReq()   { return cast(бул)   (_bf & 0x8000); }
+	ushort unused()    { return cast(ushort) (_bf & 0x0FFF); }
+	bool   fAck()      { return cast(bool)   (_bf & 0x1000); }
+	bool   fRelease()  { return cast(bool)   (_bf & 0x2000); }
+	bool   fReserved() { return cast(bool)   (_bf & 0x4000); }
+	bool   fAckReq()   { return cast(bool)   (_bf & 0x8000); }
 
 	byte*  rgb() { return &_rgb; }
 
-	бкрат unused(бкрат r) {
-		_bf = cast(бкрат) ((_bf & ~0x0FFF) | (r & 0x0FFF));
-		return cast(бкрат)(r & 0x0FFF);
+	ushort unused(ushort r) {
+		_bf = cast(ushort) ((_bf & ~0x0FFF) | (r & 0x0FFF));
+		return cast(ushort)(r & 0x0FFF);
 	}
 
-	бул   fAck(бул f)      { _bf = cast(бкрат) ((_bf & ~0x1000) | (f << 12)); return f; }
-	бул   fRelease(бул f)  { _bf = cast(бкрат) ((_bf & ~0x2000) | (f << 13)); return f; }
-	бул   fReserved(бул f) { _bf = cast(бкрат) ((_bf & ~0x4000) | (f << 14)); return f; }
-	бул   fAckReq(бул f)   { _bf = cast(бкрат) ((_bf & ~0x8000) | (f << 15)); return f; }
+	bool   fAck(bool f)      { _bf = cast(ushort) ((_bf & ~0x1000) | (f << 12)); return f; }
+	bool   fRelease(bool f)  { _bf = cast(ushort) ((_bf & ~0x2000) | (f << 13)); return f; }
+	bool   fReserved(bool f) { _bf = cast(ushort) ((_bf & ~0x4000) | (f << 14)); return f; }
+	bool   fAckReq(bool f)   { _bf = cast(ushort) ((_bf & ~0x8000) | (f << 15)); return f; }
 }
 
 extern (Windows) {

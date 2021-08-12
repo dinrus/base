@@ -15,9 +15,9 @@ module win32.winerror;
 
 private import win32.windef;
 
-//alias цел SCODE; // was in win32.wtypes.
+//alias int SCODE; // was in win32.wtypes.
 
-enum : бцел {
+enum : uint {
 	ERROR_SUCCESS                                         =     0,
 	NO_ERROR                                              =     0,
 	ERROR_INVALID_FUNCTION,
@@ -2226,12 +2226,12 @@ enum : HRESULT {
 }
 
 
-enum : бул {
+enum : bool {
 	SEVERITY_SUCCESS = 0,
 	SEVERITY_ERROR   = 1
 }
 
-enum : бцел {
+enum : uint {
 	FACILITY_NULL     =   0,
 	FACILITY_RPC,
 	FACILITY_DISPATCH,
@@ -2245,47 +2245,47 @@ enum : бцел {
 
 // C Macros
 
-бул SUCCEEDED(HRESULT Status) {
+bool SUCCEEDED(HRESULT Status) {
 	return Status >= 0;
 }
 
-бул FAILED(HRESULT Status) {
+bool FAILED(HRESULT Status) {
 	return Status < 0;
 }
 
-бул IS_ERROR(HRESULT Status) {
+bool IS_ERROR(HRESULT Status) {
 	return (Status >>> 31) == SEVERITY_ERROR;
 }
 
-бкрат HRESULT_CODE(HRESULT r) {
-	return cast(бкрат) (r & 0xFFFF);
+ushort HRESULT_CODE(HRESULT r) {
+	return cast(ushort) (r & 0xFFFF);
 }
 
-бкрат SCODE_CODE(SCODE r) {
-	return cast(бкрат) (r & 0xFFFF);
+ushort SCODE_CODE(SCODE r) {
+	return cast(ushort) (r & 0xFFFF);
 }
 
-бкрат HRESULT_FACILITY(HRESULT r) {
-	return cast(бкрат) ((r>>16) & 0x1fff);
+ushort HRESULT_FACILITY(HRESULT r) {
+	return cast(ushort) ((r>>16) & 0x1fff);
 }
 
-бкрат SCODE_FACILITY(SCODE r) {
-	return cast(бкрат) ((r>>16) & 0x1fff);
+ushort SCODE_FACILITY(SCODE r) {
+	return cast(ushort) ((r>>16) & 0x1fff);
 }
 
-бкрат HRESULT_SEVERITY(HRESULT r) {
-	return cast(бкрат) ((r>>31) & 0x1);
+ushort HRESULT_SEVERITY(HRESULT r) {
+	return cast(ushort) ((r>>31) & 0x1);
 }
 
-бкрат SCODE_SEVERITY(SCODE r) {
-	return cast(бкрат) ((r>>31) & 0x1);
+ushort SCODE_SEVERITY(SCODE r) {
+	return cast(ushort) ((r>>31) & 0x1);
 }
 
-HRESULT MAKE_HRESULT(бул s, бцел f, бцел c) {
+HRESULT MAKE_HRESULT(bool s, uint f, uint c) {
 	return (s << 31) | (f << 16) | c;
 }
 
-SCODE MAKE_SCODE(бул s, бцел f, бцел c) {
+SCODE MAKE_SCODE(bool s, uint f, uint c) {
 	return (s << 31) | (f << 16) | c;
 }
 

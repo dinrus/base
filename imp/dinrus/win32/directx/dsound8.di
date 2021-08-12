@@ -7,7 +7,7 @@ alias GUID* LPCGUID;
 
 interface IUnknown
 {
-	HRESULT QueryInterface(IID* riid, проц** pvObject);
+	HRESULT QueryInterface(IID* riid, void** pvObject);
 	ULONG AddRef();
 	ULONG Release();
 }
@@ -94,18 +94,18 @@ interface IDirectSound3DListener : IUnknown
 
 struct WAVEFORMATEX
 {
-	бкрат wFormatTag;
-	бкрат nChannels;
-	бцел nSamplesPerSec;
-	бцел nAvgBytesPerSec;
-	бкрат nBlockAlign;
-	бкрат wBitsPerSample;
-	бкрат cbSize;
+	ushort wFormatTag;
+	ushort nChannels;
+	uint nSamplesPerSec;
+	uint nAvgBytesPerSec;
+	ushort nBlockAlign;
+	ushort wBitsPerSample;
+	ushort cbSize;
 }
 
 alias WAVEFORMATEX* LPWAVEFORMATEX, LPCWAVEFORMATEX;
 
-enum : бцел
+enum : uint
 {
 	WAVE_FORMAT_PCM = 1
 }
@@ -202,13 +202,13 @@ struct DS3DLISTENER
 
 alias DS3DLISTENER *LPDS3DLISTENER, LPCDS3DLISTENER;
 
-alias плав D3DVALUE;
+alias float D3DVALUE;
 
 struct D3DVECTOR
 {
-    плав x;
-    плав y;
-    плав z;
+    float x;
+    float y;
+    float z;
 }
 
 extern(Windows) export HRESULT DirectSoundCreate8(LPCGUID pcGuidDevice, LPDIRECTSOUND8 *ppDS8, LPUNKNOWN pUnkOuter);

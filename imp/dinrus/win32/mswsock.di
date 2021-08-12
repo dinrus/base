@@ -102,7 +102,7 @@ alias TRANSMIT_FILE_BUFFERS* PTRANSMIT_FILE_BUFFERS, LPTRANSMIT_FILE_BUFFERS;
 extern(Windows) {
 	/* Win95+, WinNT3.51+
 	   ms-help://MS.MSDNQTR.2003FEB.1033/winsock/winsock/wsarecvex_2.htm */
-	цел WSARecvEx(win32.winsock2.SOCKET, сим*, цел, цел*);
+	int WSARecvEx(win32.winsock2.SOCKET, char*, int, int*);
 
 	/* Win95+, WinNT3.51+
 	   ms-help://MS.MSDNQTR.2003FEB.1033/winsock/winsock/getacceptexSOCKADDRs_2.htm */
@@ -118,7 +118,7 @@ extern(Windows) {
 		alias BOOL function(win32.winsock2.SOCKET, win32.winsock2.SOCKET, PVOID, DWORD, DWORD, DWORD, LPDWORD, LPOVERLAPPED) LPFN_ACCEPTEX;
         const GUID WSAID_ACCEPTEX = {0xb5367df1,0xcbac,0x11cf,[0x95,0xca,0x00,0x80,0x5f,0x48,0xa1,0x92]};
 
-        alias BOOL function(win32.winsock2.SOCKET, SOCKADDR*, цел, PVOID, DWORD, LPDWORD, LPOVERLAPPED) LPFN_CONNECTEX;
+        alias BOOL function(win32.winsock2.SOCKET, SOCKADDR*, int, PVOID, DWORD, LPDWORD, LPOVERLAPPED) LPFN_CONNECTEX;
         const GUID WSAID_CONNECTEX = {0x25a207b9,0xddf3,0x4660,[0x8e,0xe9,0x76,0xe5,0x8c,0x74,0x06,0x3e]};
 	}
 }
@@ -154,7 +154,7 @@ version(Win32_Winsock1) {
 		 *	ms-help://MS.MSDNQTR.2003FEB.1033/winsock/winsock/wsamsg_2.htm
 		 */
 		struct WSAMSG {
-			LPSOCKADDR имя;
+			LPSOCKADDR name;
 			INT        namelen;
 			LPWSABUF   lpBuffers;
 			DWORD      dwBufferCount;
@@ -164,9 +164,9 @@ version(Win32_Winsock1) {
 
 		alias WSAMSG* PWSAMSG, LPWSAMSG;
 
-		/* According to MSDN docs, the WSAMSG.Control буфер starts with a
+		/* According to MSDN docs, the WSAMSG.Control buffer starts with a
 		   cmsghdr header of the following form.  See also RFC 2292. */
-		/* DK: Confirmed.  So I suppose these should дай the same version as
+		/* DK: Confirmed.  So I suppose these should get the same version as
 		   WSAMSG... */
 		struct WSACMSGHDR {
 			UINT cmsg_len;
@@ -197,7 +197,7 @@ version(Win32_Winsock1) {
 			/*	WinXP+, Srv2k3+
 			 *	ms-help://MS.MSDNQTR.2003FEB.1033/winsock/winsock/wsarecvmsg_2.htm
 			 */
-			цел WSARecvMsg(win32.winsock2.SOCKET, LPWSAMSG, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+			int WSARecvMsg(win32.winsock2.SOCKET, LPWSAMSG, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
 		}
 	}
 }

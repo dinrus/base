@@ -2459,13 +2459,13 @@ static if (_WIN32_WINNT >= 0x0501) {
 
 struct COMBOBOXEXITEMA {
 	UINT   mask;
-	цел    iItem;
+	int    iItem;
 	LPSTR  pszText;
-	цел    cchTextMax;
-	цел    iImage;
-	цел    iSelectedImage;
-	цел    iOverlay;
-	цел    iIndent;
+	int    cchTextMax;
+	int    iImage;
+	int    iSelectedImage;
+	int    iOverlay;
+	int    iIndent;
 	LPARAM lParam;
 }
 alias COMBOBOXEXITEMA*       PCOMBOBOXEXITEMA;
@@ -2473,13 +2473,13 @@ alias CPtr!(COMBOBOXEXITEMA) PCCOMBOEXITEMA;
 
 struct COMBOBOXEXITEMW {
 	UINT   mask;
-	цел    iItem;
+	int    iItem;
 	LPWSTR pszText;
-	цел    cchTextMax;
-	цел    iImage;
-	цел    iSelectedImage;
-	цел    iOverlay;
-	цел    iIndent;
+	int    cchTextMax;
+	int    iImage;
+	int    iSelectedImage;
+	int    iOverlay;
+	int    iIndent;
 	LPARAM lParam;
 }
 alias COMBOBOXEXITEMW*       PCOMBOBOXEXITEMW;
@@ -2500,37 +2500,37 @@ static if (_WIN32_IE >= 0x400) {
 
 	struct NMCBEDRAGBEGINW {
 		NMHDR hdr;
-		цел   iItemid;
+		int   iItemid;
 		WCHAR szText[CBEMAXSTRLEN];
 	}
 	alias NMCBEDRAGBEGINW* LPNMCBEDRAGBEGINW, PNMCBEDRAGBEGINW;
 
 	struct NMCBEDRAGBEGINA {
 		NMHDR hdr;
-		цел   iItemid;
-		сим  szText[CBEMAXSTRLEN];
+		int   iItemid;
+		char  szText[CBEMAXSTRLEN];
 	}
 	alias NMCBEDRAGBEGINA* LPNMCBEDRAGBEGINA, PNMCBEDRAGBEGINA;
 
 	struct NMIPADDRESS {
 		NMHDR hdr;
-		цел   iField;
-		цел   iValue;
+		int   iField;
+		int   iValue;
 	}
 	alias NMIPADDRESS* LPNMIPADDRESS;
 
 	struct NMLVKEYDOWN {
 		NMHDR hdr;
 		WORD  wVKey;
-		UINT  флаги;
+		UINT  flags;
 	}
 	alias NMLVKEYDOWN* LPNMLVKEYDOWN;
 
 	struct NMPGCALCSIZE {
 		NMHDR hdr;
 		DWORD dwFlag;
-		цел   iWidth;
-		цел   iHeight;
+		int   iWidth;
+		int   iHeight;
 	}
 	alias NMPGCALCSIZE* LPNMPGCALCSIZE;
 
@@ -2538,10 +2538,10 @@ static if (_WIN32_IE >= 0x400) {
 		NMHDR hdr;
 		BOOL  fwKeys;
 		RECT  rcParent;
-		цел   iDir;
-		цел   iXpos;
-		цел   iYpos;
-		цел   iScroll;
+		int   iDir;
+		int   iXpos;
+		int   iYpos;
+		int   iScroll;
 	}
 	alias NMPGSCROLL* LPNMPGSCROLL;
 
@@ -2554,8 +2554,8 @@ static if (_WIN32_IE >= 0x400) {
 
 	struct NMTBHOTITEM {
 		NMHDR hdr;
-		цел   idOld;
-		цел   idNew;
+		int   idOld;
+		int   idNew;
 		DWORD dwFlags;
 	}
 	alias NMTBHOTITEM* LPNMTBHOTITEM;
@@ -2563,30 +2563,30 @@ static if (_WIN32_IE >= 0x400) {
 	struct NMTBDISPINFOA {
 		NMHDR     hdr;
 		DWORD     dwMask;
-		цел       idCommand;
+		int       idCommand;
 		DWORD_PTR lParam;
-		цел       iImage;
+		int       iImage;
 		LPSTR     pszText;
-		цел       cchText;
+		int       cchText;
 	}
 	alias NMTBDISPINFOA* LPNMTBDISPINFOA;
 
 	struct NMTBDISPINFOW {
 		NMHDR     hdr;
 		DWORD     dwMask;
-		цел       idCommand;
+		int       idCommand;
 		DWORD_PTR lParam;
-		цел       iImage;
+		int       iImage;
 		LPWSTR    pszText;
-		цел       cchText;
+		int       cchText;
 	}
 	alias NMTBDISPINFOW* LPNMTBDISPINFOW;
 
 	struct NMTBGETINFOTIPA {
 		NMHDR  hdr;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iItem;
+		int    cchTextMax;
+		int    iItem;
 		LPARAM lParam;
 	}
 	alias NMTBGETINFOTIPA* LPNMTBGETINFOTIPA;
@@ -2594,8 +2594,8 @@ static if (_WIN32_IE >= 0x400) {
 	struct NMTBGETINFOTIPW {
 		NMHDR  hdr;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iItem;
+		int    cchTextMax;
+		int    iItem;
 		LPARAM lParam;
 	}
 	alias NMTBGETINFOTIPW* LPNMTBGETINFOTIPW;
@@ -2628,18 +2628,18 @@ alias NMDATETIMECHANGE* LPNMDATETIMECHANGE;
 struct NMCBEENDEDITW {
 	NMHDR hdr;
 	BOOL  fChanged;
-	цел   iNewSelection;
+	int   iNewSelection;
 	WCHAR szText[CBEMAXSTRLEN];
-	цел   iWhy;
+	int   iWhy;
 }
 alias NMCBEENDEDITW* LPNMCBEENDEDITW, PNMCBEENDEDITW;
 
 struct NMCBEENDEDITA {
 	NMHDR hdr;
 	BOOL  fChanged;
-	цел   iNewSelection;
-	сим  szText[CBEMAXSTRLEN];
-	цел   iWhy;
+	int   iNewSelection;
+	char  szText[CBEMAXSTRLEN];
+	int   iWhy;
 }
 alias NMCBEENDEDITA* LPNMCBEENDEDITA, PNMCBEENDEDITA;
 
@@ -2657,13 +2657,13 @@ struct DRAGLISTINFO {
 alias DRAGLISTINFO* LPDRAGLISTINFO;
 
 struct TBBUTTON {
-	цел   iBitmap;
-	цел   idCommand;
+	int   iBitmap;
+	int   idCommand;
 	BYTE  fsState;
 	BYTE  fsStyle;
 	BYTE  bReserved[2];
 	DWORD dwData;
-	цел   iString;
+	int   iString;
 }
 alias TBBUTTON*       PTBBUTTON, LPTBBUTTON;
 alias CPtr!(TBBUTTON) LPCTBBUTTON;
@@ -2672,33 +2672,33 @@ static if (_WIN32_IE >= 0x400) {
 	struct TBBUTTONINFOA {
 		UINT  cbSize = TBBUTTONINFOA.sizeof;
 		DWORD dwMask;
-		цел   idCommand;
-		цел   iImage;
+		int   idCommand;
+		int   iImage;
 		BYTE  fsState;
 		BYTE  fsStyle;
 		WORD  cx;
 		DWORD lParam;
 		LPSTR pszText;
-		цел   cchText;
+		int   cchText;
 	}
 	alias TBBUTTONINFOA* LPTBBUTTONINFOA;
 
 	struct TBBUTTONINFOW {
 		UINT   cbSize = TBBUTTONINFOW.sizeof;
 		DWORD  dwMask;
-		цел    idCommand;
-		цел    iImage;
+		int    idCommand;
+		int    iImage;
 		BYTE   fsState;
 		BYTE   fsStyle;
 		WORD   cx;
 		DWORD  lParam;
 		LPWSTR pszText;
-		цел    cchText;
+		int    cchText;
 	}
 	alias TBBUTTONINFOW* LPTBBUTTONINFOW;
 
 	struct TBINSERTMARK {
-		цел   iButton;
+		int   iButton;
 		DWORD dwFlags;
 	}
 	alias TBINSERTMARK* LPTBINSERTMARK;
@@ -2708,8 +2708,8 @@ static if (_WIN32_IE >= 0x400) {
 		HBITMAP hbm;
 		LPSTR   pszImage;
 		UINT    cchImageMax;
-		цел     xOffsetPercent;
-		цел     yOffsetPercent;
+		int     xOffsetPercent;
+		int     yOffsetPercent;
 	}
 	alias LVBKIMAGEA* LPLVBKIMAGEA;
 
@@ -2718,17 +2718,17 @@ static if (_WIN32_IE >= 0x400) {
 		HBITMAP hbm;
 		LPWSTR  pszImage;
 		UINT    cchImageMax;
-		цел     xOffsetPercent;
-		цел     yOffsetPercent;
+		int     xOffsetPercent;
+		int     yOffsetPercent;
 	}
 	alias LVBKIMAGEW* LPLVBKIMAGEW;
 }
 
 /*struct TBNOTIFY {
 	NMHDR    hdr;
-	цел      iItem;
+	int      iItem;
 	TBBUTTON tbButton;
-	цел      cchText;
+	int      cchText;
 	LPTSTR   pszText;
 }
 alias TBNOTIFY* LPTBNOTIFY;
@@ -2743,8 +2743,8 @@ alias TBNOTIFY* LPTBNOTIFY;
 struct IMAGEINFO {
 	HBITMAP hbmImage;
 	HBITMAP hbmMask;
-	цел     Unused1;
-	цел     Unused2;
+	int     Unused1;
+	int     Unused2;
 	RECT    rcImage;
 }
 alias IMAGEINFO* LPIMAGEINFO;
@@ -2754,73 +2754,73 @@ alias HANDLE HIMAGELIST;
 static if (_WIN32_IE >= 0x500) {
 	struct HDITEMA {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPSTR   pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
-		цел     iImage;
-		цел     iOrder;
-		UINT    тип;
+		int     iImage;
+		int     iOrder;
+		UINT    type;
 		LPVOID  pvFilter;
 	}
 
 	struct HDITEMW {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPWSTR  pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
-		цел     iImage;
-		цел     iOrder;
-		UINT    тип;
+		int     iImage;
+		int     iOrder;
+		UINT    type;
 		LPVOID  pvFilter;
 	}
 } else static if (_WIN32_IE >= 0x300) {
 	struct HDITEMA {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPSTR   pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
-		цел     iImage;
-		цел     iOrder;
+		int     iImage;
+		int     iOrder;
 	}
 
 	struct HDITEMW {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPWSTR  pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
-		цел     iImage;
-		цел     iOrder;
+		int     iImage;
+		int     iOrder;
 	}
 } else {
 	struct HDITEMA {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPSTR   pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
 	}
 
 	struct HDITEMW {
 		UINT    mask;
-		цел     cxy;
+		int     cxy;
 		LPWSTR  pszText;
 		HBITMAP hbm;
-		цел     cchTextMax;
-		цел     fmt;
+		int     cchTextMax;
+		int     fmt;
 		LPARAM  lParam;
 	}
 }
@@ -2842,40 +2842,40 @@ deprecated alias HD_LAYOUT HDLAYOUT;
 
 struct HD_HITTESTINFO {
 	POINT pt;
-	UINT  флаги;
-	цел   iItem;
+	UINT  flags;
+	int   iItem;
 }
 alias HD_HITTESTINFO* LPHDHITTESTINFO;
 
 struct HD_NOTIFYA {
 	NMHDR    hdr;
-	цел      iItem;
-	цел      iButton;
+	int      iItem;
+	int      iButton;
 	HDITEMA* pitem;
 }
 
 struct HD_NOTIFYW {
 	NMHDR    hdr;
-	цел      iItem;
-	цел      iButton;
+	int      iItem;
+	int      iButton;
 	HDITEMW* pitem;
 }
 
 /* FIXME: NMHEADER structure (base for all events of the comctl controls)
-   is the same as HD_NOTIFY depending on the значение of _WIN32_IE macro.
+   is the same as HD_NOTIFY depending on the value of _WIN32_IE macro.
    I'm defining both for now. */
 struct NMHEADERA {
 	NMHDR    hdr;
-	цел      iItem;
-	цел      iButton;
+	int      iItem;
+	int      iButton;
 	HDITEMA* pitem;
 }
 alias NMHEADERA* LPNMHEADERA;
 
 struct NMHEADERW {
 	NMHDR    hdr;
-	цел      iItem;
-	цел      iButton;
+	int      iItem;
+	int      iButton;
 	HDITEMW* pitem;
 }
 alias NMHEADERW* LPNMHEADERW;
@@ -2891,22 +2891,22 @@ version (Unicode) {
 
 struct NMHDDISPINFOA {
 	NMHDR  hdr;
-	цел    iItem;
+	int    iItem;
 	UINT   mask;
 	LPSTR  pszText;
-	цел    cchTextMax;
-	цел    iImage;
+	int    cchTextMax;
+	int    iImage;
 	LPARAM lParam;
 }
 alias NMHDDISPINFOA* LPNMHDDISPINFOA;
 
 struct NMHDDISPINFOW {
 	NMHDR  hdr;
-	цел    iItem;
+	int    iItem;
 	UINT   mask;
 	LPWSTR pszText;
-	цел    cchTextMax;
-	цел    iImage;
+	int    cchTextMax;
+	int    iImage;
 	LPARAM lParam;
 }
 alias NMHDDISPINFOW* LPNMHDDISPINFOW;
@@ -2927,7 +2927,7 @@ static if (_WIN32_IE >= 0x400) {
 		NMCUSTOMDRAW nmcd;
 		COLORREF     clrText;
 		COLORREF     clrTextBk;
-		цел          iSubItem;
+		int          iSubItem;
 	}
 } else {
 	struct NMLVCUSTOMDRAW {
@@ -2943,9 +2943,9 @@ static if (_WIN32_IE >= 0x400) {
 		NMHDR  hdr;
 		DWORD  dwFlags;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iItem;
-		цел    iSubItem;
+		int    cchTextMax;
+		int    iItem;
+		int    iSubItem;
 		LPARAM lParam;
 	}
 	alias NMLVGETINFOTIPA* LPNMLVGETINFOTIPA;
@@ -2954,9 +2954,9 @@ static if (_WIN32_IE >= 0x400) {
 		NMHDR  hdr;
 		DWORD  dwFlags;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iItem;
-		цел    iSubItem;
+		int    cchTextMax;
+		int    iItem;
+		int    iSubItem;
 		LPARAM lParam;
 	}
 	alias NMLVGETINFOTIPW* LPNMLVGETINFOTIPW;
@@ -2967,7 +2967,7 @@ static if (_WIN32_IE >= 0x400) {
 		NMCUSTOMDRAW nmcd;
 		COLORREF     clrText;
 		COLORREF     clrTextBk;
-		цел          iLevel;
+		int          iLevel;
 	}
 } else {
 	struct NMTVCUSTOMDRAW {
@@ -2992,9 +2992,9 @@ static if (_WIN32_IE >= 0x400) {
 			COLORREF     clrBtnHighlight;
 			COLORREF     clrHighlightHotTrack;
 			RECT         rcText;
-			цел          nStringBkMode;
-			цел          nHLStringBkMode;
-			цел          iListGap;
+			int          nStringBkMode;
+			int          nHLStringBkMode;
+			int          iListGap;
 		}
 	} else {
 		struct NMTBCUSTOMDRAW {
@@ -3009,16 +3009,16 @@ static if (_WIN32_IE >= 0x400) {
 			COLORREF     clrBtnHighlight;
 			COLORREF     clrHighlightHotTrack;
 			RECT         rcText;
-			цел          nStringBkMode;
-			цел          nHLStringBkMode;
+			int          nStringBkMode;
+			int          nHLStringBkMode;
 		}
 	}
 	alias NMTBCUSTOMDRAW* LPNMTBCUSTOMDRAW;
 
 	struct NMITEMACTIVATE {
 		NMHDR  hdr;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   uNewState;
 		UINT   uOldState;
 		UINT   uChanged;
@@ -3052,42 +3052,42 @@ struct TBREPLACEBITMAP {
 	UINT      nIDOld;
 	HINSTANCE hInstNew;
 	UINT      nIDNew;
-	цел       nButtons;
+	int       nButtons;
 }
 alias TBREPLACEBITMAP* LPTBREPLACEBITMAP;
 
 static if (_WIN32_IE >= 0x500) {
 	struct NMTOOLBARA {
 		NMHDR    hdr;
-		цел      iItem;
+		int      iItem;
 		TBBUTTON tbButton;
-		цел      cchText;
+		int      cchText;
 		LPSTR    pszText;
 		RECT     rcButton;
 	}
 
 	struct NMTOOLBARW {
 		NMHDR    hdr;
-		цел      iItem;
+		int      iItem;
 		TBBUTTON tbButton;
-		цел      cchText;
+		int      cchText;
 		LPWSTR   pszText;
 		RECT     rcButton;
 	}
 } else {
 	struct NMTOOLBARA {
 		NMHDR    hdr;
-		цел      iItem;
+		int      iItem;
 		TBBUTTON tbButton;
-		цел      cchText;
+		int      cchText;
 		LPSTR    pszText;
 	}
 
 	struct NMTOOLBARW {
 		NMHDR    hdr;
-		цел      iItem;
+		int      iItem;
 		TBBUTTON tbButton;
-		цел      cchText;
+		int      cchText;
 		LPWSTR   pszText;
 	}
 }
@@ -3106,11 +3106,11 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPSTR     lpszText;
 		LPARAM    lParam;
-		проц*     lpReserved;
+		void*     lpReserved;
 	}
 
 	struct TOOLINFOW {
@@ -3118,11 +3118,11 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPWSTR    lpszText;
 		LPARAM    lParam;
-		проц*     lpReserved;
+		void*     lpReserved;
 	}
 
 	const size_t
@@ -3138,7 +3138,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPSTR     lpszText;
 		LPARAM    lParam;
@@ -3149,7 +3149,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPWSTR    lpszText;
 		LPARAM    lParam;
@@ -3166,7 +3166,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPSTR     lpszText;
 	}
@@ -3176,7 +3176,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT      uFlags;
 		HWND      hwnd;
 		UINT      uId;
-		RECT      прям;
+		RECT      rect;
 		HINSTANCE hinst;
 		LPWSTR    lpszText;
 	}
@@ -3208,7 +3208,7 @@ static if (_WIN32_IE >= 0x300) {
 	struct NMTTDISPINFOA {
 		NMHDR     hdr;
 		LPSTR     lpszText;
-		сим      szText[80];
+		char      szText[80];
 		HINSTANCE hinst;
 		UINT      uFlags;
 		LPARAM    lParam;
@@ -3226,7 +3226,7 @@ static if (_WIN32_IE >= 0x300) {
 	struct NMTTDISPINFOA {
 		NMHDR     hdr;
 		LPSTR     lpszText;
-		сим      szText[80];
+		char      szText[80];
 		HINSTANCE hinst;
 		UINT      uFlags;
 	}
@@ -3254,8 +3254,8 @@ alias UDACCEL* LPUDACCEL;
 
 struct NMUPDOWN {
 	NMHDR hdr;
-	цел   iPos;
-	цел   iDelta;
+	int   iPos;
+	int   iDelta;
 }
 alias NMUPDOWN* LPNMUPDOWN;
 
@@ -3267,83 +3267,83 @@ deprecated {
 static if (_WIN32_WINNT >= 0x501) {
 	struct LVITEMA {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
-		цел    iIndent;
-		цел    iGroupId;
+		int    iIndent;
+		int    iGroupId;
 		UINT   cColumns;
 		PUINT  puColumns;
 	}
 
 	struct LVITEMW {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
-		цел    iIndent;
-		цел    iGroupId;
+		int    iIndent;
+		int    iGroupId;
 		UINT   cColumns;
 		PUINT  puColumns;
 	}
 } else static if (_WIN32_IE >= 0x300) {
 	struct LVITEMA {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
-		цел    iIndent;
+		int    iIndent;
 	}
 
 	struct LVITEMW {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
-		цел    iIndent;
+		int    iIndent;
 	}
 } else {
 	struct LVITEMA {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 
 	struct LVITEMW {
 		UINT   mask;
-		цел    iItem;
-		цел    iSubItem;
+		int    iItem;
+		int    iSubItem;
 		UINT   state;
 		UINT   stateMask;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 }
@@ -3353,7 +3353,7 @@ alias LVITEMA LV_ITEMA;
 alias LVITEMW LV_ITEMW;
 
 struct LVFINDINFOA {
-	UINT   флаги;
+	UINT   flags;
 	LPCSTR psz;
 	LPARAM lParam;
 	POINT  pt;
@@ -3361,7 +3361,7 @@ struct LVFINDINFOA {
 }
 
 struct LVFINDINFOW {
-	UINT    флаги;
+	UINT    flags;
 	LPCWSTR psz;
 	LPARAM  lParam;
 	POINT   pt;
@@ -3375,13 +3375,13 @@ alias LVFINDINFOW LV_FINDINFOW;
 
 struct NMLVFINDITEMA {
 	NMHDR       hdr;
-	цел         iStart;
+	int         iStart;
 	LVFINDINFOA lvfi;
 }
 
 struct NMLVFINDITEMW {
 	NMHDR       hdr;
-	цел         iStart;
+	int         iStart;
 	LVFINDINFOW lvfi;
 }
 
@@ -3391,15 +3391,15 @@ alias NMLVFINDITEMW* PNMLVFINDITEMW, LPNMLVFINDITEMW;
 static if (_WIN32_IE >= 0x300) {
 	struct LVHITTESTINFO {
 		POINT pt;
-		UINT  флаги;
-		цел   iItem;
-		цел   iSubItem;
+		UINT  flags;
+		int   iItem;
+		int   iSubItem;
 	}
 } else {
 	struct LVHITTESTINFO {
 		POINT pt;
-		UINT  флаги;
-		цел   iItem;
+		UINT  flags;
+		int   iItem;
 	}
 }
 alias LVHITTESTINFO* LPLVHITTESTINFO;
@@ -3408,40 +3408,40 @@ alias LVHITTESTINFO LV_HITTESTINFO;
 static if (_WIN32_IE >= 0x300) {
 	struct LVCOLUMNA {
 		UINT  mask;
-		цел   fmt;
-		цел   cx;
+		int   fmt;
+		int   cx;
 		LPSTR pszText;
-		цел   cchTextMax;
-		цел   iSubItem;
-		цел   iImage;
-		цел   iOrder;
+		int   cchTextMax;
+		int   iSubItem;
+		int   iImage;
+		int   iOrder;
 	}
 	struct LVCOLUMNW {
 		UINT   mask;
-		цел    fmt;
-		цел    cx;
+		int    fmt;
+		int    cx;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iSubItem;
-		цел    iImage;
-		цел    iOrder;
+		int    cchTextMax;
+		int    iSubItem;
+		int    iImage;
+		int    iOrder;
 	}
 } else {
 	struct LVCOLUMNA {
 		UINT  mask;
-		цел   fmt;
-		цел   cx;
+		int   fmt;
+		int   cx;
 		LPSTR pszText;
-		цел   cchTextMax;
-		цел   iSubItem;
+		int   cchTextMax;
+		int   iSubItem;
 	}
 	struct LVCOLUMNW {
 		UINT   mask;
-		цел    fmt;
-		цел    cx;
+		int    fmt;
+		int    cx;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iSubItem;
+		int    cchTextMax;
+		int    iSubItem;
 	}
 }
 alias LVCOLUMNA* LPLVCOLUMNA;
@@ -3457,10 +3457,10 @@ static if (_WIN32_WINNT >= 0x501) {
 		UINT    cbSize = LVGROUP.sizeof;
 		UINT    mask;
 		LPWSTR  pszHeader;
-		цел     cchHeader;
+		int     cchHeader;
 		LPWSTR  pszFooter;
-		цел     cchFooter;
-		цел     iGroupId;
+		int     cchFooter;
+		int     iGroupId;
 		UINT    stateMask;
 		UINT    state;
 		UINT    uAlign;
@@ -3473,9 +3473,9 @@ static if (_WIN32_WINNT >= 0x501) {
 			UINT    cchDescriptionTop;
 			LPWSTR  pszDescriptionBottom;
 			UINT    cchDescriptionBottom;
-			цел     iTitleImage;
-			цел     iExtendedImage;
-			цел     iFirstItem;         // Read only
+			int     iTitleImage;
+			int     iExtendedImage;
+			int     iFirstItem;         // Read only
 			UINT    cItems;             // Read only
 			LPWSTR  pszSubsetTitle;     // NULL if group is not subset
 			UINT    cchSubsetTitle;
@@ -3502,18 +3502,18 @@ static if (_WIN32_WINNT >= 0x501) {
 	struct LVINSERTMARK {
 		UINT  cbSize = LVINSERTMARK.sizeof;
 		DWORD dwFlags;
-		цел   iItem;
+		int   iItem;
 		DWORD dwReserved;
 	}
 	alias LVINSERTMARK* PLVINSERTMARK;
 
 	struct LVTILEINFO {
 		UINT     cbSize = LVTILEINFO.sizeof;
-		цел      iItem;
+		int      iItem;
 		UINT     cColumns;
 		PUINT    puColumns;
 		static if (_WIN32_WINNT >= 0x600) {
-			цел* piColFmt;
+			int* piColFmt;
 		}
 	}
 	alias LVTILEINFO* PLVTILEINFO;
@@ -3523,7 +3523,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		DWORD dwMask;
 		DWORD dwFlags;
 		SIZE  sizeTile;
-		цел   cLines;
+		int   cLines;
 		RECT  rcLabelMargin;
 	}
 	alias LVTILEVIEWINFO* PLVTILEVIEWINFO;
@@ -3535,25 +3535,25 @@ static if (_WIN32_WINNT >= 0x501) {
 	}
 	alias LVINSERTGROUPSORTED* PLVINSERTGROUPSORTED;
 
-	alias цел function(INT, INT, VOID*) PFNLVGROUPCOMPARE;
+	alias int function(INT, INT, VOID*) PFNLVGROUPCOMPARE;
 
 	struct LVSETINFOTIP {
 		UINT    cbSize = LVSETINFOTIP.sizeof;
 		DWORD   dwFlags;
 		LPWSTR  pszText;
-		цел     iItem;
-		цел     iSubItem;
+		int     iItem;
+		int     iSubItem;
 		HBITMAP hbmp;
 	}
 	alias LVSETINFOTIP* PLVSETINFOTIP;
 }
 
-alias цел function(LPARAM, LPARAM, LPARAM) PFNLVCOMPARE;
+alias int function(LPARAM, LPARAM, LPARAM) PFNLVCOMPARE;
 
 struct NMLISTVIEW {
 	NMHDR  hdr;
-	цел    iItem;
-	цел    iSubItem;
+	int    iItem;
+	int    iSubItem;
 	UINT   uNewState;
 	UINT   uOldState;
 	UINT   uChanged;
@@ -3569,14 +3569,14 @@ deprecated {
 
 struct NMLVDISPINFOA {
 	NMHDR    hdr;
-	LV_ITEMA элт;
+	LV_ITEMA item;
 }
 alias NMLVDISPINFOA* LPNMLVDISPINFOA;
 alias NMLVDISPINFOA LV_DISPINFOA;
 
 struct NMLVDISPINFOW {
 	NMHDR    hdr;
-	LV_ITEMW элт;
+	LV_ITEMW item;
 }
 alias NMLVDISPINFOW* LPNMLVDISPINFOW;
 alias NMLVDISPINFOW LV_DISPINFOW;
@@ -3584,13 +3584,13 @@ alias NMLVDISPINFOW LV_DISPINFOW;
 struct LV_KEYDOWN {
 	NMHDR hdr;
 	WORD  wVKey;
-	UINT  флаги;
+	UINT  flags;
 }
 
 struct NMLVCACHEHINT {
 	NMHDR hdr;
-	цел   iFrom;
-	цел   iTo;
+	int   iFrom;
+	int   iTo;
 }
 alias NMLVCACHEHINT* LPNMLVCACHEHINT, PNM_CACHEHINT, LPNM_CACHEHINT;
 alias NMLVCACHEHINT NM_CACHEHINT;
@@ -3601,10 +3601,10 @@ struct TVITEMA {
 	UINT      state;
 	UINT      stateMask;
 	LPSTR     pszText;
-	цел       cchTextMax;
-	цел       iImage;
-	цел       iSelectedImage;
-	цел       cChildren;
+	int       cchTextMax;
+	int       iImage;
+	int       iSelectedImage;
+	int       cChildren;
 	LPARAM    lParam;
 }
 alias TVITEMA* LPTVITEMA, LPTV_ITEMA;
@@ -3616,10 +3616,10 @@ struct TVITEMW {
 	UINT      state;
 	UINT      stateMask;
 	LPWSTR    pszText;
-	цел       cchTextMax;
-	цел       iImage;
-	цел       iSelectedImage;
-	цел       cChildren;
+	int       cchTextMax;
+	int       iImage;
+	int       iSelectedImage;
+	int       cChildren;
 	LPARAM    lParam;
 }
 alias TVITEMW* LPTVITEMW, LPTV_ITEMW;
@@ -3632,12 +3632,12 @@ static if (_WIN32_IE >= 0x400) {
 		UINT      state;
 		UINT      stateMask;
 		LPSTR     pszText;
-		цел       cchTextMax;
-		цел       iImage;
-		цел       iSelectedImage;
-		цел       cChildren;
+		int       cchTextMax;
+		int       iImage;
+		int       iSelectedImage;
+		int       cChildren;
 		LPARAM    lParam;
-		цел       iIntegral;
+		int       iIntegral;
 	}
 	alias TVITEMEXA* LPTVITEMEXA;
 
@@ -3647,12 +3647,12 @@ static if (_WIN32_IE >= 0x400) {
 		UINT      state;
 		UINT      stateMask;
 		LPWSTR    pszText;
-		цел       cchTextMax;
-		цел       iImage;
-		цел       iSelectedImage;
-		цел       cChildren;
+		int       cchTextMax;
+		int       iImage;
+		int       iSelectedImage;
+		int       cChildren;
 		LPARAM    lParam;
-		цел       iIntegral;
+		int       iIntegral;
 	}
 	alias TVITEMEXW* LPTVITEMEXW;
 }
@@ -3663,7 +3663,7 @@ static if (_WIN32_IE >= 0x400) {
 		HTREEITEM hInsertAfter;
 		union {
 			TVITEMEXA itemex;
-			TV_ITEMA  элт;
+			TV_ITEMA  item;
 		}
 	}
 
@@ -3672,20 +3672,20 @@ static if (_WIN32_IE >= 0x400) {
 		HTREEITEM hInsertAfter;
 		union {
 			TVITEMEXW itemex;
-			TV_ITEMW  элт;
+			TV_ITEMW  item;
 		}
 	}
 } else {
 	struct TVINSERTSTRUCTA {
 		HTREEITEM hParent;
 		HTREEITEM hInsertAfter;
-		TV_ITEMA  элт;
+		TV_ITEMA  item;
 	}
 
 	struct TVINSERTSTRUCTW {
 		HTREEITEM hParent;
 		HTREEITEM hInsertAfter;
-		TV_ITEMW  элт;
+		TV_ITEMW  item;
 	}
 }
 alias TVINSERTSTRUCTA* LPTVINSERTSTRUCTA, LPTV_INSERTSTRUCTA;
@@ -3695,13 +3695,13 @@ alias TVINSERTSTRUCTW TV_INSERTSTRUCTW;
 
 struct TVHITTESTINFO {
 	POINT     pt;
-	UINT      флаги;
+	UINT      flags;
 	HTREEITEM hItem;
 }
 alias TVHITTESTINFO* LPTVHITTESTINFO, LPTV_HITTESTINFO;
 alias TVHITTESTINFO TV_HITTESTINFO;
 
-alias цел function(LPARAM, LPARAM, LPARAM) PFNTVCOMPARE;
+alias int function(LPARAM, LPARAM, LPARAM) PFNTVCOMPARE;
 struct TVSORTCB {
 	HTREEITEM    hParent;
 	PFNTVCOMPARE lpfnCompare;
@@ -3712,7 +3712,7 @@ alias TVSORTCB TV_SORTCB;
 
 struct NMTREEVIEWA {
 	NMHDR    hdr;
-	UINT     действие;
+	UINT     action;
 	TV_ITEMA itemOld;
 	TV_ITEMA itemNew;
 	POINT    ptDrag;
@@ -3722,7 +3722,7 @@ alias NMTREEVIEWA NM_TREEVIEWA;
 
 struct NMTREEVIEWW {
 	NMHDR    hdr;
-	UINT     действие;
+	UINT     action;
 	TV_ITEMW itemOld;
 	TV_ITEMW itemNew;
 	POINT    ptDrag;
@@ -3732,14 +3732,14 @@ alias NMTREEVIEWW NM_TREEVIEWW;
 
 struct NMTVDISPINFOA {
 	NMHDR   hdr;
-	TVITEMA элт;
+	TVITEMA item;
 }
 alias NMTVDISPINFOA* LPNMTVDISPINFOA;
 alias NMTVDISPINFOA TV_DISPINFOA;
 
 struct NMTVDISPINFOW {
 	NMHDR   hdr;
-	TVITEMW элт;
+	TVITEMW item;
 }
 alias NMTVDISPINFOW* LPNMTVDISPINFOW;
 alias NMTVDISPINFOW TV_DISPINFOW;
@@ -3748,7 +3748,7 @@ static if (_WIN32_IE >= 0x400) {
 	struct NMTVGETINFOTIPA {
 		NMHDR     hdr;
 		LPSTR     pszText;
-		цел       cchTextMax;
+		int       cchTextMax;
 		HTREEITEM hItem;
 		LPARAM    lParam;
 	}
@@ -3757,7 +3757,7 @@ static if (_WIN32_IE >= 0x400) {
 	struct NMTVGETINFOTIPW {
 		NMHDR     hdr;
 		LPWSTR    pszText;
-		цел       cchTextMax;
+		int       cchTextMax;
 		HTREEITEM hItem;
 		LPARAM    lParam;
 	}
@@ -3767,7 +3767,7 @@ static if (_WIN32_IE >= 0x400) {
 struct TV_KEYDOWN {
 	NMHDR hdr;
 	WORD  wVKey;
-	UINT  флаги;
+	UINT  flags;
 }
 
 struct TC_ITEMHEADERA {
@@ -3775,8 +3775,8 @@ struct TC_ITEMHEADERA {
 	UINT  lpReserved1;
 	UINT  lpReserved2;
 	LPSTR pszText;
-	цел   cchTextMax;
-	цел   iImage;
+	int   cchTextMax;
+	int   iImage;
 }
 
 struct TC_ITEMHEADERW {
@@ -3784,8 +3784,8 @@ struct TC_ITEMHEADERW {
 	UINT   lpReserved1;
 	UINT   lpReserved2;
 	LPWSTR pszText;
-	цел    cchTextMax;
-	цел    iImage;
+	int    cchTextMax;
+	int    iImage;
 }
 
 static if (_WIN32_IE >= 0x300) {
@@ -3794,8 +3794,8 @@ static if (_WIN32_IE >= 0x300) {
 		DWORD  dwState;
 		DWORD  dwStateMask;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 
@@ -3804,8 +3804,8 @@ static if (_WIN32_IE >= 0x300) {
 		DWORD  dwState;
 		DWORD  dwStateMask;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 } else {
@@ -3814,8 +3814,8 @@ static if (_WIN32_IE >= 0x300) {
 		UINT   lpReserved1;
 		UINT   lpReserved2;
 		LPSTR  pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 
@@ -3824,8 +3824,8 @@ static if (_WIN32_IE >= 0x300) {
 		UINT   lpReserved1;
 		UINT   lpReserved2;
 		LPWSTR pszText;
-		цел    cchTextMax;
-		цел    iImage;
+		int    cchTextMax;
+		int    iImage;
 		LPARAM lParam;
 	}
 }
@@ -3836,7 +3836,7 @@ alias TCITEMW TC_ITEMW;
 
 struct TCHITTESTINFO {
 	POINT pt;
-	UINT  флаги;
+	UINT  flags;
 }
 alias TCHITTESTINFO* LPTCHITTESTINFO, LPTC_HITTESTINFO;
 alias TCHITTESTINFO TC_HITTESTINFO;
@@ -3844,7 +3844,7 @@ alias TCHITTESTINFO TC_HITTESTINFO;
 struct TC_KEYDOWN {
 	NMHDR hdr;
 	WORD wVKey;
-	UINT флаги;
+	UINT flags;
 }
 
 static if (_WIN32_IE >= 0x300) {
@@ -3856,8 +3856,8 @@ static if (_WIN32_IE >= 0x300) {
 }
 
 struct PBRANGE {
-	цел iLow;
-	цел iHigh;
+	int iLow;
+	int iHigh;
 }
 alias PBRANGE* PPBRANGE;
 
@@ -3882,7 +3882,7 @@ alias MONTHDAYSTATE* LPMONTHDAYSTATE;
 struct NMDAYSTATE {
 	NMHDR           nmhdr;
 	SYSTEMTIME      stStart;
-	цел             cDayState;
+	int             cDayState;
 	LPMONTHDAYSTATE prgDayState;
 }
 alias NMDAYSTATE* LPNMDAYSTATE;
@@ -3903,7 +3903,7 @@ static if (_WIN32_IE >= 0x400) {
 		COLORREF clrBack;
 		LPSTR    lpText;
 		UINT     cch;
-		цел      iImage;
+		int      iImage;
 		HWND     hwndChild;
 		UINT     cxMinChild;
 		UINT     cyMinChild;
@@ -3926,7 +3926,7 @@ static if (_WIN32_IE >= 0x400) {
 		COLORREF clrBack;
 		LPWSTR   lpText;
 		UINT     cch;
-		цел      iImage;
+		int      iImage;
 		HWND     hwndChild;
 		UINT     cxMinChild;
 		UINT     cyMinChild;
@@ -3954,7 +3954,7 @@ static if (_WIN32_IE >= 0x400) {
 		COLORREF clrBack;
 		LPSTR    lpText;
 		UINT     cch;
-		цел      iImage;
+		int      iImage;
 		HWND     hwndChild;
 		UINT     cxMinChild;
 		UINT     cyMinChild;
@@ -3971,7 +3971,7 @@ static if (_WIN32_IE >= 0x400) {
 		COLORREF clrBack;
 		LPWSTR   lpText;
 		UINT     cch;
-		цел      iImage;
+		int      iImage;
 		HWND     hwndChild;
 		UINT     cxMinChild;
 		UINT     cyMinChild;
@@ -3993,8 +3993,8 @@ alias CPtr!(REBARBANDINFOW) LPCREBARBANDINFOW;
 static if (_WIN32_IE >= 0x300) {
 	struct NMLVODSTATECHANGE {
 		NMHDR hdr;
-		цел iFrom;
-		цел iTo;
+		int iFrom;
+		int iTo;
 		UINT uNewState;
 		UINT uOldState;
 	}
@@ -4004,14 +4004,14 @@ static if (_WIN32_IE >= 0x300) {
 		struct IMAGELISTDRAWPARAMS {
 			DWORD      cbSize = IMAGELISTDRAWPARAMS.sizeof;
 			HIMAGELIST himl;
-			цел        i;
+			int        i;
 			HDC        hdcDst;
-			цел        x;
-			цел        y;
-			цел        cx;
-			цел        cy;
-			цел        xBitmap;
-			цел        yBitmap;
+			int        x;
+			int        y;
+			int        cx;
+			int        cy;
+			int        xBitmap;
+			int        yBitmap;
 			COLORREF   rgbBk;
 			COLORREF   rgbFg;
 			UINT       fStyle;
@@ -4024,14 +4024,14 @@ static if (_WIN32_IE >= 0x300) {
 		struct IMAGELISTDRAWPARAMS {
 			DWORD      cbSize = IMAGELISTDRAWPARAMS.sizeof;
 			HIMAGELIST himl;
-			цел        i;
+			int        i;
 			HDC        hdcDst;
-			цел        x;
-			цел        y;
-			цел        cx;
-			цел        cy;
-			цел        xBitmap;
-			цел        yBitmap;
+			int        x;
+			int        y;
+			int        cx;
+			int        cy;
+			int        xBitmap;
+			int        yBitmap;
 			COLORREF   rgbBk;
 			COLORREF   rgbFg;
 			UINT       fStyle;
@@ -4083,8 +4083,8 @@ static if (_WIN32_IE >= 0x400) {
 
 	struct RBHITTESTINFO {
 		POINT pt;
-		UINT  флаги;
-		цел   iBand;
+		UINT  flags;
+		int   iBand;
 	}
 	alias RBHITTESTINFO* LPRBHITTESTINFO;
 }
@@ -4521,7 +4521,7 @@ static if (_WIN32_WINNT >= 0x501) {
 
 	struct LITEM {
 		UINT mask;
-		цел  iLink;
+		int  iLink;
 		UINT state;
 		UINT stateMask;
 		WCHAR[MAX_LINKID_TEXT]  szID;
@@ -4531,58 +4531,58 @@ static if (_WIN32_WINNT >= 0x501) {
 
 	struct LHITTESTINFO {
 		POINT pt;
-		LITEM элт;
+		LITEM item;
 	}
 	alias LHITTESTINFO* PLHITTESTINFO;
 
 	struct NMLINK {
 		NMHDR hdr;
-		LITEM элт;
+		LITEM item;
 	}
 	alias NMLINK* PNMLINK;
 }
 
-бцел INDEXTOOVERLAYMASK(бцел i) { return i << 8; }
-бцел INDEXTOSTATEIMAGEMASK(бцел i) { return i << 12; }
+uint INDEXTOOVERLAYMASK(uint i) { return i << 8; }
+uint INDEXTOSTATEIMAGEMASK(uint i) { return i << 12; }
 
 template HANDLE_WM_NOTIFY(R) {
 	R HANDLE_WM_NOTIFY(HWND hwnd, WPARAM wParam, LPARAM lParam,
-		  R function(HWND, цел, NMHDR*) fn) {
+		  R function(HWND, int, NMHDR*) fn) {
 		return fn(hwnd, wParam, cast(NMHDR*) lParam);
 	}
 }
-цел FORWARD_WM_NOTIFY(HWND hwnd, цел idFrom, NMHDR* pnmhdr,
-	  цел function(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) fn) {
+int FORWARD_WM_NOTIFY(HWND hwnd, int idFrom, NMHDR* pnmhdr,
+	  int function(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) fn) {
 	return fn(hwnd, WM_NOTIFY, idFrom, cast(LPARAM) pnmhdr);
 }
 
-//#define CCSIZEOF_STRUCT(s, m) (((цел)((PBYTE)(&((s*)0)->m)-((PBYTE)((s*)0))))+sizeof(((s*)0)->m))
+//#define CCSIZEOF_STRUCT(s, m) (((int)((PBYTE)(&((s*)0)->m)-((PBYTE)((s*)0))))+sizeof(((s*)0)->m))
 
-LPARAM MAKEIPADDRESS(ббайт b1, ббайт b2, ббайт b3, ббайт b4) {
+LPARAM MAKEIPADDRESS(ubyte b1, ubyte b2, ubyte b3, ubyte b4) {
 	return (cast(DWORD) b1 << 24)
 	     | (cast(DWORD) b2 << 16)
 	     | (cast(DWORD) b3 << 8)
 	     | (cast(DWORD) b4);
 }
 
-LPARAM MAKEIPRANGE(ббайт low, ббайт high) {
-	return (cast(цел) high << 8) | low;
+LPARAM MAKEIPRANGE(ubyte low, ubyte high) {
+	return (cast(int) high << 8) | low;
 }
 
-ббайт FIRST_IPADDRESS(LPARAM x) {
-	return cast(ббайт) (x >> 24);
+ubyte FIRST_IPADDRESS(LPARAM x) {
+	return cast(ubyte) (x >> 24);
 }
 
-ббайт SECOND_IPADDRESS(LPARAM x) {
-	return cast(ббайт) (x >> 16);
+ubyte SECOND_IPADDRESS(LPARAM x) {
+	return cast(ubyte) (x >> 16);
 }
 
-ббайт THIRD_IPADDRESS(LPARAM x) {
-	return cast(ббайт) (x >> 8);
+ubyte THIRD_IPADDRESS(LPARAM x) {
+	return cast(ubyte) (x >> 8);
 }
 
-ббайт FOURTH_IPADDRESS(LPARAM x) {
-	return cast(ббайт) x;
+ubyte FOURTH_IPADDRESS(LPARAM x) {
+	return cast(ubyte) x;
 }
 
 HWND Animate_Create(HWND hwndP, UINT id, DWORD dwStyle,
@@ -4600,9 +4600,9 @@ BOOL Animate_OpenEx(HWND hwnd, HINSTANCE hInst, LPTSTR szName) {
 	  cast(LPARAM) szName);
 }
 
-BOOL Animate_Play(HWND hwnd, цел from, цел to, цел rep) {
+BOOL Animate_Play(HWND hwnd, int from, int to, int rep) {
 	return SendMessage(hwnd, ACM_PLAY, rep,
-	  MAKELONG(cast(бкрат) from, cast(бкрат) to));
+	  MAKELONG(cast(ushort) from, cast(ushort) to));
 }
 
 BOOL Animate_Stop(HWND hwnd) {
@@ -4613,25 +4613,25 @@ BOOL Animate_Close(HWND hwnd) {
 	return Animate_Open(hwnd, null);
 }
 
-BOOL Animate_Seek(HWND hwnd, цел frame) {
+BOOL Animate_Seek(HWND hwnd, int frame) {
 	return Animate_Play(hwnd, frame, frame, 1);
 }
 
 extern (Windows) {
-	HBITMAP CreateMappedBitmap(HINSTANCE, цел, UINT, LPCOLORMAP, цел);
+	HBITMAP CreateMappedBitmap(HINSTANCE, int, UINT, LPCOLORMAP, int);
 	HWND CreateStatusWindowA(LONG, LPCSTR, HWND, UINT);
 	HWND CreateStatusWindowW(LONG, LPCWSTR, HWND, UINT);
-	HWND CreateToolbarEx(HWND, DWORD, UINT, цел, HINSTANCE, UINT,
-	  LPCTBBUTTON, цел, цел, цел, цел, цел, UINT);
-	HWND CreateUpDownControl(DWORD, цел, цел, цел, цел, HWND, цел, HINSTANCE,
-	  HWND, цел, цел, цел);
+	HWND CreateToolbarEx(HWND, DWORD, UINT, int, HINSTANCE, UINT,
+	  LPCTBBUTTON, int, int, int, int, int, UINT);
+	HWND CreateUpDownControl(DWORD, int, int, int, int, HWND, int, HINSTANCE,
+	  HWND, int, int, int);
 }
 
 HWND DateTime_GetMonthCal(HWND hwnd) {
 	return cast(HWND) SendMessage(hwnd, DTM_GETMONTHCAL, 0, 0);
 }
 
-COLORREF DateTime_GetMonthCalColor(HWND hwnd, цел iColor) {
+COLORREF DateTime_GetMonthCalColor(HWND hwnd, int iColor) {
 	return cast(COLORREF) SendMessage(hwnd, DTM_GETMCCOLOR, iColor, 0);
 }
 
@@ -4652,17 +4652,17 @@ BOOL DateTime_SetFormat(HWND hwnd, LPCTSTR lpszFormat) {
 	  cast(LPARAM) lpszFormat);
 }
 
-LRESULT DateTime_SetMonthCalColor(HWND hwnd, цел iColor, COLORREF clr) {
+LRESULT DateTime_SetMonthCalColor(HWND hwnd, int iColor, COLORREF clr) {
 	return SendMessage(hwnd, DTM_SETMCCOLOR, cast(WPARAM) iColor,
 	  cast(LPARAM) clr);
 }
 
-проц DateTime_SetMonthCalFont(HWND hwnd, HFONT hfont, BOOL fRedraw) {
+void DateTime_SetMonthCalFont(HWND hwnd, HFONT hfont, BOOL fRedraw) {
 	SendMessage(hwnd, DTM_SETMCFONT, cast(WPARAM) hfont, fRedraw);
 }
 
-BOOL DateTime_SetRange(HWND hwnd, WPARAM флаги, LPSYSTEMTIME lpSysTimeArray) {
-	return cast(BOOL) SendMessage(hwnd, DTM_SETRANGE, флаги,
+BOOL DateTime_SetRange(HWND hwnd, WPARAM flags, LPSYSTEMTIME lpSysTimeArray) {
+	return cast(BOOL) SendMessage(hwnd, DTM_SETRANGE, flags,
 	  cast(LPARAM) lpSysTimeArray);
 }
 
@@ -4672,29 +4672,29 @@ BOOL DateTime_SetSystemtime(HWND hwnd, WPARAM flag, LPSYSTEMTIME lpSysTime) {
 }
 
 extern (Windows) {
-	проц DrawInsert(HWND, HWND, цел);
-	проц DrawStatusTextA(HDC, LPRECT, LPCSTR, UINT);
-	проц DrawStatusTextW(HDC, LPRECT, LPCWSTR, UINT);
-	проц GetEffectiveClientRect(HWND, LPRECT, LPINT);
+	void DrawInsert(HWND, HWND, int);
+	void DrawStatusTextA(HDC, LPRECT, LPCSTR, UINT);
+	void DrawStatusTextW(HDC, LPRECT, LPCWSTR, UINT);
+	void GetEffectiveClientRect(HWND, LPRECT, LPINT);
 }
 
-цел Header_GetItemCount(HWND w) {
+int Header_GetItemCount(HWND w) {
 	return SendMessage(w, HDM_GETITEMCOUNT, 0, 0);
 }
 
-цел Header_InsertItem(HWND w, цел i, CPtr!(HDITEM) phdi) {
+int Header_InsertItem(HWND w, int i, CPtr!(HDITEM) phdi) {
 	return SendMessage(w, HDM_INSERTITEM, i, cast(LPARAM) phdi);
 }
 
-BOOL Header_DeleteItem(HWND w, цел i) {
+BOOL Header_DeleteItem(HWND w, int i) {
 	return cast(BOOL) SendMessage(w, HDM_DELETEITEM, i, 0);
 }
 
-BOOL Header_GetItem(HWND w, цел i, LPHDITEM phdi) {
+BOOL Header_GetItem(HWND w, int i, LPHDITEM phdi) {
 	return cast(BOOL) SendMessage(w, HDM_GETITEM, i, cast(LPARAM) phdi);
 }
 
-BOOL Header_SetItem(HWND w, цел i, CPtr!(HDITEM) phdi) {
+BOOL Header_SetItem(HWND w, int i, CPtr!(HDITEM) phdi) {
 	return cast(BOOL) SendMessage(w, HDM_SETITEM, i, cast(LPARAM) phdi);
 }
 
@@ -4703,25 +4703,25 @@ BOOL Header_Layout(HWND w, LPHDLAYOUT playout) {
 }
 
 static if (_WIN32_IE >= 0x300) {
-	цел Header_OrderToIndex(HWND w, цел i) {
+	int Header_OrderToIndex(HWND w, int i) {
 		return SendMessage(w, HDM_ORDERTOINDEX, i, 0);
 	}
 
-	BOOL Header_GetItemRect(HWND w, цел i, RECT* r) {
+	BOOL Header_GetItemRect(HWND w, int i, RECT* r) {
 		return cast(BOOL) SendMessage(w, HDM_GETITEMRECT, i, cast(LPARAM) r);
 	}
 
-	BOOL Header_GetOrderArray(HWND w, цел iSize, LPINT lpiArray) {
+	BOOL Header_GetOrderArray(HWND w, int iSize, LPINT lpiArray) {
 		return cast(BOOL) SendMessage(w, HDM_GETORDERARRAY, iSize,
 		  cast(LPARAM) lpiArray);
 	}
 
-	BOOL Header_SetOrderArray(HWND w, цел iSize, LPINT lpiArray) {
+	BOOL Header_SetOrderArray(HWND w, int iSize, LPINT lpiArray) {
 		return cast(BOOL) SendMessage(w, HDM_SETORDERARRAY, iSize,
 		  cast(LPARAM) lpiArray);
 	}
 
-	HIMAGELIST Header_CreateDragImage(HWND w, цел i) {
+	HIMAGELIST Header_CreateDragImage(HWND w, int i) {
 		return cast(HIMAGELIST) SendMessage(w, HDM_CREATEDRAGIMAGE, i, 0);
 	}
 
@@ -4794,37 +4794,37 @@ extern (Windows) {
 		  COLORREF, INT, INT);
 	}
 
-	цел ImageList_Add(HIMAGELIST, HBITMAP, HBITMAP);
-	цел ImageList_AddMasked(HIMAGELIST, HBITMAP, COLORREF);
-	BOOL ImageList_BeginDrag(HIMAGELIST, цел, цел, цел);
-	HIMAGELIST ImageList_Create(цел, цел, UINT, цел, цел);
+	int ImageList_Add(HIMAGELIST, HBITMAP, HBITMAP);
+	int ImageList_AddMasked(HIMAGELIST, HBITMAP, COLORREF);
+	BOOL ImageList_BeginDrag(HIMAGELIST, int, int, int);
+	HIMAGELIST ImageList_Create(int, int, UINT, int, int);
 	BOOL ImageList_Destroy(HIMAGELIST);
-	BOOL ImageList_DragEnter(HWND, цел, цел);
+	BOOL ImageList_DragEnter(HWND, int, int);
 	BOOL ImageList_DragLeave(HWND);
-	BOOL ImageList_DragMove(цел, цел);
+	BOOL ImageList_DragMove(int, int);
 	BOOL ImageList_DragShowNolock(BOOL);
-	BOOL ImageList_Draw(HIMAGELIST, цел, HDC, цел, цел, UINT);
-	BOOL ImageList_DrawEx(HIMAGELIST, цел, HDC, цел, цел, цел, цел, COLORREF,
+	BOOL ImageList_Draw(HIMAGELIST, int, HDC, int, int, UINT);
+	BOOL ImageList_DrawEx(HIMAGELIST, int, HDC, int, int, int, int, COLORREF,
 	  COLORREF, UINT);
-	проц ImageList_EndDrag(PVOID);
+	void ImageList_EndDrag(PVOID);
 	COLORREF ImageList_GetBkColor(HIMAGELIST);
 	HIMAGELIST ImageList_GetDragImage(LPPOINT, LPPOINT);
-	HICON ImageList_GetIcon(HIMAGELIST, цел, UINT);
-	BOOL ImageList_GetIconSize(HIMAGELIST, цел*, цел*);
-	цел ImageList_GetImageCount(HIMAGELIST);
-	BOOL ImageList_GetImageInfo(HIMAGELIST, цел, IMAGEINFO*);
-	HIMAGELIST ImageList_LoadImageA(HINSTANCE, LPCSTR, цел, цел, COLORREF,
+	HICON ImageList_GetIcon(HIMAGELIST, int, UINT);
+	BOOL ImageList_GetIconSize(HIMAGELIST, int*, int*);
+	int ImageList_GetImageCount(HIMAGELIST);
+	BOOL ImageList_GetImageInfo(HIMAGELIST, int, IMAGEINFO*);
+	HIMAGELIST ImageList_LoadImageA(HINSTANCE, LPCSTR, int, int, COLORREF,
 	  UINT, UINT);
-	HIMAGELIST ImageList_LoadImageW(HINSTANCE, LPCWSTR, цел, цел, COLORREF,
+	HIMAGELIST ImageList_LoadImageW(HINSTANCE, LPCWSTR, int, int, COLORREF,
 	  UINT, UINT);
-	HIMAGELIST ImageList_Merge(HIMAGELIST, цел, HIMAGELIST, цел, цел, цел);
-	BOOL ImageList_Remove(HIMAGELIST, цел);
-	BOOL ImageList_Replace(HIMAGELIST, цел, HBITMAP, HBITMAP);
-	цел ImageList_ReplaceIcon(HIMAGELIST, цел, HICON);
+	HIMAGELIST ImageList_Merge(HIMAGELIST, int, HIMAGELIST, int, int, int);
+	BOOL ImageList_Remove(HIMAGELIST, int);
+	BOOL ImageList_Replace(HIMAGELIST, int, HBITMAP, HBITMAP);
+	int ImageList_ReplaceIcon(HIMAGELIST, int, HICON);
 	COLORREF ImageList_SetBkColor(HIMAGELIST, COLORREF);
-	BOOL ImageList_SetDragCursorImage(HIMAGELIST, цел, цел, цел);
-	BOOL ImageList_SetIconSize(HIMAGELIST, цел, цел);
-	BOOL ImageList_SetOverlayImage(HIMAGELIST, цел, цел);
+	BOOL ImageList_SetDragCursorImage(HIMAGELIST, int, int, int);
+	BOOL ImageList_SetIconSize(HIMAGELIST, int, int);
+	BOOL ImageList_SetOverlayImage(HIMAGELIST, int, int);
 
 	//#ifdef _OBJIDL_H
 	HIMAGELIST ImageList_Read(LPSTREAM);
@@ -4835,25 +4835,25 @@ extern (Windows) {
 		HIMAGELIST ImageList_Duplicate(HIMAGELIST himl);
 	}
 
-	проц InitCommonControls();
+	void InitCommonControls();
 
 	static if (_WIN32_IE >= 0x300) {
 		BOOL InitCommonControlsEx(LPINITCOMMONCONTROLSEX);
 	}
 
-	цел LBItemFromPt(HWND, POINT, BOOL);
+	int LBItemFromPt(HWND, POINT, BOOL);
 }
 
-цел ImageList_AddIcon(HIMAGELIST himl, HICON hicon) {
+int ImageList_AddIcon(HIMAGELIST himl, HICON hicon) {
 	return ImageList_ReplaceIcon(himl, -1, hicon);
 }
 
-HICON ImageList_ExtractIcon(HINSTANCE hi, HIMAGELIST himl, цел i) {
+HICON ImageList_ExtractIcon(HINSTANCE hi, HIMAGELIST himl, int i) {
 	return ImageList_GetIcon(himl, i, 0);
 }
 
-HIMAGELIST ImageList_LoadBitmap(HINSTANCE hi, LPCTSTR lpbmp, цел cx,
-	  цел cGrow, COLORREF crMask) {
+HIMAGELIST ImageList_LoadBitmap(HINSTANCE hi, LPCTSTR lpbmp, int cx,
+	  int cGrow, COLORREF crMask) {
 	return ImageList_LoadImageW(hi, lpbmp, cx, cGrow, crMask, IMAGE_BITMAP, 0);
 }
 
@@ -4865,11 +4865,11 @@ COLORREF ListView_GetBkColor(HWND w) {
 	return cast(COLORREF) SendMessage(w, LVM_GETBKCOLOR, 0, 0);
 }
 
-HIMAGELIST ListView_GetImageList(HWND w, цел i) {
+HIMAGELIST ListView_GetImageList(HWND w, int i) {
 	return cast(HIMAGELIST) SendMessage(w, LVM_GETIMAGELIST, i, 0);
 }
 
-цел ListView_GetItemCount(HWND w) {
+int ListView_GetItemCount(HWND w) {
 	return SendMessage(w, LVM_GETITEMCOUNT, 0, 0);
 }
 
@@ -4881,7 +4881,7 @@ BOOL ListView_SetBkColor(HWND w, COLORREF c) {
 	return cast(BOOL) SendMessage(w, LVM_SETBKCOLOR, 0, cast(LPARAM) c);
 }
 
-HIMAGELIST ListView_SetImageList(HWND w, HIMAGELIST h, цел i) {
+HIMAGELIST ListView_SetImageList(HWND w, HIMAGELIST h, int i) {
 	return cast(HIMAGELIST) SendMessage(w, LVM_SETIMAGELIST, i,
 	  cast(LPARAM) h);
 }
@@ -4890,11 +4890,11 @@ BOOL ListView_SetItem(HWND w, CPtr!(LV_ITEM) i) {
 	return cast(BOOL) SendMessage(w, LVM_SETITEM, 0, cast(LPARAM) i);
 }
 
-цел ListView_InsertItem(HWND w, CPtr!(LV_ITEM) i) {
+int ListView_InsertItem(HWND w, CPtr!(LV_ITEM) i) {
 	return SendMessage(w, LVM_INSERTITEM, 0, cast(LPARAM) i);
 }
 
-BOOL ListView_DeleteItem(HWND w, цел i) {
+BOOL ListView_DeleteItem(HWND w, int i) {
 	return cast(BOOL) SendMessage(w, LVM_DELETEITEM, i, 0);
 }
 
@@ -4910,24 +4910,24 @@ BOOL ListView_SetCallbackMask(HWND w, UINT m) {
 	return cast(BOOL) SendMessage(w, LVM_SETCALLBACKMASK, m, 0);
 }
 
-цел ListView_GetNextItem(HWND w, цел i, UINT f) {
-	return SendMessage(w, LVM_GETNEXTITEM, i, MAKELPARAM(cast(бкрат)f, 0));
+int ListView_GetNextItem(HWND w, int i, UINT f) {
+	return SendMessage(w, LVM_GETNEXTITEM, i, MAKELPARAM(cast(ushort)f, 0));
 }
 
-цел ListView_FindItem(HWND w, цел i, CPtr!(LV_FINDINFO) p) {
+int ListView_FindItem(HWND w, int i, CPtr!(LV_FINDINFO) p) {
 	return SendMessage(w, LVM_FINDITEM, i, cast(LPARAM) p);
 }
 
-BOOL ListView_GetItemRect(HWND w, цел i, LPRECT p, цел c) {
+BOOL ListView_GetItemRect(HWND w, int i, LPRECT p, int c) {
 	return cast(BOOL) SendMessage(w, LVM_GETITEMRECT, i, p ?
-	  (p.лево = c, cast(LPARAM) p) : 0);
+	  (p.left = c, cast(LPARAM) p) : 0);
 }
 
-BOOL ListView_SetItemPosition(HWND w, цел i, цел x, цел y) {
-	return cast(BOOL) SendMessage(w, LVM_SETITEMPOSITION, i, MAKELPARAM(cast(бкрат)x, cast(бкрат)y));
+BOOL ListView_SetItemPosition(HWND w, int i, int x, int y) {
+	return cast(BOOL) SendMessage(w, LVM_SETITEMPOSITION, i, MAKELPARAM(cast(ushort)x, cast(ushort)y));
 }
 
-BOOL ListView_GetItemPosition(HWND w, цел i, POINT* p) {
+BOOL ListView_GetItemPosition(HWND w, int i, POINT* p) {
 	return cast(BOOL) SendMessage(w, LVM_GETITEMPOSITION, i, cast(LPARAM) p);
 }
 
@@ -4935,23 +4935,23 @@ DWORD ListView_GetItemSpacing(HWND w, BOOL f) {
 	return cast(DWORD) SendMessage(w, LVM_GETITEMSPACING, f, 0);
 }
 
-цел ListView_GetStringWidth(HWND w, LPCSTR s) {
+int ListView_GetStringWidth(HWND w, LPCSTR s) {
 	return SendMessage(w, LVM_GETSTRINGWIDTH, 0, cast(LPARAM) s);
 }
 
-цел ListView_HitTest(HWND w, LPLVHITTESTINFO p) {
+int ListView_HitTest(HWND w, LPLVHITTESTINFO p) {
 	return SendMessage(w, LVM_HITTEST, 0, cast(LPARAM) p);
 }
 
-BOOL ListView_EnsureVisible(HWND w, цел i, BOOL f) {
-	return cast(BOOL) SendMessage(w, LVM_ENSUREVISIBLE, i, MAKELPARAM(cast(бкрат)f, 0));
+BOOL ListView_EnsureVisible(HWND w, int i, BOOL f) {
+	return cast(BOOL) SendMessage(w, LVM_ENSUREVISIBLE, i, MAKELPARAM(cast(ushort)f, 0));
 }
 
-BOOL ListView_Scroll(HWND w, цел dx, цел dy) {
+BOOL ListView_Scroll(HWND w, int dx, int dy) {
 	return cast(BOOL) SendMessage(w, LVM_SCROLL, dx, dy);
 }
 
-BOOL ListView_RedrawItems(HWND w, цел f, цел l) {
+BOOL ListView_RedrawItems(HWND w, int f, int l) {
 	return cast(BOOL) SendMessage(w, LVM_REDRAWITEMS, f, l);
 }
 
@@ -4959,7 +4959,7 @@ BOOL ListView_Arrange(HWND w, UINT c) {
 	return cast(BOOL) SendMessage(w, LVM_ARRANGE, c, 0);
 }
 
-HWND ListView_EditLabel(HWND w, цел i) {
+HWND ListView_EditLabel(HWND w, int i) {
 	return cast(HWND) SendMessage(w, LVM_EDITLABEL, i, 0);
 }
 
@@ -4967,31 +4967,31 @@ HWND ListView_GetEditControl(HWND w) {
 	return cast(HWND) SendMessage(w, LVM_GETEDITCONTROL, 0, 0);
 }
 
-BOOL ListView_GetColumn(HWND w, цел i, LPLVCOLUMN p) {
+BOOL ListView_GetColumn(HWND w, int i, LPLVCOLUMN p) {
 	return cast(BOOL) SendMessage(w, LVM_GETCOLUMN, i, cast(LPARAM) p);
 }
 
-BOOL ListView_SetColumn(HWND w, цел i, CPtr!(LV_COLUMN) p) {
+BOOL ListView_SetColumn(HWND w, int i, CPtr!(LV_COLUMN) p) {
 	return cast(BOOL) SendMessage(w, LVM_SETCOLUMN, i, cast(LPARAM) p);
 }
 
-цел ListView_InsertColumn(HWND w, цел i, CPtr!(LV_COLUMN) p) {
+int ListView_InsertColumn(HWND w, int i, CPtr!(LV_COLUMN) p) {
 	return SendMessage(w, LVM_INSERTCOLUMN, i, cast(LPARAM) p);
 }
 
-BOOL ListView_DeleteColumn(HWND w, цел i) {
+BOOL ListView_DeleteColumn(HWND w, int i) {
 	return cast(BOOL) SendMessage(w, LVM_DELETECOLUMN, i, 0);
 }
 
-цел ListView_GetColumnWidth(HWND w, цел i) {
+int ListView_GetColumnWidth(HWND w, int i) {
 	return SendMessage(w, LVM_GETCOLUMNWIDTH, i, 0);
 }
 
-BOOL ListView_SetColumnWidth(HWND w, цел i, цел x) {
-	return cast(BOOL) SendMessage(w, LVM_SETCOLUMNWIDTH, i, MAKELPARAM(cast(бкрат)x, 0));
+BOOL ListView_SetColumnWidth(HWND w, int i, int x) {
+	return cast(BOOL) SendMessage(w, LVM_SETCOLUMNWIDTH, i, MAKELPARAM(cast(ushort)x, 0));
 }
 
-HIMAGELIST ListView_CreateDragImage(HWND w, цел i, LPPOINT p) {
+HIMAGELIST ListView_CreateDragImage(HWND w, int i, LPPOINT p) {
 	return cast(HIMAGELIST) SendMessage(w, LVM_CREATEDRAGIMAGE, i,
 	  cast(LPARAM) p);
 }
@@ -5016,11 +5016,11 @@ BOOL ListView_SetTextBkColor(HWND w, COLORREF c) {
 	return cast(BOOL) SendMessage(w, LVM_SETTEXTBKCOLOR, 0, cast(LPARAM) c);
 }
 
-цел ListView_GetTopIndex(HWND w) {
+int ListView_GetTopIndex(HWND w) {
 	return SendMessage(w, LVM_GETTOPINDEX, 0, 0);
 }
 
-цел ListView_GetCountPerPage(HWND w) {
+int ListView_GetCountPerPage(HWND w) {
 	return SendMessage(w, LVM_GETCOUNTPERPAGE, 0, 0);
 }
 
@@ -5032,33 +5032,33 @@ BOOL ListView_Update(HWND w, WPARAM i) {
 	return cast(BOOL) SendMessage(w, LVM_UPDATE, i, 0);
 }
 
-проц ListView_SetItemState(HWND w, цел i, UINT d, UINT m) {
+void ListView_SetItemState(HWND w, int i, UINT d, UINT m) {
 	LV_ITEM _lvi;
 	_lvi.stateMask = m;
 	_lvi.state = d;
 	SendMessage(w, LVM_SETITEMSTATE, i, cast(LPARAM) &_lvi);
 }
 
-UINT ListView_GetItemState(HWND w, цел i, UINT m) {
+UINT ListView_GetItemState(HWND w, int i, UINT m) {
 	return cast(UINT) SendMessage(w, LVM_GETITEMSTATE, i, m);
 }
 
-проц ListView_GetItemText(HWND w, цел i, цел iS, LPTSTR s, цел n) {
+void ListView_GetItemText(HWND w, int i, int iS, LPTSTR s, int n) {
 	LV_ITEM _lvi;
 	_lvi.iSubItem = iS;
 	_lvi.cchTextMax = n;
-	_lvi.pszText = cast(шим*)s;
+	_lvi.pszText = cast(char*)s;
 	SendMessage(w, LVM_GETITEMTEXT, i, cast(LPARAM) &_lvi);
 }
 
-проц ListView_SetItemText(HWND w, цел i, цел iS, LPTSTR s) {
+void ListView_SetItemText(HWND w, int i, int iS, LPTSTR s) {
 	LV_ITEM _lvi;
 	_lvi.iSubItem = iS;
-	_lvi.pszText = cast(шим*) s;
+	_lvi.pszText = cast(char*) s;
 	SendMessage(w, LVM_SETITEMTEXT, i, cast(LPARAM) &_lvi);
 }
 
-проц ListView_SetItemCount(HWND w, цел n) {
+void ListView_SetItemCount(HWND w, int n) {
 	SendMessage(w, LVM_SETITEMCOUNT, n, 0);
 }
 
@@ -5066,7 +5066,7 @@ BOOL ListView_SortItems(HWND w, PFNLVCOMPARE f, LPARAM l) {
 	return cast(BOOL) SendMessage(w, LVM_SORTITEMS, l, cast(LPARAM) f);
 }
 
-проц ListView_SetItemPosition32(HWND w, цел i, цел x, цел y) {
+void ListView_SetItemPosition32(HWND w, int i, int x, int y) {
 	POINT p;
 	p.x = x;
 	p.y = y;
@@ -5081,7 +5081,7 @@ UINT ListView_GetCheckState(HWND w, UINT i) {
 	return ((cast(UINT) SendMessage(w, LVM_GETITEMSTATE, i, LVIS_STATEIMAGEMASK)) >> 12) - 1;
 }
 
-проц ListView_SetCheckState(HWND w, UINT i, BOOL f) {
+void ListView_SetCheckState(HWND w, UINT i, BOOL f) {
 	ListView_SetItemState(w, i, INDEXTOSTATEIMAGEMASK(f ? 2 : 1),
 	  LVIS_STATEIMAGEMASK);
 }
@@ -5091,12 +5091,12 @@ BOOL ListView_GetISearchString(HWND w, LPSTR lpsz) {
 	  cast(LPARAM) lpsz);
 }
 
-проц ListView_CancelEditLabel(HWND w) {
+void ListView_CancelEditLabel(HWND w) {
 	SendMessage(w, LVM_CANCELEDITLABEL, 0, 0);
 }
 
-цел ListView_EnableGroupView(HWND w, BOOL i) {
-	return cast(цел) SendMessage(w, LVM_ENABLEGROUPVIEW, i, 0);
+int ListView_EnableGroupView(HWND w, BOOL i) {
+	return cast(int) SendMessage(w, LVM_ENABLEGROUPVIEW, i, 0);
 }
 
 static if (_WIN32_WINDOWS >= 0x410 && (_WIN32_WINNT >= 0x500 || _WIN32_IE >= 0x500)) {
@@ -5106,11 +5106,11 @@ static if (_WIN32_WINDOWS >= 0x410 && (_WIN32_WINNT >= 0x500 || _WIN32_IE >= 0x5
 }
 
 static if (_WIN32_WINNT >= 0x501) {
-	цел ListView_GetGroupInfo(HWND w, цел i, PLVGROUP p) {
+	int ListView_GetGroupInfo(HWND w, int i, PLVGROUP p) {
 		return SendMessage(w, LVM_GETGROUPINFO, i, cast(LPARAM) p);
 	}
 
-	проц ListView_GetGroupMetrics(HWND w, PLVGROUPMETRICS p) {
+	void ListView_GetGroupMetrics(HWND w, PLVGROUPMETRICS p) {
 		SendMessage(w, LVM_GETGROUPMETRICS, 0, cast(LPARAM) p);
 	}
 
@@ -5122,7 +5122,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		return SendMessage(w, LVM_GETINSERTMARKCOLOR, 0, 0);
 	}
 
-	цел ListView_GetInsertMarkRect(HWND w, LPRECT p) {
+	int ListView_GetInsertMarkRect(HWND w, LPRECT p) {
 		return SendMessage(w, LVM_GETINSERTMARKRECT, 0, cast(LPARAM) p);
 	}
 
@@ -5134,11 +5134,11 @@ static if (_WIN32_WINNT >= 0x501) {
 		return SendMessage(w, LVM_GETSELECTEDCOLUMN, 0, 0);
 	}
 
-	проц ListView_GetTileInfo(HWND w, PLVTILEINFO p) {
+	void ListView_GetTileInfo(HWND w, PLVTILEINFO p) {
 		SendMessage(w, LVM_GETTILEINFO, 0, cast(LPARAM) p);
 	}
 
-	проц ListView_GetTileViewInfo(HWND w, PLVTILEVIEWINFO p) {
+	void ListView_GetTileViewInfo(HWND w, PLVTILEVIEWINFO p) {
 		SendMessage(w, LVM_GETTILEVIEWINFO, 0, cast(LPARAM) p);
 	}
 
@@ -5146,15 +5146,15 @@ static if (_WIN32_WINNT >= 0x501) {
 		return SendMessage(w, LVM_GETVIEW, 0, 0);
 	}
 
-	BOOL ListView_HasGroup(HWND w, цел i) {
+	BOOL ListView_HasGroup(HWND w, int i) {
 		return SendMessage(w, LVM_HASGROUP, i, 0);
 	}
 
-	цел ListView_InsertGroup(HWND w, цел i, PLVGROUP p) {
+	int ListView_InsertGroup(HWND w, int i, PLVGROUP p) {
 		return SendMessage(w, LVM_INSERTGROUP, i, cast(LPARAM) p);
 	}
 
-	проц ListView_InsertGroupSorted(HWND w, PLVINSERTGROUPSORTED p) {
+	void ListView_InsertGroupSorted(HWND w, PLVINSERTGROUPSORTED p) {
 		SendMessage(w, LVM_INSERTGROUPSORTED, cast(WPARAM) p, 0);
 	}
 
@@ -5173,23 +5173,23 @@ static if (_WIN32_WINNT >= 0x501) {
 	/*	??? MSDN documents this as "Not implemented", except in relation to
 	 *	Windows CE/Mobile.
 	 */
-	проц ListView_MoveGroup(HWND w, цел i, цел t) {
+	void ListView_MoveGroup(HWND w, int i, int t) {
 		SendMessage(w, LVM_MOVEGROUP, i, t);
 	}
 
-	проц ListView_RemoveAllGroups(HWND w) {
+	void ListView_RemoveAllGroups(HWND w) {
 		SendMessage(w, LVM_REMOVEALLGROUPS, 0, 0);
 	}
 
-	цел ListView_RemoveGroup(HWND w, цел i) {
+	int ListView_RemoveGroup(HWND w, int i) {
 		return SendMessage(w, LVM_REMOVEGROUP, i, 0);
 	}
 
-	цел ListView_SetGroupInfo(HWND w, цел i, PLVGROUP p) {
+	int ListView_SetGroupInfo(HWND w, int i, PLVGROUP p) {
 		return SendMessage(w, LVM_SETGROUPINFO, i, cast(LPARAM) p);
 	}
 
-	проц ListView_SetGroupMetrics(HWND w, PLVGROUPMETRICS p) {
+	void ListView_SetGroupMetrics(HWND w, PLVGROUPMETRICS p) {
 		SendMessage(w, LVM_SETGROUPMETRICS, 0, cast(LPARAM) p);
 	}
 
@@ -5209,7 +5209,7 @@ static if (_WIN32_WINNT >= 0x501) {
 		return SendMessage(w, LVM_SETOUTLINECOLOR, 0, c);
 	}
 
-	проц ListView_SetSelectedColumn(HWND w, цел i) {
+	void ListView_SetSelectedColumn(HWND w, int i) {
 		SendMessage(w, LVM_SETSELECTEDCOLUMN, i, 0);
 	}
 
@@ -5221,11 +5221,11 @@ static if (_WIN32_WINNT >= 0x501) {
 		return SendMessage(w, LVM_SETTILEVIEWINFO, 0, cast(LPARAM) p);
 	}
 
-	цел ListView_SetView(HWND w, DWORD i) {
+	int ListView_SetView(HWND w, DWORD i) {
 		return SendMessage(w, LVM_SETVIEW, i, 0);
 	}
 
-	цел ListView_SortGroups(HWND w, PFNLVGROUPCOMPARE c, LPVOID p) {
+	int ListView_SortGroups(HWND w, PFNLVGROUPCOMPARE c, LPVOID p) {
 		return SendMessage(w, LVM_SORTGROUPS, cast(WPARAM) c, cast(LPARAM) p);
 	}
 }
@@ -5241,13 +5241,13 @@ static if (_WIN32_WINNT >= 0x501) {
 		return cast(BOOL) SendMessage(w, CB_SETMINVISIBLE, cast(WPARAM) i, 0);
 	}
 
-	цел ComboBox_GetMinVisible(HWND w) {
+	int ComboBox_GetMinVisible(HWND w) {
 		return SendMessage(w, CB_GETMINVISIBLE, 0, 0);
 	}
 }
 
 extern (Windows) BOOL MakeDragList(HWND);
-extern (Windows) проц MenuHelp(UINT, WPARAM, LPARAM, HMENU, HINSTANCE, HWND,
+extern (Windows) void MenuHelp(UINT, WPARAM, LPARAM, HMENU, HINSTANCE, HWND,
   PUINT);
 
 COLORREF MonthCal_GetColor(HWND hwnd, INT icolor) {
@@ -5344,7 +5344,7 @@ BOOL MonthCal_SetSelRange(HWND hwnd, LPSYSTEMTIME systimearray) {
 	  cast(LPARAM) systimearray);
 }
 
-проц MonthCal_SetToday(HWND hwnd, LPSYSTEMTIME systime) {
+void MonthCal_SetToday(HWND hwnd, LPSYSTEMTIME systime) {
 	SendMessage(hwnd, MCM_SETTODAY, 0, cast(LPARAM) systime);
 }
 
@@ -5360,19 +5360,19 @@ BOOL MonthCal_SetRange(HWND w, DWORD f, LPSYSTEMTIME st) {
 
 extern (Windows) BOOL ShowHideMenuCtl(HWND, UINT, PINT);
 
-BOOL TabCtrl_GetItem(HWND w, цел i, LPTCITEM p) {
+BOOL TabCtrl_GetItem(HWND w, int i, LPTCITEM p) {
 	return cast(BOOL) SendMessage(w, TCM_GETITEM, i, cast(LPARAM) p);
 }
 
-BOOL TabCtrl_SetItem(HWND w, цел i, LPTCITEM p) {
+BOOL TabCtrl_SetItem(HWND w, int i, LPTCITEM p) {
 	return cast(BOOL) SendMessage(w, TCM_SETITEM, i, cast(LPARAM) p);
 }
 
-цел TabCtrl_InsertItem(HWND w, цел i, CPtr!(TC_ITEM) p) {
+int TabCtrl_InsertItem(HWND w, int i, CPtr!(TC_ITEM) p) {
 	return SendMessage(w, TCM_INSERTITEM, i, cast(LPARAM) p);
 }
 
-BOOL TabCtrl_DeleteItem(HWND w, цел i) {
+BOOL TabCtrl_DeleteItem(HWND w, int i) {
 	return cast(BOOL) SendMessage(w, TCM_DELETEITEM, i, 0);
 }
 
@@ -5380,43 +5380,43 @@ BOOL TabCtrl_DeleteAllItems(HWND w) {
 	return cast(BOOL) SendMessage(w, TCM_DELETEALLITEMS, 0, 0);
 }
 
-BOOL TabCtrl_GetItemRect(HWND w, цел i, LPRECT p) {
+BOOL TabCtrl_GetItemRect(HWND w, int i, LPRECT p) {
 	return cast(BOOL) SendMessage(w, TCM_GETITEMRECT, i, cast(LPARAM) p);
 }
 
-цел TabCtrl_GetCurSel(HWND w) {
+int TabCtrl_GetCurSel(HWND w) {
 	return SendMessage(w, TCM_GETCURSEL, 0, 0);
 }
 
-цел TabCtrl_SetCurSel(HWND w, цел i) {
+int TabCtrl_SetCurSel(HWND w, int i) {
 	return SendMessage(w, TCM_SETCURSEL, i, 0);
 }
 
-цел TabCtrl_HitTest(HWND w, LPTCHITTESTINFO p) {
+int TabCtrl_HitTest(HWND w, LPTCHITTESTINFO p) {
 	return SendMessage(w, TCM_HITTEST, 0, cast(LPARAM) p);
 }
 
-BOOL TabCtrl_SetItemExtra(HWND w, цел c) {
+BOOL TabCtrl_SetItemExtra(HWND w, int c) {
 	return cast(BOOL) SendMessage(w, TCM_SETITEMEXTRA, c, 0);
 }
 
-цел TabCtrl_AdjustRect(HWND w, BOOL b, LPRECT p) {
+int TabCtrl_AdjustRect(HWND w, BOOL b, LPRECT p) {
 	return SendMessage(w, TCM_ADJUSTRECT, b, cast(LPARAM) p);
 }
 
-DWORD TabCtrl_SetItemSize(HWND w, цел x, цел y) {
-	return cast(DWORD) SendMessage(w, TCM_SETITEMSIZE, 0, MAKELPARAM(cast(бкрат)x, cast(бкрат)y));
+DWORD TabCtrl_SetItemSize(HWND w, int x, int y) {
+	return cast(DWORD) SendMessage(w, TCM_SETITEMSIZE, 0, MAKELPARAM(cast(ushort)x, cast(ushort)y));
 }
 
-проц TabCtrl_RemoveImage(HWND w, цел i) {
+void TabCtrl_RemoveImage(HWND w, int i) {
 	SendMessage(w, TCM_REMOVEIMAGE, i, 0);
 }
 
-проц TabCtrl_SetPadding(HWND w, цел x, цел y) {
-	SendMessage(w, TCM_SETPADDING, 0, MAKELPARAM(cast(бкрат)x, cast(бкрат)y));
+void TabCtrl_SetPadding(HWND w, int x, int y) {
+	SendMessage(w, TCM_SETPADDING, 0, MAKELPARAM(cast(ushort)x, cast(ushort)y));
 }
 
-цел TabCtrl_GetRowCount(HWND w) {
+int TabCtrl_GetRowCount(HWND w) {
 	return SendMessage(w, TCM_GETROWCOUNT, 0, 0);
 }
 
@@ -5424,15 +5424,15 @@ HWND TabCtrl_GetToolTips(HWND w) {
 	return cast(HWND) SendMessage(w, TCM_GETTOOLTIPS, 0, 0);
 }
 
-проц TabCtrl_SetToolTips(HWND w, HWND t) {
+void TabCtrl_SetToolTips(HWND w, HWND t) {
 	SendMessage(w, TCM_SETTOOLTIPS, cast(WPARAM) t, 0);
 }
 
-цел TabCtrl_GetCurFocus(HWND w) {
+int TabCtrl_GetCurFocus(HWND w) {
 	return SendMessage(w, TCM_GETCURFOCUS, 0, 0);
 }
 
-проц TabCtrl_SetCurFocus(HWND w, цел i) {
+void TabCtrl_SetCurFocus(HWND w, int i) {
 	SendMessage(w, TCM_SETCURFOCUS, i, 0);
 }
 
@@ -5445,7 +5445,7 @@ HIMAGELIST TabCtrl_SetImageList(HWND w, HIMAGELIST h) {
 	  cast(LPARAM) h);
 }
 
-цел TabCtrl_GetItemCount(HWND w) {
+int TabCtrl_GetItemCount(HWND w) {
 	return SendMessage(w, TCM_GETITEMCOUNT, 0, 0);
 }
 
@@ -5603,9 +5603,9 @@ BOOL TreeView_GetISearchString(HWND w, LPTSTR s) {
 }
 
 static if (_WIN32_IE >= 0x300) {
-	DWORD ListView_ApproximateViewRect(HWND w, цел iw, цел ih, цел i) {
+	DWORD ListView_ApproximateViewRect(HWND w, int iw, int ih, int i) {
 		return cast(DWORD) SendMessage(w, LVM_APPROXIMATEVIEWRECT, i,
-		  MAKELPARAM(cast(бкрат)iw, cast(бкрат)ih));
+		  MAKELPARAM(cast(ushort)iw, cast(ushort)ih));
 	}
 
 	DWORD ListView_SetExtendedListViewStyle(HWND w, DWORD s) {
@@ -5616,12 +5616,12 @@ static if (_WIN32_IE >= 0x300) {
 		return cast(DWORD) SendMessage(w, LVM_GETEXTENDEDLISTVIEWSTYLE, 0, 0);
 	}
 
-	BOOL ListView_SetColumnOrderArray(HWND w, цел i, цел* a) {
+	BOOL ListView_SetColumnOrderArray(HWND w, int i, int* a) {
 		return cast(BOOL) SendMessage(w, LVM_SETCOLUMNORDERARRAY,
 		  cast(WPARAM) i, cast(LPARAM) a);
 	}
 
-	BOOL ListView_GetColumnOrderArray(HWND w, цел i, цел* a) {
+	BOOL ListView_GetColumnOrderArray(HWND w, int i, int* a) {
 		return cast(BOOL) SendMessage(w, LVM_GETCOLUMNORDERARRAY,
 		  cast(WPARAM) i, cast(LPARAM) a);
 	}
@@ -5638,9 +5638,9 @@ static if (_WIN32_IE >= 0x300) {
 		return SendMessage(w, LVM_GETHOTITEM, 0, 0);
 	}
 
-	BOOL ListView_GetSubItemRect(HWND w, цел i, цел isi, цел c, LPRECT p) {
+	BOOL ListView_GetSubItemRect(HWND w, int i, int isi, int c, LPRECT p) {
 		return cast(BOOL) SendMessage(w, LVM_GETSUBITEMRECT, i,
-		  p ? (p.лево = c, p.верх = isi, cast(LPARAM) p) : 0);
+		  p ? (p.left = c, p.top = isi, cast(LPARAM) p) : 0);
 	}
 
 	HCURSOR ListView_SetHotCursor(HWND w, HCURSOR c) {
@@ -5652,26 +5652,26 @@ static if (_WIN32_IE >= 0x300) {
 		return SendMessage(w, LVM_SETHOTITEM, cast(WPARAM) i, 0);
 	}
 
-	DWORD ListView_SetIconSpacing(HWND w, цел x, цел y) {
+	DWORD ListView_SetIconSpacing(HWND w, int x, int y) {
 		return cast(DWORD) SendMessage(w, LVM_SETICONSPACING, 0,
-		  MAKELONG(cast(бкрат)x, cast(бкрат)y));
+		  MAKELONG(cast(ushort)x, cast(ushort)y));
 	}
 
 	INT ListView_SubItemHitTest(HWND w, LPLVHITTESTINFO p) {
 		return SendMessage(w, LVM_SUBITEMHITTEST, 0, cast(LPARAM) p);
 	}
 
-	BOOL ListView_SetItemCountEx(HWND w, цел i, DWORD f) {
+	BOOL ListView_SetItemCountEx(HWND w, int i, DWORD f) {
 		return cast(BOOL) SendMessage(w, LVM_SETITEMCOUNT, i, cast(LPARAM) f);
 	}
 
 	extern (Windows) {
 		WINBOOL ImageList_SetImageCount(HIMAGELIST, UINT);
-		WINBOOL ImageList_Copy(HIMAGELIST, цел, HIMAGELIST, цел, UINT);
+		WINBOOL ImageList_Copy(HIMAGELIST, int, HIMAGELIST, int, UINT);
 		WINBOOL ImageList_DrawIndirect(IMAGELISTDRAWPARAMS*);
 	}
 
-	цел TabCtrl_SetMinTabWidth(HWND hwnd, цел x) {
+	int TabCtrl_SetMinTabWidth(HWND hwnd, int x) {
 		return SendMessage(hwnd, TCM_SETMINTABWIDTH, 0, x);
 	}
 
@@ -5780,7 +5780,7 @@ static if (_WIN32_IE >= 0x400) {
 		return cast(COLORREF) SendMessage(w, TVM_GETINSERTMARKCOLOR, 0, 0);
 	}
 
-	цел TreeView_GetItemHeight(HWND w) {
+	int TreeView_GetItemHeight(HWND w) {
 		return SendMessage(w, TVM_GETITEMHEIGHT, 0, 0);
 	}
 
@@ -5802,7 +5802,7 @@ static if (_WIN32_IE >= 0x400) {
 		  cast(LPARAM) c);
 	}
 
-	цел TreeView_SetItemHeight(HWND w, SHORT h) {
+	int TreeView_SetItemHeight(HWND w, SHORT h) {
 		return SendMessage(w, TVM_SETITEMHEIGHT, cast(WPARAM) h, 0);
 	}
 
@@ -5854,20 +5854,20 @@ static if (_WIN32_IE >= 0x500) {
 //#ifdef _WIN32_WCE               // these are PPC only
 /+
 extern (Windows) {
-	HWND  CommandBar_Create(HINSTANCE, HWND, цел);
+	HWND  CommandBar_Create(HINSTANCE, HWND, int);
 	BOOL  CommandBar_Show(HWND, BOOL);
-	цел   CommandBar_AddBitmap(HWND, HINSTANCE, цел, цел, цел, цел);
-	HWND  CommandBar_InsertComboBox(HWND, HINSTANCE, цел, UINT, WORD, WORD);
+	int   CommandBar_AddBitmap(HWND, HINSTANCE, int, int, int, int);
+	HWND  CommandBar_InsertComboBox(HWND, HINSTANCE, int, UINT, WORD, WORD);
 	BOOL  CommandBar_InsertMenubar(HWND, HINSTANCE, WORD, WORD );
 	BOOL  CommandBar_InsertMenubarEx(HWND, HINSTANCE, LPTSTR, WORD);
 	BOOL  CommandBar_DrawMenuBar(HWND, WORD);
 	HMENU CommandBar_GetMenu(HWND, WORD);
 	BOOL  CommandBar_AddAdornments(HWND, DWORD, DWORD);
-	цел   CommandBar_Height(HWND hwndCB);
+	int   CommandBar_Height(HWND hwndCB);
 }
 
 // MinGW: These two are not in the DLL
-проц CommandBar_InsertButton(HWND hwnd, цел i, LPTBBUTTON lptbbutton) {
+void CommandBar_InsertButton(HWND hwnd, int i, LPTBBUTTON lptbbutton) {
     SendMessage(hwnd, TB_INSERTBUTTON, i, lptbbutton);
 }
 alias DestroyWindow CommandBar_Destroy;

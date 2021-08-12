@@ -128,22 +128,22 @@ extern (Windows)
 }
 
 
-BOOL IntlStrEqNA(LPCSTR pStr1, LPCSTR pStr2, цел nChar)
+BOOL IntlStrEqNA(LPCSTR pStr1, LPCSTR pStr2, int nChar)
 {
 	return IntlStrEqWorkerA(TRUE, pStr1, pStr2, nChar);
 }
 
-BOOL IntlStrEqNW(LPCWSTR pStr1, LPCWSTR pStr2, цел nChar)
+BOOL IntlStrEqNW(LPCWSTR pStr1, LPCWSTR pStr2, int nChar)
 {
 	return IntlStrEqWorkerW(TRUE, pStr1, pStr2, nChar);
 }
 
-BOOL IntlStrEqNIA(LPCSTR pStr1, LPCSTR pStr2, цел nChar)
+BOOL IntlStrEqNIA(LPCSTR pStr1, LPCSTR pStr2, int nChar)
 {
 	return IntlStrEqWorkerA(FALSE, pStr1, pStr2, nChar);
 }
 
-BOOL IntlStrEqNIW(LPCWSTR pStr1, LPCWSTR pStr2, цел nChar)
+BOOL IntlStrEqNIW(LPCWSTR pStr1, LPCWSTR pStr2, int nChar)
 {
 	return IntlStrEqWorkerW(FALSE, pStr1, pStr2, nChar);
 }
@@ -170,31 +170,31 @@ HRESULT UrlUnescapeInPlaceW(LPWSTR pszUrl,DWORD dwFlags)
 extern (Windows):
 BOOL ChrCmpIA(WORD,WORD);
 BOOL ChrCmpIW(WCHAR,WCHAR);
-BOOL IntlStrEqWorkerA(BOOL,LPCSTR,LPCSTR,цел);
-BOOL IntlStrEqWorkerW(BOOL,LPCWSTR,LPCWSTR,цел);
+BOOL IntlStrEqWorkerA(BOOL,LPCSTR,LPCSTR,int);
+BOOL IntlStrEqWorkerW(BOOL,LPCWSTR,LPCWSTR,int);
 HRESULT SHStrDupA(LPCSTR,LPWSTR*);
 HRESULT SHStrDupW(LPCWSTR,LPWSTR*);
 LPSTR StrCatA(LPSTR,LPCSTR);
 LPWSTR StrCatW(LPWSTR,LPCWSTR);
-LPSTR StrCatBuffA(LPSTR,LPCSTR,цел);
-LPWSTR StrCatBuffW(LPWSTR,LPCWSTR,цел);
+LPSTR StrCatBuffA(LPSTR,LPCSTR,int);
+LPWSTR StrCatBuffW(LPWSTR,LPCWSTR,int);
 DWORD StrCatChainW(LPWSTR,DWORD,DWORD,LPCWSTR);
 LPSTR StrChrA(LPCSTR,WORD);
 LPWSTR StrChrW(LPCWSTR,WCHAR);
 LPSTR StrChrIA(LPCSTR,WORD);
 LPWSTR StrChrIW(LPCWSTR,WCHAR);
-цел StrCmpIW(LPCWSTR,LPCWSTR);
-цел StrCmpW(LPCWSTR,LPCWSTR);
+int StrCmpIW(LPCWSTR,LPCWSTR);
+int StrCmpW(LPCWSTR,LPCWSTR);
 LPWSTR StrCpyW(LPWSTR,LPCWSTR);
-LPWSTR StrCpyNW(LPWSTR,LPCWSTR,цел);
-цел StrCmpNA(LPCSTR,LPCSTR,цел);
-цел StrCmpNW(LPCWSTR,LPCWSTR,цел);
-цел StrCmpNIA(LPCSTR,LPCSTR,цел);
-цел StrCmpNIW(LPCWSTR,LPCWSTR,цел);
-цел StrCSpnA(LPCSTR,LPCSTR);
-цел StrCSpnW(LPCWSTR,LPCWSTR);
-цел StrCSpnIA(LPCSTR,LPCSTR);
-цел StrCSpnIW(LPCWSTR,LPCWSTR);
+LPWSTR StrCpyNW(LPWSTR,LPCWSTR,int);
+int StrCmpNA(LPCSTR,LPCSTR,int);
+int StrCmpNW(LPCWSTR,LPCWSTR,int);
+int StrCmpNIA(LPCSTR,LPCSTR,int);
+int StrCmpNIW(LPCWSTR,LPCWSTR,int);
+int StrCSpnA(LPCSTR,LPCSTR);
+int StrCSpnW(LPCWSTR,LPCWSTR);
+int StrCSpnIA(LPCSTR,LPCSTR);
+int StrCSpnIW(LPCWSTR,LPCWSTR);
 LPSTR StrDupA(LPCSTR);
 LPWSTR StrDupW(LPCWSTR);
 LPSTR StrFormatByteSize64A(LONGLONG,LPSTR,UINT);
@@ -202,12 +202,12 @@ LPSTR StrFormatByteSizeA(DWORD,LPSTR,UINT);
 LPWSTR StrFormatByteSizeW(LONGLONG,LPWSTR,UINT);
 LPSTR StrFormatKBSizeA(LONGLONG,LPSTR,UINT);
 LPWSTR StrFormatKBSizeW(LONGLONG,LPWSTR,UINT);
-цел StrFromTimeIntervalA(LPSTR,UINT,DWORD,цел);
-цел StrFromTimeIntervalW(LPWSTR,UINT,DWORD,цел);
-BOOL StrIsIntlEqualA(BOOL,LPCSTR,LPCSTR,цел);
-BOOL StrIsIntlEqualW(BOOL,LPCWSTR,LPCWSTR,цел);
-LPSTR StrNCatA(LPSTR,LPCSTR,цел);
-LPWSTR StrNCatW(LPWSTR,LPCWSTR,цел);
+int StrFromTimeIntervalA(LPSTR,UINT,DWORD,int);
+int StrFromTimeIntervalW(LPWSTR,UINT,DWORD,int);
+BOOL StrIsIntlEqualA(BOOL,LPCSTR,LPCSTR,int);
+BOOL StrIsIntlEqualW(BOOL,LPCWSTR,LPCWSTR,int);
+LPSTR StrNCatA(LPSTR,LPCSTR,int);
+LPWSTR StrNCatW(LPWSTR,LPCWSTR,int);
 LPSTR StrPBrkA(LPCSTR,LPCSTR);
 LPWSTR StrPBrkW(LPCWSTR,LPCWSTR);
 LPSTR StrRChrA(LPCSTR,LPCSTR,WORD);
@@ -216,16 +216,16 @@ LPSTR StrRChrIA(LPCSTR,LPCSTR,WORD);
 LPWSTR StrRChrIW(LPCWSTR,LPCWSTR,WCHAR);
 LPSTR StrRStrIA(LPCSTR,LPCSTR,LPCSTR);
 LPWSTR StrRStrIW(LPCWSTR,LPCWSTR,LPCWSTR);
-цел StrSpnA(LPCSTR,LPCSTR);
-цел StrSpnW(LPCWSTR,LPCWSTR);
+int StrSpnA(LPCSTR,LPCSTR);
+int StrSpnW(LPCWSTR,LPCWSTR);
 LPSTR StrStrA(LPCSTR, LPCSTR);
 LPSTR StrStrIA(LPCSTR,LPCSTR);
 LPWSTR StrStrIW(LPCWSTR,LPCWSTR);
 LPWSTR StrStrW(LPCWSTR,LPCWSTR);
-цел StrToIntA(LPCSTR);
-цел StrToIntW(LPCWSTR);
-BOOL StrToIntExA(LPCSTR,DWORD,цел*);
-BOOL StrToIntExW(LPCWSTR,DWORD,цел*);
+int StrToIntA(LPCSTR);
+int StrToIntW(LPCWSTR);
+BOOL StrToIntExA(LPCSTR,DWORD,int*);
+BOOL StrToIntExW(LPCWSTR,DWORD,int*);
 BOOL StrTrimA(LPSTR,LPCSTR);
 BOOL StrTrimW(LPWSTR,LPCWSTR);
 LPSTR PathAddBackslashA(LPSTR);
@@ -234,14 +234,14 @@ BOOL PathAddExtensionA(LPSTR,LPCSTR);
 BOOL PathAddExtensionW(LPWSTR,LPCWSTR);
 BOOL PathAppendA(LPSTR,LPCSTR);
 BOOL PathAppendW(LPWSTR,LPCWSTR);
-LPSTR PathBuildRootA(LPSTR,цел);
-LPWSTR PathBuildRootW(LPWSTR,цел);
+LPSTR PathBuildRootA(LPSTR,int);
+LPWSTR PathBuildRootW(LPWSTR,int);
 BOOL PathCanonicalizeA(LPSTR,LPCSTR);
 BOOL PathCanonicalizeW(LPWSTR,LPCWSTR);
 LPSTR PathCombineA(LPSTR,LPCSTR,LPCSTR);
 LPWSTR PathCombineW(LPWSTR,LPCWSTR,LPCWSTR);
-цел PathCommonPrefixA(LPCSTR,LPCSTR,LPSTR);
-цел PathCommonPrefixW(LPCWSTR,LPCWSTR,LPWSTR);
+int PathCommonPrefixA(LPCSTR,LPCSTR,LPSTR);
+int PathCommonPrefixW(LPCWSTR,LPCWSTR,LPWSTR);
 BOOL PathCompactPathA(HDC,LPSTR,UINT);
 BOOL PathCompactPathW(HDC,LPWSTR,UINT);
 BOOL PathCompactPathExA(LPSTR,LPCSTR,UINT,DWORD);
@@ -258,14 +258,14 @@ LPSTR PathFindNextComponentA(LPCSTR);
 LPWSTR PathFindNextComponentW(LPCWSTR);
 BOOL PathFindOnPathA(LPSTR,LPCSTR*);
 BOOL PathFindOnPathW(LPWSTR,LPCWSTR*);
-LPCSTR PathFindSuffixArrayA(LPCSTR,LPCSTR*,цел);
-LPCWSTR PathFindSuffixArrayW(LPCWSTR,LPCWSTR*,цел);
+LPCSTR PathFindSuffixArrayA(LPCSTR,LPCSTR*,int);
+LPCWSTR PathFindSuffixArrayW(LPCWSTR,LPCWSTR*,int);
 LPSTR PathGetArgsA(LPCSTR);
 LPWSTR PathGetArgsW(LPCWSTR);
 UINT PathGetCharTypeA(UCHAR);
 UINT PathGetCharTypeW(WCHAR);
-цел PathGetDriveNumberA(LPCSTR);
-цел PathGetDriveNumberW(LPCWSTR);
+int PathGetDriveNumberA(LPCSTR);
+int PathGetDriveNumberW(LPCWSTR);
 BOOL PathIsContentTypeA(LPCSTR,LPCSTR);
 BOOL PathIsContentTypeW(LPCWSTR,LPCWSTR);
 BOOL PathIsDirectoryA(LPCSTR);
@@ -302,44 +302,44 @@ BOOL PathMakeSystemFolderA(LPSTR);
 BOOL PathMakeSystemFolderW(LPWSTR);
 BOOL PathMatchSpecA(LPCSTR,LPCSTR);
 BOOL PathMatchSpecW(LPCWSTR,LPCWSTR);
-цел PathParseIconLocationA(LPSTR);
-цел PathParseIconLocationW(LPWSTR);
-проц PathQuoteSpacesA(LPSTR);
-проц PathQuoteSpacesW(LPWSTR);
+int PathParseIconLocationA(LPSTR);
+int PathParseIconLocationW(LPWSTR);
+void PathQuoteSpacesA(LPSTR);
+void PathQuoteSpacesW(LPWSTR);
 BOOL PathRelativePathToA(LPSTR,LPCSTR,DWORD,LPCSTR,DWORD);
 BOOL PathRelativePathToW(LPWSTR,LPCWSTR,DWORD,LPCWSTR,DWORD);
-проц PathRemoveArgsA(LPSTR);
-проц PathRemoveArgsW(LPWSTR);
+void PathRemoveArgsA(LPSTR);
+void PathRemoveArgsW(LPWSTR);
 LPSTR PathRemoveBackslashA(LPSTR);
 LPWSTR PathRemoveBackslashW(LPWSTR);
-проц PathRemoveBlanksA(LPSTR);
-проц PathRemoveBlanksW(LPWSTR);
-проц PathRemoveExtensionA(LPSTR);
-проц PathRemoveExtensionW(LPWSTR);
+void PathRemoveBlanksA(LPSTR);
+void PathRemoveBlanksW(LPWSTR);
+void PathRemoveExtensionA(LPSTR);
+void PathRemoveExtensionW(LPWSTR);
 BOOL PathRemoveFileSpecA(LPSTR);
 BOOL PathRemoveFileSpecW(LPWSTR);
 BOOL PathRenameExtensionA(LPSTR,LPCSTR);
 BOOL PathRenameExtensionW(LPWSTR,LPCWSTR);
 BOOL PathSearchAndQualifyA(LPCSTR,LPSTR,UINT);
 BOOL PathSearchAndQualifyW(LPCWSTR,LPWSTR,UINT);
-проц PathSetDlgItemPathA(HWND,цел,LPCSTR);
-проц PathSetDlgItemPathW(HWND,цел,LPCWSTR);
+void PathSetDlgItemPathA(HWND,int,LPCSTR);
+void PathSetDlgItemPathW(HWND,int,LPCWSTR);
 LPSTR PathSkipRootA(LPCSTR);
 LPWSTR PathSkipRootW(LPCWSTR);
-проц PathStripPathA(LPSTR);
-проц PathStripPathW(LPWSTR);
+void PathStripPathA(LPSTR);
+void PathStripPathW(LPWSTR);
 BOOL PathStripToRootA(LPSTR);
 BOOL PathStripToRootW(LPWSTR);
-проц PathUndecorateA(LPSTR);
-проц PathUndecorateW(LPWSTR);
+void PathUndecorateA(LPSTR);
+void PathUndecorateW(LPWSTR);
 BOOL PathUnExpandEnvStringsA(LPCSTR,LPSTR,UINT);
 BOOL PathUnExpandEnvStringsW(LPCWSTR,LPWSTR,UINT);
 BOOL PathUnmakeSystemFolderA(LPSTR);
 BOOL PathUnmakeSystemFolderW(LPWSTR);
-проц PathUnquoteSpacesA(LPSTR);
-проц PathUnquoteSpacesW(LPWSTR);
+void PathUnquoteSpacesA(LPSTR);
+void PathUnquoteSpacesW(LPWSTR);
 HRESULT SHAutoComplete(HWND,DWORD);
-BOOL SHCreateThread(LPTHREAD_START_ROUTINE,проц*,DWORD,LPTHREAD_START_ROUTINE);
+BOOL SHCreateThread(LPTHREAD_START_ROUTINE,void*,DWORD,LPTHREAD_START_ROUTINE);
 DWORD SHCopyKeyA(HKEY,LPCSTR,HKEY,DWORD);
 DWORD SHCopyKeyW(HKEY,LPCWSTR,HKEY,DWORD);
 DWORD SHDeleteEmptyKeyA(HKEY,LPCSTR);
@@ -376,8 +376,8 @@ HRESULT UrlCanonicalizeA(LPCSTR,LPSTR,LPDWORD,DWORD);
 HRESULT UrlCanonicalizeW(LPCWSTR,LPWSTR,LPDWORD,DWORD);
 HRESULT UrlCombineA(LPCSTR,LPCSTR,LPSTR,LPDWORD,DWORD);
 HRESULT UrlCombineW(LPCWSTR,LPCWSTR,LPWSTR,LPDWORD,DWORD);
-цел UrlCompareA(LPCSTR,LPCSTR,BOOL);
-цел UrlCompareW(LPCWSTR,LPCWSTR,BOOL);
+int UrlCompareA(LPCSTR,LPCSTR,BOOL);
+int UrlCompareW(LPCWSTR,LPCWSTR,BOOL);
 HRESULT UrlCreateFromPathA(LPCSTR,LPSTR,LPDWORD,DWORD);
 HRESULT UrlCreateFromPathW(LPCWSTR,LPWSTR,LPDWORD,DWORD);
 HRESULT UrlEscapeA(LPCSTR,LPSTR,LPDWORD,DWORD);
@@ -429,15 +429,15 @@ LONG SHRegWriteUSValueW(HUSKEY,LPCWSTR,DWORD,LPVOID,DWORD,DWORD);
 HRESULT HashData(LPBYTE,DWORD,LPBYTE,DWORD);
 HPALETTE SHCreateShellPalette(HDC);
 COLORREF ColorHLSToRGB(WORD,WORD,WORD);
-COLORREF ColorAdjustLuma(COLORREF,цел,BOOL);
-проц ColorRGBToHLS(COLORREF,WORD*,WORD*,WORD*);
+COLORREF ColorAdjustLuma(COLORREF,int,BOOL);
+void ColorRGBToHLS(COLORREF,WORD*,WORD*,WORD*);
 /** Should not be necessary for D?
 extern (C):
-цел  wnsprintfA(LPSTR,цел,LPCSTR,...);
-цел  wnsprintfW(LPWSTR,цел,LPCWSTR,...);
+int  wnsprintfA(LPSTR,int,LPCSTR,...);
+int  wnsprintfW(LPWSTR,int,LPCWSTR,...);
 extern (Windows):
-цел wvnsprintfA(LPSTR,цел,LPCSTR,va_list);
-цел wvnsprintfW(LPWSTR,цел,LPCWSTR,va_list);
+int wvnsprintfA(LPSTR,int,LPCSTR,va_list);
+int wvnsprintfW(LPWSTR,int,LPCWSTR,va_list);
 */
 
 HINSTANCE MLLoadLibraryA(LPCSTR,HANDLE,DWORD,LPCSTR,BOOL);

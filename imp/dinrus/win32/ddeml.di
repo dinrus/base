@@ -14,7 +14,7 @@ pragma(lib, "dinrus.lib");
 
 private import win32.basetsd, win32.windef, win32.winnt;
 
-enum : цел {
+enum : int {
 	CP_WINANSI    = 1004,
 	CP_WINUNICODE = 1200
 }
@@ -183,7 +183,7 @@ enum : UINT {
 #define MAX_MONITORS	4
 +/
 
-enum : цел {
+enum : int {
 	MH_CREATE  = 1,
 	MH_KEEP    = 2,
 	MH_DELETE  = 3,
@@ -205,7 +205,7 @@ struct CONVCONTEXT {
 	UINT                        cb = CONVCONTEXT.sizeof;
 	UINT                        wFlags;
 	UINT                        wCountryID;
-	цел                         iCodePage;
+	int                         iCodePage;
 	DWORD                       dwLangID;
 	DWORD                       dwSecurity;
 	SECURITY_QUALITY_OF_SERVICE qos;
@@ -241,7 +241,7 @@ struct DDEML_MSG_HOOK_DATA {
 
 struct MONHSZSTRUCT {
 	UINT     cb = MONHSZSTRUCT.sizeof;
-	цел      fsAction;
+	int      fsAction;
 	DWORD    dwTime;
 	HSZ      hsz;
 	HANDLE   hTask;
@@ -324,13 +324,13 @@ extern (Windows) {
 	HDDEDATA DdeAddData(HDDEDATA, PBYTE, DWORD, DWORD);
 	HDDEDATA DdeClientTransaction(PBYTE, DWORD, HCONV, HSZ, UINT, UINT,
 	  DWORD, PDWORD);
-	цел DdeCmpStringHandles(HSZ, HSZ);
+	int DdeCmpStringHandles(HSZ, HSZ);
 	HCONV DdeConnect(DWORD, HSZ, HSZ, PCONVCONTEXT);
 	HCONVLIST DdeConnectList(DWORD, HSZ, HSZ, HCONVLIST, PCONVCONTEXT);
 	HDDEDATA DdeCreateDataHandle(DWORD, PBYTE, DWORD, DWORD, HSZ, UINT,
 	  UINT);
-	HSZ DdeCreateStringHandleA(DWORD, LPSTR, цел);
-	HSZ DdeCreateStringHandleW(DWORD, LPWSTR, цел);
+	HSZ DdeCreateStringHandleA(DWORD, LPSTR, int);
+	HSZ DdeCreateStringHandleW(DWORD, LPWSTR, int);
 	BOOL DdeDisconnect(HCONV);
 	BOOL DdeDisconnectList(HCONVLIST);
 	BOOL DdeEnableCallback(DWORD, HCONV, UINT);
@@ -346,8 +346,8 @@ extern (Windows) {
 	BOOL DdePostAdvise(DWORD, HSZ, HSZ);
 	UINT DdeQueryConvInfo(HCONV, DWORD, PCONVINFO);
 	HCONV DdeQueryNextServer(HCONVLIST, HCONV);
-	DWORD DdeQueryStringA(DWORD, HSZ, LPSTR, DWORD, цел);
-	DWORD DdeQueryStringW(DWORD, HSZ, LPWSTR, DWORD, цел);
+	DWORD DdeQueryStringA(DWORD, HSZ, LPSTR, DWORD, int);
+	DWORD DdeQueryStringW(DWORD, HSZ, LPWSTR, DWORD, int);
 	HCONV DdeReconnect(HCONV);
 	BOOL DdeSetUserHandle(HCONV, DWORD, DWORD);
 	BOOL DdeUnaccessData(HDDEDATA);

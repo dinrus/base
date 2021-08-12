@@ -12,7 +12,7 @@ module win32.docobj;
 private import win32.basetyps, win32.oaidl, win32.objidl, win32.oleidl,
   win32.unknwn, win32.windef, win32.wtypes;
 
-// FIXME: удали inherited methods from interface definitions
+// FIXME: remove inherited methods from interface definitions
 
 enum {
 	OLECMDERR_E_UNKNOWNGROUP = -2147221244,
@@ -73,7 +73,7 @@ struct OLECMDTEXT {
 	DWORD cmdtextf;
 	ULONG cwActual;
 	ULONG cwBuf;
-	шим rgwz[1];
+	wchar rgwz[1];
 }
 
 struct OLECMD {

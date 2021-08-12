@@ -10,7 +10,7 @@
 \***********************************************************************/
 module win32.exdispid;
 
-enum : цел {
+enum : int {
 	DISPID_STATUSTEXTCHANGE = 102,
 	DISPID_PROGRESSCHANGE   = 108,
 	DISPID_TITLECHANGE      = 113,

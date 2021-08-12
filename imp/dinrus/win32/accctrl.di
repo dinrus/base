@@ -21,7 +21,7 @@ private import win32.basetyps, win32.w32api, win32.winbase, win32.windef;
 
 alias LocalFree AccFree;
 
-const бцел
+const uint
 	ACTRL_RESERVED            = 0x00000000,
 	ACTRL_ACCESS_PROTECTED    = 0x00000001,
 	ACTRL_ACCESS_ALLOWED      = 0x00000001,
@@ -36,7 +36,7 @@ const бцел
 	ACTRL_SYNCHRONIZE         = 0x80000000,
 	ACTRL_STD_RIGHTS_ALL      = 0xf8000000;
 
-const бцел
+const uint
 	ACTRL_FILE_READ           = 0x00000001,
 	ACTRL_FILE_WRITE          = 0x00000002,
 	ACTRL_FILE_APPEND         = 0x00000004,
@@ -47,14 +47,14 @@ const бцел
 	ACTRL_FILE_WRITE_ATTRIB   = 0x00000100,
 	ACTRL_FILE_CREATE_PIPE    = 0x00000200;
 
-const бцел
+const uint
 	ACTRL_DIR_LIST            = 0x00000001,
 	ACTRL_DIR_CREATE_OBJECT   = 0x00000002,
 	ACTRL_DIR_CREATE_CHILD    = 0x00000004,
 	ACTRL_DIR_DELETE_CHILD    = 0x00000040,
 	ACTRL_DIR_TRAVERSE        = 0x00000020;
 
-const бцел
+const uint
 	ACTRL_KERNEL_TERMINATE    = 0x00000001,
 	ACTRL_KERNEL_THREAD       = 0x00000002,
 	ACTRL_KERNEL_VM           = 0x00000004,
@@ -72,14 +72,14 @@ const бцел
 	ACTRL_KERNEL_IMPERSONATE  = 0x00004000,
 	ACTRL_KERNEL_DIMPERSONATE = 0x00008000;
 
-const бцел
+const uint
 	ACTRL_PRINT_SADMIN        = 0x00000001,
 	ACTRL_PRINT_SLIST         = 0x00000002,
 	ACTRL_PRINT_PADMIN        = 0x00000004,
 	ACTRL_PRINT_PUSE          = 0x00000008,
 	ACTRL_PRINT_JADMIN        = 0x00000010;
 
-const бцел
+const uint
 	ACTRL_SVC_GET_INFO        = 0x00000001,
 	ACTRL_SVC_SET_INFO        = 0x00000002,
 	ACTRL_SVC_STATUS          = 0x00000004,
@@ -90,7 +90,7 @@ const бцел
 	ACTRL_SVC_INTERROGATE     = 0x00000080,
 	ACTRL_SVC_UCONTROL        = 0x00000100;
 
-const бцел
+const uint
 	ACTRL_REG_QUERY           = 0x00000001,
 	ACTRL_REG_SET             = 0x00000002,
 	ACTRL_REG_CREATE_CHILD    = 0x00000004,
@@ -98,7 +98,7 @@ const бцел
 	ACTRL_REG_NOTIFY          = 0x00000010,
 	ACTRL_REG_LINK            = 0x00000020;
 
-const бцел
+const uint
 	ACTRL_WIN_CLIPBRD         = 0x00000001,
 	ACTRL_WIN_GLOBAL_ATOMS    = 0x00000002,
 	ACTRL_WIN_CREATE          = 0x00000004,
@@ -109,14 +109,14 @@ const бцел
 	ACTRL_WIN_SCREEN          = 0x00000080,
 	ACTRL_WIN_EXIT            = 0x00000100;
 
-enum : бцел {
+enum : uint {
 	ACTRL_ACCESS_NO_OPTIONS              = 0x00000000,
 	ACTRL_ACCESS_SUPPORTS_OBJECT_ENTRIES = 0x00000001
 }
 
 const TCHAR[] ACCCTRL_DEFAULT_PROVIDER = "Windows NT Access Provider";
 
-const бцел
+const uint
 	TRUSTEE_ACCESS_ALLOWED    = 0x00000001,
 	TRUSTEE_ACCESS_READ       = 0x00000002,
 	TRUSTEE_ACCESS_WRITE      = 0x00000004,
@@ -124,7 +124,7 @@ const бцел
 	TRUSTEE_ACCESS_READ_WRITE = 0x00000006,
 	TRUSTEE_ACCESS_ALL        = 0xFFFFFFFF;
 
-const бцел
+const uint
 	NO_INHERITANCE                     = 0x0,
 	SUB_OBJECTS_ONLY_INHERIT           = 0x1,
 	SUB_CONTAINERS_ONLY_INHERIT        = 0x2,
@@ -377,7 +377,6 @@ static if (WINVER >= 0x501) {
 	alias INHERITED_FROMW* PINHERITED_FROMW;
 }
 
-version = Unicode;
 version (Unicode) {
 	alias TRUSTEEW TRUSTEE;
 	alias ACTRL_ACCESSW ACTRL_ACCESS;

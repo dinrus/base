@@ -102,7 +102,7 @@ enum {
 #define CTL_CODE(t, f, m, a) (((t)<<16)|((a)<<14)|((f)<<2)|(m))
 +/
 
-template CTL_CODE_T(DEVICE_TYPE t, бцел f, бцел m, бцел a) {
+template CTL_CODE_T(DEVICE_TYPE t, uint f, uint m, uint a) {
 	const DWORD CTL_CODE_T = (t << 16) | (a << 14) | (f << 2) | m;
 }
 
@@ -496,7 +496,7 @@ struct DISK_HISTOGRAM {
 	LARGE_INTEGER     AverageRead;
 	LARGE_INTEGER     AverageWrite;
 	DWORD             Granularity;
-	DWORD             Размер;
+	DWORD             Size;
 	DWORD             ReadCount;
 	DWORD             WriteCount;
 	PHISTOGRAM_BUCKET Histogram;
@@ -685,7 +685,7 @@ struct NTFS_VOLUME_DATA_BUFFER {
 alias NTFS_VOLUME_DATA_BUFFER* PNTFS_VOLUME_DATA_BUFFER;
 
 
-бул IsRecognizedPartition(BYTE t) {
+bool IsRecognizedPartition(BYTE t) {
 	return ((t & PARTITION_NTFT)
 	  && ((t & ~VALID_NTFT) == PARTITION_FAT_12
 	    || (t & ~VALID_NTFT) == PARTITION_FAT_16
@@ -703,7 +703,7 @@ alias NTFS_VOLUME_DATA_BUFFER* PNTFS_VOLUME_DATA_BUFFER;
 	  || (t & ~PARTITION_NTFT) == PARTITION_XINT13;
 }
 
-бул IsContainerPartition(BYTE t) {
+bool IsContainerPartition(BYTE t) {
 	return ((t & PARTITION_NTFT)
 	  && ((t & ~VALID_NTFT) == PARTITION_EXTENDED
 	    || (t & ~VALID_NTFT) == PARTITION_XINT13_EXTENDED))

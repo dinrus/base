@@ -435,7 +435,7 @@ enum : CALTYPE {
 	CAL_GREGORIAN_XLIT_FRENCH // = 12
 }
 
-enum : цел {
+enum : int {
 	CSTR_LESS_THAN    = 1,
 	CSTR_EQUAL,
 	CSTR_GREATER_THAN
@@ -624,8 +624,8 @@ struct NUMBERFMTW {
 alias NUMBERFMTW* LPNUMBERFMTW;
 
 extern (Windows) {
-	цел CompareStringA(LCID, DWORD, LPCSTR, цел, LPCSTR, цел);
-	цел CompareStringW(LCID, DWORD, LPCWSTR, цел, LPCWSTR, цел);
+	int CompareStringA(LCID, DWORD, LPCSTR, int, LPCSTR, int);
+	int CompareStringW(LCID, DWORD, LPCWSTR, int, LPCWSTR, int);
 	LCID ConvertDefaultLocale(LCID);
 	BOOL EnumCalendarInfoA(CALINFO_ENUMPROCA, LCID, CALID, CALTYPE);
 	BOOL EnumCalendarInfoW(CALINFO_ENUMPROCW, LCID, CALID, CALTYPE);
@@ -638,55 +638,55 @@ extern (Windows) {
 	BOOL EnumSystemLocalesW(LOCALE_ENUMPROCW, DWORD);
 	BOOL EnumTimeFormatsA(TIMEFMT_ENUMPROCA, LCID, DWORD);
 	BOOL EnumTimeFormatsW(TIMEFMT_ENUMPROCW, LCID, DWORD);
-	цел FoldStringA(DWORD, LPCSTR, цел, LPSTR, цел);
-	цел FoldStringW(DWORD, LPCWSTR, цел, LPWSTR, цел);
+	int FoldStringA(DWORD, LPCSTR, int, LPSTR, int);
+	int FoldStringW(DWORD, LPCWSTR, int, LPWSTR, int);
 	UINT GetACP();
-	цел GetCalendarInfoA(LCID, CALID, CALTYPE, LPSTR, цел, LPDWORD);
-	цел GetCalendarInfoW(LCID, CALID, CALTYPE, LPWSTR, цел, LPDWORD);
+	int GetCalendarInfoA(LCID, CALID, CALTYPE, LPSTR, int, LPDWORD);
+	int GetCalendarInfoW(LCID, CALID, CALTYPE, LPWSTR, int, LPDWORD);
 	BOOL GetCPInfo(UINT, LPCPINFO);
 	BOOL GetCPInfoExA(UINT, DWORD, LPCPINFOEXA);
 	BOOL GetCPInfoExW(UINT, DWORD, LPCPINFOEXW);
-	цел GetCurrencyFormatA(LCID, DWORD, LPCSTR,  CURRENCYFMTA*, LPSTR, цел);
-	цел GetCurrencyFormatW(LCID, DWORD, LPCWSTR,  CURRENCYFMTW*, LPWSTR,
-	  цел);
-	цел GetDateFormatA(LCID, DWORD,  SYSTEMTIME*, LPCSTR, LPSTR, цел);
-	цел GetDateFormatW(LCID, DWORD,  SYSTEMTIME*, LPCWSTR, LPWSTR, цел);
-	цел GetGeoInfoA(GEOID, GEOTYPE, LPSTR, цел, LANGID);
-	цел GetGeoInfoW(GEOID, GEOTYPE, LPWSTR, цел, LANGID);
-	цел GetLocaleInfoA(LCID, LCTYPE, LPSTR, цел);
-	цел GetLocaleInfoW(LCID, LCTYPE, LPWSTR, цел);
+	int GetCurrencyFormatA(LCID, DWORD, LPCSTR,  CURRENCYFMTA*, LPSTR, int);
+	int GetCurrencyFormatW(LCID, DWORD, LPCWSTR,  CURRENCYFMTW*, LPWSTR,
+	  int);
+	int GetDateFormatA(LCID, DWORD,  SYSTEMTIME*, LPCSTR, LPSTR, int);
+	int GetDateFormatW(LCID, DWORD,  SYSTEMTIME*, LPCWSTR, LPWSTR, int);
+	int GetGeoInfoA(GEOID, GEOTYPE, LPSTR, int, LANGID);
+	int GetGeoInfoW(GEOID, GEOTYPE, LPWSTR, int, LANGID);
+	int GetLocaleInfoA(LCID, LCTYPE, LPSTR, int);
+	int GetLocaleInfoW(LCID, LCTYPE, LPWSTR, int);
 	BOOL GetNLSVersion(NLS_FUNCTION, LCID, LPNLSVERSIONINFO);
-	цел GetNumberFormatA(LCID, DWORD, LPCSTR,  NUMBERFMTA*, LPSTR, цел);
-	цел GetNumberFormatW(LCID, DWORD, LPCWSTR,  NUMBERFMTW*, LPWSTR, цел);
+	int GetNumberFormatA(LCID, DWORD, LPCSTR,  NUMBERFMTA*, LPSTR, int);
+	int GetNumberFormatW(LCID, DWORD, LPCWSTR,  NUMBERFMTW*, LPWSTR, int);
 	UINT GetOEMCP();
-	BOOL GetStringTypeA(LCID, DWORD, LPCSTR, цел, LPWORD);
-	BOOL GetStringTypeW(DWORD, LPCWSTR, цел, LPWORD);
-	BOOL GetStringTypeExA(LCID, DWORD, LPCSTR, цел, LPWORD);
-	BOOL GetStringTypeExW(LCID, DWORD, LPCWSTR, цел, LPWORD);
+	BOOL GetStringTypeA(LCID, DWORD, LPCSTR, int, LPWORD);
+	BOOL GetStringTypeW(DWORD, LPCWSTR, int, LPWORD);
+	BOOL GetStringTypeExA(LCID, DWORD, LPCSTR, int, LPWORD);
+	BOOL GetStringTypeExW(LCID, DWORD, LPCWSTR, int, LPWORD);
 	LANGID GetSystemDefaultLangID();
 	LCID GetSystemDefaultLCID();
 	LCID GetThreadLocale();
-	цел GetTimeFormatA(LCID, DWORD,  SYSTEMTIME*, LPCSTR, LPSTR, цел);
-	цел GetTimeFormatW(LCID, DWORD,  SYSTEMTIME*, LPCWSTR, LPWSTR, цел);
+	int GetTimeFormatA(LCID, DWORD,  SYSTEMTIME*, LPCSTR, LPSTR, int);
+	int GetTimeFormatW(LCID, DWORD,  SYSTEMTIME*, LPCWSTR, LPWSTR, int);
 	LANGID GetUserDefaultLangID();
 	LCID GetUserDefaultLCID();
 	GEOID GetUserGeoID(GEOCLASS);
 	BOOL IsDBCSLeadByte(BYTE);
 	BOOL IsDBCSLeadByteEx(UINT, BYTE);
 	BOOL IsNLSDefinedString(NLS_FUNCTION, DWORD, LPNLSVERSIONINFO, LPCWSTR,
-	  цел);
+	  int);
 	BOOL IsValidCodePage(UINT);
 	BOOL IsValidLocale(LCID, DWORD);
-	цел LCMapStringA(LCID, DWORD, LPCSTR, цел, LPSTR, цел);
-	цел LCMapStringW(LCID, DWORD, LPCWSTR, цел, LPWSTR, цел);
-	цел MultiByteToWideChar(UINT, DWORD, LPCSTR, цел, LPWSTR, цел);
-	цел SetCalendarInfoA(LCID, CALID, CALTYPE, LPCSTR);
-	цел SetCalendarInfoW(LCID, CALID, CALTYPE, LPCWSTR);
+	int LCMapStringA(LCID, DWORD, LPCSTR, int, LPSTR, int);
+	int LCMapStringW(LCID, DWORD, LPCWSTR, int, LPWSTR, int);
+	int MultiByteToWideChar(UINT, DWORD, LPCSTR, int, LPWSTR, int);
+	int SetCalendarInfoA(LCID, CALID, CALTYPE, LPCSTR);
+	int SetCalendarInfoW(LCID, CALID, CALTYPE, LPCWSTR);
 	BOOL SetLocaleInfoA(LCID, LCTYPE, LPCSTR);
 	BOOL SetLocaleInfoW(LCID, LCTYPE, LPCWSTR);
 	BOOL SetThreadLocale(LCID);
 	BOOL SetUserGeoID(GEOID);
-	цел WideCharToMultiByte(UINT, DWORD, LPCWSTR, цел, LPSTR, цел, LPCSTR,
+	int WideCharToMultiByte(UINT, DWORD, LPCWSTR, int, LPSTR, int, LPCSTR,
 	  LPBOOL);
 
 	static if (WINVER >= 0x410) {

@@ -12,12 +12,12 @@ module win32.cpl;
 
 private import win32.windef, win32.winuser;
 
-enum : бцел {
+enum : uint {
 	WM_CPL_LAUNCH = WM_USER + 1000,
 	WM_CPL_LAUNCHED
 }
 
-enum : бцел {
+enum : uint {
 	CPL_DYNAMIC_RES,
 	CPL_INIT,
 	CPL_GETCOUNT,
@@ -35,9 +35,9 @@ enum : бцел {
 extern (Windows) alias LONG function(HWND, UINT, LONG, LONG) APPLET_PROC;
 
 struct CPLINFO {
-	цел  idIcon;
-	цел  idName;
-	цел  idInfo;
+	int  idIcon;
+	int  idName;
+	int  idInfo;
 	LONG lData;
 }
 alias CPLINFO* LPCPLINFO;

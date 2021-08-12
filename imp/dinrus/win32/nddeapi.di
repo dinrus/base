@@ -21,10 +21,10 @@ private import win32.windef;
 #endif
 +/
 
-const сим    SEP_CHAR  = ',';
-const сим[]  BAR_CHAR  = "|";
-const шим   SEP_WCHAR = ',';
-const шим[] BAR_WCHAR = "|";
+const char    SEP_CHAR  = ',';
+const char[]  BAR_CHAR  = "|";
+const wchar   SEP_WCHAR = ',';
+const wchar[] BAR_WCHAR = "|";
 
 enum {
 	NDDE_NO_ERROR,
@@ -73,7 +73,7 @@ const SHARE_TYPE_OLD         = 1;
 const SHARE_TYPE_NEW         = 2;
 const SHARE_TYPE_STATIC      = 4;
 
-const бцел
+const uint
 	NDDE_CMD_SHOW_MASK     = 0x0000FFFF,
 	NDDE_TRUST_CMD_SHOW    = 0x10000000,
 	NDDE_TRUST_SHARE_DEL   = 0x20000000,

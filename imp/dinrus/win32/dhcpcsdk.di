@@ -18,7 +18,7 @@ or WindowsVista is set, or both Windows2000 and WindowsNTonly are set");*/
 
 //#if (_WIN32_WINNT >= 0x0500)
 
-// FIXME: check тип
+// FIXME: check type
 const DHCPCAPI_REGISTER_HANDLE_EVENT = 1;
 const DHCPCAPI_REQUEST_PERSISTENT    = 1;
 const DHCPCAPI_REQUEST_SYNCHRONOUS   = 2;
@@ -46,7 +46,7 @@ struct DHCPCAPI_PARAMS_ARRAY {
 alias DHCPCAPI_PARAMS_ARRAY* PDHCPCAPI_PARAMS_ARRAY, LPDHCPCAPI_PARAMS_ARRAY;
 
 extern (Windows) {
-	проц DhcpCApiCleanup();
+	void DhcpCApiCleanup();
 	DWORD DhcpCApiInitialize(LPDWORD);
 	DWORD DhcpDeRegisterParamChange(DWORD, LPVOID, LPVOID);
 	DWORD DhcpRegisterParamChange(DWORD, LPVOID, PWSTR, LPDHCPCAPI_CLASSID,

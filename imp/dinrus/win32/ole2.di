@@ -43,8 +43,8 @@ alias OLESTREAM* LPOLESTREAM;
 
 extern (Windows) {
 	struct OLESTREAMVTBL {
-		DWORD function (LPOLESTREAM, проц*, DWORD) Get;
-		DWORD function (LPOLESTREAM, проц*, DWORD) Put;
+		DWORD function (LPOLESTREAM, void*, DWORD) Get;
+		DWORD function (LPOLESTREAM, void*, DWORD) Put;
 	}
 }
 alias OLESTREAMVTBL* LPOLESTREAMVTBL;
@@ -59,7 +59,7 @@ extern (Windows) {
 	HRESULT WriteFmtUserTypeStg(LPSTORAGE, CLIPFORMAT, LPOLESTR);
 	HRESULT ReadFmtUserTypeStg(LPSTORAGE, CLIPFORMAT*, LPOLESTR*);
 	HRESULT OleInitialize(PVOID);
-	проц OleUninitialize();
+	void OleUninitialize();
 	HRESULT OleQueryLinkFromData(LPDATAOBJECT);
 	HRESULT OleQueryCreateFromData(LPDATAOBJECT);
 	HRESULT OleCreate(REFCLSID, REFIID, DWORD, LPFORMATETC, LPOLECLIENTSITE, LPSTORAGE, PVOID*);
@@ -91,11 +91,11 @@ extern (Windows) {
 	HRESULT OleRun(LPUNKNOWN);
 	BOOL OleIsRunning(LPOLEOBJECT);
 	HRESULT OleLockRunning(LPUNKNOWN, BOOL, BOOL);
-	проц ReleaseStgMedium(LPSTGMEDIUM);
+	void ReleaseStgMedium(LPSTGMEDIUM);
 	HRESULT CreateOleAdviseHolder(LPOLEADVISEHOLDER*);
 	HRESULT OleCreateDefaultHandler(REFCLSID, LPUNKNOWN, REFIID, PVOID*);
 	HRESULT OleCreateEmbeddingHelper(REFCLSID, LPUNKNOWN, DWORD, LPCLASSFACTORY, REFIID, PVOID*);
-	BOOL IsAccelerator(HACCEL, цел, LPMSG, WORD*);
+	BOOL IsAccelerator(HACCEL, int, LPMSG, WORD*);
 	HGLOBAL OleGetIconOfFile(LPOLESTR, BOOL);
 	HGLOBAL OleGetIconOfClass(REFCLSID, LPOLESTR, BOOL);
 	HGLOBAL OleMetafilePictFromIconAndLabel(HICON, LPOLESTR, LPOLESTR, UINT);

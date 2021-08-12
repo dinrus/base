@@ -2,7 +2,7 @@
 *                                 vfw.d                                 *
 *                                                                       *
 *                       Windows API header module                       *
-*                 written in the D programming язык                 *
+*                 written in the D programming language                 *
 *                                                                       *
 *                       Placed into public domain                       *
 \***********************************************************************/
@@ -25,7 +25,7 @@ extern(Windows) {
 	LONG TermVFW();
 }
 
-DWORD MKFOURCC(сим ch0, сим ch1, сим ch2, сим ch3) {
+DWORD MKFOURCC(char ch0, char ch1, char ch2, char ch3) {
 	return (cast(DWORD)ch0) | ((cast(DWORD)ch1) << 8) | ((cast(DWORD)ch2) << 16) | ((cast(DWORD)ch3) << 24);
 }
 
@@ -39,7 +39,7 @@ typedef HANDLE HIC;
 
 const BI_1632 = 0x32333631;
 
-template aviTWOCC(сим c0, сим c1) {
+template aviTWOCC(char c0, char c1) {
 	const WORD aviTWOCC = c0 | (c1 << 8);
 }
 
@@ -250,7 +250,7 @@ enum {
 struct ICSETSTATUSPROC {
 	DWORD	dwFlags;
 	LPARAM	lParam;
-	LONG function(LPARAM lParam, UINT сообщение, LONG l) Status;
+	LONG function(LPARAM lParam, UINT message, LONG l) Status;
 }
 
 enum {
@@ -276,14 +276,14 @@ struct ICDECOMPRESSEX {
 	LPVOID				lpSrc;
 	LPBITMAPINFOHEADER	lpbiDst;
 	LPVOID				lpDst;
-	цел					xDst;
-	цел					yDst;
-	цел					dxDst;
-	цел					dyDst;
-	цел					xSrc;
-	цел					ySrc;
-	цел					dxSrc;
-	цел					dySrc;
+	int					xDst;
+	int					yDst;
+	int					dxDst;
+	int					dyDst;
+	int					xSrc;
+	int					ySrc;
+	int					dxSrc;
+	int					dySrc;
 }
 
 enum {
@@ -303,15 +303,15 @@ struct ICDRAWBEGIN {
 	HPALETTE			hpal;
 	HWND				hwnd;
 	HDC					hdc;
-	цел					xDst;
-	цел					yDst;
-	цел					dxDst;
-	цел					dyDst;
+	int					xDst;
+	int					yDst;
+	int					dxDst;
+	int					dyDst;
 	LPBITMAPINFOHEADER	lpbi;
-	цел					xSrc;
-	цел					ySrc;
-	цел					dxSrc;
-	цел					dySrc;
+	int					xSrc;
+	int					ySrc;
+	int					dxSrc;
+	int					dySrc;
 	DWORD				dwRate;
 	DWORD				dwScale;
 }
@@ -335,17 +335,17 @@ struct ICDRAW {
 struct ICDRAWSUGGEST {
 	LPBITMAPINFOHEADER	lpbiIn;
 	LPBITMAPINFOHEADER	lpbiSuggest;
-	цел					dxSrc;
-	цел					dySrc;
-	цел					dxDst;
-	цел					dyDst;
+	int					dxSrc;
+	int					dySrc;
+	int					dxDst;
+	int					dyDst;
 	HIC					hicDecompressor;
 }
 
 struct ICPALETTE {
 	DWORD			dwFlags;
-	цел				iStart;
-	цел				iLen;
+	int				iStart;
+	int				iLen;
 	LPPALETTEENTRY	lppe;
 }
 
@@ -474,8 +474,8 @@ LRESULT ICDecompressEnd(HIC hic) {
 }
 
 LRESULT ICDecompressEx(HIC hic, DWORD dwFlags, LPBITMAPINFOHEADER lpbiSrc,
-	LPVOID lpSrc, цел xSrc, цел ySrc, цел dxSrc, цел dySrc,	LPBITMAPINFOHEADER lpbiDst,
-	LPVOID lpDst, цел xDst, цел yDst, цел dxDst, цел dyDst) {
+	LPVOID lpSrc, int xSrc, int ySrc, int dxSrc, int dySrc,	LPBITMAPINFOHEADER lpbiDst,
+	LPVOID lpDst, int xDst, int yDst, int dxDst, int dyDst) {
 	ICDECOMPRESSEX ic;
 
 	ic.dwFlags = dwFlags;
@@ -496,8 +496,8 @@ LRESULT ICDecompressEx(HIC hic, DWORD dwFlags, LPBITMAPINFOHEADER lpbiSrc,
 }
 
 LRESULT ICDecompressExBegin(HIC hic, DWORD dwFlags, LPBITMAPINFOHEADER lpbiSrc,
-	LPVOID lpSrc, цел xSrc, цел ySrc, цел dxSrc, цел dySrc, LPBITMAPINFOHEADER lpbiDst,
-	LPVOID lpDst, цел xDst, цел yDst, цел dxDst, цел dyDst) {
+	LPVOID lpSrc, int xSrc, int ySrc, int dxSrc, int dySrc, LPBITMAPINFOHEADER lpbiDst,
+	LPVOID lpDst, int xDst, int yDst, int dxDst, int dyDst) {
 	ICDECOMPRESSEX ic;
 
 	ic.dwFlags = dwFlags;
@@ -518,8 +518,8 @@ LRESULT ICDecompressExBegin(HIC hic, DWORD dwFlags, LPBITMAPINFOHEADER lpbiSrc,
 }
 
 LRESULT ICDecompressExQuery(HIC hic, DWORD dwFlags, LPBITMAPINFOHEADER lpbiSrc,
-	LPVOID lpSrc, цел xSrc, цел ySrc, цел dxSrc, цел dySrc, LPBITMAPINFOHEADER lpbiDst,
-	LPVOID lpDst, цел xDst, цел yDst, цел dxDst, цел dyDst) {
+	LPVOID lpSrc, int xSrc, int ySrc, int dxSrc, int dySrc, LPBITMAPINFOHEADER lpbiDst,
+	LPVOID lpDst, int xDst, int yDst, int dxDst, int dyDst) {
 	ICDECOMPRESSEX ic;
 
 	ic.dwFlags = dwFlags;
@@ -545,8 +545,8 @@ LRESULT ICDecompressExEnd(HIC hic) {
 
 extern (Windows) {
 	DWORD ICDrawBegin(HIC hic, DWORD dwFlags, HPALETTE hpal, HWND hwnd, HDC hdc,
-		цел xDst, цел yDst, цел dxDst, цел dyDst, LPBITMAPINFOHEADER lpbi,
-		цел xSrc, цел ySrc, цел dxSrc, цел dySrc, DWORD dwRate, DWORD dwScale);
+		int xDst, int yDst, int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi,
+		int xSrc, int ySrc, int dxSrc, int dySrc, DWORD dwRate, DWORD dwScale);
 }
 
 extern (Windows) {
@@ -554,7 +554,7 @@ extern (Windows) {
 }
 
 LRESULT ICDrawSuggestFormat(HIC hic, LPBITMAPINFOHEADER lpbiIn, LPBITMAPINFOHEADER lpbiOut,
-	цел dxSrc, цел dySrc, цел dxDst, цел dyDst, HIC hicDecomp) {
+	int dxSrc, int dySrc, int dxDst, int dyDst, HIC hicDecomp) {
 	ICDRAWSUGGEST ic;
 
 	ic.lpbiIn = lpbiIn;
@@ -628,7 +628,7 @@ HIC ICDrawOpen(DWORD fccType, DWORD fccHandler, LPBITMAPINFOHEADER lpbiIn) {
 
 extern (Windows) {
 	HIC ICLocate(DWORD fccType, DWORD fccHandler, LPBITMAPINFOHEADER lpbiIn, LPBITMAPINFOHEADER lpbiOut, WORD wFlags);
-	HIC ICGetDisplayFormat(HIC hic, LPBITMAPINFOHEADER lpbiIn, LPBITMAPINFOHEADER lpbiOut, цел BitDepth, цел dx, цел dy);
+	HIC ICGetDisplayFormat(HIC hic, LPBITMAPINFOHEADER lpbiIn, LPBITMAPINFOHEADER lpbiOut, int BitDepth, int dx, int dy);
 	HANDLE ICImageCompress(HIC hic, UINT uiFlags, LPBITMAPINFO lpbiIn, LPVOID lpBits, LPBITMAPINFO lpbiOut, LONG lQuality, LONG* plSize);
 	HANDLE ICImageDecompress(HIC hic, UINT uiFlags, LPBITMAPINFO lpbiIn, LPVOID lpBits, LPBITMAPINFO lpbiOut);
 }
@@ -668,9 +668,9 @@ enum {
 
 extern (Windows) {
 	BOOL ICSeqCompressFrameStart(PCOMPVARS pc, LPBITMAPINFO lpbiIn);
-	проц ICSeqCompressFrameEnd(PCOMPVARS pc);
+	void ICSeqCompressFrameEnd(PCOMPVARS pc);
 	LPVOID ICSeqCompressFrame(PCOMPVARS pc, UINT uiFlags, LPVOID lpBits, BOOL* pfKey, LONG* plSize);
-	проц ICCompressorFree(PCOMPVARS pc);
+	void ICCompressorFree(PCOMPVARS pc);
 }
 
 alias HANDLE HDRAWDIB;
@@ -703,16 +703,16 @@ extern (Windows) {
 	UINT DrawDibError(HDRAWDIB hdd);
 	HPALETTE DrawDibGetPalette(HDRAWDIB hdd);
 	BOOL DrawDibSetPalette(HDRAWDIB hdd, HPALETTE hpal);
-	BOOL DrawDibChangePalette(HDRAWDIB hdd, цел iStart, цел iLen, LPPALETTEENTRY lppe);
+	BOOL DrawDibChangePalette(HDRAWDIB hdd, int iStart, int iLen, LPPALETTEENTRY lppe);
 	UINT DrawDibRealize(HDRAWDIB hdd, HDC hdc, BOOL fBackground);
 	BOOL DrawDibStart(HDRAWDIB hdd, DWORD rate);
 	BOOL DrawDibStop(HDRAWDIB hdd);
-	BOOL DrawDibBegin(HDRAWDIB hdd, HDC hdc, цел dxDst, цел dyDst, LPBITMAPINFOHEADER lpbi, цел dxSrc, цел dySrc, UINT wFlags);
-	BOOL DrawDibDraw(HDRAWDIB hdd, HDC hdc, цел xDst, цел yDst, цел dxDst, цел dyDst, LPBITMAPINFOHEADER lpbi,
-		LPVOID lpBits, цел xSrc, цел ySrc, цел dxSrc, цел dySrc, UINT wFlags);
+	BOOL DrawDibBegin(HDRAWDIB hdd, HDC hdc, int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags);
+	BOOL DrawDibDraw(HDRAWDIB hdd, HDC hdc, int xDst, int yDst, int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi,
+		LPVOID lpBits, int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags);
 }
 
-BOOL DrawDibUpdate(HDRAWDIB hdd, HDC hdc, цел x, цел y) {
+BOOL DrawDibUpdate(HDRAWDIB hdd, HDC hdc, int x, int y) {
 	return DrawDibDraw(hdd, hdc, x, y, 0, 0, null, null, 0, 0, 0, 0, DDF_UPDATE);
 }
 
@@ -745,9 +745,9 @@ enum {
 
 extern (Windows) {
 	LRESULT DrawDibProfileDisplay(LPBITMAPINFOHEADER lpbi);
-	проц StretchDIB(LPBITMAPINFOHEADER biDst, LPVOID lpDst, цел	DstX, цел DstY,
-		цел DstXE, цел DstYE, LPBITMAPINFOHEADER biSrc, LPVOID lpSrc,
-		цел SrcX, цел SrcY, цел SrcXE, цел SrcYE);
+	void StretchDIB(LPBITMAPINFOHEADER biDst, LPVOID lpDst, int	DstX, int DstY,
+		int DstXE, int DstYE, LPBITMAPINFOHEADER biSrc, LPVOID lpSrc,
+		int SrcX, int SrcY, int SrcXE, int SrcYE);
 } 	
 
 alias DWORD FOURCC;
@@ -777,7 +777,7 @@ const cktypeWAVEbytes		= aviTWOCC!('w', 'b');
 
 const ckidAVIPADDING		= mmioFOURCC!('J', 'U', 'N', 'K');
 
-DWORD FromHex(сим n) {
+DWORD FromHex(char n) {
 	return (n >= 'A') ? n + 10 - 'A' : n - '0';
 }
 
@@ -906,7 +906,7 @@ struct AVISTREAMINFOA {
 	RECT	rcFrame;
 	DWORD	dwEditCount;
 	DWORD	dwFormatChangeCount;
-	сим	szName[64];
+	char	szName[64];
 }
 alias AVISTREAMINFOA* LPAVISTREAMINFOA;
 
@@ -949,7 +949,7 @@ struct AVIFILEINFOA {
 	DWORD	dwRate;
 	DWORD	dwLength;
 	DWORD	dwEditCount;
-	сим	szFileType[64];
+	char	szFileType[64];
 }
 alias AVIFILEINFOA* LPAVIFILEINFOA;
 
@@ -977,7 +977,7 @@ enum {
 }
 
 extern (Windows) {
-	alias BOOL function(цел) AVISAVECALLBACK;
+	alias BOOL function(int) AVISAVECALLBACK;
 }
 
 struct AVICOMPRESSOPTIONS {
@@ -1149,13 +1149,13 @@ DECLARE_INTERFACE_(IGetFrame, IUnknown)
     STDMETHOD(Begin) (THIS_ LONG lStart, LONG lEnd, LONG lRate) PURE;
     STDMETHOD(End) (THIS) PURE;
 
-    STDMETHOD(SetFormat) (THIS_ LPBITMAPINFOHEADER lpbi, LPVOID lpBits, цел x, цел y, цел dx, цел dy) PURE;
+    STDMETHOD(SetFormat) (THIS_ LPBITMAPINFOHEADER lpbi, LPVOID lpBits, int x, int y, int dx, int dy) PURE;
 };
 
 #undef PGETFRAME
 typedef IGetFrame FAR* PGETFRAME;
 
-#define DEFINE_AVIGUID(имя, l, w1, w2)    DEFINE_GUID(имя, l, w1, w2, 0xC0,0,0,0,0,0,0,0x46)
+#define DEFINE_AVIGUID(name, l, w1, w2)    DEFINE_GUID(name, l, w1, w2, 0xC0,0,0,0,0,0,0,0x46)
 
 DEFINE_AVIGUID(IID_IAVIFile,            0x00020020, 0, 0);
 DEFINE_AVIGUID(IID_IAVIStream,          0x00020021, 0, 0);
@@ -1173,8 +1173,8 @@ DEFINE_AVIGUID(CLSID_AVIFile,           0x00020000, 0, 0);
 #define	AVIFILEHANDLER_CANWRITE		0x0002
 #define	AVIFILEHANDLER_CANACCEPTNONRGB	0x0004
 
-STDAPI_(проц) AVIFileInit(проц);
-STDAPI_(проц) AVIFileExit(проц);
+STDAPI_(void) AVIFileInit(void);
+STDAPI_(void) AVIFileExit(void);
 
 STDAPI_(ULONG) AVIFileAddRef       (PAVIFILE pfile);
 STDAPI_(ULONG) AVIFileRelease      (PAVIFILE pfile);
@@ -1384,7 +1384,7 @@ STDAPI AVIMakeCompressedStream(
 EXTERN_C HRESULT CDECL AVISaveA (LPCSTR               szFile,
 		CLSID FAR *pclsidHandler,
 		AVISAVECALLBACK     lpfnCallback,
-		цел                 nStreams,
+		int                 nStreams,
 		PAVISTREAM	    pfile,
 		LPAVICOMPRESSOPTIONS lpOptions,
 		...);
@@ -1392,13 +1392,13 @@ EXTERN_C HRESULT CDECL AVISaveA (LPCSTR               szFile,
 STDAPI AVISaveVA(LPCSTR               szFile,
 		CLSID FAR *pclsidHandler,
 		AVISAVECALLBACK     lpfnCallback,
-		цел                 nStreams,
+		int                 nStreams,
 		PAVISTREAM FAR *    ppavi,
 		LPAVICOMPRESSOPTIONS FAR *plpOptions);
 EXTERN_C HRESULT CDECL AVISaveW (LPCWSTR               szFile,
 		CLSID FAR *pclsidHandler,
 		AVISAVECALLBACK     lpfnCallback,
-		цел                 nStreams,
+		int                 nStreams,
 		PAVISTREAM	    pfile,
 		LPAVICOMPRESSOPTIONS lpOptions,
 		...);
@@ -1406,7 +1406,7 @@ EXTERN_C HRESULT CDECL AVISaveW (LPCWSTR               szFile,
 STDAPI AVISaveVW(LPCWSTR               szFile,
 		CLSID FAR *pclsidHandler,
 		AVISAVECALLBACK     lpfnCallback,
-		цел                 nStreams,
+		int                 nStreams,
 		PAVISTREAM FAR *    ppavi,
 		LPAVICOMPRESSOPTIONS FAR *plpOptions);
 #ifdef UNICODE
@@ -1421,11 +1421,11 @@ STDAPI AVISaveVW(LPCWSTR               szFile,
 
 STDAPI_(INT_PTR) AVISaveOptions(HWND hwnd,
 			     UINT	uiFlags,
-			     цел	nStreams,
+			     int	nStreams,
 			     PAVISTREAM FAR *ppavi,
 			     LPAVICOMPRESSOPTIONS FAR *plpOptions);
 
-STDAPI AVISaveOptionsFree(цел nStreams,
+STDAPI AVISaveOptionsFree(int nStreams,
 			     LPAVICOMPRESSOPTIONS FAR *plpOptions);
 
 STDAPI AVIBuildFilterW(LPWSTR lpszFilter, LONG cbFilter, BOOL fSaving);
@@ -1436,7 +1436,7 @@ STDAPI AVIBuildFilterA(LPSTR lpszFilter, LONG cbFilter, BOOL fSaving);
 #define AVIBuildFilter	AVIBuildFilterA
 #endif
 STDAPI AVIMakeFileFromStreams(PAVIFILE FAR *	ppfile,
-			       цел		nStreams,
+			       int		nStreams,
 			       PAVISTREAM FAR *	papStreams);
 
 STDAPI AVIMakeStreamFromClipboard(UINT cfFormat, HANDLE hGlobal, PAVISTREAM FAR *ppstream);
@@ -1445,7 +1445,7 @@ STDAPI AVIPutFileOnClipboard(PAVIFILE pf);
 
 STDAPI AVIGetFromClipboard(PAVIFILE FAR * lppf);
 
-STDAPI AVIClearClipboard(проц);
+STDAPI AVIClearClipboard(void);
 
 STDAPI CreateEditableStream(
 		PAVISTREAM FAR *	    ppsEditable,
@@ -1627,9 +1627,9 @@ LONG MCIWndGetEnd(HWND hwnd)
 	{ return cast(LONG)SendMessage(hwnd, MCIWNDM_GETEND, 0, 0); }
 LONG MCIWndStep(HWND hwnd, LONG n)
 	{ return cast(LONG)SendMessage(hwnd, MCI_STEP, 0, cast(LPARAM)n); }
-проц MCIWndDestroy(HWND hwnd)
+void MCIWndDestroy(HWND hwnd)
 	{ SendMessage(hwnd, WM_CLOSE, 0, 0); }
-проц MCIWndSetZoom(HWND hwnd, UINT iZoom)
+void MCIWndSetZoom(HWND hwnd, UINT iZoom)
 	{ SendMessage(hwnd, MCIWNDM_SETZOOM, 0, cast(LPARAM)iZoom); }
 UINT MCIWndGetZoom(HWND hwnd)
 	{ return cast(UINT)SendMessage(hwnd, MCIWNDM_GETZOOM, 0, 0); }
@@ -1649,17 +1649,17 @@ LONG MCIWndUseTime(HWND hwnd)
 	{ return MCIWndSetTimeFormat(hwnd, (cast(TCHAR[])"ms").ptr); }
 LONG MCIWndGetTimeFormat(HWND hwnd, LPTSTR lp, UINT len)
 	{ return cast(LONG)SendMessage(hwnd, MCIWNDM_GETTIMEFORMAT, cast(WPARAM)len, cast(LPARAM)lp); }
-проц MCIWndValidateMedia(HWND hwnd)
+void MCIWndValidateMedia(HWND hwnd)
 	{ SendMessage(hwnd, MCIWNDM_VALIDATEMEDIA, 0, 0); }
-проц MCIWndSetRepeat(HWND hwnd, BOOL f)
+void MCIWndSetRepeat(HWND hwnd, BOOL f)
 	{ SendMessage(hwnd, MCIWNDM_SETREPEAT, 0, cast(LPARAM)f); }
 BOOL MCIWndGetRepeat(HWND hwnd)
 	{ return cast(BOOL)SendMessage(hwnd, MCIWNDM_GETREPEAT, 0, 0); }
-проц MCIWndSetActiveTimer(HWND hwnd, UINT active)
+void MCIWndSetActiveTimer(HWND hwnd, UINT active)
 	{ SendMessage(hwnd, MCIWNDM_SETACTIVETIMER, cast(WPARAM)active, 0); }
-проц MCIWndSetInactiveTimer(HWND hwnd, UINT inactive)
+void MCIWndSetInactiveTimer(HWND hwnd, UINT inactive)
 	{ SendMessage(hwnd, MCIWNDM_SETINACTIVETIMER, cast(WPARAM)inactive, 0); }
-проц MCIWndSetTimers(HWND hwnd, UINT active, UINT inactive)
+void MCIWndSetTimers(HWND hwnd, UINT active, UINT inactive)
 	{ SendMessage(hwnd, MCIWNDM_SETTIMERS, cast(WPARAM)active, cast(LPARAM)inactive); }
 UINT MCIWndGetActiveTimer(HWND hwnd)
 	{ return cast(UINT)SendMessage(hwnd, MCIWNDM_GETACTIVETIMER, 0, 0); }
@@ -1683,10 +1683,10 @@ LONG MCIWndGetDevice(HWND hwnd, LPVOID lp, UINT len)
 	{ return SendMessage(hwnd, MCIWNDM_GETDEVICE, cast(WPARAM)len, cast(LPARAM)lp); }
 UINT MCIWndGetStyles(HWND hwnd)
 	{ return SendMessage(hwnd, MCIWNDM_GETSTYLES, 0, 0); }
-LONG MCIWndChangeStyles(HWND hwnd, UINT mask, LONG значение)
-	{ return SendMessage(hwnd, MCIWNDM_CHANGESTYLES, cast(WPARAM)mask, cast(LPARAM)значение); }
+LONG MCIWndChangeStyles(HWND hwnd, UINT mask, LONG value)
+	{ return SendMessage(hwnd, MCIWNDM_CHANGESTYLES, cast(WPARAM)mask, cast(LPARAM)value); }
 LONG MCIWndOpenInterface(HWND hwnd, LPUNKNOWN pUnk)
-	{ return SendMessage(hwnd, MCIWNDM_OPENINTERFACE, 0, cast(LPARAM)cast(проц*)pUnk); }
+	{ return SendMessage(hwnd, MCIWNDM_OPENINTERFACE, 0, cast(LPARAM)cast(void*)pUnk); }
 LONG MCIWndSetOwner(HWND hwnd, HWND hwndP)
 	{ return SendMessage(hwnd, MCIWNDM_SETOWNER, cast(WPARAM)hwndP, 0); }
 
@@ -2106,7 +2106,7 @@ enum {
 }
 
 /**
- * сообщение wrapper
+ * message wrapper
  */
 
 BOOL capSetCallbackOnError(HWND hWnd, LPVOID fpProc)				{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_SET_CALLBACK_ERROR, 0, cast(LPARAM)fpProc); }
@@ -2144,9 +2144,9 @@ BOOL capDlgVideoSource(HWND hWnd)									{ return cast(BOOL)AVICapSM(hWnd, WM_C
 BOOL capDlgVideoDisplay(HWND hWnd)									{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_DLG_VIDEODISPLAY, 0, 0); }
 BOOL capDlgVideoCompression(HWND hWnd)								{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_DLG_VIDEOCOMPRESSION, 0, 0); }
 
-DWORD capGetVideoFormat(HWND hWnd, проц* s, WPARAM wSize)			{ return cast(DWORD)AVICapSM(hWnd, WM_CAP_GET_VIDEOFORMAT, wSize, cast(LPARAM)s); }
+DWORD capGetVideoFormat(HWND hWnd, void* s, WPARAM wSize)			{ return cast(DWORD)AVICapSM(hWnd, WM_CAP_GET_VIDEOFORMAT, wSize, cast(LPARAM)s); }
 DWORD capGetVideoFormatSize(HWND hWnd)								{ return cast(DWORD)AVICapSM(hWnd, WM_CAP_GET_VIDEOFORMAT, 0, 0); }
-BOOL capSetVideoFormat(HWND hWnd, проц* s, WPARAM wSize)			{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_SET_VIDEOFORMAT, wSize, cast(LPARAM)s); }
+BOOL capSetVideoFormat(HWND hWnd, void* s, WPARAM wSize)			{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_SET_VIDEOFORMAT, wSize, cast(LPARAM)s); }
 
 BOOL capPreview(HWND hWnd, BOOL f)									{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_SET_PREVIEW, cast(WPARAM)f, 0); }
 BOOL capPreviewRate(HWND hWnd, WPARAM wMS)							{ return cast(BOOL)AVICapSM(hWnd, WM_CAP_SET_PREVIEWRATE, wMS, 0); }
@@ -2262,10 +2262,10 @@ alias CAPINFOCHUNK* PCAPINFOCHUNK, LPCAPINFOCHUNK;
 
 extern (Windows) {
 	alias LRESULT function(HWND hWnd) CAPYIELDCALLBACK;
-	alias LRESULT function(HWND hWnd, цел nID, LPCWSTR lpsz) CAPSTATUSCALLBACKW;
-	alias LRESULT function(HWND hWnd, цел nID, LPCWSTR lpsz) CAPERRORCALLBACKW;
-	alias LRESULT function(HWND hWnd, цел nID, LPCSTR lpsz) CAPSTATUSCALLBACKA;
-	alias LRESULT function(HWND hWnd, цел nID, LPCSTR lpsz) CAPERRORCALLBACKA;
+	alias LRESULT function(HWND hWnd, int nID, LPCWSTR lpsz) CAPSTATUSCALLBACKW;
+	alias LRESULT function(HWND hWnd, int nID, LPCWSTR lpsz) CAPERRORCALLBACKW;
+	alias LRESULT function(HWND hWnd, int nID, LPCSTR lpsz) CAPSTATUSCALLBACKA;
+	alias LRESULT function(HWND hWnd, int nID, LPCSTR lpsz) CAPERRORCALLBACKA;
 }
 
 version(Unicode) {
@@ -2279,7 +2279,7 @@ version(Unicode) {
 extern (Windows) {
 	alias LRESULT function(HWND hWnd, LPVIDEOHDR lpVHdr) CAPVIDEOCALLBACK;
 	alias LRESULT function(HWND hWnd, LPWAVEHDR lpWHdr) CAPWAVECALLBACK;
-	alias LRESULT function(HWND hWnd, цел nState) CAPCONTROLCALLBACK;
+	alias LRESULT function(HWND hWnd, int nState) CAPCONTROLCALLBACK;
 }
 
 //  CapControlCallback states
@@ -2287,10 +2287,10 @@ const CONTROLCALLBACK_PREROLL	= 1;
 const CONTROLCALLBACK_CAPTURING	= 2;
 
 extern (Windows) {
-	HWND capCreateCaptureWindowA(LPCSTR lpszWindowName, DWORD dwStyle, цел x, цел y, цел nWidth, цел nHeight, HWND hwndParent, цел nID);
-	BOOL capGetDriverDescriptionA(UINT wDriverIndex, LPSTR lpszName, цел cbName, LPSTR lpszVer, цел cbVer);
-	HWND capCreateCaptureWindowW(LPCWSTR lpszWindowName, DWORD dwStyle, цел x, цел y, цел nWidth, цел nHeight, HWND hwndParent, цел nID);
-	BOOL capGetDriverDescriptionW(UINT wDriverIndex, LPWSTR lpszName, цел cbName, LPWSTR lpszVer, цел cbVer);
+	HWND capCreateCaptureWindowA(LPCSTR lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hwndParent, int nID);
+	BOOL capGetDriverDescriptionA(UINT wDriverIndex, LPSTR lpszName, int cbName, LPSTR lpszVer, int cbVer);
+	HWND capCreateCaptureWindowW(LPCWSTR lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hwndParent, int nID);
+	BOOL capGetDriverDescriptionW(UINT wDriverIndex, LPWSTR lpszName, int cbName, LPWSTR lpszVer, int cbVer);
 }
 
 version(Unicode) {

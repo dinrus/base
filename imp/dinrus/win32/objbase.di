@@ -109,7 +109,7 @@ extern(Windows) {
 	DWORD CoBuildVersion();
 	HRESULT CoInitialize(PVOID);
 	HRESULT CoInitializeEx(LPVOID, DWORD);
-	проц CoUninitialize();
+	void CoUninitialize();
 	HRESULT CoGetMalloc(DWORD, LPMALLOC*);
 	DWORD CoGetCurrentProcess();
 	HRESULT CoRegisterMallocSpy(LPMALLOCSPY);
@@ -117,7 +117,7 @@ extern(Windows) {
 	HRESULT CoCreateStandardMalloc(DWORD, IMalloc**);
 	//#ifdef DBG
 	ULONG DebugCoGetRpcFault();
-	проц DebugCoSetRpcFault(ULONG);
+	void DebugCoSetRpcFault(ULONG);
 	//#endif
 	HRESULT CoGetClassObject(REFCLSID, DWORD, COSERVERINFO*, REFIID, PVOID*);
 	HRESULT CoRegisterClassObject(REFCLSID, LPUNKNOWN, DWORD, DWORD, PDWORD);
@@ -138,9 +138,9 @@ extern(Windows) {
 	HRESULT CoGetInterfaceAndReleaseStream(LPSTREAM, REFIID, PVOID*);
 	HRESULT CoCreateFreeThreadedMarshaler(LPUNKNOWN, LPUNKNOWN*);
 	HINSTANCE CoLoadLibrary(LPOLESTR, BOOL);
-	проц CoFreeLibrary(HINSTANCE);
-	проц CoFreeAllLibraries();
-	проц CoFreeUnusedLibraries();
+	void CoFreeLibrary(HINSTANCE);
+	void CoFreeAllLibraries();
+	void CoFreeUnusedLibraries();
 	HRESULT CoCreateInstance(REFCLSID, LPUNKNOWN, DWORD, REFIID, PVOID*);
 	HRESULT CoCreateInstanceEx(REFCLSID, IUnknown*, DWORD, COSERVERINFO*, DWORD, MULTI_QI*);
 	HRESULT StringFromCLSID(REFCLSID, LPOLESTR*);
@@ -150,7 +150,7 @@ extern(Windows) {
 	BOOL CoIsOle1Class(REFCLSID);
 	HRESULT ProgIDFromCLSID(REFCLSID, LPOLESTR*);
 	HRESULT CLSIDFromProgID(LPCOLESTR, LPCLSID);
-	цел StringFromGUID2(REFGUID, LPOLESTR, цел);
+	int StringFromGUID2(REFGUID, LPOLESTR, int);
 	HRESULT CoCreateGuid(GUID*);
 	BOOL CoFileTimeToDosDateTime(FILETIME*, LPWORD, LPWORD);
 	BOOL CoDosDateTimeToFileTime(WORD, WORD, FILETIME*);
@@ -162,7 +162,7 @@ extern(Windows) {
 	HRESULT DllCanUnloadNow();
 	PVOID CoTaskMemAlloc(ULONG);
 	PVOID CoTaskMemRealloc(PVOID, ULONG);
-	проц CoTaskMemFree(PVOID);
+	void CoTaskMemFree(PVOID);
 	HRESULT CreateDataAdviseHolder(LPDATAADVISEHOLDER*);
 	HRESULT CreateDataCache(LPUNKNOWN, REFCLSID, REFIID, PVOID*);
 	HRESULT StgCreateDocfile(OLECHAR*, DWORD, DWORD, IStorage**);
@@ -172,10 +172,10 @@ extern(Windows) {
 	HRESULT StgIsStorageFile(OLECHAR*);
 	HRESULT StgIsStorageILockBytes(ILockBytes*);
 	HRESULT StgSetTimes(OLECHAR *, FILETIME *, FILETIME *, FILETIME *);
-	HRESULT StgCreateStorageEx(WCHAR*, DWORD, DWORD, DWORD, STGOPTIONS*, проц*, REFIID, проц**);
-	HRESULT StgOpenStorageEx(WCHAR*, DWORD, DWORD, DWORD, STGOPTIONS*, проц*, REFIID, проц**);
+	HRESULT StgCreateStorageEx(WCHAR*, DWORD, DWORD, DWORD, STGOPTIONS*, void*, REFIID, void**);
+	HRESULT StgOpenStorageEx(WCHAR*, DWORD, DWORD, DWORD, STGOPTIONS*, void*, REFIID, void**);
 	HRESULT BindMoniker(LPMONIKER, DWORD, REFIID, PVOID*);
-	HRESULT CoGetObject(LPCWSTR, BIND_OPTS*, REFIID, проц**);
+	HRESULT CoGetObject(LPCWSTR, BIND_OPTS*, REFIID, void**);
 	HRESULT MkParseDisplayName(LPBC, LPCOLESTR, ULONG*, LPMONIKER*);
 	HRESULT MonikerRelativePathTo(LPMONIKER, LPMONIKER, LPMONIKER*, BOOL);
 	HRESULT MonikerCommonPrefixWith(LPMONIKER, LPMONIKER, LPMONIKER*);
@@ -187,8 +187,8 @@ extern(Windows) {
 	HRESULT CreateAntiMoniker(LPMONIKER*);
 	HRESULT CreatePointerMoniker(LPUNKNOWN, LPMONIKER*);
 	HRESULT GetRunningObjectTable(DWORD, LPRUNNINGOBJECTTABLE*);
-	HRESULT CoInitializeSecurity(PSECURITY_DESCRIPTOR, LONG, SOLE_AUTHENTICATION_SERVICE*, проц*, DWORD, DWORD, проц*, DWORD, проц*);
-	HRESULT CoGetCallContext(REFIID, проц**);
+	HRESULT CoInitializeSecurity(PSECURITY_DESCRIPTOR, LONG, SOLE_AUTHENTICATION_SERVICE*, void*, DWORD, DWORD, void*, DWORD, void*);
+	HRESULT CoGetCallContext(REFIID, void**);
 	HRESULT CoQueryProxyBlanket(IUnknown*, DWORD*, DWORD*, OLECHAR**, DWORD*, DWORD*, RPC_AUTH_IDENTITY_HANDLE*, DWORD*);
 	HRESULT CoSetProxyBlanket(IUnknown*, DWORD, DWORD, OLECHAR*, DWORD, DWORD, RPC_AUTH_IDENTITY_HANDLE, DWORD);
 	HRESULT CoCopyProxy(IUnknown*, IUnknown**);

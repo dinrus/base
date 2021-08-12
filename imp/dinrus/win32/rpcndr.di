@@ -25,7 +25,7 @@ private import win32.basetyps;
 
 extern (Windows):
 
-const бцел NDR_CHAR_REP_MASK      = 0xF,
+const uint NDR_CHAR_REP_MASK      = 0xF,
 	NDR_INT_REP_MASK              = 0xF0,
 	NDR_FLOAT_REP_MASK            = 0xFF00,
 	NDR_LITTLE_ENDIAN             = 0x10,
@@ -40,29 +40,29 @@ const бцел NDR_CHAR_REP_MASK      = 0xF,
 alias MIDL_user_allocate midl_user_allocate;
 alias MIDL_user_free midl_user_free;
 
-alias дол hyper;
-alias бдол MIDL_uhyper;
-alias сим small;
+alias long hyper;
+alias ulong MIDL_uhyper;
+alias char small;
 
 const cbNDRContext=20;
 //MACRO #define NDRSContextValue(hContext) (&(hContext)->userContext)
-//MACRO #define byte_from_ndr(исток, цель) { *(цель) = *(*(сим**)&(исток)->Buffer)++; }
+//MACRO #define byte_from_ndr(source, target) { *(target) = *(*(char**)&(source)->Buffer)++; }
 
-//MACRO #define byte_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((сим *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned цел)((UpperIndex)-(LowerIndex))); *(unsigned дол *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
+//MACRO #define byte_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((char *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned int)((UpperIndex)-(LowerIndex))); *(unsigned long *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
 
-//MACRO #define boolean_from_ndr(исток, цель) { *(цель) = *(*(сим**)&(исток)->Buffer)++; }
+//MACRO #define boolean_from_ndr(source, target) { *(target) = *(*(char**)&(source)->Buffer)++; }
 
-//MACRO #define boolean_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((сим *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned цел)((UpperIndex)-(LowerIndex))); *(unsigned дол *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
+//MACRO #define boolean_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((char *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned int)((UpperIndex)-(LowerIndex))); *(unsigned long *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
 
-//MACRO #define small_from_ndr(исток, цель) { *(цель) = *(*(сим**)&(исток)->Buffer)++; }
+//MACRO #define small_from_ndr(source, target) { *(target) = *(*(char**)&(source)->Buffer)++; }
 
-//MACRO #define small_from_ndr_temp(исток, цель, format) { *(цель) = *(*(сим**)(исток))++; }
+//MACRO #define small_from_ndr_temp(source, target, format) { *(target) = *(*(char**)(source))++; }
 
-//MACRO #define small_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((сим *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned цел)((UpperIndex)-(LowerIndex))); *(unsigned дол *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
+//MACRO #define small_array_from_ndr(Source, LowerIndex, UpperIndex, Target) { NDRcopy ((((char *)(Target))+(LowerIndex)), (Source)->Buffer, (unsigned int)((UpperIndex)-(LowerIndex))); *(unsigned long *)&(Source)->Buffer += ((UpperIndex)-(LowerIndex)); }
 
-//MACRO #define MIDL_ascii_strlen(ткст) strlen(ткст)
+//MACRO #define MIDL_ascii_strlen(string) strlen(string)
 
-//MACRO #define MIDL_ascii_strcpy(цель,исток) strcpy(цель,исток)
+//MACRO #define MIDL_ascii_strcpy(target,source) strcpy(target,source)
 
 //MACRO #define MIDL_memset(s,c,n) memset(s,c,n)
 
@@ -74,38 +74,38 @@ const cbNDRContext=20;
 //MACRO #define _midl_unma2( p, cast ) *(( cast *)p)++
 //MACRO #define _midl_unma3( p, cast ) *(( cast *)p)++
 //MACRO #define _midl_unma4( p, cast ) *(( cast *)p)++
-//MACRO #define _midl_fa2( p ) (p = (RPC_BUFPTR )((unsigned дол)(p+1) & 0xfffffffe))
-//MACRO #define _midl_fa4( p ) (p = (RPC_BUFPTR )((unsigned дол)(p+3) & 0xfffffffc))
-//MACRO #define _midl_fa8( p ) (p = (RPC_BUFPTR )((unsigned дол)(p+7) & 0xfffffff8))
+//MACRO #define _midl_fa2( p ) (p = (RPC_BUFPTR )((unsigned long)(p+1) & 0xfffffffe))
+//MACRO #define _midl_fa4( p ) (p = (RPC_BUFPTR )((unsigned long)(p+3) & 0xfffffffc))
+//MACRO #define _midl_fa8( p ) (p = (RPC_BUFPTR )((unsigned long)(p+7) & 0xfffffff8))
 //MACRO #define _midl_addp( p, n ) (p += n)
 //MACRO #define _midl_marsh_lhs( p, cast ) *(*( cast **)&p)++
-//MACRO #define _midl_marsh_up( mp, p ) *(*(unsigned дол **)&mp)++ = (unsigned дол)p
-//MACRO #define _midl_advmp( mp ) *(*(unsigned дол **)&mp)++
-//MACRO #define _midl_unmarsh_up( p ) (*(*(unsigned дол **)&p)++)
+//MACRO #define _midl_marsh_up( mp, p ) *(*(unsigned long **)&mp)++ = (unsigned long)p
+//MACRO #define _midl_advmp( mp ) *(*(unsigned long **)&mp)++
+//MACRO #define _midl_unmarsh_up( p ) (*(*(unsigned long **)&p)++)
 
-//MACRO #define NdrMarshConfStringHdr( p, s, l ) (_midl_ma4( p, unsigned дол) = s, _midl_ma4( p, unsigned дол) = 0, _midl_ma4( p, unsigned дол) = l)
+//MACRO #define NdrMarshConfStringHdr( p, s, l ) (_midl_ma4( p, unsigned long) = s, _midl_ma4( p, unsigned long) = 0, _midl_ma4( p, unsigned long) = l)
 
-//MACRO #define NdrUnMarshConfStringHdr(p, s, l) ((s=_midl_unma4(p,unsigned дол), (_midl_addp(p,4)), (l=_midl_unma4(p,unsigned дол))
+//MACRO #define NdrUnMarshConfStringHdr(p, s, l) ((s=_midl_unma4(p,unsigned long), (_midl_addp(p,4)), (l=_midl_unma4(p,unsigned long))
 
 //MACRO #define NdrMarshCCtxtHdl(pc,p) (NDRCContextMarshall( (NDR_CCONTEXT)pc, p ),p+20)
 //MACRO #define NdrUnMarshCCtxtHdl(pc,p,h,drep) (NDRCContextUnmarshall((NDR_CONTEXT)pc,h,p,drep), p+20)
 //MACRO #define NdrUnMarshSCtxtHdl(pc, p,drep) (pc = NdrSContextUnMarshall(p,drep ))
 //MACRO #define NdrMarshSCtxtHdl(pc,p,rd) (NdrSContextMarshall((NDR_SCONTEXT)pc,p, (NDR_RUNDOWN)rd)
 
-//MACRO #define NdrFieldOffset(s,f) (дол)(& (((s *)0)->f))
+//MACRO #define NdrFieldOffset(s,f) (long)(& (((s *)0)->f))
 //MACRO #define NdrFieldPad(s,f,p,t) (NdrFieldOffset(s,f) - NdrFieldOffset(s,p) - sizeof(t))
-//MACRO #define NdrFcShort(s) (unsigned сим)(s & 0xff), (unsigned сим)(s >> 8)
-//MACRO #define NdrFcLong(s) (unsigned сим)(s & 0xff), (unsigned сим)((s & 0x0000ff00) >> 8), (unsigned сим)((s & 0x00ff0000) >> 16), (unsigned сим)(s >> 24)
+//MACRO #define NdrFcShort(s) (unsigned char)(s & 0xff), (unsigned char)(s >> 8)
+//MACRO #define NdrFcLong(s) (unsigned char)(s & 0xff), (unsigned char)((s & 0x0000ff00) >> 8), (unsigned char)((s & 0x00ff0000) >> 16), (unsigned char)(s >> 24)
 
-alias проц * NDR_CCONTEXT;
+alias void * NDR_CCONTEXT;
 struct tagNDR_SCONTEXT {
-	проц *pad[2];
-	проц *userContext;
+	void *pad[2];
+	void *userContext;
 }
 alias tagNDR_SCONTEXT * NDR_SCONTEXT;
 
 struct SCONTEXT_QUEUE {
-	бцел NumberOfObjects;
+	uint NumberOfObjects;
 	NDR_SCONTEXT *ArrayOfObjects;
 }
 alias SCONTEXT_QUEUE * PSCONTEXT_QUEUE;
@@ -114,114 +114,114 @@ struct _MIDL_STUB_MESSAGE;
 struct _MIDL_STUB_DESC;
 struct _FULL_PTR_XLAT_TABLES;
 
-alias ббайт *RPC_BUFPTR;
-alias бцел RPC_LENGTH;
+alias ubyte *RPC_BUFPTR;
+alias uint RPC_LENGTH;
 
-alias  ббайт *PFORMAT_STRING;
+alias  ubyte *PFORMAT_STRING;
 
 struct ARRAY_INFO {
-	цел Dimension;
-	бцел *BufferConformanceMark;
-	бцел *BufferVarianceMark;
-	бцел *MaxCountArray;
-	бцел *OffsetArray;
-	бцел *ActualCountArray;
+	int Dimension;
+	uint *BufferConformanceMark;
+	uint *BufferVarianceMark;
+	uint *MaxCountArray;
+	uint *OffsetArray;
+	uint *ActualCountArray;
 }
 alias ARRAY_INFO * PARRAY_INFO;
 
 RPC_BINDING_HANDLE  NDRCContextBinding(NDR_CCONTEXT);
-проц  NDRCContextMarshall(NDR_CCONTEXT,проц*);
-проц  NDRCContextUnmarshall(NDR_CCONTEXT*,RPC_BINDING_HANDLE,проц*,бцел);
-проц  NDRSContextMarshall(NDR_SCONTEXT,проц*,NDR_RUNDOWN);
-NDR_SCONTEXT  NDRSContextUnmarshall(проц*pBuff,бцел);
-проц  RpcSsDestroyClientContext(проц**);
-проц  NDRcopy(проц*,проц*,бцел);
-бцел  MIDL_wchar_strlen(шим *);
-проц  MIDL_wchar_strcpy(проц*,шим *);
-проц  char_from_ndr(PRPC_MESSAGE,ббайт*);
-проц  char_array_from_ndr(PRPC_MESSAGE,бцел,бцел,ббайт*);
-проц  short_from_ndr(PRPC_MESSAGE,бкрат*);
-проц  short_array_from_ndr(PRPC_MESSAGE,бцел,бцел,бкрат*);
-проц  short_from_ndr_temp(ббайт**,бкрат*,бцел);
-проц  int_from_ndr(PRPC_MESSAGE,бцел*);
-проц  int_array_from_ndr(PRPC_MESSAGE,бцел,бцел,бцел*);
-проц  int_from_ndr_temp(ббайт**,бцел*,бцел);
-проц  enum_from_ndr(PRPC_MESSAGE,бцел*);
-проц  float_from_ndr(PRPC_MESSAGE,проц*);
-проц  float_array_from_ndr(PRPC_MESSAGE,бцел,бцел,проц*);
-проц  double_from_ndr(PRPC_MESSAGE,проц*);
-проц  double_array_from_ndr(PRPC_MESSAGE,бцел,бцел,проц*);
-проц  hyper_from_ndr(PRPC_MESSAGE,hyper*);
-проц  hyper_array_from_ndr(PRPC_MESSAGE,бцел,бцел,hyper*);
-проц  hyper_from_ndr_temp(ббайт**,hyper*,бцел);
-проц  data_from_ndr(PRPC_MESSAGE,проц*,сим*,ббайт);
-проц  data_into_ndr(проц*,PRPC_MESSAGE,сим*,ббайт);
-проц  tree_into_ndr(проц*,PRPC_MESSAGE,сим*,ббайт);
-проц  data_size_ndr(проц*,PRPC_MESSAGE,сим*,ббайт);
-проц  tree_size_ndr(проц*,PRPC_MESSAGE,сим*,ббайт);
-проц  tree_peek_ndr(PRPC_MESSAGE,ббайт**,сим*,ббайт);
-проц * midl_allocate(цел);
+void  NDRCContextMarshall(NDR_CCONTEXT,void*);
+void  NDRCContextUnmarshall(NDR_CCONTEXT*,RPC_BINDING_HANDLE,void*,uint);
+void  NDRSContextMarshall(NDR_SCONTEXT,void*,NDR_RUNDOWN);
+NDR_SCONTEXT  NDRSContextUnmarshall(void*pBuff,uint);
+void  RpcSsDestroyClientContext(void**);
+void  NDRcopy(void*,void*,uint);
+uint  MIDL_wchar_strlen(wchar *);
+void  MIDL_wchar_strcpy(void*,wchar *);
+void  char_from_ndr(PRPC_MESSAGE,ubyte*);
+void  char_array_from_ndr(PRPC_MESSAGE,uint,uint,ubyte*);
+void  short_from_ndr(PRPC_MESSAGE,ushort*);
+void  short_array_from_ndr(PRPC_MESSAGE,uint,uint,ushort*);
+void  short_from_ndr_temp(ubyte**,ushort*,uint);
+void  int_from_ndr(PRPC_MESSAGE,uint*);
+void  int_array_from_ndr(PRPC_MESSAGE,uint,uint,uint*);
+void  int_from_ndr_temp(ubyte**,uint*,uint);
+void  enum_from_ndr(PRPC_MESSAGE,uint*);
+void  float_from_ndr(PRPC_MESSAGE,void*);
+void  float_array_from_ndr(PRPC_MESSAGE,uint,uint,void*);
+void  double_from_ndr(PRPC_MESSAGE,void*);
+void  double_array_from_ndr(PRPC_MESSAGE,uint,uint,void*);
+void  hyper_from_ndr(PRPC_MESSAGE,hyper*);
+void  hyper_array_from_ndr(PRPC_MESSAGE,uint,uint,hyper*);
+void  hyper_from_ndr_temp(ubyte**,hyper*,uint);
+void  data_from_ndr(PRPC_MESSAGE,void*,char*,ubyte);
+void  data_into_ndr(void*,PRPC_MESSAGE,char*,ubyte);
+void  tree_into_ndr(void*,PRPC_MESSAGE,char*,ubyte);
+void  data_size_ndr(void*,PRPC_MESSAGE,char*,ubyte);
+void  tree_size_ndr(void*,PRPC_MESSAGE,char*,ubyte);
+void  tree_peek_ndr(PRPC_MESSAGE,ubyte**,char*,ubyte);
+void * midl_allocate(int);
 
 align(4):
 struct MIDL_STUB_MESSAGE {
 	PRPC_MESSAGE RpcMsg;
-	ббайт *Buffer;
-	ббайт *BufferStart;
-	ббайт *BufferEnd;
-	ббайт *BufferMark;
-	бцел BufferLength;
-	бцел MemorySize;
-	ббайт *Memory;
-	цел IsClient;
-	цел ReuseBuffer;
-	ббайт *AllocAllNodesMemory;
-	ббайт *AllocAllNodesMemoryEnd;
-	цел IgnoreEmbeddedPointers;
-	ббайт *PointerBufferMark;
-	ббайт fBufferValid;
-	ббайт Unused;
-	бцел MaxCount;
-	бцел Offset;
-	бцел ActualCount;
-	проц* function (бцел) pfnAllocate;
-	проц function (проц*) pfnFree;
-	ббайт * StackTop;
-	ббайт * pPresentedType;
-	ббайт * pTransmitType;
+	ubyte *Buffer;
+	ubyte *BufferStart;
+	ubyte *BufferEnd;
+	ubyte *BufferMark;
+	uint BufferLength;
+	uint MemorySize;
+	ubyte *Memory;
+	int IsClient;
+	int ReuseBuffer;
+	ubyte *AllocAllNodesMemory;
+	ubyte *AllocAllNodesMemoryEnd;
+	int IgnoreEmbeddedPointers;
+	ubyte *PointerBufferMark;
+	ubyte fBufferValid;
+	ubyte Unused;
+	uint MaxCount;
+	uint Offset;
+	uint ActualCount;
+	void* function (uint) pfnAllocate;
+	void function (void*) pfnFree;
+	ubyte * StackTop;
+	ubyte * pPresentedType;
+	ubyte * pTransmitType;
 	handle_t SavedHandle;
 	_MIDL_STUB_DESC *StubDesc;
 	_FULL_PTR_XLAT_TABLES *FullPtrXlatTables;
-	бцел FullPtrRefId;
-	цел fCheckBounds;
+	uint FullPtrRefId;
+	int fCheckBounds;
 	// FIXME:
 	byte bit_fields_for_D; // FIXME: Bitfields
-//	цел fInDontFree :1;
-//	цел fDontCallFreeInst :1;
-//	цел fInOnlyParam :1;
-//	цел fHasReturn :1;
-	бцел dwDestContext;
-	проц* pvDestContext;
+//	int fInDontFree :1;
+//	int fDontCallFreeInst :1;
+//	int fInOnlyParam :1;
+//	int fHasReturn :1;
+	uint dwDestContext;
+	void* pvDestContext;
 	NDR_SCONTEXT * SavedContextHandles;
-	цел ParamNumber;
+	int ParamNumber;
 	IRpcChannelBuffer * pRpcChannelBuffer;
 	PARRAY_INFO pArrayInfo;
-	бцел * SizePtrCountArray;
-	бцел * SizePtrOffsetArray;
-	бцел * SizePtrLengthArray;
-	проц* pArgQueue;
-	бцел dwStubPhase;
-	бцел w2kReserved[5];
+	uint * SizePtrCountArray;
+	uint * SizePtrOffsetArray;
+	uint * SizePtrLengthArray;
+	void* pArgQueue;
+	uint dwStubPhase;
+	uint w2kReserved[5];
 }
 alias MIDL_STUB_MESSAGE * PMIDL_STUB_MESSAGE;
 
 extern (Windows) {
-	alias проц* function (проц*) GENERIC_BINDING_ROUTINE;
-	alias проц function (проц*,ббайт*) GENERIC_UNBIND_ROUTINE;
-	alias бцел function (бцел *,бцел,проц *) USER_MARSHAL_SIZING_ROUTINE;
-	alias ббайт * function (бцел *,ббайт *,проц *) USER_MARSHAL_MARSHALLING_ROUTINE;
-	alias ббайт * function (бцел *,ббайт *,проц *) USER_MARSHAL_UNMARSHALLING_ROUTINE;
-	alias проц function (бцел *,проц *) USER_MARSHAL_FREEING_ROUTINE;
-	alias проц function () NDR_NOTIFY_ROUTINE;
+	alias void* function (void*) GENERIC_BINDING_ROUTINE;
+	alias void function (void*,ubyte*) GENERIC_UNBIND_ROUTINE;
+	alias uint function (uint *,uint,void *) USER_MARSHAL_SIZING_ROUTINE;
+	alias ubyte * function (uint *,ubyte *,void *) USER_MARSHAL_MARSHALLING_ROUTINE;
+	alias ubyte * function (uint *,ubyte *,void *) USER_MARSHAL_UNMARSHALLING_ROUTINE;
+	alias void function (uint *,void *) USER_MARSHAL_FREEING_ROUTINE;
+	alias void function () NDR_NOTIFY_ROUTINE;
 }
 
 align:
@@ -232,8 +232,8 @@ struct GENERIC_BINDING_ROUTINE_PAIR {
 alias GENERIC_BINDING_ROUTINE_PAIR * PGENERIC_BINDING_ROUTINE_PAIR;
 
 struct GENERIC_BINDING_INFO {
-	проц *pObj;
-	бцел Размер;
+	void *pObj;
+	uint Size;
 	GENERIC_BINDING_ROUTINE pfnBind;
 	GENERIC_UNBIND_ROUTINE pfnUnbind;
 }
@@ -249,13 +249,13 @@ struct XMIT_ROUTINE_QUINTUPLE {
 alias XMIT_ROUTINE_QUINTUPLE * PXMIT_ROUTINE_QUINTUPLE;
 
 struct MALLOC_FREE_STRUCT {
-	проц* function (бцел) pfnAllocate;
-	проц function (проц*) pfnFree;
+	void* function (uint) pfnAllocate;
+	void function (void*) pfnFree;
 }
 
 struct COMM_FAULT_OFFSETS {
-	крат CommOffset;
-	крат FaultOffset;
+	short CommOffset;
+	short FaultOffset;
 }
 
 struct USER_MARSHAL_ROUTINE_QUADRUPLE {
@@ -284,9 +284,9 @@ struct NDR_CS_ROUTINES {
 }
 
 struct MIDL_STUB_DESC {
-	проц* RpcInterfaceInformation;
-	проц* function(бцел) pfnAllocate;
-	проц function (проц*) pfnFree;
+	void* RpcInterfaceInformation;
+	void* function(uint) pfnAllocate;
+	void function (void*) pfnFree;
 	union _IMPLICIT_HANDLE_INFO {
 		handle_t *pAutoHandle;
 		handle_t *pPrimitiveHandle;
@@ -297,33 +297,33 @@ struct MIDL_STUB_DESC {
 	GENERIC_BINDING_ROUTINE_PAIR *aGenericBindingRoutinePairs;
 	EXPR_EVAL *apfnExprEval;
 	XMIT_ROUTINE_QUINTUPLE *aXmitQuintuple;
-	ббайт *pFormatTypes;
-	цел fCheckBounds;
-	бцел Version;
+	ubyte *pFormatTypes;
+	int fCheckBounds;
+	uint Version;
 	MALLOC_FREE_STRUCT *pMallocFreeStruct;
-	цел MIDLVersion;
+	int MIDLVersion;
 	COMM_FAULT_OFFSETS *CommFaultOffsets;
 	USER_MARSHAL_ROUTINE_QUADRUPLE *aUserMarshalQuadruple;
 	NDR_NOTIFY_ROUTINE *NotifyRoutineTable;
 	ULONG_PTR mFlags;
 	NDR_CS_ROUTINES *CsRoutineTables;
-	проц *Reserved4;
+	void *Reserved4;
 	ULONG_PTR Reserved5;
 }
 alias  MIDL_STUB_DESC * PMIDL_STUB_DESC;
 
-alias проц * PMIDL_XMIT_TYPE;
+alias void * PMIDL_XMIT_TYPE;
 
 struct MIDL_FORMAT_STRING {
-	крат Pad;
-	ббайт Format[1];
+	short Pad;
+	ubyte Format[1];
 }
 
 struct MIDL_SERVER_INFO {
 	PMIDL_STUB_DESC pStubDesc;
 	SERVER_ROUTINE *DispatchTable;
 	PFORMAT_STRING ProcString;
-	бкрат *FmtStringOffset;
+	ushort *FmtStringOffset;
 	STUB_THUNK *ThunkTable;
 }
 alias MIDL_SERVER_INFO * PMIDL_SERVER_INFO;
@@ -331,13 +331,13 @@ alias MIDL_SERVER_INFO * PMIDL_SERVER_INFO;
 struct MIDL_STUBLESS_PROXY_INFO {
 	PMIDL_STUB_DESC pStubDesc;
 	PFORMAT_STRING ProcFormatString;
-	бкрат *FormatStringOffset;
+	ushort *FormatStringOffset;
 }
 alias MIDL_STUBLESS_PROXY_INFO *PMIDL_STUBLESS_PROXY_INFO;
 
 union CLIENT_CALL_RETURN {
-	проц *Pointer;
-	цел Simple;
+	void *Pointer;
+	int Simple;
 }
 
 enum XLAT_SIDE {
@@ -346,24 +346,24 @@ enum XLAT_SIDE {
 }
 struct FULL_PTR_TO_REFID_ELEMENT {
 	FULL_PTR_TO_REFID_ELEMENT * Next;
-	проц* Pointer;
-	бцел RefId;
-	ббайт State;
+	void* Pointer;
+	uint RefId;
+	ubyte State;
 }
 alias FULL_PTR_TO_REFID_ELEMENT * PFULL_PTR_TO_REFID_ELEMENT;
 
 struct FULL_PTR_XLAT_TABLES {
 	struct RefIdToPointer {
-		проц **XlatTable;
-		ббайт *StateTable;
-		бцел NumberOfEntries;
+		void **XlatTable;
+		ubyte *StateTable;
+		uint NumberOfEntries;
 	}
 	struct PointerToRefId {
 		PFULL_PTR_TO_REFID_ELEMENT *XlatTable;
-		бцел NumberOfBuckets;
-		бцел HashMask;
+		uint NumberOfBuckets;
+		uint HashMask;
 	}
-	бцел NextRefId;
+	uint NextRefId;
 	XLAT_SIDE XlatSide;
 }
 alias FULL_PTR_XLAT_TABLES * PFULL_PTR_XLAT_TABLES;
@@ -384,190 +384,190 @@ enum PROXY_PHASE {
 	PROXY_UNMARSHAL
 }
 
-typedef проц * RPC_SS_THREAD_HANDLE;
+typedef void * RPC_SS_THREAD_HANDLE;
 
 extern (Windows) {
-alias проц function (проц*) NDR_RUNDOWN;
-alias проц function (_MIDL_STUB_MESSAGE*) EXPR_EVAL;
-alias проц function(PMIDL_STUB_MESSAGE) XMIT_HELPER_ROUTINE;
-alias проц function (RPC_BINDING_HANDLE,бцел,бцел,IDL_CS_CONVERT*,бцел*,error_status_t*) CS_TYPE_NET_SIZE_ROUTINE;
-alias проц function (RPC_BINDING_HANDLE,бцел,бцел,IDL_CS_CONVERT*,бцел*,error_status_t*) CS_TYPE_LOCAL_SIZE_ROUTINE;
-alias проц function (RPC_BINDING_HANDLE,бцел,проц*,бцел,byte*,бцел*,error_status_t*) CS_TYPE_TO_NETCS_ROUTINE;
-alias проц function (RPC_BINDING_HANDLE,бцел,byte*,бцел,бцел,проц*,бцел*,error_status_t*) CS_TYPE_FROM_NETCS_ROUTINE;
-alias проц function (RPC_BINDING_HANDLE,цел,бцел*,бцел*,бцел*,error_status_t*) CS_TAG_GETTING_ROUTINE;
+alias void function (void*) NDR_RUNDOWN;
+alias void function (_MIDL_STUB_MESSAGE*) EXPR_EVAL;
+alias void function(PMIDL_STUB_MESSAGE) XMIT_HELPER_ROUTINE;
+alias void function (RPC_BINDING_HANDLE,uint,uint,IDL_CS_CONVERT*,uint*,error_status_t*) CS_TYPE_NET_SIZE_ROUTINE;
+alias void function (RPC_BINDING_HANDLE,uint,uint,IDL_CS_CONVERT*,uint*,error_status_t*) CS_TYPE_LOCAL_SIZE_ROUTINE;
+alias void function (RPC_BINDING_HANDLE,uint,void*,uint,byte*,uint*,error_status_t*) CS_TYPE_TO_NETCS_ROUTINE;
+alias void function (RPC_BINDING_HANDLE,uint,byte*,uint,uint,void*,uint*,error_status_t*) CS_TYPE_FROM_NETCS_ROUTINE;
+alias void function (RPC_BINDING_HANDLE,int,uint*,uint*,uint*,error_status_t*) CS_TAG_GETTING_ROUTINE;
 
-//alias проц* RPC_CLIENT_ALLOC(бцел);
-//alias проц RPC_CLIENT_FREE(проц*);
-alias проц* function(бцел) PRPC_CLIENT_ALLOC;
-alias проц function(проц*) PRPC_CLIENT_FREE;
+//alias void* RPC_CLIENT_ALLOC(uint);
+//alias void RPC_CLIENT_FREE(void*);
+alias void* function(uint) PRPC_CLIENT_ALLOC;
+alias void function(void*) PRPC_CLIENT_FREE;
 
-	alias проц function (PMIDL_STUB_MESSAGE) STUB_THUNK;
-	alias цел function() SERVER_ROUTINE;
+	alias void function (PMIDL_STUB_MESSAGE) STUB_THUNK;
+	alias int function() SERVER_ROUTINE;
 }
 
-проц  NdrSimpleTypeMarshall(PMIDL_STUB_MESSAGE,ббайт*,ббайт);
-ббайт * NdrPointerMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING pFormat);
-ббайт * NdrSimpleStructMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrConformantStructMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrConformantVaryingStructMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrHardStructMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrComplexStructMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrFixedArrayMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrConformantArrayMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrConformantVaryingArrayMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrVaryingArrayMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrComplexArrayMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrNonConformantStringMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrConformantStringMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrEncapsulatedUnionMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrNonEncapsulatedUnionMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrByteCountPointerMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrXmitOrRepAsMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт * NdrInterfacePointerMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrClientContextMarshall(PMIDL_STUB_MESSAGE,NDR_CCONTEXT,цел);
-проц  NdrServerContextMarshall(PMIDL_STUB_MESSAGE,NDR_SCONTEXT,NDR_RUNDOWN);
-проц  NdrSimpleTypeUnmarshall(PMIDL_STUB_MESSAGE,ббайт*,ббайт);
-ббайт * NdrPointerUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrSimpleStructUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrConformantStructUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrConformantVaryingStructUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrHardStructUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrComplexStructUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrFixedArrayUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrConformantArrayUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrConformantVaryingArrayUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrVaryingArrayUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrComplexArrayUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrNonConformantStringUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrConformantStringUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrEncapsulatedUnionUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrNonEncapsulatedUnionUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrByteCountPointerUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrXmitOrRepAsUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-ббайт * NdrInterfacePointerUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-проц  NdrClientContextUnmarshall(PMIDL_STUB_MESSAGE,NDR_CCONTEXT*,RPC_BINDING_HANDLE);
+void  NdrSimpleTypeMarshall(PMIDL_STUB_MESSAGE,ubyte*,ubyte);
+ubyte * NdrPointerMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING pFormat);
+ubyte * NdrSimpleStructMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrConformantStructMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrConformantVaryingStructMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrHardStructMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrComplexStructMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrFixedArrayMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrConformantArrayMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrConformantVaryingArrayMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrVaryingArrayMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrComplexArrayMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrNonConformantStringMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrConformantStringMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrEncapsulatedUnionMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrNonEncapsulatedUnionMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrByteCountPointerMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrXmitOrRepAsMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte * NdrInterfacePointerMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrClientContextMarshall(PMIDL_STUB_MESSAGE,NDR_CCONTEXT,int);
+void  NdrServerContextMarshall(PMIDL_STUB_MESSAGE,NDR_SCONTEXT,NDR_RUNDOWN);
+void  NdrSimpleTypeUnmarshall(PMIDL_STUB_MESSAGE,ubyte*,ubyte);
+ubyte * NdrPointerUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrSimpleStructUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrConformantStructUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrConformantVaryingStructUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrHardStructUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrComplexStructUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrFixedArrayUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrConformantArrayUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrConformantVaryingArrayUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrVaryingArrayUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrComplexArrayUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrNonConformantStringUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrConformantStringUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrEncapsulatedUnionUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrNonEncapsulatedUnionUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrByteCountPointerUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrXmitOrRepAsUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+ubyte * NdrInterfacePointerUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+void  NdrClientContextUnmarshall(PMIDL_STUB_MESSAGE,NDR_CCONTEXT*,RPC_BINDING_HANDLE);
 NDR_SCONTEXT  NdrServerContextUnmarshall(PMIDL_STUB_MESSAGE);
-проц  NdrPointerBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrSimpleStructBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantStructBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantVaryingStructBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrHardStructBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrComplexStructBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrFixedArrayBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantArrayBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantVaryingArrayBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrVaryingArrayBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrComplexArrayBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantStringBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrNonConformantStringBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrEncapsulatedUnionBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrNonEncapsulatedUnionBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrByteCountPointerBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrXmitOrRepAsBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrInterfacePointerBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrContextHandleSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-бцел  NdrPointerMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrSimpleStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrConformantStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrConformantVaryingStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrHardStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrComplexStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrFixedArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrConformantArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrConformantVaryingArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrVaryingArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrComplexArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrConformantStringMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrNonConformantStringMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrEncapsulatedUnionMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrNonEncapsulatedUnionMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrXmitOrRepAsMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-бцел  NdrInterfacePointerMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-проц  NdrPointerFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrSimpleStructFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantStructFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantVaryingStructFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrHardStructFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrComplexStructFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrFixedArrayFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantArrayFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConformantVaryingArrayFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrVaryingArrayFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrComplexArrayFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrEncapsulatedUnionFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrNonEncapsulatedUnionFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrByteCountPointerFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrXmitOrRepAsFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrInterfacePointerFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-проц  NdrConvert(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-проц  NdrClientInitializeNew(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,бцел);
-ббайт * NdrServerInitializeNew(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC);
-проц  NdrClientInitialize(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,бцел);
-ббайт * NdrServerInitialize(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC);
-ббайт * NdrServerInitializeUnmarshall(PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,PRPC_MESSAGE);
-проц  NdrServerInitializeMarshall(PRPC_MESSAGE,PMIDL_STUB_MESSAGE);
-ббайт * NdrGetBuffer(PMIDL_STUB_MESSAGE,бцел,RPC_BINDING_HANDLE);
-ббайт * NdrNsGetBuffer(PMIDL_STUB_MESSAGE,бцел,RPC_BINDING_HANDLE);
-ббайт * NdrSendReceive(PMIDL_STUB_MESSAGE,ббайт*);
-ббайт * NdrNsSendReceive(PMIDL_STUB_MESSAGE,ббайт*,RPC_BINDING_HANDLE*);
-проц  NdrFreeBuffer(PMIDL_STUB_MESSAGE);
+void  NdrPointerBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrSimpleStructBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantStructBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantVaryingStructBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrHardStructBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrComplexStructBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrFixedArrayBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantArrayBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantVaryingArrayBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrVaryingArrayBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrComplexArrayBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantStringBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrNonConformantStringBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrEncapsulatedUnionBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrNonEncapsulatedUnionBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrByteCountPointerBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrXmitOrRepAsBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrInterfacePointerBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrContextHandleSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+uint  NdrPointerMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrSimpleStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrConformantStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrConformantVaryingStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrHardStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrComplexStructMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrFixedArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrConformantArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrConformantVaryingArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrVaryingArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrComplexArrayMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrConformantStringMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrNonConformantStringMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrEncapsulatedUnionMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrNonEncapsulatedUnionMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrXmitOrRepAsMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+uint  NdrInterfacePointerMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+void  NdrPointerFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrSimpleStructFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantStructFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantVaryingStructFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrHardStructFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrComplexStructFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrFixedArrayFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantArrayFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConformantVaryingArrayFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrVaryingArrayFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrComplexArrayFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrEncapsulatedUnionFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrNonEncapsulatedUnionFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrByteCountPointerFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrXmitOrRepAsFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrInterfacePointerFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+void  NdrConvert(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+void  NdrClientInitializeNew(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,uint);
+ubyte * NdrServerInitializeNew(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC);
+void  NdrClientInitialize(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,uint);
+ubyte * NdrServerInitialize(PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC);
+ubyte * NdrServerInitializeUnmarshall(PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,PRPC_MESSAGE);
+void  NdrServerInitializeMarshall(PRPC_MESSAGE,PMIDL_STUB_MESSAGE);
+ubyte * NdrGetBuffer(PMIDL_STUB_MESSAGE,uint,RPC_BINDING_HANDLE);
+ubyte * NdrNsGetBuffer(PMIDL_STUB_MESSAGE,uint,RPC_BINDING_HANDLE);
+ubyte * NdrSendReceive(PMIDL_STUB_MESSAGE,ubyte*);
+ubyte * NdrNsSendReceive(PMIDL_STUB_MESSAGE,ubyte*,RPC_BINDING_HANDLE*);
+void  NdrFreeBuffer(PMIDL_STUB_MESSAGE);
 
 CLIENT_CALL_RETURN  NdrClientCall(PMIDL_STUB_DESC,PFORMAT_STRING,...);
 
-цел  NdrStubCall(IRpcStubBuffer*, IRpcChannelBuffer*,PRPC_MESSAGE,бцел*);
-проц  NdrServerCall(PRPC_MESSAGE);
-цел  NdrServerUnmarshall(IRpcChannelBuffer*, PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,PFORMAT_STRING,проц*);
-проц  NdrServerMarshall(IRpcStubBuffer*, IRpcChannelBuffer*,PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-RPC_STATUS  NdrMapCommAndFaultStatus(PMIDL_STUB_MESSAGE,бцел*,бцел*,RPC_STATUS);
-цел  NdrSH_UPDecision(PMIDL_STUB_MESSAGE,ббайт**,RPC_BUFPTR);
-цел  NdrSH_TLUPDecision(PMIDL_STUB_MESSAGE,ббайт**);
-цел  NdrSH_TLUPDecisionBuffer(PMIDL_STUB_MESSAGE,ббайт**);
-цел  NdrSH_IfAlloc(PMIDL_STUB_MESSAGE,ббайт**,бцел);
-цел  NdrSH_IfAllocRef(PMIDL_STUB_MESSAGE,ббайт**,бцел);
-цел  NdrSH_IfAllocSet(PMIDL_STUB_MESSAGE,ббайт**,бцел);
-RPC_BUFPTR  NdrSH_IfCopy(PMIDL_STUB_MESSAGE,ббайт**,бцел);
-RPC_BUFPTR  NdrSH_IfAllocCopy(PMIDL_STUB_MESSAGE,ббайт**,бцел);
-бцел  NdrSH_Copy(ббайт*,ббайт*,бцел);
-проц  NdrSH_IfFree(PMIDL_STUB_MESSAGE,ббайт*);
-RPC_BUFPTR  NdrSH_StringMarshall(PMIDL_STUB_MESSAGE,ббайт*,бцел,цел);
-RPC_BUFPTR  NdrSH_StringUnMarshall(PMIDL_STUB_MESSAGE,ббайт**,цел);
-проц* RpcSsAllocate(бцел);
-проц  RpcSsDisableAllocate();
-проц  RpcSsEnableAllocate();
-проц  RpcSsFree(проц*);
+int  NdrStubCall(IRpcStubBuffer*, IRpcChannelBuffer*,PRPC_MESSAGE,uint*);
+void  NdrServerCall(PRPC_MESSAGE);
+int  NdrServerUnmarshall(IRpcChannelBuffer*, PRPC_MESSAGE,PMIDL_STUB_MESSAGE,PMIDL_STUB_DESC,PFORMAT_STRING,void*);
+void  NdrServerMarshall(IRpcStubBuffer*, IRpcChannelBuffer*,PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+RPC_STATUS  NdrMapCommAndFaultStatus(PMIDL_STUB_MESSAGE,uint*,uint*,RPC_STATUS);
+int  NdrSH_UPDecision(PMIDL_STUB_MESSAGE,ubyte**,RPC_BUFPTR);
+int  NdrSH_TLUPDecision(PMIDL_STUB_MESSAGE,ubyte**);
+int  NdrSH_TLUPDecisionBuffer(PMIDL_STUB_MESSAGE,ubyte**);
+int  NdrSH_IfAlloc(PMIDL_STUB_MESSAGE,ubyte**,uint);
+int  NdrSH_IfAllocRef(PMIDL_STUB_MESSAGE,ubyte**,uint);
+int  NdrSH_IfAllocSet(PMIDL_STUB_MESSAGE,ubyte**,uint);
+RPC_BUFPTR  NdrSH_IfCopy(PMIDL_STUB_MESSAGE,ubyte**,uint);
+RPC_BUFPTR  NdrSH_IfAllocCopy(PMIDL_STUB_MESSAGE,ubyte**,uint);
+uint  NdrSH_Copy(ubyte*,ubyte*,uint);
+void  NdrSH_IfFree(PMIDL_STUB_MESSAGE,ubyte*);
+RPC_BUFPTR  NdrSH_StringMarshall(PMIDL_STUB_MESSAGE,ubyte*,uint,int);
+RPC_BUFPTR  NdrSH_StringUnMarshall(PMIDL_STUB_MESSAGE,ubyte**,int);
+void* RpcSsAllocate(uint);
+void  RpcSsDisableAllocate();
+void  RpcSsEnableAllocate();
+void  RpcSsFree(void*);
 RPC_SS_THREAD_HANDLE  RpcSsGetThreadHandle();
-проц  RpcSsSetClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE);
-проц  RpcSsSetThreadHandle(RPC_SS_THREAD_HANDLE);
-проц  RpcSsSwapClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE,PRPC_CLIENT_ALLOC*,PRPC_CLIENT_FREE*);
-проц* RpcSmAllocate(бцел,RPC_STATUS*);
-RPC_STATUS  RpcSmClientFree(проц*);
-RPC_STATUS  RpcSmDestroyClientContext(проц**);
+void  RpcSsSetClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE);
+void  RpcSsSetThreadHandle(RPC_SS_THREAD_HANDLE);
+void  RpcSsSwapClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE,PRPC_CLIENT_ALLOC*,PRPC_CLIENT_FREE*);
+void* RpcSmAllocate(uint,RPC_STATUS*);
+RPC_STATUS  RpcSmClientFree(void*);
+RPC_STATUS  RpcSmDestroyClientContext(void**);
 RPC_STATUS  RpcSmDisableAllocate();
 RPC_STATUS  RpcSmEnableAllocate();
-RPC_STATUS  RpcSmFree(проц*);
+RPC_STATUS  RpcSmFree(void*);
 RPC_SS_THREAD_HANDLE  RpcSmGetThreadHandle(RPC_STATUS*);
 RPC_STATUS  RpcSmSetClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE);
 RPC_STATUS  RpcSmSetThreadHandle(RPC_SS_THREAD_HANDLE);
 RPC_STATUS  RpcSmSwapClientAllocFree(PRPC_CLIENT_ALLOC,PRPC_CLIENT_FREE,PRPC_CLIENT_ALLOC*,PRPC_CLIENT_FREE*);
-проц  NdrRpcSsEnableAllocate(PMIDL_STUB_MESSAGE);
-проц  NdrRpcSsDisableAllocate(PMIDL_STUB_MESSAGE);
-проц  NdrRpcSmSetClientToOsf(PMIDL_STUB_MESSAGE);
-проц* NdrRpcSmClientAllocate(бцел);
-проц  NdrRpcSmClientFree(проц*);
-проц* NdrRpcSsDefaultAllocate(бцел);
-проц  NdrRpcSsDefaultFree(проц*);
-PFULL_PTR_XLAT_TABLES  NdrFullPointerXlatInit(бцел,XLAT_SIDE);
-проц  NdrFullPointerXlatFree(PFULL_PTR_XLAT_TABLES);
-цел  NdrFullPointerQueryPointer(PFULL_PTR_XLAT_TABLES,проц*,ббайт,бцел*);
-цел  NdrFullPointerQueryRefId(PFULL_PTR_XLAT_TABLES,бцел,ббайт,проц**);
-проц  NdrFullPointerInsertRefId(PFULL_PTR_XLAT_TABLES,бцел,проц*);
-цел  NdrFullPointerFree(PFULL_PTR_XLAT_TABLES,проц*);
-проц* NdrAllocate(PMIDL_STUB_MESSAGE,бцел);
-проц  NdrClearOutParameters(PMIDL_STUB_MESSAGE,PFORMAT_STRING,проц*);
-проц* NdrOleAllocate(бцел);
-проц  NdrOleFree(проц*);
-ббайт* NdrUserMarshalMarshall(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-ббайт* NdrUserMarshalUnmarshall(PMIDL_STUB_MESSAGE,ббайт**,PFORMAT_STRING,ббайт);
-проц  NdrUserMarshalBufferSize(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
-бцел  NdrUserMarshalMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
-проц  NdrUserMarshalFree(PMIDL_STUB_MESSAGE,ббайт*,PFORMAT_STRING);
+void  NdrRpcSsEnableAllocate(PMIDL_STUB_MESSAGE);
+void  NdrRpcSsDisableAllocate(PMIDL_STUB_MESSAGE);
+void  NdrRpcSmSetClientToOsf(PMIDL_STUB_MESSAGE);
+void* NdrRpcSmClientAllocate(uint);
+void  NdrRpcSmClientFree(void*);
+void* NdrRpcSsDefaultAllocate(uint);
+void  NdrRpcSsDefaultFree(void*);
+PFULL_PTR_XLAT_TABLES  NdrFullPointerXlatInit(uint,XLAT_SIDE);
+void  NdrFullPointerXlatFree(PFULL_PTR_XLAT_TABLES);
+int  NdrFullPointerQueryPointer(PFULL_PTR_XLAT_TABLES,void*,ubyte,uint*);
+int  NdrFullPointerQueryRefId(PFULL_PTR_XLAT_TABLES,uint,ubyte,void**);
+void  NdrFullPointerInsertRefId(PFULL_PTR_XLAT_TABLES,uint,void*);
+int  NdrFullPointerFree(PFULL_PTR_XLAT_TABLES,void*);
+void* NdrAllocate(PMIDL_STUB_MESSAGE,uint);
+void  NdrClearOutParameters(PMIDL_STUB_MESSAGE,PFORMAT_STRING,void*);
+void* NdrOleAllocate(uint);
+void  NdrOleFree(void*);
+ubyte* NdrUserMarshalMarshall(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+ubyte* NdrUserMarshalUnmarshall(PMIDL_STUB_MESSAGE,ubyte**,PFORMAT_STRING,ubyte);
+void  NdrUserMarshalBufferSize(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);
+uint  NdrUserMarshalMemorySize(PMIDL_STUB_MESSAGE,PFORMAT_STRING);
+void  NdrUserMarshalFree(PMIDL_STUB_MESSAGE,ubyte*,PFORMAT_STRING);

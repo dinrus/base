@@ -37,14 +37,14 @@ import win32.winbase;
 import win32.windef;
 import win32.basetyps;
 
-alias сим u_char;
-alias бкрат u_short;
-alias бцел u_int, u_long, SOCKET;
+alias char u_char;
+alias ushort u_short;
+alias uint u_int, u_long, SOCKET;
 
 const size_t FD_SETSIZE = 64;
 
 /* shutdown() how types */
-enum : цел {
+enum : int {
 	SD_RECEIVE,
 	SD_SEND,
 	SD_BOTH
@@ -57,7 +57,7 @@ struct FD_SET {
 	SOCKET[FD_SETSIZE]  fd_array;
 
 	/* this differs from the define in winsock.h and in cygwin sys/types.h */
-	static проц opCall(SOCKET fd, FD_SET set) {
+	static void opCall(SOCKET fd, FD_SET set) {
 		u_int i;
 		for (i = 0; i < set.fd_count; i++)
 			if (set.fd_array[i] == fd)
@@ -71,13 +71,13 @@ struct FD_SET {
 }
 alias FD_SET* PFD_SET, LPFD_SET;
 
-// Keep this alias, since fd_set isn't a tag имя in the original header.
+// Keep this alias, since fd_set isn't a tag name in the original header.
 alias FD_SET fd_set;
 
-extern(Windows) цел __WSAFDIsSet(SOCKET, FD_SET*);
+extern(Windows) int __WSAFDIsSet(SOCKET, FD_SET*);
 alias __WSAFDIsSet FD_ISSET;
 
-проц FD_CLR(SOCKET fd, FD_SET* set) {
+void FD_CLR(SOCKET fd, FD_SET* set) {
 	for (u_int i = 0; i < set.fd_count; i++) {
 		if (set.fd_array[i] == fd) {
 			while (i < set.fd_count - 1) {
@@ -90,16 +90,16 @@ alias __WSAFDIsSet FD_ISSET;
 	}
 }
 
-проц FD_ZERO(FD_SET* set) {
+void FD_ZERO(FD_SET* set) {
 	set.fd_count = 0;
 }
 
 
 struct TIMEVAL {
-	цел tv_sec;
-	цел tv_usec;
+	int tv_sec;
+	int tv_usec;
 
-	цел opCmp(TIMEVAL tv) {
+	int opCmp(TIMEVAL tv) {
 		if (tv_sec < tv.tv_sec)   return -1;
 		if (tv_sec > tv.tv_sec)   return  1;
 		if (tv_usec < tv.tv_usec) return -1;
@@ -109,7 +109,7 @@ struct TIMEVAL {
 }
 alias TIMEVAL* PTIMEVAL, LPTIMEVAL;
 
-бул timerisset(TIMEVAL* tvp) {
+bool timerisset(TIMEVAL* tvp) {
 	return tvp.tv_sec || tvp.tv_usec;
 }
 
@@ -120,7 +120,7 @@ alias TIMEVAL* PTIMEVAL, LPTIMEVAL;
  * If it is decided that it's just ugly and unwanted, then feel free to
  * delete this section :)
  */
-цел timercmp(TIMEVAL* tvp, TIMEVAL* uvp) {
+int timercmp(TIMEVAL* tvp, TIMEVAL* uvp) {
 	return tvp.tv_sec != uvp.tv_sec ?
 	    (tvp.tv_sec < uvp.tv_sec ? -1 :
             (tvp.tv_sec > uvp.tv_sec ? 1 : 0)) :
@@ -128,25 +128,25 @@ alias TIMEVAL* PTIMEVAL, LPTIMEVAL;
 	        (tvp.tv_usec > uvp.tv_usec ? 1 : 0));
 }
 
-цел timercmp(TIMEVAL* tvp, TIMEVAL* uvp, цел function(дол,дол) cmp) {
+int timercmp(TIMEVAL* tvp, TIMEVAL* uvp, int function(long,long) cmp) {
 	return tvp.tv_sec != uvp.tv_sec ?
 	    cmp(tvp.tv_sec, uvp.tv_sec) :
 	    cmp(tvp.tv_usec, uvp.tv_usec);
 }+/
 
-проц timerclear(inout TIMEVAL tvp) {
+void timerclear(inout TIMEVAL tvp) {
 	tvp.tv_sec = tvp.tv_usec = 0;
 }
 
 struct HOSTENT {
-	сим*  h_name;
-	сим** h_aliases;
-	крат  h_addrtype;
-	крат  h_length;
-	сим** h_addr_list;
+	char*  h_name;
+	char** h_aliases;
+	short  h_addrtype;
+	short  h_length;
+	char** h_addr_list;
 
-	сим* h_addr() { return h_addr_list[0]; }
-	сим* h_addr(сим* h) { return h_addr_list[0] = h; }
+	char* h_addr() { return h_addr_list[0]; }
+	char* h_addr(char* h) { return h_addr_list[0] = h; }
 }
 alias HOSTENT* PHOSTENT, LPHOSTENT;
 
@@ -165,18 +165,18 @@ enum : DWORD {
 }
 
 // NOTE: This isn't even used anywhere...
-private template _IO(сим x, ббайт y) {
-	const DWORD _IO = IOC_VOID | (cast(ббайт)x<<8) | y;
+private template _IO(char x, ubyte y) {
+	const DWORD _IO = IOC_VOID | (cast(ubyte)x<<8) | y;
 }
 
-private template _IOR(сим x, ббайт y, t) {
+private template _IOR(char x, ubyte y, t) {
 	const DWORD _IOR = IOC_OUT | ((t.sizeof & IOCPARAM_MASK)<<16)
-		| (cast(ббайт)x<<8) | y;
+		| (cast(ubyte)x<<8) | y;
 }
 
-private template _IOW(сим x, ббайт y, t) {
+private template _IOW(char x, ubyte y, t) {
 	const DWORD _IOW = IOC_IN | ((t.sizeof & IOCPARAM_MASK)<<16)
-		| (cast(ббайт)x<<8) | y;
+		| (cast(ubyte)x<<8) | y;
 }
 
 enum : DWORD {
@@ -191,28 +191,28 @@ enum : DWORD {
 }
 
 struct netent {
-	сим*  n_name;
-	сим** n_aliases;
-	крат  n_addrtype;
+	char*  n_name;
+	char** n_aliases;
+	short  n_addrtype;
 	u_long n_net;
 }
 
 struct SERVENT {
-	сим*  s_name;
-	сим** s_aliases;
-	крат  s_port;
-	сим*  s_proto;
+	char*  s_name;
+	char** s_aliases;
+	short  s_port;
+	char*  s_proto;
 }
 alias SERVENT* PSERVENT, LPSERVENT;
 
 struct PROTOENT {
-	сим*  p_name;
-	сим** p_aliases;
-	крат  p_proto;
+	char*  p_name;
+	char** p_aliases;
+	short  p_proto;
 }
 alias PROTOENT* PPROTOENT, LPPROTOENT;
 
-enum : цел {
+enum : int {
 	IPPROTO_IP   =   0,
 	IPPROTO_ICMP =   1,
 	IPPROTO_IGMP =   2,
@@ -276,7 +276,7 @@ struct IN_ADDR {
 		struct { u_char  s_b1, s_b2, s_b3, s_b4; }
 		struct { u_char  s_net, s_host, s_lh, s_impno; }
 		struct { u_short s_w1, s_w2; }
-		struct { u_short s_w_, s_imp; } // Can I дай rid of s_w_ using alignment tricks?
+		struct { u_short s_w_, s_imp; } // Can I get rid of s_w_ using alignment tricks?
 		u_long S_addr;
 		u_long s_addr;
 	}
@@ -284,21 +284,21 @@ struct IN_ADDR {
 alias IN_ADDR* PIN_ADDR, LPIN_ADDR;
 
 // IN_CLASSx are not used anywhere or documented on MSDN.
-бул IN_CLASSA(цел i) { return (i & 0x80000000) == 0; }
+bool IN_CLASSA(int i) { return (i & 0x80000000) == 0; }
 
 const IN_CLASSA_NET    = 0xff000000;
 const IN_CLASSA_NШИФТ =         24;
 const IN_CLASSA_HOST   = 0x00ffffff;
 const IN_CLASSA_MAX    =        128;
 
-бул IN_CLASSB(цел i) { return (i & 0xc0000000) == 0x80000000; }
+bool IN_CLASSB(int i) { return (i & 0xc0000000) == 0x80000000; }
 
 const IN_CLASSB_NET    = 0xffff0000;
 const IN_CLASSB_NШИФТ =         16;
 const IN_CLASSB_HOST   = 0x0000ffff;
 const IN_CLASSB_MAX    =      65536;
 
-бул IN_CLASSC(цел i) { return (i & 0xe0000000) == 0xc0000000; }
+bool IN_CLASSC(int i) { return (i & 0xe0000000) == 0xc0000000; }
 
 const IN_CLASSC_NET    = 0xffffff00;
 const IN_CLASSC_NШИФТ =          8;
@@ -311,10 +311,10 @@ const u_long
 	INADDR_NONE      = 0xFFFFFFFF;
 
 struct SOCKADDR_IN {
-	крат   sin_family;
+	short   sin_family;
 	u_short sin_port;
 	IN_ADDR sin_addr;
-	сим[8] sin_zero;
+	char[8] sin_zero;
 }
 alias SOCKADDR_IN* PSOCKADDR_IN, LPSOCKADDR_IN;
 
@@ -325,18 +325,18 @@ const size_t
 struct WSADATA {
 	WORD   wVersion;
 	WORD   wHighVersion;
-	сим[WSADESCRIPTION_LEN+1] szDescription;
-	сим[WSASYS_STATUS_LEN+1]  szSystemStatus;
-	бкрат iMaxSockets;
-	бкрат iMaxUdpDg;
-	сим*  lpVendorInfo;
+	char[WSADESCRIPTION_LEN+1] szDescription;
+	char[WSASYS_STATUS_LEN+1]  szSystemStatus;
+	ushort iMaxSockets;
+	ushort iMaxUdpDg;
+	char*  lpVendorInfo;
 }
 alias WSADATA* LPWSADATA;
 
 // This is not documented on the MSDN site
 const IP_OPTIONS = 1;
 
-const цел
+const int
 	SO_OPTIONS     =   1,
 	SO_DEBUG       =   1,
 	SO_ACCEPTCONN  =   2,
@@ -350,7 +350,7 @@ const цел
 	SO_DONTLINGER  = ~SO_LINGER,
 	SO_EXCLUSIVEADDRUSE= ~SO_REUSEADDR;
 
-enum : цел {
+enum : int {
 	SO_SNDBUF = 0x1001,
 	SO_RCVBUF,
 	SO_SNDLOWAT,
@@ -362,9 +362,9 @@ enum : цел {
 }
 
 const SOCKET INVALID_SOCKET = cast(SOCKET)(~0);
-const цел SOCKET_ERROR = -1;
+const int SOCKET_ERROR = -1;
 
-enum : цел {
+enum : int {
 	SOCK_STREAM = 1,
 	SOCK_DGRAM,
 	SOCK_RAW,
@@ -372,9 +372,9 @@ enum : цел {
 	SOCK_SEQPACKET
 }
 
-const цел TCP_NODELAY = 0x0001;
+const int TCP_NODELAY = 0x0001;
 
-enum : цел {
+enum : int {
 	AF_UNSPEC,
 	AF_UNIX,
 	AF_INET,
@@ -411,18 +411,18 @@ enum : цел {
 
 struct SOCKADDR {
 	u_short  sa_family;
-	сим[14] sa_data;
+	char[14] sa_data;
 }
 alias SOCKADDR* PSOCKADDR, LPSOCKADDR;
 
 /* Portable IPv6/IPv4 version of sockaddr.
    Uses padding to force 8 byte alignment
-   and maximum размер of 128 bytes */
+   and maximum size of 128 bytes */
 struct SOCKADDR_STORAGE {
-    крат     ss_family;
-    сим[6]   __ss_pad1;   // pad to 8
-    дол      __ss_align;  // force alignment
-    сим[112] __ss_pad2;   // pad to 128
+    short     ss_family;
+    char[6]   __ss_pad1;   // pad to 8
+    long      __ss_align;  // force alignment
+    char[112] __ss_pad2;   // pad to 128
 }
 alias SOCKADDR_STORAGE* PSOCKADDR_STORAGE;
 
@@ -431,7 +431,7 @@ struct sockproto {
 	u_short sp_protocol;
 }
 
-enum : цел {
+enum : int {
 	PF_UNSPEC    = AF_UNSPEC,
 	PF_UNIX      = AF_UNIX,
 	PF_INET      = AF_INET,
@@ -460,11 +460,11 @@ enum : цел {
 	PF_MAX       = AF_MAX
 }
 
-const цел SOL_SOCKET = 0xFFFF;
+const int SOL_SOCKET = 0xFFFF;
 
-const цел SOMAXCONN = 5;
+const int SOMAXCONN = 5;
 
-const цел
+const int
 	MSG_OOB       = 1,
 	MSG_PEEK      = 2,
 	MSG_DONTROUTE = 4,
@@ -488,7 +488,7 @@ enum {
 	FD_MAX_EVENTS // = 10
 }
 
-const цел
+const int
 	FD_READ                     = 1 << FD_READ_BIT,
 	FD_WRITE                    = 1 << FD_WRITE_BIT,
 	FD_OOB                      = 1 << FD_OOB_BIT,
@@ -501,7 +501,7 @@ const цел
 	FD_ADDRESS_LIST_CHANGE      = 1 << FD_ADDRESS_LIST_CHANGE_BIT,
 	FD_ALL_EVENTS               = (1 << FD_MAX_EVENTS) - 1;
 
-enum : цел {
+enum : int {
 	WSABASEERR         = 10000,
 	WSAEINTR           = WSABASEERR + 4,
 	WSAEBADF           = WSABASEERR + 9,
@@ -601,7 +601,7 @@ enum : цел {
 
 alias WSAGetLastError h_errno;
 
-enum : цел {
+enum : int {
 	HOST_NOT_FOUND = WSAHOST_NOT_FOUND,
 	TRY_AGAIN      = WSATRY_AGAIN,
 	NO_RECOVERY    = WSANO_RECOVERY,
@@ -610,23 +610,23 @@ enum : цел {
 }
 
 extern (Windows) {
-	SOCKET accept(SOCKET, SOCKADDR*, цел*);
-	цел bind(SOCKET, SOCKADDR*, цел);
-	цел closesocket(SOCKET);
-	цел connect(SOCKET, SOCKADDR*, цел);
-	цел ioctlsocket(SOCKET, цел, u_long*);
-	цел getpeername(SOCKET, SOCKADDR*, цел*);
-	цел getsockname(SOCKET, SOCKADDR*, цел*);
-	цел getsockopt(SOCKET, цел, цел, проц*, цел*);
-	бцел inet_addr(сим*);
-	цел listen(SOCKET, цел);
-	цел recv(SOCKET, ббайт*, цел, цел);
-	цел recvfrom(SOCKET, ббайт*, цел, цел, SOCKADDR*, цел*);
-	цел send(SOCKET, ббайт*, цел, цел);
-	цел sendto(SOCKET, ббайт*, цел, цел, SOCKADDR*, цел);
-	цел setsockopt(SOCKET, цел, цел, проц*, цел);
-	цел shutdown(SOCKET, цел);
-	SOCKET socket(цел, цел, цел);
+	SOCKET accept(SOCKET, SOCKADDR*, int*);
+	int bind(SOCKET, SOCKADDR*, int);
+	int closesocket(SOCKET);
+	int connect(SOCKET, SOCKADDR*, int);
+	int ioctlsocket(SOCKET, int, u_long*);
+	int getpeername(SOCKET, SOCKADDR*, int*);
+	int getsockname(SOCKET, SOCKADDR*, int*);
+	int getsockopt(SOCKET, int, int, void*, int*);
+	uint inet_addr(char*);
+	int listen(SOCKET, int);
+	int recv(SOCKET, ubyte*, int, int);
+	int recvfrom(SOCKET, ubyte*, int, int, SOCKADDR*, int*);
+	int send(SOCKET, ubyte*, int, int);
+	int sendto(SOCKET, ubyte*, int, int, SOCKADDR*, int);
+	int setsockopt(SOCKET, int, int, void*, int);
+	int shutdown(SOCKET, int);
+	SOCKET socket(int, int, int);
 
 	alias typeof(&accept) LPFN_ACCEPT;
 	alias typeof(&bind) LPFN_BIND;
@@ -648,13 +648,13 @@ extern (Windows) {
 }
 
 extern(Windows) {
-	сим* inet_ntoa(IN_ADDR);
-	HOSTENT* gethostbyaddr(сим*, цел, цел);
-	HOSTENT* gethostbyname(сим*);
-	SERVENT* getservbyport(цел, сим*);
-	SERVENT* getservbyname(сим*, сим*);
-	PROTOENT* getprotobynumber(цел);
-	PROTOENT* getprotobyname(сим*);
+	char* inet_ntoa(IN_ADDR);
+	HOSTENT* gethostbyaddr(char*, int, int);
+	HOSTENT* gethostbyname(char*);
+	SERVENT* getservbyport(int, char*);
+	SERVENT* getservbyname(char*, char*);
+	PROTOENT* getprotobynumber(int);
+	PROTOENT* getprotobyname(char*);
 
 	/* NOTE: DK: in the original headers, these were declared with
 	   PASCAL linkage.  Since this is at odds with the definition
@@ -670,10 +670,10 @@ extern(Windows) {
 }
 
 extern(Windows) {
-	цел WSAStartup(WORD, LPWSADATA);
-	цел WSACleanup();
-	проц WSASetLastError(цел);
-	цел WSAGetLastError();
+	int WSAStartup(WORD, LPWSADATA);
+	int WSACleanup();
+	void WSASetLastError(int);
+	int WSAGetLastError();
 
 	alias typeof(&WSAStartup) LPFN_WSASTARTUP;
 	alias typeof(&WSACleanup) LPFN_WSACLEANUP;
@@ -687,9 +687,9 @@ extern(Windows) {
  */
 deprecated extern(Windows) {
 	BOOL WSAIsBlocking();
-	цел WSAUnhookBlockingHook();
+	int WSAUnhookBlockingHook();
 	FARPROC WSASetBlockingHook(FARPROC);
-	цел WSACancelBlockingCall();
+	int WSACancelBlockingCall();
 
 	alias typeof(&WSAIsBlocking) LPFN_WSAISBLOCKING;
 	alias typeof(&WSAUnhookBlockingHook) LPFN_WSAUNHOOKBLOCKINGHOOK;
@@ -698,14 +698,14 @@ deprecated extern(Windows) {
 }
 
 extern(Windows) {
-	HANDLE WSAAsyncGetServByName(HWND, u_int, сим*, сим*, сим*, цел);
-	HANDLE WSAAsyncGetServByPort(HWND, u_int, цел, сим*, сим*, цел);
-	HANDLE WSAAsyncGetProtoByName(HWND, u_int, сим*, сим*, цел);
-	HANDLE WSAAsyncGetProtoByNumber(HWND, u_int, цел, сим*, цел);
-	HANDLE WSAAsyncGetHostByName(HWND, u_int, сим*, сим*, цел);
-	HANDLE WSAAsyncGetHostByAddr(HWND, u_int, сим*, цел, цел, сим*, цел);
-	цел WSACancelAsyncRequest(HANDLE);
-	цел WSAAsyncSelect(SOCKET, HWND, u_int, дол);
+	HANDLE WSAAsyncGetServByName(HWND, u_int, char*, char*, char*, int);
+	HANDLE WSAAsyncGetServByPort(HWND, u_int, int, char*, char*, int);
+	HANDLE WSAAsyncGetProtoByName(HWND, u_int, char*, char*, int);
+	HANDLE WSAAsyncGetProtoByNumber(HWND, u_int, int, char*, int);
+	HANDLE WSAAsyncGetHostByName(HWND, u_int, char*, char*, int);
+	HANDLE WSAAsyncGetHostByAddr(HWND, u_int, char*, int, int, char*, int);
+	int WSACancelAsyncRequest(HANDLE);
+	int WSAAsyncSelect(SOCKET, HWND, u_int, long);
 
 	alias typeof(&WSAAsyncGetServByName) LPFN_WSAAsyncGetServByName;
 	alias typeof(&WSAAsyncGetServByPort) LPFN_WSAASYNCGETSERVBYPORT;
@@ -722,7 +722,7 @@ extern(Windows) {
 	u_long ntohl(u_long);
 	u_short htons(u_short);
 	u_short ntohs(u_short);
-	цел select(цел nfds, fd_set*, fd_set*, fd_set*, TIMEVAL*);
+	int select(int nfds, fd_set*, fd_set*, fd_set*, TIMEVAL*);
 
 	alias typeof(&htonl) LPFN_HTONL;
 	alias typeof(&ntohl) LPFN_NTOHL;
@@ -730,7 +730,7 @@ extern(Windows) {
 	alias typeof(&ntohs) LPFN_NTOHS;
 	alias typeof(&select) LPFN_SELECT;
 
-	цел gethostname(сим*, цел);
+	int gethostname(char*, int);
 	alias typeof(&gethostname) LPFN_GETHOSTNAME;
 }
 
@@ -741,7 +741,7 @@ alias HIWORD WSAGETASYNCERROR, WSAGETSELECTERROR;
 
 alias INADDR_ANY ADDR_ANY;
 
-бул IN_CLASSD(цел i) { return (i & 0xf0000000) == 0xe0000000; }
+bool IN_CLASSD(int i) { return (i & 0xf0000000) == 0xe0000000; }
 
 const IN_CLASSD_NET    = 0xf0000000;
 const IN_CLASSD_NШИФТ =         28;
@@ -751,7 +751,7 @@ alias IN_CLASSD IN_MULTICAST;
 
 const FROM_PROTOCOL_INFO = -1;
 
-enum : цел {
+enum : int {
 	SO_GROUP_ID = 0x2001,
 	SO_GROUP_PRIORITY,
 	SO_MAX_MSG_SIZE,
@@ -761,9 +761,9 @@ enum : цел {
 // NOTE: These are logically part of the previous enum, but you can't
 // have version statements in an enum body...
 version(Unicode)
-	const цел SO_PROTOCOL_INFO = SO_PROTOCOL_INFOW;
+	const int SO_PROTOCOL_INFO = SO_PROTOCOL_INFOW;
 else
-	const цел SO_PROTOCOL_INFO = SO_PROTOCOL_INFOA;
+	const int SO_PROTOCOL_INFO = SO_PROTOCOL_INFOA;
 
 const PVD_CONFIG = 0x3001;
 
@@ -796,8 +796,8 @@ const WSA_WAIT_TIMEOUT = WAIT_TIMEOUT;
 const WSA_INFINITE = INFINITE;
 
 struct WSABUF {
-	бцел  len;
-	сим* buf;
+	uint  len;
+	char* buf;
 }
 
 alias WSABUF* LPWSABUF;
@@ -814,23 +814,23 @@ enum GUARANTEE {
 
 /*
    Windows Sockets 2 Application Programming Interface,
-   revision 2.2.2 (1997) uses the тип uint32 for SERVICETYPE
-   and the elements of _flowspec, but the тип uint32 is not defined
+   revision 2.2.2 (1997) uses the type uint32 for SERVICETYPE
+   and the elements of _flowspec, but the type uint32 is not defined
    or used anywhere else in the w32api. For now, just use
-   unsigned цел, which is 32 bits on _WIN32 and _WIN64.
+   unsigned int, which is 32 bits on _WIN32 and _WIN64.
 */
 
-alias бцел SERVICETYPE;
+alias uint SERVICETYPE;
 
 struct FLOWSPEC {
-	бцел        TokenRate;
-	бцел        TokenBucketSize;
-	бцел        PeakBandwidth;
-	бцел        Latency;
-	бцел        DelayVariation;
+	uint        TokenRate;
+	uint        TokenBucketSize;
+	uint        PeakBandwidth;
+	uint        Latency;
+	uint        DelayVariation;
 	SERVICETYPE ServiceType;
-	бцел        MaxSduSize;
-	бцел        MinimumPolicedSize;
+	uint        MaxSduSize;
+	uint        MinimumPolicedSize;
 }
 
 alias FLOWSPEC* PFLOWSPEC, LPFLOWSPEC;
@@ -857,7 +857,7 @@ enum {
 	SD_BOTH
 }*/
 
-alias бцел GROUP;
+alias uint GROUP;
 
 enum {
 	SG_UNCONSTRAINED_GROUP = 0x01,
@@ -865,8 +865,8 @@ enum {
 }
 
 struct WSANETWORKEVENTS {
-	цел lNetworkEvents;
-	цел[FD_MAX_EVENTS] iErrorCode;
+	int lNetworkEvents;
+	int[FD_MAX_EVENTS] iErrorCode;
 }
 
 alias WSANETWORKEVENTS* LPWSANETWORKEVENTS;
@@ -1003,7 +1003,7 @@ version(Unicode) {
 	alias LPWSAQUERYSETA LPWSAQUERYSET;
 }
 
-const цел
+const int
 	LUP_DEEP                = 0x0001,
 	LUP_CONTAINERS          = 0x0002,
 	LUP_NOCONTAINERS        = 0x0004,
@@ -1114,7 +1114,7 @@ version(Unicode) {
 }
 
 struct WSAPROTOCOLCHAIN {
-	цел                       ChainLen;
+	int                       ChainLen;
 	DWORD[MAX_PROTOCOL_CHAIN] ChainEntries;
 }
 
@@ -1131,15 +1131,15 @@ struct WSAPROTOCOL_INFOA {
 	GUID ProviderId;
 	DWORD dwCatalogEntryId;
 	WSAPROTOCOLCHAIN ProtocolChain;
-	цел iVersion;
-	цел iAddressFamily;
-	цел iMaxSockAddr;
-	цел iMinSockAddr;
-	цел iSocketType;
-	цел iProtocol;
-	цел iProtocolMaxOffset;
-	цел iNetworkByteOrder;
-	цел iSecurityScheme;
+	int iVersion;
+	int iAddressFamily;
+	int iMaxSockAddr;
+	int iMinSockAddr;
+	int iSocketType;
+	int iProtocol;
+	int iProtocolMaxOffset;
+	int iNetworkByteOrder;
+	int iSecurityScheme;
 	DWORD dwMessageSize;
 	DWORD dwProviderReserved;
 	CHAR[WSAPROTOCOL_LEN+1] szProtocol;
@@ -1156,15 +1156,15 @@ struct WSAPROTOCOL_INFOW {
 	GUID ProviderId;
 	DWORD dwCatalogEntryId;
 	WSAPROTOCOLCHAIN ProtocolChain;
-	цел iVersion;
-	цел iAddressFamily;
-	цел iMaxSockAddr;
-	цел iMinSockAddr;
-	цел iSocketType;
-	цел iProtocol;
-	цел iProtocolMaxOffset;
-	цел iNetworkByteOrder;
-	цел iSecurityScheme;
+	int iVersion;
+	int iAddressFamily;
+	int iMaxSockAddr;
+	int iMinSockAddr;
+	int iSocketType;
+	int iProtocol;
+	int iProtocolMaxOffset;
+	int iNetworkByteOrder;
+	int iSecurityScheme;
 	DWORD dwMessageSize;
 	DWORD dwProviderReserved;
 	WCHAR[WSAPROTOCOL_LEN+1] szProtocol;
@@ -1172,13 +1172,13 @@ struct WSAPROTOCOL_INFOW {
 
 alias WSAPROTOCOL_INFOW* LPWSAPROTOCOL_INFOW;
 
-// TODO: Below fptr was defined as "CALLBACK" for linkage; is this право?
+// TODO: Below fptr was defined as "CALLBACK" for linkage; is this right?
 extern(C) {
-	alias цел function(LPWSABUF, LPWSABUF, LPQOS, LPQOS, LPWSABUF, LPWSABUF, GROUP *, DWORD) LPCONDITIONPROC;
+	alias int function(LPWSABUF, LPWSABUF, LPQOS, LPQOS, LPWSABUF, LPWSABUF, GROUP *, DWORD) LPCONDITIONPROC;
 }
 
 extern(Windows) {
-	alias проц function(DWORD, DWORD, LPWSAOVERLAPPED, DWORD) LPWSAOVERLAPPED_COMPLETION_ROUTINE;
+	alias void function(DWORD, DWORD, LPWSAOVERLAPPED, DWORD) LPWSAOVERLAPPED_COMPLETION_ROUTINE;
 }
 
 version(Unicode) {
@@ -1230,13 +1230,13 @@ struct WSACOMPLETION {
 
 alias WSACOMPLETION* PWSACOMPLETION, LPWSACOMPLETION;
 
-const цел
+const int
 	PFL_MULTIPLE_PROTO_ENTRIES  = 0x00000001,
 	PFL_RECOMMENDED_PROTO_ENTRY = 0x00000002,
 	PFL_HIDDEN                  = 0x00000004,
 	PFL_MATCHES_PROTOCOL_ZERO   = 0x00000008;
 
-const цел
+const int
 	XP1_CONNECTIONLESS           = 0x00000001,
 	XP1_GUARANTEED_DELIVERY      = 0x00000002,
 	XP1_GUARANTEED_ORDER         = 0x00000004,
@@ -1257,7 +1257,7 @@ const цел
 	XP1_IFS_HANDLES              = 0x00020000,
 	XP1_PARTIAL_MESSAGE          = 0x00040000;
 
-enum : цел {
+enum : int {
 	BIGENDIAN    = 0x0000,
 	LITTLEENDIAN = 0x0001
 }
@@ -1274,38 +1274,38 @@ const WSA_FLAG_MULTIPOINT_C_LEAF = 0x04;
 const WSA_FLAG_MULTIPOINT_D_ROOT = 0x08;
 const WSA_FLAG_MULTIPOINT_D_LEAF = 0x10;
 
-const цел IOC_UNIX = 0x00000000;
-const цел IOC_WS2 = 0x08000000;
-const цел IOC_PROTOCOL = 0x10000000;
-const цел IOC_VENDOR = 0x18000000;
+const int IOC_UNIX = 0x00000000;
+const int IOC_WS2 = 0x08000000;
+const int IOC_PROTOCOL = 0x10000000;
+const int IOC_VENDOR = 0x18000000;
 
-template _WSAIO(цел x, цел y) { const цел _WSAIO = IOC_VOID | x | y; }
-template _WSAIOR(цел x, цел y) { const цел _WSAIOR = IOC_OUT | x | y; }
-template _WSAIOW(цел x, цел y) { const цел _WSAIOW = IOC_IN | x | y; }
-template _WSAIORW(цел x, цел y) { const цел _WSAIORW = IOC_INOUT | x | y; }
+template _WSAIO(int x, int y) { const int _WSAIO = IOC_VOID | x | y; }
+template _WSAIOR(int x, int y) { const int _WSAIOR = IOC_OUT | x | y; }
+template _WSAIOW(int x, int y) { const int _WSAIOW = IOC_IN | x | y; }
+template _WSAIORW(int x, int y) { const int _WSAIORW = IOC_INOUT | x | y; }
 
-const цел SIO_ASSOCIATE_HANDLE               = _WSAIOW!(IOC_WS2,1);
-const цел SIO_ENABLE_CIRCULAR_QUEUEING       = _WSAIO!(IOC_WS2,2);
-const цел SIO_FIND_ROUTE                     = _WSAIOR!(IOC_WS2,3);
-const цел SIO_FLUSH                          = _WSAIO!(IOC_WS2,4);
-const цел SIO_GET_BROADCAST_ADDRESS          = _WSAIOR!(IOC_WS2,5);
-const цел SIO_GET_EXTENSION_FUNCTION_POINTER = _WSAIORW!(IOC_WS2,6);
-const цел SIO_GET_QOS                        = _WSAIORW!(IOC_WS2,7);
-const цел SIO_GET_GROUP_QOS                  = _WSAIORW!(IOC_WS2,8);
-const цел SIO_MULTIPOINT_LOOPBACK            = _WSAIOW!(IOC_WS2,9);
-const цел SIO_MULTICAST_SCOPE                = _WSAIOW!(IOC_WS2,10);
-const цел SIO_SET_QOS                        = _WSAIOW!(IOC_WS2,11);
-const цел SIO_SET_GROUP_QOS                  = _WSAIOW!(IOC_WS2,12);
-const цел SIO_TRANSLATE_HANDLE               = _WSAIORW!(IOC_WS2,13);
-const цел SIO_ROUTING_INTERFACE_QUERY        = _WSAIORW!(IOC_WS2,20);
-const цел SIO_ROUTING_INTERFACE_CHANGE       = _WSAIOW!(IOC_WS2,21);
-const цел SIO_ADDRESS_LIST_QUERY             = _WSAIOR!(IOC_WS2,22);
-const цел SIO_ADDRESS_LIST_CHANGE            = _WSAIO!(IOC_WS2,23);
-const цел SIO_QUERY_TARGET_PNP_HANDLE        = _WSAIOR!(IOC_WS2,24);
-const цел SIO_NSP_NOTIFY_CHANGE              = _WSAIOW!(IOC_WS2,25);
+const int SIO_ASSOCIATE_HANDLE               = _WSAIOW!(IOC_WS2,1);
+const int SIO_ENABLE_CIRCULAR_QUEUEING       = _WSAIO!(IOC_WS2,2);
+const int SIO_FIND_ROUTE                     = _WSAIOR!(IOC_WS2,3);
+const int SIO_FLUSH                          = _WSAIO!(IOC_WS2,4);
+const int SIO_GET_BROADCAST_ADDRESS          = _WSAIOR!(IOC_WS2,5);
+const int SIO_GET_EXTENSION_FUNCTION_POINTER = _WSAIORW!(IOC_WS2,6);
+const int SIO_GET_QOS                        = _WSAIORW!(IOC_WS2,7);
+const int SIO_GET_GROUP_QOS                  = _WSAIORW!(IOC_WS2,8);
+const int SIO_MULTIPOINT_LOOPBACK            = _WSAIOW!(IOC_WS2,9);
+const int SIO_MULTICAST_SCOPE                = _WSAIOW!(IOC_WS2,10);
+const int SIO_SET_QOS                        = _WSAIOW!(IOC_WS2,11);
+const int SIO_SET_GROUP_QOS                  = _WSAIOW!(IOC_WS2,12);
+const int SIO_TRANSLATE_HANDLE               = _WSAIORW!(IOC_WS2,13);
+const int SIO_ROUTING_INTERFACE_QUERY        = _WSAIORW!(IOC_WS2,20);
+const int SIO_ROUTING_INTERFACE_CHANGE       = _WSAIOW!(IOC_WS2,21);
+const int SIO_ADDRESS_LIST_QUERY             = _WSAIOR!(IOC_WS2,22);
+const int SIO_ADDRESS_LIST_CHANGE            = _WSAIO!(IOC_WS2,23);
+const int SIO_QUERY_TARGET_PNP_HANDLE        = _WSAIOR!(IOC_WS2,24);
+const int SIO_NSP_NOTIFY_CHANGE              = _WSAIOW!(IOC_WS2,25);
 
-const цел TH_NETDEV = 1;
-const цел TH_TAPI   = 2;
+const int TH_NETDEV = 1;
+const int TH_TAPI   = 2;
 
 
 extern(Windows) {
@@ -1313,49 +1313,49 @@ extern(Windows) {
 	INT WSAAddressToStringA(LPSOCKADDR, DWORD, LPWSAPROTOCOL_INFOA, LPSTR, LPDWORD);
 	INT WSAAddressToStringW(LPSOCKADDR, DWORD, LPWSAPROTOCOL_INFOW, LPWSTR, LPDWORD);
 	BOOL WSACloseEvent(WSAEVENT);
-	цел WSAConnect(SOCKET, SOCKADDR*, цел, LPWSABUF, LPWSABUF, LPQOS, LPQOS);
+	int WSAConnect(SOCKET, SOCKADDR*, int, LPWSABUF, LPWSABUF, LPQOS, LPQOS);
 	WSAEVENT WSACreateEvent();
-	цел WSADuplicateSocketA(SOCKET, DWORD, LPWSAPROTOCOL_INFOA);
-	цел WSADuplicateSocketW(SOCKET, DWORD, LPWSAPROTOCOL_INFOW);
+	int WSADuplicateSocketA(SOCKET, DWORD, LPWSAPROTOCOL_INFOA);
+	int WSADuplicateSocketW(SOCKET, DWORD, LPWSAPROTOCOL_INFOW);
 	INT WSAEnumNameSpaceProvidersA(LPDWORD, LPWSANAMESPACE_INFOA);
 	INT WSAEnumNameSpaceProvidersW(LPDWORD, LPWSANAMESPACE_INFOW);
-	цел WSAEnumNetworkEvents(SOCKET, WSAEVENT, LPWSANETWORKEVENTS);
-	цел WSAEnumProtocolsA(LPINT, LPWSAPROTOCOL_INFOA, LPDWORD);
-	цел WSAEnumProtocolsW(LPINT, LPWSAPROTOCOL_INFOW, LPDWORD);
-	цел WSAEventSelect(SOCKET, WSAEVENT, цел);
+	int WSAEnumNetworkEvents(SOCKET, WSAEVENT, LPWSANETWORKEVENTS);
+	int WSAEnumProtocolsA(LPINT, LPWSAPROTOCOL_INFOA, LPDWORD);
+	int WSAEnumProtocolsW(LPINT, LPWSAPROTOCOL_INFOW, LPDWORD);
+	int WSAEventSelect(SOCKET, WSAEVENT, int);
 	BOOL ДайИмяПутиТома(SOCKET, LPWSAOVERLAPPED, LPDWORD, BOOL, LPDWORD);
 	BOOL WSAGetQOSByName(SOCKET, LPWSABUF, LPQOS);
 	INT WSAGetServiceClassInfoA(LPGUID, LPGUID, LPDWORD, LPWSASERVICECLASSINFOA);
 	INT WSAGetServiceClassInfoW(LPGUID, LPGUID, LPDWORD, LPWSASERVICECLASSINFOW);
 	INT WSAGetServiceClassNameByClassIdA(LPGUID, LPSTR, LPDWORD);
 	INT WSAGetServiceClassNameByClassIdW(LPGUID, LPWSTR, LPDWORD);
-	цел WSAHtonl(SOCKET, бцел, бцел*);
-	цел WSAHtons(SOCKET, бкрат, бкрат*);
+	int WSAHtonl(SOCKET, uint, uint*);
+	int WSAHtons(SOCKET, ushort, ushort*);
 	INT WSAInstallServiceClassA(LPWSASERVICECLASSINFOA);
 	INT WSAInstallServiceClassW(LPWSASERVICECLASSINFOW);
-	цел WSAIoctl(SOCKET, DWORD, LPVOID, DWORD, LPVOID, DWORD, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
-	SOCKET WSAJoinLeaf(SOCKET, SOCKADDR*, цел, LPWSABUF, LPWSABUF, LPQOS, LPQOS, DWORD);
+	int WSAIoctl(SOCKET, DWORD, LPVOID, DWORD, LPVOID, DWORD, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+	SOCKET WSAJoinLeaf(SOCKET, SOCKADDR*, int, LPWSABUF, LPWSABUF, LPQOS, LPQOS, DWORD);
 	INT WSALookupServiceBeginA(LPWSAQUERYSETA, DWORD, LPHANDLE);
 	INT WSALookupServiceBeginW(LPWSAQUERYSETW lpqsRestrictions, DWORD, LPHANDLE);
 	INT WSALookupServiceNextA(HANDLE, DWORD, LPDWORD, LPWSAQUERYSETA);
 	INT WSALookupServiceNextW(HANDLE, DWORD, LPDWORD, LPWSAQUERYSETW);
 	INT WSALookupServiceEnd(HANDLE);
-	цел WSANSPIoctl(HANDLE,DWORD,LPVOID,DWORD,LPVOID,DWORD,LPDWORD,LPWSACOMPLETION); /* XP or .NET Server */
-	цел WSANtohl(SOCKET, бцел, бцел*);
-	цел WSANtohs(SOCKET, бкрат, бкрат*);
-	цел WSARecv(SOCKET, LPWSABUF, DWORD, LPDWORD, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
-	цел WSARecvDisconnect(SOCKET, LPWSABUF);
-	цел WSARecvFrom(SOCKET, LPWSABUF, DWORD, LPDWORD, LPDWORD, SOCKADDR*, LPINT, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+	int WSANSPIoctl(HANDLE,DWORD,LPVOID,DWORD,LPVOID,DWORD,LPDWORD,LPWSACOMPLETION); /* XP or .NET Server */
+	int WSANtohl(SOCKET, uint, uint*);
+	int WSANtohs(SOCKET, ushort, ushort*);
+	int WSARecv(SOCKET, LPWSABUF, DWORD, LPDWORD, LPDWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+	int WSARecvDisconnect(SOCKET, LPWSABUF);
+	int WSARecvFrom(SOCKET, LPWSABUF, DWORD, LPDWORD, LPDWORD, SOCKADDR*, LPINT, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
 	INT WSARemoveServiceClass(LPGUID);
 	BOOL WSAResetEvent(WSAEVENT);
-	цел WSASend(SOCKET, LPWSABUF, DWORD, LPDWORD, DWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
-	цел WSASendDisconnect(SOCKET, LPWSABUF);
-	цел WSASendTo(SOCKET, LPWSABUF, DWORD, LPDWORD, DWORD, SOCKADDR*, цел, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+	int WSASend(SOCKET, LPWSABUF, DWORD, LPDWORD, DWORD, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
+	int WSASendDisconnect(SOCKET, LPWSABUF);
+	int WSASendTo(SOCKET, LPWSABUF, DWORD, LPDWORD, DWORD, SOCKADDR*, int, LPWSAOVERLAPPED, LPWSAOVERLAPPED_COMPLETION_ROUTINE);
 	BOOL WSASetEvent(WSAEVENT);
 	INT WSASetServiceA(LPWSAQUERYSETA, WSAESETSERVICEOP, DWORD); // NB: was declared with "WSAAPI" linkage
 	INT WSASetServiceW(LPWSAQUERYSETW, WSAESETSERVICEOP, DWORD);
-	SOCKET WSASocketA(цел, цел, цел, LPWSAPROTOCOL_INFOA, GROUP, DWORD);
-	SOCKET WSASocketW(цел, цел, цел, LPWSAPROTOCOL_INFOW, GROUP, DWORD);
+	SOCKET WSASocketA(int, int, int, LPWSAPROTOCOL_INFOA, GROUP, DWORD);
+	SOCKET WSASocketW(int, int, int, LPWSAPROTOCOL_INFOW, GROUP, DWORD);
 	INT WSAStringToAddressA(LPSTR, INT, LPWSAPROTOCOL_INFOA, LPSOCKADDR, LPINT);
 	INT WSAStringToAddressW(LPWSTR, INT, LPWSAPROTOCOL_INFOW, LPSOCKADDR, LPINT);
 	DWORD WSAWaitForMultipleEvents(DWORD, WSAEVENT*, BOOL, DWORD, BOOL);

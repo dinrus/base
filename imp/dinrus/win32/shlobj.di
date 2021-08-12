@@ -225,7 +225,7 @@ enum {
 
 const TCHAR[]
 	CFSTR_SHELLIDLIST       = "Shell IDList Array",
-	CFSTR_SHELLIDLISTOFFSET = "Shell Объект Offsets",
+	CFSTR_SHELLIDLISTOFFSET = "Shell Object Offsets",
 	CFSTR_NETRESOURCES      = "Net Resource",
 	CFSTR_FILECONTENTS      = "FileContents",
 	CFSTR_FILENAMEA         = "FileName",
@@ -389,7 +389,7 @@ struct ITEMIDLIST {
 }
 alias ITEMIDLIST* LPITEMIDLIST, LPCITEMIDLIST;
 
-alias цел function(HWND,UINT,LPARAM,LPARAM) BFFCALLBACK;
+alias int function(HWND,UINT,LPARAM,LPARAM) BFFCALLBACK;
 
 struct BROWSEINFOA {
 	HWND          hwndOwner;
@@ -399,7 +399,7 @@ struct BROWSEINFOA {
 	UINT          ulFlags;
 	BFFCALLBACK   lpfn;
 	LPARAM        lParam;
-	цел           iImage;
+	int           iImage;
 }
 alias BROWSEINFOA* PBROWSEINFOA, LPBROWSEINFOA;
 
@@ -411,7 +411,7 @@ struct BROWSEINFOW {
 	UINT          ulFlags;
 	BFFCALLBACK   lpfn;
 	LPARAM        lParam;
-	цел           iImage;
+	int           iImage;
 }
 alias BROWSEINFOW* PBROWSEINFOW, LPBROWSEINFOW;
 
@@ -422,7 +422,7 @@ struct CMINVOKECOMMANDINFO {
 	LPCSTR lpVerb;
 	LPCSTR lpParameters;
 	LPCSTR lpDirectory;
-	цел nShow;
+	int nShow;
 	DWORD dwHotKey;
 	HANDLE hIcon;
 }
@@ -460,7 +460,7 @@ struct STRRET {
 	union {
 		LPWSTR pOleStr;
 		UINT uOffset;
-		сим cStr[MAX_PATH];
+		char cStr[MAX_PATH];
 	}
 }
 alias STRRET* LPSTRRET;
@@ -569,9 +569,9 @@ alias FOLDERSETTINGS* LPFOLDERSETTINGS, LPCFOLDERSETTINGS;
 struct FVSHOWINFO {
 	DWORD cbSize = this.sizeof;
 	HWND hwndOwner;
-	цел iShow;
+	int iShow;
 	DWORD dwFlags;
-	RECT прям;
+	RECT rect;
 	LPUNKNOWN punkRel;
 	OLECHAR strNewFile[MAX_PATH];
 }
@@ -625,8 +625,8 @@ static if (_WIN32_IE >= 0x0500) {
 	alias SHCOLUMNID* LPSHCOLUMNID, LPCSHCOLUMNID;
 
 	struct SHELLDETAILS {
-		цел fmt;
-		цел cxChar;
+		int fmt;
+		int cxChar;
 		STRRET str;
 	}
 	alias SHELLDETAILS* LPSHELLDETAILS;
@@ -637,7 +637,7 @@ static if (_WIN32_IE >= 0x0500) {
 		WCHAR szTargetParsingName[MAX_PATH];
 		WCHAR szNetworkProvider[MAX_PATH];
 		DWORD dwAttributes;
-		цел csidl;
+		int csidl;
 	}
 
 	enum SHGFP_TYPE {
@@ -784,7 +784,7 @@ interface IExtractIconA : public IUnknown
 	HRESULT QueryInterface(REFIID,PVOID*);
 	ULONG AddRef();
 	ULONG Release();
-	HRESULT GetIconLocation(UINT,LPSTR,UINT,цел*,PUINT);
+	HRESULT GetIconLocation(UINT,LPSTR,UINT,int*,PUINT);
 	HRESULT Extract(LPCSTR,UINT,HICON*,HICON*,UINT);
 };
 alias IExtractIconA *LPEXTRACTICONA;
@@ -794,7 +794,7 @@ interface IExtractIconW : public IUnknown
 	HRESULT QueryInterface(REFIID,PVOID*);
 	ULONG AddRef();
 	ULONG Release();
-	HRESULT GetIconLocation(UINT,LPWSTR,UINT,цел*,PUINT);
+	HRESULT GetIconLocation(UINT,LPWSTR,UINT,int*,PUINT);
 	HRESULT Extract(LPCWSTR,UINT,HICON*,HICON*,UINT);
 }
 alias IExtractIconW *LPEXTRACTICONW;
@@ -812,21 +812,21 @@ interface IShellLinkA : public IUnknown
 	HRESULT QueryInterface(REFIID,PVOID*);
 	ULONG AddRef();
 	ULONG Release();
-	HRESULT GetPath(LPSTR,цел,WIN32_FIND_DATAA*,DWORD);
+	HRESULT GetPath(LPSTR,int,WIN32_FIND_DATAA*,DWORD);
 	HRESULT GetIDList(LPITEMIDLIST*);
 	HRESULT SetIDList(LPCITEMIDLIST);
-	HRESULT GetDescription(LPSTR,цел);
+	HRESULT GetDescription(LPSTR,int);
 	HRESULT SetDescription(LPCSTR);
-	HRESULT GetWorkingDirectory(LPSTR,цел);
+	HRESULT GetWorkingDirectory(LPSTR,int);
 	HRESULT SetWorkingDirectory(LPCSTR);
-	HRESULT GetArguments(LPSTR,цел);
+	HRESULT GetArguments(LPSTR,int);
 	HRESULT SetArguments(LPCSTR);
 	HRESULT GetHotkey(PWORD);
 	HRESULT SetHotkey(WORD);
-	HRESULT GetShowCmd(цел*);
-	HRESULT SetShowCmd(цел);
-	HRESULT GetIconLocation(LPSTR,цел,цел*);
-	HRESULT SetIconLocation(LPCSTR,цел);
+	HRESULT GetShowCmd(int*);
+	HRESULT SetShowCmd(int);
+	HRESULT GetIconLocation(LPSTR,int,int*);
+	HRESULT SetIconLocation(LPCSTR,int);
 	HRESULT SetRelativePath(LPCSTR ,DWORD);
 	HRESULT Resolve(HWND,DWORD);
 	HRESULT SetPath(LPCSTR);
@@ -837,21 +837,21 @@ interface IShellLinkW : public IUnknown
 	HRESULT QueryInterface(REFIID,PVOID*);
 	ULONG AddRef();
 	ULONG Release();
-	HRESULT GetPath(LPWSTR,цел,WIN32_FIND_DATAW*,DWORD);
+	HRESULT GetPath(LPWSTR,int,WIN32_FIND_DATAW*,DWORD);
 	HRESULT GetIDList(LPITEMIDLIST*);
 	HRESULT SetIDList(LPCITEMIDLIST);
-	HRESULT GetDescription(LPWSTR,цел);
+	HRESULT GetDescription(LPWSTR,int);
 	HRESULT SetDescription(LPCWSTR);
-	HRESULT GetWorkingDirectory(LPWSTR,цел);
+	HRESULT GetWorkingDirectory(LPWSTR,int);
 	HRESULT SetWorkingDirectory(LPCWSTR);
-	HRESULT GetArguments(LPWSTR,цел);
+	HRESULT GetArguments(LPWSTR,int);
 	HRESULT SetArguments(LPCWSTR);
 	HRESULT GetHotkey(PWORD);
 	HRESULT SetHotkey(WORD);
-	HRESULT GetShowCmd(цел*);
-	HRESULT SetShowCmd(цел);
-	HRESULT GetIconLocation(LPWSTR,цел,цел*);
-	HRESULT SetIconLocation(LPCWSTR,цел);
+	HRESULT GetShowCmd(int*);
+	HRESULT SetShowCmd(int);
+	HRESULT GetIconLocation(LPWSTR,int,int*);
+	HRESULT SetIconLocation(LPCWSTR,int);
 	HRESULT SetRelativePath(LPCWSTR ,DWORD);
 	HRESULT Resolve(HWND,DWORD);
 	HRESULT SetPath(LPCWSTR);
@@ -1125,7 +1125,7 @@ alias IShellIcon* LPSHELLICON;
 
 struct SHELLFLAGSTATE {
 // TODO
- крат bitflags_; // for D.
+ short bitflags_; // for D.
  /*
 	BOOL fShowAllObjects : 1;
 	BOOL fShowExtensions : 1;
@@ -1165,8 +1165,8 @@ interface IShellIconOverlayIdentifier : public IUnknown
 	ULONG AddRef();
 	ULONG Release();
 	HRESULT IsMemberOf(LPCWSTR,DWORD);
-	HRESULT GetOverlayInfo(LPWSTR,цел,цел*,DWORD*);
-	HRESULT GetPriority(цел*);
+	HRESULT GetOverlayInfo(LPWSTR,int,int*,DWORD*);
+	HRESULT GetPriority(int*);
 }
 
 const ISIOI_ICONFILE  = 0x00000001;
@@ -1196,7 +1196,7 @@ static if (_WIN32_WINNT >= 0x0500) {/* W2K */
 		DWORD dwWin95Unused;
 		UINT uWin95Unused;
 		LONG lParamSort;
-		цел iSortDirection;
+		int iSortDirection;
 		UINT version;
 		UINT uNotUsed;
 		BOOL fSepProcess : 1;
@@ -1221,7 +1221,7 @@ static if (_WIN32_IE >= 0x0500) {
 
 	interface IDragSourceHelper : public IUnknown
 	 {
-		HRESULT QueryInterface(REFIID riid, проц **ppv);
+		HRESULT QueryInterface(REFIID riid, void **ppv);
 		ULONG AddRef();
 		ULONG Release();
 		HRESULT InitializeFromBitmap(LPSHDRAGIMAGE pshdi, IDataObject* pDataObject);
@@ -1230,7 +1230,7 @@ static if (_WIN32_IE >= 0x0500) {
 
 	interface IDropTargetHelper : public IUnknown
 	 {
-		HRESULT QueryInterface(REFIID riid, проц** ppv);
+		HRESULT QueryInterface(REFIID riid, void** ppv);
 		ULONG AddRef();
 		ULONG Release();
 		HRESULT DragEnter(HWND hwndTarget, IDataObject* pDataObject, POINT* ppt, DWORD dwEffect);
@@ -1242,31 +1242,31 @@ static if (_WIN32_IE >= 0x0500) {
 }
 
 extern (Windows):
-проц SHAddToRecentDocs(UINT,PCVOID);
+void SHAddToRecentDocs(UINT,PCVOID);
 LPITEMIDLIST SHBrowseForFolderA(PBROWSEINFOA);
 LPITEMIDLIST SHBrowseForFolderW(PBROWSEINFOW);
-проц SHChangeNotify(LONG,UINT,PCVOID,PCVOID);
-HRESULT SHGetDataFromIDListA(LPSHELLFOLDER,LPCITEMIDLIST,цел,PVOID,цел);
-HRESULT SHGetDataFromIDListW(LPSHELLFOLDER,LPCITEMIDLIST,цел,PVOID,цел);
+void SHChangeNotify(LONG,UINT,PCVOID,PCVOID);
+HRESULT SHGetDataFromIDListA(LPSHELLFOLDER,LPCITEMIDLIST,int,PVOID,int);
+HRESULT SHGetDataFromIDListW(LPSHELLFOLDER,LPCITEMIDLIST,int,PVOID,int);
 HRESULT SHGetDesktopFolder(LPSHELLFOLDER*);
 HRESULT SHGetInstanceExplorer(IUnknown **);
 HRESULT SHGetMalloc(LPMALLOC*);
 BOOL SHGetPathFromIDListA(LPCITEMIDLIST,LPSTR);
 BOOL SHGetPathFromIDListW(LPCITEMIDLIST,LPWSTR);
-HRESULT SHGetSpecialFolderLocation(HWND,цел,LPITEMIDLIST*);
+HRESULT SHGetSpecialFolderLocation(HWND,int,LPITEMIDLIST*);
 HRESULT SHLoadInProc(REFCLSID);
 
 static if (_WIN32_IE >= 0x0400) {
-	BOOL SHGetSpecialFolderPathA(HWND,LPSTR,цел,BOOL);
-	BOOL SHGetSpecialFolderPathW(HWND,LPWSTR,цел,BOOL);
+	BOOL SHGetSpecialFolderPathA(HWND,LPSTR,int,BOOL);
+	BOOL SHGetSpecialFolderPathW(HWND,LPWSTR,int,BOOL);
 }
 
 /* SHGetFolderPath in shfolder.dll on W9x, NT4, also in shell32.dll on W2K */
-HRESULT SHGetFolderPathA(HWND,цел,HANDLE,DWORD,LPSTR);
-HRESULT SHGetFolderPathW(HWND,цел,HANDLE,DWORD,LPWSTR);
+HRESULT SHGetFolderPathA(HWND,int,HANDLE,DWORD,LPSTR);
+HRESULT SHGetFolderPathW(HWND,int,HANDLE,DWORD,LPWSTR);
 
 static if ((_WIN32_WINDOWS >= 0x0490) || (_WIN32_WINNT >= 0x0500)) {/* ME or W2K */
-	HRESULT SHGetFolderLocation(HWND,цел,HANDLE,DWORD,LPITEMIDLIST*);
+	HRESULT SHGetFolderLocation(HWND,int,HANDLE,DWORD,LPITEMIDLIST*);
 }
 
 static if (_WIN32_WINNT >= 0x0500) {
@@ -1276,14 +1276,14 @@ static if (_WIN32_WINNT >= 0x0500) {
 }
 
 static if (_WIN32_WINNT >= 0x0501) {/* XP */
-	HRESULT SHGetFolderPathAndSubDirA(HWND,цел,HANDLE,DWORD,LPCSTR,LPSTR);
-	HRESULT SHGetFolderPathAndSubDirW(HWND,цел,HANDLE,DWORD,LPCWSTR,LPWSTR);
+	HRESULT SHGetFolderPathAndSubDirA(HWND,int,HANDLE,DWORD,LPCSTR,LPSTR);
+	HRESULT SHGetFolderPathAndSubDirW(HWND,int,HANDLE,DWORD,LPCWSTR,LPWSTR);
 }
 
-проц SHGetSettings(LPSHELLFLAGSTATE,DWORD);
+void SHGetSettings(LPSHELLFLAGSTATE,DWORD);
 
 static if (_WIN32_WINNT >= 0x0500) {/* W2K */
-	проц SHGetSetSettings(LPSHELLSTATE,DWORD,BOOL);
+	void SHGetSetSettings(LPSHELLSTATE,DWORD,BOOL);
 }
 
 static if (_WIN32_WINNT >= 0x0500) {/* W2K */
@@ -1300,9 +1300,9 @@ static if (_WIN32_WINNT >= 0x0500) {/* W2K */
 	LPITEMIDLIST ILFindLastID(LPCITEMIDLIST);
 	LPITEMIDLIST ILGetNext(LPCITEMIDLIST);
 	UINT ILGetSize(LPCITEMIDLIST);
-	проц ILFree(LPITEMIDLIST);
+	void ILFree(LPITEMIDLIST);
 
-	HRESULT SHCoCreateInstance(LPCWSTR,REFCLSID,IUnknown*,REFIID,проц**);
+	HRESULT SHCoCreateInstance(LPCWSTR,REFCLSID,IUnknown*,REFIID,void**);
 }
 
 version(Unicode) {

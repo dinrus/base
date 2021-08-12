@@ -12,7 +12,7 @@ module win32.ntdef;
 
 private import win32.basetsd, win32.subauth, win32.windef, win32.winnt;
 
-const бцел
+const uint
 	OBJ_INHERIT          = 0x0002,
 	OBJ_PERMANENT        = 0x0010,
 	OBJ_EXCLUSIVE        = 0x0020,
@@ -21,8 +21,8 @@ const бцел
 	OBJ_OPENLINK         = 0x0100,
 	OBJ_VALID_ATTRIBUTES = 0x01F2;
 
-проц InitializeObjectAttributes(OBJECT_ATTRIBUTES* p, UNICODE_STRING* n,
-	  бцел a, HANDLE r, проц* s) {
+void InitializeObjectAttributes(OBJECT_ATTRIBUTES* p, UNICODE_STRING* n,
+	  uint a, HANDLE r, void* s) {
 	with (*p) {
 		Length = OBJECT_ATTRIBUTES.sizeof;
 		RootDirectory = r;
@@ -33,14 +33,14 @@ const бцел
 	}
 }
 
-бул NT_SUCCESS(цел x) { return x >= 0; }
+bool NT_SUCCESS(int x) { return x >= 0; }
 
 /*	In MinGW, NTSTATUS, UNICODE_STRING, STRING and their associated pointer
- *	тип aliases are defined in ntdef.h, ntsecapi.h and subauth.h, each of
+ *	type aliases are defined in ntdef.h, ntsecapi.h and subauth.h, each of
  *	which checks that none of the others is already included.
  */
-alias цел  NTSTATUS;
-alias цел* PNTSTATUS;
+alias int  NTSTATUS;
+alias int* PNTSTATUS;
 
 struct UNICODE_STRING {
 	USHORT Length;
@@ -66,7 +66,7 @@ enum SECTION_INHERIT {
 }
 
 /*	In MinGW, this is defined in ntdef.h and ntsecapi.h, each of which checks
- *	that the другой isn't already included.
+ *	that the other isn't already included.
  */
 struct OBJECT_ATTRIBUTES {
 	ULONG           Length = OBJECT_ATTRIBUTES.sizeof;

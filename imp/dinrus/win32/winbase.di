@@ -21,12 +21,12 @@ SetSwapAreaSize(w), LimitEmsPages(n), Yield()
 
 // The following Win16 functions are obselete in Win32.
 
- цел _hread(HFILE, LPVOID, цел);
- цел _hwrite(HFILE, LPCSTR, цел);
+ int _hread(HFILE, LPVOID, int);
+ int _hwrite(HFILE, LPCSTR, int);
  HFILE _lclose(HFILE);
- HFILE _lcreat(LPCSTR, цел);
- LONG _llseek(HFILE, LONG, цел);
- HFILE _lopen(LPCSTR, цел);
+ HFILE _lcreat(LPCSTR, int);
+ LONG _llseek(HFILE, LONG, int);
+ HFILE _lopen(LPCSTR, int);
  UINT _lread(HFILE, LPVOID, UINT);
  UINT _lwrite(HFILE, LPCSTR, UINT);
  SIZE_T GlobalCompact(DWORD);
@@ -46,11 +46,11 @@ SetSwapAreaSize(w), LimitEmsPages(n), Yield()
 
 //FIXME:
 // #ifndef UNDER_CE
-	цел WinMain(HINSTANCE, HINSTANCE, LPSTR, цел);
+	int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
 #else
-	цел WinMain(HINSTANCE, HINSTANCE, LPWSTR, цел);
+	int WinMain(HINSTANCE, HINSTANCE, LPWSTR, int);
 #endif
-цел wWinMain(HINSTANCE, HINSTANCE, LPWSTR, цел);
+int wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int);
 
 */
 
@@ -58,7 +58,7 @@ import win32.windef, win32.winver;
 private import win32.basetyps, win32.w32api, win32.winnt;
 
 // FIXME:
-alias проц va_list;
+alias void va_list;
 
 
 /+
@@ -95,7 +95,7 @@ version(UseNtoSKernel) {}else {
 // COMMPROP structure, used by GetCommProperties()
 // -----------------------------------------------
 
-// Communications provider тип
+// Communications provider type
 enum : DWORD {
 	PST_UNSPECIFIED,
 	PST_RS232,
@@ -429,7 +429,7 @@ const DWORD
 	DOCKINFO_USER_DOCKED   = DOCKINFO_USER_SUPPLIED | DOCKINFO_DOCKED;
 
 // DriveType(), RealDriveType()
-enum : цел {
+enum : int {
 	DRIVE_UNKNOWN = 0,
 	DRIVE_NO_ROOT_DIR,
 	DRIVE_REMOVABLE,
@@ -472,7 +472,7 @@ enum : DWORD {
 }
 
 // SetThreadPriority()/GetThreadPriority()
-enum : цел {
+enum : int {
 	THREAD_PRIORITY_IDLE          = -15,
 	THREAD_PRIORITY_LOWEST        =  -2,
 	THREAD_PRIORITY_BELOW_NORMAL  =  -1,
@@ -508,7 +508,7 @@ const UINT
 	GMEM_MODIFY      = 0x0080,  // used only for GlobalRealloc
 	GMEM_VALID_FLAGS = 0x7F72;
 
-/+  // Obselete флаги (Win16 only)
+/+  // Obselete flags (Win16 only)
 	GMEM_NOCOMPACT=16;
 	GMEM_NODISCARD=32;
 	GMEM_DISCARDABLE=256;
@@ -697,7 +697,7 @@ enum {
 
 const SHUTDOWN_NORETRY = 1;
 
-// Return тип for exception filters.
+// Return type for exception filters.
 enum : LONG {
 	EXCEPTION_EXECUTE_HANDLER    =  1,
 	EXCEPTION_CONTINUE_EXECUTION = -1,
@@ -974,47 +974,47 @@ struct DCB {
 /+
 	DWORD fBinary:1;              // Binary Mode (skip EOF check)
 	DWORD fParity:1;              // Enable parity checking
-	DWORD fOutxCtsFlow:1;         // CTS handshaking on вывод
-	DWORD fOutxDsrFlow:1;         // DSR handshaking on вывод
+	DWORD fOutxCtsFlow:1;         // CTS handshaking on output
+	DWORD fOutxDsrFlow:1;         // DSR handshaking on output
 	DWORD fDtrControl:2;          // DTR Flow control
 	DWORD fDsrSensitivity:1;      // DSR Sensitivity
 	DWORD fTXContinueOnXoff:1;    // Continue TX when Xoff sent
-	DWORD fOutX:1;                // Enable вывод X-ON/X-OFF
-	DWORD fInX:1;                 // Enable ввод X-ON/X-OFF
+	DWORD fOutX:1;                // Enable output X-ON/X-OFF
+	DWORD fInX:1;                 // Enable input X-ON/X-OFF
 	DWORD fErrorChar:1;           // Enable Err Replacement
 	DWORD fNull:1;                // Enable Null stripping
 	DWORD fRtsControl:2;          // Rts Flow control
 	DWORD fAbortOnError:1;        // Abort all reads and writes on Error
 	DWORD fDummy2:17;             // Reserved
 +/
-	бцел _bf;
-	бул fBinary(бул f)           { _bf = (_bf & ~0x0001) | f; return f; }
-	бул fParity(бул f)           { _bf = (_bf & ~0x0002) | (f<<1); return f; }
-	бул fOutxCtsFlow(бул f)      { _bf = (_bf & ~0x0004) | (f<<2); return f; }
-	бул fOutxDsrFlow(бул f)      { _bf = (_bf & ~0x0008) | (f<<3); return f; }
+	uint _bf;
+	bool fBinary(bool f)           { _bf = (_bf & ~0x0001) | f; return f; }
+	bool fParity(bool f)           { _bf = (_bf & ~0x0002) | (f<<1); return f; }
+	bool fOutxCtsFlow(bool f)      { _bf = (_bf & ~0x0004) | (f<<2); return f; }
+	bool fOutxDsrFlow(bool f)      { _bf = (_bf & ~0x0008) | (f<<3); return f; }
 	byte fDtrControl(byte x)       { _bf = (_bf & ~0x0030) | (x<<4); return cast(byte)(x & 3); }
-	бул fDsrSensitivity(бул f)   { _bf = (_bf & ~0x0040) | (f<<6); return f; }
-	бул fTXContinueOnXoff(бул f) { _bf = (_bf & ~0x0080) | (f<<7); return f; }
-	бул fOutX(бул f)             { _bf = (_bf & ~0x0100) | (f<<8); return f; }
-	бул fInX(бул f)              { _bf = (_bf & ~0x0200) | (f<<9); return f; }
-	бул fErrorChar(бул f)        { _bf = (_bf & ~0x0400) | (f<<10); return f; }
-	бул fNull(бул f)             { _bf = (_bf & ~0x0800) | (f<<11); return f; }
+	bool fDsrSensitivity(bool f)   { _bf = (_bf & ~0x0040) | (f<<6); return f; }
+	bool fTXContinueOnXoff(bool f) { _bf = (_bf & ~0x0080) | (f<<7); return f; }
+	bool fOutX(bool f)             { _bf = (_bf & ~0x0100) | (f<<8); return f; }
+	bool fInX(bool f)              { _bf = (_bf & ~0x0200) | (f<<9); return f; }
+	bool fErrorChar(bool f)        { _bf = (_bf & ~0x0400) | (f<<10); return f; }
+	bool fNull(bool f)             { _bf = (_bf & ~0x0800) | (f<<11); return f; }
 	byte fRtsControl(byte x)       { _bf = (_bf & ~0x3000) | (x<<12); return cast(byte)(x & 3); }
-	бул fAbortOnError(бул f)     { _bf = (_bf & ~0x4000) | (f<<14); return f; }
+	bool fAbortOnError(bool f)     { _bf = (_bf & ~0x4000) | (f<<14); return f; }
 
-	бул fBinary()           { return cast(бул) (_bf & 1); }
-	бул fParity()           { return cast(бул) (_bf & 2); }
-	бул fOutxCtsFlow()      { return cast(бул) (_bf & 4); }
-	бул fOutxDsrFlow()      { return cast(бул) (_bf & 8); }
+	bool fBinary()           { return cast(bool) (_bf & 1); }
+	bool fParity()           { return cast(bool) (_bf & 2); }
+	bool fOutxCtsFlow()      { return cast(bool) (_bf & 4); }
+	bool fOutxDsrFlow()      { return cast(bool) (_bf & 8); }
 	byte fDtrControl()       { return cast(byte) ((_bf & (32+16))>>4); }
-	бул fDsrSensitivity()   { return cast(бул) (_bf & 64); }
-	бул fTXContinueOnXoff() { return cast(бул) (_bf & 128); }
-	бул fOutX()             { return cast(бул) (_bf & 256); }
-	бул fInX()              { return cast(бул) (_bf & 512); }
-	бул fErrorChar()        { return cast(бул) (_bf & 1024); }
-	бул fNull()             { return cast(бул) (_bf & 2048); }
+	bool fDsrSensitivity()   { return cast(bool) (_bf & 64); }
+	bool fTXContinueOnXoff() { return cast(bool) (_bf & 128); }
+	bool fOutX()             { return cast(bool) (_bf & 256); }
+	bool fInX()              { return cast(bool) (_bf & 512); }
+	bool fErrorChar()        { return cast(bool) (_bf & 1024); }
+	bool fNull()             { return cast(bool) (_bf & 2048); }
 	byte fRtsControl()       { return cast(byte) ((_bf & (4096+8192))>>12); }
-	бул fAbortOnError()     { return cast(бул) (_bf & 16384); }
+	bool fAbortOnError()     { return cast(bool) (_bf & 16384); }
 
 	WORD wReserved;
 	WORD XonLim;
@@ -1022,11 +1022,11 @@ struct DCB {
 	BYTE ByteSize;
 	BYTE Parity;
 	BYTE StopBits;
-	сим XonChar;
-	сим XoffChar;
-	сим ErrorChar;
-	сим EofChar;
-	сим EvtChar;
+	char XonChar;
+	char XoffChar;
+	char ErrorChar;
+	char EofChar;
+	char EvtChar;
 	WORD wReserved1;
 }
 alias DCB* LPDCB;
@@ -1066,21 +1066,21 @@ struct COMSTAT {
 	DWORD fReserved:25;
 +/
 	DWORD _bf;
-    бул fCtsHold(бул f)  { _bf = (_bf & ~1) | f; return f; }
-	бул fDsrHold(бул f)  { _bf = (_bf & ~2) | (f<<1); return f; }
-	бул fRlsdHold(бул f) { _bf = (_bf & ~4) | (f<<2); return f; }
-	бул fXoffHold(бул f) { _bf = (_bf & ~8) | (f<<3); return f; }
-	бул fXoffSent(бул f) { _bf = (_bf & ~16) | (f<<4); return f; }
-	бул fEof(бул f)      { _bf = (_bf & ~32) | (f<<5); return f; }
-	бул fTxim(бул f)     { _bf = (_bf & ~64) | (f<<6); return f; }
+    bool fCtsHold(bool f)  { _bf = (_bf & ~1) | f; return f; }
+	bool fDsrHold(bool f)  { _bf = (_bf & ~2) | (f<<1); return f; }
+	bool fRlsdHold(bool f) { _bf = (_bf & ~4) | (f<<2); return f; }
+	bool fXoffHold(bool f) { _bf = (_bf & ~8) | (f<<3); return f; }
+	bool fXoffSent(bool f) { _bf = (_bf & ~16) | (f<<4); return f; }
+	bool fEof(bool f)      { _bf = (_bf & ~32) | (f<<5); return f; }
+	bool fTxim(bool f)     { _bf = (_bf & ~64) | (f<<6); return f; }
 
-    бул fCtsHold()  { return cast(бул) (_bf & 1); }
-	бул fDsrHold()  { return cast(бул) (_bf & 2); }
-	бул fRlsdHold() { return cast(бул) (_bf & 4); }
-	бул fXoffHold() { return cast(бул) (_bf & 8); }
-	бул fXoffSent() { return cast(бул) (_bf & 16); }
-	бул fEof()      { return cast(бул) (_bf & 32); }
-	бул fTxim()     { return cast(бул) (_bf & 64); }
+    bool fCtsHold()  { return cast(bool) (_bf & 1); }
+	bool fDsrHold()  { return cast(bool) (_bf & 2); }
+	bool fRlsdHold() { return cast(bool) (_bf & 4); }
+	bool fXoffHold() { return cast(bool) (_bf & 8); }
+	bool fXoffSent() { return cast(bool) (_bf & 16); }
+	bool fEof()      { return cast(bool) (_bf & 32); }
+	bool fTxim()     { return cast(bool) (_bf & 64); }
 
 	DWORD cbInQue;
 	DWORD cbOutQue;
@@ -1109,7 +1109,7 @@ struct CREATE_THREAD_DEBUG_INFO {
 alias CREATE_THREAD_DEBUG_INFO* LPCREATE_THREAD_DEBUG_INFO;
 
 struct EXCEPTION_DEBUG_INFO {
-	EXCEPTION_RECORD ExceptionRecord;
+	win32.winnt.EXCEPTION_RECORD ExceptionRecord;
 	DWORD            dwFirstChance;
 }
 alias EXCEPTION_DEBUG_INFO* LPEXCEPTION_DEBUG_INFO;
@@ -1240,7 +1240,7 @@ struct CRITICAL_SECTION_DEBUG {
 	WORD              Type;
 	WORD              CreatorBackTraceIndex;
 	CRITICAL_SECTION* CriticalSection;
-	LIST_ENTRY        ProcessLocksList;
+	win32.winnt.LIST_ENTRY        ProcessLocksList;
 	DWORD             EntryCount;
 	DWORD             ContentionCount;
 	DWORD[2]          Spare;
@@ -1294,7 +1294,7 @@ struct WIN32_FIND_DATAA {
 	DWORD          dwReserved0;
 	DWORD          dwReserved1;
 // #endif
-	CHAR[MAX_PATH] cFileName;
+	CHAR[win32.windef.MAX_PATH] cFileName;
 // #ifndef _WIN32_WCE
 	CHAR[14]       cAlternateFileName;
 // #endif
@@ -1314,7 +1314,7 @@ struct WIN32_FIND_DATAW {
 	DWORD           dwReserved0;
 	DWORD           dwReserved1;
 // #endif
-	WCHAR[MAX_PATH] cFileName;
+	WCHAR[win32.windef.MAX_PATH] cFileName;
 // #ifndef _WIN32_WCE
 	WCHAR[14]       cAlternateFileName;
 // #endif
@@ -1455,22 +1455,22 @@ struct LDT_ENTRY {
 
 		byte Type(byte f)        { Flags1 = cast(BYTE) ((Flags1 & 0xE0) | f); return cast(byte)(f & 0x1F); }
 		byte Dpl(byte f)         { Flags1 = cast(BYTE) ((Flags1 & 0x9F) | (f<<5)); return cast(byte)(f & 3); }
-		бул Pres(бул f)        { Flags1 = cast(BYTE) ((Flags1 & 0x7F) | (f<<7)); return f; }
+		bool Pres(bool f)        { Flags1 = cast(BYTE) ((Flags1 & 0x7F) | (f<<7)); return f; }
 
 		byte LimitHi(byte f)     { Flags2 = cast(BYTE) ((Flags2 & 0xF0) | (f&0x0F)); return cast(byte)(f & 0x0F); }
-		бул Sys(бул f)         { Flags2 = cast(BYTE) ((Flags2 & 0xEF) | (f<<4)); return f; }
+		bool Sys(bool f)         { Flags2 = cast(BYTE) ((Flags2 & 0xEF) | (f<<4)); return f; }
 		// Next bit is reserved
-		бул Default_Big(бул f) { Flags2 = cast(BYTE) ((Flags2 & 0xBF) | (f<<6)); return f; }
-		бул Granularity(бул f) { Flags2 = cast(BYTE) ((Flags2 & 0x7F) | (f<<7)); return f; }
+		bool Default_Big(bool f) { Flags2 = cast(BYTE) ((Flags2 & 0xBF) | (f<<6)); return f; }
+		bool Granularity(bool f) { Flags2 = cast(BYTE) ((Flags2 & 0x7F) | (f<<7)); return f; }
 
 		byte Type()        { return cast(byte) (Flags1 & 0x1F); }
 		byte Dpl()         { return cast(byte) ((Flags1 & 0x60)>>5); }
-		бул Pres()        { return cast(бул) (Flags1 & 0x80); }
+		bool Pres()        { return cast(bool) (Flags1 & 0x80); }
 
 		byte LimitHi()     { return cast(byte) (Flags2 & 0x0F); }
-		бул Sys()         { return cast(бул) (Flags2 & 0x10); }
-		бул Default_Big() { return cast(бул) (Flags2 & 0x40); }
-		бул Granularity() { return cast(бул) (Flags2 & 0x80); }
+		bool Sys()         { return cast(bool) (Flags2 & 0x10); }
+		bool Default_Big() { return cast(bool) (Flags2 & 0x40); }
+		bool Granularity() { return cast(bool) (Flags2 & 0x80); }
 	}
 /+
 	union  HighWord {
@@ -1497,7 +1497,7 @@ struct LDT_ENTRY {
 }
 alias LDT_ENTRY* PLDT_ENTRY, LPLDT_ENTRY;
 
-/*	As with the другой memory management functions and structures, MSDN's
+/*	As with the other memory management functions and structures, MSDN's
  *	Windows version info shall be taken with a cup of salt.
  */
 struct PROCESS_HEAP_ENTRY {
@@ -1618,7 +1618,7 @@ extern (Windows) {
 	alias DWORD function(LPVOID) LPTHREAD_START_ROUTINE;
 	alias DWORD function(LARGE_INTEGER, LARGE_INTEGER, LARGE_INTEGER, LARGE_INTEGER,
 		DWORD, DWORD, HANDLE, HANDLE, LPVOID)  LPPROGRESS_ROUTINE;
-	alias проц function(PVOID) LPFIBER_START_ROUTINE;
+	alias void function(PVOID) LPFIBER_START_ROUTINE;
 
 	alias BOOL function(HMODULE, LPCSTR, LPCSTR, WORD, LONG) ENUMRESLANGPROCA;
 	alias BOOL function(HMODULE, LPCWSTR, LPCWSTR, WORD, LONG) ENUMRESLANGPROCW;
@@ -1626,19 +1626,19 @@ extern (Windows) {
 	alias BOOL function(HMODULE, LPCWSTR, LPWSTR, LONG) ENUMRESNAMEPROCW;
 	alias BOOL function(HMODULE, LPSTR, LONG) ENUMRESTYPEPROCA;
 	alias BOOL function(HMODULE, LPWSTR, LONG) ENUMRESTYPEPROCW;
-	alias проц function(DWORD, DWORD, LPOVERLAPPED) LPOVERLAPPED_COMPLETION_ROUTINE;
+	alias void function(DWORD, DWORD, LPOVERLAPPED) LPOVERLAPPED_COMPLETION_ROUTINE;
 	alias LONG function(LPEXCEPTION_POINTERS) PTOP_LEVEL_EXCEPTION_FILTER;
 	alias PTOP_LEVEL_EXCEPTION_FILTER LPTOP_LEVEL_EXCEPTION_FILTER;
 
-	alias проц function(ULONG_PTR) PAPCFUNC;
-	alias проц function(PVOID, DWORD, DWORD) PTIMERAPCROUTINE;
+	alias void function(ULONG_PTR) PAPCFUNC;
+	alias void function(PVOID, DWORD, DWORD) PTIMERAPCROUTINE;
 
 	static if (_WIN32_WINNT_ONLY && _WIN32_WINNT >= 0x500) {
-		alias проц function(PVOID, BOOLEAN) WAITORTIMERCALLBACK;
+		alias void function(PVOID, BOOLEAN) WAITORTIMERCALLBACK;
 	}
 }
 
-LPTSTR MAKEINTATOM(крат i) {
+LPTSTR MAKEINTATOM(short i) {
 	return cast(LPTSTR) i;
 }
 
@@ -1673,11 +1673,11 @@ extern (Windows) {
 	alias memmove RtlMoveMemory;
 	alias memcpy RtlCopyMemory;
 
-	проц RtlFillMemory(PVOID dest, SIZE_T len, BYTE fill) {
+	void RtlFillMemory(PVOID dest, SIZE_T len, BYTE fill) {
 		memset(dest, fill, len);
 	}
 
-	проц RtlZeroMemory(PVOID dest, SIZE_T len) {
+	void RtlZeroMemory(PVOID dest, SIZE_T len) {
 		RtlFillMemory(dest, len , 0);
 	}
 
@@ -1706,9 +1706,9 @@ extern (Windows) {
 	HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES, LONG, LONG, LPCWSTR);
 	HANDLE CreateThread(LPSECURITY_ATTRIBUTES, DWORD, LPTHREAD_START_ROUTINE, PVOID, DWORD, PDWORD);
 	BOOL DebugActiveProcess(DWORD);
-	проц DebugBreak();
+	void DebugBreak();
 	ATOM DeleteAtom(ATOM);
-	проц DeleteCriticalSection(PCRITICAL_SECTION);
+	void DeleteCriticalSection(PCRITICAL_SECTION);
 	BOOL DeleteFileA(LPCSTR);
 	BOOL DeleteFileW(LPCWSTR);
 	BOOL DisableThreadLibraryCalls(HMODULE);
@@ -1716,7 +1716,7 @@ extern (Windows) {
 	BOOL DuplicateHandle(HANDLE, HANDLE, HANDLE, PHANDLE, DWORD, BOOL, DWORD);
 	BOOL EndUpdateResourceA(HANDLE, BOOL);
 	BOOL EndUpdateResourceW(HANDLE, BOOL);
-	проц EnterCriticalSection(LPCRITICAL_SECTION);
+	void EnterCriticalSection(LPCRITICAL_SECTION);
 	BOOL EnumResourceLanguagesA(HMODULE, LPCSTR, LPCSTR, ENUMRESLANGPROC, LONG_PTR);
 	BOOL EnumResourceLanguagesW(HMODULE, LPCWSTR, LPCWSTR, ENUMRESLANGPROC, LONG_PTR);
 	BOOL EnumResourceNamesA(HMODULE, LPCSTR, ENUMRESNAMEPROC, LONG_PTR);
@@ -1724,13 +1724,13 @@ extern (Windows) {
 	BOOL EnumResourceTypesA(HMODULE, ENUMRESTYPEPROC, LONG_PTR);
 	BOOL EnumResourceTypesW(HMODULE, ENUMRESTYPEPROC, LONG_PTR);
 	BOOL EscapeCommFunction(HANDLE, DWORD);
-	проц ExitProcess(UINT); // Never returns
-	проц ExitThread(DWORD); // Never returns
+	void ExitProcess(UINT); // Never returns
+	void ExitThread(DWORD); // Never returns
 	DWORD ExpandEnvironmentStringsA(LPCSTR, LPSTR, DWORD);
 	DWORD ExpandEnvironmentStringsW(LPCWSTR, LPWSTR, DWORD);
-	проц FatalAppExitA(UINT, LPCSTR);
-	проц FatalAppExitW(UINT, LPCWSTR);
-	проц FatalExit(цел);
+	void FatalAppExitA(UINT, LPCSTR);
+	void FatalAppExitW(UINT, LPCWSTR);
+	void FatalExit(int);
 	BOOL FileTimeToDosDateTime(FILETIME* , LPWORD, LPWORD);
 	BOOL FileTimeToLocalFileTime(FILETIME* , LPFILETIME);
 	BOOL FileTimeToSystemTime(FILETIME* , LPSYSTEMTIME);
@@ -1756,10 +1756,10 @@ extern (Windows) {
 	BOOL FreeEnvironmentStringsA(LPSTR);
 	BOOL FreeEnvironmentStringsW(LPWSTR);
 	BOOL FreeLibrary(HMODULE);
-	проц FreeLibraryAndExitThread(HMODULE, DWORD); // never returns
+	void FreeLibraryAndExitThread(HMODULE, DWORD); // never returns
 	BOOL FreeResource(HGLOBAL);
-	UINT GetAtomNameA(ATOM, LPSTR, цел);
-	UINT GetAtomNameW(ATOM, LPWSTR, цел);
+	UINT GetAtomNameA(ATOM, LPSTR, int);
+	UINT GetAtomNameW(ATOM, LPWSTR, int);
 	LPSTR GetCommandLineA();
 	LPWSTR GetCommandLineW();
 	BOOL GetCommConfig(HANDLE, LPCOMMCONFIG, PDWORD);
@@ -1777,9 +1777,9 @@ extern (Windows) {
 	HANDLE GetCurrentThread();
 /* In MinGW:
 #ifdef _WIN32_WCE
-extern DWORD GetCurrentThreadId(проц);
+extern DWORD GetCurrentThreadId(void);
 #else
-WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
+WINBASEAPI DWORD WINAPI GetCurrentThreadId(void);
 #endif
 */
 	DWORD GetCurrentThreadId();
@@ -1810,7 +1810,7 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 	DWORD GetFullPathNameA(LPCSTR, DWORD, LPSTR, LPSTR*);
 	DWORD GetFullPathNameW(LPCWSTR, DWORD, LPWSTR, LPWSTR*);
 	DWORD GetLastError();
-	проц GetLocalTime(LPSYSTEMTIME);
+	void GetLocalTime(LPSYSTEMTIME);
 	DWORD GetLogicalDrives();
 	DWORD GetLogicalDriveStringsA(DWORD, LPSTR);
 	DWORD GetLogicalDriveStringsW(DWORD, LPWSTR);
@@ -1853,13 +1853,13 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 	VOID GetSystemInfo(LPSYSTEM_INFO);
 	VOID GetSystemTime(LPSYSTEMTIME);
 	BOOL GetSystemTimeAdjustment(PDWORD, PDWORD, PBOOL);
-	проц GetSystemTimeAsFileTime(LPFILETIME);
+	void GetSystemTimeAsFileTime(LPFILETIME);
 	UINT GetTempFileNameA(LPCSTR, LPCSTR, UINT, LPSTR);
 	UINT GetTempFileNameW(LPCWSTR, LPCWSTR, UINT, LPWSTR);
 	DWORD GetTempPathA(DWORD, LPSTR);
 	DWORD GetTempPathW(DWORD, LPWSTR);
 	BOOL GetThreadContext(HANDLE, LPCONTEXT);
-	цел GetThreadPriority(HANDLE);
+	int GetThreadPriority(HANDLE);
 	BOOL GetThreadSelectorEntry(HANDLE, DWORD, LPLDT_ENTRY);
 	DWORD GetTickCount();
 	DWORD GetTimeZoneInformation(LPTIME_ZONE_INFORMATION);
@@ -1878,10 +1878,10 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 	ATOM GlobalDeleteAtom(ATOM);
 	ATOM GlobalFindAtomA(LPCSTR);
 	ATOM GlobalFindAtomW(LPCWSTR);
-	UINT GlobalGetAtomNameA(ATOM, LPSTR, цел);
-	UINT GlobalGetAtomNameW(ATOM, LPWSTR, цел);
+	UINT GlobalGetAtomNameA(ATOM, LPSTR, int);
+	UINT GlobalGetAtomNameW(ATOM, LPWSTR, int);
 
-	бул HasOverlappedIoCompleted(LPOVERLAPPED lpOverlapped) {
+	bool HasOverlappedIoCompleted(LPOVERLAPPED lpOverlapped) {
 		return lpOverlapped.Internal != STATUS_PENDING;
 	}
 
@@ -1898,7 +1898,7 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 	BOOL IsBadStringPtrA(LPCSTR, UINT);
 	BOOL IsBadStringPtrW(LPCWSTR, UINT);
 	BOOL IsBadWritePtr(PVOID, UINT);
-	проц LeaveCriticalSection(LPCRITICAL_SECTION);
+	void LeaveCriticalSection(LPCRITICAL_SECTION);
 	HINSTANCE LoadLibraryA(LPCSTR);
 	HINSTANCE LoadLibraryW(LPCWSTR);
 	HINSTANCE LoadLibraryExA(LPCSTR, HANDLE, DWORD);
@@ -1911,20 +1911,20 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 
 	LPSTR lstrcatA(LPSTR, LPCSTR);
 	LPWSTR lstrcatW(LPWSTR, LPCWSTR);
-	цел lstrcmpA(LPCSTR, LPCSTR);
-	цел lstrcmpiA(LPCSTR, LPCSTR);
-	цел lstrcmpiW(LPCWSTR, LPCWSTR);
-	цел lstrcmpW(LPCWSTR, LPCWSTR);
+	int lstrcmpA(LPCSTR, LPCSTR);
+	int lstrcmpiA(LPCSTR, LPCSTR);
+	int lstrcmpiW(LPCWSTR, LPCWSTR);
+	int lstrcmpW(LPCWSTR, LPCWSTR);
 	LPSTR lstrcpyA(LPSTR, LPCSTR);
-	LPSTR lstrcpynA(LPSTR, LPCSTR, цел);
-	LPWSTR lstrcpynW(LPWSTR, LPCWSTR, цел);
+	LPSTR lstrcpynA(LPSTR, LPCSTR, int);
+	LPWSTR lstrcpynW(LPWSTR, LPCWSTR, int);
 	LPWSTR lstrcpyW(LPWSTR, LPCWSTR);
-	цел lstrlenA(LPCSTR);
-	цел lstrlenW(LPCWSTR);
+	int lstrlenA(LPCSTR);
+	int lstrlenW(LPCWSTR);
 
 	BOOL MoveFileA(LPCSTR, LPCSTR);
 	BOOL MoveFileW(LPCWSTR, LPCWSTR);
-	цел MulDiv(цел, цел, цел);
+	int MulDiv(int, int, int);
 	HANDLE OpenEventA(DWORD, BOOL, LPCSTR);
 	HANDLE OpenEventW(DWORD, BOOL, LPCWSTR);
 	deprecated HFILE OpenFile(LPCSTR, LPOFSTRUCT, UINT);
@@ -1933,15 +1933,15 @@ WINBASEAPI DWORD WINAPI GetCurrentThreadId(проц);
 	HANDLE OpenProcess(DWORD, BOOL, DWORD);
 	HANDLE OpenSemaphoreA(DWORD, BOOL, LPCSTR);
 	HANDLE OpenSemaphoreW(DWORD, BOOL, LPCWSTR);
-	проц OutputDebugStringA(LPCSTR);
-	проц OutputDebugStringW(LPCWSTR);
+	void OutputDebugStringA(LPCSTR);
+	void OutputDebugStringW(LPCWSTR);
 	BOOL PeekNamedPipe(HANDLE, PVOID, DWORD, PDWORD, PDWORD, PDWORD);
 	BOOL PulseEvent(HANDLE);
 	BOOL PurgeComm(HANDLE, DWORD);
 	BOOL QueryPerformanceCounter(PLARGE_INTEGER);
 	BOOL QueryPerformanceFrequency(PLARGE_INTEGER);
 	DWORD QueueUserAPC(PAPCFUNC, HANDLE, ULONG_PTR);
-	проц RaiseException(DWORD, DWORD, DWORD, DWORD*);
+	void RaiseException(DWORD, DWORD, DWORD, DWORD*);
 	BOOL ReadFile(HANDLE, PVOID, DWORD, PDWORD, LPOVERLAPPED);
 	BOOL ReadFileEx(HANDLE, PVOID, DWORD, LPOVERLAPPED, LPOVERLAPPED_COMPLETION_ROUTINE);
 	BOOL ReadProcessMemory(HANDLE, PCVOID, PVOID, DWORD, PDWORD);
@@ -1990,8 +1990,8 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 	DWORD SetFilePointer(HANDLE, LONG, PLONG, DWORD);
 	BOOL SetFileTime(HANDLE, FILETIME*, FILETIME*, FILETIME*);
 	deprecated UINT SetHandleCount(UINT);
-	проц SetLastError(DWORD);
-	проц SetLastErrorEx(DWORD, DWORD);
+	void SetLastError(DWORD);
+	void SetLastErrorEx(DWORD, DWORD);
 	BOOL SetLocalTime(SYSTEMTIME*);
 	BOOL SetMailslotInfo(HANDLE, DWORD);
 	BOOL SetNamedPipeHandleState(HANDLE, PDWORD, PDWORD, PDWORD);
@@ -2000,7 +2000,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 	BOOL SetSystemTime(SYSTEMTIME*);
 	DWORD SetThreadAffinityMask(HANDLE, DWORD);
 	BOOL SetThreadContext(HANDLE, CONTEXT*);
-	BOOL SetThreadPriority(HANDLE, цел);
+	BOOL SetThreadPriority(HANDLE, int);
 	BOOL SetTimeZoneInformation(TIME_ZONE_INFORMATION*);
 	LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER);
 	BOOL SetupComm(HANDLE, DWORD, DWORD);
@@ -2008,7 +2008,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 	BOOL SetVolumeLabelW(LPCWSTR, LPCWSTR);
 
 	DWORD SizeofResource(HINSTANCE, HRSRC);
-	проц Sleep(DWORD);
+	void Sleep(DWORD);
 	DWORD SleepEx(DWORD, BOOL);
 	DWORD SuspendThread(HANDLE);
 	BOOL SystemTimeToFileTime(SYSTEMTIME*, LPFILETIME);
@@ -2019,7 +2019,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 	PVOID TlsGetValue(DWORD);
 	BOOL TlsSetValue(DWORD, PVOID);
 	BOOL TransactNamedPipe(HANDLE, PVOID, DWORD, PVOID, DWORD, PDWORD, LPOVERLAPPED);
-	BOOL TransmitCommChar(HANDLE, сим);
+	BOOL TransmitCommChar(HANDLE, char);
 	LONG UnhandledExceptionFilter(LPEXCEPTION_POINTERS);
 	BOOL UnlockFile(HANDLE, DWORD, DWORD, DWORD, DWORD);
 	BOOL WaitCommEvent(HANDLE, PDWORD, LPOVERLAPPED);
@@ -2100,7 +2100,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 		LPVOID CreateFiber(SIZE_T, LPFIBER_START_ROUTINE, LPVOID);
 		HANDLE CreateWaitableTimerA(LPSECURITY_ATTRIBUTES, BOOL, LPCSTR);
 		HANDLE CreateWaitableTimerW(LPSECURITY_ATTRIBUTES, BOOL, LPCWSTR);
-		проц DeleteFiber(PVOID);
+		void DeleteFiber(PVOID);
 		BOOL GetFileAttributesExA(LPCSTR, GET_FILEEX_INFO_LEVELS, PVOID);
 		BOOL GetFileAttributesExW(LPCWSTR, GET_FILEEX_INFO_LEVELS, PVOID);
 		DWORD GetLongPathNameA(LPCSTR, LPSTR, DWORD);
@@ -2112,7 +2112,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 		DWORD QueryDosDeviceA(LPCSTR, LPSTR, DWORD);
 		DWORD QueryDosDeviceW(LPCWSTR, LPWSTR, DWORD);
 		BOOL SetWaitableTimer(HANDLE, LARGE_INTEGER*, LONG, PTIMERAPCROUTINE, PVOID, BOOL);
-		проц SwitchToFiber(PVOID);
+		void SwitchToFiber(PVOID);
 	}
 
 	static if (WINVER >= 0x500) {
@@ -2212,7 +2212,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 		BOOL InitializeSecurityDescriptor(PSECURITY_DESCRIPTOR, DWORD);
 		BOOL InitializeSid(PSID, PSID_IDENTIFIER_AUTHORITY, BYTE);
 		BOOL IsProcessorFeaturePresent(DWORD);
-		BOOL IsTextUnicode(PCVOID, цел, LPINT);
+		BOOL IsTextUnicode(PCVOID, int, LPINT);
 		BOOL IsValidAcl(PACL);
 		BOOL IsValidSecurityDescriptor(PSECURITY_DESCRIPTOR);
 		BOOL IsValidSid(PSID);
@@ -2382,7 +2382,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 
 		static if (_WIN32_WINNT >= 0x501) {
 			BOOL ActivateActCtx(HANDLE, ULONG_PTR*);
-			проц AddRefActCtx(HANDLE);
+			void AddRefActCtx(HANDLE);
 			BOOL CheckNameLegalDOS8Dot3A(LPCSTR, LPSTR, DWORD, PBOOL, PBOOL);
 			BOOL CheckNameLegalDOS8Dot3W(LPCWSTR, LPSTR, DWORD, PBOOL, PBOOL);
 			BOOL CheckRemoteDebuggerPresent(HANDLE, PBOOL);
@@ -2417,7 +2417,7 @@ WINBASEAPI BOOL WINAPI SetEvent(HANDLE);
 			BOOL IsWow64Process(HANDLE, PBOOL);
 			BOOL QueryActCtxW(DWORD, HANDLE, PVOID, ULONG, PVOID, SIZE_T, SIZE_T*);
 			BOOL QueryMemoryResourceNotification(HANDLE, PBOOL);
-			проц ReleaseActCtx(HANDLE);
+			void ReleaseActCtx(HANDLE);
 			UINT ResetWriteWatch(LPVOID, SIZE_T);
 			BOOL SetFileShortNameA(HANDLE, LPCSTR);
 			BOOL SetFileShortNameW(HANDLE, LPCWSTR);

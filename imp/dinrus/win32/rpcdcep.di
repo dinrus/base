@@ -14,7 +14,7 @@ private import win32.w32api;
 private import win32.windef;
 
 alias HANDLE I_RPC_HANDLE;
-alias дол RPC_STATUS;
+alias long RPC_STATUS;
 
 const RPC_NCA_FLAGS_DEFAULT=0;
 const RPC_NCA_FLAGS_IDEMPOTENT=1;
@@ -30,8 +30,8 @@ const TRANSPORT_TYPE_LPC=4;
 const TRANSPORT_TYPE_WMSG=8;
 
 struct RPC_VERSION {
-	бкрат MajorVersion;
-	бкрат MinorVersion;
+	ushort MajorVersion;
+	ushort MinorVersion;
 }
 struct RPC_SYNTAX_IDENTIFIER {
 	GUID        SyntaxGUID;
@@ -41,114 +41,114 @@ alias RPC_SYNTAX_IDENTIFIER* PRPC_SYNTAX_IDENTIFIER;
 
 struct RPC_MESSAGE {
 	HANDLE Handle;
-	бцел  DataRepresentation;
-	проц* Buffer;
-	бцел  BufferLength;
-	бцел  ProcNum;
+	uint  DataRepresentation;
+	void* Buffer;
+	uint  BufferLength;
+	uint  ProcNum;
 	PRPC_SYNTAX_IDENTIFIER TransferSyntax;
-	проц* RpcInterfaceInformation;
-	проц* ReservedForRuntime;
-	проц* ManagerEpv;
-	проц* ImportContext;
-	бцел  RpcFlags;
+	void* RpcInterfaceInformation;
+	void* ReservedForRuntime;
+	void* ManagerEpv;
+	void* ImportContext;
+	uint  RpcFlags;
 }
 alias RPC_MESSAGE* PRPC_MESSAGE;
 
 extern (Windows) {
-alias проц function (PRPC_MESSAGE Message) RPC_DISPATCH_FUNCTION;
+alias void function (PRPC_MESSAGE Message) RPC_DISPATCH_FUNCTION;
 }
 
 struct RPC_DISPATCH_TABLE {
-	бцел DispatchTableCount;
+	uint DispatchTableCount;
 	RPC_DISPATCH_FUNCTION* DispatchTable;
-	цел  Reserved;
+	int  Reserved;
 }
 alias RPC_DISPATCH_TABLE* PRPC_DISPATCH_TABLE;
 
 struct RPC_PROTSEQ_ENDPOINT {
-	ббайт* RpcProtocolSequence;
-	ббайт* Endpoint;
+	ubyte* RpcProtocolSequence;
+	ubyte* Endpoint;
 }
 alias RPC_PROTSEQ_ENDPOINT* PRPC_PROTSEQ_ENDPOINT;
 
 struct RPC_SERVER_INTERFACE {
-	бцел                  Length;
+	uint                  Length;
 	RPC_SYNTAX_IDENTIFIER InterfaceId;
 	RPC_SYNTAX_IDENTIFIER TransferSyntax;
 	PRPC_DISPATCH_TABLE   DispatchTable;
-	бцел                  RpcProtseqEndpointCount;
+	uint                  RpcProtseqEndpointCount;
 	PRPC_PROTSEQ_ENDPOINT RpcProtseqEndpoint;
-	проц*                 DefaultManagerEpv;
-	проц*                 InterpreterInfo;
+	void*                 DefaultManagerEpv;
+	void*                 InterpreterInfo;
 }
 alias RPC_SERVER_INTERFACE* PRPC_SERVER_INTERFACE;
 
 struct RPC_CLIENT_INTERFACE {
-	бцел                  Length;
+	uint                  Length;
 	RPC_SYNTAX_IDENTIFIER InterfaceId;
 	RPC_SYNTAX_IDENTIFIER TransferSyntax;
 	PRPC_DISPATCH_TABLE   DispatchTable;
-	бцел                  RpcProtseqEndpointCount;
+	uint                  RpcProtseqEndpointCount;
 	PRPC_PROTSEQ_ENDPOINT RpcProtseqEndpoint;
-	бцел                  Reserved;
-	проц*                 InterpreterInfo;
+	uint                  Reserved;
+	void*                 InterpreterInfo;
 }
 alias RPC_CLIENT_INTERFACE* PRPC_CLIENT_INTERFACE;
 
-typedef проц* I_RPC_MUTEX;
+typedef void* I_RPC_MUTEX;
 
 struct RPC_TRANSFER_SYNTAX {
 	GUID   Uuid;
-	бкрат VersMajor;
-	бкрат VersMinor;
+	ushort VersMajor;
+	ushort VersMinor;
 }
-alias RPC_STATUS function(проц*, проц*, проц*) RPC_BLOCKING_FN;
+alias RPC_STATUS function(void*, void*, void*) RPC_BLOCKING_FN;
 
 extern (Windows) {
-	alias проц function(проц*) PRPC_RUNDOWN;
+	alias void function(void*) PRPC_RUNDOWN;
 	
-	цел    I_RpcGetBuffer(RPC_MESSAGE*);
-	цел    I_RpcSendReceive(RPC_MESSAGE*);
-	цел    I_RpcSend(RPC_MESSAGE*);
-	цел    I_RpcFreeBuffer(RPC_MESSAGE*);
-	проц   I_RpcRequestMutex(I_RPC_MUTEX*);
-	проц   I_RpcClearMutex(I_RPC_MUTEX);
-	проц   I_RpcDeleteMutex(I_RPC_MUTEX);
-	проц*  I_RpcAllocate(бцел);
-	проц   I_RpcFree(проц*);
-	проц   I_RpcPauseExecution(бцел);
-	цел    I_RpcMonitorAssociation(HANDLE, PRPC_RUNDOWN, проц*);
-	цел    I_RpcStopMonitorAssociation(HANDLE);
+	int    I_RpcGetBuffer(RPC_MESSAGE*);
+	int    I_RpcSendReceive(RPC_MESSAGE*);
+	int    I_RpcSend(RPC_MESSAGE*);
+	int    I_RpcFreeBuffer(RPC_MESSAGE*);
+	void   I_RpcRequestMutex(I_RPC_MUTEX*);
+	void   I_RpcClearMutex(I_RPC_MUTEX);
+	void   I_RpcDeleteMutex(I_RPC_MUTEX);
+	void*  I_RpcAllocate(uint);
+	void   I_RpcFree(void*);
+	void   I_RpcPauseExecution(uint);
+	int    I_RpcMonitorAssociation(HANDLE, PRPC_RUNDOWN, void*);
+	int    I_RpcStopMonitorAssociation(HANDLE);
 	HANDLE I_RpcGetCurrentCallHandle();
-	цел    I_RpcGetAssociationContext(проц**);
-	цел    I_RpcSetAssociationContext(проц*);
+	int    I_RpcGetAssociationContext(void**);
+	int    I_RpcSetAssociationContext(void*);
 
 	static if (_WIN32_WINNT_ONLY) {
-		цел I_RpcNsBindingSetEntryName(HANDLE, бцел, шим*);
-		цел I_RpcBindingInqDynamicEndpoint(HANDLE, шим**);
+		int I_RpcNsBindingSetEntryName(HANDLE, uint, wchar*);
+		int I_RpcBindingInqDynamicEndpoint(HANDLE, wchar**);
 	} else {
-		цел I_RpcNsBindingSetEntryName(HANDLE, бцел, сим*);
-		цел I_RpcBindingInqDynamicEndpoint(HANDLE, сим**);
+		int I_RpcNsBindingSetEntryName(HANDLE, uint, char*);
+		int I_RpcBindingInqDynamicEndpoint(HANDLE, char**);
 	}
 
-	цел   I_RpcBindingInqTransportType(HANDLE, бцел*);
-	цел   I_RpcIfInqTransferSyntaxes(HANDLE, RPC_TRANSFER_SYNTAX*, бцел,
-	        бцел*);
-	цел   I_UuidCreate(GUID*);
-	цел   I_RpcBindingCopy(HANDLE, HANDLE*);
-	цел   I_RpcBindingIsClientLocal(HANDLE, бцел*);
-	проц  I_RpcSsDontSerializeContext();
-	цел   I_RpcServerRegisterForwardFunction(цел function (GUID*,
-	        RPC_VERSION*, GUID*, ббайт*, проц**));
-	цел   I_RpcConnectionInqSockBuffSize(бцел*, бцел*);
-	цел   I_RpcConnectionSetSockBuffSize(бцел, бцел);
-	цел   I_RpcBindingSetAsync(HANDLE, RPC_BLOCKING_FN);
-	цел   I_RpcAsyncSendReceive(RPC_MESSAGE*, проц*);
-	цел   I_RpcGetThreadWindowHandle(проц**);
-	цел   I_RpcServerThreadPauseListening();
-	цел   I_RpcServerThreadContinueListening();
-	цел   I_RpcServerUnregisterEndpointA(ббайт*, ббайт*);
-	цел   I_RpcServerUnregisterEndpointW(бкрат*, бкрат*);
+	int   I_RpcBindingInqTransportType(HANDLE, uint*);
+	int   I_RpcIfInqTransferSyntaxes(HANDLE, RPC_TRANSFER_SYNTAX*, uint,
+	        uint*);
+	int   I_UuidCreate(GUID*);
+	int   I_RpcBindingCopy(HANDLE, HANDLE*);
+	int   I_RpcBindingIsClientLocal(HANDLE, uint*);
+	void  I_RpcSsDontSerializeContext();
+	int   I_RpcServerRegisterForwardFunction(int function (GUID*,
+	        RPC_VERSION*, GUID*, ubyte*, void**));
+	int   I_RpcConnectionInqSockBuffSize(uint*, uint*);
+	int   I_RpcConnectionSetSockBuffSize(uint, uint);
+	int   I_RpcBindingSetAsync(HANDLE, RPC_BLOCKING_FN);
+	int   I_RpcAsyncSendReceive(RPC_MESSAGE*, void*);
+	int   I_RpcGetThreadWindowHandle(void**);
+	int   I_RpcServerThreadPauseListening();
+	int   I_RpcServerThreadContinueListening();
+	int   I_RpcServerUnregisterEndpointA(ubyte*, ubyte*);
+	int   I_RpcServerUnregisterEndpointW(ushort*, ushort*);
 }
 
 version(Unicode) {

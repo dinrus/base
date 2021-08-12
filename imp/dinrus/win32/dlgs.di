@@ -12,7 +12,7 @@ module win32.dlgs;
 
 private import win32.windef;
 
-enum : бкрат {
+enum : ushort {
 	FILEOPENORD      = 1536,
 	MULTIFILEOPENORD = 1537,
 	PRINTDLGORD      = 1538,
@@ -25,7 +25,7 @@ enum : бкрат {
 	PAGESETUPDLGORD  = 1546
 }
 
-enum : цел {
+enum : int {
 	ctlFirst = 0x400,
 	ctlLast  = 0x4ff,
 	chx1     = 0x410,
@@ -184,8 +184,8 @@ enum : цел {
 }
 
 struct CRGB {
-	ббайт bRed;
-	ббайт bGreen;
-	ббайт bBlue;
-	ббайт bExtra;
+	ubyte bRed;
+	ubyte bGreen;
+	ubyte bBlue;
+	ubyte bExtra;
 }

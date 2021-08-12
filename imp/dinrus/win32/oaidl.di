@@ -87,22 +87,22 @@ struct SAFEARRAYBOUND {
 alias SAFEARRAYBOUND* LPSAFEARRAYBOUND;
 
 struct SAFEARR_BSTR {
-	ULONG Размер;
+	ULONG Size;
 	wireBSTR* aBstr;
 }
 
 struct SAFEARR_UNKNOWN {
-	ULONG Размер;
+	ULONG Size;
 	IUnknown** apUnknown;
 }
 
 struct SAFEARR_DISPATCH {
-	ULONG Размер;
+	ULONG Size;
 	LPDISPATCH* apDispatch;
 }
 
 struct SAFEARR_VARIANT {
-	ULONG Размер;
+	ULONG Size;
 	_wireVARIANT* aVariant;
 }
 
@@ -127,12 +127,12 @@ struct _wireBRECORD {
 alias _wireBRECORD* wireBRECORD;
 
 struct SAFEARR_BRECORD {
-	ULONG Размер;
+	ULONG Size;
 	wireBRECORD* aRecord;
 }
 
 struct SAFEARR_HAVEIID {
-	ULONG Размер;
+	ULONG Size;
 	IUnknown** apUnknown;
 	IID iid;
 }
@@ -184,12 +184,12 @@ struct VARIANT {
 			WORD wReserved2;
 			WORD wReserved3;
 			union {
-				цел lVal;
+				int lVal;
 				LONGLONG llVal;
-				ббайт bVal;
-				крат iVal;
-				плав fltVal;
-				дво dblVal;
+				ubyte bVal;
+				short iVal;
+				float fltVal;
+				double dblVal;
 				VARIANT_BOOL  boolVal;
 				SCODE scode;
 				CY cyVal;
@@ -198,11 +198,11 @@ struct VARIANT {
 				IUnknown punkVal;
 				IDispatch pdispVal;
 				SAFEARRAY* parray;
-				ббайт* pbVal;
-				крат* piVal;
-				цел* plVal;
-				плав* pfltVal;
-				дво* pdblVal;
+				ubyte* pbVal;
+				short* piVal;
+				int* plVal;
+				float* pfltVal;
+				double* pdblVal;
 				VARIANT_BOOL* pboolVal;
 				_VARIANT_BOOL*  pbool;
 				SCODE* pscode;
@@ -213,7 +213,7 @@ struct VARIANT {
 				IDispatch* ppdispVal;
 				SAFEARRAY** pparray;
 				VARIANT* pvarVal;
-				проц* byref;
+				void* byref;
 				CHAR cVal;
 				USHORT uiVal;
 				ULONG ulVal;
@@ -503,7 +503,7 @@ enum VARFLAGS {
 struct CLEANLOCALSTORAGE {
 	IUnknown* pInterface;
 	PVOID pStorage;
-	DWORD флаги;
+	DWORD flags;
 }
 
 struct CUSTDATAITEM {
@@ -574,9 +574,9 @@ interface ITypeInfo : public IUnknown {
 	HRESULT CreateInstance(LPUNKNOWN, REFIID, PVOID*);
 	HRESULT GetMops(MEMBERID, BSTR*);
 	HRESULT GetContainingTypeLib(LPTYPELIB*, UINT*);
-	проц ReleaseTypeAttr(LPTYPEATTR);
-	проц ReleaseFuncDesc(LPFUNCDESC);
-	проц ReleaseVarDesc(LPVARDESC);
+	void ReleaseTypeAttr(LPTYPEATTR);
+	void ReleaseFuncDesc(LPFUNCDESC);
+	void ReleaseVarDesc(LPVARDESC);
 }
 alias ITypeInfo LPTYPEINFO;
 
@@ -609,7 +609,7 @@ interface ITypeLib : public IUnknown {
 	HRESULT GetDocumentation(INT, BSTR*, BSTR*, DWORD*, BSTR*);
 	HRESULT IsName(LPOLESTR, ULONG, BOOL*);
 	HRESULT FindName(LPOLESTR, ULONG, ITypeInfo**, MEMBERID*, USHORT*);
-	проц ReleaseTLibAttr(TLIBATTR*);
+	void ReleaseTLibAttr(TLIBATTR*);
 }
 alias ITypeLib LPTYPELIB;
 
@@ -665,7 +665,7 @@ interface IRecordInfo : public IUnknown {
 alias IRecordInfo LPRECORDINFO;
 
 interface ITypeMarshal : public IUnknown {
-	HRESULT Размер(PVOID, DWORD, PVOID, ULONG*);
+	HRESULT Size(PVOID, DWORD, PVOID, ULONG*);
 	HRESULT Marshal(PVOID, DWORD, PVOID, ULONG, BYTE*, ULONG*);
 	HRESULT Unmarshal(PVOID, DWORD, ULONG, BYTE*, ULONG*);
 	HRESULT Free(PVOID);

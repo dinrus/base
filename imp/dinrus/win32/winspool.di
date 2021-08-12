@@ -321,7 +321,7 @@ struct JOB_INFO_2A {
 	DWORD StartTime;
 	DWORD UntilTime;
 	DWORD TotalPages;
-	DWORD Размер;
+	DWORD Size;
 	SYSTEMTIME Submitted;
 	DWORD Time;
 	DWORD PagesPrinted;
@@ -348,7 +348,7 @@ struct JOB_INFO_2W {
 	DWORD StartTime;
 	DWORD UntilTime;
 	DWORD TotalPages;
-	DWORD Размер;
+	DWORD Size;
 	SYSTEMTIME Submitted;
 	DWORD Time;
 	DWORD PagesPrinted;
@@ -656,7 +656,7 @@ alias PRINTER_NOTIFY_INFO* PPRINTER_NOTIFY_INFO, LPPRINTER_NOTIFY_INFO;
 struct FORM_INFO_1A {
 	DWORD Flags;
 	LPSTR pName;
-	SIZEL Размер;
+	SIZEL Size;
 	RECTL ImageableArea;
 }
 alias FORM_INFO_1A* PFORM_INFO_1A, LPFORM_INFO_1A;
@@ -664,7 +664,7 @@ alias FORM_INFO_1A* PFORM_INFO_1A, LPFORM_INFO_1A;
 struct FORM_INFO_1W {
 	DWORD  Flags;
 	LPWSTR pName;
-	SIZEL  Размер;
+	SIZEL  Size;
 	RECTL  ImageableArea;
 }
 alias FORM_INFO_1W* PFORM_INFO_1W, LPFORM_INFO_1W;

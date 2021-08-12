@@ -10,7 +10,7 @@
 \***********************************************************************/
 module win32.cplext;
 
-enum : бцел {
+enum : uint {
 	CPLPAGE_MOUSE_BUTTONS      = 1,
 	CPLPAGE_MOUSE_PTRMOTION    = 2,
 	CPLPAGE_MOUSE_WHEEL        = 3,

@@ -1,16 +1,16 @@
 ﻿module win32.directx.dinput8;
 
 //import tango.sys.win32.Types;
-//alias сим CHAR;
+//alias char CHAR;
 
 import win32.windows;
 
 enum {
-	CLASS_E_NOAGGREGATION = cast(цел) 0x80040110,
+	CLASS_E_NOAGGREGATION = cast(int) 0x80040110,
 }
 
 interface IUnknown {
-    HRESULT QueryInterface(IID* riid, проц** pvObject);
+    HRESULT QueryInterface(IID* riid, void** pvObject);
     ULONG AddRef();
     ULONG Release();
 }
@@ -159,8 +159,8 @@ struct DIEFFECT
     LPDWORD rgdwAxes;               // Array of axes
     LPLONG rglDirection;            // Array of directions
     DIENVELOPE* lpEnvelope;         // Optional
-    DWORD cbTypeSpecificParams;     // Размер of парамы
-    LPVOID lpvTypeSpecificParams;   // Pointer to парамы
+    DWORD cbTypeSpecificParams;     // Size of params
+    LPVOID lpvTypeSpecificParams;   // Pointer to params
     DWORD  dwStartDelay;            // Microseconds
 }
 
@@ -254,9 +254,9 @@ struct DIMOUSESTATE2
 
 struct DIJOYSTATE
 {
-    LONG    lX;                     /* x-axis позиция              */
-    LONG    lY;                     /* y-axis позиция              */
-    LONG    lZ;                     /* z-axis позиция              */
+    LONG    lX;                     /* x-axis position              */
+    LONG    lY;                     /* y-axis position              */
+    LONG    lZ;                     /* z-axis position              */
     LONG    lRx;                    /* x-axis rotation              */
     LONG    lRy;                    /* y-axis rotation              */
     LONG    lRz;                    /* z-axis rotation              */
@@ -286,15 +286,15 @@ interface IDirectInputEffect : IUnknown
     HRESULT Escape(DIEFFESCAPE*);
 }
 
-extern(Windows) alias бул function(DIDEVICEINSTANCEA*, LPVOID) LPDIENUMDEVICESCALLBACKA;
-extern(Windows) alias бул function(DIDEVICEINSTANCEA*, IDirectInputDevice8A*, DWORD, DWORD, LPVOID) LPDIENUMDEVICESBYSEMANTICSCBA;
+extern(Windows) alias bool function(DIDEVICEINSTANCEA*, LPVOID) LPDIENUMDEVICESCALLBACKA;
+extern(Windows) alias bool function(DIDEVICEINSTANCEA*, IDirectInputDevice8A*, DWORD, DWORD, LPVOID) LPDIENUMDEVICESBYSEMANTICSCBA;
 
-extern(Windows) alias бул function(DIDEVICEOBJECTINSTANCEA *didoi, проц* pContext) LPDIENUMDEVICEOBJECTSCALLBACKA;
+extern(Windows) alias bool function(DIDEVICEOBJECTINSTANCEA *didoi, void* pContext) LPDIENUMDEVICEOBJECTSCALLBACKA;
 
-extern(Windows) alias бул function(DIEFFECTINFOA*, LPVOID) LPDIENUMEFFECTSCALLBACKA;
-extern(Windows) alias бул function(IDirectInputEffect, LPVOID) LPDIENUMCREATEDEFFECTOBJECTSCALLBACK;
-extern(Windows) alias бул function(DIFILEEFFECT* , LPVOID) LPDIENUMEFFECTSINFILECALLBACK;
-extern(Windows) alias бул function(IUnknown, LPVOID) LPDICONFIGUREDEVICESCALLBACK;
+extern(Windows) alias bool function(DIEFFECTINFOA*, LPVOID) LPDIENUMEFFECTSCALLBACKA;
+extern(Windows) alias bool function(IDirectInputEffect, LPVOID) LPDIENUMCREATEDEFFECTOBJECTSCALLBACK;
+extern(Windows) alias bool function(DIFILEEFFECT* , LPVOID) LPDIENUMEFFECTSINFILECALLBACK;
+extern(Windows) alias bool function(IUnknown, LPVOID) LPDICONFIGUREDEVICESCALLBACK;
 
 interface IDirectInputDevice8A : IUnknown
 {
@@ -344,7 +344,7 @@ extern(Windows):
 }
 alias IDirectInput8A IDirectInput8;
 
-extern(Windows) HRESULT DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, GUID* riidltf, проц** ppvOut, IUnknown punkOuter);
+extern(Windows) HRESULT DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, GUID* riidltf, void** ppvOut, IUnknown punkOuter);
 
 const GUID IID_IDirectInput8A={0xBF798030, 0x483A, 0x4DA2, [0xAA, 0x99, 0x5D, 0x64, 0xED, 0x36, 0x97, 0x00]};
 alias IID_IDirectInput8A IID_IDirectInput8;
@@ -360,7 +360,7 @@ alias IID_IDirectInput8A IID_IDirectInput8;
 //const GUID GUID_Key =         {0x55728220, 0xD33C, 0x11CF, [0xBF, 0xC7, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00]};
 //const GUID GUID_POV =         {0xA36D02F2, 0xC9F3, 0x11CF, [0xBF, 0xC7, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00]};
 
-enum : бцел
+enum : uint
 {
 	DISCL_EXCLUSIVE=     0x00000001,
 	DISCL_NONEXCLUSIVE=  0x00000002,
@@ -392,7 +392,7 @@ struct DIPROPDWORD
     DWORD   dwData;
 }
 
-template MAKE_HRESULT(бцел sev, бцел fac, бцел code)
+template MAKE_HRESULT(uint sev, uint fac, uint code)
 {
 	const HRESULT MAKE_HRESULT = cast(HRESULT)((sev << 31) | (fac << 16) | code);
 }

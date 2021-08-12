@@ -37,7 +37,7 @@ enum : UCHAR {
 	SESSION_ABORTED // = 6
 }
 
-const сим[4]
+const char[4]
 	ALL_TRANSPORTS = "M\0\0\0",
 	MS_NBF         = "MNBF";
 
@@ -117,10 +117,10 @@ enum : UCHAR {
 struct ACTION_HEADER {
 	union {
 		/*	transport_id is defined as a ULONG, but both the above constants
-		 *	and the documented description suggest it should be a сим[4]
+		 *	and the documented description suggest it should be a char[4]
 		 */
 		ULONG   transport_id;
-		сим[4] c_transport_id;
+		char[4] c_transport_id;
 	}
 	USHORT action_code;
 	USHORT reserved;
@@ -191,7 +191,7 @@ struct LANA_ENUM {
 alias LANA_ENUM* PLANA_ENUM;
 
 struct NAME_BUFFER {
-	UCHAR[NCBNAMSZ] имя;
+	UCHAR[NCBNAMSZ] name;
 	UCHAR           name_num;
 	UCHAR           name_flags;
 }
@@ -208,7 +208,7 @@ struct NCB {
 	UCHAR[NCBNAMSZ] ncb_name;
 	UCHAR           ncb_rto;
 	UCHAR           ncb_sto;
-	extern (Windows) проц function(NCB*) ncb_post;
+	extern (Windows) void function(NCB*) ncb_post;
 	UCHAR           ncb_lana_num;
 	UCHAR           ncb_cmd_cplt;
 	UCHAR           ncb_reserve[10];

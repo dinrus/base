@@ -14,7 +14,7 @@ private import win32.windef;
 
 const size_t MAX_ADAPTER_NAME = 128;
 
-// IP STATUS флаги
+// IP STATUS flags
 enum : IP_STATUS {
 	IP_SUCCESS         =     0,
 	IP_STATUS_BASE     = 11000,
@@ -45,11 +45,11 @@ enum : IP_STATUS {
 	IP_PENDING         = IP_STATUS_BASE + 255
 }
 
-// IP header Flags значения
+// IP header Flags values
 const byte IP_FLAG_DF = 2;
 
 // IP Option types
-enum : ббайт {
+enum : ubyte {
 	IP_OPT_EOL          = 0,
 	IP_OPT_NOP          = 0x01,
 	IP_OPT_RR           = 0x07,
@@ -61,26 +61,26 @@ enum : ббайт {
 	IP_OPT_ROUTER_ALERT = 0x94
 }
 
-const ббайт MAX_OPT_SIZE = 40;
+const ubyte MAX_OPT_SIZE = 40;
 
-alias бцел IPAddr, IPMask, IP_STATUS;
+alias uint IPAddr, IPMask, IP_STATUS;
 
 struct IP_OPTION_INFORMATION {
-	ббайт  Ttl;
-	ббайт  Tos;
-	ббайт  Flags;
-	ббайт  OptionsSize;
-	ббайт* OptionsData;
+	ubyte  Ttl;
+	ubyte  Tos;
+	ubyte  Flags;
+	ubyte  OptionsSize;
+	ubyte* OptionsData;
 }
 alias IP_OPTION_INFORMATION* PIP_OPTION_INFORMATION;
 
 struct ICMP_ECHO_REPLY {
   IPAddr Адрес;
-  бцел   Status;
-  бцел   RoundTripTime;
-  бкрат DataSize;
-  бкрат Reserved;
-  проц*  Data;
+  uint   Status;
+  uint   RoundTripTime;
+  ushort DataSize;
+  ushort Reserved;
+  void*  Data;
   IP_OPTION_INFORMATION Options;
 }
 alias ICMP_ECHO_REPLY* PICMP_ECHO_REPLY;

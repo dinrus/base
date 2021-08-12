@@ -14,7 +14,7 @@ module win32.ntldap;
  *	aliases.  Should we merge them anyway?
  */
 
-const сим[]
+const char[]
 	LDAP_SERVER_ASQ_OID                    = "1.2.840.113556.1.4.1504",
 	LDAP_SERVER_DIRSYNC_OID                = "1.2.840.113556.1.4.841",
 	LDAP_SERVER_SD_FLAGS_OID               = "1.2.840.113556.1.4.801",
@@ -34,7 +34,7 @@ const сим[]
 	LDAP_SERVER_PERMISSIVE_MODIFY_OID      = "1.2.840.113556.1.4.1413",
 	LDAP_SERVER_CROSSDOM_MOVE_TARGET_OID   = "1.2.840.113556.1.4.521";
 
-const шим[]
+const wchar[]
 	LDAP_SERVER_ASQ_OID_W                  = "1.2.840.113556.1.4.1504",
 	LDAP_SERVER_DIRSYNC_OID_W              = "1.2.840.113556.1.4.841",
 	LDAP_SERVER_SD_FLAGS_OID_W             = "1.2.840.113556.1.4.801",

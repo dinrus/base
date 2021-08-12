@@ -41,14 +41,14 @@ enum {
 }
 
 extern (Windows) {
-	цел UuidCompare(UUID*, UUID*, RPC_STATUS*);
+	int UuidCompare(UUID*, UUID*, RPC_STATUS*);
 	RPC_STATUS UuidCreateNil(UUID*);
-	цел UuidEqual(UUID*, UUID*, RPC_STATUS*);
-	бкрат UuidHash(UUID*, RPC_STATUS*);
-	цел UuidIsNil(UUID*, RPC_STATUS*);
+	int UuidEqual(UUID*, UUID*, RPC_STATUS*);
+	ushort UuidHash(UUID*, RPC_STATUS*);
+	int UuidIsNil(UUID*, RPC_STATUS*);
 
-	RPC_STATUS RpcMgmtEpEltInqBegin(RPC_BINDING_HANDLE, бцел, RPC_IF_ID*,
-	  бцел, UUID*, RPC_EP_INQ_HANDLE*);
+	RPC_STATUS RpcMgmtEpEltInqBegin(RPC_BINDING_HANDLE, uint, RPC_IF_ID*,
+	  uint, UUID*, RPC_EP_INQ_HANDLE*);
 	RPC_STATUS RpcMgmtEpEltInqDone(RPC_EP_INQ_HANDLE*);
 	RPC_STATUS RpcMgmtEpUnregister(RPC_BINDING_HANDLE, RPC_IF_ID*,
 	  RPC_BINDING_HANDLE, UUID*);
@@ -57,12 +57,12 @@ extern (Windows) {
 
 
 //#ifdef RPC_UNICODE_SUPPORTED
-RPC_STATUS DceErrorInqTextA(RPC_STATUS, сим*);
-RPC_STATUS DceErrorInqTextW(RPC_STATUS, шим*);
+RPC_STATUS DceErrorInqTextA(RPC_STATUS, char*);
+RPC_STATUS DceErrorInqTextW(RPC_STATUS, wchar*);
 RPC_STATUS RpcMgmtEpEltInqNextA(RPC_EP_INQ_HANDLE, RPC_IF_ID*,
-  RPC_BINDING_HANDLE*, UUID*, сим**);
+  RPC_BINDING_HANDLE*, UUID*, char**);
 RPC_STATUS RpcMgmtEpEltInqNextW(RPC_EP_INQ_HANDLE, RPC_IF_ID*,
-  RPC_BINDING_HANDLE*, UUID*, шим**);
+  RPC_BINDING_HANDLE*, UUID*, wchar**);
 version (Unicode) {
 	alias RpcMgmtEpEltInqNextW RpcMgmtEpEltInqNext;
 	alias DceErrorInqTextW DceErrorInqText;
@@ -72,7 +72,7 @@ version (Unicode) {
 }
 /+
 #else /* RPC_UNICODE_SUPPORTED */
-	RPC_STATUS RPC_ENTRY DceErrorInqText(RPC_STATUS,unsigned сим*);
-	RPC_STATUS RPC_ENTRY RpcMgmtEpEltInqNext(RPC_EP_INQ_HANDLE,RPC_IF_ID*,RPC_BINDING_HANDLE*,UUID*,unsigned сим**);
+	RPC_STATUS RPC_ENTRY DceErrorInqText(RPC_STATUS,unsigned char*);
+	RPC_STATUS RPC_ENTRY RpcMgmtEpEltInqNext(RPC_EP_INQ_HANDLE,RPC_IF_ID*,RPC_BINDING_HANDLE*,UUID*,unsigned char**);
 #endif
 +/

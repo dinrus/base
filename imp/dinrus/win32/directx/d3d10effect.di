@@ -85,7 +85,7 @@ HRESULT D3D10StateBlockMaskEnableCapture(D3D10_STATE_BLOCK_MASK* pMask, D3D10_DE
 HRESULT D3D10StateBlockMaskDisableCapture(D3D10_STATE_BLOCK_MASK* pMask, D3D10_DEVICE_STATE_TYPES StateType, UINT RangeStart, UINT RangeLength);
 HRESULT D3D10StateBlockMaskEnableAll(D3D10_STATE_BLOCK_MASK* pMask);
 HRESULT D3D10StateBlockMaskDisableAll(D3D10_STATE_BLOCK_MASK* pMask);
-BOOL D3D10StateBlockMaskGetSetting(D3D10_STATE_BLOCK_MASK* pMask, D3D10_DEVICE_STATE_TYPES StateType, UINT Запись);
+BOOL D3D10StateBlockMaskGetSetting(D3D10_STATE_BLOCK_MASK* pMask, D3D10_DEVICE_STATE_TYPES StateType, UINT Entry);
 HRESULT D3D10CreateStateBlock(ID3D10Device pDevice, D3D10_STATE_BLOCK_MASK* pStateBlockMask, ID3D10StateBlock ppStateBlock);
 
 const D3D10_EFFECT_COMPILE_CHILD_EFFECT			= 1 << 0;
@@ -160,8 +160,8 @@ interface ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	*/
 }
 
@@ -193,16 +193,16 @@ interface ID3D10EffectScalarVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
-	HRESULT GetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
-	HRESULT SetFloat(плав Value);
-	HRESULT GetFloat(плав* pValue);    
-	HRESULT SetFloatArray(плав* pData, UINT Offset, UINT Count);
-	HRESULT GetFloatArray(плав* pData, UINT Offset, UINT Count);
-	HRESULT SetInt(цел Value);
-	HRESULT GetInt(цел* pValue);
-	HRESULT SetIntArray(цел* pData, UINT Offset, UINT Count);
-	HRESULT GetIntArray(цел* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT GetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT SetFloat(float Value);
+	HRESULT GetFloat(float* pValue);    
+	HRESULT SetFloatArray(float* pData, UINT Offset, UINT Count);
+	HRESULT GetFloatArray(float* pData, UINT Offset, UINT Count);
+	HRESULT SetInt(int Value);
+	HRESULT GetInt(int* pValue);
+	HRESULT SetIntArray(int* pData, UINT Offset, UINT Count);
+	HRESULT GetIntArray(int* pData, UINT Offset, UINT Count);
 	HRESULT SetBool(BOOL Value);
 	HRESULT GetBool(BOOL* pValue);
 	HRESULT SetBoolArray(BOOL* pData, UINT Offset, UINT Count);
@@ -238,20 +238,20 @@ interface ID3D10EffectVectorVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
-	HRESULT GetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT SetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT GetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
 	HRESULT SetBoolVector (BOOL* pData);
-	HRESULT SetIntVector  (цел* pData);
-	HRESULT SetFloatVector(плав* pData);
+	HRESULT SetIntVector  (int* pData);
+	HRESULT SetFloatVector(float* pData);
 	HRESULT GetBoolVector (BOOL* pData);
-	HRESULT GetIntVector  (цел* pData);
-	HRESULT GetFloatVector(плав* pData);
+	HRESULT GetIntVector  (int* pData);
+	HRESULT GetFloatVector(float* pData);
 	HRESULT SetBoolVectorArray (BOOL* pData, UINT Offset, UINT Count);
-	HRESULT SetIntVectorArray  (цел* pData, UINT Offset, UINT Count);
-	HRESULT SetFloatVectorArray(плав* pData, UINT Offset, UINT Count);
+	HRESULT SetIntVectorArray  (int* pData, UINT Offset, UINT Count);
+	HRESULT SetFloatVectorArray(float* pData, UINT Offset, UINT Count);
 	HRESULT GetBoolVectorArray (BOOL* pData, UINT Offset, UINT Count);
-	HRESULT GetIntVectorArray  (цел* pData, UINT Offset, UINT Count);
-	HRESULT GetFloatVectorArray(плав* pData, UINT Offset, UINT Count);
+	HRESULT GetIntVectorArray  (int* pData, UINT Offset, UINT Count);
+	HRESULT GetFloatVectorArray(float* pData, UINT Offset, UINT Count);
 	*/
 }
 
@@ -283,16 +283,16 @@ interface ID3D10EffectMatrixVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
-	HRESULT GetRawValue(проц* pData, UINT ByteOffset, UINT ByteCount);
-	HRESULT SetMatrix(плав* pData);
-	HRESULT GetMatrix(плав* pData);
-	HRESULT SetMatrixArray(плав* pData, UINT Offset, UINT Count);
-	HRESULT GetMatrixArray(плав* pData, UINT Offset, UINT Count);
-	HRESULT SetMatrixTranspose(плав* pData);
-	HRESULT GetMatrixTranspose(плав* pData);
-	HRESULT SetMatrixTransposeArray(плав* pData, UINT Offset, UINT Count);
-	HRESULT GetMatrixTransposeArray(плав* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT GetRawValue(void* pData, UINT ByteOffset, UINT ByteCount);
+	HRESULT SetMatrix(float* pData);
+	HRESULT GetMatrix(float* pData);
+	HRESULT SetMatrixArray(float* pData, UINT Offset, UINT Count);
+	HRESULT GetMatrixArray(float* pData, UINT Offset, UINT Count);
+	HRESULT SetMatrixTranspose(float* pData);
+	HRESULT GetMatrixTranspose(float* pData);
+	HRESULT SetMatrixTransposeArray(float* pData, UINT Offset, UINT Count);
+	HRESULT GetMatrixTransposeArray(float* pData, UINT Offset, UINT Count);
 	*/
 }
 
@@ -324,8 +324,8 @@ interface ID3D10EffectStringVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetString(LPCSTR* ppString);
 	HRESULT GetStringArray(LPCSTR* ppStrings, UINT Offset, UINT Count);
 	*/
@@ -359,8 +359,8 @@ interface ID3D10EffectShaderResourceVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT SetResource(ID3D10ShaderResourceView pResource);
 	HRESULT GetResource(ID3D10ShaderResourceView* ppResource);
 	HRESULT SetResourceArray(ID3D10ShaderResourceView* ppResources, UINT Offset, UINT Count);
@@ -396,8 +396,8 @@ interface ID3D10EffectRenderTargetViewVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT SetRenderTarget(ID3D10RenderTargetView pResource);
 	HRESULT GetRenderTarget(ID3D10RenderTargetView* ppResource);
 	HRESULT SetRenderTargetArray(ID3D10RenderTargetView* ppResources, UINT Offset, UINT Count);
@@ -433,8 +433,8 @@ interface ID3D10EffectDepthStencilViewVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT SetDepthStencil(ID3D10DepthStencilView pResource);
 	HRESULT GetDepthStencil(ID3D10DepthStencilView* ppResource);
 	HRESULT SetDepthStencilArray(ID3D10DepthStencilView* ppResources, UINT Offset, UINT Count);
@@ -469,8 +469,8 @@ interface ID3D10EffectConstantBuffer : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT SetConstantBuffer(ID3D10Buffer pConstantBuffer);
 	HRESULT GetConstantBuffer(ID3D10Buffer* ppConstantBuffer);
 	HRESULT SetTextureBuffer(ID3D10ShaderResourceView pTextureBuffer);
@@ -515,8 +515,8 @@ interface ID3D10EffectShaderVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetShaderDesc(UINT ShaderIndex, D3D10_EFFECT_SHADER_DESC* pDesc);
 	HRESULT GetVertexShader(UINT ShaderIndex, ID3D10VertexShader* ppVS);
 	HRESULT GetGeometryShader(UINT ShaderIndex, ID3D10GeometryShader* ppGS);
@@ -553,8 +553,8 @@ interface ID3D10EffectBlendVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetBlendState(UINT Index, ID3D10BlendState* ppBlendState);
 	HRESULT GetBackingStore(UINT Index, D3D10_BLEND_DESC* pBlendDesc);
 	*/
@@ -587,8 +587,8 @@ interface ID3D10EffectDepthStencilVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetDepthStencilState(UINT Index, ID3D10DepthStencilState* ppDepthStencilState);
 	HRESULT GetBackingStore(UINT Index, D3D10_DEPTH_STENCIL_DESC* pDepthStencilDesc);
 	*/
@@ -621,8 +621,8 @@ interface ID3D10EffectRasterizerVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetRasterizerState(UINT Index, ID3D10RasterizerState* ppRasterizerState);
 	HRESULT GetBackingStore(UINT Index, D3D10_RASTERIZER_DESC* pRasterizerDesc);
 	*/
@@ -655,8 +655,8 @@ interface ID3D10EffectSamplerVariable : ID3D10EffectVariable {
 	ID3D10EffectDepthStencilVariable AsDepthStencil();
 	ID3D10EffectRasterizerVariable AsRasterizer();
 	ID3D10EffectSamplerVariable AsSampler();
-	HRESULT SetRawValue(проц* pData, UINT Offset, UINT Count);
-	HRESULT GetRawValue(проц* pData, UINT Offset, UINT Count);
+	HRESULT SetRawValue(void* pData, UINT Offset, UINT Count);
+	HRESULT GetRawValue(void* pData, UINT Offset, UINT Count);
 	HRESULT GetSampler(UINT Index, ID3D10SamplerState* ppSampler);
 	HRESULT GetBackingStore(UINT Index, D3D10_SAMPLER_DESC* pSamplerDesc);
 	*/
@@ -696,7 +696,7 @@ extern (C) const GUID IID_ID3D10EffectPass = {0x5cfbeb89, 0x1a06, 0x46e0, [0xb2,
 /**
  * HACK to FIX vtbl[0] bug:
  * This is an example HACK how to fix all interfaces which are NOT derived from
- * IUnknown. They need the first запись in their vtbl[] point to the first
+ * IUnknown. They need the first entry in their vtbl[] point to the first
  * virtual function.
  * See:
  * http://www.digitalmars.com/d/cpp_interface.html
@@ -739,7 +739,7 @@ extern (C) const GUID IID_ID3D10EffectTechnique = {0xdb122ce8, 0xd1c9, 0x4292, [
 /**
  * HACK to FIX vtbl[0] bug:
  * This is an example HACK how to fix all interfaces which are NOT derived from
- * IUnknown. They need the first запись in their vtbl[] point to the first
+ * IUnknown. They need the first entry in their vtbl[] point to the first
  * virtual function.
  * See:
  * http://www.digitalmars.com/d/cpp_interface.html
@@ -792,7 +792,7 @@ interface ID3D10EffectPool : IUnknown {
 	ID3D10Effect AsEffect();
 }
 
-HRESULT D3D10CompileEffectFromMemory(проц* pData, SIZE_T DataLength, LPCSTR pSrcFileName, D3D10_SHADER_MACRO* pDefines, ID3D10Include pInclude, UINT HLSLFlags, UINT FXFlags, ID3D10Blob* ppCompiledEffect, ID3D10Blob* ppErrors);
-HRESULT D3D10CreateEffectFromMemory(проц* pData, SIZE_T DataLength, UINT FXFlags, ID3D10Device pDevice, ID3D10EffectPool pEffectPool, ID3D10Effect* ppEffect);
-HRESULT D3D10CreateEffectPoolFromMemory(проц* pData, SIZE_T DataLength, UINT FXFlags, ID3D10Device pDevice, ID3D10EffectPool* ppEffectPool);
+HRESULT D3D10CompileEffectFromMemory(void* pData, SIZE_T DataLength, LPCSTR pSrcFileName, D3D10_SHADER_MACRO* pDefines, ID3D10Include pInclude, UINT HLSLFlags, UINT FXFlags, ID3D10Blob* ppCompiledEffect, ID3D10Blob* ppErrors);
+HRESULT D3D10CreateEffectFromMemory(void* pData, SIZE_T DataLength, UINT FXFlags, ID3D10Device pDevice, ID3D10EffectPool pEffectPool, ID3D10Effect* ppEffect);
+HRESULT D3D10CreateEffectPoolFromMemory(void* pData, SIZE_T DataLength, UINT FXFlags, ID3D10Device pDevice, ID3D10EffectPool* ppEffectPool);
 HRESULT D3D10DisassembleEffect(ID3D10Effect pEffect, BOOL EnableColorCode, ID3D10Blob* ppDisassembly);

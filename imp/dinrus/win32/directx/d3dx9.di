@@ -7,8 +7,8 @@ public import win32.windows;
 
 alias D3DMATRIX D3DXMATRIX;
 
-const бцел MAXD3DDECLLENGTH = 64;
-const бцел MAX_FVF_DECL_SIZE = MAXD3DDECLLENGTH + 1;
+const uint MAXD3DDECLLENGTH = 64;
+const uint MAX_FVF_DECL_SIZE = MAXD3DDECLLENGTH + 1;
 
 align(4) struct D3DXATTRIBUTERANGE
 {
@@ -21,9 +21,9 @@ align(4) struct D3DXATTRIBUTERANGE
 
 align(4) struct D3DXVECTOR2
 {
-	плав x = 0, y = 0;
+	float x = 0, y = 0;
 
-	static D3DXVECTOR2 opCall(плав x, плав y)
+	static D3DXVECTOR2 opCall(float x, float y)
 	{
 		D3DXVECTOR2 v;
 		v.x = x;
@@ -36,9 +36,9 @@ alias D3DVECTOR D3DXVECTOR3;
 
 align(4) struct D3DXVECTOR4
 {
-	плав x = 0, y = 0, z = 0, w = 0;
+	float x = 0, y = 0, z = 0, w = 0;
 
-	static D3DXVECTOR4 opCall(плав x, плав y, плав z, плав w)
+	static D3DXVECTOR4 opCall(float x, float y, float z, float w)
 	{
 		D3DXVECTOR4 v;
 		v.x = x;
@@ -51,7 +51,7 @@ align(4) struct D3DXVECTOR4
 
 align(4) struct D3DXQUATERNION
 {
-	плав x = 0, y = 0, z = 0, w = 0;
+	float x = 0, y = 0, z = 0, w = 0;
 }
 
 align(4) struct D3DXFRAME
@@ -85,7 +85,7 @@ align(4) struct D3DXMESHDATA
 {
     D3DXMESHDATATYPE Type;
 
-    // current mesh данные interface
+    // current mesh data interface
     union
     {
         ID3DXMesh              pMesh;
@@ -94,10 +94,10 @@ align(4) struct D3DXMESHDATA
     }
 }
 
-alias бцел D3DXMESHDATATYPE;
-enum : бцел
+alias uint D3DXMESHDATATYPE;
+enum : uint
 {
-    D3DXMESHTYPE_MESH      = 0x001,             // Normal ID3DXMesh данные
+    D3DXMESHTYPE_MESH      = 0x001,             // Normal ID3DXMesh data
     D3DXMESHTYPE_PMESH     = 0x002,             // Progressive Mesh - ID3DXPMesh
     D3DXMESHTYPE_PATCHMESH = 0x003             // Patch Mesh - ID3DXPatchMesh
 }
@@ -108,20 +108,20 @@ align(4) struct D3DXMATERIAL
     LPSTR         pTextureFilename;
 }
 
-alias бцел D3DXEFFECTDEFAULTTYPE;
-enum : бцел
+alias uint D3DXEFFECTDEFAULTTYPE;
+enum : uint
 {
-    D3DXEDT_STRING = 0x1,       // pValue points to a null terminated ASCII ткст
-    D3DXEDT_FLOATS = 0x2,       // pValue points to an array of floats - number of floats is NumBytes / sizeof(плав)
+    D3DXEDT_STRING = 0x1,       // pValue points to a null terminated ASCII string
+    D3DXEDT_FLOATS = 0x2,       // pValue points to an array of floats - number of floats is NumBytes / sizeof(float)
     D3DXEDT_DWORD  = 0x3       // pValue points to a DWORD
 }
 
 align(4) struct D3DXEFFECTDEFAULT
 {
     LPSTR                 pParamName;
-    D3DXEFFECTDEFAULTTYPE Type;           // тип of the данные pointed to by pValue
-    DWORD                 NumBytes;       // размер in bytes of the данные pointed to by pValue
-    LPVOID                pValue;         // данные for the default of the effect
+    D3DXEFFECTDEFAULTTYPE Type;           // type of the data pointed to by pValue
+    DWORD                 NumBytes;       // size in bytes of the data pointed to by pValue
+    LPVOID                pValue;         // data for the default of the effect
 }
 
 align(4) struct D3DXEFFECTINSTANCE
@@ -131,8 +131,8 @@ align(4) struct D3DXEFFECTINSTANCE
     D3DXEFFECTDEFAULT* pDefaults;
 }
 
-alias бцел D3DXPATCHMESHTYPE;
-enum : бцел
+alias uint D3DXPATCHMESHTYPE;
+enum : uint
 {
     D3DXPATCHMESH_RECT   = 0x001,
     D3DXPATCHMESH_TRI    = 0x002,
@@ -146,7 +146,7 @@ align(4) struct D3DXPATCHINFO
     D3DBASISTYPE Basis;
 }
 
-const бцел LF_FACESIZE = 32;
+const uint LF_FACESIZE = 32;
 
 align(4) struct D3DXFONT_DESCA
 {
@@ -226,31 +226,31 @@ align(4) struct TEXTMETRICW
 
 align(4) struct D3DXEFFECT_DESC
 {
-    LPCSTR Creator;                     // Creator ткст
+    LPCSTR Creator;                     // Creator string
     UINT Parameters;                    // Number of parameters
     UINT Techniques;                    // Number of techniques
     UINT Functions;                     // Number of function entrypoints
 }
 
-alias сим* D3DXHANDLE;
+alias char* D3DXHANDLE;
 
 align(4) struct D3DXPARAMETER_DESC
 {
-    LPCSTR Name;                        // Parameter имя
+    LPCSTR Name;                        // Parameter name
     LPCSTR Semantic;                    // Parameter semantic
     D3DXPARAMETER_CLASS Class;          // Class
-    D3DXPARAMETER_TYPE Type;            // Component тип
+    D3DXPARAMETER_TYPE Type;            // Component type
     UINT Rows;                          // Number of rows
     UINT Columns;                       // Number of columns
     UINT Elements;                      // Number of array elements
     UINT Annotations;                   // Number of annotations
     UINT StructMembers;                 // Number of structure member sub-parameters
-    DWORD Flags;                        // D3DX_PARAMETER_* флаги
-    UINT Bytes;                         // Parameter размер, in bytes
+    DWORD Flags;                        // D3DX_PARAMETER_* flags
+    UINT Bytes;                         // Parameter size, in bytes
 }
 
-alias бцел D3DXPARAMETER_CLASS;
-enum : бцел
+alias uint D3DXPARAMETER_CLASS;
+enum : uint
 {
     D3DXPC_SCALAR,
     D3DXPC_VECTOR,
@@ -260,8 +260,8 @@ enum : бцел
     D3DXPC_STRUCT
 }
 
-alias бцел D3DXPARAMETER_TYPE;
-enum : бцел
+alias uint D3DXPARAMETER_TYPE;
+enum : uint
 {
     D3DXPT_VOID,
     D3DXPT_BOOL,
@@ -286,14 +286,14 @@ enum : бцел
 
 align(4) struct D3DXTECHNIQUE_DESC
 {
-    LPCSTR Name;                        // Technique имя
+    LPCSTR Name;                        // Technique name
     UINT Passes;                        // Number of passes
     UINT Annotations;                   // Number of annotations
 }
 
 align(4) struct D3DXPASS_DESC
 {
-    LPCSTR Name;                        // Pass имя
+    LPCSTR Name;                        // Pass name
     UINT Annotations;                   // Number of annotations
 
     DWORD *pVertexShaderFunction; // Vertex shader function
@@ -302,7 +302,7 @@ align(4) struct D3DXPASS_DESC
 
 align(4) struct D3DXFUNCTION_DESC
 {
-    LPCSTR Name;                        // Function имя
+    LPCSTR Name;                        // Function name
     UINT Annotations;                   // Number of annotations
 }
 
@@ -311,7 +311,7 @@ struct D3DXTRACK_DESC
     DWORD Priority;
     FLOAT Weight = 0;
     FLOAT Speed = 0;
-    дво Position = 0;
+    double Position = 0;
     BOOL Enable;
 }
 
@@ -319,14 +319,14 @@ align(4) struct D3DXEVENT_DESC
 {
     DWORD      Type;
     UINT                Track;
-    дво              StartTime = 0;
-    дво              Duration = 0;
+    double              StartTime = 0;
+    double              Duration = 0;
     DWORD Transition;
     union
     {
         FLOAT           Weight = 0;
         FLOAT           Speed;
-        дво          Position;
+        double          Position;
         BOOL            Enable;
     };
 }
@@ -360,8 +360,8 @@ align(4) struct D3DXIMAGE_INFO
     D3DXIMAGE_FILEFORMAT    ImageFileFormat;
 }
 
-alias бцел D3DXIMAGE_FILEFORMAT;
-enum : бцел
+alias uint D3DXIMAGE_FILEFORMAT;
+enum : uint
 {
     D3DXIFF_BMP         = 0,
     D3DXIFF_JPG         = 1,
@@ -389,8 +389,8 @@ align(4) struct D3DXPLANE
 	FLOAT a = 0, b = 0, c = 0, d = 0;
 }
 
-alias бцел D3DXMESH;
-enum : бцел
+alias uint D3DXMESH;
+enum : uint
 {
     D3DXMESH_32BIT                  = 0x001,
     D3DXMESH_DONOTCLIP              = 0x002,
@@ -428,14 +428,14 @@ align(4) struct D3DXSEMANTIC
     UINT UsageIndex;
 }
 
-alias бцел D3DXINCLUDE_TYPE;
-enum : бцел
+alias uint D3DXINCLUDE_TYPE;
+enum : uint
 {
     D3DXINC_LOCAL,
     D3DXINC_SYSTEM,
 }
 
-enum : бцел
+enum : uint
 {
 	D3DXFX_DONOTSAVESTATE         = (1 << 0),
 	D3DXFX_DONOTSAVESHADERSTATE   = (1 << 1),
@@ -443,14 +443,14 @@ enum : бцел
 	D3DXFX_NOT_CLONEABLE          = (1 << 11)
 }
 
-alias бцел D3DXMESHSIMP;
-enum : бцел
+alias uint D3DXMESHSIMP;
+enum : uint
 {
     D3DXMESHSIMP_VERTEX   = 0x1,
     D3DXMESHSIMP_FACE     = 0x2
 }
 
-enum : бцел
+enum : uint
 {
 	DT_TOP                      = 0x00000000,
 	DT_LEFT                     = 0x00000000,
@@ -469,7 +469,7 @@ enum : бцел
 	DT_INTERNAL                 = 0x00001000
 }
 
-enum : бцел
+enum : uint
 {
 	D3DXSPRITE_DONOTSAVESTATE               = (1 << 0),
 	D3DXSPRITE_DONOTMODIFY_RENDERSTATE      = (1 << 1),
@@ -481,7 +481,7 @@ enum : бцел
 	D3DXSPRITE_SORT_DEPTH_BACKTOFRONT       = (1 << 7)
 }
 
-enum : бцел
+enum : uint
 {
 	D3DX_FILTER_NONE             = (1 << 0),
 	D3DX_FILTER_POINT            = (2 << 0),
@@ -499,10 +499,10 @@ enum : бцел
 	D3DX_FILTER_SRGB             = (3 << 21)
 }
 
-const бцел D3DX_DEFAULT            = cast(UINT) -1;
+const uint D3DX_DEFAULT            = cast(UINT) -1;
 
-alias бцел D3DXMESHOPT;
-enum : бцел
+alias uint D3DXMESHOPT;
+enum : uint
 {
     D3DXMESHOPT_COMPACT       = 0x01000000,
     D3DXMESHOPT_ATTRSORT      = 0x02000000,
@@ -510,16 +510,16 @@ enum : бцел
     D3DXMESHOPT_STRIPREORDER  = 0x08000000,
     D3DXMESHOPT_IGNOREVERTS   = 0x10000000,  // optimize faces only, don't touch vertices
     D3DXMESHOPT_DONOTSPLIT    = 0x20000000,  // do not split vertices /*shared*/ between attribute groups when attribute sorting
-    D3DXMESHOPT_DEVICEINDEPENDENT = 0x00400000  // Only affects VCache.  uses a static known good cache размер for all cards
+    D3DXMESHOPT_DEVICEINDEPENDENT = 0x00400000  // Only affects VCache.  uses a static known good cache size for all cards
 }
 
-enum : бцел
+enum : uint
 {
     D3DXPLAY_LOOP = 0,
     D3DXPLAY_ONCE = 1,
     D3DXPLAY_PINGPONG = 2
 }
-alias бцел D3DXPLAYBACK_TYPE;
+alias uint D3DXPLAYBACK_TYPE;
 
 
 // D3DX Interfaces ---------------------------------------------------------------------------------------
@@ -530,15 +530,15 @@ interface ID3DXSkinInfo : IUnknown
 
     // Specify the which vertices do each bones influence and by how much
     HRESULT SetBoneInfluence(DWORD bone, DWORD numInfluences, DWORD* vertices, FLOAT* weights);
-	HRESULT SetBoneVertexInfluence(DWORD boneNum, DWORD influenceNum, плав weight);
+	HRESULT SetBoneVertexInfluence(DWORD boneNum, DWORD influenceNum, float weight);
     DWORD GetNumBoneInfluences(DWORD bone);
 	HRESULT GetBoneInfluence(DWORD bone, DWORD* vertices, FLOAT* weights);
-	HRESULT GetBoneVertexInfluence(DWORD boneNum, DWORD influenceNum, плав *pWeight, DWORD *pVertexNum);
+	HRESULT GetBoneVertexInfluence(DWORD boneNum, DWORD influenceNum, float *pWeight, DWORD *pVertexNum);
     HRESULT GetMaxVertexInfluences(DWORD* maxVertexInfluences);
     DWORD GetNumBones();
 	HRESULT FindBoneVertexInfluenceIndex(DWORD boneNum, DWORD vertexNum, DWORD *pInfluenceIndex);
 
-    // This gets the max face influences based on a triangle mesh with the specified индекс буфер
+    // This gets the max face influences based on a triangle mesh with the specified index buffer
     HRESULT GetMaxFaceInfluences(IDirect3DIndexBuffer9 pIB, DWORD NumFaces, DWORD* maxFaceInfluences);
 
     // Set min bone influence. Bone influences that are smaller than this are ignored
@@ -546,19 +546,19 @@ interface ID3DXSkinInfo : IUnknown
     // Get min bone influence.
     FLOAT GetMinBoneInfluence();
 
-    // Bone names are returned by D3DXLoadSkinMeshFromXof. They are not used by any другой method of this object
-    HRESULT SetBoneName(DWORD Bone, LPCSTR pName); // pName is copied to an internal ткст буфер
-    LPCSTR GetBoneName(DWORD Bone); // A pointer to an internal ткст буфер is returned. Do not free this.
+    // Bone names are returned by D3DXLoadSkinMeshFromXof. They are not used by any other method of this object
+    HRESULT SetBoneName(DWORD Bone, LPCSTR pName); // pName is copied to an internal string buffer
+    LPCSTR GetBoneName(DWORD Bone); // A pointer to an internal string buffer is returned. Do not free this.
 
-    // Bone смещение matrices are returned by D3DXLoadSkinMeshFromXof. They are not used by any другой method of this object
-    HRESULT SetBoneOffsetMatrix(DWORD Bone, D3DXMATRIX *pBoneTransform); // pBoneTransform is copied to an internal буфер
+    // Bone offset matrices are returned by D3DXLoadSkinMeshFromXof. They are not used by any other method of this object
+    HRESULT SetBoneOffsetMatrix(DWORD Bone, D3DXMATRIX *pBoneTransform); // pBoneTransform is copied to an internal buffer
     D3DXMATRIX* GetBoneOffsetMatrix(DWORD Bone); // A pointer to an internal matrix is returned. Do not free this.
 
     // Clone a skin info object
     HRESULT Clone(ID3DXSkinInfo* ppSkinInfo);
 
     // Update bone influence information to match vertices after they are reordered. This should be called
-    // if the цель vertex буфер has been reordered externally.
+    // if the target vertex buffer has been reordered externally.
     HRESULT Remap(DWORD NumVertices, DWORD* pVertexRemap);
 
     // These methods enable the modification of the vertex layout of the vertices that will be skinned
@@ -567,7 +567,7 @@ interface ID3DXSkinInfo : IUnknown
     DWORD GetFVF();
     HRESULT GetDeclaration(D3DVERTEXELEMENT9 Declaration[MAX_FVF_DECL_SIZE]);
 
-    // Apply SW skinning based on current pose matrices to the цель vertices.
+    // Apply SW skinning based on current pose matrices to the target vertices.
     HRESULT UpdateSkinnedMesh(
         D3DXMATRIX* pBoneTransforms,
         D3DXMATRIX* pBoneInvTransposeTransforms,
@@ -676,7 +676,7 @@ interface ID3DXPMesh : ID3DXBaseMesh
     DWORD GetMinFaces() ;
     DWORD GetMaxVertices() ;
     DWORD GetMinVertices() ;
-    HRESULT Save( проц *pStream,  D3DXMATERIAL* pMaterials,  D3DXEFFECTINSTANCE* pEffectInstances, DWORD NumMaterials) ;
+    HRESULT Save( void *pStream,  D3DXMATERIAL* pMaterials,  D3DXEFFECTINSTANCE* pEffectInstances, DWORD NumMaterials) ;
 
     HRESULT Optimize( DWORD Flags, DWORD* pAdjacencyOut,
                      DWORD* pFaceRemap, ID3DXBuffer *ppVertexRemap,
@@ -689,7 +689,7 @@ interface ID3DXPMesh : ID3DXBaseMesh
     HRESULT GetAdjacency( DWORD* pAdjacency) ;
 
     //  Used to generate the immediate "ancestor" for each vertex when it is removed by a vsplit.  Allows generation of geomorphs
-    //     Vertex буфер must be equal to or greater than the maximum number of vertices in the pmesh
+    //     Vertex buffer must be equal to or greater than the maximum number of vertices in the pmesh
     HRESULT GenerateVertexHistory( DWORD* pVertexHistory) ;
 }
 
@@ -711,24 +711,24 @@ interface ID3DXPatchMesh : IUnknown
     // Control mesh access
     HRESULT GetVertexBuffer( IDirect3DVertexBuffer9* ppVB) ;
     HRESULT GetIndexBuffer( IDirect3DIndexBuffer9* ppIB) ;
-    HRESULT LockVertexBuffer( DWORD флаги, LPVOID *ppData) ;
+    HRESULT LockVertexBuffer( DWORD flags, LPVOID *ppData) ;
     HRESULT UnlockVertexBuffer() ;
-    HRESULT LockIndexBuffer( DWORD флаги, LPVOID *ppData) ;
+    HRESULT LockIndexBuffer( DWORD flags, LPVOID *ppData) ;
     HRESULT UnlockIndexBuffer() ;
-    HRESULT LockAttributeBuffer( DWORD флаги, DWORD** ppData) ;
+    HRESULT LockAttributeBuffer( DWORD flags, DWORD** ppData) ;
     HRESULT UnlockAttributeBuffer() ;
 
-    //  function returns the размер of the tessellated mesh given a tessellation level.
+    //  function returns the size of the tessellated mesh given a tessellation level.
     //  assumes uniform tessellation. For adaptive tessellation the Adaptive parameter must
     // be set to TRUE and TessellationLevel should be the max tessellation.
-    //  will рез in the max mesh размер necessary for adaptive tessellation.
+    //  will result in the max mesh size necessary for adaptive tessellation.
     HRESULT GetTessSize( FLOAT fTessLevel,DWORD Adaptive, DWORD *NumTriangles,DWORD *NumVertices) ;
 
     //GenerateAdjacency determines which patches are adjacent with provided tolerance
     // information is used internally to optimize tessellation
     HRESULT GenerateAdjacency( FLOAT Tolerance) ;
 
-    //CloneMesh Creates a new patchmesh with the specified decl, and converts the vertex буфер
+    //CloneMesh Creates a new patchmesh with the specified decl, and converts the vertex buffer
     //to the new decl. Entries in the new decl which are new are set to 0. If the current mesh
     //has adjacency, the new mesh will also have adjacency
     HRESULT CloneMesh( DWORD Options,  D3DVERTEXELEMENT9 *pDecl, ID3DXPatchMesh *pMesh) ;
@@ -739,7 +739,7 @@ interface ID3DXPatchMesh : IUnknown
     // independent of the actual tessellation level used.
     // Currently Flags is unused.
     // If vertices are changed, Optimize must be called again
-    HRESULT Optimize( DWORD флаги) ;
+    HRESULT Optimize( DWORD flags) ;
 
     //gets and sets displacement parameters
     //displacement maps can only be 2D textures MIP-MAPPING is ignored for non adapative tessellation
@@ -762,7 +762,7 @@ interface ID3DXPatchMesh : IUnknown
     HRESULT Tessellate( FLOAT fTessLevel,ID3DXMesh pMesh) ;
 
     // Performs adaptive tessellation based on the Z based adaptive tessellation criterion.
-    // pTrans specifies a 4D vector that is dotted with the vertices to дай the per vertex
+    // pTrans specifies a 4D vector that is dotted with the vertices to get the per vertex
     // adaptive tessellation amount. Each edge is tessellated to the average of the criterion
     // at the 2 vertices it connects.
     // MaxTessLevel specifies the upper limit for adaptive tesselation.
@@ -953,7 +953,7 @@ interface ID3DXEffectStateManager : IUnknown
     // the corresponding device call.  Note that:
     // 1. Users manage the state and are therefore responsible for making the
     //    the corresponding device calls themselves inside their callbacks.
-    // 2. Effects pay attention to the return значения of the callbacks, and so
+    // 2. Effects pay attention to the return values of the callbacks, and so
     //    users must pay attention to what they return in their callbacks.
 
     HRESULT SetTransform( D3DTRANSFORMSTATETYPE State,  D3DMATRIX *pMatrix) ;
@@ -985,7 +985,7 @@ interface ID3DXInclude
 // D3DX Functions ---------------------------------------------------------------------------------------
 extern(Windows)
 {
-	бцел D3DXGetShaderVersion(бцел* pFunction);
+	uint D3DXGetShaderVersion(uint* pFunction);
 
 	HRESULT D3DXCheckTextureRequirements(
 	        IDirect3DDevice9         pDevice,
@@ -1008,7 +1008,7 @@ extern(Windows)
 
 	HRESULT D3DXCreateCubeTexture(
 	        IDirect3DDevice9         pDevice,
-	        UINT                      Размер,
+	        UINT                      Size,
 	        UINT                      MipLevels,
 	        DWORD                     Usage,
 	        D3DFORMAT                 Format,
@@ -1039,7 +1039,7 @@ extern(Windows)
 	HRESULT D3DXCreateCubeTextureFromFileExA(
 	        IDirect3DDevice9         pDevice,
 	        LPCSTR                    pSrcFile,
-	        UINT                      Размер,
+	        UINT                      Size,
 	        UINT                      MipLevels,
 	        DWORD                     Usage,
 	        D3DFORMAT                 Format,
@@ -1095,7 +1095,7 @@ extern(Windows)
 	D3DXMATRIX* D3DXMatrixRotationYawPitchRoll( D3DXMATRIX *pOut, FLOAT Yaw, FLOAT Pitch, FLOAT Roll );
 
 	D3DXMATRIX* D3DXMatrixAffineTransformation2D( D3DXMATRIX *pOut, FLOAT Scaling, D3DXVECTOR2 *pRotationCenter,
-	      плав Rotation, D3DXVECTOR2 *pTranslation);
+	      float Rotation, D3DXVECTOR2 *pTranslation);
 
 	D3DXMATRIX* D3DXMatrixPerspectiveFovLH( D3DXMATRIX *pOut, FLOAT fovy, FLOAT Aspect, FLOAT zn, FLOAT zf );
 
@@ -1104,7 +1104,7 @@ extern(Windows)
 	D3DXMATRIX* D3DXMatrixOrthoOffCenterLH( D3DXMATRIX *pOut, FLOAT l, FLOAT r, FLOAT b, FLOAT t, FLOAT zn,
 	      FLOAT zf );
 
-	проц D3DXQuaternionToAxisAngle( D3DXQUATERNION *pQ, D3DXVECTOR3 *pAxis, FLOAT *pAngle );
+	void D3DXQuaternionToAxisAngle( D3DXQUATERNION *pQ, D3DXVECTOR3 *pAxis, FLOAT *pAngle );
 
 	D3DXQUATERNION* D3DXQuaternionRotationMatrix( D3DXQUATERNION *pOut, D3DXMATRIX *pM);
 
@@ -1112,7 +1112,7 @@ extern(Windows)
 
 	D3DXPLANE* D3DXPlaneNormalize( D3DXPLANE *pOut, D3DXPLANE *pP);
 
-	сим* DXGetErrorDescription9A(HRESULT hr);
+	char* DXGetErrorDescription9A(HRESULT hr);
 
 	HRESULT D3DXCreateEffectFromFileA(
 	        IDirect3DDevice9               pDevice,
@@ -1125,8 +1125,8 @@ extern(Windows)
 	        ID3DXBuffer*                   ppCompilationErrors);
 
 	D3DXMATRIX* D3DXMatrixTransformation2D( D3DXMATRIX *pOut, D3DXVECTOR2 *pScalingCenter,
-      плав *pScalingRotation, D3DXVECTOR2 *pScaling,
-      D3DXVECTOR2 *pRotationCenter, плав Rotation,
+      float *pScalingRotation, D3DXVECTOR2 *pScaling,
+      D3DXVECTOR2 *pRotationCenter, float Rotation,
       D3DXVECTOR2 *pTranslation);
 
     HRESULT D3DXLoadMeshFromXA(
@@ -1258,11 +1258,11 @@ extern(Windows)
 
 	HRESULT D3DXDeclaratorFromFVF(DWORD FVF, D3DVERTEXELEMENT9* Declaration);
 
-	D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, плав t);
+	D3DXQUATERNION* D3DXQuaternionSlerp(D3DXQUATERNION* pOut, D3DXQUATERNION* pQ1, D3DXQUATERNION* pQ2, float t);
 
-	D3DXVECTOR3* D3DXVec3CatmullRom(D3DXVECTOR3 *pOut, D3DXVECTOR3 *pV0, D3DXVECTOR3 *pV1, D3DXVECTOR3 *pV2, D3DXVECTOR3 *pV3, плав s);
+	D3DXVECTOR3* D3DXVec3CatmullRom(D3DXVECTOR3 *pOut, D3DXVECTOR3 *pV0, D3DXVECTOR3 *pV1, D3DXVECTOR3 *pV2, D3DXVECTOR3 *pV3, float s);
 
-	проц D3DXQuaternionSquadSetup(  D3DXQUATERNION *pAOut,
+	void D3DXQuaternionSquadSetup(  D3DXQUATERNION *pAOut,
 								    D3DXQUATERNION *pBOut,
 								    D3DXQUATERNION *pCOut,
 								    D3DXQUATERNION *pQ0,
@@ -1275,7 +1275,7 @@ extern(Windows)
 									    D3DXQUATERNION *pA,
 									    D3DXQUATERNION *pB,
 									    D3DXQUATERNION *pC,
-									    плав t);
+									    float t);
 
 	HRESULT D3DXMatrixDecompose(D3DXVECTOR3 *pOutScale,
 							    D3DXQUATERNION *pOutRotation,
@@ -1289,7 +1289,7 @@ extern(Windows)
 														    FLOAT Roll
 														);
 
-	UINT D3DXGetDeclVertexSize(D3DVERTEXELEMENT9 *pDecl, DWORD Поток );
+	UINT D3DXGetDeclVertexSize(D3DVERTEXELEMENT9 *pDecl, DWORD Stream );
 } // extern(Windows)
 
 D3DXMATRIX* D3DXMatrixIdentity( D3DXMATRIX *pOut )
@@ -1308,7 +1308,7 @@ FLOAT D3DXVec3LengthSq(D3DXVECTOR3* v)
 	return (v.x * v.x) + (v.y * v.y) + (v.z * v.z);
 }
 
-template DEFINE_GUID(бцел d1, бкрат d2, бкрат d3, ббайт d4, ббайт d5, ббайт d6, ббайт d7, ббайт d8, ббайт d9, ббайт d10, ббайт d11)
+template DEFINE_GUID(uint d1, ushort d2, ushort d3, ubyte d4, ubyte d5, ubyte d6, ubyte d7, ubyte d8, ubyte d9, ubyte d10, ubyte d11)
 {
 	const GUID DEFINE_GUID = {d1, d2, d3, [d4, d5, d6, d7, d8, d9, d10, d11]};
 }
@@ -1366,7 +1366,7 @@ const GUID TID_D3DRMStringProperty = DEFINE_GUID!(0x7f0f21e0, 0xbfe1, 0x11d1, 0x
 const GUID TID_D3DRMPropertyBag = DEFINE_GUID!(0x7f0f21e1, 0xbfe1, 0x11d1, 0x82, 0xc0, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x71);
 const GUID TID_D3DRMRightHanded = DEFINE_GUID!(0x7f5d5ea0, 0xd53a, 0x11d1, 0x82, 0xc0, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x71);
 
-ббайт D3DRM_XTEMPLATES[] =
+ubyte D3DRM_XTEMPLATES[] =
 [
 	0x78, 0x6f, 0x66, 0x20, 0x30, 0x33, 0x30, 0x32, 0x62,
 	0x69, 0x6e, 0x20, 0x30, 0x30, 0x36, 0x34, 0x1f, 0, 0x1,
@@ -1729,7 +1729,7 @@ align(1) struct XFILECOMPRESSEDANIMATIONSET
     DWORD BufferLength;
 }
 
-const сим[] XSKINEXP_TEMPLATES =
+const char[] XSKINEXP_TEMPLATES =
         "xof 0303txt 0032
         template XSkinMeshHeader
         {
@@ -1757,7 +1757,7 @@ const сим[] XSKINEXP_TEMPLATES =
             STRING transformNodeName;
             DWORD nWeights;
             array DWORD vertexIndices[nWeights];
-            array плав weights[nWeights];
+            array float weights[nWeights];
             Matrix4x4 matrixOffset;
         }
         template Patch
@@ -1791,7 +1791,7 @@ const сим[] XSKINEXP_TEMPLATES =
         {
             <F1CFE2B3-0DE3-4e28-AFA1-155A750A282D>
             DWORD nFloats;
-            array плав Floats[nFloats];
+            array float Floats[nFloats];
         }
         template EffectString
         {
@@ -1808,7 +1808,7 @@ const сим[] XSKINEXP_TEMPLATES =
             <3014B9A0-62F5-478c-9B86-E4AC9F4E418B>
             STRING ParamName;
             DWORD nFloats;
-            array плав Floats[nFloats];
+            array float Floats[nFloats];
         } "
         "template EffectParamString
         {
@@ -1843,14 +1843,14 @@ const сим[] XSKINEXP_TEMPLATES =
             array DWORD CompressedData[BufferLength];
         } ";
 
-const сим[] XEXTENSIONS_TEMPLATES =
+const char[] XEXTENSIONS_TEMPLATES =
         "xof 0303txt 0032
         template FVFData
         {
             <B6E70A0E-8EF9-4e83-94AD-ECC8B0C04897>
             DWORD dwFVF;
             DWORD nDWords;
-            array DWORD данные[nDWords];
+            array DWORD data[nDWords];
         }
         template VertexElement
         {
@@ -1866,7 +1866,7 @@ const сим[] XEXTENSIONS_TEMPLATES =
             DWORD nElements;
             array VertexElement Elements[nElements];
             DWORD nDWords;
-            array DWORD данные[nDWords];
+            array DWORD data[nDWords];
         }
         template PMAttributeRange
         {
@@ -1899,29 +1899,29 @@ const сим[] XEXTENSIONS_TEMPLATES =
             array DWORD attributeMispredicts[nAttributeMispredicts];
         } ";
 
-enum : бцел
+enum : uint
 {
 	D3DXF_FILEFORMAT_BINARY          = 0,
 	D3DXF_FILEFORMAT_TEXT            = 1,
 	D3DXF_FILEFORMAT_COMPRESSED      = 2
 }
-alias бцел D3DXF_FILEFORMAT;
+alias uint D3DXF_FILEFORMAT;
 
-enum : бцел
+enum : uint
 {
 	D3DXF_FILESAVE_TOFILE     = 0x00L,
 	D3DXF_FILESAVE_TOWFILE    = 0x01L
 }
-alias бцел D3DXF_FILESAVEOPTIONS;
+alias uint D3DXF_FILESAVEOPTIONS;
 
-enum : бцел
+enum : uint
 {
 	D3DXF_FILELOAD_FROMFILE     = 0x00L,
 	D3DXF_FILELOAD_FROMWFILE    = 0x01L,
 	D3DXF_FILELOAD_FROMRESOURCE = 0x02L,
 	D3DXF_FILELOAD_FROMMEMORY   = 0x03L
 }
-alias бцел D3DXF_FILELOADOPTIONS;
+alias uint D3DXF_FILELOADOPTIONS;
 
 struct D3DXF_FILELOADRESOURCE
 {

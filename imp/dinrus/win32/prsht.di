@@ -190,7 +190,7 @@ enum {
 
 alias UINT function(HWND, UINT, LPPROPSHEETPAGEA) LPFNPSPCALLBACKA;
 alias UINT function(HWND, UINT, LPPROPSHEETPAGEW) LPFNPSPCALLBACKW;
-alias цел function(HWND, UINT, LPARAM) PFNPROPSHEETCALLBACK;
+alias int function(HWND, UINT, LPARAM) PFNPROPSHEETCALLBACK;
 
 align(4):
 
@@ -326,8 +326,8 @@ extern (Windows) {
 	HPROPSHEETPAGE CreatePropertySheetPageA(LPCPROPSHEETPAGEA);
 	HPROPSHEETPAGE CreatePropertySheetPageW(LPCPROPSHEETPAGEW);
 	BOOL DestroyPropertySheetPage(HPROPSHEETPAGE);
-	цел PropertySheetA(LPCPROPSHEETHEADERA);
-	цел PropertySheetW(LPCPROPSHEETHEADERW);
+	int PropertySheetA(LPCPROPSHEETHEADERA);
+	int PropertySheetW(LPCPROPSHEETHEADERW);
 }
 
 version (Unicode) {
@@ -357,13 +357,13 @@ version (Unicode) {
 }
 
 BOOL PropSheet_SetCurSel(HWND hPropSheetDlg, HPROPSHEETPAGE hpage,
-	  HPROPSHEETPAGE индекс) {
+	  HPROPSHEETPAGE index) {
 	return cast(BOOL) SendMessage(hPropSheetDlg, PSM_SETCURSEL,
-	  cast(WPARAM) индекс, cast(LPARAM) hpage);
+	  cast(WPARAM) index, cast(LPARAM) hpage);
 }
 
-VOID PropSheet_RemovePage(HWND hPropSheetDlg, цел индекс, HPROPSHEETPAGE hpage) {
-	SendMessage(hPropSheetDlg, PSM_REMOVEPAGE, индекс, cast(LPARAM) hpage);
+VOID PropSheet_RemovePage(HWND hPropSheetDlg, int index, HPROPSHEETPAGE hpage) {
+	SendMessage(hPropSheetDlg, PSM_REMOVEPAGE, index, cast(LPARAM) hpage);
 }
 
 BOOL PropSheet_AddPage(HWND hPropSheetDlg, HPROPSHEETPAGE hpage) {
@@ -387,7 +387,7 @@ VOID PropSheet_CancelToClose(HWND hPropSheetDlg) {
 	SendMessage(hPropSheetDlg, PSM_CANCELTOCLOSE, 0, 0);
 }
 
-цел PropSheet_QuerySiblings(HWND hPropSheetDlg, WPARAM param1, LPARAM param2) {
+int PropSheet_QuerySiblings(HWND hPropSheetDlg, WPARAM param1, LPARAM param2) {
 	return SendMessage(hPropSheetDlg, PSM_QUERYSIBLINGS, param1, param2);
 }
 
@@ -407,11 +407,11 @@ VOID PropSheet_SetWizButtons(HWND hPropSheetDlg, DWORD dwFlags) {
 	PostMessage(hPropSheetDlg, PSM_SETWIZBUTTONS, 0, cast(LPARAM) dwFlags);
 }
 
-BOOL PropSheet_PressButton(HWND hPropSheetDlg, цел iButton) {
+BOOL PropSheet_PressButton(HWND hPropSheetDlg, int iButton) {
 	return cast(BOOL) SendMessage(hPropSheetDlg, PSM_PRESSBUTTON, iButton, 0);
 }
 
-BOOL PropSheet_SetCurSelByID(HWND hPropSheetDlg, цел id) {
+BOOL PropSheet_SetCurSelByID(HWND hPropSheetDlg, int id) {
 	return cast(BOOL) SendMessage(hPropSheetDlg, PSM_SETCURSELID, 0, id);
 }
 

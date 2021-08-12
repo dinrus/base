@@ -74,8 +74,8 @@ const MAPI_UNREAD            = 0x0001;
 const MAPI_RECEIPT_REQUESTED = 0x0002;
 const MAPI_SENT              = 0x0004;
 
-alias бцел FLAGS, LHANDLE;
-alias бцел* LPLHANDLE, LPULONG;
+alias uint FLAGS, LHANDLE;
+alias uint* LPLHANDLE, LPULONG;
 
 struct MapiRecipDesc {
 	ULONG  ulReserved;

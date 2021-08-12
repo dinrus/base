@@ -14,7 +14,7 @@ private import win32.directx.d3d10;
 enum D3D10_PRIMITIVE_TOPOLOGY;
 enum D3D10_SRV_DIMENSION;
 
-бцел D3D10_TX_VERSION(бцел _Major, бцел _Minor) {
+uint D3D10_TX_VERSION(uint _Major, uint _Minor) {
 	return ('T' << 24) | ('X' << 16) | (_Major << 8) | _Minor;
 }
 
@@ -199,14 +199,14 @@ struct D3D10_SHADER_BUFFER_DESC {
 	LPCSTR				Name;
 	D3D10_CBUFFER_TYPE	Type;
 	UINT				Variables;
-	UINT				Размер;
+	UINT				Size;
 	UINT				uFlags;
 }
 
 struct D3D10_SHADER_VARIABLE_DESC {
 	LPCSTR	Name;
 	UINT	StartOffset;
-	UINT	Размер;
+	UINT	Size;
 	UINT	uFlags;
 	LPVOID	DefaultValue;
 }
@@ -227,7 +227,7 @@ struct D3D10_SHADER_INPUT_BIND_DESC {
 	UINT	BindPoint;
 	UINT	BindCount;
 	UINT	uFlags;
-	D3D10_RESOURCE_RETURN_TYPE	ВозврТип;
+	D3D10_RESOURCE_RETURN_TYPE	ReturnType;
 	D3D10_SRV_DIMENSION	Dimension;
 	UINT	NumSamples;
 }
@@ -291,14 +291,14 @@ interface ID3D10ShaderReflection : IUnknown {
 }
 
 HRESULT D3D10CompileShader(LPCSTR pSrcData, SIZE_T SrcDataLen, LPCSTR pFileName, D3D10_SHADER_MACRO* pDefines, ID3D10Include pInclude, LPCSTR pFunctionName, LPCSTR pProfile, UINT Flags, ID3D10Blob* ppShader, ID3D10Blob* ppErrorMsgs);
-HRESULT D3D10DisassembleShader(проц* pShader, SIZE_T BytecodeLength, BOOL EnableColorCode, LPCSTR pComments, ID3D10Blob* ppDisassembly);
+HRESULT D3D10DisassembleShader(void* pShader, SIZE_T BytecodeLength, BOOL EnableColorCode, LPCSTR pComments, ID3D10Blob* ppDisassembly);
 LPCSTR D3D10GetPixelShaderProfile(ID3D10Device pDevice);
 LPCSTR D3D10GetVertexShaderProfile(ID3D10Device pDevice);
 LPCSTR D3D10GetGeometryShaderProfile(ID3D10Device pDevice);
-HRESULT D3D10ReflectShader(проц* pShaderBytecode, SIZE_T BytecodeLength, ID3D10ShaderReflection* ppReflector);
+HRESULT D3D10ReflectShader(void* pShaderBytecode, SIZE_T BytecodeLength, ID3D10ShaderReflection* ppReflector);
 HRESULT D3D10PreprocessShader(LPCSTR pSrcData, SIZE_T SrcDataSize, LPCSTR pFileName, D3D10_SHADER_MACRO* pDefines, ID3D10Include pInclude, ID3D10Blob* ppShaderText, ID3D10Blob* ppErrorMsgs);
-HRESULT D3D10GetInputSignatureBlob(проц* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
-HRESULT D3D10GetOutputSignatureBlob(проц* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
-HRESULT D3D10GetInputAndOutputSignatureBlob(проц* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
-HRESULT D3D10GetShaderDebugInfo(проц* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppDebugInfo);
+HRESULT D3D10GetInputSignatureBlob(void* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
+HRESULT D3D10GetOutputSignatureBlob(void* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
+HRESULT D3D10GetInputAndOutputSignatureBlob(void* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
+HRESULT D3D10GetShaderDebugInfo(void* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppDebugInfo);
 

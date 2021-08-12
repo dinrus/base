@@ -128,7 +128,7 @@ extern (Windows) {
 	BOOL QueryWorkingSet(HANDLE, PVOID, DWORD);
 	BOOL QueryWorkingSetEx(HANDLE, PVOID, DWORD);
 
-	/* Memory-Mapped Файл Information
+	/* Memory-Mapped File Information
 	 * http://windowssamigos.dk.msdn.microsoft.com/library/ms684212.aspx */
 	DWORD GetMappedFileNameW(HANDLE, LPVOID, LPWSTR, DWORD);
 	DWORD GetMappedFileNameA(HANDLE, LPVOID, LPSTR, DWORD);

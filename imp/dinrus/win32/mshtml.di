@@ -26,7 +26,7 @@ interface IHTMLStyle {};
 interface IHTMLFiltersCollection {};
 alias IHTMLFiltersCollection LPHTMLFILTERSCOLLECTION;
 interface IOmHistory : IDispatch {
-	HRESULT get_length(крат* p);
+	HRESULT get_length(short* p);
 	HRESULT back(VARIANT*);
 	HRESULT forward(VARIANT*);
 	HRESULT go(VARIANT*);
@@ -120,11 +120,11 @@ interface IHTMLImgElement : public IDispatch {
 alias IHTMLImgElement LPHTMLIMGELEMENT;
 
 interface IHTMLElementCollection : public IDispatch {
-	HRESULT вТкст(BSTR*);
+	HRESULT toString(BSTR*);
 	HRESULT put_length(LONG);
 	HRESULT get_length(LONG*);
 	HRESULT get__newEnum(IUnknown*);
-	HRESULT элт(VARIANT,VARIANT,IDispatch* pDisp);
+	HRESULT item(VARIANT,VARIANT,IDispatch* pDisp);
 	HRESULT tags(VARIANT,IDispatch* pdisp);
 }
 alias IHTMLElementCollection LPHTMLELEMENTCOLLECTION;
@@ -185,11 +185,11 @@ interface IHTMLDocument2 : public IHTMLDocument {
 	HRESULT get_security(BSTR*);
 	HRESULT get_protocol(BSTR*);
 	HRESULT get_nameProp(BSTR*);
-	HRESULT пиши(SAFEARRAY*);
-	HRESULT пишинс(SAFEARRAY*);
+	HRESULT write(SAFEARRAY*);
+	HRESULT writeln(SAFEARRAY*);
 	HRESULT open(BSTR,VARIANT,VARIANT,VARIANT,IDispatch*);
-	HRESULT закрой();
-	HRESULT сотри();
+	HRESULT close();
+	HRESULT clear();
 	HRESULT queryCommandSupported(BSTR,VARIANT_BOOL*);
 	HRESULT queryCommandEnabled(BSTR,VARIANT_BOOL*);
 	HRESULT queryCommandState(BSTR,VARIANT_BOOL*);
@@ -240,14 +240,14 @@ interface IHTMLDocument2 : public IHTMLDocument {
 	HRESULT get_onbeforeupdate(VARIANT*);
 	HRESULT put_onerrorupdate(VARIANT);
 	HRESULT get_onerrorupdate(VARIANT*);
-	HRESULT вТкст(BSTR*);
+	HRESULT toString(BSTR*);
 	HRESULT createStyleSheet(BSTR,LONG,LPHTMLSTYLESHEET*);
 }
 
 interface IHTMLSelectionObject : public IDispatch {
 	HRESULT createRange(IDispatch*);
-	HRESULT пустой();
-	HRESULT сотри();
+	HRESULT empty();
+	HRESULT clear();
 	HRESULT get_type(BSTR*);
 }
 alias IHTMLSelectionObject LPHTMLSELECTIONOBJECT;
@@ -326,7 +326,7 @@ interface IHTMLElement : public IDispatch {
 	HRESULT put_onselectstart(VARIANT);
 	HRESULT get_onselectstart(VARIANT*);
 	HRESULT scrollIntoView(VARIANT);
-	HRESULT содержит(LPHTMLELEMENT,VARIANT_BOOL*);
+	HRESULT contains(LPHTMLELEMENT,VARIANT_BOOL*);
 	HRESULT get_source3Index(LONG*);
 	HRESULT get_recordNumber(VARIANT*);
 	HRESULT put_lang(BSTR);
@@ -352,7 +352,7 @@ interface IHTMLElement : public IDispatch {
 	HRESULT get_filters(LPHTMLFILTERSCOLLECTION*);
 	HRESULT put_ondragstart(VARIANT);
 	HRESULT get_ondragstart(VARIANT*);
-	HRESULT вТкст(BSTR*);
+	HRESULT toString(BSTR*);
 	HRESULT put_onbeforeupdate(VARIANT);
 	HRESULT get_onbeforeupdate(VARIANT*);
 	HRESULT put_onafterupdate(VARIANT);
@@ -377,7 +377,7 @@ interface IHTMLElement : public IDispatch {
 alias IHTMLElement LPHTMLELEMENT;
 
 interface IHTMLFramesCollection2 : public IDispatch {
-	HRESULT элт(VARIANT*,VARIANT*);
+	HRESULT item(VARIANT*,VARIANT*);
 	HRESULT get_length(LONG*);
 }
 
@@ -395,7 +395,7 @@ interface IHTMLWindow2 : public IHTMLFramesCollection2 {
 	HRESULT get_Image(LPHTMLIMAGEELEMENTFACTORY*);
 	HRESULT get_location(LPHTMLLOCATION*);
 	HRESULT get_history(LPOMHISTORY*);
-	HRESULT закрой();
+	HRESULT close();
 	HRESULT put_opener(VARIANT);
 	HRESULT get_opener(VARIANT*);
 	HRESULT get_navigator(LPOMNAVIGATOR*);
@@ -435,14 +435,14 @@ interface IHTMLWindow2 : public IHTMLFramesCollection2 {
 	HRESULT focus();
 	HRESULT get_closed(VARIANT_BOOL*);
 	HRESULT blur();
-	HRESULT scroll(дол,дол);
+	HRESULT scroll(long,long);
 	HRESULT get_clientInformation(LPOMNAVIGATOR*);
-	HRESULT setInterval(BSTR,дол,VARIANT*,дол*);
-	HRESULT clearInterval(дол);
+	HRESULT setInterval(BSTR,long,VARIANT*,long*);
+	HRESULT clearInterval(long);
 	HRESULT put_offscreenBuffering(VARIANT);
 	HRESULT get_offscreenBuffering(VARIANT*);
 	HRESULT execScript(BSTR,BSTR,VARIANT*);
-	HRESULT вТкст(BSTR*);
+	HRESULT toString(BSTR*);
 	HRESULT scrollBy(LONG,LONG);
 	HRESULT scrollTo(LONG,LONG);
 	HRESULT moveTo(LONG,LONG);

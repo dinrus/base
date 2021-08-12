@@ -331,7 +331,7 @@ const DWORD
 	PFD_SWAP_LAYER_BUFFERS    = 0x00000800,
 	PFD_GENERIC_ACCELERATED   = 0x00001000,
 	PFD_SUPPORT_DIRECTDRAW    = 0x00002000,
-	/* PIXELFORMATDESCRIPTOR флаги for use in ChoosePixelFormat only */
+	/* PIXELFORMATDESCRIPTOR flags for use in ChoosePixelFormat only */
 	PFD_DEPTH_DONTCARE        = 0x20000000,
 	PFD_DOUBLEBUFFER_DONTCARE = 0x40000000,
 	PFD_STEREO_DONTCARE       = 0x80000000;
@@ -361,7 +361,7 @@ static if (WINVER >= 0x0500) {
 }
 
 // GetROP2(), SetROP2()
-enum : цел {
+enum : int {
 	R2_BLACK       = 1,
 	R2_NOTMERGEPEN = 2,
 	R2_MASKNOTPEN  = 3,
@@ -383,12 +383,12 @@ enum : цел {
 const R2_LAST = R2_WHITE;
 
 // CheckColorsInGamut()
-const ббайт
+const ubyte
 	CM_IN_GAMUT     = 0,
 	CM_OUT_OF_GAMUT = 255;
 
 /* UpdateICMRegKey Constants               */
-const цел
+const int
 	ICM_ADDPROFILE = 1,
 	ICM_DELETEPROFILE = 2,
 	ICM_QUERYPROFILE = 3,
@@ -397,7 +397,7 @@ const цел
 	ICM_UNREGISTERICMATCHER = 6,
 	ICM_QUERYMATCH = 7;
 
-enum : цел {
+enum : int {
 	RGN_AND  = 1,
 	RGN_OR   = 2,
 	RGN_XOR  = 3,
@@ -408,7 +408,7 @@ enum : цел {
 const RGN_MIN = RGN_AND;
 const RGN_MAX = RGN_COPY;
 
-// Return значения for CombineRgn()
+// Return values for CombineRgn()
 enum {
 	NULLREGION    = 1,
 	SIMPLEREGION  = 2,
@@ -553,7 +553,7 @@ enum {
 
 const PAN_CULTURE_LATIN=0;
 
-// NOTE: the first two значения (PAN_ANY and PAN_NO_FIT) apply to all these enums!
+// NOTE: the first two values (PAN_ANY and PAN_NO_FIT) apply to all these enums!
 enum : BYTE {
 	PAN_ANY    = 0,
 	PAN_NO_FIT = 1,
@@ -707,11 +707,11 @@ const FS_SYMBOL      = 0x80000000;
 
 // ----
 // Poly Fill Mode
-enum : цел {
+enum : int {
 	ALTERNATE = 1,
 	WINDING = 2
 }
-const цел POLYFILL_LAST = WINDING;
+const int POLYFILL_LAST = WINDING;
 
 //---
 // LOGBRUSH
@@ -877,7 +877,7 @@ enum {
 }
 
 // Get/SetArcDirection()
-enum : цел {
+enum : int {
 	AD_COUNTERCLOCKWISE = 1,
 	AD_CLOCKWISE        = 2
 }
@@ -934,7 +934,7 @@ enum : DWORD {
 //---------------------
 // Capabilities for GetDeviceCaps(dc, xxx)
 
-enum : цел {
+enum : int {
 	DRIVERVERSION   = 0,
 	TECHNOLOGY      = 2,
 	HORZSIZE        = 4,
@@ -975,13 +975,13 @@ enum : цел {
 	BLTALIGNMENT    = 119
 }
 static if (WINVER >= 0x0500) {
-	цел
+	int
 	SHADEBLENDCAPS  = 120,
 	COLORMGMTCAPS   = 121;
 }
 
-// Return значения for GetDeviceCaps(dc, TECHNOLOGY)
-enum : цел {
+// Return values for GetDeviceCaps(dc, TECHNOLOGY)
+enum : int {
 	DT_PLOTTER = 0,
 	DT_RASDISPLAY,
 	DT_RASPRINTER,
@@ -991,8 +991,8 @@ enum : цел {
 	DT_DISPFILE // = 6
 }
 
-// Return значения for GetDeviceCaps(dc, RASTERCAPS)
-const цел
+// Return values for GetDeviceCaps(dc, RASTERCAPS)
+const int
 	RC_NONE         = 0,
 	RC_BITBLT       = 1,
 	RC_BANDING      = 2,
@@ -1026,8 +1026,8 @@ static if (WINVER >= 0x0500) {
 	const CM_CMYK_COLOR = 0x00000004;
 }
 
-// Return значения for GetDeviceCaps(dc, CURVECAPS)
-const цел
+// Return values for GetDeviceCaps(dc, CURVECAPS)
+const int
 	CC_NONE       = 0,
 	CC_CIRCLES    = 1,
 	CC_PIE        = 2,
@@ -1039,9 +1039,9 @@ const цел
 	CC_INTERIORS  = 128,
 	CC_ROUNDRECT  = 256;
 
-// Return значения for GetDeviceCaps(dc, LINECAPS)
+// Return values for GetDeviceCaps(dc, LINECAPS)
 
-const цел
+const int
 	LC_NONE       = 0,
 	LC_POLYLINE   = 2,
 	LC_MARKER     = 4,
@@ -1051,9 +1051,9 @@ const цел
 	LC_WIDESTYLED = 64,
 	LC_INTERIORS  = 128;
 
-// Return значения for GetDeviceCaps(dc, POLYGONALCAPS)
+// Return values for GetDeviceCaps(dc, POLYGONALCAPS)
 
-const цел
+const int
 	PC_NONE        = 0,
 	PC_POLYGON     = 1,
 	PC_RECTANGLE   = 2,
@@ -1068,13 +1068,13 @@ const цел
 	PC_PATHS       = 512;
 
 /* Clipping Capabilities */
-const цел CP_NONE = 0,
+const int CP_NONE = 0,
 	CP_RECTANGLE = 1,
 	CP_REGION = 2;
 
-// Return значения for GetDeviceCaps(dc, TEXTCAPS)
+// Return values for GetDeviceCaps(dc, TEXTCAPS)
 
-const цел
+const int
 	TC_OP_CHARACTER = 1,
 	TC_OP_STROKE    = 2,
 	TC_CP_STROKE    = 4,
@@ -1132,13 +1132,13 @@ enum : UINT {
 	GGO_UNHINTED     = 256
 }
 
-enum : цел {
+enum : int {
 	GM_COMPATIBLE = 1,
 	GM_ADVANCED
 }
 const GM_LAST = GM_ADVANCED;
 
-enum : цел {
+enum : int {
 	MM_TEXT = 1,
 	MM_LOMETRIC,
 	MM_HIMETRIC,
@@ -1149,7 +1149,7 @@ enum : цел {
 	MM_ANISOTROPIC,
 }
 
-const цел
+const int
 	MM_MIN = MM_TEXT,
 	MM_MAX = MM_ANISOTROPIC,
 	MM_MAX_FIXEDSCALE = MM_TWIPS;
@@ -1171,12 +1171,12 @@ const COLORREF
 	CLR_DEFAULT = 0xff000000;
 
 // RASTERIZER_STATUS.wFlags
-const крат
+const short
 	TT_AVAILABLE = 1,
 	TT_ENABLED   = 2;
 
 // GetStockObject()
-enum : цел {
+enum : int {
 	WHITE_BRUSH = 0,
 	LTGRAY_BRUSH,
 	GRAY_BRUSH,
@@ -1196,12 +1196,12 @@ enum : цел {
 	SYSTEM_FIXED_FONT,
 }
 static if (WINVER >= 0x0400) {
-	enum : цел {
+	enum : int {
 		DEFAULT_GUI_FONT = SYSTEM_FIXED_FONT + 1,
 	}
 }
 static if (_WIN32_WINNT >= 0x0500) {
-	enum : цел {
+	enum : int {
 		DC_BRUSH = DEFAULT_GUI_FONT + 1,
 		DC_PEN,
 	}
@@ -1261,7 +1261,7 @@ enum {
 }
 
 // Get/SetStretchMode()
-enum : цел {
+enum : int {
 	BLACKONWHITE = 1,
 	WHITEONBLACK = 2,
 	COLORONCOLOR = 3,
@@ -1284,7 +1284,7 @@ enum : DWORD {
 }
 
 // SetICMMode()
-enum : цел {
+enum : int {
 	ICM_OFF   = 1,
 	ICM_ON    = 2,
 	ICM_QUERY = 3,
@@ -1293,7 +1293,7 @@ enum : цел {
 
 // ----
 // Escape() Spooler Error Codes
-enum : цел {
+enum : int {
 	SP_NOTREPORTED = 0x4000,
 	SP_ERROR       = -1,
 	SP_APPABORT    = -2,
@@ -1304,7 +1304,7 @@ enum : цел {
 
 // Escape(), ExtEscape()
 // Most of the following are deprecated (Win16 only)
-enum : цел {
+enum : int {
 	NEWFRAME      = 1,
 	ABORTDOC      = 2,
 	NEXTBAND      = 3,
@@ -1389,13 +1389,13 @@ enum : цел {
 	SPCLPASSTHROUGH2 = 4568,
 }
 
-enum : цел {
+enum : int {
 	PSIDENT_GDICENTRIC = 0,
 	PSIDENT_PSCENTRIC = 1,
 }
 
 /*
- * Header structure for the ввод буфер to POSTSCRIPT_INJECTION escape
+ * Header structure for the input buffer to POSTSCRIPT_INJECTION escape
  */
 struct PSINJECTDATA {
 	DWORD DataBytes;
@@ -1404,7 +1404,7 @@ struct PSINJECTDATA {
 }
 alias PSINJECTDATA* PPSINJECTDATA;
 
-/* Constants for PSINJECTDATA.InjectionPoint поле */
+/* Constants for PSINJECTDATA.InjectionPoint field */
 enum {
 	PSINJECT_BEGINSTREAM = 1,
 	PSINJECT_PSADOBE = 2,
@@ -1515,13 +1515,13 @@ else {
 }
 
 // DEVMODE.dmOrientation
-enum : крат {
+enum : short {
 	DMORIENT_PORTRAIT  = 1,
 	DMORIENT_LANDSCAPE = 2
 }
 
 // DEVMODE.dmPaperSize
-enum : крат {
+enum : short {
 	DMPAPER_LETTER = 1,
 	DMPAPER_LETTERSMALL,
 	DMPAPER_TABLOID,
@@ -1592,7 +1592,7 @@ enum : крат {
 	DMPAPER_A3_EXTRA_TRANSVERSE // = 68
 }
 static if (WINVER >= 0x0500) {
-	enum : крат {
+	enum : short {
 		DMPAPER_DBL_JAPANESE_POSTCARD = 69,
 		DMPAPER_A6,
 		DMPAPER_JENV_KAKU2,
@@ -1646,18 +1646,18 @@ static if (WINVER >= 0x0500) {
 	}
 }
 
-const крат DMPAPER_FIRST = DMPAPER_LETTER;
+const short DMPAPER_FIRST = DMPAPER_LETTER;
 
 static if (WINVER >= 0x0500)
-	const крат DMPAPER_LAST = DMPAPER_PENV_10_ROTATED;
+	const short DMPAPER_LAST = DMPAPER_PENV_10_ROTATED;
 else
-	const крат DMPAPER_LAST = DMPAPER_A3_EXTRA_TRANSVERSE;
+	const short DMPAPER_LAST = DMPAPER_A3_EXTRA_TRANSVERSE;
 
-const крат DMPAPER_USER = 256;
+const short DMPAPER_USER = 256;
 
 
 // DEVMODE.dmDefaultSource
-enum : крат {
+enum : short {
 	DMBIN_ONLYONE = 1,
 	DMBIN_UPPER   = 1,
 	DMBIN_LOWER,
@@ -1673,13 +1673,13 @@ enum : крат {
 	DMBIN_CASSETTE   = 14,
 	DMBIN_FORMSOURCE,
 }
-крат
+short
 	DMBIN_FIRST = DMBIN_UPPER,
 	DMBIN_LAST = DMBIN_FORMSOURCE,
 	DMBIN_USER = 256;
 
 // DEVMODE.dmPrintQuality
-enum : крат {
+enum : short {
 	DMRES_DRAFT  = -1,
 	DMRES_LOW    = -2,
 	DMRES_MEDIUM = -3,
@@ -1687,20 +1687,20 @@ enum : крат {
 }
 
 // DEVMODE.dmColor
-enum : крат {
+enum : short {
 	DMCOLOR_MONOCHROME = 1,
 	DMCOLOR_COLOR      = 2
 }
 
 // DEVMODE.dmDuplex
-enum : крат {
+enum : short {
 	DMDUP_SIMPLEX    = 1,
 	DMDUP_VERTICAL   = 2,
 	DMDUP_HORIZONTAL = 3
 }
 
 // DEVMODE.dmTTOption
-enum : крат {
+enum : short {
 	DMTT_BITMAP = 1,
 	DMTT_DOWNLOAD,
 	DMTT_SUBDEV,
@@ -1708,14 +1708,14 @@ enum : крат {
 }
 
 // DEVMODE.dmCollate
-enum : крат {
+enum : short {
 	DMCOLLATE_FALSE = 0,
 	DMCOLLATE_TRUE
 }
 
 static if (WINVER >= 0x0501) {
 	/* DEVMODE dmDisplayOrientation specifiations */
-	enum : крат {
+	enum : short {
 		DMDO_DEFAULT = 0,
 		DMDO_90 = 1,
 		DMDO_180 = 2,
@@ -1723,7 +1723,7 @@ static if (WINVER >= 0x0501) {
 	}
 
 	/* DEVMODE dmDisplayFixedOutput specifiations */
-	enum : крат {
+	enum : short {
 		DMDFO_DEFAULT = 0,
 		DMDFO_STRETCH = 1,
 		DMDFO_CENTER = 2,
@@ -1731,7 +1731,7 @@ static if (WINVER >= 0x0501) {
 }
 
 
-/* FIXME: this флаги are deprecated ? */
+/* FIXME: this flags are deprecated ? */
 // DEVMODE.dmDisplayFlags
 const DWORD
 	DM_GRAYSCALE  = 1,
@@ -1993,9 +1993,9 @@ static if (_WIN32_WINNT >= 0x0500) {
 // ----------
 
 struct ABC {
-	цел  abcA;
+	int  abcA;
 	UINT abcB;
-	цел  abcC;
+	int  abcC;
 }
 alias ABC* PABC, NPABC, LPABC;
 
@@ -2082,10 +2082,10 @@ struct BITMAPINFO {
 };
 alias BITMAPINFO* PBITMAPINFO, LPBITMAPINFO;
 
-alias цел FXPT16DOT16;
-alias цел* LPFXPT16DOT16;
-alias цел FXPT2DOT30;
-alias цел* LPFXPT2DOT30;
+alias int FXPT16DOT16;
+alias int* LPFXPT16DOT16;
+alias int FXPT2DOT30;
+alias int* LPFXPT2DOT30;
 
 struct CIEXYZ {
 	FXPT2DOT30 ciexyzX;
@@ -2191,24 +2191,24 @@ struct DEVMODEA {
 	DWORD  dmFields;
 	union {
 		struct {
-			крат dmOrientation;
-			крат dmPaperSize;
-			крат dmPaperLength;
-			крат dmPaperWidth;
-			крат dmScale;
-			крат dmCopies;
-			крат dmDefaultSource;
-			крат dmPrintQuality;
+			short dmOrientation;
+			short dmPaperSize;
+			short dmPaperLength;
+			short dmPaperWidth;
+			short dmScale;
+			short dmCopies;
+			short dmDefaultSource;
+			short dmPrintQuality;
 		}
 		POINTL dmPosition;
 		DWORD  dmDisplayOrientation;
 		DWORD  dmDisplayFixedOutput;
 	}
-	крат  dmColor;
-	крат  dmDuplex;
-	крат  dmYResolution;
-	крат  dmTTOption;
-	крат  dmCollate;
+	short  dmColor;
+	short  dmDuplex;
+	short  dmYResolution;
+	short  dmTTOption;
+	short  dmCollate;
 	BYTE[CCHFORMNAME]   dmFormName;
 	WORD   dmLogPixels;
 	DWORD  dmBitsPerPel;
@@ -2243,25 +2243,25 @@ struct DEVMODEW {
 	DWORD  dmFields;
 	union {
 		struct {
-			крат dmOrientation;
-			крат dmPaperSize;
-			крат dmPaperLength;
-			крат dmPaperWidth;
-			крат dmScale;
-			крат dmCopies;
-			крат dmDefaultSource;
-			крат dmPrintQuality;
+			short dmOrientation;
+			short dmPaperSize;
+			short dmPaperLength;
+			short dmPaperWidth;
+			short dmScale;
+			short dmCopies;
+			short dmDefaultSource;
+			short dmPrintQuality;
 		}
 		POINTL dmPosition;
 		DWORD  dmDisplayOrientation;
 		DWORD  dmDisplayFixedOutput;
 	}
 
-	крат  dmColor;
-	крат  dmDuplex;
-	крат  dmYResolution;
-	крат  dmTTOption;
-	крат  dmCollate;
+	short  dmColor;
+	short  dmDuplex;
+	short  dmYResolution;
+	short  dmTTOption;
+	short  dmCollate;
 	WCHAR[CCHFORMNAME]  dmFormName;
 	WORD   dmLogPixels;
 	DWORD  dmBitsPerPel;
@@ -2288,7 +2288,7 @@ struct DEVMODEW {
 alias DEVMODEW* PDEVMODEW, NPDEVMODEW, LPDEVMODEW;
 
 /*
- * Information about вывод options
+ * Information about output options
  */
 struct PSFEATURE_OUTPUT {
 	BOOL bPageIndependent;
@@ -2297,7 +2297,7 @@ struct PSFEATURE_OUTPUT {
 alias PSFEATURE_OUTPUT* PPSFEATURE_OUTPUT;
 
 /*
- * Information about custom paper размер
+ * Information about custom paper size
  */
 struct PSFEATURE_CUSTPAPER {
 	LONG lOrientation;
@@ -2318,7 +2318,7 @@ struct DIBSECTION {
 alias DIBSECTION* PDIBSECTION;
 
 struct DOCINFOA {
-	цел    cbSize = DOCINFOA.sizeof;
+	int    cbSize = DOCINFOA.sizeof;
 	LPCSTR lpszDocName;
 	LPCSTR lpszOutput;
 	LPCSTR lpszDatatype;
@@ -2327,7 +2327,7 @@ struct DOCINFOA {
 alias DOCINFOA* LPDOCINFOA;
 
 struct DOCINFOW {
-	цел     cbSize = DOCINFOW.sizeof;
+	int     cbSize = DOCINFOW.sizeof;
 	LPCWSTR lpszDocName;
 	LPCWSTR lpszOutput;
 	LPCWSTR lpszDatatype;
@@ -3412,7 +3412,7 @@ alias RGNDATAHEADER* PRGNDATAHEADER;
 
 struct RGNDATA {
 	RGNDATAHEADER rdh;
-	сим[1] Buffer;
+	char[1] Buffer;
 }
 alias RGNDATA* PRGNDATA, NPRGNDATA, LPRGNDATA;
 
@@ -3448,8 +3448,8 @@ struct GLYPHMETRICS {
 	UINT gmBlackBoxX;
 	UINT gmBlackBoxY;
 	POINT gmptGlyphOrigin;
-	крат gmCellIncX;
-	крат gmCellIncY;
+	short gmCellIncX;
+	short gmCellIncY;
 }
 alias GLYPHMETRICS* LPGLYPHMETRICS;
 
@@ -3475,13 +3475,13 @@ static if (_WIN32_WINNT >= 0x0500) {
 struct KERNINGPAIR {
 	WORD wFirst;
 	WORD wSecond;
-	цел iKernAmount;
+	int iKernAmount;
 }
 alias KERNINGPAIR* LPKERNINGPAIR;
 
 struct FIXED {
 	WORD fract;
-	крат значение;
+	short value;
 }
 
 struct MAT2 {
@@ -3499,18 +3499,18 @@ struct OUTLINETEXTMETRICA {
 	PANOSE otmPanoseNumber;
 	UINT otmfsSelection;
 	UINT otmfsType;
-	цел otmsCharSlopeRise;
-	цел otmsCharSlopeRun;
-	цел otmItalicAngle;
+	int otmsCharSlopeRise;
+	int otmsCharSlopeRun;
+	int otmItalicAngle;
 	UINT otmEMSquare;
-	цел otmAscent;
-	цел otmDescent;
+	int otmAscent;
+	int otmDescent;
 	UINT otmLineGap;
 	UINT otmsCapEmHeight;
 	UINT otmsXHeight;
 	RECT otmrcFontBox;
-	цел otmMacAscent;
-	цел otmMacDescent;
+	int otmMacAscent;
+	int otmMacDescent;
 	UINT otmMacLineGap;
 	UINT otmusMinimumPPEM;
 	POINT otmptSubscriptSize;
@@ -3518,9 +3518,9 @@ struct OUTLINETEXTMETRICA {
 	POINT otmptSuperscriptSize;
 	POINT otmptSuperscriptOffset;
 	UINT otmsStrikeoutSize;
-	цел otmsStrikeoutPosition;
-	цел otmsUnderscoreSize;
-	цел otmsUnderscorePosition;
+	int otmsStrikeoutPosition;
+	int otmsUnderscoreSize;
+	int otmsUnderscorePosition;
 	PSTR otmpFamilyName;
 	PSTR otmpFaceName;
 	PSTR otmpStyleName;
@@ -3535,18 +3535,18 @@ struct OUTLINETEXTMETRICW {
 	PANOSE otmPanoseNumber;
 	UINT otmfsSelection;
 	UINT otmfsType;
-	цел otmsCharSlopeRise;
-	цел otmsCharSlopeRun;
-	цел otmItalicAngle;
+	int otmsCharSlopeRise;
+	int otmsCharSlopeRun;
+	int otmItalicAngle;
 	UINT otmEMSquare;
-	цел otmAscent;
-	цел otmDescent;
+	int otmAscent;
+	int otmDescent;
 	UINT otmLineGap;
 	UINT otmsCapEmHeight;
 	UINT otmsXHeight;
 	RECT otmrcFontBox;
-	цел otmMacAscent;
-	цел otmMacDescent;
+	int otmMacAscent;
+	int otmMacDescent;
 	UINT otmMacLineGap;
 	UINT otmusMinimumPPEM;
 	POINT otmptSubscriptSize;
@@ -3554,9 +3554,9 @@ struct OUTLINETEXTMETRICW {
 	POINT otmptSuperscriptSize;
 	POINT otmptSuperscriptOffset;
 	UINT otmsStrikeoutSize;
-	цел otmsStrikeoutPosition;
-	цел otmsUnderscoreSize;
-	цел otmsUnderscorePosition;
+	int otmsStrikeoutPosition;
+	int otmsUnderscoreSize;
+	int otmsUnderscorePosition;
 	PSTR otmpFamilyName;
 	PSTR otmpFaceName;
 	PSTR otmpStyleName;
@@ -3565,31 +3565,31 @@ struct OUTLINETEXTMETRICW {
 alias OUTLINETEXTMETRICW* POUTLINETEXTMETRICW, NPOUTLINETEXTMETRICW, LPOUTLINETEXTMETRICW;
 
 struct RASTERIZER_STATUS {
-	крат nSize;
-	крат wFlags;
-	крат nLanguageID;
+	short nSize;
+	short wFlags;
+	short nLanguageID;
 }
 alias RASTERIZER_STATUS* LPRASTERIZER_STATUS;
 
 struct POLYTEXTA {
-	цел x;
-	цел y;
+	int x;
+	int y;
 	UINT n;
 	LPCSTR lpstr;
 	UINT uiFlags;
 	RECT rcl;
-	цел* pdx;
+	int* pdx;
 }
 alias POLYTEXTA* PPOLYTEXTA, NPPOLYTEXTA, LPPOLYTEXTA;
 
 struct POLYTEXTW {
-	цел x;
-	цел y;
+	int x;
+	int y;
 	UINT n;
 	LPCWSTR lpstr;
 	UINT uiFlags;
 	RECT rcl;
-	цел* pdx;
+	int* pdx;
 }
 alias POLYTEXTW* PPOLYTEXTW, NPPOLYTEXTW, LPPOLYTEXTW;
 
@@ -3972,15 +3972,15 @@ static if (WINVER >= 0x0400) {
 // ---------
 // Callbacks
 
-alias BOOL function (HDC, цел) ABORTPROC;
-alias цел function (HDC, HANDLETABLE*, METARECORD*, цел, LPARAM) MFENUMPROC;
-alias цел function (HDC, HANDLETABLE*, ENHMETARECORD*, цел, LPARAM) ENHMFENUMPROC;
-alias цел function (LOGFONTA*, TEXTMETRICA*, DWORD, LPARAM) FONTENUMPROCA, OLDFONTENUMPROCA;
-alias цел function (LOGFONTW*, TEXTMETRICW*, DWORD, LPARAM) FONTENUMPROCW, OLDFONTENUMPROCW;
-alias цел function (LPSTR, LPARAM) ICMENUMPROCA;
-alias цел function (LPWSTR, LPARAM) ICMENUMPROCW;
-alias проц function (LPVOID, LPARAM) GOBJENUMPROC;
-alias проц function (цел, цел, LPARAM) LINEDDAPROC;
+alias BOOL function (HDC, int) ABORTPROC;
+alias int function (HDC, HANDLETABLE*, METARECORD*, int, LPARAM) MFENUMPROC;
+alias int function (HDC, HANDLETABLE*, ENHMETARECORD*, int, LPARAM) ENHMFENUMPROC;
+alias int function (LOGFONTA*, TEXTMETRICA*, DWORD, LPARAM) FONTENUMPROCA, OLDFONTENUMPROCA;
+alias int function (LOGFONTW*, TEXTMETRICW*, DWORD, LPARAM) FONTENUMPROCW, OLDFONTENUMPROCW;
+alias int function (LPSTR, LPARAM) ICMENUMPROCA;
+alias int function (LPWSTR, LPARAM) ICMENUMPROCW;
+alias void function (LPVOID, LPARAM) GOBJENUMPROC;
+alias void function (int, int, LPARAM) LINEDDAPROC;
 alias UINT function (HWND, HMODULE, LPDEVMODEA, LPSTR, LPSTR, LPDEVMODEA, LPSTR, UINT) LPFNDEVMODE;
 alias DWORD function (LPSTR, LPSTR, UINT, LPSTR, LPDEVMODEA) LPFNDEVCAPS;
 
@@ -4039,68 +4039,68 @@ COLORREF PALETTERGB(BYTE r, BYTE g, BYTE b) {
 }
 
 extern(Windows) {
-	цел AbortDoc(HDC);
+	int AbortDoc(HDC);
 	BOOL AbortPath(HDC);
-	цел AddFontResourceA(LPCSTR);
-	цел AddFontResourceW(LPCWSTR);
-	BOOL AngleArc(HDC, цел, цел, DWORD, FLOAT, FLOAT);
+	int AddFontResourceA(LPCSTR);
+	int AddFontResourceW(LPCWSTR);
+	BOOL AngleArc(HDC, int, int, DWORD, FLOAT, FLOAT);
 	BOOL AnimatePalette(HPALETTE, UINT, UINT, PALETTEENTRY*);
-	BOOL Arc(HDC, цел, цел, цел, цел, цел, цел, цел, цел);
-	BOOL ArcTo(HDC, цел, цел, цел, цел, цел, цел, цел, цел);
+	BOOL Arc(HDC, int, int, int, int, int, int, int, int);
+	BOOL ArcTo(HDC, int, int, int, int, int, int, int, int);
 	BOOL BeginPath(HDC);
-	BOOL BitBlt(HDC, цел, цел, цел, цел, HDC, цел, цел, DWORD);
+	BOOL BitBlt(HDC, int, int, int, int, HDC, int, int, DWORD);
 	BOOL CancelDC(HDC);
 	BOOL CheckColorsInGamut(HDC, PVOID, PVOID, DWORD);
-	BOOL Chord(HDC, цел, цел, цел, цел, цел, цел, цел, цел);
-	цел ChoosePixelFormat(HDC, PIXELFORMATDESCRIPTOR*);
+	BOOL Chord(HDC, int, int, int, int, int, int, int, int);
+	int ChoosePixelFormat(HDC, PIXELFORMATDESCRIPTOR*);
 	HENHMETAFILE CloseEnhMetaFile(HDC);
 	BOOL CloseFigure(HDC);
 	HMETAFILE CloseMetaFile(HDC);
 	BOOL ColorMatchToTarget(HDC, HDC, DWORD);
 	BOOL ColorCorrectPalette(HDC, HPALETTE, DWORD, DWORD);
-	цел CombineRgn(HRGN, HRGN, HRGN, цел);
+	int CombineRgn(HRGN, HRGN, HRGN, int);
 	BOOL CombineTransform(LPXFORM, XFORM*, XFORM*);
 	HENHMETAFILE CopyEnhMetaFileA(HENHMETAFILE, LPCSTR);
 	HENHMETAFILE CopyEnhMetaFileW(HENHMETAFILE, LPCWSTR);
 	HMETAFILE CopyMetaFileA(HMETAFILE, LPCSTR);
 	HMETAFILE CopyMetaFileW(HMETAFILE, LPCWSTR);
-	HBITMAP CreateBitmap(цел, цел, UINT, UINT, PCVOID);
+	HBITMAP CreateBitmap(int, int, UINT, UINT, PCVOID);
 	HBITMAP CreateBitmapIndirect(BITMAP*);
 	HBRUSH CreateBrushIndirect(LOGBRUSH*);
 	HCOLORSPACE CreateColorSpaceA(LPLOGCOLORSPACEA);
 	HCOLORSPACE CreateColorSpaceW(LPLOGCOLORSPACEW);
-	HBITMAP CreateCompatibleBitmap(HDC, цел, цел);
+	HBITMAP CreateCompatibleBitmap(HDC, int, int);
 	HDC CreateCompatibleDC(HDC);
 	HDC CreateDCA(LPCSTR, LPCSTR, LPCSTR, DEVMODEA*);
 	HDC CreateDCW(LPCWSTR, LPCWSTR, LPCWSTR, DEVMODEW*);
 	HBITMAP CreateDIBitmap(HDC, BITMAPINFOHEADER*, DWORD, PCVOID, BITMAPINFO*, UINT);
 	HBRUSH CreateDIBPatternBrush(HGLOBAL, UINT);
 	HBRUSH CreateDIBPatternBrushPt(PCVOID, UINT);
-	HBITMAP CreateDIBSection(HDC, BITMAPINFO*, UINT, проц**, HANDLE, DWORD);
-	HBITMAP CreateDiscardableBitmap(HDC, цел, цел);
-	HRGN CreateEllipticRgn(цел, цел, цел, цел);
+	HBITMAP CreateDIBSection(HDC, BITMAPINFO*, UINT, void**, HANDLE, DWORD);
+	HBITMAP CreateDiscardableBitmap(HDC, int, int);
+	HRGN CreateEllipticRgn(int, int, int, int);
 	HRGN CreateEllipticRgnIndirect(LPCRECT);
 	HDC CreateEnhMetaFileA(HDC, LPCSTR, LPCRECT, LPCSTR);
 	HDC CreateEnhMetaFileW(HDC, LPCWSTR, LPCRECT, LPCWSTR);
-	HFONT CreateFontA(цел, цел, цел, цел, цел, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, LPCSTR);
-	HFONT CreateFontW(цел, цел, цел, цел, цел, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, LPCWSTR);
+	HFONT CreateFontA(int, int, int, int, int, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, LPCSTR);
+	HFONT CreateFontW(int, int, int, int, int, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, LPCWSTR);
 	HFONT CreateFontIndirectA(LOGFONTA*);
 	HFONT CreateFontIndirectW(LOGFONTW*);
 	HPALETTE CreateHalftonePalette(HDC);
-	HBRUSH CreateHatchBrush(цел, COLORREF);
+	HBRUSH CreateHatchBrush(int, COLORREF);
 	HDC CreateICA(LPCSTR, LPCSTR, LPCSTR, DEVMODEA*);
 	HDC CreateICW(LPCWSTR, LPCWSTR, LPCWSTR, DEVMODEW*);
 	HDC CreateMetaFileA(LPCSTR);
 	HDC CreateMetaFileW(LPCWSTR);
 	HPALETTE CreatePalette(LOGPALETTE*);
 	HBRUSH CreatePatternBrush(HBITMAP);
-	HPEN CreatePen(цел, цел, COLORREF);
+	HPEN CreatePen(int, int, COLORREF);
 	HPEN CreatePenIndirect(LOGPEN*);
-	HRGN CreatePolygonRgn(POINT*, цел, цел);
-	HRGN CreatePolyPolygonRgn(POINT*, INT*, цел, цел);
-	HRGN CreateRectRgn(цел, цел, цел, цел);
+	HRGN CreatePolygonRgn(POINT*, int, int);
+	HRGN CreatePolyPolygonRgn(POINT*, INT*, int, int);
+	HRGN CreateRectRgn(int, int, int, int);
 	HRGN CreateRectRgnIndirect(LPCRECT);
-	HRGN CreateRoundRectRgn(цел, цел, цел, цел, цел, цел);
+	HRGN CreateRoundRectRgn(int, int, int, int, int, int);
 	BOOL CreateScalableFontResourceA(DWORD, LPCSTR, LPCSTR, LPCSTR);
 	BOOL CreateScalableFontResourceW(DWORD, LPCWSTR, LPCWSTR, LPCWSTR);
 	HBRUSH CreateSolidBrush(COLORREF);
@@ -4109,80 +4109,80 @@ extern(Windows) {
 	BOOL DeleteEnhMetaFile(HENHMETAFILE);
 	BOOL DeleteMetaFile(HMETAFILE);
 	BOOL DeleteObject(HGDIOBJ);
-	цел DescribePixelFormat(HDC, цел, UINT, LPPIXELFORMATDESCRIPTOR);
+	int DescribePixelFormat(HDC, int, UINT, LPPIXELFORMATDESCRIPTOR);
 	DWORD DeviceCapabilitiesA(LPCSTR, LPCSTR, WORD, LPSTR, DEVMODEA*);
 	DWORD DeviceCapabilitiesW(LPCWSTR, LPCWSTR, WORD, LPWSTR, DEVMODEW*);
-	BOOL DPtoLP(HDC, LPPOINT, цел);
-	цел DrawEscape(HDC, цел, цел, LPCSTR);
-	BOOL Ellipse(HDC, цел, цел, цел, цел);
-	цел EndDoc(HDC);
-	цел EndPage(HDC);
+	BOOL DPtoLP(HDC, LPPOINT, int);
+	int DrawEscape(HDC, int, int, LPCSTR);
+	BOOL Ellipse(HDC, int, int, int, int);
+	int EndDoc(HDC);
+	int EndPage(HDC);
 	BOOL EndPath(HDC);
 	BOOL EnumEnhMetaFile(HDC, HENHMETAFILE, ENHMFENUMPROC, PVOID, LPCRECT);
-	цел EnumFontFamiliesA(HDC, LPCSTR, FONTENUMPROCA, LPARAM);
-	цел EnumFontFamiliesW(HDC, LPCWSTR, FONTENUMPROCW, LPARAM);
-	цел EnumFontFamiliesExA(HDC, PLOGFONTA, FONTENUMPROCA, LPARAM, DWORD);
-	цел EnumFontFamiliesExW(HDC, PLOGFONTW, FONTENUMPROCW, LPARAM, DWORD);
-	цел EnumFontsA(HDC, LPCSTR, FONTENUMPROCA, LPARAM);
-	цел EnumFontsW(HDC, LPCWSTR, FONTENUMPROCW, LPARAM);
-	цел EnumICMProfilesA(HDC, ICMENUMPROCA, LPARAM);
-	цел EnumICMProfilesW(HDC, ICMENUMPROCW, LPARAM);
+	int EnumFontFamiliesA(HDC, LPCSTR, FONTENUMPROCA, LPARAM);
+	int EnumFontFamiliesW(HDC, LPCWSTR, FONTENUMPROCW, LPARAM);
+	int EnumFontFamiliesExA(HDC, PLOGFONTA, FONTENUMPROCA, LPARAM, DWORD);
+	int EnumFontFamiliesExW(HDC, PLOGFONTW, FONTENUMPROCW, LPARAM, DWORD);
+	int EnumFontsA(HDC, LPCSTR, FONTENUMPROCA, LPARAM);
+	int EnumFontsW(HDC, LPCWSTR, FONTENUMPROCW, LPARAM);
+	int EnumICMProfilesA(HDC, ICMENUMPROCA, LPARAM);
+	int EnumICMProfilesW(HDC, ICMENUMPROCW, LPARAM);
 	BOOL EnumMetaFile(HDC, HMETAFILE, MFENUMPROC, LPARAM);
-	цел EnumObjects(HDC, цел, GOBJENUMPROC, LPARAM);
+	int EnumObjects(HDC, int, GOBJENUMPROC, LPARAM);
 	BOOL EqualRgn(HRGN, HRGN);
-	цел Escape(HDC, цел, цел, LPCSTR, PVOID);
-	цел ExcludeClipRect(HDC, цел, цел, цел, цел);
-	цел ExcludeUpdateRgn(HDC, HWND);
+	int Escape(HDC, int, int, LPCSTR, PVOID);
+	int ExcludeClipRect(HDC, int, int, int, int);
+	int ExcludeUpdateRgn(HDC, HWND);
 	HPEN ExtCreatePen(DWORD, DWORD, LOGBRUSH*, DWORD, DWORD*);
 	HRGN ExtCreateRegion(XFORM*, DWORD, RGNDATA*);
-	цел ExtEscape(HDC, цел, цел, LPCSTR, цел, LPSTR);
-	BOOL ExtFloodFill(HDC, цел, цел, COLORREF, UINT);
-	цел ExtSelectClipRgn(HDC, HRGN, цел);
-	BOOL ExtTextOutA(HDC, цел, цел, UINT, LPCRECT, LPCSTR, UINT, INT*);
-	BOOL ExtTextOutW(HDC, цел, цел, UINT, LPCRECT, LPCWSTR, UINT, INT*);
+	int ExtEscape(HDC, int, int, LPCSTR, int, LPSTR);
+	BOOL ExtFloodFill(HDC, int, int, COLORREF, UINT);
+	int ExtSelectClipRgn(HDC, HRGN, int);
+	BOOL ExtTextOutA(HDC, int, int, UINT, LPCRECT, LPCSTR, UINT, INT*);
+	BOOL ExtTextOutW(HDC, int, int, UINT, LPCRECT, LPCWSTR, UINT, INT*);
 	BOOL FillPath(HDC);
-	цел FillRect(HDC, LPCRECT, HBRUSH);
-	цел FillRgn(HDC, HRGN, HBRUSH);
-	BOOL FixBrushOrgEx(HDC, цел, цел, LPPOINT);
+	int FillRect(HDC, LPCRECT, HBRUSH);
+	int FillRgn(HDC, HRGN, HBRUSH);
+	BOOL FixBrushOrgEx(HDC, int, int, LPPOINT);
 	BOOL FlattenPath(HDC);
-	BOOL FloodFill(HDC, цел, цел, COLORREF);
-	BOOL FrameRgn(HDC, HRGN, HBRUSH, цел, цел);
+	BOOL FloodFill(HDC, int, int, COLORREF);
+	BOOL FrameRgn(HDC, HRGN, HBRUSH, int, int);
 	BOOL GdiComment(HDC, UINT, BYTE*);
 	BOOL GdiFlush();
 	DWORD GdiGetBatchLimit();
 	DWORD GdiSetBatchLimit(DWORD);
-	цел GetArcDirection(HDC);
+	int GetArcDirection(HDC);
 	BOOL GetAspectRatioFilterEx(HDC, LPSIZE);
 	LONG GetBitmapBits(HBITMAP, LONG, PVOID);
 	BOOL GetBitmapDimensionEx(HBITMAP, LPSIZE);
 	COLORREF GetBkColor(HDC);
-	цел GetBkMode(HDC);
+	int GetBkMode(HDC);
 	UINT GetBoundsRect(HDC, LPRECT, UINT);
 	BOOL GetBrushOrgEx(HDC, LPPOINT);
 	BOOL GetCharABCWidthsA(HDC, UINT, UINT, LPABC);
 	BOOL GetCharABCWidthsW(HDC, UINT, UINT, LPABC);
 	BOOL GetCharABCWidthsFloatA(HDC, UINT, UINT, LPABCFLOAT);
 	BOOL GetCharABCWidthsFloatW(HDC, UINT, UINT, LPABCFLOAT);
-	DWORD GetCharacterPlacementA(HDC, LPCSTR, цел, цел, LPGCP_RESULTSA, DWORD);
-	DWORD GetCharacterPlacementW(HDC, LPCWSTR, цел, цел, LPGCP_RESULTSW, DWORD);
+	DWORD GetCharacterPlacementA(HDC, LPCSTR, int, int, LPGCP_RESULTSA, DWORD);
+	DWORD GetCharacterPlacementW(HDC, LPCWSTR, int, int, LPGCP_RESULTSW, DWORD);
 	BOOL GetCharWidth32A(HDC, UINT, UINT, LPINT);
 	BOOL GetCharWidth32W(HDC, UINT, UINT, LPINT);
 	BOOL GetCharWidthA(HDC, UINT, UINT, LPINT);
 	BOOL GetCharWidthW(HDC, UINT, UINT, LPINT);
 	BOOL GetCharWidthFloatA(HDC, UINT, UINT, PFLOAT);
 	BOOL GetCharWidthFloatW(HDC, UINT, UINT, PFLOAT);
-	цел GetClipBox(HDC, LPRECT);
-	цел GetClipRgn(HDC, HRGN);
+	int GetClipBox(HDC, LPRECT);
+	int GetClipRgn(HDC, HRGN);
 	BOOL GetColorAdjustment(HDC, LPCOLORADJUSTMENT);
 	HANDLE GetColorSpace(HDC);
 	HGDIOBJ GetCurrentObject(HDC, UINT);
 	BOOL GetCurrentPositionEx(HDC, LPPOINT);
 	HCURSOR GetCursor();
 	BOOL GetDCOrgEx(HDC, LPPOINT);
-	цел GetDeviceCaps(HDC, цел);
+	int GetDeviceCaps(HDC, int);
 	BOOL GetDeviceGammaRamp(HDC, PVOID);
 	UINT GetDIBColorTable(HDC, UINT, UINT, RGBQUAD*);
-	цел GetDIBits(HDC, HBITMAP, UINT, UINT, PVOID, LPBITMAPINFO, UINT);
+	int GetDIBits(HDC, HBITMAP, UINT, UINT, PVOID, LPBITMAPINFO, UINT);
 	HENHMETAFILE GetEnhMetaFileA(LPCSTR);
 	HENHMETAFILE GetEnhMetaFileW(LPCWSTR);
 	UINT GetEnhMetaFileBits(HENHMETAFILE, UINT, LPBYTE);
@@ -4195,53 +4195,53 @@ extern(Windows) {
 	DWORD GetFontLanguageInfo(HDC);
 	DWORD GetGlyphOutlineA(HDC, UINT, UINT, LPGLYPHMETRICS, DWORD, PVOID, MAT2*);
 	DWORD GetGlyphOutlineW(HDC, UINT, UINT, LPGLYPHMETRICS, DWORD, PVOID, MAT2*);
-	цел GetGraphicsMode(HDC);
+	int GetGraphicsMode(HDC);
 	BOOL GetICMProfileA(HDC, DWORD, LPSTR);
 	BOOL GetICMProfileW(HDC, DWORD, LPWSTR);
 	DWORD GetKerningPairsA(HDC, DWORD, LPKERNINGPAIR);
 	DWORD GetKerningPairsW(HDC, DWORD, LPKERNINGPAIR);
 	BOOL GetLogColorSpaceA(HCOLORSPACE, LPLOGCOLORSPACEA, DWORD);
 	BOOL GetLogColorSpaceW(HCOLORSPACE, LPLOGCOLORSPACEW, DWORD);
-	цел GetMapMode(HDC);
+	int GetMapMode(HDC);
 	HMETAFILE GetMetaFileA(LPCSTR);
 	HMETAFILE GetMetaFileW(LPCWSTR);
 	UINT GetMetaFileBitsEx(HMETAFILE, UINT, PVOID);
-	цел GetMetaRgn(HDC, HRGN);
+	int GetMetaRgn(HDC, HRGN);
 	BOOL GetMiterLimit(HDC, PFLOAT);
 	COLORREF GetNearestColor(HDC, COLORREF);
 	UINT GetNearestPaletteIndex(HPALETTE, COLORREF);
-	цел GetObjectA(HGDIOBJ, цел, PVOID);
-	цел GetObjectW(HGDIOBJ, цел, PVOID);
+	int GetObjectA(HGDIOBJ, int, PVOID);
+	int GetObjectW(HGDIOBJ, int, PVOID);
 	DWORD GetObjectType(HGDIOBJ);
 	UINT GetOutlineTextMetricsA(HDC, UINT, LPOUTLINETEXTMETRICA);
 	UINT GetOutlineTextMetricsW(HDC, UINT, LPOUTLINETEXTMETRICW);
 	UINT GetPaletteEntries(HPALETTE, UINT, UINT, LPPALETTEENTRY);
-	цел GetPath(HDC, LPPOINT, PBYTE, цел);
-	COLORREF GetPixel(HDC, цел, цел);
-	цел GetPixelFormat(HDC);
-	цел GetPolyFillMode(HDC);
+	int GetPath(HDC, LPPOINT, PBYTE, int);
+	COLORREF GetPixel(HDC, int, int);
+	int GetPixelFormat(HDC);
+	int GetPolyFillMode(HDC);
 	BOOL GetRasterizerCaps(LPRASTERIZER_STATUS, UINT);
-	цел GetRandomRgn (HDC, HRGN, INT);
+	int GetRandomRgn (HDC, HRGN, INT);
 	DWORD GetRegionData(HRGN, DWORD, LPRGNDATA);
-	цел GetRgnBox(HRGN, LPRECT);
-	цел GetROP2(HDC);
-	HGDIOBJ GetStockObject(цел);
-	цел GetStretchBltMode(HDC);
+	int GetRgnBox(HRGN, LPRECT);
+	int GetROP2(HDC);
+	HGDIOBJ GetStockObject(int);
+	int GetStretchBltMode(HDC);
 	UINT GetSystemPaletteEntries(HDC, UINT, UINT, LPPALETTEENTRY);
 	UINT GetSystemPaletteUse(HDC);
 	UINT GetTextAlign(HDC);
-	цел GetTextCharacterExtra(HDC);
-	цел GetTextCharset(HDC);
-	цел GetTextCharsetInfo(HDC, LPFONTSIGNATURE, DWORD);
+	int GetTextCharacterExtra(HDC);
+	int GetTextCharset(HDC);
+	int GetTextCharsetInfo(HDC, LPFONTSIGNATURE, DWORD);
 	COLORREF GetTextColor(HDC);
-	BOOL GetTextExtentExPointA(HDC, LPCSTR, цел, цел, LPINT, LPINT, LPSIZE);
-	BOOL GetTextExtentExPointW(HDC, LPCWSTR, цел, цел, LPINT, LPINT, LPSIZE);
-	BOOL GetTextExtentPointA(HDC, LPCSTR, цел, LPSIZE);
-	BOOL GetTextExtentPointW(HDC, LPCWSTR, цел, LPSIZE);
-	BOOL GetTextExtentPoint32A(HDC, LPCSTR, цел, LPSIZE);
-	BOOL GetTextExtentPoint32W(HDC, LPCWSTR, цел, LPSIZE);
-	цел GetTextFaceA(HDC, цел, LPSTR);
-	цел GetTextFaceW(HDC, цел, LPWSTR);
+	BOOL GetTextExtentExPointA(HDC, LPCSTR, int, int, LPINT, LPINT, LPSIZE);
+	BOOL GetTextExtentExPointW(HDC, LPCWSTR, int, int, LPINT, LPINT, LPSIZE);
+	BOOL GetTextExtentPointA(HDC, LPCSTR, int, LPSIZE);
+	BOOL GetTextExtentPointW(HDC, LPCWSTR, int, LPSIZE);
+	BOOL GetTextExtentPoint32A(HDC, LPCSTR, int, LPSIZE);
+	BOOL GetTextExtentPoint32W(HDC, LPCWSTR, int, LPSIZE);
+	int GetTextFaceA(HDC, int, LPSTR);
+	int GetTextFaceW(HDC, int, LPWSTR);
 	BOOL GetTextMetricsA(HDC, LPTEXTMETRICA);
 	BOOL GetTextMetricsW(HDC, LPTEXTMETRICW);
 	BOOL GetViewportExtEx(HDC, LPSIZE);
@@ -4250,41 +4250,41 @@ extern(Windows) {
 	BOOL GetWindowOrgEx(HDC, LPPOINT);
 	UINT GetWinMetaFileBits(HENHMETAFILE, UINT, LPBYTE, INT, HDC);
 	BOOL GetWorldTransform(HDC, LPXFORM);
-	цел IntersectClipRect(HDC, цел, цел, цел, цел);
+	int IntersectClipRect(HDC, int, int, int, int);
 	BOOL InvertRgn(HDC, HRGN);
-	BOOL LineDDA(цел, цел, цел, цел, LINEDDAPROC, LPARAM);
-	BOOL LineTo(HDC, цел, цел);
-	BOOL LPtoDP(HDC, LPPOINT, цел);
-	BOOL MaskBlt(HDC, цел, цел, цел, цел, HDC, цел, цел, HBITMAP, цел, цел, DWORD);
+	BOOL LineDDA(int, int, int, int, LINEDDAPROC, LPARAM);
+	BOOL LineTo(HDC, int, int);
+	BOOL LPtoDP(HDC, LPPOINT, int);
+	BOOL MaskBlt(HDC, int, int, int, int, HDC, int, int, HBITMAP, int, int, DWORD);
 	BOOL ModifyWorldTransform(HDC, XFORM*, DWORD);
-	BOOL MoveToEx(HDC, цел, цел, LPPOINT);
-	цел OffsetClipRgn(HDC, цел, цел);
-	цел OffsetRgn(HRGN, цел, цел);
-	BOOL OffsetViewportOrgEx(HDC, цел, цел, LPPOINT);
-	BOOL OffsetWindowOrgEx(HDC, цел, цел, LPPOINT);
+	BOOL MoveToEx(HDC, int, int, LPPOINT);
+	int OffsetClipRgn(HDC, int, int);
+	int OffsetRgn(HRGN, int, int);
+	BOOL OffsetViewportOrgEx(HDC, int, int, LPPOINT);
+	BOOL OffsetWindowOrgEx(HDC, int, int, LPPOINT);
 	BOOL PaintRgn(HDC, HRGN);
-	BOOL PatBlt(HDC, цел, цел, цел, цел, DWORD);
+	BOOL PatBlt(HDC, int, int, int, int, DWORD);
 	HRGN PathToRegion(HDC);
-	BOOL Pie(HDC, цел, цел, цел, цел, цел, цел, цел, цел);
+	BOOL Pie(HDC, int, int, int, int, int, int, int, int);
 	BOOL PlayEnhMetaFile(HDC, HENHMETAFILE, LPCRECT);
 	BOOL PlayEnhMetaFileRecord(HDC, LPHANDLETABLE, ENHMETARECORD*, UINT);
 	BOOL PlayMetaFile(HDC, HMETAFILE);
 	BOOL PlayMetaFileRecord(HDC, LPHANDLETABLE, LPMETARECORD, UINT);
-	BOOL PlgBlt(HDC, POINT*, HDC, цел, цел, цел, цел, HBITMAP, цел, цел);
+	BOOL PlgBlt(HDC, POINT*, HDC, int, int, int, int, HBITMAP, int, int);
 	BOOL PolyBezier(HDC, POINT*, DWORD);
 	BOOL PolyBezierTo(HDC, POINT*, DWORD);
-	BOOL PolyDraw(HDC, POINT*, BYTE*, цел);
-	BOOL Polygon(HDC, POINT*, цел);
-	BOOL Polyline(HDC, POINT*, цел);
+	BOOL PolyDraw(HDC, POINT*, BYTE*, int);
+	BOOL Polygon(HDC, POINT*, int);
+	BOOL Polyline(HDC, POINT*, int);
 	BOOL PolylineTo(HDC, POINT*, DWORD);
-	BOOL PolyPolygon(HDC, POINT*, INT*, цел);
+	BOOL PolyPolygon(HDC, POINT*, INT*, int);
 	BOOL PolyPolyline(HDC, POINT*, DWORD*, DWORD);
-	BOOL PolyTextOutA(HDC, POLYTEXTA*, цел);
-	BOOL PolyTextOutW(HDC, POLYTEXTW*, цел);
-	BOOL PtInRegion(HRGN, цел, цел);
-	BOOL PtVisible(HDC, цел, цел);
+	BOOL PolyTextOutA(HDC, POLYTEXTA*, int);
+	BOOL PolyTextOutW(HDC, POLYTEXTW*, int);
+	BOOL PtInRegion(HRGN, int, int);
+	BOOL PtVisible(HDC, int, int);
 	UINT RealizePalette(HDC);
-	BOOL Rectangle(HDC, цел, цел, цел, цел);
+	BOOL Rectangle(HDC, int, int, int, int);
 	BOOL RectInRegion(HRGN, LPCRECT);
 	BOOL RectVisible(HDC, LPCRECT);
 	BOOL RemoveFontResourceA(LPCSTR);
@@ -4293,36 +4293,36 @@ extern(Windows) {
 	HDC ResetDCA(HDC, DEVMODEA*);
 	HDC ResetDCW(HDC, DEVMODEW*);
 	BOOL ResizePalette(HPALETTE, UINT);
-	BOOL RestoreDC(HDC, цел);
-	BOOL RoundRect(HDC, цел, цел, цел, цел, цел, цел);
-	цел SaveDC(HDC);
-	BOOL ScaleViewportExtEx(HDC, цел, цел, цел, цел, LPSIZE);
-	BOOL ScaleWindowExtEx(HDC, цел, цел, цел, цел, LPSIZE);
-	BOOL SelectClipPath(HDC, цел);
-	цел SelectClipRgn(HDC, HRGN);
+	BOOL RestoreDC(HDC, int);
+	BOOL RoundRect(HDC, int, int, int, int, int, int);
+	int SaveDC(HDC);
+	BOOL ScaleViewportExtEx(HDC, int, int, int, int, LPSIZE);
+	BOOL ScaleWindowExtEx(HDC, int, int, int, int, LPSIZE);
+	BOOL SelectClipPath(HDC, int);
+	int SelectClipRgn(HDC, HRGN);
 	HGDIOBJ SelectObject(HDC, HGDIOBJ);
 	HPALETTE SelectPalette(HDC, HPALETTE, BOOL);
-	цел SetAbortProc(HDC, ABORTPROC);
-	цел SetArcDirection(HDC, цел);
+	int SetAbortProc(HDC, ABORTPROC);
+	int SetArcDirection(HDC, int);
 	LONG SetBitmapBits(HBITMAP, DWORD, PCVOID);
-	BOOL SetBitmapDimensionEx(HBITMAP, цел, цел, LPSIZE);
+	BOOL SetBitmapDimensionEx(HBITMAP, int, int, LPSIZE);
 	COLORREF SetBkColor(HDC, COLORREF);
-	цел SetBkMode(HDC, цел);
+	int SetBkMode(HDC, int);
 	UINT SetBoundsRect(HDC, LPCRECT, UINT);
-	BOOL SetBrushOrgEx(HDC, цел, цел, LPPOINT);
+	BOOL SetBrushOrgEx(HDC, int, int, LPPOINT);
 	BOOL SetColorAdjustment(HDC, COLORADJUSTMENT*);
 	BOOL SetColorSpace(HDC, HCOLORSPACE);
 
 	BOOL SetDeviceGammaRamp(HDC, PVOID);
 	UINT SetDIBColorTable(HDC, UINT, UINT, RGBQUAD*);
-	цел SetDIBits(HDC, HBITMAP, UINT, UINT, PCVOID, BITMAPINFO*, UINT);
-	цел SetDIBitsToDevice(HDC, цел, цел, DWORD, DWORD, цел, цел, UINT, UINT, PCVOID, BITMAPINFO*, UINT);
+	int SetDIBits(HDC, HBITMAP, UINT, UINT, PCVOID, BITMAPINFO*, UINT);
+	int SetDIBitsToDevice(HDC, int, int, DWORD, DWORD, int, int, UINT, UINT, PCVOID, BITMAPINFO*, UINT);
 	HENHMETAFILE SetEnhMetaFileBits(UINT, BYTE*);
-	цел SetGraphicsMode(HDC, цел);
-	цел SetICMMode(HDC, цел);
+	int SetGraphicsMode(HDC, int);
+	int SetICMMode(HDC, int);
 	BOOL SetICMProfileA(HDC, LPSTR);
 	BOOL SetICMProfileW(HDC, LPWSTR);
-	цел SetMapMode(HDC, цел);
+	int SetMapMode(HDC, int);
 
 	static if (WINVER >= 0x0500) {
 		DWORD SetLayout(HDC hdc, DWORD l);
@@ -4331,37 +4331,37 @@ extern(Windows) {
 
 	DWORD SetMapperFlags(HDC, DWORD);
 	HMETAFILE SetMetaFileBitsEx(UINT, BYTE*);
-	цел SetMetaRgn(HDC);
+	int SetMetaRgn(HDC);
 	BOOL SetMiterLimit(HDC, FLOAT, PFLOAT);
 	UINT SetPaletteEntries(HPALETTE, UINT, UINT, PALETTEENTRY*);
-	COLORREF SetPixel(HDC, цел, цел, COLORREF);
-	BOOL SetPixelFormat(HDC, цел, PIXELFORMATDESCRIPTOR*);
-	BOOL SetPixelV(HDC, цел, цел, COLORREF);
-	цел SetPolyFillMode(HDC, цел);
-	BOOL SetRectRgn(HRGN, цел, цел, цел, цел);
-	цел SetROP2(HDC, цел);
-	цел SetStretchBltMode(HDC, цел);
+	COLORREF SetPixel(HDC, int, int, COLORREF);
+	BOOL SetPixelFormat(HDC, int, PIXELFORMATDESCRIPTOR*);
+	BOOL SetPixelV(HDC, int, int, COLORREF);
+	int SetPolyFillMode(HDC, int);
+	BOOL SetRectRgn(HRGN, int, int, int, int);
+	int SetROP2(HDC, int);
+	int SetStretchBltMode(HDC, int);
 	UINT SetSystemPaletteUse(HDC, UINT);
 	UINT SetTextAlign(HDC, UINT);
-	цел SetTextCharacterExtra(HDC, цел);
+	int SetTextCharacterExtra(HDC, int);
 	COLORREF SetTextColor(HDC, COLORREF);
-	BOOL SetTextJustification(HDC, цел, цел);
-	BOOL SetViewportExtEx(HDC, цел, цел, LPSIZE);
-	BOOL SetViewportOrgEx(HDC, цел, цел, LPPOINT);
-	BOOL SetWindowExtEx(HDC, цел, цел, LPSIZE);
-	BOOL SetWindowOrgEx(HDC, цел, цел, LPPOINT);
+	BOOL SetTextJustification(HDC, int, int);
+	BOOL SetViewportExtEx(HDC, int, int, LPSIZE);
+	BOOL SetViewportOrgEx(HDC, int, int, LPPOINT);
+	BOOL SetWindowExtEx(HDC, int, int, LPSIZE);
+	BOOL SetWindowOrgEx(HDC, int, int, LPPOINT);
 	HENHMETAFILE SetWinMetaFileBits(UINT, BYTE*, HDC, METAFILEPICT*);
 	BOOL SetWorldTransform(HDC, XFORM*);
-	цел StartDocA(HDC, DOCINFOA*);
-	цел StartDocW(HDC, DOCINFOW*);
-	цел StartPage(HDC);
-	BOOL StretchBlt(HDC, цел, цел, цел, цел, HDC, цел, цел, цел, цел, DWORD);
-	цел StretchDIBits(HDC, цел, цел, цел, цел, цел, цел, цел, цел, VOID* , BITMAPINFO* , UINT, DWORD);
+	int StartDocA(HDC, DOCINFOA*);
+	int StartDocW(HDC, DOCINFOW*);
+	int StartPage(HDC);
+	BOOL StretchBlt(HDC, int, int, int, int, HDC, int, int, int, int, DWORD);
+	int StretchDIBits(HDC, int, int, int, int, int, int, int, int, VOID* , BITMAPINFO* , UINT, DWORD);
 	BOOL StrokeAndFillPath(HDC);
 	BOOL StrokePath(HDC);
 	BOOL SwapBuffers(HDC);
-	BOOL TextOutA(HDC, цел, цел, LPCSTR, цел);
-	BOOL TextOutW(HDC, цел, цел, LPCWSTR, цел);
+	BOOL TextOutA(HDC, int, int, LPCSTR, int);
+	BOOL TextOutW(HDC, int, int, LPCWSTR, int);
 	BOOL TranslateCharsetInfo(PDWORD, LPCHARSETINFO, DWORD);
 	BOOL UnrealizeObject(HGDIOBJ);
 	BOOL UpdateColors(HDC);
@@ -4370,22 +4370,22 @@ extern(Windows) {
 	BOOL WidenPath(HDC);
 	BOOL wglCopyContext(HGLRC, HGLRC, UINT);
 	HGLRC wglCreateContext(HDC);
-	HGLRC wglCreateLayerContext(HDC, цел);
+	HGLRC wglCreateLayerContext(HDC, int);
 	BOOL wglDeleteContext(HGLRC);
-	BOOL wglDescribeLayerPlane(HDC, цел, цел, UINT, LPLAYERPLANEDESCRIPTOR);
+	BOOL wglDescribeLayerPlane(HDC, int, int, UINT, LPLAYERPLANEDESCRIPTOR);
 	HGLRC wglGetCurrentContext();
 	HDC wglGetCurrentDC();
-	цел wglGetLayerPaletteEntries(HDC, цел, цел, цел, COLORREF*);
+	int wglGetLayerPaletteEntries(HDC, int, int, int, COLORREF*);
 	PROC wglGetProcAddress(LPCSTR);
 	BOOL wglMakeCurrent(HDC, HGLRC);
-	BOOL wglRealizeLayerPalette(HDC, цел, BOOL);
-	цел wglSetLayerPaletteEntries(HDC, цел, цел, цел, COLORREF*);
+	BOOL wglRealizeLayerPalette(HDC, int, BOOL);
+	int wglSetLayerPaletteEntries(HDC, int, int, int, COLORREF*);
 	BOOL wglShareLists(HGLRC, HGLRC);
 	BOOL wglSwapLayerBuffers(HDC, UINT);
 	BOOL wglUseFontBitmapsA(HDC, DWORD, DWORD, DWORD);
 	BOOL wglUseFontBitmapsW(HDC, DWORD, DWORD, DWORD);
-	BOOL wglUseFontOutlinesA(HDC, DWORD, DWORD, DWORD, FLOAT, FLOAT, цел, LPGLYPHMETRICSFLOAT);
-	BOOL wglUseFontOutlinesW(HDC, DWORD, DWORD, DWORD, FLOAT, FLOAT, цел, LPGLYPHMETRICSFLOAT);
+	BOOL wglUseFontOutlinesA(HDC, DWORD, DWORD, DWORD, FLOAT, FLOAT, int, LPGLYPHMETRICSFLOAT);
+	BOOL wglUseFontOutlinesW(HDC, DWORD, DWORD, DWORD, FLOAT, FLOAT, int, LPGLYPHMETRICSFLOAT);
 
 	static if (WINVER >= 0x0500) {
 	alias WGLSWAP* PWGLSWAP;
@@ -4398,25 +4398,25 @@ extern(Windows) {
 }
 
 static if (WINVER >= 0x0500) {
-		BOOL AlphaBlend(HDC, цел, цел, цел, цел, HDC, цел, цел, цел, цел, BLENDFUNCTION);
+		BOOL AlphaBlend(HDC, int, int, int, int, HDC, int, int, int, int, BLENDFUNCTION);
 		BOOL GradientFill(HDC, PTRIVERTEX, ULONG, PVOID, ULONG, ULONG);
-		BOOL TransparentBlt(HDC, цел, цел, цел, цел, HDC, цел, цел, цел, цел, UINT);
+		BOOL TransparentBlt(HDC, int, int, int, int, HDC, int, int, int, int, UINT);
 	}
 
 	static if (_WIN32_WINNT >= 0x0500) {
 		COLORREF SetDCBrushColor(HDC, COLORREF);
 		COLORREF SetDCPenColor(HDC, COLORREF);
 		HANDLE AddFontMemResourceEx(PVOID, DWORD, PVOID, DWORD*);
-		цел AddFontResourceExA(LPCSTR, DWORD, PVOID);
-		цел AddFontResourceExW(LPCWSTR, DWORD, PVOID);
+		int AddFontResourceExA(LPCSTR, DWORD, PVOID);
+		int AddFontResourceExW(LPCWSTR, DWORD, PVOID);
 		BOOL RemoveFontMemResourceEx(HANDLE);
 		BOOL RemoveFontResourceExA(LPCSTR, DWORD, PVOID);
 		BOOL RemoveFontResourceExW(LPCWSTR, DWORD, PVOID);
 		DWORD GetFontUnicodeRanges(HDC, LPGLYPHSET);
-		DWORD GetGlyphIndicesA(HDC, LPCSTR, цел, LPWORD, DWORD);
-		DWORD GetGlyphIndicesW(HDC, LPCWSTR, цел, LPWORD, DWORD);
-		BOOL GetTextExtentPointI(HDC, LPWORD, цел, LPSIZE);
-		BOOL GetTextExtentExPointI(HDC, LPWORD, цел, цел, LPINT, LPINT, LPSIZE);
+		DWORD GetGlyphIndicesA(HDC, LPCSTR, int, LPWORD, DWORD);
+		DWORD GetGlyphIndicesW(HDC, LPCWSTR, int, LPWORD, DWORD);
+		BOOL GetTextExtentPointI(HDC, LPWORD, int, LPSIZE);
+		BOOL GetTextExtentExPointI(HDC, LPWORD, int, int, LPINT, LPINT, LPSIZE);
 		BOOL GetCharWidthI(HDC, UINT, UINT, LPWORD, LPINT);
 		BOOL GetCharABCWidthsI(HDC, UINT, UINT, LPWORD, LPABC);
 	}

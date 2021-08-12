@@ -115,8 +115,8 @@ struct DEV_BROADCAST_PORT_A {
 	DWORD dbcp_size = DEV_BROADCAST_PORT_A.sizeof;
 	DWORD dbcp_devicetype;
 	DWORD dbcp_reserved;
-	сим  _dbcp_name;
-	сим* dbcp_name() { return &_dbcp_name; }
+	char  _dbcp_name;
+	char* dbcp_name() { return &_dbcp_name; }
 }
 alias DEV_BROADCAST_PORT_A* PDEV_BROADCAST_PORT_A;
 
@@ -131,8 +131,8 @@ alias DEV_BROADCAST_PORT_W* PDEV_BROADCAST_PORT_W;
 
 struct DEV_BROADCAST_USERDEFINED {
 	DEV_BROADCAST_HDR dbud_dbh;
-	сим  _dbud_szName;
-	сим* dbud_szName() { return &_dbud_szName; }
+	char  _dbud_szName;
+	char* dbud_szName() { return &_dbud_szName; }
 }
 
 struct DEV_BROADCAST_VOLUME {
@@ -157,8 +157,8 @@ static if ((_WIN32_WINDOWS >= 0x0410) || (_WIN32_WINNT >= 0x0500)) {
 		DWORD dbcc_devicetype;
 		DWORD dbcc_reserved;
 		GUID  dbcc_classguid;
-		сим  _dbcc_name;
-		сим* dbcc_name() { return &_dbcc_name; }
+		char  _dbcc_name;
+		char* dbcc_name() { return &_dbcc_name; }
 	}
 	alias DEV_BROADCAST_DEVICEINTERFACE_A* PDEV_BROADCAST_DEVICEINTERFACE_A;
 

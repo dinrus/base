@@ -60,8 +60,8 @@ struct MIB_IPADDRROW {
 	DWORD  dwMask;
 	DWORD  dwBCastAddr;
 	DWORD  dwReasmSize;
-	бкрат unused1;
-	бкрат unused2;
+	ushort unused1;
+	ushort unused2;
 }
 alias MIB_IPADDRROW* PMIB_IPADDRROW;
 

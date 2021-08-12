@@ -53,7 +53,7 @@ interface IWebBrowser : public IDispatch {
 
 interface IWebBrowserApp : public IWebBrowser {
 	HRESULT Quit();
-	HRESULT ClientToWindow(цел*, цел*);
+	HRESULT ClientToWindow(int*, int*);
 	HRESULT PutProperty(BSTR, VARIANT);
 	HRESULT GetProperty(BSTR, VARIANT*);
 	HRESULT get_Name(BSTR*);
@@ -66,8 +66,8 @@ interface IWebBrowserApp : public IWebBrowser {
 	HRESULT put_StatusBar(VARIANT_BOOL);
 	HRESULT get_StatusText(BSTR*);
 	HRESULT put_StatusText(BSTR);
-	HRESULT get_ToolBar(цел*);
-	HRESULT put_ToolBar(цел);
+	HRESULT get_ToolBar(int*);
+	HRESULT put_ToolBar(int);
 	HRESULT get_MenuBar(VARIANT_BOOL*);
 	HRESULT put_MenuBar(VARIANT_BOOL);
 	HRESULT get_FullScreen(VARIANT_BOOL*);
@@ -97,31 +97,31 @@ interface IWebBrowser2 : public IWebBrowserApp {
 }
 
 interface DWebBrowserEvents2 : public IDispatch {
-	проц StatusTextChange(BSTR);
-	проц ProgressChange(LONG, LONG);
-	проц CommandStateChange(LONG, VARIANT_BOOL);
-	проц DownloadBegin();
-	проц DownloadComplete();
-	проц TitleChange(BSTR);
-	проц PropertyChange(BSTR);
-	проц BeforeNavigate2(IDispatch pDisp, VARIANT*, VARIANT*, VARIANT*, VARIANT*, VARIANT*, VARIANT_BOOL*);
-	проц NewWindow2(IDispatch* ppDisp, VARIANT_BOOL*);
-	проц NavigateComplete(IDispatch pDisp, VARIANT*);
-	проц DocumentComplete(IDispatch pDisp, VARIANT*);
-	проц OnQuit();
-	проц OnVisible(VARIANT_BOOL);
-	проц OnToolBar(VARIANT_BOOL);
-	проц OnMenuBar(VARIANT_BOOL);
-	проц OnStatusBar(VARIANT_BOOL);
-	проц OnFullScreen(VARIANT_BOOL);
-	проц OnTheaterMode(VARIANT_BOOL);
-	проц WindowSetResizable(VARIANT_BOOL);
-	проц WindowSetLeft(LONG);
-	проц WindowSetTop(LONG);
-	проц WindowSetWidth(LONG);
-	проц WindowSetHeight(LONG);
-	проц WindowClosing(VARIANT_BOOL, VARIANT_BOOL*);
-	проц ClientToHostWindow(LONG*, LONG*);
-	проц SetSecureLockIcon(LONG);
-	проц FileDownload(VARIANT_BOOL*);
+	void StatusTextChange(BSTR);
+	void ProgressChange(LONG, LONG);
+	void CommandStateChange(LONG, VARIANT_BOOL);
+	void DownloadBegin();
+	void DownloadComplete();
+	void TitleChange(BSTR);
+	void PropertyChange(BSTR);
+	void BeforeNavigate2(IDispatch pDisp, VARIANT*, VARIANT*, VARIANT*, VARIANT*, VARIANT*, VARIANT_BOOL*);
+	void NewWindow2(IDispatch* ppDisp, VARIANT_BOOL*);
+	void NavigateComplete(IDispatch pDisp, VARIANT*);
+	void DocumentComplete(IDispatch pDisp, VARIANT*);
+	void OnQuit();
+	void OnVisible(VARIANT_BOOL);
+	void OnToolBar(VARIANT_BOOL);
+	void OnMenuBar(VARIANT_BOOL);
+	void OnStatusBar(VARIANT_BOOL);
+	void OnFullScreen(VARIANT_BOOL);
+	void OnTheaterMode(VARIANT_BOOL);
+	void WindowSetResizable(VARIANT_BOOL);
+	void WindowSetLeft(LONG);
+	void WindowSetTop(LONG);
+	void WindowSetWidth(LONG);
+	void WindowSetHeight(LONG);
+	void WindowClosing(VARIANT_BOOL, VARIANT_BOOL*);
+	void ClientToHostWindow(LONG*, LONG*);
+	void SetSecureLockIcon(LONG);
+	void FileDownload(VARIANT_BOOL*);
 }

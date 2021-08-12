@@ -14,11 +14,11 @@ private import win32.w32api;
 
 /* Translation Notes:
 The following macros are unneeded for D:
-FIELD_OFFSET(t,f), CONTAINING_RECORD(адрес, тип, поле)
+FIELD_OFFSET(t,f), CONTAINING_RECORD(address, type, field)
 */
 
-const сим ANSI_NULL = '\0';
-const шим UNICODE_NULL = '\0';
+const char ANSI_NULL = '\0';
+const wchar UNICODE_NULL = '\0';
 
 const APPLICATION_ERROR_MASK       = 0x20000000;
 const ERROR_SEVERITY_SUCCESS       = 0x00000000;
@@ -390,7 +390,7 @@ const DWORD
 	SE_GROUP_RESOURCE           = 0x20000000,
 	SE_GROUP_LOGON_ID           = 0xC0000000;
 
-// Primary язык identifiers
+// Primary language identifiers
 enum : USHORT {
 	LANG_NEUTRAL,
 	LANG_ARABIC,
@@ -1229,7 +1229,7 @@ enum : SHORT {
 	IMAGE_SYM_DEBUG     = -2
 }
 
-enum : ббайт {
+enum : ubyte {
 	IMAGE_SYM_TYPE_NULL,
 	IMAGE_SYM_TYPE_VOID,
 	IMAGE_SYM_TYPE_CHAR,
@@ -1249,7 +1249,7 @@ enum : ббайт {
 }
 const IMAGE_SYM_TYPE_PCODE = 32768; // ???
 
-enum : ббайт {
+enum : ubyte {
 	IMAGE_SYM_DTYPE_NULL,
 	IMAGE_SYM_DTYPE_POINTER,
 	IMAGE_SYM_DTYPE_FUNCTION,
@@ -1507,16 +1507,16 @@ const TCHAR[]
 
 const IMAGE_ORDINAL_FLAG32 = 0x80000000;
 
-бдол IMAGE_ORDINAL64(бдол Ordinal) { return Ordinal & 0xFFFF; }
-бцел IMAGE_ORDINAL32(бцел Ordinal)   { return Ordinal & 0xFFFF; }
+ulong IMAGE_ORDINAL64(ulong Ordinal) { return Ordinal & 0xFFFF; }
+uint IMAGE_ORDINAL32(uint Ordinal)   { return Ordinal & 0xFFFF; }
 
-бул IMAGE_SNAP_BY_ORDINAL32(бцел Ordinal) {
+bool IMAGE_SNAP_BY_ORDINAL32(uint Ordinal) {
 	return (Ordinal & IMAGE_ORDINAL_FLAG32) != 0;
 }
 
-const бдол IMAGE_ORDINAL_FLAG64 = 0x8000000000000000;
+const ulong IMAGE_ORDINAL_FLAG64 = 0x8000000000000000;
 
-бул IMAGE_SNAP_BY_ORDINAL64(бдол Ordinal) {
+bool IMAGE_SNAP_BY_ORDINAL64(ulong Ordinal) {
 	return (Ordinal & IMAGE_ORDINAL_FLAG64) != 0;
 }
 
@@ -1537,7 +1537,7 @@ enum : DWORD {
 	IMAGE_DEBUG_TYPE_BORLAND // = 9
 }
 
-enum : ббайт {
+enum : ubyte {
 	FRAME_FPO,
 	FRAME_TRAP,
 	FRAME_TSS,
@@ -1555,7 +1555,7 @@ const N_TMASK2 = 0x00F0;
 const N_BTSHFT = 4;
 const N_TШИФТ = 2;
 
-const цел
+const int
 	IS_TEXT_UNICODE_ASCII16            = 0x0001,
 	IS_TEXT_UNICODE_STATISTICS         = 0x0002,
 	IS_TEXT_UNICODE_CONTROLS           = 0x0004,
@@ -1600,7 +1600,7 @@ enum : DWORD {
 }
 
 
-const бцел
+const uint
 	SE_OWNER_DEFAULTED          = 0x0001,
 	SE_GROUP_DEFAULTED          = 0x0002,
 	SE_DACL_PRESENT             = 0x0004,
@@ -1874,19 +1874,19 @@ static if (_WIN32_WINNT_ONLY) {
 
 // Macros
 BYTE BTYPE(BYTE x) { return cast(BYTE) (x & N_BTMASK); }
-бул ISPTR(бцел x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_POINTER << N_BTSHFT); }
-бул ISFCN(бцел x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_FUNCTION << N_BTSHFT); }
-бул ISARY(бцел x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_ARRAY << N_BTSHFT); }
-бул ISTAG(бцел x) {
+bool ISPTR(uint x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_POINTER << N_BTSHFT); }
+bool ISFCN(uint x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_FUNCTION << N_BTSHFT); }
+bool ISARY(uint x) { return (x & N_TMASK) == (IMAGE_SYM_DTYPE_ARRAY << N_BTSHFT); }
+bool ISTAG(uint x) {
 	return x == IMAGE_SYM_CLASS_STRUCT_TAG
 	    || x == IMAGE_SYM_CLASS_UNION_TAG
 	    || x == IMAGE_SYM_CLASS_ENUM_TAG;
 }
-бцел INCREF(бцел x) {
+uint INCREF(uint x) {
 	return ((x & ~N_BTMASK) << N_TШИФТ) | (IMAGE_SYM_DTYPE_POINTER << N_BTSHFT)
 	  | (x & N_BTMASK);
 }
-бцел DECREF(бцел x) { return ((x >>> N_TШИФТ) & ~N_BTMASK) | (x & N_BTMASK); }
+uint DECREF(uint x) { return ((x >>> N_TШИФТ) & ~N_BTMASK) | (x & N_BTMASK); }
 
 const DWORD TLS_MINIMUM_AVAILABLE = 64;
 
@@ -1906,22 +1906,22 @@ ULONG IsReparseTagMicrosoft(ULONG x)     { return x & 0x80000000; }
 ULONG IsReparseTagHighLatency(ULONG x)   { return x & 0x40000000; }
 ULONG IsReparseTagNameSurrogate(ULONG x) { return x & 0x20000000; }
 
-бул IsReparseTagValid(ULONG x) {
+bool IsReparseTagValid(ULONG x) {
 	return !(x & ~IO_REPARSE_TAG_VALID_VALUES) && (x > IO_REPARSE_TAG_RESERVED_RANGE);
 }
 
 // Doesn't seem to make sense, but anyway....
-ULONG WT_SET_MAX_THREADPOOL_THREADS(ref ULONG Flags, бкрат Limit) {
+ULONG WT_SET_MAX_THREADPOOL_THREADS(ref ULONG Flags, ushort Limit) {
 	return Flags |= Limit << 16;
 }
 
 import win32.basetyps;
 /* also in win32.basetyps
 struct GUID {
-	бцел  Data1;
-	бкрат Data2;
-	бкрат Data3;
-	ббайт  Data4[8];
+	uint  Data1;
+	ushort Data2;
+	ushort Data3;
+	ubyte  Data4[8];
 }
 alias GUID* REFGUID, LPGUID;
 */
@@ -2107,19 +2107,19 @@ alias EXCEPTION_POINTERS* PEXCEPTION_POINTERS, LPEXCEPTION_POINTERS;
 
 union LARGE_INTEGER {
 	struct {
-		бцел LowPart;
-		цел  HighPart;
+		uint LowPart;
+		int  HighPart;
 	}
-	дол QuadPart;
+	long QuadPart;
 }
 alias LARGE_INTEGER* PLARGE_INTEGER;
 
 union ULARGE_INTEGER {
 	struct {
-		бцел LowPart;
-		бцел HighPart;
+		uint LowPart;
+		uint HighPart;
 	}
-	бдол QuadPart;
+	ulong QuadPart;
 }
 alias ULARGE_INTEGER* PULARGE_INTEGER;
 
@@ -2332,7 +2332,7 @@ alias IO_COUNTERS* PIO_COUNTERS;
 
 struct FILE_NOTIFY_INFORMATION {
 	DWORD NextEntryOffset;
-	DWORD Действие;
+	DWORD Action;
 	DWORD FileNameLength;
 	WCHAR _FileName;
 
@@ -2416,7 +2416,7 @@ alias TAPE_WRITE_MARKS* PTAPE_WRITE_MARKS;
 struct TAPE_CREATE_PARTITION {
 	DWORD Method;
 	DWORD Count;
-	DWORD Размер;
+	DWORD Size;
 }
 alias TAPE_CREATE_PARTITION* PTAPE_CREATE_PARTITION;
 
@@ -2638,7 +2638,7 @@ alias IMAGE_FILE_HEADER* PIMAGE_FILE_HEADER;
 
 struct IMAGE_DATA_DIRECTORY {
 	DWORD VirtualAddress;
-	DWORD Размер;
+	DWORD Size;
 }
 alias IMAGE_DATA_DIRECTORY* PIMAGE_DATA_DIRECTORY;
 
@@ -2848,7 +2848,7 @@ union IMAGE_AUX_SYMBOL {
 		union _Misc {
 			struct _LnSz {
 				WORD    Linenumber;
-				WORD    Размер;
+				WORD    Size;
 			}
 			_LnSz       LnSz;
 			DWORD       TotalSize;
@@ -2872,7 +2872,7 @@ union IMAGE_AUX_SYMBOL {
 	struct _File {
 		BYTE[IMAGE_SIZEOF_SYMBOL] Name;
 	}
-	_File               Файл;
+	_File               File;
 	struct _Section {
 		DWORD           Length;
 		WORD            NumberOfRelocations;
@@ -2930,7 +2930,7 @@ struct IMAGE_ARCHIVE_MEMBER_HEADER {
 	BYTE[6]  UserID;
 	BYTE[6]  GroupID;
 	BYTE[8]  Mode;
-	BYTE[10] Размер;
+	BYTE[10] Size;
 	BYTE[2]  EndHeader;
 }
 alias IMAGE_ARCHIVE_MEMBER_HEADER* PIMAGE_ARCHIVE_MEMBER_HEADER;
@@ -3053,26 +3053,26 @@ struct IMAGE_RESOURCE_DIRECTORY_ENTRY {
 			DWORD DataIsDirectory:1;
 		}+/
 
-	бцел NameOffset()        { return Name & 0x7FFFFFFF; }
-	бул NameIsString()      { return cast(бул)(Name & 0x80000000); }
-	бцел OffsetToDirectory() { return OffsetToData & 0x7FFFFFFF; }
-	бул DataIsDirectory()   { return cast(бул)(OffsetToData & 0x80000000); }
+	uint NameOffset()        { return Name & 0x7FFFFFFF; }
+	bool NameIsString()      { return cast(bool)(Name & 0x80000000); }
+	uint OffsetToDirectory() { return OffsetToData & 0x7FFFFFFF; }
+	bool DataIsDirectory()   { return cast(bool)(OffsetToData & 0x80000000); }
 
-	бцел NameOffset(бцел n) {
+	uint NameOffset(uint n) {
 		Name = (Name & 0x80000000) | (n & 0x7FFFFFFF);
 		return n & 0x7FFFFFFF;
 	}
 
-	бул NameIsString(бул n) {
+	bool NameIsString(bool n) {
 		Name = (Name & 0x7FFFFFFF) | (n << 31); return n;
 	}
 
-	бцел OffsetToDirectory(бцел o) {
+	uint OffsetToDirectory(uint o) {
 		OffsetToData = (OffsetToData & 0x80000000) | (o & 0x7FFFFFFF);
 		return o & 0x7FFFFFFF;
 	}
 
-	бул DataIsDirectory(бул d) {
+	bool DataIsDirectory(bool d) {
 		OffsetToData = (OffsetToData & 0x7FFFFFFF) | (d << 31); return d;
 	}
 }
@@ -3096,7 +3096,7 @@ alias IMAGE_RESOURCE_DIR_STRING_U* PIMAGE_RESOURCE_DIR_STRING_U;
 
 struct IMAGE_RESOURCE_DATA_ENTRY {
 	DWORD OffsetToData;
-	DWORD Размер;
+	DWORD Size;
 	DWORD CodePage;
 	DWORD Reserved;
 }
@@ -3152,29 +3152,29 @@ struct IMAGE_RUNTIME_FUNCTION_ENTRY {
 alias IMAGE_RUNTIME_FUNCTION_ENTRY* PIMAGE_RUNTIME_FUNCTION_ENTRY;
 
 struct IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
-	бцел      FuncStart;
+	uint      FuncStart;
 	union {
-		ббайт PrologLen;
-		бцел  _bf;
+		ubyte PrologLen;
+		uint  _bf;
 	}
 /+
-	unsigned цел FuncLen:22;
-	unsigned цел ThirtyTwoBit:1;
-	unsigned цел ExceptionFlag:1;
+	unsigned int FuncLen:22;
+	unsigned int ThirtyTwoBit:1;
+	unsigned int ExceptionFlag:1;
 +/
-	бцел FuncLen()       { return (_bf >> 8) & 0x3FFFFF; }
-	бул ThirtyTwoBit()  { return cast(бул)(_bf & 0x40000000); }
-	бул ExceptionFlag() { return cast(бул)(_bf & 0x80000000); }
+	uint FuncLen()       { return (_bf >> 8) & 0x3FFFFF; }
+	bool ThirtyTwoBit()  { return cast(bool)(_bf & 0x40000000); }
+	bool ExceptionFlag() { return cast(bool)(_bf & 0x80000000); }
 
-	бцел FuncLen(бцел f) {
+	uint FuncLen(uint f) {
 		_bf = (_bf & ~0x3FFFFF00) | ((f & 0x3FFFFF) << 8); return f & 0x3FFFFF;
 	}
 
-	бул ThirtyTwoBit(бул t) {
+	bool ThirtyTwoBit(bool t) {
 		_bf = (_bf & ~0x40000000) | (t << 30); return t;
 	}
 
-	бул ExceptionFlag(бул e) {
+	bool ExceptionFlag(bool e) {
 		_bf = (_bf & ~0x80000000) | (e << 31); return e;
 	}
 }
@@ -3197,8 +3197,8 @@ struct FPO_DATA {
 	DWORD  cbProcSize;
 	DWORD  cdwLocals;
 	WORD   cdwParams;
-	ббайт  cbProlog;
-	ббайт  _bf;
+	ubyte  cbProlog;
+	ubyte  _bf;
 /+
 	WORD cbRegs:3;
 	WORD fHasSEH:1;
@@ -3206,24 +3206,24 @@ struct FPO_DATA {
 	WORD reserved:1;
 	WORD cbFrame:2;
 +/
-	ббайт cbRegs()  { return cast(ббайт)(_bf & 0x07); }
-	бул fHasSEH()  { return cast(бул)(_bf & 0x08); }
-	бул fUseBP()   { return cast(бул)(_bf & 0x10); }
-	бул reserved() { return cast(бул)(_bf & 0x20); }
-	ббайт cbFrame() { return cast(ббайт)(_bf >> 6); }
+	ubyte cbRegs()  { return cast(ubyte)(_bf & 0x07); }
+	bool fHasSEH()  { return cast(bool)(_bf & 0x08); }
+	bool fUseBP()   { return cast(bool)(_bf & 0x10); }
+	bool reserved() { return cast(bool)(_bf & 0x20); }
+	ubyte cbFrame() { return cast(ubyte)(_bf >> 6); }
 
-	ббайт cbRegs(ббайт c) {
-		_bf = cast(ббайт) ((_bf & ~0x07) | (c & 0x07));
-		return cast(ббайт)(c & 0x07);
+	ubyte cbRegs(ubyte c) {
+		_bf = cast(ubyte) ((_bf & ~0x07) | (c & 0x07));
+		return cast(ubyte)(c & 0x07);
 	}
 
-	бул fHasSEH(бул f)  { _bf = cast(ббайт)((_bf & ~0x08) | (f << 3)); return f; }
-	бул fUseBP(бул f)   { _bf = cast(ббайт)((_bf & ~0x10) | (f << 4)); return f; }
-	бул reserved(бул r) { _bf = cast(ббайт)((_bf & ~0x20) | (r << 5)); return r; }
+	bool fHasSEH(bool f)  { _bf = cast(ubyte)((_bf & ~0x08) | (f << 3)); return f; }
+	bool fUseBP(bool f)   { _bf = cast(ubyte)((_bf & ~0x10) | (f << 4)); return f; }
+	bool reserved(bool r) { _bf = cast(ubyte)((_bf & ~0x20) | (r << 5)); return r; }
 
-	ббайт cbFrame(ббайт c) {
-		_bf = cast(ббайт) ((_bf & ~0xC0) | ((c & 0x03) << 6));
-		return cast(ббайт)(c & 0x03);
+	ubyte cbFrame(ubyte c) {
+		_bf = cast(ubyte) ((_bf & ~0xC0) | ((c & 0x03) << 6));
+		return cast(ubyte)(c & 0x03);
 	}
 }
 alias FPO_DATA* PFPO_DATA;
@@ -3300,7 +3300,7 @@ alias SERVICE_ERROR_TYPE _CM_ERROR_CONTROL_TYPE;
 
 //DAC: According to MSJ, 'UnderTheHood', May 1996, this
 // structure is not documented in any official Microsoft header file.
-alias проц EXCEPTION_REGISTRATION_RECORD;
+alias void EXCEPTION_REGISTRATION_RECORD;
 
 align:
 struct NT_TIB {
@@ -3601,7 +3601,7 @@ struct BATTERY_REPORTING_SCALE {
 alias BATTERY_REPORTING_SCALE* PBATTERY_REPORTING_SCALE;
 
 struct POWER_ACTION_POLICY {
-	POWER_ACTION Действие;
+	POWER_ACTION Action;
 	ULONG        Flags;
 	ULONG        EventCode;
 }
@@ -3770,13 +3770,13 @@ struct PROCESSOR_POWER_POLICY_INFO {
 	UCHAR    DemotePercent;
 	UCHAR    PromotePercent;
 	UCHAR[2] Spare;
-	бцел     _bf;
+	uint     _bf;
 
-	бул AllowDemotion()  { return cast(бул)(_bf & 1); }
-	бул AllowPromotion() { return cast(бул)(_bf & 2); }
+	bool AllowDemotion()  { return cast(bool)(_bf & 1); }
+	bool AllowPromotion() { return cast(bool)(_bf & 2); }
 
-	бул AllowDemotion(бул a)  { _bf = (_bf & ~1) | a; return a; }
-	бул AllowPromotion(бул a) { _bf = (_bf & ~2) | (a << 1); return a; }
+	bool AllowDemotion(bool a)  { _bf = (_bf & ~1) | a; return a; }
+	bool AllowPromotion(bool a) { _bf = (_bf & ~2) | (a << 1); return a; }
 /+
 	ULONG  AllowDemotion : 1;
 	ULONG  AllowPromotion : 1;
@@ -3808,11 +3808,11 @@ alias ADMINISTRATOR_POWER_POLICY* PADMINISTRATOR_POWER_POLICY;
 //}//#endif /* WINVER >= 0x0500 */
 
 extern (Windows) {
-	alias проц function(PVOID, DWORD, PVOID) PIMAGE_TLS_CALLBACK;
+	alias void function(PVOID, DWORD, PVOID) PIMAGE_TLS_CALLBACK;
 
 	static if (_WIN32_WINNT_ONLY && _WIN32_WINNT >= 0x500) {
 		alias LONG function(PEXCEPTION_POINTERS) PVECTORED_EXCEPTION_HANDLER;
-		alias проц function(PVOID, BOOLEAN) WAITORTIMERCALLBACKFUNC;
+		alias void function(PVOID, BOOLEAN) WAITORTIMERCALLBACKFUNC;
 	}
 }
 

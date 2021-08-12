@@ -135,9 +135,9 @@ enum DXGI_FORMAT {
 }
 
 struct DXGI_RGB {
-	плав Red;
-	плав Green;
-	плав Blue;
+	float Red;
+	float Green;
+	float Blue;
 }
 
 struct DXGI_GAMMA_CONTROL {
@@ -148,10 +148,10 @@ struct DXGI_GAMMA_CONTROL {
 
 struct DXGI_GAMMA_CONTROL_CAPABILITIES {
 	BOOL ScaleAndOffsetSupported;
-	плав MaxConvertedValue;
-	плав MinConvertedValue;
+	float MaxConvertedValue;
+	float MinConvertedValue;
 	UINT NumGammaControlPoints;
-	плав[1025] ControlPointPositions;
+	float[1025] ControlPointPositions;
 }
 
 struct DXGI_RATIONAL {

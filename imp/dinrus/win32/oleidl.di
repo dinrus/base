@@ -54,7 +54,7 @@ enum DROPEFFECT {
 }
 
 struct OLEMENUGROUPWIDTHS {
-	LONG ширина[6];
+	LONG width[6];
 }
 alias OLEMENUGROUPWIDTHS* LPOLEMENUGROUPWIDTHS;
 
@@ -110,8 +110,8 @@ interface IOleContainer : public IParseDisplayName {
 alias IOleContainer LPOLECONTAINER;
 
 interface IOleItemContainer : public IOleContainer {
-	HRESULT GetObject(LPOLESTR,DWORD,IBindCtx*,REFIID,проц**);
-	HRESULT GetObjectStorage(LPOLESTR,IBindCtx*,REFIID,проц**);
+	HRESULT GetObject(LPOLESTR,DWORD,IBindCtx*,REFIID,void**);
+	HRESULT GetObjectStorage(LPOLESTR,IBindCtx*,REFIID,void**);
 	HRESULT IsRunning(LPOLESTR);
 }
 

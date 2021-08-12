@@ -12,7 +12,7 @@ module win32.custcntl;
 
 private import win32.windef;
 
-// FIXME: check тип
+// FIXME: check type
 const CCF_NOTEXT = 1;
 
 const size_t

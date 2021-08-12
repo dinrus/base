@@ -102,7 +102,7 @@ alias AUDIT_ENTRY* PAUDIT_ENTRY, LPAUDIT_ENTRY;
 struct HLOG{
 	DWORD time;
 	DWORD last_flags;
-	DWORD смещение;
+	DWORD offset;
 	DWORD rec_offset;
 }
 alias HLOG* PHLOG, LPHLOG;

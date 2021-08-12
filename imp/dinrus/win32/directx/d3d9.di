@@ -2,7 +2,7 @@
  *
  *  Copyright (C) Microsoft Corporation.  All Rights Reserved.
  *
- *  Файл:   d3d9.h
+ *  File:   d3d9.h
  *  Content:    Direct3D include file
  *
  ****************************************************************************/
@@ -16,7 +16,7 @@ const DIRECT3D_VERSION = 0x0900;
 
 /**This identifier is passed to Direct3DCreate9 in order to ensure that an
  * application was built against the correct header files. This number is
- * incremented whenever a header (or другой) change would require applications
+ * incremented whenever a header (or other) change would require applications
  * to be rebuilt. If the version doesn't match, Direct3DCreate9 will fail.
  * (The number itself has no meaning.)*/
 
@@ -120,9 +120,9 @@ extern (C):
 /**
  * DLL Function for creating a Direct3D9 object. This object supports
  * enumeration and allows the creation of Direct3DDevice9 objects.
- * Pass the значение of the constant D3D_SDK_VERSION to this function, so
+ * Pass the value of the constant D3D_SDK_VERSION to this function, so
  * that the run-time can validate that your application was compiled
- * against the право headers.
+ * against the right headers.
  */
 
 extern (Windows) LPDIRECT3D9 Direct3DCreate9(UINT SDKVersion);
@@ -130,19 +130,19 @@ extern (Windows) LPDIRECT3D9 Direct3DCreate9(UINT SDKVersion);
 /**
  * Stubs for graphics profiling.
  */
-extern (Windows) цел D3DPERF_BeginEvent( D3DCOLOR col, LPCWSTR wszName );
-extern (Windows) цел D3DPERF_EndEvent();
-extern (Windows) проц D3DPERF_SetMarker( D3DCOLOR col, LPCWSTR wszName );
-extern (Windows) проц D3DPERF_SetRegion( D3DCOLOR col, LPCWSTR wszName );
+extern (Windows) int D3DPERF_BeginEvent( D3DCOLOR col, LPCWSTR wszName );
+extern (Windows) int D3DPERF_EndEvent();
+extern (Windows) void D3DPERF_SetMarker( D3DCOLOR col, LPCWSTR wszName );
+extern (Windows) void D3DPERF_SetRegion( D3DCOLOR col, LPCWSTR wszName );
 extern (Windows) BOOL D3DPERF_QueryRepeatFrame();
 
-extern (Windows) проц D3DPERF_SetOptions( DWORD dwOptions );
+extern (Windows) void D3DPERF_SetOptions( DWORD dwOptions );
 extern (Windows) DWORD D3DPERF_GetStatus();
 
 
 interface LPDIRECT3D9 : public IUnknown
 {
-    HRESULT RegisterSoftwareDevice(проц* pInitializeFunction);
+    HRESULT RegisterSoftwareDevice(void* pInitializeFunction);
     UINT GetAdapterCount();
     HRESULT GetAdapterIdentifier( UINT Adapter,DWORD Flags,D3DADAPTER_IDENTIFIER9* pIdentifier);
     UINT GetAdapterModeCount(UINT Adapter,D3DFORMAT Format);
@@ -174,7 +174,7 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT GetDisplayMode( UINT iSwapChain,D3DDISPLAYMODE* pMode);
     HRESULT GetCreationParameters( D3DDEVICE_CREATION_PARAMETERS *pParameters);
     HRESULT SetCursorProperties( UINT XHotSpot,UINT YHotSpot,LPDIRECT3DSURFACE9 pCursorBitmap);
-    проц SetCursorPosition(цел X,цел Y,DWORD Flags);
+    void SetCursorPosition(int X,int Y,DWORD Flags);
     BOOL ShowCursor(BOOL bShow);
     HRESULT CreateAdditionalSwapChain( D3DPRESENT_PARAMETERS* pPresentationParameters,LPDIRECT3DSWAPCHAIN9* pSwapChain);
     HRESULT GetSwapChain( UINT iSwapChain,LPDIRECT3DSWAPCHAIN9* pSwapChain);
@@ -184,8 +184,8 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT GetBackBuffer( UINT iSwapChain,UINT iBackBuffer,D3DBACKBUFFER_TYPE Type,LPDIRECT3DSURFACE9* ppBackBuffer);
     HRESULT GetRasterStatus( UINT iSwapChain,D3DRASTER_STATUS* pRasterStatus);
     HRESULT SetDialogBoxMode( BOOL bEnableDialogs);
-    проц SetGammaRamp(UINT iSwapChain,DWORD Flags, D3DGAMMARAMP* pRamp);
-    проц GetGammaRamp(UINT iSwapChain,D3DGAMMARAMP* pRamp);
+    void SetGammaRamp(UINT iSwapChain,DWORD Flags, D3DGAMMARAMP* pRamp);
+    void GetGammaRamp(UINT iSwapChain,D3DGAMMARAMP* pRamp);
     HRESULT CreateTexture( UINT Width,UINT Height,UINT Levels,DWORD Usage,D3DFORMAT Format,D3DPOOL Pool,LPDIRECT3DTEXTURE9* ppTexture,HANDLE* pSharedHandle);
     HRESULT CreateVolumeTexture( UINT Width,UINT Height,UINT Depth,UINT Levels,DWORD Usage,D3DFORMAT Format,D3DPOOL Pool,LPDIRECT3DVOLUMETEXTURE9* ppVolumeTexture,HANDLE* pSharedHandle);
     HRESULT CreateCubeTexture( UINT EdgeLength,UINT Levels,DWORD Usage,D3DFORMAT Format,D3DPOOL Pool,LPDIRECT3DCUBETEXTURE9* ppCubeTexture,HANDLE* pSharedHandle);
@@ -206,7 +206,7 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT GetDepthStencilSurface( LPDIRECT3DSURFACE9* ppZStencilSurface);
     HRESULT BeginScene();
     HRESULT EndScene();
-    HRESULT Clear( DWORD Count, D3DRECT* pRects,DWORD Flags,D3DCOLOR Color,плав Z,DWORD Stencil);
+    HRESULT Clear( DWORD Count, D3DRECT* pRects,DWORD Flags,D3DCOLOR Color,float Z,DWORD Stencil);
     HRESULT SetTransform( D3DTRANSFORMSTATETYPE State, D3DMATRIX* pMatrix);
     HRESULT GetTransform( D3DTRANSFORMSTATETYPE State,D3DMATRIX* pMatrix);
     HRESULT MultiplyTransform( D3DTRANSFORMSTATETYPE, D3DMATRIX*);
@@ -218,8 +218,8 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT GetLight( DWORD Index,D3DLIGHT9*);
     HRESULT LightEnable( DWORD Index,BOOL Enable);
     HRESULT GetLightEnable( DWORD Index,BOOL* pEnable);
-    HRESULT SetClipPlane( DWORD Index, плав* pPlane);
-    HRESULT GetClipPlane( DWORD Index,плав* pPlane);
+    HRESULT SetClipPlane( DWORD Index, float* pPlane);
+    HRESULT GetClipPlane( DWORD Index,float* pPlane);
     HRESULT SetRenderState( D3DRENDERSTATETYPE State,DWORD Value);
     HRESULT GetRenderState( D3DRENDERSTATETYPE State,DWORD* pValue);
     HRESULT CreateStateBlock( D3DSTATEBLOCKTYPE Type,LPDIRECT3DSTATEBLOCK9* ppSB);
@@ -242,12 +242,12 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT GetScissorRect( RECT* pRect);
     HRESULT SetSoftwareVertexProcessing( BOOL bSoftware);
     BOOL GetSoftwareVertexProcessing();
-    HRESULT SetNPatchMode( плав nSegments);
-    плав GetNPatchMode();
+    HRESULT SetNPatchMode( float nSegments);
+    float GetNPatchMode();
     HRESULT DrawPrimitive( D3DPRIMITIVETYPE PrimitiveType,UINT StartVertex,UINT PrimitiveCount);
     HRESULT DrawIndexedPrimitive( D3DPRIMITIVETYPE,INT BaseVertexIndex,UINT MinVertexIndex,UINT NumVertices,UINT startIndex,UINT primCount);
-    HRESULT DrawPrimitiveUP( D3DPRIMITIVETYPE PrimitiveType,UINT PrimitiveCount, проц* pVertexStreamZeroData,UINT VertexStreamZeroStride);
-    HRESULT DrawIndexedPrimitiveUP( D3DPRIMITIVETYPE PrimitiveType,UINT MinVertexIndex,UINT NumVertices,UINT PrimitiveCount, проц* pIndexData,D3DFORMAT IndexDataFormat, проц* pVertexStreamZeroData,UINT VertexStreamZeroStride);
+    HRESULT DrawPrimitiveUP( D3DPRIMITIVETYPE PrimitiveType,UINT PrimitiveCount, void* pVertexStreamZeroData,UINT VertexStreamZeroStride);
+    HRESULT DrawIndexedPrimitiveUP( D3DPRIMITIVETYPE PrimitiveType,UINT MinVertexIndex,UINT NumVertices,UINT PrimitiveCount, void* pIndexData,D3DFORMAT IndexDataFormat, void* pVertexStreamZeroData,UINT VertexStreamZeroStride);
     HRESULT ProcessVertices( UINT SrcStartIndex,UINT DestIndex,UINT VertexCount,LPDIRECT3DVERTEXBUFFER9 pDestBuffer,LPDIRECT3DVERTEXDECLARATION9 pVertexDecl,DWORD Flags);
     HRESULT CreateVertexDeclaration( D3DVERTEXELEMENT9* pVertexElements,LPDIRECT3DVERTEXDECLARATION9* ppDecl);
     HRESULT SetVertexDeclaration(LPDIRECT3DVERTEXDECLARATION9 pDecl);
@@ -257,10 +257,10 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT CreateVertexShader( DWORD* pFunction,LPDIRECT3DVERTEXSHADER9* ppShader);
     HRESULT SetVertexShader( LPDIRECT3DVERTEXSHADER9 pShader);
     HRESULT GetVertexShader( LPDIRECT3DVERTEXSHADER9* ppShader);
-    HRESULT SetVertexShaderConstantF( UINT StartRegister, плав* pConstantData,UINT Vector4fCount);
-    HRESULT GetVertexShaderConstantF( UINT StartRegister,плав* pConstantData,UINT Vector4fCount);
-    HRESULT SetVertexShaderConstantI( UINT StartRegister, цел* pConstantData,UINT Vector4iCount);
-    HRESULT GetVertexShaderConstantI( UINT StartRegister,цел* pConstantData,UINT Vector4iCount);
+    HRESULT SetVertexShaderConstantF( UINT StartRegister, float* pConstantData,UINT Vector4fCount);
+    HRESULT GetVertexShaderConstantF( UINT StartRegister,float* pConstantData,UINT Vector4fCount);
+    HRESULT SetVertexShaderConstantI( UINT StartRegister, int* pConstantData,UINT Vector4iCount);
+    HRESULT GetVertexShaderConstantI( UINT StartRegister,int* pConstantData,UINT Vector4iCount);
     HRESULT SetVertexShaderConstantB( UINT StartRegister, BOOL* pConstantData,UINT  BoolCount);
     HRESULT GetVertexShaderConstantB( UINT StartRegister,BOOL* pConstantData,UINT BoolCount);
     HRESULT SetStreamSource( UINT StreamNumber,LPDIRECT3DVERTEXBUFFER9 pStreamData,UINT OffsetInBytes,UINT Stride);
@@ -272,14 +272,14 @@ interface LPDIRECT3DDEVICE9 : public IUnknown
     HRESULT CreatePixelShader( DWORD* pFunction,LPDIRECT3DPIXELSHADER9* ppShader);
     HRESULT SetPixelShader(LPDIRECT3DPIXELSHADER9 pShader);
     HRESULT GetPixelShader(LPDIRECT3DPIXELSHADER9* ppShader);
-    HRESULT SetPixelShaderConstantF( UINT StartRegister, плав* pConstantData,UINT Vector4fCount);
-    HRESULT GetPixelShaderConstantF( UINT StartRegister,плав* pConstantData,UINT Vector4fCount);
-    HRESULT SetPixelShaderConstantI( UINT StartRegister, цел* pConstantData,UINT Vector4iCount);
-    HRESULT GetPixelShaderConstantI( UINT StartRegister,цел* pConstantData,UINT Vector4iCount);
+    HRESULT SetPixelShaderConstantF( UINT StartRegister, float* pConstantData,UINT Vector4fCount);
+    HRESULT GetPixelShaderConstantF( UINT StartRegister,float* pConstantData,UINT Vector4fCount);
+    HRESULT SetPixelShaderConstantI( UINT StartRegister, int* pConstantData,UINT Vector4iCount);
+    HRESULT GetPixelShaderConstantI( UINT StartRegister,int* pConstantData,UINT Vector4iCount);
     HRESULT SetPixelShaderConstantB( UINT StartRegister, BOOL* pConstantData,UINT  BoolCount);
     HRESULT GetPixelShaderConstantB( UINT StartRegister,BOOL* pConstantData,UINT BoolCount);
-    HRESULT DrawRectPatch( UINT Handle, плав* pNumSegs, D3DRECTPATCH_INFO* pRectPatchInfo);
-    HRESULT DrawTriPatch( UINT Handle, плав* pNumSegs, D3DTRIPATCH_INFO* pTriPatchInfo);
+    HRESULT DrawRectPatch( UINT Handle, float* pNumSegs, D3DRECTPATCH_INFO* pRectPatchInfo);
+    HRESULT DrawTriPatch( UINT Handle, float* pNumSegs, D3DTRIPATCH_INFO* pTriPatchInfo);
     HRESULT DeletePatch( UINT Handle);
     HRESULT CreateQuery( D3DQUERYTYPE Type,LPDIRECT3DQUERY9* ppQuery);
 /*
@@ -360,12 +360,12 @@ alias LPDIRECT3DSWAPCHAIN9 IDirect3DSwapChain9;
 interface LPDIRECT3DRESOURCE9 : public IUnknown
 {
     HRESULT GetDevice( LPDIRECT3DDEVICE9* ppDevice);
-    HRESULT SetPrivateData( REFGUID refguid, проц* pData,DWORD SizeOfData,DWORD Flags);
-    HRESULT GetPrivateData( REFGUID refguid,проц* pData,DWORD* pSizeOfData);
+    HRESULT SetPrivateData( REFGUID refguid, void* pData,DWORD SizeOfData,DWORD Flags);
+    HRESULT GetPrivateData( REFGUID refguid,void* pData,DWORD* pSizeOfData);
     HRESULT FreePrivateData( REFGUID refguid);
     DWORD SetPriority(DWORD PriorityNew);
     DWORD GetPriority();
-    проц PreLoad();
+    void PreLoad();
     D3DRESOURCETYPE GetType();
 }
 
@@ -387,7 +387,7 @@ alias LPDIRECT3DVERTEXDECLARATION9 IDirect3DVertexDeclaration9;
 interface LPDIRECT3DVERTEXSHADER9 : public IUnknown
 {
     HRESULT GetDevice( LPDIRECT3DDEVICE9 * ppDevice);
-    HRESULT GetFunction( проц*,UINT* pSizeOfData);
+    HRESULT GetFunction( void*,UINT* pSizeOfData);
 /*
     debug {
         DWORD Version;
@@ -401,7 +401,7 @@ alias LPDIRECT3DVERTEXSHADER9 IDirect3DVertexShader9;
 interface LPDIRECT3DPIXELSHADER9 : public IUnknown
 {
     HRESULT GetDevice( LPDIRECT3DDEVICE9 * ppDevice);
-    HRESULT GetFunction( проц*,UINT* pSizeOfData);
+    HRESULT GetFunction( void*,UINT* pSizeOfData);
 /*
     debug {
         DWORD Version;
@@ -419,7 +419,7 @@ interface LPDIRECT3DBASETEXTURE9 : public LPDIRECT3DRESOURCE9
     DWORD GetLevelCount();
     HRESULT SetAutoGenFilterType( D3DTEXTUREFILTERTYPE FilterType);
     D3DTEXTUREFILTERTYPE GetAutoGenFilterType();
-    проц GenerateMipSubLevels();
+    void GenerateMipSubLevels();
 }
 
 alias LPDIRECT3DBASETEXTURE9 IDirect3DBaseTexture9;
@@ -508,7 +508,7 @@ alias LPDIRECT3DCUBETEXTURE9 IDirect3DCubeTexture9;
 
 interface LPDIRECT3DVERTEXBUFFER9 : public LPDIRECT3DRESOURCE9
 {
-    HRESULT Lock( UINT OffsetToLock,UINT SizeToLock,проц** ppbData,DWORD Flags);
+    HRESULT Lock( UINT OffsetToLock,UINT SizeToLock,void** ppbData,DWORD Flags);
     HRESULT Unlock();
     HRESULT GetDesc( D3DVERTEXBUFFER_DESC *pDesc);
 /*
@@ -529,7 +529,7 @@ alias LPDIRECT3DVERTEXBUFFER9 IDirect3DVertexBuffer9;
 
 interface LPDIRECT3DINDEXBUFFER9 : public LPDIRECT3DRESOURCE9
 {
-    HRESULT Lock( UINT OffsetToLock,UINT SizeToLock,проц** ppbData,DWORD Flags);
+    HRESULT Lock( UINT OffsetToLock,UINT SizeToLock,void** ppbData,DWORD Flags);
     HRESULT Unlock();
     HRESULT GetDesc( D3DINDEXBUFFER_DESC *pDesc);
 /*
@@ -550,7 +550,7 @@ alias LPDIRECT3DINDEXBUFFER9 IDirect3DIndexBuffer9;
 
 interface LPDIRECT3DSURFACE9 : public LPDIRECT3DRESOURCE9
 {
-    HRESULT GetContainer( REFIID riid,проц** ppContainer);
+    HRESULT GetContainer( REFIID riid,void** ppContainer);
     HRESULT GetDesc( D3DSURFACE_DESC *pDesc);
     HRESULT LockRect( D3DLOCKED_RECT* pLockedRect, RECT* pRect,DWORD Flags);
     HRESULT UnlockRect();
@@ -579,10 +579,10 @@ alias LPDIRECT3DSURFACE9 IDirect3DSurface9;
 interface LPDIRECT3DVOLUME9 : public IUnknown
 {
     HRESULT GetDevice( LPDIRECT3DDEVICE9 * ppDevice);
-    HRESULT SetPrivateData( REFGUID refguid, проц* pData,DWORD SizeOfData,DWORD Flags);
-    HRESULT GetPrivateData( REFGUID refguid,проц* pData,DWORD* pSizeOfData);
+    HRESULT SetPrivateData( REFGUID refguid, void* pData,DWORD SizeOfData,DWORD Flags);
+    HRESULT GetPrivateData( REFGUID refguid,void* pData,DWORD* pSizeOfData);
     HRESULT FreePrivateData( REFGUID refguid);
-    HRESULT GetContainer( REFIID riid,проц** ppContainer);
+    HRESULT GetContainer( REFIID riid,void** ppContainer);
     HRESULT GetDesc( D3DVOLUME_DESC *pDesc);
     HRESULT LockBox( D3DLOCKED_BOX * pLockedVolume, D3DBOX* pBox,DWORD Flags);
     HRESULT UnlockBox();
@@ -609,7 +609,7 @@ interface LPDIRECT3DQUERY9 : public IUnknown
     D3DQUERYTYPE GetType();
     DWORD GetDataSize();
     HRESULT Issue( DWORD dwIssueFlags);
-    HRESULT GetData( проц* pData,DWORD dwSize,DWORD dwGetDataFlags);
+    HRESULT GetData( void* pData,DWORD dwSize,DWORD dwGetDataFlags);
 /*
     debug {
         D3DQUERYTYPE Type;
@@ -626,7 +626,7 @@ alias LPDIRECT3DQUERY9 IDirect3DQuery9;
  *
  * The passed pointer is an IUnknown ptr. The SizeOfData argument to SetPrivateData
  * must be set to sizeof(IUnknown*). Direct3D will call AddRef through this
- * pointer and Release when the private данные is destroyed. The данные will be
+ * pointer and Release when the private data is destroyed. The data will be
  * destroyed when another SetPrivateData with the same GUID is set, when
  * FreePrivateData is called, or when the D3D9 object is freed.
  ****************************************************************************/
@@ -682,13 +682,13 @@ const D3DADAPTER_DEFAULT = 0;
  ****************************************************************************/
 
 /*
- * The D3DENUM_WHQL_LEVEL значение has been retired for 9Ex and future versions,
+ * The D3DENUM_WHQL_LEVEL value has been retired for 9Ex and future versions,
  * but it needs to be defined here for compatibility with DX9 and earlier versions.
  * See the DirectX SDK for sample code on discovering driver signatures.
  */
 const D3DENUM_WHQL_LEVEL = 0x00000002L;
 
-/* NO_DRIVERVERSION will not fill out the DriverVersion поле, nor will the
+/* NO_DRIVERVERSION will not fill out the DriverVersion field, nor will the
    DriverVersion be incorporated into the DeviceIdentifier GUID. WINNT only */
 const D3DENUM_NO_DRIVERVERSION = 0x00000004L;
 
@@ -808,8 +808,8 @@ alias LPDIRECT3D9EX IDirect3D9Ex;
 
 interface LPDIRECT3DDEVICE9EX : public LPDIRECT3DDEVICE9
 {
-    HRESULT SetConvolutionMonoKernel( UINT ширина,UINT высота,плав* rows,плав* columns);
-    HRESULT ComposeRects( LPDIRECT3DSURFACE9 pSrc,LPDIRECT3DSURFACE9 pDst,LPDIRECT3DVERTEXBUFFER9 pSrcRectDescs,UINT NumRects,LPDIRECT3DVERTEXBUFFER9 pDstRectDescs,D3DCOMPOSERECTSOP Operation,цел Xoffset,цел Yoffset);
+    HRESULT SetConvolutionMonoKernel( UINT width,UINT height,float* rows,float* columns);
+    HRESULT ComposeRects( LPDIRECT3DSURFACE9 pSrc,LPDIRECT3DSURFACE9 pDst,LPDIRECT3DVERTEXBUFFER9 pSrcRectDescs,UINT NumRects,LPDIRECT3DVERTEXBUFFER9 pDstRectDescs,D3DCOMPOSERECTSOP Operation,int Xoffset,int Yoffset);
     HRESULT PresentEx( RECT* pSourceRect, RECT* pDestRect,HWND hDestWindowOverride, RGNDATA* pDirtyRegion,DWORD dwFlags);
     HRESULT GetGPUThreadPriority( INT* pPriority);
     HRESULT SetGPUThreadPriority( INT Priority);

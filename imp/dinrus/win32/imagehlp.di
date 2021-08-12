@@ -118,8 +118,8 @@ struct LOADED_IMAGE {
 alias LOADED_IMAGE* PLOADED_IMAGE;
 
 struct IMAGE_DEBUG_INFORMATION {
-	LIST_ENTRY                 Список;
-	DWORD                      Размер;
+	LIST_ENTRY                 List;
+	DWORD                      Size;
 	PVOID                      MappedBase;
 	USHORT                     Machine;
 	USHORT                     Characteristics;
@@ -211,7 +211,7 @@ enum SYM_TYPE {
 struct IMAGEHLP_SYMBOL {
 	DWORD   SizeOfStruct;
 	DWORD   Адрес;
-	DWORD   Размер;
+	DWORD   Size;
 	DWORD   Flags;
 	DWORD   MaxNameLength;
 	CHAR[1] Name;

@@ -19,7 +19,7 @@ private import win32.winuser; // for LPMSG
 interface IBindHost : public IUnknown {}
 
 interface IServiceProvider : IUnknown{
-	HRESULT QueryService(REFGUID,REFIID,проц**);
+	HRESULT QueryService(REFGUID,REFIID,void**);
 }
 
 /*
@@ -31,8 +31,8 @@ interface IServiceProvider : IUnknown{
 interface IBindHost : public IUnknown
 {
 	HRESULT CreateMoniker(LPOLESTR szName, IBindCtx* pBC, IMoniker** ppmk, DWORD);
-	HRESULT MonikerBindToObject(IMoniker* pMk, IBindCtx* pBC, IBindStatusCallback* pBSC, REFIID, проц** );
-	HRESULT MonikerBindToStorage(IMoniker* pMk, IBindCtx* pBC, IBindStatusCallback* pBSC, REFIID, проц** );
+	HRESULT MonikerBindToObject(IMoniker* pMk, IBindCtx* pBC, IBindStatusCallback* pBSC, REFIID, void** );
+	HRESULT MonikerBindToStorage(IMoniker* pMk, IBindCtx* pBC, IBindStatusCallback* pBSC, REFIID, void** );
 }
 */
 
@@ -48,10 +48,10 @@ alias TEXTMETRICOLE* LPTEXTMETRICOLE;
 
 alias DWORD OLE_COLOR;
 alias UINT OLE_HANDLE;
-alias цел OLE_XPOS_HIMETRIC;
-alias цел OLE_YPOS_HIMETRIC;
-alias цел OLE_XSIZE_HIMETRIC;
-alias цел OLE_YSIZE_HIMETRIC;
+alias int OLE_XPOS_HIMETRIC;
+alias int OLE_YPOS_HIMETRIC;
+alias int OLE_XSIZE_HIMETRIC;
+alias int OLE_YSIZE_HIMETRIC;
 
 enum READYSTATE {
 	READYSTATE_UNINITIALIZED = 0,
@@ -120,8 +120,8 @@ struct QACONTROL {
 }
 
 struct POINTF {
-	плав x;
-	плав y;
+	float x;
+	float y;
 }
 alias POINTF* LPPOINTF;
 
@@ -140,7 +140,7 @@ struct CONNECTDATA {
 alias CONNECTDATA* LPCONNECTDATA;
 
 struct LICINFO {
-	цел cbLicInfo;
+	int cbLicInfo;
 	BOOL fRuntimeKeyAvail;
 	BOOL fLicVerified;
 }
@@ -167,7 +167,7 @@ alias CADWORD* LPCADWORD;
 struct PROPPAGEINFO {
 	ULONG cb;
 	LPOLESTR pszTitle;
-	SIZE размер;
+	SIZE size;
 	LPOLESTR pszDocString;
 	LPOLESTR pszHelpFile;
 	DWORD dwHelpContext;
@@ -345,14 +345,14 @@ interface IFont : public IUnknown {
 	HRESULT put_Underline(BOOL);
 	HRESULT get_Strikethrough(BOOL*);
 	HRESULT put_Strikethrough(BOOL);
-	HRESULT get_Weight(крат*);
-	HRESULT put_Weight(крат);
-	HRESULT get_Charset(крат*);
-	HRESULT put_Charset(крат);
+	HRESULT get_Weight(short*);
+	HRESULT put_Weight(short);
+	HRESULT get_Charset(short*);
+	HRESULT put_Charset(short);
 	HRESULT get_hFont(HFONT*);
 	HRESULT Clone(IFont**);
 	HRESULT IsEqual(IFont*);
-	HRESULT SetRatio(цел, цел);
+	HRESULT SetRatio(int, int);
 	HRESULT QueryTextMetrics(LPTEXTMETRICOLE);
 	HRESULT AddRefHfont(HFONT);
 	HRESULT ReleaseHfont(HFONT);
@@ -367,10 +367,10 @@ alias IFontDisp LPFONTDISP;
 interface IPicture : public IUnknown {
 	HRESULT get_Handle(OLE_HANDLE*);
 	HRESULT get_hPal(OLE_HANDLE*);
-	HRESULT get_Type(крат*);
+	HRESULT get_Type(short*);
 	HRESULT get_Width(OLE_XSIZE_HIMETRIC*);
 	HRESULT get_Height(OLE_YSIZE_HIMETRIC*);
-	HRESULT Render(HDC, цел, цел, цел, цел, OLE_XPOS_HIMETRIC,
+	HRESULT Render(HDC, int, int, int, int, OLE_XPOS_HIMETRIC,
 	  OLE_YPOS_HIMETRIC, OLE_XSIZE_HIMETRIC, OLE_YSIZE_HIMETRIC, LPCRECT);
 	HRESULT set_hPal(OLE_HANDLE);
 	HRESULT get_CurDC(HDC*);
@@ -393,7 +393,7 @@ interface IOleInPlaceSiteEx : public IOleInPlaceSite {
 
 interface IObjectWithSite : public IUnknown {
 	HRESULT SetSite(IUnknown*);
-	HRESULT GetSite(REFIID, проц**);
+	HRESULT GetSite(REFIID, void**);
 }
 
 interface IOleInPlaceSiteWindowless : public IOleInPlaceSiteEx {
@@ -412,11 +412,11 @@ interface IOleInPlaceSiteWindowless : public IOleInPlaceSiteEx {
 }
 
 interface IAdviseSinkEx : public IUnknown {
-	проц OnDataChange(FORMATETC*, STGMEDIUM*);
-	проц OnViewChange(DWORD, LONG);
-	проц OnRename(IMoniker*);
-	проц OnSave();
-	проц OnClose();
+	void OnDataChange(FORMATETC*, STGMEDIUM*);
+	void OnViewChange(DWORD, LONG);
+	void OnRename(IMoniker*);
+	void OnSave();
+	void OnClose();
 	HRESULT OnViewStatusChange(DWORD);
 }
 

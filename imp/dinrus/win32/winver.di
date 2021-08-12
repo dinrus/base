@@ -12,7 +12,7 @@ module win32.winver;
 
 private import win32.windef;
 
-// FIXME: тип weirdness
+// FIXME: type weirdness
 enum {
 	VS_FILE_INFO    =  16,
 	VS_VERSION_INFO =   1,

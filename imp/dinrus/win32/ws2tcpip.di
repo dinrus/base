@@ -129,7 +129,7 @@ struct IN6_ADDR {
 alias IN6_ADDR* PIN6_ADDR, LPIN6_ADDR;
 
 struct SOCKADDR_IN6 {
-	крат sin6_family;
+	short sin6_family;
 	u_short sin6_port;
 	u_long sin6_flowinfo;
 	IN6_ADDR sin6_addr;
@@ -142,7 +142,7 @@ extern IN6_ADDR in6addr_loopback;
 
 /+ TODO: 
 #define IN6_ARE_ADDR_EQUAL(a, b)	\
-    (memcmp ((проц*)(a), (проц*)(b), sizeof (struct in6_addr)) == 0)
+    (memcmp ((void*)(a), (void*)(b), sizeof (struct in6_addr)) == 0)
 
 #define IN6_IS_ADDR_UNSPECIFIED(_addr) \
 	(   (((const u_long *)(_addr))[0] == 0)	\
@@ -199,11 +199,11 @@ extern IN6_ADDR in6addr_loopback;
 	 && ((((const u_char *)(_addr))[1] & 0xf) == 0xe))
 +/
 
-alias цел socklen_t;
+alias int socklen_t;
 
 struct IPV6_MREG {
 	IN6_ADDR	ipv6mr_multiaddr;
-	бцел		ipv6mr_interface;
+	uint		ipv6mr_interface;
 }
 
 struct IN6_PKTINFO {
@@ -212,46 +212,46 @@ struct IN6_PKTINFO {
 }
 
 struct addrinfo {
-	цел			ai_flags;
-	цел			ai_family;
-	цел			ai_socktype;
-	цел			ai_protocol;
+	int			ai_flags;
+	int			ai_family;
+	int			ai_socktype;
+	int			ai_protocol;
 	size_t		ai_addrlen;
-	сим*		ai_canonname;
+	char*		ai_canonname;
 	SOCKADDR*	ai_addr;
 	addrinfo*	ai_next;
 }
 
 extern(Windows) {
 	static if (_WIN32_WINNT >= 0x0501) {
-		проц freeaddrinfo(addrinfo*);
-		цел getaddrinfo (сим*, сим*, addrinfo*, addrinfo**);
-		цел getnameinfo(SOCKADDR*, socklen_t, сим*, DWORD, сим*, DWORD, цел);
+		void freeaddrinfo(addrinfo*);
+		int getaddrinfo (char*, char*, addrinfo*, addrinfo**);
+		int getnameinfo(SOCKADDR*, socklen_t, char*, DWORD, char*, DWORD, int);
 	}
 }
 
 /+ TODO
-static __inline сим*
-gai_strerrorA(цел ecode)
+static __inline char*
+gai_strerrorA(int ecode)
 {
-	static сим сообщение[1024+1];
+	static char message[1024+1];
 	DWORD dwFlags = FORMAT_MESSAGE_FROM_SYSTEM
 	              | FORMAT_MESSAGE_IGNORE_INSERTS
 		      | FORMAT_MESSAGE_MAX_WIDTH_MASK;
 	DWORD dwLanguageId = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT);
-  	FormatMessageA(dwFlags, NULL, ecode, dwLanguageId, (LPSTR)сообщение, 1024, NULL);
-	return сообщение;
+  	FormatMessageA(dwFlags, NULL, ecode, dwLanguageId, (LPSTR)message, 1024, NULL);
+	return message;
 }
 static __inline WCHAR*
-gai_strerrorW(цел ecode)
+gai_strerrorW(int ecode)
 {
-	static WCHAR сообщение[1024+1];
+	static WCHAR message[1024+1];
 	DWORD dwFlags = FORMAT_MESSAGE_FROM_SYSTEM
 	              | FORMAT_MESSAGE_IGNORE_INSERTS
 		      | FORMAT_MESSAGE_MAX_WIDTH_MASK;
 	DWORD dwLanguageId = MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT);
-  	FormatMessageW(dwFlags, NULL, ecode, dwLanguageId, (LPWSTR)сообщение, 1024, NULL);
-	return сообщение;
+  	FormatMessageW(dwFlags, NULL, ecode, dwLanguageId, (LPWSTR)message, 1024, NULL);
+	return message;
 }
 #ifdef UNICODE
 #define gai_strerror gai_strerrorW

@@ -30,12 +30,12 @@ const TIME_SMPTE   = 8;
 const TIME_MIDI    = 16;
 const TIME_TICKS   = 32;
 
-template MAKEFOURCC(сим c0, сим c1, сим c2, сим c3)
+template MAKEFOURCC(char c0, char c1, char c2, char c3)
 {
 	const DWORD MAKEFOURCC = c0 | (c1<<8) | (c2<<16) | (cast(DWORD)c3 <<24);
 }
 
-template mmioFOURCC(сим c0, сим c1, сим c2, сим c3)
+template mmioFOURCC(char c0, char c1, char c2, char c3)
 {
 	const DWORD mmioFOURCC = c0 | (c1<<8) | (c2<<16) | (cast(DWORD)c3 <<24);
 }
@@ -168,7 +168,7 @@ const SND_PURGE=0x40;
 const SND_APPLICATION=0x80;
 const SND_ALIAS_START=0;
 
-template sndAlias(сим c0, сим c1)
+template sndAlias(char c0, char c1)
 {
 	const DWORD sndAlias = SND_ALIAS_START + c0 | (c1<<8);
 }
@@ -258,8 +258,8 @@ const MOM_DONE=MM_MOM_DONE;
 const MIM_MOREDATA=MM_MIM_MOREDATA;
 const MOM_POSITIONCB=MM_MOM_POSITIONCB;
 
-const UINT MIDIMAPPER= -1; // FIXME: бцел is nonsense for this!
-const UINT MIDI_MAPPER= -1; // FIXME: бцел is nonsense for this!
+const UINT MIDIMAPPER= -1; // FIXME: uint is nonsense for this!
+const UINT MIDI_MAPPER= -1; // FIXME: uint is nonsense for this!
 const MIDI_IO_STATUS=32;
 const MIDI_CACHE_ALL=1;
 const MIDI_CACHE_BESTFIT=2;
@@ -1028,9 +1028,9 @@ struct MMTIME {
 		DWORD ms;
 		DWORD sample;
 		DWORD cb;
-		DWORD тики;
+		DWORD ticks;
 		struct smpte {
-			BYTE час;
+			BYTE hour;
 			BYTE min;
 			BYTE sec;
 			BYTE frame;
@@ -1064,8 +1064,8 @@ alias DRVCONFIGINFOEX* PDRVCONFIGINFOEX, LPDRVCONFIGINFOEX;
 
 extern(Windows):
 
-/+FIXME: I couldn't найди these in MSDN.
-alias проц function (HDRVR,UINT,DWORD,DWORD,DWORD) DRVCALLBACK;
+/+FIXME: I couldn't find these in MSDN.
+alias void function (HDRVR,UINT,DWORD,DWORD,DWORD) DRVCALLBACK;
 LRESULT DRIVERPROC (DWORD,HDRVR,UINT,LPARAM,LPARAM);
 alias DRVCALLBACK* LPDRVCALLBACK, PDRVCALLBACK;
 
@@ -1489,7 +1489,7 @@ struct MIXERCONTROLDETAILS_UNSIGNED {
 }
 alias MIXERCONTROLDETAILS_UNSIGNED* PMIXERCONTROLDETAILS_UNSIGNED, LPMIXERCONTROLDETAILS_UNSIGNED;
 
-alias проц function (UINT,UINT,DWORD,DWORD,DWORD) LPTIMECALLBACK;
+alias void function (UINT,UINT,DWORD,DWORD,DWORD) LPTIMECALLBACK;
 
 struct TIMECAPS {
 	UINT wPeriodMin;
@@ -1579,7 +1579,7 @@ struct JOYINFOEX {
 alias JOYINFOEX* PJOYINFOEX, LPJOYINFOEX;
 
 alias DWORD FOURCC;
-alias сим* HPSTR;
+alias char* HPSTR;
 
 typedef HANDLE HMMIO;
 
@@ -1708,7 +1708,7 @@ alias MCI_SET_PARMS* PMCI_SET_PARMS, LPMCI_SET_PARMS;
 
 struct MCI_BREAK_PARMS {
 	DWORD dwCallback;
-	цел nVirtKey;
+	int nVirtKey;
 	HWND hwndBreak;
 }
 alias MCI_BREAK_PARMS* PMCI_BREAK_PARMS, LPMCI_BREAK_PARMS;
@@ -1959,7 +1959,7 @@ MMRESULT mmioRenameW(LPCWSTR,LPCWSTR,LPCMMIOINFO,DWORD);
 MMRESULT mmioClose(HMMIO,UINT);
 LONG mmioRead(HMMIO,HPSTR,LONG);
 LONG mmioWrite(HMMIO,LPCSTR,LONG);
-LONG mmioSeek(HMMIO,LONG,цел);
+LONG mmioSeek(HMMIO,LONG,int);
 MMRESULT mmioGetInfo(HMMIO,LPMMIOINFO,UINT);
 MMRESULT mmioSetInfo(HMMIO,LPCMMIOINFO,UINT);
 MMRESULT mmioSetBuffer(HMMIO,LPSTR,LONG,UINT);

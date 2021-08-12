@@ -45,7 +45,7 @@ enum {
 }
 
 /*	MinGW defines ANSI and Unicode versions as LDAP_VENDOR_NAME and
- *	LDAP_VENDOR_NAME_W respectively; similarly with другой ткст constants
+ *	LDAP_VENDOR_NAME_W respectively; similarly with other string constants
  *	defined in this module.
  */
 const TCHAR[] LDAP_VENDOR_NAME = "Microsoft Corporation.";
@@ -129,9 +129,9 @@ enum {
 	LDAP_SSL_GC_PORT = 3269
 }
 
-const проц*
+const void*
 	LDAP_OPT_OFF = null,
-	LDAP_OPT_ON = cast(проц*) 1;
+	LDAP_OPT_ON = cast(void*) 1;
 
 enum {
 	LDAP_OPT_API_INFO               = 0x00,
@@ -196,8 +196,8 @@ const LDAP_NO_LIMIT = 0;
 
 const TCHAR[] LDAP_CONTROL_REFERRALS = "1.2.840.113556.1.4.616";
 
-// FIXME: check тип (declared with U suffix in MinGW)
-enum : бцел {
+// FIXME: check type (declared with U suffix in MinGW)
+enum : uint {
 	LDAP_CHASE_SUBORDINATE_REFERRALS = 0x20,
 	LDAP_CHASE_EXTERNAL_REFERRALS    = 0x40
 }
@@ -216,7 +216,7 @@ enum {
 	LDAP_MOD_BVALUES = 0x80
 }
 
-enum : цел {
+enum : int {
 	LDAP_RES_BIND             = 0x61,
 	LDAP_RES_SEARCH_ENTRY     = 0x64,
 	LDAP_RES_SEARCH_RESULT    = 0x65,
@@ -280,14 +280,14 @@ enum {
 }
 
 struct LDAP {
-	сим[76] Reserved;
+	char[76] Reserved;
 	PCHAR    ld_host;
 	ULONG    ld_version;
 	UCHAR    ld_lberoptions;
-	цел      ld_deref;
-	цел      ld_timelimit;
-	цел      ld_sizelimit;
-	цел      ld_errno;
+	int      ld_deref;
+	int      ld_timelimit;
+	int      ld_sizelimit;
+	int      ld_errno;
 	PCHAR    ld_matched;
 	PCHAR    ld_error;
 }
@@ -310,36 +310,36 @@ struct LDAP_TIMEVAL {
 alias LDAP_TIMEVAL* PLDAP_TIMEVAL;
 
 struct LDAPAPIInfoA {
-	цел    ldapai_info_version;
-	цел    ldapai_api_version;
-	цел    ldapai_protocol_version;
-	сим** ldapai_extensions;
-	сим*  ldapai_vendor_name;
-	цел    ldapai_vendor_version;
+	int    ldapai_info_version;
+	int    ldapai_api_version;
+	int    ldapai_protocol_version;
+	char** ldapai_extensions;
+	char*  ldapai_vendor_name;
+	int    ldapai_vendor_version;
 }
 alias LDAPAPIInfoA* PLDAPAPIInfoA;
 
 struct LDAPAPIInfoW {
-	цел     ldapai_info_version;
-	цел     ldapai_api_version;
-	цел     ldapai_protocol_version;
+	int     ldapai_info_version;
+	int     ldapai_api_version;
+	int     ldapai_protocol_version;
 	PWCHAR* ldapai_extensions;
 	PWCHAR  ldapai_vendor_name;
-	цел     ldapai_vendor_version;
+	int     ldapai_vendor_version;
 }
 alias LDAPAPIInfoW* PLDAPAPIInfoW;
 
 struct LDAPAPIFeatureInfoA {
-	цел   ldapaif_info_version;
-	сим* ldapaif_name;
-	цел   ldapaif_version;
+	int   ldapaif_info_version;
+	char* ldapaif_name;
+	int   ldapaif_version;
 }
 alias LDAPAPIFeatureInfoA* PLDAPAPIFeatureInfoA;
 
 struct LDAPAPIFeatureInfoW {
-	цел    ldapaif_info_version;
+	int    ldapaif_info_version;
 	PWCHAR ldapaif_name;
-	цел    ldapaif_version;
+	int    ldapaif_version;
 }
 alias LDAPAPIFeatureInfoW* PLDAPAPIFeatureInfoW;
 
@@ -439,22 +439,22 @@ struct LDAP_REFERRAL_CALLBACK {
 alias LDAP_REFERRAL_CALLBACK* PLDAP_REFERRAL_CALLBACK;
 
 struct LDAPVLVInfo {
-	цел       ldvlv_version;
-	бцел      ldvlv_before_count;
-	бцел      ldvlv_after_count;
-	бцел      ldvlv_offset;
-	бцел      ldvlv_count;
+	int       ldvlv_version;
+	uint      ldvlv_before_count;
+	uint      ldvlv_after_count;
+	uint      ldvlv_offset;
+	uint      ldvlv_count;
 	BerValue* ldvlv_attrvalue;
 	BerValue* ldvlv_context;
-	проц*     ldvlv_extradata;
+	void*     ldvlv_extradata;
 }
 
 /*
  * Under Microsoft WinLDAP the function ldap_error is only stub.
- * This macro uses LDAP structure to дай error ткст and pass it to the user.
+ * This macro uses LDAP structure to get error string and pass it to the user.
  */
-цел ldap_perror(LDAP* handle, сим* сообщение) {
-	return printf("%s: %s\n", сообщение, handle.ld_error);
+int ldap_perror(LDAP* handle, char* message) {
+	return printf("%s: %s\n", message, handle.ld_error);
 }
 
 /*	FIXME: In MinGW, these are WINLDAPAPI == DECLSPEC_IMPORT.  Linkage
@@ -468,15 +468,15 @@ extern (C) {
 	PLDAP cldap_openA(PCHAR, ULONG);
 	PLDAP cldap_openW(PWCHAR, ULONG);
 	ULONG ldap_connect(LDAP*, LDAP_TIMEVAL*);
-	PLDAP ldap_sslinitA(PCHAR, ULONG, цел);
-	PLDAP ldap_sslinitW(PWCHAR, ULONG, цел);
+	PLDAP ldap_sslinitA(PCHAR, ULONG, int);
+	PLDAP ldap_sslinitW(PWCHAR, ULONG, int);
 	ULONG ldap_start_tls_sA(LDAP*, PLDAPControlA*, PLDAPControlA*);
 	ULONG ldap_start_tls_sW(LDAP*, PLDAPControlW*, PLDAPControlW*);
 	BOOLEAN ldap_stop_tls_s(LDAP*);
-	ULONG ldap_get_optionA(LDAP*, цел, проц*);
-	ULONG ldap_get_optionW(LDAP*, цел, проц*);
-	ULONG ldap_set_optionA(LDAP*, цел, проц*);
-	ULONG ldap_set_optionW(LDAP*, цел, проц*);
+	ULONG ldap_get_optionA(LDAP*, int, void*);
+	ULONG ldap_get_optionW(LDAP*, int, void*);
+	ULONG ldap_set_optionA(LDAP*, int, void*);
+	ULONG ldap_set_optionW(LDAP*, int, void*);
 	ULONG ldap_control_freeA(LDAPControlA*);
 	ULONG ldap_control_freeW(LDAPControlW*);
 	ULONG ldap_controls_freeA(LDAPControlA**);
@@ -484,9 +484,9 @@ extern (C) {
 	ULONG ldap_free_controlsA(LDAPControlA**);
 	ULONG ldap_free_controlsW(LDAPControlW**);
 	ULONG ldap_sasl_bindA(LDAP*, PCHAR, PCHAR, BERVAL*, PLDAPControlA*,
-	  PLDAPControlA*, цел*);
+	  PLDAPControlA*, int*);
 	ULONG ldap_sasl_bindW(LDAP*, PWCHAR, PWCHAR, BERVAL*, PLDAPControlW*,
-	  PLDAPControlW*, цел*);
+	  PLDAPControlW*, int*);
 	ULONG ldap_sasl_bind_sA(LDAP*, PCHAR, PCHAR, BERVAL*, PLDAPControlA*,
 	  PLDAPControlA*, PBERVAL*);
 	ULONG ldap_sasl_bind_sW(LDAP*, PWCHAR, PWCHAR, BERVAL*, PLDAPControlW*,
@@ -652,18 +652,18 @@ extern (C) {
 	ULONG ldap_parse_page_controlW(PLDAP, PLDAPControlW*, ULONG*, BerValue**);
 	ULONG ldap_parse_sort_controlA(PLDAP, PLDAPControlA*, ULONG*, PCHAR*);
 	ULONG ldap_parse_sort_controlW(PLDAP, PLDAPControlW*, ULONG*, PWCHAR*);
-	INT ldap_parse_vlv_controlA(LDAP*, LDAPControlA**, бцел*, бцел*,
-	  BerValue**, цел*);
-	INT ldap_parse_vlv_controlW(LDAP*, LDAPControlW**, бцел*, бцел*,
-	  BerValue**, цел*);
+	INT ldap_parse_vlv_controlA(LDAP*, LDAPControlA**, uint*, uint*,
+	  BerValue**, int*);
+	INT ldap_parse_vlv_controlW(LDAP*, LDAPControlW**, uint*, uint*,
+	  BerValue**, int*);
 	PLDAPSearch ldap_search_init_pageA(PLDAP, PCHAR, ULONG, PCHAR, PCHAR[],
 	  ULONG, PLDAPControlA*, PLDAPControlA*, ULONG, ULONG, PLDAPSortKeyA*);
 	PLDAPSearch ldap_search_init_pageW(PLDAP, PWCHAR, ULONG, PWCHAR, PWCHAR[],
 	  ULONG, PLDAPControlW*, PLDAPControlW*, ULONG, ULONG, PLDAPSortKeyW*);
 	ULONG ldap_search_abandon_page(PLDAP, PLDAPSearch);
 	LDAP ldap_conn_from_msg(LDAP*, LDAPMessage*);
-	INT LdapUnicodeToUTF8(LPCWSTR, цел, LPSTR, цел);
-	INT LdapUTF8ToUnicode(LPCSTR, цел, LPWSTR, цел);
+	INT LdapUnicodeToUTF8(LPCWSTR, int, LPSTR, int);
+	INT LdapUTF8ToUnicode(LPCSTR, int, LPWSTR, int);
 	deprecated {
 		ULONG ldap_bindA(LDAP*, PCHAR, PCHAR, ULONG);
 		ULONG ldap_bindW(LDAP*, PWCHAR, PWCHAR, ULONG);

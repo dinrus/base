@@ -15,7 +15,7 @@ private import win32.w32api, win32.winbase, win32.windef;
 /* FIXME:
  *	Types of some constants
  *	Types of macros
- *	Inits of various "размер" and "version" members
+ *	Inits of various "size" and "version" members
  *	Why are some #ifdefs commented out?
  */
 
@@ -425,7 +425,7 @@ alias SSL_EXTRA_CERT_CHAIN_POLICY_PARA* PSSL_EXTRA_CERT_CHAIN_POLICY_PARA,
 struct CERT_CHAIN_POLICY_PARA {
 	DWORD cbSize = CERT_CHAIN_POLICY_PARA.sizeof;
 	DWORD dwFlags;
-	проц* pvExtraPolicyPara;
+	void* pvExtraPolicyPara;
 }
 alias CERT_CHAIN_POLICY_PARA* PCERT_CHAIN_POLICY_PARA;
 
@@ -434,7 +434,7 @@ struct CERT_CHAIN_POLICY_STATUS {
 	DWORD dwError;
 	LONG  lChainIndex;
 	LONG  lElementIndex;
-	проц* pvExtraPolicyStatus;
+	void* pvExtraPolicyStatus;
 }
 alias CERT_CHAIN_POLICY_STATUS* PCERT_CHAIN_POLICY_STATUS;
 /* #endif */
@@ -516,7 +516,7 @@ struct CERT_CHAIN_PARA {
 }
 alias CERT_CHAIN_PARA* PCERT_CHAIN_PARA;
 
-extern (Windows) alias BOOL function(PCCERT_CONTEXT, проц*)
+extern (Windows) alias BOOL function(PCCERT_CONTEXT, void*)
   PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK;
 
 struct CERT_CHAIN_FIND_BY_ISSUER_PARA {
@@ -527,7 +527,7 @@ struct CERT_CHAIN_FIND_BY_ISSUER_PARA {
 	DWORD  cIssuer;
 	CERT_NAME_BLOB* rgIssuer;
 	PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK pfnFIndCallback;
-	проц*  pvFindArg;
+	void*  pvFindArg;
 	DWORD* pdwIssuerChainIndex;
 	DWORD* pdwIssuerElementIndex;
 }
@@ -711,19 +711,19 @@ extern (Windows) {
 	  HCERTSTORE, PCERT_CHAIN_PARA, DWORD, LPVOID, PCCERT_CHAIN_CONTEXT*);
 	BOOL CertVerifyCertificateChainPolicy(LPCSTR, PCCERT_CHAIN_CONTEXT,
 	  PCERT_CHAIN_POLICY_PARA, PCERT_CHAIN_POLICY_STATUS);
-	проц CertFreeCertificateChain(PCCERT_CHAIN_CONTEXT);
+	void CertFreeCertificateChain(PCCERT_CHAIN_CONTEXT);
 	DWORD CertNameToStrA(DWORD, PCERT_NAME_BLOB, DWORD, LPSTR, DWORD);
 	DWORD CertNameToStrW(DWORD, PCERT_NAME_BLOB, DWORD, LPWSTR, DWORD);
 	HCERTSTORE CertOpenSystemStoreA(HCRYPTPROV, LPCSTR);
 	HCERTSTORE CertOpenSystemStoreW(HCRYPTPROV, LPCWSTR);
-	HCERTSTORE CertOpenStore(LPCSTR, DWORD, HCRYPTPROV, DWORD, проц*);
+	HCERTSTORE CertOpenStore(LPCSTR, DWORD, HCRYPTPROV, DWORD, void*);
 	PCCERT_CONTEXT CertFindCertificateInStore(HCERTSTORE, DWORD, DWORD, DWORD,
-	  проц*, PCCERT_CONTEXT);
+	  void*, PCCERT_CONTEXT);
 	BOOL CertFreeCertificateContext(PCCERT_CONTEXT);
 	PCCERT_CONTEXT CertGetIssuerCertificateFromStore(HCERTSTORE,
 	  PCCERT_CONTEXT, PCCERT_CONTEXT, DWORD*);
 	PCCERT_CHAIN_CONTEXT CertFindChainInStore(HCERTSTORE, DWORD, DWORD, DWORD,
-	  проц*, PCCERT_CHAIN_CONTEXT);
+	  void*, PCCERT_CHAIN_CONTEXT);
 
 	BOOL CryptAcquireContextA(HCRYPTPROV*, LPCSTR, LPCSTR, DWORD, DWORD);
 	BOOL CryptAcquireContextW(HCRYPTPROV*, LPCWSTR, LPCWSTR, DWORD, DWORD);

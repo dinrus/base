@@ -170,14 +170,14 @@ struct AsnAny {
 		AsnInteger32        number;
 		AsnUnsigned32       unsigned32;
 		AsnCounter64        counter64;
-		AsnOctetString      ткст;
+		AsnOctetString      string;
 		AsnBits             bits;
 		AsnObjectIdentifier object;
 		AsnSequence         sequence;
-		AsnIPAddress        адрес;
+		AsnIPAddress        address;
 		AsnCounter32        counter;
 		AsnGauge32          gauge;
-		AsnTimeticks        тики;
+		AsnTimeticks        ticks;
 		AsnOpaque           arbitrary;
 	}
 	_asnValue asnValue;
@@ -185,12 +185,12 @@ struct AsnAny {
 alias AsnAny AsnObjectSyntax;
 
 struct SnmpVarBind {
-	AsnObjectName   имя;
-	AsnObjectSyntax значение;
+	AsnObjectName   name;
+	AsnObjectSyntax value;
 }
 
 struct SnmpVarBindList {
-	SnmpVarBind* список;
+	SnmpVarBind* list;
 	UINT         len;
 }
 

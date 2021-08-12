@@ -2,7 +2,7 @@
  *
  *  Copyright (C) Microsoft Corporation.  All Rights Reserved.
  *
- *  Файл:       d3d9caps.h
+ *  File:       d3d9caps.h
  *  Content:    Direct3D capabilities include file
  *
  ***************************************************************************/
@@ -98,14 +98,14 @@ struct D3DCAPS9
     DWORD   MaxTextureRepeat;
     DWORD   MaxTextureAspectRatio;
     DWORD   MaxAnisotropy;
-    плав   MaxVertexW;
+    float   MaxVertexW;
 
-    плав   GuardBandLeft;
-    плав   GuardBandTop;
-    плав   GuardBandRight;
-    плав   GuardBandBottom;
+    float   GuardBandLeft;
+    float   GuardBandTop;
+    float   GuardBandRight;
+    float   GuardBandBottom;
 
-    плав   ExtentsAdjust;
+    float   ExtentsAdjust;
     DWORD   StencilCaps;
 
     DWORD   FVFCaps;
@@ -119,7 +119,7 @@ struct D3DCAPS9
     DWORD   MaxVertexBlendMatrices;
     DWORD   MaxVertexBlendMatrixIndex;
 
-    плав   MaxPointSize;
+    float   MaxPointSize;
 
     DWORD   MaxPrimitiveCount;          // max number of primitives per DrawPrimitive call
     DWORD   MaxVertexIndex;
@@ -130,12 +130,12 @@ struct D3DCAPS9
     DWORD   MaxVertexShaderConst;       // number of vertex shader constant registers
 
     DWORD   PixelShaderVersion;
-    плав   PixelShader1xMaxValue;      // max значение storable in registers of ps.1.x shaders
+    float   PixelShader1xMaxValue;      // max value storable in registers of ps.1.x shaders
 
     // Here are the DX9 specific ones
     DWORD   DevCaps2;
 
-    плав   MaxNpatchTessellationLevel;
+    float   MaxNpatchTessellationLevel;
     DWORD   Reserved5;
 
     UINT    MasterAdapterOrdinal;       // ordinal of master adaptor for adapter group
@@ -185,7 +185,7 @@ const D3DCAPS3_RESERVED = 0x8000001fL;
 const D3DCAPS3_ALPHA_FULLSCREEN_FLIP_OR_DISCARD = 0x00000020L;
 
 // Indicates that the device can perform a gamma correction from 
-// a windowed back буфер containing linear content to the sRGB desktop.
+// a windowed back buffer containing linear content to the sRGB desktop.
 const D3DCAPS3_LINEAR_TO_SRGB_PRESENTATION = 0x00000080L;
 
 const D3DCAPS3_COPY_TO_VIDMEM = 0x00000100L; /* Device can acclerate copies from sysmem to local vidmem */
@@ -205,9 +205,9 @@ const D3DPRESENT_INTERVAL_IMMEDIATE = 0x80000000L;
 //
 // CursorCaps
 //
-// Driver supports HW color cursor in at least hi-res modes(высота >=400)
+// Driver supports HW color cursor in at least hi-res modes(height >=400)
 const D3DCURSORCAPS_COLOR = 0x00000001L;
-// Driver supports HW cursor also in low-res modes(высота < 400)
+// Driver supports HW cursor also in low-res modes(height < 400)
 const D3DCURSORCAPS_LOWRES = 0x00000002L;
 
 //
@@ -230,7 +230,7 @@ const D3DDEVCAPS_CANBLTSYSTONONLOCAL = 0x00020000L; /* Device supports a Tex Blt
 const D3DDEVCAPS_HWRASTERIZATION = 0x00080000L; /* Device has HW acceleration for rasterization */
 const D3DDEVCAPS_PUREDEVICE = 0x00100000L; /* Device supports D3DCREATE_PUREDEVICE */
 const D3DDEVCAPS_QUINTICRTPATCHES = 0x00200000L; /* Device supports quintic Beziers and BSplines */
-const D3DDEVCAPS_RTPATCHES = 0x00400000L; /* Device supports Прям and Tri patches */
+const D3DDEVCAPS_RTPATCHES = 0x00400000L; /* Device supports Rect and Tri patches */
 const D3DDEVCAPS_RTPATCHHANDLEZERO = 0x00800000L; /* Indicates that RT Patches may be drawn efficiently using handle 0 */
 const D3DDEVCAPS_NPATCHES = 0x01000000L; /* Device supports N-Patches */
 
@@ -247,7 +247,7 @@ const D3DPMISCCAPS_CLIPTLVERTS = 0x00000200L; /* device will clip post-transform
 const D3DPMISCCAPS_TSSARGTEMP = 0x00000400L; /* device supports D3DTA_TEMP for temporary register */
 const D3DPMISCCAPS_BLENDOP = 0x00000800L; /* device supports D3DRS_BLENDOP */
 const D3DPMISCCAPS_NULLREFERENCE = 0x00001000L; /* Reference Device that doesnt render */
-const D3DPMISCCAPS_INDEPENDENTWRITEMASKS = 0x00004000L; /* Device supports independent пиши masks for MET or MRT */
+const D3DPMISCCAPS_INDEPENDENTWRITEMASKS = 0x00004000L; /* Device supports independent write masks for MET or MRT */
 const D3DPMISCCAPS_PERSTAGECONSTANT = 0x00008000L; /* Device supports per-stage constants */
 const D3DPMISCCAPS_FOGANDSPECULARALPHA = 0x00010000L; /* Device supports separate fog and specular alpha (many devices
                                                           use the specular alpha channel to store fog factor) */
@@ -336,7 +336,7 @@ const D3DPTEXTURECAPS_PERSPECTIVE = 0x00000001L; /* Perspective-correct texturin
 const D3DPTEXTURECAPS_POW2 = 0x00000002L; /* Power-of-2 texture dimensions are required - applies to non-Cube/Volume textures only. */
 const D3DPTEXTURECAPS_ALPHA = 0x00000004L; /* Alpha in texture pixels is supported */
 const D3DPTEXTURECAPS_SQUAREONLY = 0x00000020L; /* Only square textures are supported */
-const D3DPTEXTURECAPS_TEXREPEATNOTSCALEDBYSIZE = 0x00000040L; /* Texture indices are not scaled by the texture размер prior to interpolation */
+const D3DPTEXTURECAPS_TEXREPEATNOTSCALEDBYSIZE = 0x00000040L; /* Texture indices are not scaled by the texture size prior to interpolation */
 const D3DPTEXTURECAPS_ALPHAPALETTE = 0x00000080L; /* Device can draw alpha from texture palettes */
 // Device can use non-POW2 textures if:
 //  1) D3DTEXTURE_ADDRESS is set to CLAMP for this texture's stage
@@ -429,9 +429,9 @@ const D3DTEXOPCAPS_LERP = 0x02000000L;
 //
 // FVFCaps
 //
-const D3DFVFCAPS_TEXCOORDCOUNTMASK = 0x0000ffffL; /* mask for texture coordinate счёт поле */
+const D3DFVFCAPS_TEXCOORDCOUNTMASK = 0x0000ffffL; /* mask for texture coordinate count field */
 const D3DFVFCAPS_DONOTSTRIPELEMENTS = 0x00080000L; /* Device prefers that vertex elements not be stripped */
-const D3DFVFCAPS_PSIZE = 0x00100000L; /* Device can receive point размер */
+const D3DFVFCAPS_PSIZE = 0x00100000L; /* Device can receive point size */
 
 //
 // VertexProcessingCaps
@@ -453,9 +453,9 @@ const D3DDEVCAPS2_STREAMOFFSET = 0x00000001L; /* Device supports offsets in stre
 const D3DDEVCAPS2_DMAPNPATCH = 0x00000002L; /* Device supports displacement maps for N-Patches*/
 const D3DDEVCAPS2_ADAPTIVETESSRTPATCH = 0x00000004L; /* Device supports adaptive tesselation of RT-patches*/
 const D3DDEVCAPS2_ADAPTIVETESSNPATCH = 0x00000008L; /* Device supports adaptive tesselation of N-patches*/
-const D3DDEVCAPS2_CAN_STRETCHRECT_FROM_TEXTURES = 0x00000010L; /* Device supports StretchRect calls with a texture as the исток*/
+const D3DDEVCAPS2_CAN_STRETCHRECT_FROM_TEXTURES = 0x00000010L; /* Device supports StretchRect calls with a texture as the source*/
 const D3DDEVCAPS2_PRESAMPLEDDMAPNPATCH = 0x00000020L; /* Device supports presampled displacement maps for N-Patches */
-const D3DDEVCAPS2_VERTEXELEMENTSCANSHARESTREAMOFFSET = 0x00000040L; /* Vertex elements in a vertex declaration can share the same stream смещение */
+const D3DDEVCAPS2_VERTEXELEMENTSCANSHARESTREAMOFFSET = 0x00000040L; /* Vertex elements in a vertex declaration can share the same stream offset */
 
 //
 // DeclTypes

@@ -27,40 +27,40 @@ const RPC_C_PROFILE_MATCH_BY_BOTH=4;
 const RPC_C_NS_DEFAULT_EXP_AGE=-1;
 
 extern (Windows) {
-	RPC_STATUS RpcNsBindingExportA(бцел, ббайт*, RPC_IF_HANDLE,
+	RPC_STATUS RpcNsBindingExportA(uint, ubyte*, RPC_IF_HANDLE,
 	  RPC_BINDING_VECTOR*, UUID_VECTOR*);
-	RPC_STATUS RpcNsBindingUnexportA(бцел, ббайт*, RPC_IF_HANDLE,
+	RPC_STATUS RpcNsBindingUnexportA(uint, ubyte*, RPC_IF_HANDLE,
 	  UUID_VECTOR*);
-	RPC_STATUS RpcNsBindingLookupBeginA(бцел, ббайт*, RPC_IF_HANDLE, UUID*,
-	  бцел, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsBindingLookupBeginA(uint, ubyte*, RPC_IF_HANDLE, UUID*,
+	  uint, RPC_NS_HANDLE*);
 	RPC_STATUS RpcNsBindingLookupNext(RPC_NS_HANDLE, RPC_BINDING_VECTOR**);
 	RPC_STATUS RpcNsBindingLookupDone(RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsGroupDeleteA(бцел, ббайт*);
-	RPC_STATUS RpcNsGroupMbrAddA(бцел, ббайт*, бцел, ббайт*);
-	RPC_STATUS RpcNsGroupMbrRemoveA(бцел, ббайт*, бцел, ббайт*);
-	RPC_STATUS RpcNsGroupMbrInqBeginA(бцел, ббайт*, бцел, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsGroupMbrInqNextA(RPC_NS_HANDLE, ббайт**);
+	RPC_STATUS RpcNsGroupDeleteA(uint, ubyte*);
+	RPC_STATUS RpcNsGroupMbrAddA(uint, ubyte*, uint, ubyte*);
+	RPC_STATUS RpcNsGroupMbrRemoveA(uint, ubyte*, uint, ubyte*);
+	RPC_STATUS RpcNsGroupMbrInqBeginA(uint, ubyte*, uint, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsGroupMbrInqNextA(RPC_NS_HANDLE, ubyte**);
 	RPC_STATUS RpcNsGroupMbrInqDone(RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsProfileDeleteA(бцел, ббайт*);
-	RPC_STATUS RpcNsProfileEltAddA(бцел, ббайт*, RPC_IF_ID*, бцел, ббайт*,
-	  бцел, ббайт*);
-	RPC_STATUS RpcNsProfileEltRemoveA(бцел, ббайт*, RPC_IF_ID*, бцел, ббайт*);
-	RPC_STATUS RpcNsProfileEltInqBeginA(бцел, ббайт*, бцел, RPC_IF_ID*, бцел,
-	  бцел, ббайт*, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsProfileEltInqNextA(RPC_NS_HANDLE, RPC_IF_ID*, ббайт**,
-	  бцел*, ббайт**);
+	RPC_STATUS RpcNsProfileDeleteA(uint, ubyte*);
+	RPC_STATUS RpcNsProfileEltAddA(uint, ubyte*, RPC_IF_ID*, uint, ubyte*,
+	  uint, ubyte*);
+	RPC_STATUS RpcNsProfileEltRemoveA(uint, ubyte*, RPC_IF_ID*, uint, ubyte*);
+	RPC_STATUS RpcNsProfileEltInqBeginA(uint, ubyte*, uint, RPC_IF_ID*, uint,
+	  uint, ubyte*, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsProfileEltInqNextA(RPC_NS_HANDLE, RPC_IF_ID*, ubyte**,
+	  uint*, ubyte**);
 	RPC_STATUS RpcNsProfileEltInqDone(RPC_NS_HANDLE*);
 	RPC_STATUS RpcNsEntryObjectInqNext(in RPC_NS_HANDLE, out UUID*);
 	RPC_STATUS RpcNsEntryObjectInqDone(inout RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsEntryExpandNameA(бцел, ббайт*, ббайт**);
-	RPC_STATUS RpcNsMgmtBindingUnexportA(бцел, ббайт*, RPC_IF_ID*, бцел,
+	RPC_STATUS RpcNsEntryExpandNameA(uint, ubyte*, ubyte**);
+	RPC_STATUS RpcNsMgmtBindingUnexportA(uint, ubyte*, RPC_IF_ID*, uint,
 	  UUID_VECTOR*);
-	RPC_STATUS RpcNsMgmtEntryCreateA(бцел, ббайт*);
-	RPC_STATUS RpcNsMgmtEntryDeleteA(бцел, ббайт*);
-	RPC_STATUS RpcNsMgmtEntryInqIfIdsA(бцел, ббайт*, RPC_IF_ID_VECTOR**);
-	RPC_STATUS RpcNsMgmtHandleSetExpAge(RPC_NS_HANDLE, бцел);
-	RPC_STATUS RpcNsMgmtInqExpAge(бцел*);
-	RPC_STATUS RpcNsMgmtSetExpAge(бцел);
+	RPC_STATUS RpcNsMgmtEntryCreateA(uint, ubyte*);
+	RPC_STATUS RpcNsMgmtEntryDeleteA(uint, ubyte*);
+	RPC_STATUS RpcNsMgmtEntryInqIfIdsA(uint, ubyte*, RPC_IF_ID_VECTOR**);
+	RPC_STATUS RpcNsMgmtHandleSetExpAge(RPC_NS_HANDLE, uint);
+	RPC_STATUS RpcNsMgmtInqExpAge(uint*);
+	RPC_STATUS RpcNsMgmtSetExpAge(uint);
 	RPC_STATUS RpcNsBindingImportNext(RPC_NS_HANDLE, RPC_BINDING_HANDLE*);
 	RPC_STATUS RpcNsBindingImportDone(RPC_NS_HANDLE*);
 	RPC_STATUS RpcNsBindingSelect(RPC_BINDING_VECTOR*, RPC_BINDING_HANDLE*);
@@ -71,49 +71,49 @@ extern (Windows) {
 
 version (Unicode) {
 	static if (_WIN32_WINNT_ONLY) {
-		const бул _WIN32_USE_UNICODE = true;
+		const bool _WIN32_USE_UNICODE = true;
 	} else {
-		const бул _WIN32_USE_UNICODE = false;
+		const bool _WIN32_USE_UNICODE = false;
 	}
 } else {
-	const бул _WIN32_USE_UNICODE = false;
+	const bool _WIN32_USE_UNICODE = false;
 }
 
 static if (!_WIN32_USE_UNICODE) {
-	RPC_STATUS RpcNsEntryObjectInqBeginA(бцел, ббайт*, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsBindingImportBeginA(бцел, ббайт*, RPC_IF_HANDLE, UUID*,
+	RPC_STATUS RpcNsEntryObjectInqBeginA(uint, ubyte*, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsBindingImportBeginA(uint, ubyte*, RPC_IF_HANDLE, UUID*,
 	  RPC_NS_HANDLE*);
 }
 
 static if (_WIN32_WINNT_ONLY) {
-	RPC_STATUS RpcNsBindingExportW(бцел, бкрат*, RPC_IF_HANDLE,
+	RPC_STATUS RpcNsBindingExportW(uint, ushort*, RPC_IF_HANDLE,
 	  RPC_BINDING_VECTOR*, UUID_VECTOR*);
-	RPC_STATUS RpcNsBindingUnexportW(бцел, бкрат*, RPC_IF_HANDLE,
+	RPC_STATUS RpcNsBindingUnexportW(uint, ushort*, RPC_IF_HANDLE,
 	  UUID_VECTOR*);
-	RPC_STATUS RpcNsBindingLookupBeginW(бцел, бкрат*, RPC_IF_HANDLE, UUID*,
-	  бцел, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsGroupDeleteW(бцел, бкрат*);
-	RPC_STATUS RpcNsGroupMbrAddW(бцел, бкрат*, бцел, бкрат*);
-	RPC_STATUS RpcNsGroupMbrRemoveW(бцел, бкрат*, бцел, бкрат*);
-	RPC_STATUS RpcNsGroupMbrInqBeginW(бцел, бкрат*, бцел, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsGroupMbrInqNextW(RPC_NS_HANDLE, бкрат**);
-	RPC_STATUS RpcNsProfileDeleteW(бцел, бкрат*);
-	RPC_STATUS RpcNsProfileEltAddW(бцел, бкрат*, RPC_IF_ID*, бцел, бкрат*,
-	  бцел, бкрат*);
-	RPC_STATUS RpcNsProfileEltRemoveW(бцел, бкрат*, RPC_IF_ID*, бцел,
-	  бкрат*);
-	RPC_STATUS RpcNsProfileEltInqBeginW(бцел, бкрат*, бцел, RPC_IF_ID*,
-	  бцел, бцел, бкрат*, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsProfileEltInqNextW(RPC_NS_HANDLE, RPC_IF_ID*, бкрат**,
-	  бцел*, бкрат**);
-	RPC_STATUS RpcNsEntryObjectInqBeginW(бцел, бкрат*, RPC_NS_HANDLE*);
-	RPC_STATUS RpcNsEntryExpandNameW(бцел, бкрат*, бкрат**);
-	RPC_STATUS RpcNsMgmtBindingUnexportW(бцел, бкрат*, RPC_IF_ID*, бцел,
+	RPC_STATUS RpcNsBindingLookupBeginW(uint, ushort*, RPC_IF_HANDLE, UUID*,
+	  uint, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsGroupDeleteW(uint, ushort*);
+	RPC_STATUS RpcNsGroupMbrAddW(uint, ushort*, uint, ushort*);
+	RPC_STATUS RpcNsGroupMbrRemoveW(uint, ushort*, uint, ushort*);
+	RPC_STATUS RpcNsGroupMbrInqBeginW(uint, ushort*, uint, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsGroupMbrInqNextW(RPC_NS_HANDLE, ushort**);
+	RPC_STATUS RpcNsProfileDeleteW(uint, ushort*);
+	RPC_STATUS RpcNsProfileEltAddW(uint, ushort*, RPC_IF_ID*, uint, ushort*,
+	  uint, ushort*);
+	RPC_STATUS RpcNsProfileEltRemoveW(uint, ushort*, RPC_IF_ID*, uint,
+	  ushort*);
+	RPC_STATUS RpcNsProfileEltInqBeginW(uint, ushort*, uint, RPC_IF_ID*,
+	  uint, uint, ushort*, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsProfileEltInqNextW(RPC_NS_HANDLE, RPC_IF_ID*, ushort**,
+	  uint*, ushort**);
+	RPC_STATUS RpcNsEntryObjectInqBeginW(uint, ushort*, RPC_NS_HANDLE*);
+	RPC_STATUS RpcNsEntryExpandNameW(uint, ushort*, ushort**);
+	RPC_STATUS RpcNsMgmtBindingUnexportW(uint, ushort*, RPC_IF_ID*, uint,
 	  UUID_VECTOR*);
-	RPC_STATUS RpcNsMgmtEntryCreateW(бцел, бкрат*);
-	RPC_STATUS RpcNsMgmtEntryDeleteW(бцел, бкрат*);
-	RPC_STATUS RpcNsMgmtEntryInqIfIdsW(бцел, бкрат , RPC_IF_ID_VECTOR**);
-	RPC_STATUS RpcNsBindingImportBeginW(бцел, бкрат*, RPC_IF_HANDLE, UUID*,
+	RPC_STATUS RpcNsMgmtEntryCreateW(uint, ushort*);
+	RPC_STATUS RpcNsMgmtEntryDeleteW(uint, ushort*);
+	RPC_STATUS RpcNsMgmtEntryInqIfIdsW(uint, ushort , RPC_IF_ID_VECTOR**);
+	RPC_STATUS RpcNsBindingImportBeginW(uint, ushort*, RPC_IF_HANDLE, UUID*,
 	  RPC_NS_HANDLE*);
 } // _WIN32_WINNT_ONLY
 

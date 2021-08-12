@@ -79,8 +79,8 @@ enum SCRIPT_JUSTIFY : WORD {
 /* Uniscribe Structures
  * http://msdn2.microsoft.com/library/ms776479 */
 
-alias проц* SCRIPT_CACHE;
-alias проц* SCRIPT_STRING_ANALYSIS;
+alias void* SCRIPT_CACHE;
+alias void* SCRIPT_STRING_ANALYSIS;
 
 extern (C)
 {
@@ -160,7 +160,7 @@ extern (C)
 
 	struct SCRIPT_ITEM
 	{
-		цел iCharPos;
+		int iCharPos;
 		SCRIPT_ANALYSIS a;
 	}
 
@@ -242,20 +242,20 @@ extern (C)
 
 	struct SCRIPT_FONTPROPERTIES
 	{
-		цел cBytes = SCRIPT_FONTPROPERTIES.sizeof;
+		int cBytes = SCRIPT_FONTPROPERTIES.sizeof;
 		WORD wgBlank;
 		WORD wgDefault;
 		WORD wgInvalid;
 		WORD wgKashida;
-		цел iKashidaWidth;
+		int iKashidaWidth;
 	}
 
 	struct SCRIPT_TABDEF
 	{
-		цел cTabStops;
-		цел iScale;
-		цел* pTabStops;
-		цел iTabOrigin;
+		int cTabStops;
+		int iScale;
+		int* pTabStops;
+		int iTabOrigin;
 	}
 
 	struct SCRIPT_DIGITSUBSTITUTE
@@ -286,39 +286,39 @@ extern (C)
 extern (Windows)
 {
 	HRESULT ScriptFreeCache(SCRIPT_CACHE*);
-	HRESULT ScriptItemize(WCHAR*, цел, цел, SCRIPT_CONTROL*, SCRIPT_STATE*, SCRIPT_ITEM*, цел*);
-	HRESULT ScriptLayout(цел, BYTE*, цел*, цел*);
-	HRESULT ScriptShape(HDC, SCRIPT_CACHE*, WCHAR*, цел, цел, SCRIPT_ANALYSIS*, WORD*, WORD*, SCRIPT_VISATTR*, цел*);
-	HRESULT ScriptPlace(HDC, SCRIPT_CACHE*, WORD*, цел, SCRIPT_VISATTR*, SCRIPT_ANALYSIS*, цел*, GOFFSET*, ABC*);
-	HRESULT ScriptTextOut(HDC, SCRIPT_CACHE*, цел, цел, UINT, RECT*, SCRIPT_ANALYSIS*, WCHAR*, цел, WORD*, цел, цел*, цел*, GOFFSET*);
-	HRESULT ScriptJustify(SCRIPT_VISATTR*, цел*, цел, цел, цел, цел*);
-	HRESULT ScriptBreak(WCHAR*, цел, SCRIPT_ANALYSIS*, SCRIPT_LOGATTR*);
-	HRESULT ScriptCPtoX(цел, BOOL, цел, цел, WORD*, SCRIPT_VISATTR*, цел*, SCRIPT_ANALYSIS*, цел*);
-	HRESULT ScriptXtoCP(цел, цел, цел, WORD*, SCRIPT_VISATTR*, цел*, SCRIPT_ANALYSIS*, цел*, цел*);
-	HRESULT ScriptGetLogicalWidths(SCRIPT_ANALYSIS*, цел, цел, цел*, WORD*, SCRIPT_VISATTR*, цел*);
-	HRESULT ScriptApplyLogicalWidth(цел*, цел, цел, WORD*, SCRIPT_VISATTR*, цел*, SCRIPT_ANALYSIS*, ABC*, цел*);
-	HRESULT ScriptGetCMap(HDC, SCRIPT_CACHE*, WCHAR*, цел, DWORD, WORD*);
+	HRESULT ScriptItemize(WCHAR*, int, int, SCRIPT_CONTROL*, SCRIPT_STATE*, SCRIPT_ITEM*, int*);
+	HRESULT ScriptLayout(int, BYTE*, int*, int*);
+	HRESULT ScriptShape(HDC, SCRIPT_CACHE*, WCHAR*, int, int, SCRIPT_ANALYSIS*, WORD*, WORD*, SCRIPT_VISATTR*, int*);
+	HRESULT ScriptPlace(HDC, SCRIPT_CACHE*, WORD*, int, SCRIPT_VISATTR*, SCRIPT_ANALYSIS*, int*, GOFFSET*, ABC*);
+	HRESULT ScriptTextOut(HDC, SCRIPT_CACHE*, int, int, UINT, RECT*, SCRIPT_ANALYSIS*, WCHAR*, int, WORD*, int, int*, int*, GOFFSET*);
+	HRESULT ScriptJustify(SCRIPT_VISATTR*, int*, int, int, int, int*);
+	HRESULT ScriptBreak(WCHAR*, int, SCRIPT_ANALYSIS*, SCRIPT_LOGATTR*);
+	HRESULT ScriptCPtoX(int, BOOL, int, int, WORD*, SCRIPT_VISATTR*, int*, SCRIPT_ANALYSIS*, int*);
+	HRESULT ScriptXtoCP(int, int, int, WORD*, SCRIPT_VISATTR*, int*, SCRIPT_ANALYSIS*, int*, int*);
+	HRESULT ScriptGetLogicalWidths(SCRIPT_ANALYSIS*, int, int, int*, WORD*, SCRIPT_VISATTR*, int*);
+	HRESULT ScriptApplyLogicalWidth(int*, int, int, WORD*, SCRIPT_VISATTR*, int*, SCRIPT_ANALYSIS*, ABC*, int*);
+	HRESULT ScriptGetCMap(HDC, SCRIPT_CACHE*, WCHAR*, int, DWORD, WORD*);
 	HRESULT ScriptGetGlyphABCWidth(HDC, SCRIPT_CACHE*, WORD, ABC*);
-	HRESULT ScriptGetProperties(SCRIPT_PROPERTIES***, цел*);
+	HRESULT ScriptGetProperties(SCRIPT_PROPERTIES***, int*);
 	HRESULT ScriptGetFontProperties(HDC, SCRIPT_CACHE*, SCRIPT_FONTPROPERTIES*);
-	HRESULT ScriptCacheGetHeight(HDC, SCRIPT_CACHE*, цел*);
-	HRESULT ScriptIsComplex(WCHAR*, цел, DWORD);
+	HRESULT ScriptCacheGetHeight(HDC, SCRIPT_CACHE*, int*);
+	HRESULT ScriptIsComplex(WCHAR*, int, DWORD);
 	HRESULT ScriptRecordDigitSubstitution(LCID, SCRIPT_DIGITSUBSTITUTE*);
 	HRESULT ScriptApplyDigitSubstitution(SCRIPT_DIGITSUBSTITUTE*, SCRIPT_CONTROL*, SCRIPT_STATE*);
 
 	/* ScriptString Functions
 	 * http://msdn2.microsoft.com/library/ms776485 */
-	HRESULT ScriptStringAnalyse(HDC, проц*, цел, цел, цел, DWORD, цел, SCRIPT_CONTROL*, SCRIPT_STATE*, цел*, SCRIPT_TABDEF*, BYTE*, SCRIPT_STRING_ANALYSIS*);
+	HRESULT ScriptStringAnalyse(HDC, void*, int, int, int, DWORD, int, SCRIPT_CONTROL*, SCRIPT_STATE*, int*, SCRIPT_TABDEF*, BYTE*, SCRIPT_STRING_ANALYSIS*);
 	HRESULT ScriptStringFree(SCRIPT_STRING_ANALYSIS*);
 	SIZE* ScriptString_pSize(SCRIPT_STRING_ANALYSIS);
-	цел* ScriptString_pcOutChars(SCRIPT_STRING_ANALYSIS);
+	int* ScriptString_pcOutChars(SCRIPT_STRING_ANALYSIS);
 	SCRIPT_LOGATTR* ScriptString_pLogAttr(SCRIPT_STRING_ANALYSIS);
 	HRESULT ScriptStringGetOrder(SCRIPT_STRING_ANALYSIS, UINT*);
-	HRESULT ScriptStringCPtoX(SCRIPT_STRING_ANALYSIS, цел, BOOL, цел*);
-	HRESULT ScriptStringXtoCP(SCRIPT_STRING_ANALYSIS, цел, цел*, цел*);
-	HRESULT ScriptStringGetLogicalWidths(SCRIPT_STRING_ANALYSIS, цел*);
+	HRESULT ScriptStringCPtoX(SCRIPT_STRING_ANALYSIS, int, BOOL, int*);
+	HRESULT ScriptStringXtoCP(SCRIPT_STRING_ANALYSIS, int, int*, int*);
+	HRESULT ScriptStringGetLogicalWidths(SCRIPT_STRING_ANALYSIS, int*);
 	HRESULT ScriptStringValidate(SCRIPT_STRING_ANALYSIS);
-	HRESULT ScriptStringOut(SCRIPT_STRING_ANALYSIS, цел, цел, UINT, RECT*, цел, цел, BOOL);
+	HRESULT ScriptStringOut(SCRIPT_STRING_ANALYSIS, int, int, UINT, RECT*, int, int, BOOL);
 
 	/* TODO: Windows Vista fearured functions
 	ScriptGetFontAlternateGlyphs()

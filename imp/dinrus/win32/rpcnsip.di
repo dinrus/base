@@ -21,9 +21,9 @@ alias RPC_IMPORT_CONTEXT_P* PRPC_IMPORT_CONTEXT_P;
 extern(Windows) {
 	RPC_STATUS I_RpcNsGetBuffer(PRPC_MESSAGE);
 	RPC_STATUS I_RpcNsSendReceive(PRPC_MESSAGE, RPC_BINDING_HANDLE*);
-	проц I_RpcNsRaiseException(PRPC_MESSAGE, RPC_STATUS);
+	void I_RpcNsRaiseException(PRPC_MESSAGE, RPC_STATUS);
 	RPC_STATUS I_RpcReBindBuffer(PRPC_MESSAGE);
 	RPC_STATUS I_NsServerBindSearch();
 	RPC_STATUS I_NsClientBindSearch();
-	проц I_NsClientBindDone();
+	void I_NsClientBindDone();
 }
