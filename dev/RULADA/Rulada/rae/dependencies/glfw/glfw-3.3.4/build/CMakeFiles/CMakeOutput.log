@@ -1,0 +1,35 @@
+The system is: Windows - 6.1.7601 - x86
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: D:/dinrus/mingw32/bin/cl.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+ЋЇвЁ¬Ё§ЁагойЁ© Є®¬ЇЁ«пв®а Microsoft (R) C/C++ ўҐабЁЁ 19.27.29110 ¤«п x86
+(C) Љ®аЇ®а жЁп Њ ©Єа®б®дв (Microsoft Corporation).  ‚бҐ Їа ў  § йЁйҐ­л.
+
+CMakeCCompilerId.c
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/3.18.2/CompilerIdC/CMakeCCompilerId.obj"
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: D:/dinrus/mingw32/bin/cl.exe 
+Build flags: /DWIN32;/D_WINDOWS;/W3
+Id flags: -c 
+
+The output was:
+0
+ЋЇвЁ¬Ё§ЁагойЁ© Є®¬ЇЁ«пв®а Microsoft (R) C/C++ ўҐабЁЁ 19.27.29110 ¤«п x86
+(C) Љ®аЇ®а жЁп Њ ©Єа®б®дв (Microsoft Corporation).  ‚бҐ Їа ў  § йЁйҐ­л.
+
+CMakeCCompilerId.c
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/3.18.2/CompilerIdC/CMakeCCompilerId.obj"
+

@@ -1,0 +1,112 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: D:/dinrus/mingw32/bin/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+2
+ЋЇвЁ¬Ё§ЁагойЁ© Є®¬ЇЁ«пв®а Microsoft (R) C/C++ ўҐабЁЁ 19.27.29110 ¤«п x86
+(C) Љ®аЇ®а жЁп Њ ©Єа®б®дв (Microsoft Corporation).  ‚бҐ Їа ў  § йЁйҐ­л.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.27.29110.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "LIBCMT.lib"
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/dinrus/mingw32/bin/gmake.exe cmTC_e5381/fast && D:/dinrus/mingw32/bin/gmake.exe  -f CMakeFiles/cmTC_e5381.dir/build.make CMakeFiles/cmTC_e5381.dir/build
+gmake.exe[1]: Entering directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e5381.dir/CMakeCCompilerABI.c.obj
+D:/dinrus/mingw32/bin/cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles/cmTC_e5381.dir/CMakeCCompilerABI.c.obj /FdCMakeFiles/cmTC_e5381.dir/ /FS -c D:/dinrus/mingw32/share/cmake-3.18/Modules/CMakeCCompilerABI.c
+CMakeCCompilerABI.c
+Linking C executable cmTC_e5381.exe
+D:/dinrus/mingw32/bin/cmake.exe -E vs_link_exe --intdir=CMakeFiles/cmTC_e5381.dir --rc=D:/dinrus/mingw32/bin/rc.exe --mt=D:/dinrus/mingw32/bin/mt.exe --manifests -- D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_e5381.dir/objects1.rsp  /out:cmTC_e5381.exe /implib:cmTC_e5381.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_e5381.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+LINK Pass 1: command "D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_e5381.dir/objects1.rsp /out:cmTC_e5381.exe /implib:cmTC_e5381.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_e5381.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles/cmTC_e5381.dir/intermediate.manifest CMakeFiles/cmTC_e5381.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "kernel32.lib"
+gmake.exe[1]: *** [CMakeFiles/cmTC_e5381.dir/build.make:106: cmTC_e5381.exe] Error -1
+gmake.exe[1]: Leaving directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+gmake.exe: *** [Makefile:140: cmTC_e5381/fast] Error 2
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/dinrus/mingw32/bin/gmake.exe cmTC_d0353/fast && D:/dinrus/mingw32/bin/gmake.exe  -f CMakeFiles/cmTC_d0353.dir/build.make CMakeFiles/cmTC_d0353.dir/build
+gmake.exe[1]: Entering directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d0353.dir/testCCompiler.c.obj
+D:/dinrus/mingw32/bin/cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles/cmTC_d0353.dir/testCCompiler.c.obj /FdCMakeFiles/cmTC_d0353.dir/ /FS -c D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/testCCompiler.c
+testCCompiler.c
+Linking C executable cmTC_d0353.exe
+D:/dinrus/mingw32/bin/cmake.exe -E vs_link_exe --intdir=CMakeFiles/cmTC_d0353.dir --rc=D:/dinrus/mingw32/bin/rc.exe --mt=D:/dinrus/mingw32/bin/mt.exe --manifests -- D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_d0353.dir/objects1.rsp  /out:cmTC_d0353.exe /implib:cmTC_d0353.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_d0353.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+LINK Pass 1: command "D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_d0353.dir/objects1.rsp /out:cmTC_d0353.exe /implib:cmTC_d0353.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_d0353.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles/cmTC_d0353.dir/intermediate.manifest CMakeFiles/cmTC_d0353.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "kernel32.lib"
+gmake.exe[1]: *** [CMakeFiles/cmTC_d0353.dir/build.make:106: cmTC_d0353.exe] Error -1
+gmake.exe[1]: Leaving directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+gmake.exe: *** [Makefile:140: cmTC_d0353/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: D:/dinrus/mingw32/bin/cl.exe 
+Build flags: /DWIN32;/D_WINDOWS;/W3
+Id flags:  
+
+The output was:
+2
+ЋЇвЁ¬Ё§ЁагойЁ© Є®¬ЇЁ«пв®а Microsoft (R) C/C++ ўҐабЁЁ 19.27.29110 ¤«п x86
+(C) Љ®аЇ®а жЁп Њ ©Єа®б®дв (Microsoft Corporation).  ‚бҐ Їа ў  § йЁйҐ­л.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.27.29110.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "LIBCMT.lib"
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/dinrus/mingw32/bin/gmake.exe cmTC_ded98/fast && D:/dinrus/mingw32/bin/gmake.exe  -f CMakeFiles/cmTC_ded98.dir/build.make CMakeFiles/cmTC_ded98.dir/build
+gmake.exe[1]: Entering directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ded98.dir/CMakeCCompilerABI.c.obj
+D:/dinrus/mingw32/bin/cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles/cmTC_ded98.dir/CMakeCCompilerABI.c.obj /FdCMakeFiles/cmTC_ded98.dir/ /FS -c D:/dinrus/mingw32/share/cmake-3.18/Modules/CMakeCCompilerABI.c
+CMakeCCompilerABI.c
+Linking C executable cmTC_ded98.exe
+D:/dinrus/mingw32/bin/cmake.exe -E vs_link_exe --intdir=CMakeFiles/cmTC_ded98.dir --rc=D:/dinrus/mingw32/bin/rc.exe --mt=D:/dinrus/mingw32/bin/mt.exe --manifests -- D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_ded98.dir/objects1.rsp  /out:cmTC_ded98.exe /implib:cmTC_ded98.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_ded98.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+LINK Pass 1: command "D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_ded98.dir/objects1.rsp /out:cmTC_ded98.exe /implib:cmTC_ded98.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_ded98.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles/cmTC_ded98.dir/intermediate.manifest CMakeFiles/cmTC_ded98.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "kernel32.lib"
+gmake.exe[1]: *** [CMakeFiles/cmTC_ded98.dir/build.make:106: cmTC_ded98.exe] Error -1
+gmake.exe[1]: Leaving directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+gmake.exe: *** [Makefile:140: cmTC_ded98/fast] Error 2
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):D:/dinrus/mingw32/bin/gmake.exe cmTC_c45e0/fast && D:/dinrus/mingw32/bin/gmake.exe  -f CMakeFiles/cmTC_c45e0.dir/build.make CMakeFiles/cmTC_c45e0.dir/build
+gmake.exe[1]: Entering directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c45e0.dir/testCCompiler.c.obj
+D:/dinrus/mingw32/bin/cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles/cmTC_c45e0.dir/testCCompiler.c.obj /FdCMakeFiles/cmTC_c45e0.dir/ /FS -c D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/testCCompiler.c
+testCCompiler.c
+Linking C executable cmTC_c45e0.exe
+D:/dinrus/mingw32/bin/cmake.exe -E vs_link_exe --intdir=CMakeFiles/cmTC_c45e0.dir --rc=D:/dinrus/mingw32/bin/rc.exe --mt=D:/dinrus/mingw32/bin/mt.exe --manifests -- D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_c45e0.dir/objects1.rsp  /out:cmTC_c45e0.exe /implib:cmTC_c45e0.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_c45e0.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+LINK Pass 1: command "D:/dinrus/mingw32/bin/link.exe /nologo @CMakeFiles/cmTC_c45e0.dir/objects1.rsp /out:cmTC_c45e0.exe /implib:cmTC_c45e0.lib /pdb:D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp/cmTC_c45e0.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles/cmTC_c45e0.dir/intermediate.manifest CMakeFiles/cmTC_c45e0.dir/manifest.res" failed (exit code 1104) with the following output:
+LINK : fatal error LNK1104: ­Ґ г¤ Ґвбп ®вЄалвм д ©« "kernel32.lib"
+gmake.exe[1]: *** [CMakeFiles/cmTC_c45e0.dir/build.make:106: cmTC_c45e0.exe] Error -1
+gmake.exe[1]: Leaving directory 'D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/CMakeFiles/CMakeTmp'
+gmake.exe: *** [Makefile:140: cmTC_c45e0/fast] Error 2
+
+
+

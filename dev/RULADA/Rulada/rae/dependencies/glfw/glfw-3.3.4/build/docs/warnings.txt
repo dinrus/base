@@ -1,0 +1,1 @@
+error: Could not create output directory /d/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/docs/D:/dinrus/dinrus32/dev/RELEASE/base-2021/base/dev/RULADA/Rulada/rae/dependencies/glfw/glfw-3.3.4/build/docs/html
