@@ -280,7 +280,7 @@ export:
 
  ВАРИАНТ результат;
   ИСКЛИНФО искл;
-  цел хрез = цель.Invoke(dispId,ГУИД.пустой,  ДайЛокальНити(), cast(бкрат)флаги, &парамы, &результат, &искл, null);
+  цел хрез = цель.Invoke(dispId,&ГУИД.пустой,  ДайЛокальНити(), cast(бкрат)флаги, &парамы, &результат, &искл, null);
 
   for (auto i = 0; i < парамы.арги; i++) {
     парамы.ргварг[i].сотри();
@@ -299,7 +299,7 @@ export:
       if (auto supportErrorInfo = ком_каст!(ISupportErrorInfo)(цель)) {
         scope(exit) supportErrorInfo.Release();
 
-        if (УД(supportErrorInfo.InterfaceSupportsErrorInfo(ууид_у!(ИДиспетчер)))) {
+        if (УД(supportErrorInfo.InterfaceSupportsErrorInfo(&ууид_у!(ИДиспетчер)))) {
           sys.WinIfaces.ИИнфОбОш errorInfo;
           ДайИнфОбОш(0, errorInfo);
           if (errorInfo !is null) {
@@ -345,13 +345,13 @@ export:
   шим* bstrName = имя.вБткст();
   scope(exit) высвободиБткст(bstrName);
 
-  if (УД(цель.GetIDsOfNames(ГУИД.пустой, &bstrName, 1,  ДайЛокальНити(), &dispId)) && dispId != ПИдДисп.Неизвестно) {
+  if (УД(цель.GetIDsOfNames(&ГУИД.пустой, &bstrName, 1,  ДайЛокальНити(), &dispId)) && dispId != ПИдДисп.Неизвестно) {
     return вызовиЧленПоИду(dispId, флаги, цель, арги);
   }
 
   ткст имяТипа;
   ИИнфОТипе инфОТипе;
-  if (УД(цель.GetTypeInfo(0, 0, инфОТипе))) {
+  if (УД(цель.GetTypeInfo(0, 0, &инфОТипе))) {
     scope(exit) пробуйСброс(инфОТипе);
 
     шим* bstrTypeName;

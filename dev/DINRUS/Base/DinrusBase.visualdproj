@@ -6,7 +6,7 @@
   <lib>2</lib>
   <subsystem>2</subsystem>
   <multiobj>0</multiobj>
-  <singleFileCompilation>0</singleFileCompilation>
+  <singleFileCompilation>2</singleFileCompilation>
   <oneobj>0</oneobj>
   <mscoff>0</mscoff>
   <trace>0</trace>
@@ -14,7 +14,7 @@
   <verbose>0</verbose>
   <vtls>0</vtls>
   <vgc>0</vgc>
-  <symdebug>1</symdebug>
+  <symdebug>3</symdebug>
   <symdebugref>0</symdebugref>
   <optimize>1</optimize>
   <cpu>0</cpu>
@@ -105,11 +105,11 @@
   <mixinPath>$(IntDir)\$(SafeProjectName).mixin</mixinPath>
   <objfiles />
   <linkswitches />
-  <libfiles>..\..\..\..\lib\DImport.lib</libfiles>
-  <libpaths>..\..\..\..\lib</libpaths>
+  <libfiles>DImport.lib</libfiles>
+  <libpaths>$(DINRUS)\..\lib</libpaths>
   <deffile>res\base.def</deffile>
   <resfile>res\base.res</resfile>
-  <exefile>$(OutDir)\Dinrus.BaseD.dll</exefile>
+  <exefile>\Dinrus.BaseD.dll</exefile>
   <pdbfile>$(IntDir)\DinrusBaseD.pdb</pdbfile>
   <impfile>$(IntDir)\DinrusBaseD.lib</impfile>
   <mapfile>$(IntDir)\$(SafeProjectName).map</mapfile>
@@ -127,7 +127,7 @@
   <lib>2</lib>
   <subsystem>1</subsystem>
   <multiobj>0</multiobj>
-  <singleFileCompilation>0</singleFileCompilation>
+  <singleFileCompilation>2</singleFileCompilation>
   <oneobj>0</oneobj>
   <mscoff>0</mscoff>
   <trace>0</trace>
@@ -135,7 +135,7 @@
   <verbose>0</verbose>
   <vtls>0</vtls>
   <vgc>0</vgc>
-  <symdebug>0</symdebug>
+  <symdebug>3</symdebug>
   <symdebugref>0</symdebugref>
   <optimize>1</optimize>
   <cpu>0</cpu>
@@ -226,11 +226,11 @@
   <mixinPath>$(IntDir)\$(SafeProjectName).mixin</mixinPath>
   <objfiles />
   <linkswitches />
-  <libfiles>..\..\..\..\lib\DImport.lib</libfiles>
-  <libpaths>..\..\..\..\lib</libpaths>
+  <libfiles>DImport.lib</libfiles>
+  <libpaths>$(DINRUS)\..\lib</libpaths>
   <deffile>.\res\base.def</deffile>
   <resfile>.\res\base.res</resfile>
-  <exefile>$(OutDir)\Dinrus.Base.dll</exefile>
+  <exefile>\Dinrus.BaseD.dll</exefile>
   <pdbfile>$(IntDir)\DinrusBaseDLL.pdb</pdbfile>
   <impfile>$(IntDir)\DinrusBaseDLL.lib</impfile>
   <mapfile>$(IntDir)\$(SafeProjectName).map</mapfile>
@@ -555,6 +555,7 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   </Folder>
   <Folder name="sys">
    <Folder name="com">
+    <File path="src\sys\com\activex.d" />
     <File path="src\sys\com\com.d" />
    </Folder>
    <File path=".\src\sys\memory.d" />

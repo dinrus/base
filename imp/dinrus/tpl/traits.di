@@ -207,11 +207,11 @@ template ТипВозврата2(дг, dummy = void)
     static if (is(дг R == return))
 	alias R ТипВозврата2;
     else static if (is(дг Т : Т*))
-	alias ТипВозврата2!(Т, void) ТипВозврата2;
+	alias ТипВозврата2!(Т, проц) ТипВозврата2;
     else static if (is(дг S == struct))
-	alias ТипВозврата2!(typeof(&дг.opCall), void) ТипВозврата2;
+	alias ТипВозврата2!(typeof(&дг.opCall), проц) ТипВозврата2;
     else static if (is(дг C == class))
-	alias ТипВозврата2!(typeof(&дг.opCall), void) ТипВозврата2;
+	alias ТипВозврата2!(typeof(&дг.opCall), проц) ТипВозврата2;
     else
 	static assert(0, "у аргумента нет возвратного типа");
 }

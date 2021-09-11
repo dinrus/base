@@ -500,7 +500,7 @@ alias длина length;
 	ЧтенКопирПриЗап, /// read/write existing файл, copy on write
 	
     }
-	static this(){};
+	//static this(){};
     this(ткст имяф);
     
 
@@ -519,7 +519,7 @@ alias длина length;
 
 extern (D) class Файл: Поток 
 {
-	static this(){};
+	//static this(){};
   this();
   this(ук файлУк, ПФРежим режим);
   this(ткст имяф, ПРежимФайла режим = cast(ПФРежим)1);
@@ -547,7 +547,7 @@ extern (D) class ФильтрПоток : Поток
 	
   бул закрытьИсток();
   проц закрытьИсток(бул б);
-	static this(){};
+	//static this(){};
   this(Поток исток);
    Поток исток();
   проц исток(Поток s);
@@ -572,7 +572,7 @@ extern(C) extern
 	   бцел позИстокаБуф;  
 	  бдол позПотока; 
  }	
-  		static this(){};
+  		//static this(){};
 	проц устБуфер(ббайт[] буф);//setter
 	ббайт[] дайБуфер();	//getter
 	  
@@ -610,7 +610,7 @@ extern(C) extern
 
 extern (D) class БуфФайл: БуфПоток {
 
-	static this(){};
+	//static this(){};
   this();
   this(ткст имяф, ПРежимФайла режим = cast(ПФРежим) 1,
        бцел размБуф = дефРазмБуфера);
@@ -628,8 +628,8 @@ extern(D) БуфФайл объБуфФайл();
 
 extern (D) class ПотокЭндианец : ФильтрПоток {
 
-  Эндиан эндиан;
-	static this(){};
+ // Эндиан эндиан;
+	//static this(){};
   this(Поток исток, Эндиан end = _эндиан);
   проц устЭндиан(Эндиан э);
   проц выведиЭндиан();
@@ -685,7 +685,7 @@ extern (D) class ПотокЭндианец : ФильтрПоток {
 
 extern (D) class ПотокПамяти : ТПотокМассив!(ббайт[])
  {
-	static this(){};
+	//static this(){};
   this(ббайт[] буф = пусто) ;
   this(байт[] буф);
   this(ткст буф) ;
@@ -702,7 +702,7 @@ extern (D) class ПотокПамяти : ТПотокМассив!(ббайт[]
 
 extern (D) class РПФайлПоток : ТПотокМассив!(РПФайл)
  {
- 	static this(){};
+ 	//static this(){};
   this(РПФайл файл) ;
   override проц слей() ;
  override  проц закрой();
@@ -726,7 +726,7 @@ extern (C) extern
     бул ограничен; // upper-ограничен by верх.
 	Поток п;
 }
-	static this(){};
+	//static this(){};
   this (Поток s, бдол нз);  
   this (Поток s, бдол нз, бдол вх);
   override т_мера читайБлок (проц *буфер, т_мера размер);
@@ -739,7 +739,7 @@ extern (C) extern
 extern (D) class СФайл : Поток
  {
  extern  (C) extern	фук файлси;
- 	static this(){};
+ 	//static this(){};
   this(фук файлси, ПРежимФайла режим, бул сканируемый = нет);
   ~this();
   фук файл();
@@ -758,7 +758,7 @@ extern (D) class СФайл : Поток
 
 extern (D) class СокетПоток: Поток
 {
-	static this(){};
+	//static this(){};
   	this(Сокет сок, ПРежимФайла режим);
 	this(Сокет сок);
 	Сокет сокет();

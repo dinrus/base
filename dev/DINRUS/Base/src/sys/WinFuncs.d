@@ -122,7 +122,7 @@ const SUBVERSION_MASK     = 0x000000FF;
 const _WIN32_WINNT    = 0x0603;
 
 const NTDDI_VERSION   = 0x06030000;
-const WINVER          =  _WIN32_WINNT;
+
 
 enum ПИнфОБезопасности //SECURITY_INFORMATION
 {
@@ -140,7 +140,7 @@ enum ПИнфОБезопасности //SECURITY_INFORMATION
 /////////Структуры, отсутствующие в WinStructs
 
 
-static if (WINVER >= 0x410) {
+static if (_WIN32_WINNT >= 0x410) {
 	alias BOOL function (HMONITOR, HDC, LPRECT, LPARAM) MONITORENUMPROC;
 }
 alias BOOL function(HMODULE, LPCSTR, LPCSTR, WORD, LONG_PTR) ENUMRESLANGPROCA;
@@ -2077,9 +2077,9 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 шткст0 SysAllocStringByteLen(in ubyte* psz, бцел длин);
 цел CoCreateGuid(out ГУИД pGuid);
 цел ProgIDFromCLSID(ref ГУИД clsid, out шткст0 lplpszProgID);
-цел CLSIDFromProgID(in шткст0 lpszProgID, out ГУИД lpclsid);
-цел CLSIDFromProgIDEx(in шткст0 lpszProgID, out ГУИД lpclsid);
-цел CoCreateInstance(ref ГУИД rclsid, sys.WinIfaces.Инкогнито pUnkOuter, бцел dwClsContext, ref ГУИД riid, ук* ppv);
+цел CLSIDFromProgID(in шткст0 lpszProgID, КЛСИД* lpclsid);
+цел CLSIDFromProgIDEx(in шткст0 lpszProgID, КЛСИД* lpclsid);
+цел CoCreateInstance(ref КЛСИД rclsid, sys.WinIfaces.Инкогнито* pUnkOuter, бцел dwClsContext, ref ИИД riid, ук* ppv);
 цел CoGetClassObject(ref ГУИД rclsid, бцел dwClsContext, ук pvReserved, ref ГУИД riid, ук* ppv);
 цел CoCreateInstanceEx(ref ГУИД rclsid, sys.WinIfaces.Инкогнито pUnkOuter, бцел dwClsContext, sys.WinStructs.КОСЕРВЕРИНФО* pServerInfo, бцел dwCount, sys.WinStructs.МУЛЬТИ_ОИ* pResults);
 цел RegisterActiveObject(sys.WinIfaces.Инкогнито punk, ref ГУИД rclsid, бцел dwFlags, out бцел pdwRegister);
@@ -2421,6 +2421,11 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 }
 
 export extern(C):
+	/**
+	*GetUserDefaultLCID
+	*/
+	ЛКИД ДайДефЛКИДПользователя(){return 
+    GetUserDefaultLCID();}
 	/**
 	*GetEnvironmentStringsW
 	*/
@@ -4124,27 +4129,27 @@ return cast(ук) MapViewOfFile(cast(ук) объектФМап, cast(бцел) 
         return toUTF8(stringz.изТкст16н(прогИд_ш));		
 	}
 	
-    ГУИД КЛСИДИзПрогИД(in ткст прогИд)
+    КЛСИД КЛСИДИзПрогИД(in ткст прогИд)
     {
         шим *прогИд_ш = toUTF16z(прогИд);
-        ГУИД клсид;
-        if(УД(CLSIDFromProgID(прогИд_ш, клсид)))
+        КЛСИД клсид;
+        if(УД(CLSIDFromProgID(прогИд_ш, &клсид)))
 		return клсид;// ГУИД(клсид.Data1, клсид.Data2, клсид.Data3, клсид.Data4);
         throw new Exception("КЛСИДИзПрогИД - неудачно");
 	}
 	
-    ГУИД КЛСИДИзПрогИДДоп(in ткст прогИд)
+    КЛСИД КЛСИДИзПрогИДДоп(in ткст прогИд)
     {
         шим *прогИд_ш = toUTF16z(прогИд);
-        ГУИД клсид;
-         if(УД(CLSIDFromProgIDEx(прогИд_ш, клсид)))
+        КЛСИД клсид;
+         if(УД(CLSIDFromProgIDEx(прогИд_ш, &клсид)))
 		return клсид;//ГУИД(клсид.Data1, клсид.Data2, клсид.Data3, клсид.Data4);
 		 throw new Exception("КЛСИДИзПрогИДДоп - неудачно");
 	}
-	
-	цел СоздайЭкземплярКо(ref ГУИД рклсид, sys.WinIfaces.Инкогнито анонВнешн, бцел контекстКл, ref ГУИД риид, ук* ув)
+	//HRESULT CoCreateInstance(REFCLSID, LPUNKNOWN, DWORD, REFIID, PVOID*);
+	цел СоздайЭкземплярКо(КЛСИД клсид, sys.WinIfaces.Инкогнито анонВнешн, бцел контекстКл, ИИД иид, ук* ув)
 		{
-		return cast(цел) CoCreateInstance(рклсид, анонВнешн,  контекстКл,  риид,  ув);
+		return cast(цел) CoCreateInstance(клсид, &анонВнешн,  контекстКл,  иид,  ув);
 		}
 
 	цел ДайОбъектКлассаКо(ГУИД рклсид, бцел контекстКл, ук резерв, ГУИД риид, ук* ув)

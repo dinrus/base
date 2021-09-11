@@ -1,5 +1,5 @@
 module util.worktools;
-public import win, dinrus, util.str, util.fileex;
+public import dinrus, stdrusex;
 
 alias дайСред дайГлоб;
 alias устСред устГлоб;
@@ -72,7 +72,7 @@ alias дайТекстПострочно читайвсестр_из;
 			скажинс("Импортирован : "~ф);		
 		}
 		нс;
-		скажи("Файлов импортировано: "); пишифнс("%d", импортировано);
+		скажифнс("Файлов импортировано: %d", импортировано);
 		нс;
 		return 0;
 	}

@@ -1,5 +1,5 @@
 dinrus
-set this=%DINRUS%\..\dev\dinrus\Runtime\DinrusBase\Exe
+set this=%DINRUS%\..\dev\dinrus\Base\Exe
 %DINRUS%\dmd -release %this%\dinrus.d %this%\scConfig.d %this%\Resources\dinrus.res DinrusExeMain.lib
 %DINRUS%\upx dinrus.exe
 %DINRUS%\dmd -release %this%\dinrus2.d %this%\scConfig.d %this%\Resources\dinrus.res DinrusExeMain.lib

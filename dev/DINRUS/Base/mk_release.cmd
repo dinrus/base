@@ -159,8 +159,8 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 :::%DMD%  -c -O  -g %this%\export\openrj.d
 
 %DMD%  -c -O  -g -of%this%\rotozoom.obj %this%\static\rotozoom.d -I%R%
-%DMD%  -c -O  -g -of%this%\msscript.obj %this%\static\sys\com\msscript.d DRwin32.lib -I%R%
-%DMD%  -c -O  -g -of%this%\activex.obj %this%\static\sys\com\activex.d DRwin32.lib -I%R%
+%DMD%  -c -O  -g -of%this%\msscript.obj %this%\export\sys\com\msscript.d
+%DMD%  -c -O  -g -of%this%\activex.obj %this%\static\sys\com\activex.d
 %DMD%  -c -O  -g -of%this%\json.obj %this%\static\json.d -I%R%
 
 ::Special configuration items
@@ -200,8 +200,7 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 %DMD%  -c -O  -g -of%this%\WinFuncs.obj %this%\export\sys\WinFuncs.d -I%R%
 %DMD%  -c -O  -g -of%this%\WinProcess.obj %this%\export\sys\WinProcess.d -I%R%
 %DMD%  -c -O  -g -of%this%\registry.obj %this%\export\sys\registry.d -I%R%
-
-:::%DMD%  -c -O  -g -of%this%\kernel32.obj %this%\export\sys\inc\kernel32.d -I%R%
+%DMD%  -c -O  -g -of%this%\sysCommon.obj %this%\export\sys\Common.d -I%R%
 
 :%DMD%  -c -O  -g %this%\export\sys\en.d
 %DMD%  -c -O  -g -of%this%\memory.obj %this%\export\sys\memory.d -I%R%
@@ -222,7 +221,7 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 :::Making library with static content
 :dinrus2
 
-%DMD% -lib -of%this%\dinrus2.lib  %this%\base.obj  %this%\object.obj  %this%\cidrus.obj  %this%\stdrus.obj  %this%\dinrus.obj  %this%\win.obj  %this%\runtime.obj  %this%\gc.obj  %this%\thread.obj  %this%\sync.obj  %this%\stringz.obj   %this%\all.obj  %this%\bind.obj  %this%\box.obj  %this%\metastrings.obj  %this%\minmax.obj  %this%\signal.obj  %this%\args.obj  %this%\typetuple.obj  %this%\traits.obj  %this%\exception.obj %LDIR%\minit.obj  %this%\WinStructs.obj  %this%\WinIfaces.obj  %this%\WinConsts.obj  %this%\WinFuncs.obj  %this%\WinProcess.obj  %this%\comtpl.obj  %this%\wincom.obj  %this%\shell32.obj  %this%\stream.obj  %this%\memory.obj  %this%\msscript.obj  %this%\activex.obj  %this%\winapi.obj  %this%\singleton.obj  %this%\alloc.obj  %this%\collection.obj  %this%\ini.obj  %this%\Std.obj  %this%\uuid.obj  %this%\comsys.obj  %this%\rotozoom.obj  %this%\scomall.obj  %this%\global.obj  %this%\weakref.obj %this%\registry.obj %this%\stdrusex.obj %this%\usergdi.obj %this%\Cdinr.lib
+%DMD% -lib -of%this%\dinrus2.lib %this%\base.obj  %this%\object.obj  %this%\cidrus.obj  %this%\stdrus.obj  %this%\dinrus.obj  %this%\win.obj  %this%\runtime.obj  %this%\gc.obj  %this%\thread.obj  %this%\sync.obj  %this%\stringz.obj   %this%\all.obj  %this%\bind.obj  %this%\box.obj  %this%\metastrings.obj  %this%\minmax.obj  %this%\signal.obj  %this%\args.obj  %this%\typetuple.obj  %this%\traits.obj  %this%\exception.obj %LDIR%\minit.obj  %this%\WinStructs.obj  %this%\WinIfaces.obj  %this%\WinConsts.obj  %this%\WinFuncs.obj  %this%\WinProcess.obj  %this%\comtpl.obj  %this%\wincom.obj  %this%\shell32.obj  %this%\stream.obj  %this%\memory.obj %this%\activex.obj  %this%\winapi.obj  %this%\singleton.obj  %this%\alloc.obj  %this%\collection.obj  %this%\ini.obj  %this%\Std.obj  %this%\uuid.obj  %this%\comsys.obj  %this%\rotozoom.obj  %this%\scomall.obj  %this%\global.obj  %this%\weakref.obj %this%\registry.obj %this%\stdrusex.obj %this%\usergdi.obj %this%\msscript.obj %this%\sysCommon.obj %this%\Cdinr.lib
 @if exist %this%\dinrus2.lib  goto Join
 @if not exist %this%\dinrus2.lib pause
 cls
@@ -398,7 +397,7 @@ del *.exe *.map
 cd %this%
 :Cleaning
 :::Cleaning
-%DMD% %this%\clean.d
+%DMD% %this%\clean.d %this%\Dinrus.lib
 %this%\clean
 ::: same with the Dll - to bin folder
 

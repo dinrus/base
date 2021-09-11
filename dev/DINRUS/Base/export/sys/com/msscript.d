@@ -1,7 +1,6 @@
 ﻿module sys.com.msscript;
 
-private import stdrus, sys.com.activex, sys.WinIfaces;
-pragma(lib,"DRwin32.lib");
+extern(D):
 
 class СкриптДвижок
 {
@@ -60,11 +59,3 @@ class ДжейСкриптКонтроль: СкриптКонтроль
 
 проц джейс(ткст инстр);	
 проц джейкон();
-
-version (build) {
-    debug {
-        pragma(link, "DRwin32");
-    } else {
-        pragma(link, "DRwin32");
-    }
-}

@@ -38,6 +38,17 @@ import tpl.com;
   else  throw new Исключение("Неправильный формат для ГУИД.");
   return null;
 }
+
+template CPtr(T) {
+	version (D_Version2) {
+		// миксин используется, чтобы не вызывать синтактических ошибок при D1
+		mixin("alias const(T)* CPtr;");
+	} else {
+		alias T* CPtr;
+	}
+}
+
+alias CPtr!(ГУИД) REFGUID, REFIID, REFCLSID, REFFMTID;
 /////////////////////////////////////////////////////////////////////////////////
 interface ПотокВвода{  
 
@@ -143,13 +154,13 @@ interface IUnknown
  {
   mixin(ууид("00000000-0000-0000-c000-000000000046"));
 
-  цел QueryInterface(ref ГУИД riid, ук* ppvObject);
+  цел QueryInterface(REFIID riid, ук* ppvObject);
   бцел AddRef();
   бцел Release();
   
   /*****************Инкогнито*************************
   *
-  * цел ОпросиИнтерфейс(ref ГУИД riid, ук* ppvObject);
+  * цел ОпросиИнтерфейс(REFIID riid, ук* ppvObject);
   * бцел ДобСсыл();
   * бцел Отпусти();
   **************************************************/
@@ -157,43 +168,45 @@ interface IUnknown
 }
 alias IUnknown Инкогнито;
 //////////////////////////////////////////////////////
+
 interface IDispatch : Инкогнито {
   mixin(ууид("00020400-0000-0000-c000-000000000046"));
 
-  цел GetTypeInfoCount(out бцел pctinfo);
-  цел GetTypeInfo(бцел iTInfo, бцел лкид, out ИИнфОТипе ppTInfo);
-  цел GetIDsOfNames(ref ГУИД riid, шим** rgszNames, бцел cNames, бцел лкид, цел* rgDispId);
-  цел Invoke(цел dispIdMember, ref ГУИД riid, бцел лкид, бкрат wFlags, ДИСППАРАМЫ* pDispParams, ВАРИАНТ* pVarResult, ИСКЛИНФО* pExcepInfo, бцел* puArgError);
+  цел GetTypeInfoCount(бцел* pctinfo);
+  цел GetTypeInfo(бцел iTInfo, бцел лкид, ИИнфОТипе* ppTInfo);
+  цел GetIDsOfNames(REFIID riid, шим** rgszNames, бцел cNames, бцел лкид, цел* rgDispId);
+  цел Invoke(цел dispIdMember, REFIID riid, бцел лкид, бкрат wFlags, ДИСППАРАМЫ* pDispParams, ВАРИАНТ* pVarResult, ИСКЛИНФО* pExcepInfo, бцел* puArgError);
   
   /***********************ИДиспетчер**************************************
   *
   *  цел ДайСчётИнфОТипов(out бцел pctinfo);
   *  цел ДайИнфОТип(бцел iTInfo, бцел лкид, out ИИнфОТипе ppTInfo);
-  *  цел ДайИдыИмён(ref ГУИД riid, шим** rgszNames, бцел cNames, бцел лкид, цел* rgDispId);
-  *  цел Вызови(цел dispIdMember, ref ГУИД riid, бцел лкид, бкрат wFlags, ДИСППАРАМЫ* pDispParams, ВАРИАНТ* pVarResult, ИСКЛИНФО* pExcepInfo, бцел* puArgError);
+  *  цел ДайИдыИмён(REFIID riid, шим** rgszNames, бцел cNames, бцел лкид, цел* rgDispId);
+  *  цел Вызови(цел dispIdMember, REFIID riid, бцел лкид, бкрат wFlags, ДИСППАРАМЫ* pDispParams, ВАРИАНТ* pVarResult, ИСКЛИНФО* pExcepInfo, бцел* puArgError);
   *******************************************************************/
 }
-alias IDispatch ИДиспетчер;
+alias IDispatch ИДиспетчер, LPDISPATCH;
 //////////////////////////////////////
+
 interface ITypeInfo : Инкогнито {
   mixin(ууид("00020401-0000-0000-c000-000000000046"));
 
-  цел GetTypeAttr(out ТИПАТР* ppTypeAttr);
-  цел GetTypeComp(out ITypeComp ppTComp);
-  цел GetFuncDesc(бцел индекс, out ФУНКЦДЕСКР* ppFuncDesc);
-  цел GetVarDesc(бцел индекс, out ПЕРЕМДЕСКР* ppVarDesc);
-  цел GetNames(цел memid, шим** rgBstrNames, бцел cMaxNames, out бцел pcNames);
-  цел GetRefTypeOfImplType(бцел индекс, out бцел pRefType);
-  цел GetImplTypeFlag(бцел индекс, out цел pImplTypeFlag);
+  цел GetTypeAttr(ТИПАТР** ppTypeAttr);
+  цел GetTypeComp(ITypeComp* ppTComp);
+  цел GetFuncDesc(бцел индекс, ФУНКЦДЕСКР** ppFuncDesc);
+  цел GetVarDesc(бцел индекс, ПЕРЕМДЕСКР** ppVarDesc);
+  цел GetNames(цел memid, шим** rgBstrNames, бцел cMaxNames, бцел* pcNames);
+  цел GetRefTypeOfImplType(бцел индекс, бцел* pRefType);
+  цел GetImplTypeFlag(бцел индекс, цел* pImplTypeFlag);
   цел GetIDsOfNames(шим** rgszNames, бцел cNames, цел* pMemId);
   цел Invoke(ук pvInstance, цел memid, бкрат wFlags, ДИСППАРАМЫ* pDispParams, ВАРИАНТ* pVarResult, ИСКЛИНФО* pExcepInfo, бцел* puArgErr);
   цел GetDocumentation(цел memid, шим** pBstrName, шим** pBstrDocString, бцел* pКонтекстСправки, шим** pBstrHelpFile);
   цел GetDllEntry(цел memid, ПВидВызова invKind, шим** pBstrDllName, шим** pBstrName, бкрат* pwOrdinal);
-  цел GetRefTypeInfo(бцел hRefType, out ИИнфОТипе ppTInfo);
+  цел GetRefTypeInfo(бцел hRefType, ИИнфОТипе* ppTInfo);
   цел AddressOfMember(цел memid, ПВидВызова invKind, ук* ppv);
-  цел CreateInstance(Инкогнито pUnkOuter, ref ГУИД riid, ук* ppvObj);
+  цел CreateInstance(Инкогнито pUnkOuter, REFIID riid, ук* ppvObj);
   цел GetMops(цел memid, шим** pBstrMops);
-  цел GetContainingTypeLib(out ITypeLib ppTLib, out бцел pIndex);
+  цел GetContainingTypeLib(ITypeLib* ppTLib, бцел* pIndex);
   цел ReleaseTypeAttr(ТИПАТР* pTypeAttr);
   цел ReleaseFuncDesc(ФУНКЦДЕСКР* pFuncDesc);
   цел ReleaseVarDesc(ПЕРЕМДЕСКР* pVarDesc);
@@ -213,7 +226,7 @@ interface ITypeInfo : Инкогнито {
   * цел ДайЗапДлл(цел memid, ПВидВызова invKind, шим** pBstrDllName, шим** pBstrName, бкрат* pwOrdinal);
   * цел ДайИнфСсылТипа(бцел hRefType, out ИИнфОТипе ppTInfo);
   * цел АдресЧлена(цел memid, ПВидВызова invKind, ук* ppv);
-  * цел СоздайЭкземпл(Инкогнито pUnkOuter, ref ГУИД riid, ук* ppvObj);
+  * цел СоздайЭкземпл(Инкогнито pUnkOuter, REFIID riid, ук* ppvObj);
   * цел ДайОпПы(цел memid, шим** pBstrMops);
   * цел ДайВключБибТипов(out ITypeLib ppTLib, out бцел pIndex);
   * цел СбросьАтрТипа(ТИПАТР* pTypeAttr);
@@ -221,18 +234,18 @@ interface ITypeInfo : Инкогнито {
   * цел СбросьДескрПер(ПЕРЕМДЕСКР* pVarDesc);
   *****************************************************************/
 }
-alias ITypeInfo ИИнфОТипе;
+alias ITypeInfo ИИнфОТипе, LPTYPEINFO;
 ///////////////////////////////////////////
 interface IClassFactory : Инкогнито
  {
   mixin(ууид("00000001-0000-0000-c000-000000000046"));
 
-  цел CreateInstance(Инкогнито pUnkOuter, ref ГУИД riid, ук* ppvObject);
+  цел CreateInstance(Инкогнито pUnkOuter, REFIID riid, ук* ppvObject);
   цел LockServer(цел fLock);
   
  /************************ИФабрикаКласса***********************************
   *
-  * цел СоздайЭкземпляр(Инкогнито pUnkOuter, ref ГУИД riid, ук* ppvObject);
+  * цел СоздайЭкземпляр(Инкогнито pUnkOuter, REFIID riid, ук* ppvObject);
   * цел БлокируйСервер(цел fLock);
   *************************************************************************/
 }
@@ -263,19 +276,19 @@ alias IMalloc ИОператорПамяти;
 interface IMarshal : Инкогнито {
   mixin(ууид("00000003-0000-0000-c000-000000000046"));
 
-  цел GetUnmarshalClass(ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out ГУИД pCid);
-  цел GetMarshalSizeMax(ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out бцел pSize);
-  цел MarshalInterface(ИПоток pStm, ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags);
-  цел UnmarshalInterface(ИПоток pStm, ref ГУИД riid, ук* ppv);
+  цел GetUnmarshalClass(REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out ГУИД pCid);
+  цел GetMarshalSizeMax(REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out бцел pSize);
+  цел MarshalInterface(ИПоток pStm, REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags);
+  цел UnmarshalInterface(ИПоток pStm, REFIID riid, ук* ppv);
   цел ReleaseMarshalData(ИПоток pStm);
   цел DisconnectObject(бцел резерв);
   
   /**************************************ИМаршал***********************************************
   *
-  *  цел ДайРазмаршКласс(ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out ГУИД pCid);
-  * цел ДайМаксМаршРазм(ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out бцел pSize);
-  * цел МаршИнтерфейс(ИПоток pStm, ref ГУИД riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags);
-  * цел РазмаршИнтерфейс(ИПоток pStm, ref ГУИД riid, ук* ppv);
+  *  цел ДайРазмаршКласс(REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out ГУИД pCid);
+  * цел ДайМаксМаршРазм(REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags, out бцел pSize);
+  * цел МаршИнтерфейс(ИПоток pStm, REFIID riid, ук pv, бцел контекстЦели, ук укНаКонтекстЦели, бцел mshlflags);
+  * цел РазмаршИнтерфейс(ИПоток pStm, REFIID riid, ук* ppv);
   * цел СбросьДанные(ИПоток pStm);
   * цел ОтключиОбъект(бцел резерв);
   *****************************************************************************************/
@@ -338,7 +351,7 @@ interface IStorage : Инкогнито {
   цел DestroyElement(шим* укНаШ0Имя);
   цел RenameElement(шим* pwcsOldName, шим* pwcsNewName);
   цел SetElementTimes(шим* укНаШ0Имя, ref ФВРЕМЯ pctime, ref ФВРЕМЯ patime, ref ФВРЕМЯ pmtime);
-  цел SetClass(ref ГУИД клсид);
+  цел SetClass(REFIID клсид);
   цел SetStateBits(бцел битыТекСостХр, бцел grfMask);
   цел Stat(out ОТКРПМБ pstatstg, бцел grfStatFlag);  
   
@@ -356,7 +369,7 @@ interface IStorage : Инкогнито {
   *  цел УдалиЭлт(шим* укНаШ0Имя);
   *  цел ПереименуйЭлт(шим* pwcsOldName, шим* pwcsNewName);
   *  цел УстановиВремяЭлта(шим* укНаШ0Имя, ref ФВРЕМЯ pctime, ref ФВРЕМЯ patime, ref ФВРЕМЯ pmtime);
-  *  цел УстановиКласс(ref ГУИД клсид);
+  *  цел УстановиКласс(REFIID клсид);
   *  цел УстановиБитыСостояния(бцел битыТекСостХр, бцел grfMask);
   *  цел Стат(out ОТКРПМБ pstatstg, бцел grfStatFlag);
   ****************************************************************************************/
@@ -484,8 +497,8 @@ alias IBindCtx ИКонкстСвязки;
 interface IMoniker : IPersistStream {
   mixin(ууид("0000000f-0000-0000-c000-000000000046"));
 
-  цел BindToObject(ИКонкстСвязки pbc, IMoniker pmkToLeft, ref ГУИД riidResult, ук* ppvResult);
-  цел BindToStorage(ИКонкстСвязки pbc, IMoniker pmkToLeft, ref ГУИД riid, ук* ppv);
+  цел BindToObject(ИКонкстСвязки pbc, IMoniker pmkToLeft, REFIID riidResult, ук* ppvResult);
+  цел BindToStorage(ИКонкстСвязки pbc, IMoniker pmkToLeft, REFIID riid, ук* ppv);
   цел Reduce(ИКонкстСвязки pbc, бцел dwReduceHowFar, ref IMoniker ppmkToLeft, out IMoniker ppmkReduced);
   цел ComposeWith(IMoniker pmkRight, бул fOnlyIfNotGeneric, out IMoniker ppmkComposite);
   цел Enum(бул fForward, out IEnumMoniker ppenumMoniker);
@@ -648,7 +661,7 @@ interface ITypeLib : Инкогнито {
   бцел GetTypeInfoCount();
   цел GetTypeInfo(бцел индекс, out ИИнфОТипе ppTInfo);
   цел GetTypeInfoType(бцел индекс, out ПВидТипа pTKind);
-  цел GetTypeInfoOfGuid(ref ГУИД гуид, out ИИнфОТипе ppTInfo);
+  цел GetTypeInfoOfGuid(REFIID гуид, out ИИнфОТипе ppTInfo);
   цел GetLibAttr(out АТРТБИБ* ppTLibAttr);
   цел GetTypeComp(out ITypeComp ppTComp);
   цел GetDocumentation(цел индекс, шим** pBstrName, шим** pBstrDocString, бцел* pBstrHelpContext, шим** pBstrHelpFile);
@@ -676,7 +689,7 @@ interface IEnumVARIANT : Инкогнито {
 interface ICreateTypeInfo : Инкогнито {
   mixin(ууид("00020405-0000-0000-c000-000000000046"));
 
-  цел SetGuid(ref ГУИД гуид);
+  цел SetGuid(REFIID гуид);
   цел SetTypeFlag(бцел uTypeFlag);
   цел SetDocString(шим* szStrDoc);
   цел SetHelpContext(бцел КонтекстСправки);
@@ -707,7 +720,7 @@ interface ICreateTypeLib : Инкогнито {
   цел CreateTypeInfo(шим* szName, ПВидТипа tkind, out ICreateTypeInfo ppCTInfo);
   цел SetName(шим* szName);
   цел SetVersion(бкрат wMajorVerNum, бкрат wMinorVerNum);
-  цел SetGuid(ref ГУИД гуид);
+  цел SetGuid(REFIID гуид);
   цел SetDocString(шим* szDoc);
   цел SetHelpFileName(шим* szHelpFileName);
   цел SetHelpContext(бцел КонтекстСправки);
@@ -724,11 +737,11 @@ interface ICreateTypeInfo2 : ICreateTypeInfo {
   цел DeleteVarDesc(бцел индекс);
   цел DeleteVarDescByMemId(цел memid);
   цел DeleteImplType(бцел индекс);
-  цел SetCustData(ref ГУИД гуид, ref ВАРИАНТ pVarVal);
-  цел SetFuncCustData(бцел индекс, ref ГУИД гуид, ref ВАРИАНТ pVarVal);
-  цел SetParamCustData(бцел indexFunc, бцел indexParam, ref ГУИД гуид, ref ВАРИАНТ pVarVal);
-  цел SetVarCustData(бцел индекс, ref ГУИД гуид, ref ВАРИАНТ pVarVal);
-  цел SetImplTypeCustData(бцел индекс, ref ГУИД гуид, ref ВАРИАНТ pVarVal);
+  цел SetCustData(REFIID гуид, ref ВАРИАНТ pVarVal);
+  цел SetFuncCustData(бцел индекс, REFIID гуид, ref ВАРИАНТ pVarVal);
+  цел SetParamCustData(бцел indexFunc, бцел indexParam, REFIID гуид, ref ВАРИАНТ pVarVal);
+  цел SetVarCustData(бцел индекс, REFIID гуид, ref ВАРИАНТ pVarVal);
+  цел SetImplTypeCustData(бцел индекс, REFIID гуид, ref ВАРИАНТ pVarVal);
   цел SetHelpStringContext(бцел dwHelpStringContext);
   цел SetFuncHelpStringContext(бцел индекс, бцел dwHelpStringContext);
   цел SetVarHelpStringContext(бцел индекс, бцел dwHelpStringContext);
@@ -739,7 +752,7 @@ interface ICreateTypeLib2 : ICreateTypeLib {
   mixin(ууид("0002040f-0000-0000-c000-000000000046"));
 
   цел DeleteTypeInfo(шим* szName);
-  цел SetCustData(ref ГУИД гуид, ref ВАРИАНТ pVarVal);
+  цел SetCustData(REFIID гуид, ref ВАРИАНТ pVarVal);
   цел SetHelpStringContext(бцел dwHelpStringContext);
   цел SetHelpStringDll(шим* szFileName);
 }
@@ -754,7 +767,7 @@ interface ITypeChangeEvents : Инкогнито {
 interface ITypeLib2 : ITypeLib {
   mixin(ууид("00020411-0000-0000-c000-000000000046"));
 
-  цел GetCustData(ref ГУИД гуид, out ВАРИАНТ pVarVal);
+  цел GetCustData(REFIID гуид, out ВАРИАНТ pVarVal);
   цел GetLibStatistics(out бцел pcUniqueNames, out бцел pcchUniqueNames);
   цел GetDocumentation2(цел индекс, бцел лкид, шим** pBstrHelpString, бцел* pКонтекстСправки, шим** pBstrHelpStringDll);
   цел GetAllCustData(out ОСОБДАН pCustData);
@@ -767,11 +780,11 @@ interface ITypeInfo2 : ИИнфОТипе {
   цел GetTypeFlag(out бцел pTypeFlag);
   цел GetFuncИндекс_уMemId(цел memid, ПВидВызова invKind, out бцел pFuncIndex);
   цел GetVarИндекс_уMemId(цел memid, out бцел pVarIndex);
-  цел GetCustData(ref ГУИД гуид, out ВАРИАНТ pVarVal);
-  цел GetFuncCustData(бцел индекс, ref ГУИД гуид, out ВАРИАНТ pVarVal);
-  цел GetParamCustData(бцел indexFunc, бцел indexParam, ref ГУИД гуид, out ВАРИАНТ pVarVal);
-  цел GetVarCustData(бцел индекс, ref ГУИД гуид, out ВАРИАНТ pVarVal);
-  цел GetImplTypeCustData(бцел индекс, ref ГУИД гуид, out ВАРИАНТ pVarVal);
+  цел GetCustData(REFIID гуид, out ВАРИАНТ pVarVal);
+  цел GetFuncCustData(бцел индекс, REFIID гуид, out ВАРИАНТ pVarVal);
+  цел GetParamCustData(бцел indexFunc, бцел indexParam, REFIID гуид, out ВАРИАНТ pVarVal);
+  цел GetVarCustData(бцел индекс, REFIID гуид, out ВАРИАНТ pVarVal);
+  цел GetImplTypeCustData(бцел индекс, REFIID гуид, out ВАРИАНТ pVarVal);
   цел GetDocumentation2(цел memid, бцел лкид, шим** pBstrHelpString, бцел* pКонтекстСправки, шим** pBstrHelpStringDll);
   цел GetAllCustData(out ОСОБДАН pCustData);
   цел GetAllFuncCustData(бцел индекс, out ОСОБДАН pCustData);
@@ -814,7 +827,7 @@ interface IConnectionPointContainer : Инкогнито {
   mixin(ууид("b196b284-bab4-101a-b69c-00aa00341d07"));
 
   цел EnumConnectionPoints(out IEnumConnectionPoints ppEnum);
-  цел FindConnectionPoint(ref ГУИД riid, out IConnectionPoint ppCP);
+  цел FindConnectionPoint(REFIID riid, out IConnectionPoint ppCP);
 }
 ////////////////////////
 
@@ -860,7 +873,7 @@ alias IErrorInfo ИИнфОбОш;
 interface ISupportErrorInfo : Инкогнито {
   mixin(ууид("df0b3d60-548f-101b-8e65-08002b2bd119"));
 
-  цел InterfaceSupportsErrorInfo(ref ГУИД riid);
+  цел InterfaceSupportsErrorInfo(REFIID riid);
 }
 //////////////////////////
 interface IClassFactory2 : IClassFactory {
@@ -868,7 +881,7 @@ interface IClassFactory2 : IClassFactory {
 
   цел GetLicInfo(out ИНФОЛИЦ pLicInfo);
   цел RequestLicKey(бцел резерв, out шим* pBstrKey);
-  цел CreateInstanceLic(Инкогнито pUnkOuter, Инкогнито pUnkReserved, ref ГУИД riid, шим* bstrKey, ук* ppvObj);
+  цел CreateInstanceLic(Инкогнито pUnkOuter, Инкогнито pUnkReserved, REFIID riid, шим* bstrKey, ук* ppvObj);
 }
 /////////////////////
 interface IFont : Инкогнито {
