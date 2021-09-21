@@ -79,15 +79,19 @@ mkdir %R%\col\model
 copy %this%\export\col\*.d  %R%\col\*.di
 copy %this%\export\col\model\*.d  %R%\col\model\*.di
 
-
 mkdir %R%\linalg
 copy %this%\export\linalg\*.d  %R%\linalg\*.di
 
 mkdir %R%\geom
 copy %this%\export\geom\*.d  %R%\geom\*.di
 
+mkdir %R%\math
+copy %this%\export\math\*.d  %R%\math\*.di
+
 mkdir %R%\util
 copy %this%\export\util\*.d  %R%\util\*.di
+
+
 
 ::mkdir %R%\io
 ::mkdir %R%\io\device
@@ -298,9 +302,20 @@ cls
 %LS% -d %this%\static\geom\*.d>>%this%\geom.rsp
 %DMD% -lib -of%this%\geom.lib @%this%\geom.rsp
 @if exist %this%\geom.lib del %this%\geom.rsp
-@if exist %this%\geom.lib goto IO
+@if exist %this%\geom.lib goto Math
 @if not exist %this%\geom.lib pause
 @del %this%\geom.rsp
+cls
+@goto Geom
+
+
+:Math
+%LS% -d %this%\export\math\*.d>>%this%\math.rsp
+%DMD% -lib -of%this%\math.lib @%this%\math.rsp
+@if exist %this%\math.lib del %this%\math.rsp
+@if exist %this%\math.lib goto IO
+@if not exist %this%\math.lib pause
+@del %this%\math.rsp
 cls
 @goto Geom
 
@@ -359,6 +374,7 @@ cd %this%
 %LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\st.lib
+%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
 ::%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
 %LIB% -p256  %this%\Dinrus.lib %ARCDIR%\arc2.lib
 %LIB% -p256  %this%\Dinrus.lib %MINIDDIR%\rminid.lib
