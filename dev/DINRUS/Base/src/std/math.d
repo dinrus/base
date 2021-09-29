@@ -8,7 +8,7 @@ module std.math;
 private import cidrus, exception;
 private import std.string;
 
-private import std.traits;
+private import tpl.traits;
 
 version(GNU){
     // GDC can't actually do inline asm.
@@ -61,7 +61,7 @@ template floatTraits(T) {
     const ushort EXPMASK = 0x7F80;
     const ushort EXPBIAS = 0x3F00;
     const uint EXPMASK_INT = 0x7F80_0000;
-    const uint MANTISSAMASK_INT = 0x007F_FFFF;
+    const uint МАСКА_МАНТИССЫ_ЦЕЛ = 0x007F_FFFF;
     const real POW2MANTDIG = 0x1p+24;
     version(LittleEndian) {
       const EXPPOS_SHORT = 1;
@@ -72,7 +72,7 @@ template floatTraits(T) {
     const ushort EXPMASK = 0x7FF0;
     const ushort EXPBIAS = 0x3FE0;
     const uint EXPMASK_INT = 0x7FF0_0000;
-    const uint MANTISSAMASK_INT = 0x000F_FFFF; // for the MSB only
+    const uint МАСКА_МАНТИССЫ_ЦЕЛ = 0x000F_FFFF; // for the MSB only
     const real POW2MANTDIG = 0x1p+53;
     version(LittleEndian) {
       const EXPPOS_SHORT = 3;
@@ -2644,10 +2644,10 @@ body {
             m &= 0x7FFF_FFFF_FFFF_FFFFL;
         }
         // Now do a multi-byte right shift
-        uint c = e & 1; // carry
+        uint c = e & 1; // перенос
         e >>= 1;
         m >>>= 1;
-        if (c) m |= 0x4000_0000_0000_0000L; // shift carry into significand
+        if (c) m |= 0x4000_0000_0000_0000L; // shift перенос into significand
         if (e) *ul = m | 0x8000_0000_0000_0000L; // set implicit bit...
         else *ul = m; // ... unless exponent is 0 (denormal or zero).
         // Avoid ridiculous warning

@@ -17,4 +17,4 @@ set this=%DINRUS%\..\dev\dinrus\Base\Exe
 %DINRUS%\dmd -release %this%\libproc.d %this%\Resources\dinrus.res DinrusExeMain.lib
 %DINRUS%\upx libproc.exe
 copy %this%\*.exe %DINRUS%
-del %this%\*.map %this%\*.obj %this%\*.exe
+::del %this%\*.map %this%\*.obj %this%\*.exe

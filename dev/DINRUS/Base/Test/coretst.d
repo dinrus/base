@@ -1,5 +1,5 @@
 ﻿
-import core.Array;
+import tpl.array;
 
 int main()
 {

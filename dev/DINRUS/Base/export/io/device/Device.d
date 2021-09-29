@@ -3,8 +3,6 @@
 private import  dinrus;
 public  import  io.device.Conduit;
 
-extern(D):
-
 class Устройство : Провод, ИВыбираемый
 {
         public alias Провод.ошибка ошибка;

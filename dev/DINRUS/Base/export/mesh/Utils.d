@@ -1,5 +1,5 @@
 ﻿module mesh.Utils;
-public import linalg.color, tpl.singleton, tpl.std, linalg.Vector ;
+public import math.linalg.color, tpl.singleton, tpl.std, math.linalg.Vector ;
 
 
 /** \имя Cast вектор type to another вектор type.

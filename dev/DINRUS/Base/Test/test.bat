@@ -1,6 +1,6 @@
 :::Compiling and executing some test programs
 @set DMD=%DINRUS%\dmd.exe
-@set this=%DINRUS%\..\dev\dinrus\Runtime\DinrusBase\Test
+@set this=%DINRUS%\..\dev\dinrus\Base\Test
 
 del %this%\*.exe
 

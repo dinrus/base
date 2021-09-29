@@ -117,7 +117,7 @@ BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
 DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib
-LINKCMD=%DINRUS%\\optlink.exe
+LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
 КОНФИГ_ДИНРУС2 = рг(
@@ -163,8 +163,8 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusTango.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib
-LINKCMD=%DINRUS%\\optlink.exe
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib
+LINKCMD=%DINRUS%\\dmlink.exe
 	");
 	
 КОНФИГ_ДИНРУСДОП_ГИП =рг(
@@ -179,7 +179,7 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusTango.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib -L/exet:nt/su:windows:4.0
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib -L/exet:nt/su:windows:4.0
 LINKCMD=%DINRUS%\\optlink.exe
 	");
 	

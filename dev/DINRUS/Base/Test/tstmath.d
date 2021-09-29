@@ -251,19 +251,19 @@ void main() {
 	
 	  реал nan4 = НЧ(0x789_ABCD_EF12_3456);
   static if (реал.mant_dig == 64 || реал.mant_dig==113) {
-      assert (getNaNPayload(nan4) == 0x789_ABCD_EF12_3456);
+      assert (дайПэйлоудНЧ(nan4) == 0x789_ABCD_EF12_3456);
   } else {
-      assert (getNaNPayload(nan4) == 0x1_ABCD_EF12_3456);
+      assert (дайПэйлоудНЧ(nan4) == 0x1_ABCD_EF12_3456);
 	  дво nan5 = nan4;
-	  assert (getNaNPayload(nan5) == 0x1_ABCD_EF12_3456);
+	  assert (дайПэйлоудНЧ(nan5) == 0x1_ABCD_EF12_3456);
 	  плав nan6 = nan4;
-	  assert (getNaNPayload(nan6) == 0x12_3456);
+	  assert (дайПэйлоудНЧ(nan6) == 0x12_3456);
 	  nan4 = НЧ(0xFABCD);
-	  assert (getNaNPayload(nan4) == 0xFABCD);
+	  assert (дайПэйлоудНЧ(nan4) == 0xFABCD);
 	  nan6 = nan4;
-	  assert (getNaNPayload(nan6) == 0xFABCD);
+	  assert (дайПэйлоудНЧ(nan6) == 0xFABCD);
 	  nan5 = НЧ(0x100_0000_0000_3456);
-	  assert(getNaNPayload(nan5) == 0x0000_0000_3456);
+	  assert(дайПэйлоудНЧ(nan5) == 0x0000_0000_3456);
     }
 	
 	
@@ -350,21 +350,21 @@ void main() {
     assert(идентичен_ли(cylBessel_i0(НЧ(0x846)), НЧ(0x846)));
 	
 	//Values это Excel's GammaInv(1-p, x, 1)
-assert(фабс(gammaIncompleteComplInv(1, 0.5) - 0.693147188044814) < 0.00000005);
-assert(фабс(gammaIncompleteComplInv(12, 0.99) - 5.42818075054289) < 0.00000005);
-assert(фабс(gammaIncompleteComplInv(100, 0.8) - 91.5013985848288L) < 0.000005);
+assert(фабс(гаммаНеполнаяКомплИнв(1, 0.5) - 0.693147188044814) < 0.00000005);
+assert(фабс(гаммаНеполнаяКомплИнв(12, 0.99) - 5.42818075054289) < 0.00000005);
+assert(фабс(гаммаНеполнаяКомплИнв(100, 0.8) - 91.5013985848288L) < 0.000005);
 
 assert(гаммаНеполная(1, 0)==0);
-assert(gammaIncompleteCompl(1, 0)==1);
+assert(гаммаНеполнаяКомпл(1, 0)==1);
 assert(гаммаНеполная(4545, реал.infinity)==1);
 
 // Values это Excel's (1-GammaDist(x, alpha, 1, TRUE))
 
-assert(фабс(1.0L-gammaIncompleteCompl(0.5, 2) - 0.954499729507309L) < 0.00000005);
+assert(фабс(1.0L-гаммаНеполнаяКомпл(0.5, 2) - 0.954499729507309L) < 0.00000005);
 assert(фабс(гаммаНеполная(0.5, 2) - 0.954499729507309L) < 0.00000005);
 // Fixed Cephes bug:
-assert(gammaIncompleteCompl(384, реал.infinity)==0);
-assert(gammaIncompleteComplInv(3, 0)==реал.infinity);
+assert(гаммаНеполнаяКомпл(384, реал.infinity)==0);
+assert(гаммаНеполнаяКомплИнв(3, 0)==реал.infinity);
 
  // проверь НЧ propagation
   assert(идентичен_ли(бетаНеполная(НЧ(0xABC),2,3), НЧ(0xABC)));

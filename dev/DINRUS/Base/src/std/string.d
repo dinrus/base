@@ -59,7 +59,7 @@ private import tpl.args;
 	 alias removechars удалисимв;
 	 alias squeeze сквиз;
 	 alias succ следщ;
-	 alias isNumeric число_ли;
+	 alias числовой_ли число_ли;
 	 alias column колном;
 	 alias wrap параграф;
 	 alias isEmail эладр_ли;
@@ -3043,7 +3043,7 @@ unittest
 /**********************************************
  * Return string that is the 'successor' to s[].
  * If the rightmost character is a-zA-Z0-9, it is incremented внутри
- * its case or digits. If it generates a carry, the process is
+ * its case or digits. If it generates a перенос, the process is
  * repeated with the one to its immediate left.
  */
 
@@ -3056,24 +3056,24 @@ char[] succ(char[] s)
 
 	while (1)
 	{   dchar c = s[i];
-	    dchar carry;
+	    dchar перенос;
 
 	    switch (c)
 	    {
 		case '9':
 		    c = '0';
-		    carry = '1';
+		    перенос = '1';
 		    goto Lcarry;
 		case 'z':
 		case 'Z':
 		    c -= 'Z' - 'A';
-		    carry = c;
+		    перенос = c;
 		Lcarry:
 		    r[i] = cast(char)c;
 		    if (i == 0)
 		    {
 			char[] t = new char[r.length + 1];
-			t[0] = cast(char)carry;
+			t[0] = cast(char)перенос;
 			t[1 .. length] = r[];
 			return t;
 		    }
@@ -3341,7 +3341,7 @@ unittest
  * function, or any of the conversion functions.
  */
 
-final bool isNumeric(in char[] s, in bool bAllowSep = false)
+final bool числовой_ли(in char[] s, in bool bAllowSep = false)
 {
     int    iLen = s.length;
     bool   bDecimalPoint = false;
@@ -3351,7 +3351,7 @@ final bool isNumeric(in char[] s, in bool bAllowSep = false)
     int    j  = 0;
     char   c;
 
-    //writefln("isNumeric(char[], bool = false) called!");
+    //writefln("числовой_ли(char[], bool = false) called!");
     // Empty string, return false
     if (iLen == 0)
         return false;
@@ -3484,28 +3484,28 @@ final bool isNumeric(in char[] s, in bool bAllowSep = false)
 }
 
 /// Allow any object as a parameter
-bool isNumeric(...)
+bool числовой_ли(...)
 {
-    return isNumeric(_arguments, _argptr);
+    return числовой_ли(_arguments, _argptr);
 }
 
 /// Check only the first parameter, all others will be ignored. 
-bool isNumeric(TypeInfo[] _arguments, va_list _argptr)
+bool числовой_ли(TypeInfo[] _arguments, va_list _argptr)
 {
     char[]  s  = "";
     wchar[] ws = "";
     dchar[] ds = "";
 
-    //writefln("isNumeric(...) called!");
+    //writefln("числовой_ли(...) called!");
     if (_arguments.length == 0)
         return false;
 
     if (_arguments[0] == typeid(char[]))
-        return isNumeric(va_arg!(char[])(_argptr));
+        return числовой_ли(va_arg!(char[])(_argptr));
     else if (_arguments[0] == typeid(wchar[]))
-        return isNumeric(std.utf.toUTF8(va_arg!(wchar[])(_argptr)));
+        return числовой_ли(std.utf.toUTF8(va_arg!(wchar[])(_argptr)));
     else if (_arguments[0] == typeid(dchar[]))
-        return isNumeric(std.utf.toUTF8(va_arg!(dchar[])(_argptr)));
+        return числовой_ли(std.utf.toUTF8(va_arg!(dchar[])(_argptr)));
     else if (_arguments[0] == typeid(real))
         return true;
     else if (_arguments[0] == typeid(double)) 
@@ -3528,13 +3528,13 @@ bool isNumeric(TypeInfo[] _arguments, va_list _argptr)
     {
        s.length = 1;
        s[0]= va_arg!(ubyte)(_argptr);
-       return isNumeric(cast(char[])s);
+       return числовой_ли(cast(char[])s);
     }
     else if (_arguments[0] == typeid(byte)) 
     {
        s.length = 1;
        s[0] = va_arg!(char)(_argptr);
-       return isNumeric(cast(char[])s);
+       return числовой_ли(cast(char[])s);
     }
     else if (_arguments[0] == typeid(ireal))
         return true;
@@ -3552,19 +3552,19 @@ bool isNumeric(TypeInfo[] _arguments, va_list _argptr)
     {
         s.length = 1;
         s[0] = va_arg!(char)(_argptr);
-        return isNumeric(s);
+        return числовой_ли(s);
     }
     else if (_arguments[0] == typeid(wchar))
     {
         ws.length = 1;
         ws[0] = va_arg!(wchar)(_argptr);
-        return isNumeric(std.utf.toUTF8(ws));
+        return числовой_ли(std.utf.toUTF8(ws));
     }
     else if (_arguments[0] == typeid(dchar))
     { 
         ds.length =  1;
         ds[0] = va_arg!(dchar)(_argptr);
-        return isNumeric(std.utf.toUTF8(ds));
+        return числовой_ли(std.utf.toUTF8(ds));
     }
     //else if (_arguments[0] == typeid(cent)) 
     //    return true;   
@@ -3576,55 +3576,55 @@ bool isNumeric(TypeInfo[] _arguments, va_list _argptr)
 
 unittest
 {
-    debug (string) printf("isNumeric(in char[], bool = false).unittest\n");
+    debug (string) printf("числовой_ли(in char[], bool = false).unittest\n");
     char[] s;
 
-    // Test the isNumeric(in char[]) function
-    assert(isNumeric("1") == true );
-    assert(isNumeric("1.0") == true );
-    assert(isNumeric("1e-1") == true );
-    assert(isNumeric("12345xxxx890") == false );
-    assert(isNumeric("567L") == true );
-    assert(isNumeric("23UL") == true );
-    assert(isNumeric("-123..56f") == false );
-    assert(isNumeric("12.3.5.6") == false );
-    assert(isNumeric(" 12.356") == false );
-    assert(isNumeric("123 5.6") == false );
-    assert(isNumeric("1233E-1+1.0e-1i") == true );
+    // Test the числовой_ли(in char[]) function
+    assert(числовой_ли("1") == true );
+    assert(числовой_ли("1.0") == true );
+    assert(числовой_ли("1e-1") == true );
+    assert(числовой_ли("12345xxxx890") == false );
+    assert(числовой_ли("567L") == true );
+    assert(числовой_ли("23UL") == true );
+    assert(числовой_ли("-123..56f") == false );
+    assert(числовой_ли("12.3.5.6") == false );
+    assert(числовой_ли(" 12.356") == false );
+    assert(числовой_ли("123 5.6") == false );
+    assert(числовой_ли("1233E-1+1.0e-1i") == true );
  
-    assert(isNumeric("123.00E-5+1234.45E-12Li") == true);
-    assert(isNumeric("123.00e-5+1234.45E-12iL") == false);
-    assert(isNumeric("123.00e-5+1234.45e-12uL") == false);
-    assert(isNumeric("123.00E-5+1234.45e-12lu") == false);
+    assert(числовой_ли("123.00E-5+1234.45E-12Li") == true);
+    assert(числовой_ли("123.00e-5+1234.45E-12iL") == false);
+    assert(числовой_ли("123.00e-5+1234.45e-12uL") == false);
+    assert(числовой_ли("123.00E-5+1234.45e-12lu") == false);
   
-    assert(isNumeric("123fi") == true);
-    assert(isNumeric("123li") == true);
-    assert(isNumeric("--123L") == false);
-    assert(isNumeric("+123.5UL") == false);
-    assert(isNumeric("123f") == true);
-    assert(isNumeric("123.u") == false);
+    assert(числовой_ли("123fi") == true);
+    assert(числовой_ли("123li") == true);
+    assert(числовой_ли("--123L") == false);
+    assert(числовой_ли("+123.5UL") == false);
+    assert(числовой_ли("123f") == true);
+    assert(числовой_ли("123.u") == false);
 
-    assert(isNumeric(std.string.toString(real.nan)) == true);
-    assert(isNumeric(std.string.toString(-real.infinity)) == true);
-    assert(isNumeric(std.string.toString(123e+2+1234.78Li)) == true);
+    assert(числовой_ли(std.string.toString(real.nan)) == true);
+    assert(числовой_ли(std.string.toString(-real.infinity)) == true);
+    assert(числовой_ли(std.string.toString(123e+2+1234.78Li)) == true);
 
     s = "$250.99-";
-    assert(isNumeric(s[1..s.length - 2]) == true);
-    assert(isNumeric(s) == false);
-    assert(isNumeric(s[0..s.length - 1]) == false);
+    assert(числовой_ли(s[1..s.length - 2]) == true);
+    assert(числовой_ли(s) == false);
+    assert(числовой_ли(s[0..s.length - 1]) == false);
 
-    // These test calling the isNumeric(...) function
-    assert(isNumeric(1,123UL) == true);
-    assert(isNumeric('2') == true);
-    assert(isNumeric('x') == false);
-    assert(isNumeric(cast(byte)0x57) == false); // 'W'
-    assert(isNumeric(cast(byte)0x37) == true);  // '7'
-    assert(isNumeric(cast(wchar[])"145.67") == true);
-    assert(isNumeric(cast(dchar[])"145.67U") == false);
-    assert(isNumeric(123_000.23fi) == true);
-    assert(isNumeric(123.00E-5+1234.45E-12Li) == true);
-    assert(isNumeric(real.nan) == true);
-    assert(isNumeric(-real.infinity) == true);
+    // These test calling the числовой_ли(...) function
+    assert(числовой_ли(1,123UL) == true);
+    assert(числовой_ли('2') == true);
+    assert(числовой_ли('x') == false);
+    assert(числовой_ли(cast(byte)0x57) == false); // 'W'
+    assert(числовой_ли(cast(byte)0x37) == true);  // '7'
+    assert(числовой_ли(cast(wchar[])"145.67") == true);
+    assert(числовой_ли(cast(dchar[])"145.67U") == false);
+    assert(числовой_ли(123_000.23fi) == true);
+    assert(числовой_ли(123.00E-5+1234.45E-12Li) == true);
+    assert(числовой_ли(real.nan) == true);
+    assert(числовой_ли(-real.infinity) == true);
 }
 
 

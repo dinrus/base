@@ -1,5 +1,5 @@
 ﻿module geom.Plane3d;
-import linalg.Vector;
+import math.linalg.Vector;
 
 
 //== CLASS DEFINITION =========================================================

@@ -1,5 +1,5 @@
 ﻿import geom.Plane3d;
-import linalg.Vector;
+import math.linalg.Vector;
 
 void main() {
     Плоскость3м p;

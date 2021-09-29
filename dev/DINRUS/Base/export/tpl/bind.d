@@ -800,10 +800,6 @@ template привяжиАлиас(alias FT) {
 	}
 }
 
-
-
-
-
 /*
 	Tells whether the specified тип is a bound function
 */

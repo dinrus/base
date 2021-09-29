@@ -61,7 +61,7 @@ else version (Posix)
 	alias stdrus.сквиз squeeze;
 	alias stdrus.следщ succ;	
 	alias stdrus.тз tr;
-	alias stdrus.чис_ли isNumeric;
+	alias stdrus.чис_ли числовой_ли;
 	alias stdrus.колном column;
 	alias stdrus.параграф wrap;
 	alias stdrus.эладр_ли isEmail;

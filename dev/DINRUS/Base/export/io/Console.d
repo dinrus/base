@@ -1,8 +1,6 @@
 ﻿module io.Console;
 import  io.device.Device, io.device.Conduit;
 
-extern(D):
-
 struct Консоль 
 {
         version (Win32)

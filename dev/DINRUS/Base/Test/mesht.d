@@ -1,5 +1,5 @@
 ﻿module mesht;
-import stdrus, linalg.Vector, mesh.Handles, mesh.Status, mesh.Utils;
+import stdrus, math.linalg.Vector, mesh.Handles, mesh.Status, mesh.Utils;
 /+
 проц вектТест()
 {

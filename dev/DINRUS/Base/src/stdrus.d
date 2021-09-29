@@ -1213,7 +1213,7 @@ export extern(D)
 	ткст следщ(ткст т){return std.string.succ(т);}
 	
 	ткст тз(ткст ткт, ткст из, ткст в, ткст модифф = null){return std.string.tr(ткт, из, в, модифф);}
-	бул чис_ли(in ткст т, in бул раздВкл = false){return cast(бул) std.string.isNumeric(т, раздВкл);}
+	бул чис_ли(in ткст т, in бул раздВкл = false){return cast(бул) std.string.числовой_ли(т, раздВкл);}
 	т_мера колном(ткст ткт, цел размтаб=8){return std.string.column(ткт, размтаб);}
 	ткст параграф(ткст т, цел колонки = 80, ткст первотступ = null, ткст отступ = null, цел размтаб = 8){return std.string.wrap(т, колонки, первотступ, отступ, размтаб);}
 	ткст эладр_ли(ткст т){return  std.string.isEmail(т);}
@@ -3085,6 +3085,18 @@ import std.math;
 бул субнорм_ли(реал п){return cast(бул) std.math.issubnormal(п);}
 бул беск_ли(реал р){return cast(бул) std.math.isinf(р);}
 бул идентичен_ли(реал р, реал д){return std.math.isIdentical(р, д);}
+/** ditto */
+бул идентичен_ли(вреал x, вреал y)
+{
+    return идентичен_ли(x.im, y.im);
+}
+
+/** ditto */
+бул идентичен_ли(креал x, креал y)
+{
+    return идентичен_ли(x.re, y.re) && идентичен_ли(x.im, y.im);
+}
+
 бул битзнака(реал р){ if(1 == std.math.signbit(р)){return да;} return нет;}
 реал копируйзнак(реал кому, реал у_кого){return std.math.copysign(кому, у_кого);}
 реал нч(ткст тэгп){return std.math.nan(тэгп);}

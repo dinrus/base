@@ -1,7 +1,7 @@
 ﻿module mesh.Traits;
 
 public import mesh.Attributes;
-import linalg.VectorTypes;
+import math.linalg.VectorTypes;
 import mesh.Handles;
 
 
