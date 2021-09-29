@@ -76,9 +76,9 @@ T макс(T)(T знач1, T знач2) {
  */
 бул приблизитРавны(T, U, V)(T lhs, U rhs, V максОтнРазность, V максАбсРазность = 0)
 {
-    static if (isArray!(T)) {
+    static if (массив_ли!(T)) {
         final n = lhs.length;
-        static if (isArray!(U)) {
+        static if (массив_ли!(U)) {
             // Two arrays
             assert(n == rhs.length);
             for (бцел i = 0; i != n; ++i) {
@@ -94,7 +94,7 @@ T макс(T)(T знач1, T знач2) {
         }
         return да;
     } else {
-        static if (isArray!(U)) {
+        static if (массив_ли!(U)) {
             // lhs is number, rhs is массив
             return приблизитРавны(rhs, lhs, максОтнРазность);
         } else {

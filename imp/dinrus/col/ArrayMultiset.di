@@ -523,8 +523,8 @@ class МассивМультинабор(З, alias Разместитель=Де
     }
 
     /**
-     * duplicate this container.  This does not do a 'deep' copy of the
-     * elements.
+     * Дублирует этот контейнер. Глубокая копия элементов ('deep' copy)
+     * не выполняется.
      */
     ТипМассивМультинабор dup()
     {
@@ -549,7 +549,7 @@ class МассивМультинабор(З, alias Разместитель=Де
     }
 
     /**
-     * дай the most convenient элемент in the установи.  This is the элемент that
+     * дай the most convenient элемент в этом наборе.  This is the элемент that
      * would be iterated первый.  Therefore, calling удали(дай()) is
      * guaranteed to be less than an O(n) operation.
      */
