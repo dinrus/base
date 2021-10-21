@@ -1076,7 +1076,7 @@ bool isGCEnabled();
     проц gc_addRange( ук p, size_t разм );
     проц gc_removeRoot( ук p );
     проц gc_removeRange( ук p );
-    проц gc_monitor(ddel begin, dint end );
+    проц gc_monitor(ddel начало, dint end );
     GCStats gc_stats();
 проц _d_gc_addrange(ук pbot, ук ptop);
 проц _d_gc_removerange(ук pbot);

@@ -1,8 +1,8 @@
 ﻿//_ adi.d
 
 /**
- * Part of the D programming language runtime library.
- * Dynamic array property support routines
+ * Часть рантаймной библиотеки языка программирования Динрус.
+ * Процедуры для поддержки свойств динамических массивов.
  */
 
 

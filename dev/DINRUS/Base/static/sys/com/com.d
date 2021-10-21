@@ -1,6 +1,6 @@
 module sys.com.com;
 
-import win, stdrus, tpl.com, tpl.args; 
+import sys.Common, stdrus, tpl.com, tpl.args; 
 import cidrus;
 
 export extern(C)
@@ -477,7 +477,7 @@ class Диспетчер
   }
 
   /**
-   * ditto
+   * описано ранее
    */
   this(ВАРИАНТ цель) {
     if (auto цель = ком_каст!(ИДиспетчер)(результат)) {

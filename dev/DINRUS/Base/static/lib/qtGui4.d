@@ -5582,11 +5582,11 @@
 
 		//вяжи(функция_2784)("_?axisChanged@QGraphicsRotation@@IAEXXZ", биб);
 
-		//вяжи(функция_2785)("_?back@?$QList@VQItemSelectionRange@@@@QAEAAVQItemSelectionRange@@XZ", биб);
+		//вяжи(функция_2785)("_?задний@?$QList@VQItemSelectionRange@@@@QAEAAVQItemSelectionRange@@XZ", биб);
 
-		//вяжи(функция_2786)("_?back@?$QList@VQItemSelectionRange@@@@QBEABVQItemSelectionRange@@XZ", биб);
+		//вяжи(функция_2786)("_?задний@?$QList@VQItemSelectionRange@@@@QBEABVQItemSelectionRange@@XZ", биб);
 
-		//вяжи(функция_2787)("_?back@QWizard@@QAEXXZ", биб);
+		//вяжи(функция_2787)("_?задний@QWizard@@QAEXXZ", биб);
 
 		//вяжи(функция_2788)("_?background@QColorGroup@@QBEABVQColor@@XZ", биб);
 
@@ -5676,25 +5676,25 @@
 
 		//вяжи(функция_2831)("_?beforeAnimationStep@QGraphicsItemAnimation@@MAEXN@Z", биб);
 
-		//вяжи(функция_2832)("_?begin@?$QList@VQItemSelectionRange@@@@QAE?AViterator@1@XZ", биб);
+		//вяжи(функция_2832)("_?начало@?$QList@VQItemSelectionRange@@@@QAE?AViterator@1@XZ", биб);
 
-		//вяжи(функция_2833)("_?begin@?$QList@VQItemSelectionRange@@@@QBE?AVconst_iterator@1@XZ", биб);
+		//вяжи(функция_2833)("_?начало@?$QList@VQItemSelectionRange@@@@QBE?AVconst_iterator@1@XZ", биб);
 
-		//вяжи(функция_2834)("_?begin@QDashStroker@@UAEXPAX@Z", биб);
+		//вяжи(функция_2834)("_?начало@QDashStroker@@UAEXPAX@Z", биб);
 
-		//вяжи(функция_2835)("_?begin@QPainter@@QAE_NPAVQPaintDevice@@@Z", биб);
+		//вяжи(функция_2835)("_?начало@QPainter@@QAE_NPAVQPaintDevice@@@Z", биб);
 
-		//вяжи(функция_2836)("_?begin@QPainter@@QAE_NPAVQPaintDevice@@PBVQWidget@@@Z", биб);
+		//вяжи(функция_2836)("_?начало@QPainter@@QAE_NPAVQPaintDevice@@PBVQWidget@@@Z", биб);
 
-		//вяжи(функция_2837)("_?begin@QStrokerOps@@UAEXPAX@Z", биб);
+		//вяжи(функция_2837)("_?начало@QStrokerOps@@UAEXPAX@Z", биб);
 
-		//вяжи(функция_2838)("_?begin@QTextBlock@@QBE?AViterator@1@XZ", биб);
+		//вяжи(функция_2838)("_?начало@QTextBlock@@QBE?AViterator@1@XZ", биб);
 
-		//вяжи(функция_2839)("_?begin@QTextDocument@@QBE?AVQTextBlock@@XZ", биб);
+		//вяжи(функция_2839)("_?начало@QTextDocument@@QBE?AVQTextBlock@@XZ", биб);
 
-		//вяжи(функция_2840)("_?begin@QTextFrame@@QBE?AViterator@1@XZ", биб);
+		//вяжи(функция_2840)("_?начало@QTextFrame@@QBE?AViterator@1@XZ", биб);
 
-		//вяжи(функция_2841)("_?begin@QTextTableCell@@QBE?AViterator@QTextFrame@@XZ", биб);
+		//вяжи(функция_2841)("_?начало@QTextTableCell@@QBE?AViterator@QTextFrame@@XZ", биб);
 
 		//вяжи(функция_2842)("_?beginDataAccess@QVolatileImage@@QBEXXZ", биб);
 
@@ -6748,27 +6748,27 @@
 
 		//вяжи(функция_3367)("_?collidingItems@QGraphicsScene@@QBE?AV?$QList@PAVQGraphicsItem@@@@PBVQGraphicsItem@@W4ItemSelectionMode@Qt@@@Z", биб);
 
-		//вяжи(функция_3368)("_?color@QBrush@@QBEABVQColor@@XZ", биб);
+		//вяжи(функция_3368)("_?цвет@QBrush@@QBEABVQColor@@XZ", биб);
 
-		//вяжи(функция_3369)("_?color@QColorDialog@@ABE?AVQColor@@XZ", биб);
+		//вяжи(функция_3369)("_?цвет@QColorDialog@@ABE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3370)("_?color@QGraphicsColorizeEffect@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3370)("_?цвет@QGraphicsColorizeEffect@@QBE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3371)("_?color@QGraphicsDropShadowEffect@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3371)("_?цвет@QGraphicsDropShadowEffect@@QBE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3372)("_?color@QImage@@QBEIH@Z", биб);
+		//вяжи(функция_3372)("_?цвет@QImage@@QBEIH@Z", биб);
 
-		//вяжи(функция_3373)("_?color@QPalette@@QBEABVQColor@@W4ColorGroup@1@W4ColorRole@1@@Z", биб);
+		//вяжи(функция_3373)("_?цвет@QPalette@@QBEABVQColor@@W4ColorGroup@1@W4ColorRole@1@@Z", биб);
 
-		//вяжи(функция_3374)("_?color@QPalette@@QBEABVQColor@@W4ColorRole@1@@Z", биб);
+		//вяжи(функция_3374)("_?цвет@QPalette@@QBEABVQColor@@W4ColorRole@1@@Z", биб);
 
-		//вяжи(функция_3375)("_?color@QPen@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3375)("_?цвет@QPen@@QBE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3376)("_?color@QPixmapColorizeFilter@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3376)("_?цвет@QPixmapColorizeFilter@@QBE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3377)("_?color@QPixmapDropShadowFilter@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3377)("_?цвет@QPixmapDropShadowFilter@@QBE?AVQColor@@XZ", биб);
 
-		//вяжи(функция_3378)("_?color@QTextEdit@@QBE?AVQColor@@XZ", биб);
+		//вяжи(функция_3378)("_?цвет@QTextEdit@@QBE?AVQColor@@XZ", биб);
 
 		//вяжи(функция_3379)("_?colorAt@QColormap@@QBE?BVQColor@@I@Z", биб);
 

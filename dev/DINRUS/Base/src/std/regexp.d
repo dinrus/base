@@ -109,13 +109,13 @@
 	For maximal portability, use exactly 3 digits.
 
 	\xXX starts out a 1 or 2 digit hex sequence. X
-	is a hex character. If the first character after the \x
+	is a hex character. If the first character после the \x
 	is not a hex character, the value of the sequence is 'x'
 	and the XX are not consumed.
 	For maximal portability, use exactly 2 digits.
 
 	\uUUUU is a unicode sequence. There are exactly
-	4 hex characters after the \u, if any are not, then
+	4 hex characters после the \u, if any are not, then
 	the value of the sequence is 'u', and the UUUU are not
 	consumed.
 
@@ -553,7 +553,7 @@ alias replaceOld замениСтарый;
     /*****
      * Construct a RegExp object. Compile pattern
      * with <i>attributes</i> into
-     * an internal form for fast execution.
+     * an internal form for быстро execution.
      * Параметры:
      *	pattern = regular expression
      *  attributes = _attributes
@@ -638,7 +638,7 @@ alias replaceOld замениСтарый;
 	return this;
     }
 
-    /** ditto */
+    /** описано ранее */
     public int opApply(int delegate(inout RegExp) дг)
     {
 	int результат;
@@ -726,8 +726,8 @@ alias replaceOld замениСтарый;
 
     enum REA
     {
-	global		= 1,	// has the g attribute
-	ignoreCase	= 2,	// has the i attribute
+	global		= 1,	// has the g атрибут
+	ignoreCase	= 2,	// has the i атрибут
 	multiline	= 4,	// if treat as multiple lines separated
 				// by newlines, or as a single line
 	dotmatchlf	= 8,	// if . matches \n
@@ -989,8 +989,8 @@ unittest
 /*************************************************
  * Search string[] for match.
  * Returns:
- *	If global attribute, return same value as exec(string).
- *	If not global attribute, return array of all matches.
+ *	If global атрибут, return same value as exec(string).
+ *	If not global атрибут, return array of all matches.
  */
 
 public rchar[][] match(rchar[] string)
@@ -1783,7 +1783,7 @@ int trymatch(int pc, int pcend)
 		    src++;
 		    s2 = src;
 
-		    // If no match after consumption, but it
+		    // If no match после consumption, but it
 		    // did match before, then no match
 		    if (!trymatch(pc, program.length))
 		    {
@@ -1869,7 +1869,7 @@ int trymatch(int pc, int pcend)
 			    break;
 			}
 
-			// If no match after consumption, but it
+			// If no match после consumption, but it
 			// did match before, then no match
 			if (!trymatch(pop + len, program.length))
 			{
@@ -2705,7 +2705,7 @@ body
 		    c = c * 16 + (tc - 'a' + 10);
 		else if ('A' <= tc && tc <= 'F')
 		    c = c * 16 + (tc - 'A' + 10);
-		else if (i == 0)	// if no hex digits after \x
+		else if (i == 0)	// if no hex digits после \x
 		{
 		    // Not a valid \xXX sequence
 		    return 'x';

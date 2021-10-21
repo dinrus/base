@@ -83,7 +83,7 @@ else version (GNU)
 }
 else version(LDC)
 {
-    // ditto
+    // описано ранее
 }
 else version (D_InlineAsm_X86)
 {
@@ -1196,7 +1196,7 @@ private проц инвариант()
     * новдлин = the number of elements to allocate
     * размЭлта = размер of one element
     * a = maximum extra space in percent (the allocated space gets rounded up, so might be larger)
-    * b = flatness factor, how fast the extra space decreases with массив размер (the larger the more constant)
+    * b = flatness фактор, how быстро the extra space decreases with массив размер (the larger the more constant)
     * минБитов = minimum number of bits of новдлин
     */
     export extern (D) т_мера нарастиДлину(т_мера новдлин, т_мера размЭлта, т_мера a, т_мера b=0, т_мера минБитов=1)
@@ -1636,7 +1636,7 @@ private:
         }
         auto размук = смх.найдиРазмер(укз);   // найди allocated размер
         if (размук < РАЗМЕР_СТРАНИЦЫ)
-            return 0;                   // cannot extend buckets
+            return 0;                   // cannot расширь buckets
 
         auto psz = размук / РАЗМЕР_СТРАНИЦЫ;
         auto минразм = (аргминразм + РАЗМЕР_СТРАНИЦЫ - 1) / РАЗМЕР_СТРАНИЦЫ;
@@ -2691,7 +2691,7 @@ if(готов)
         if (члостр < РАЗМЕР_ПУЛА/РАЗМЕР_СТРАНИЦЫ)
             члостр = РАЗМЕР_ПУЛА/РАЗМЕР_СТРАНИЦЫ;
         else if (члостр > РАЗМЕР_ПУЛА/РАЗМЕР_СТРАНИЦЫ)
-        {   // Give us 150% of requested размер, so there's room to extend
+        {   // Give us 150% of requested размер, so there's room to расширь
             auto n = члостр + (члостр >> 1);
             if (n < т_мера.max/РАЗМЕР_СТРАНИЦЫ)
                 члостр = n;
@@ -3264,19 +3264,19 @@ if(готов)
     {    
         // The purpose of the 'shell' is to ensure all the registers
         // get put on the stack so they'll be scanned
-        ук sp;
+        ук кп;
         т_мера результат;
         version (GNU)
         {
             __builtin_unwind_init();
-            sp = & sp;
+            кп = & кп;
         }
         else version (D_InlineAsm_X86)
         {
             asm
             {
                 pushad              ;
-                mov sp[EBP],ESP     ;
+                mov кп[EBP],ESP     ;
             }
         }
         else version (D_InlineAsm_X86_64)
@@ -3299,7 +3299,7 @@ if(готов)
                 push R14  ;
                 push R15  ;
                 push RAX ;   // 16 байт align the stack
-                mov sp[RBP],RSP     ;
+                mov кп[RBP],RSP     ;
             }
         }
         else
@@ -3307,7 +3307,7 @@ if(готов)
             static assert(false, "Архитектура не поддерживается.");
         }
 
-        результат = полная_уборка(sp);
+        результат = полная_уборка(кп);
 
         version (GNU)
         {

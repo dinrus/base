@@ -24,7 +24,7 @@ void джейсон() {
 	jstr = jstr.читайДжейСОН().вТкст;
 	скажиф("Разобранный JSON ткст: " ~ jstr ~ "\n");
 	скажиф("Вывод с использованием вФТкст:\n"~jstr.читайДжейСОН().вФТкст~"\nКонец форматированного вывода\n");
-	// ensure that the ткст doesn't mutate after a second reading, it shouldn't
+	// ensure that the ткст doesn't mutate после a second reading, it shouldn't
 	assert(jstr.читайДжейСОН().вТкст == jstr);
 	// ensure that pretty output still parses properly and doesn't mutate
 	jstr = jstr.читайДжейСОН().вФТкст;

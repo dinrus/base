@@ -5350,11 +5350,11 @@ enum
 
 /* Font Families */
     FF_DONTCARE =         (0<<4), /* Don't care or don't know. */
-    FF_ROMAN =            (1<<4), /* Variable stroke width, serifed. */
+    FF_ROMAN =            (1<<4), /* Variable stroke ширина, serifed. */
                                     /* Times Roman, Century Schoolbook, etc. */
-    FF_SWISS =            (2<<4), /* Variable stroke width, sans-serifed. */
+    FF_SWISS =            (2<<4), /* Variable stroke ширина, sans-serifed. */
                                     /* Helvetica, Swiss, etc. */
-    FF_MODERN =           (3<<4), /* Constant stroke width, serifed or sans-serifed. */
+    FF_MODERN =           (3<<4), /* Constant stroke ширина, serifed or sans-serifed. */
                                     /* Pica, Elite, Courier, etc. */
     FF_SCRIPT =           (4<<4), /* Cursive, etc. */
     FF_DECORATIVE =       (5<<4), /* Old English, etc. */
@@ -5855,7 +5855,7 @@ enum : бцел
     PATPAINT =            cast(бцел)0x00FB0A09, /* dest = DPSnoo                   */
     PATINVERT =           cast(бцел)0x005A0049, /* dest = pattern XOR dest         */
     DSTINVERT =           cast(бцел)0x00550009, /* dest = (NOT dest)               */
-    BLACKNESS =           cast(бцел)0x00000042, /* dest = BLACK                    */
+    BLACKNESS =           cast(бцел)0x00000042, /* dest = ЧЁРНЫЙ                    */
     WHITENESS =           cast(бцел)0x00FF0062, /* dest = WHITE                    */
 }
 
@@ -6022,14 +6022,14 @@ enum
 
 enum
 {
-    FOREGROUND_BLUE =      0x0001, // text color contains blue.
-    FOREGROUND_GREEN =     0x0002, // text color contains green.
-    FOREGROUND_RED =       0x0004, // text color contains red.
-    FOREGROUND_INTENSITY = 0x0008, // text color is целensified.
-    BACKGROUND_BLUE =      0x0010, // background color contains blue.
-    BACKGROUND_GREEN =     0x0020, // background color contains green.
-    BACKGROUND_RED =       0x0040, // background color contains red.
-    BACKGROUND_INTENSITY = 0x0080, // background color is целensified.
+    FOREGROUND_BLUE =      0x0001, // text цвет contains blue.
+    FOREGROUND_GREEN =     0x0002, // text цвет contains green.
+    FOREGROUND_RED =       0x0004, // text цвет contains red.
+    FOREGROUND_INTENSITY = 0x0008, // text цвет is целensified.
+    BACKGROUND_BLUE =      0x0010, // background цвет contains blue.
+    BACKGROUND_GREEN =     0x0020, // background цвет contains green.
+    BACKGROUND_RED =       0x0040, // background цвет contains red.
+    BACKGROUND_INTENSITY = 0x0080, // background цвет is целensified.
 }
 
 

@@ -8,9 +8,9 @@
  * Authors:   Stephen L. Moshier (original C код). Conversion в_ D by Don Clugston
  *
  * References:
- * $(LINK http://en.wikИПedia.org/wiki/EllИПtic_integral)
+ * $(LINK http://en.wikИПedia.org/wiki/Elliptic_integral)
  *
- * Eric W. Weisstein. "EllИПtic Integral of the First Kind." ОтКого MathWorld--A Wolfram Web Resource. $(LINK http://mathworld.wolfram.com/EllИПticIntegraloftheFirstKind.html)
+ * Eric W. Weisstein. "Elliptic Integral of the First Kind." ОтКого MathWorld--A Wolfram Web Resource. $(LINK http://mathworld.wolfram.com/EllipticIntegraloftheFirstKind.html)
  *
  * $(LINK http://www.netlib.org/cephes/ldoubdoc.html)
  *
@@ -23,7 +23,7 @@
  *  GAMMA =  &#915;
  *  INTEGRATE = $(BIG &#8747;<подст>$(SMALL $1)</подст><sup>$2</sup>)
  *  POWER = $1<sup>$2</sup>
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  */
 /**
  * Macros:
@@ -33,7 +33,7 @@
  *  SVH = $(TR $(TH $1) $(TH $2))
  *  SV  = $(TR $(TD $1) $(TD $2))
  *
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  SUP = <вринтервал стиль="vertical-align:super;font-размер:smaller">$0</вринтервал>
  *  GAMMA =  &#915;
  *  INTEGRAL = &#8747;

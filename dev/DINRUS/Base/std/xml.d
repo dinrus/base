@@ -1,7 +1,7 @@
 // Written in the D programming language.
 
 /**
-$(RED Warning: This module is considered out-dated and not up to Phobos'
+$(КРАСНЫЙ Warning: This module is considered out-dated and not up to Phobos'
       current standards. It will remain until we have a suitable replacement,
       but be aware that it will not remain long term.)
 
@@ -91,7 +91,7 @@ void main()
     };
     xml.parse();
 
-    // Put it back together again;
+    // Put it задний together again;
     auto doc = new Document(new Tag("catalog"));
     foreach(book;books)
     {
@@ -543,7 +543,7 @@ class Document : Element
      */
     string prolog = "<?xml version=\"1.0\"?>";
     /**
-     * Contains all text which occurs after the root element.
+     * Contains all text which occurs после the root element.
      * Defaults to the empty string
      */
     string epilog;
@@ -980,7 +980,7 @@ enum TagType { START, END, EMPTY }
  * <ul>
  * <li> that $(B type) is a valid enum TagType value</li>
  * <li> that $(B name) consists of valid characters</li>
- * <li> that each attribute name consists of valid characters</li>
+ * <li> that each атрибут name consists of valid characters</li>
  * </ul>
  */
 class Tag
@@ -1642,7 +1642,7 @@ abstract class Item
  * Bugs:
  *      Currently only supports UTF documents.
  *
- *      If there is an encoding attribute in the prolog, it is ignored.
+ *      If there is an encoding атрибут in the prolog, it is ignored.
  *
  */
 class DocumentParser : ElementParser
@@ -1831,7 +1831,7 @@ class ElementParser
     /**
      * Register an alternative handler which will be called whenever text
      * is encountered. This differs from onText in that onText will decode
-     * the text, whereas onTextRaw will not. This allows you to make design
+     * the text, whereas onTextRaw will not. This допускается you to make design
      * choices, since onText will be more accurate, but slower, while
      * onTextRaw will be faster, but less accurate. Of course, you can
      * still call decode() within your handler, if you want, but you'd
@@ -2190,13 +2190,13 @@ private
         if (s.length == 0) fail();
         char c = s[0];
         if (c != '\u0022' && c != '\u0027')
-            fail("attribute value requires quotes");
+            fail("атрибут value requires quotes");
         s = s[1..$];
         for(;;)
         {
             munch(s,"^<&"~c);
-            if (s.length == 0) fail("unterminated attribute value");
-            if (s[0] == '<') fail("< found in attribute value");
+            if (s.length == 0) fail("unterminated атрибут value");
+            if (s[0] == '<') fail("< found in атрибут value");
             if (s[0] == c) break;
             try { checkReference(s); } catch(Err e) { fail(e); }
         }
@@ -2350,7 +2350,7 @@ private
         int n = 0;
              if (s.startsWith("'yes'") || s.startsWith("\"yes\"")) n = 5;
         else if (s.startsWith("'no'" ) || s.startsWith("\"no\"" )) n = 4;
-        else fail("standalone attribute value must be 'yes', \"yes\","~
+        else fail("standalone атрибут value must be 'yes', \"yes\","~
             " 'no' or \"no\"");
         s = s[n..$];
     }
@@ -2634,7 +2634,7 @@ void check(string s)
     {
         checkChars(s);
         checkDocument(s);
-        if (s.length != 0) throw new Err(s,"Junk found after document");
+        if (s.length != 0) throw new Err(s,"Junk found после document");
     }
     catch(Err e)
     {

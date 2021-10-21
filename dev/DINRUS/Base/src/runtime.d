@@ -816,7 +816,7 @@ export extern (D)
 			return cast(void[]) q[0 .. nbytes];
 		}
 
-	size_t extend(ук  укз, size_t minbytes, size_t maxbytes)
+	size_t расширь(ук  укз, size_t minbytes, size_t maxbytes)
 		{
 			return _см.расширь(укз, minbytes, maxbytes);
 		}
@@ -1049,7 +1049,7 @@ extern (C) void gc_term()
 		{   byte* newdata;
 
 		if (ёмксть >= 4096)
-		{   // Try to extend in-place
+		{   // Try to расширь in-place
 			auto u = _см.расширь(x.ptr, (новразм + 1) - ёмксть, (новразм + 1) - ёмксть);
 			if (u)
 			{
@@ -1126,7 +1126,7 @@ extern (C) void gc_term()
 		{   byte* newdata;
 
 		if (ёмксть >= 4096)
-		{   // Try to extend in-place
+		{   // Try to расширь in-place
 			auto u = _см.расширь(x.ptr, (новразм + 1) - ёмксть, (новразм + 1) - ёмксть);
 			if (u)
 			{

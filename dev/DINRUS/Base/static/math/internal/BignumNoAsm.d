@@ -231,27 +231,27 @@ unittest {
 
 
 /** 
-   Sets результат = результат[0..лев.length] + лев * прав
+   Sets результат = результат[0..лево.length] + лево * право
    
    It is defined in this way to allow cache-efficient multИПlication.
    This function is equivalent to:
     ----
-    for (цел i = 0; i< прав.length; ++i) {
-        приёмник[лев.length + i] = многобайтУмножПрибавь(приёмник[i..лев.length+i],
-                лев, прав[i], 0);
+    for (цел i = 0; i< право.length; ++i) {
+        приёмник[лево.length + i] = многобайтУмножПрибавь(приёмник[i..лево.length+i],
+                лево, право[i], 0);
     }
     ----
  */
-проц многобайтУмножАккум(бцел [] приёмник, бцел[] лев, бцел [] прав)
+проц многобайтУмножАккум(бцел [] приёмник, бцел[] лево, бцел [] право)
 {
-    for (цел i = 0; i< прав.length; ++i) {
-        приёмник[лев.length + i] = многобайтУмножПрибавь!('+')(приёмник[i..лев.length+i],
-                лев, прав[i], 0);
+    for (цел i = 0; i< право.length; ++i) {
+        приёмник[лево.length + i] = многобайтУмножПрибавь!('+')(приёмник[i..лево.length+i],
+                лево, право[i], 0);
     }
 }
 
 /**  приёмник[] /= divisor.
- * overflow is the начальное remainder, and must be in the range 0..divisor-1.
+ * overflow is the начальное остаток, and must be in the range 0..divisor-1.
  */
 бцел многобайтПрисвойДеление(бцел [] приёмник, бцел divisor, бцел overflow)
 {

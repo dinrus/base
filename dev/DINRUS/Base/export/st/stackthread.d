@@ -126,13 +126,13 @@ class СтэкНить
     
     /**
      * Removes this стэк thread from the планировщик. The
-     * thread will not be пуск until it is added back to
+     * thread will not be пуск until it is added задний to
      * the планировщик.
      */
     public final проц пауза();
 	
     /**
-     * Adds the стэк thread back to the планировщик. It
+     * Adds the стэк thread задний to the планировщик. It
      * will возобнови выполняется with its приоритет & состояние
      * intact.
      */

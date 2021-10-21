@@ -7,7 +7,7 @@ class ПочтоваяФорма: os.win.gui.form.Form
 
 private import os.win.com.core, os.win.com.client;
 	// Do not modify or move this block of variables.
-	//~Entice Designer variables begin here.
+	//~Entice Designer variables начало here.
 	os.win.gui.label.Label label1;
 	os.win.gui.textbox.TextBox textBox1;
 	os.win.gui.label.Label label2;

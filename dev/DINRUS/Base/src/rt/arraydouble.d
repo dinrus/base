@@ -109,7 +109,7 @@ body
         }
     }
 
-    // Handle remainder
+    // Handle остаток
     while (aptr < aend)
         *aptr++ = *bptr++ + *cptr++;
 
@@ -222,7 +222,7 @@ body
         }
     }
 
-    // Handle remainder
+    // Handle остаток
     while (aptr < aend)
         *aptr++ = *bptr++ - *cptr++;
 
@@ -1665,7 +1665,7 @@ body
     auto aend = aptr + a.length;
     auto bptr = b.ptr;
 
-    // Handle remainder
+    // Handle остаток
     while (aptr < aend)
         *aptr++ += *bptr++ * value;
 

@@ -723,7 +723,7 @@ export:
     hash_t toHash()
     {	        
 	auto data = this.toString();
-    return hashOf(data.ptr, data.length);
+    return хэшУ(data.ptr, data.length);
     }	
 	т_хэш вХэш(){return toHash();}
 	
@@ -2093,7 +2093,7 @@ export:
 
     override т_хэш getHash(in ук p)
     {
-        return hashOf(p,кдво.sizeof,0);
+        return хэшУ(p,кдво.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 	
@@ -2167,7 +2167,7 @@ export:
 
     override т_хэш getHash(in ук p)
     {
-        return hashOf(p, кплав.sizeof,0);
+        return хэшУ(p, кплав.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 	
@@ -2289,7 +2289,7 @@ export:
 
     override т_хэш getHash(in ук p)
     {
-        return hashOf(p,креал.sizeof,0);
+        return хэшУ(p,креал.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 	
@@ -2457,7 +2457,7 @@ export:
 
     override т_хэш getHash(in ук p)
     {
-        return hashOf(p,дво.sizeof);
+        return хэшУ(p,дво.sizeof);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 	
@@ -2775,7 +2775,7 @@ export:
 
     override т_хэш getHash(in ук p)
     {
-        return hashOf(p,реал.sizeof,0);
+        return хэшУ(p,реал.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3292,7 +3292,7 @@ export:
         cdouble[] s = *cast(cdouble[]*)p;
         т_мера len = s.length;
         cdouble *str = s.ptr;
-        return hashOf(str,len*кдво.sizeof,0);
+        return хэшУ(str,len*кдво.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3367,7 +3367,7 @@ export:
         cfloat[] s = *cast(cfloat[]*)p;
         т_мера len = s.length;
         cfloat *str = s.ptr;
-        return hashOf(str,len*кплав.sizeof,0);
+        return хэшУ(str,len*кплав.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3443,7 +3443,7 @@ export:
         creal[] s = *cast(creal[]*)p;
         т_мера len = s.length;
         creal *str = s.ptr;
-        return hashOf(str,len*креал.sizeof,0);
+        return хэшУ(str,len*креал.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3519,7 +3519,7 @@ export:
         double[] s = *cast(double[]*)p;
         т_мера len = s.length;
         auto str = s.ptr;
-        return hashOf(str,len*дво.sizeof,0); // use rt_hash_block?
+        return хэшУ(str,len*дво.sizeof,0); // use rt_hash_block?
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3611,7 +3611,7 @@ export:
         float[] s = *cast(float[]*)p;
         т_мера len = s.length;
         auto str = s.ptr;
-        return hashOf(str,len*плав.sizeof,0);
+        return хэшУ(str,len*плав.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3703,7 +3703,7 @@ export:
         байт[] s = *cast(байт[]*)p;
         т_мера len = s.length;
         байт *str = s.ptr;
-        return hashOf(str,len*байт.sizeof,0);
+        return хэшУ(str,len*байт.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -3883,7 +3883,7 @@ export:
 			}
 			else {+/
 				//return rt_hash_utf8(s,0); // this would be encoding independent
-				return hashOf(s.ptr,s.length,0);
+				return хэшУ(s.ptr,s.length,0);
 			}
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
@@ -3909,7 +3909,7 @@ export:
     {   цел[] s = *cast(цел[]*)p;
         auto len = s.length;
         auto str = s.ptr;
-        return hashOf(str,len*цел.sizeof,0);
+        return хэшУ(str,len*цел.sizeof,0);
     }
 
 	override т_хэш дайХэш(in ук p){ return getHash(p);}
@@ -4044,7 +4044,7 @@ export:
     {   дол[] s = *cast(дол[]*)p;
         т_мера len = s.length;
         auto str = s.ptr;
-        return hashOf(str,len*дол.sizeof,0);
+        return хэшУ(str,len*дол.sizeof,0);
     }
 
 	override т_хэш дайХэш(in ук p){ return getHash(p);}
@@ -4155,7 +4155,7 @@ export:
     {   реал[] s = *cast(реал[]*)p;
         т_мера len = s.length;
         auto str = s.ptr;
-        return hashOf(str,len*реал.sizeof,0);
+        return хэшУ(str,len*реал.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 
@@ -4247,7 +4247,7 @@ export:
     {   крат[] s = *cast(крат[]*)p;
         т_мера len = s.length;
         крат *str = s.ptr;
-        return hashOf(str,len*крат.sizeof,0);
+        return хэшУ(str,len*крат.sizeof,0);
     }
 	override т_хэш дайХэш(in  ук п){return getHash(п);}
 

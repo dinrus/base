@@ -405,7 +405,7 @@ private:
 	    {   "mest",		DP.dsttz,	-100},
 	    {   "mesz",		DP.dsttz,	-100},
 	    {   "sst",		DP.dsttz,	-100},
-	    {   "fst",		DP.dsttz,	-100},
+	    {   "перв",		DP.dsttz,	-100},
 	    {   "wadt",		DP.dsttz,	-700},
 	    {   "eadt",		DP.dsttz,	-1000},
 	    {   "nzdt",		DP.dsttz,	-1200},
@@ -517,7 +517,7 @@ private:
 			    n1 = number;
 			    dp = nextToken();
 			    if (dp == DP.colon)
-			    {   // back up, not a year
+			    {   // задний up, not a year
 				si = sisave;
 			    }
 			    else

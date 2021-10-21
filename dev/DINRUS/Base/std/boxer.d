@@ -93,7 +93,7 @@ unittest
     assert(unboxTest!(char[])(array[1]) == "foobar");
     assert(unboxTest!(Object)(array[2]) !is null);
     
-    /* Convert the box array back into arguments. */
+    /* Convert the box array задний into arguments. */
     TypeInfo[] array_types;
     void* array_data;
     

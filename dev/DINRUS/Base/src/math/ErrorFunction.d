@@ -8,7 +8,7 @@
  */
 /**
  * Macros:
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  SUP = <вринтервал стиль="vertical-align:super;font-размер:smaller">$0</вринтервал>
  *  GAMMA =  &#915;
  *  INTEGRAL = &#8747;
@@ -328,7 +328,7 @@ package
     G. Marsaglia, "Evaluating the Нормальный Distribution",
     Journal of Statistical Software <b>11</b>, (July 2004).
     */
-    реал normalDistributionImpl(реал a)
+    реал нормДистрибуцииРеализ(реал a)
     {
         реал x = a * КВКОР1_2;
         реал z = абс(x);
@@ -354,8 +354,8 @@ debug(UnitTest)
 {
     unittest
     {
-        assert(фабс(normalDistributionImpl(1L) - (0.841344746068543))< 0.0000000000000005);
-        assert(идентичен_ли(normalDistributionImpl(НЧ(0x325)), НЧ(0x325)));
+        assert(фабс(нормДистрибуцииРеализ(1L) - (0.841344746068543))< 0.0000000000000005);
+        assert(идентичен_ли(нормДистрибуцииРеализ(НЧ(0x325)), НЧ(0x325)));
     }
 }
 
@@ -374,7 +374,7 @@ package
      * For larger аргументы,  x/квкор(2 pi) = w + w^3 R(w^2)/S(w^2)) ,
      * where w = p - 0.5 .
      */
-    реал normalDistributionInvImpl(реал p)
+    реал нормДистрибуцииИнвРеализ(реал p)
     in {
         assert(p>=0.0L && p<=1.0L, "Domain ошибка");
     }
@@ -483,17 +483,17 @@ debug(UnitTest)
     {
         // TODO: Use verified тест points.
         // The значения below are из_ Excel 2003.
-        assert(фабс(normalDistributionInvImpl(0.001) - (-3.09023230616779))< 0.00000000000005);
-        assert(фабс(normalDistributionInvImpl(1e-50) - (-14.9333375347885))< 0.00000000000005);
-        assert(отнравх(normalDistributionInvImpl(0.999), -normalDistributionInvImpl(0.001))>реал.mant_dig-6);
+        assert(фабс(нормДистрибуцииИнвРеализ(0.001) - (-3.09023230616779))< 0.00000000000005);
+        assert(фабс(нормДистрибуцииИнвРеализ(1e-50) - (-14.9333375347885))< 0.00000000000005);
+        assert(отнравх(нормДистрибуцииИнвРеализ(0.999), -нормДистрибуцииИнвРеализ(0.001))>реал.mant_dig-6);
 
 // Excel 2003 gets все the following значения wrong!
-        assert(normalDistributionInvImpl(0.0)==-реал.infinity);
-        assert(normalDistributionInvImpl(1.0)==реал.infinity);
-        assert(normalDistributionInvImpl(0.5)==0);
+        assert(нормДистрибуцииИнвРеализ(0.0)==-реал.infinity);
+        assert(нормДистрибуцииИнвРеализ(1.0)==реал.infinity);
+        assert(нормДистрибуцииИнвРеализ(0.5)==0);
 // (Excel 2003 returns norminv(p) = -30 for все p < 1e-200).
 // The значение tested here is the one the function returned in Jan 2006.
-        реал неизвестный1 = normalDistributionInvImpl(1e-250L);
+        реал неизвестный1 = нормДистрибуцииИнвРеализ(1e-250L);
         assert( фабс(неизвестный1 -(-33.79958617269L) ) < 0.00000005);
     }
 }

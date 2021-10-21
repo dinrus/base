@@ -135,7 +135,7 @@ CoroutinePublicT(Tin, Tout, ПТипСопроц TCoroType)
     }
     else
     {
-        /// ditto
+        /// описано ранее
         Tout delegate(Tin)
         какДелегат()
         {

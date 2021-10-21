@@ -9,7 +9,7 @@
 
 /**
  * Macros:
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  SUP = <вринтервал стиль="vertical-align:super;font-размер:smaller">$0</вринтервал>
  *  GAMMA =  &#915;
  *  INTEGRAL = &#8747;
@@ -66,13 +66,13 @@ Journal of Statistical Software <b>11</b>, (July 2004).
 */
 export реал normalDistribution(реал a)
 {
-    return math.ErrorFunction.normalDistributionImpl(a);
+    return math.ErrorFunction.нормДистрибуцииРеализ(a);
 }
 
-/** ditto */
+/** описано ранее */
 export реал normalDistributionCompl(реал a)
 {
-    return -math.ErrorFunction.normalDistributionImpl(-a);
+    return -math.ErrorFunction.нормДистрибуцииРеализ(-a);
 }
 
 /******************************
@@ -90,13 +90,13 @@ export реал normalDistributionCompl(реал a)
  */
 export реал normalDistributionInv(реал p)
 {
-    return math.ErrorFunction.normalDistributionInvImpl(p);
+    return math.ErrorFunction.нормДистрибуцииИнвРеализ(p);
 }
 
-/** ditto */
+/** описано ранее */
 export реал normalDistributionComplInv(реал p)
 {
-    return -math.ErrorFunction.normalDistributionInvImpl(-p);
+    return -math.ErrorFunction.нормДистрибуцииИнвРеализ(-p);
 }
 
 debug(UnitTest)
@@ -127,7 +127,7 @@ debug(UnitTest)
  * For t < -1.6, this is the метод of computation.  For higher t,
  * a direct метод is производный из_ integration by части.
  * Since the function is symmetric about t=0, the area under the
- * прав хвост of the density is найдено by calling the function
+ * право хвост of the density is найдено by calling the function
  * with -t instead of t.
  */
 export реал studentsTDistribution(цел nu, реал t)
@@ -268,9 +268,9 @@ debug(UnitTest)
         assert(studentsTDistribution(2, -5.4) == 0.5L * (1 - 5.4L/квкор(2.0L + 5.4*5.4)) );
 
 // return да if a==b в_ given число of places.
-        бул isfeqabs(реал a, реал b, реал diff)
+        бул isfeqabs(реал a, реал b, реал рознь)
         {
-            return фабс(a-b) < diff;
+            return фабс(a-b) < рознь;
         }
 
 // Check a few spot значения with statsoft.com (Mathworld значения are wrong!!)
@@ -335,7 +335,7 @@ body
     return бетаНеполная(0.5L*a, 0.5L*b, w);
 }
 
-/** ditto */
+/** описано ранее */
 export реал fDistributionCompl(цел df1, цел df2, реал x)
 in
 {
@@ -370,7 +370,7 @@ body
  *      x = df2 z / (df1 (1-z)).
 */
 
-/** ditto */
+/** описано ранее */
 export реал fDistributionComplInv(цел df1, цел df2, реал p )
 in
 {
@@ -412,10 +412,10 @@ debug(UnitTest)
 
 /** $(POWER &chi;,2) cumulative ни в каком дистрибутиве function и its complement.
  *
- * Возвращает the area under the лев hand хвост (из_ 0 в_ x)
+ * Возвращает the area under the лево hand хвост (из_ 0 в_ x)
  * of the Chi square probability density function with
  * знач degrees of freedom. The complement returns the area under
- * the прав hand хвост (из_ x в_ &infin;).
+ * the право hand хвост (из_ x в_ &infin;).
  *
  *  chiSqrDistribution(x | знач) = ($(INTEGRATE 0, x)
  *          $(POWER t, знач/2-1) $(POWER e, -t/2) dt )
@@ -441,7 +441,7 @@ body
     return гаммаНеполная( 0.5*знач, 0.5*x);
 }
 
-/** ditto */
+/** описано ранее */
 export реал chiSqrDistributionCompl(реал знач, реал x)
 in
 {
@@ -506,7 +506,7 @@ body
     return гаммаНеполная(b, a*x);
 }
 
-/** ditto */
+/** описано ранее */
 export реал gammaDistributionCompl(реал a, реал b, реал x )
 in
 {
@@ -551,19 +551,19 @@ export реал betaDistribution(реал a, реал b, реал x )
     return бетаНеполная(a, b, x );
 }
 
-/** ditto */
+/** описано ранее */
 export реал betaDistributionCompl(реал a, реал b, реал x)
 {
     return бетаНеполная(b, a, 1-x);
 }
 
-/** ditto */
+/** описано ранее */
 export реал betaDistributionInv(реал a, реал b, реал y)
 {
     return бетаНеполнаяИнв(a, b, y);
 }
 
-/** ditto */
+/** описано ранее */
 export реал betaDistributionComplInv(реал a, реал b, реал y)
 {
     return 1-бетаНеполнаяИнв(b, a, y);
@@ -608,7 +608,7 @@ body
     return гаммаНеполнаяКомпл( ключ+1.0, m );
 }
 
-/** ditto */
+/** описано ранее */
 export реал poissonDistributionCompl(цел ключ, реал m )
 in
 {
@@ -620,7 +620,7 @@ body
     return гаммаНеполная( ключ+1.0, m );
 }
 
-/** ditto */
+/** описано ранее */
 export реал poissonDistributionInv( цел ключ, реал p )
 in
 {
@@ -698,7 +698,7 @@ debug(UnitTest)
     }
 }
 
-/** ditto */
+/** описано ранее */
 export реал binomialDistributionCompl(цел ключ, цел n, реал p )
 in
 {
@@ -831,7 +831,7 @@ body
     return бетаНеполная( n, ключ + 1, p );
 }
 
-/** ditto */
+/** описано ранее */
 export реал negativeBinomialDistributionInv(цел ключ, цел n, реал p )
 in
 {

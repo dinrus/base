@@ -223,7 +223,7 @@ void toISO8601YearWeek(d_time t, out int year, out int week)
     int ydaybeg;
 
     /* Determine day of week Jan 4 falls on.
-     * Weeks begin on a Monday.
+     * Weeks начало on a Monday.
      */
 
     d = DayFromYear(year);
@@ -574,11 +574,11 @@ d_time LocalTimetoUTC(d_time t)
 }
 
 
-d_time MakeTime(d_time hour, d_time min, d_time sec, d_time ms)
+d_time MakeTime(d_time hour, d_time min, d_time сек, d_time ms)
 {
     return hour * TicksPerHour +
 	   min * ТиковВМинуту +
-	   sec * TicksPerSecond +
+	   сек * TicksPerSecond +
 	   ms * TicksPerMs;
 }
 
@@ -666,7 +666,7 @@ body
     mday += (n - 1) * 7;
 
     // If monthday is more than the number of days in the month,
-    // back up to 'last' occurrence
+    // задний up to 'last' occurrence
     if (mday > 28 && mday > DaysInMonth(year, month))
     {	assert(n == 5);
 	mday -= 7;

@@ -1,6 +1,6 @@
 module sys.com.com;
 
-import win, tpl.com, tpl.args, stdrus; 
+import sys.Common, tpl.com, tpl.args, stdrus; 
 ////////////////////////////////////////////////////
 export extern(C)
 {
@@ -301,7 +301,7 @@ class Диспетчер
   }
 
   /**
-   * ditto
+   * описано ранее
    */
   this(ВАРИАНТ цель) {
     if (auto цель = ком_каст!(ИДиспетчер)(результат)) {

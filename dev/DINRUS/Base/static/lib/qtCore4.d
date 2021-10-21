@@ -2836,17 +2836,17 @@
 
 		//вяжи(функция_1411)("_?awake@QAbstractEventDispatcher@@IAEXXZ", биб);
 
-		//вяжи(функция_1412)("_?back@?$QVector@VQPoint@@@@QAEAAVQPoint@@XZ", биб);
+		//вяжи(функция_1412)("_?задний@?$QVector@VQPoint@@@@QAEAAVQPoint@@XZ", биб);
 
-		//вяжи(функция_1413)("_?back@?$QVector@VQPoint@@@@QBEABVQPoint@@XZ", биб);
+		//вяжи(функция_1413)("_?задний@?$QVector@VQPoint@@@@QBEABVQPoint@@XZ", биб);
 
-		//вяжи(функция_1414)("_?back@?$QVector@VQPointF@@@@QAEAAVQPointF@@XZ", биб);
+		//вяжи(функция_1414)("_?задний@?$QVector@VQPointF@@@@QAEAAVQPointF@@XZ", биб);
 
-		//вяжи(функция_1415)("_?back@?$QVector@VQPointF@@@@QBEABVQPointF@@XZ", биб);
+		//вяжи(функция_1415)("_?задний@?$QVector@VQPointF@@@@QBEABVQPointF@@XZ", биб);
 
-		//вяжи(функция_1416)("_?back@?$QVector@VQXmlStreamAttribute@@@@QAEAAVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_1416)("_?задний@?$QVector@VQXmlStreamAttribute@@@@QAEAAVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_1417)("_?back@?$QVector@VQXmlStreamAttribute@@@@QBEABVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_1417)("_?задний@?$QVector@VQXmlStreamAttribute@@@@QBEABVQXmlStreamAttribute@@XZ", биб);
 
 		//вяжи(функция_1418)("_?baseName@QFileInfo@@QAE?AVQString@@_N@Z", биб);
 
@@ -2856,29 +2856,29 @@
 
 		//вяжи(функция_1421)("_?batchSize@ResultIteratorBase@QtConcurrent@@QBEHXZ", биб);
 
-		//вяжи(функция_1422)("_?begin@?$QVector@VQPoint@@@@QAEPAVQPoint@@XZ", биб);
+		//вяжи(функция_1422)("_?начало@?$QVector@VQPoint@@@@QAEPAVQPoint@@XZ", биб);
 
-		//вяжи(функция_1423)("_?begin@?$QVector@VQPoint@@@@QBEPBVQPoint@@XZ", биб);
+		//вяжи(функция_1423)("_?начало@?$QVector@VQPoint@@@@QBEPBVQPoint@@XZ", биб);
 
-		//вяжи(функция_1424)("_?begin@?$QVector@VQPointF@@@@QAEPAVQPointF@@XZ", биб);
+		//вяжи(функция_1424)("_?начало@?$QVector@VQPointF@@@@QAEPAVQPointF@@XZ", биб);
 
-		//вяжи(функция_1425)("_?begin@?$QVector@VQPointF@@@@QBEPBVQPointF@@XZ", биб);
+		//вяжи(функция_1425)("_?начало@?$QVector@VQPointF@@@@QBEPBVQPointF@@XZ", биб);
 
-		//вяжи(функция_1426)("_?begin@?$QVector@VQXmlStreamAttribute@@@@QAEPAVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_1426)("_?начало@?$QVector@VQXmlStreamAttribute@@@@QAEPAVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_1427)("_?begin@?$QVector@VQXmlStreamAttribute@@@@QBEPBVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_1427)("_?начало@?$QVector@VQXmlStreamAttribute@@@@QBEPBVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_1428)("_?begin@QByteArray@@QAEPADXZ", биб);
+		//вяжи(функция_1428)("_?начало@QByteArray@@QAEPADXZ", биб);
 
-		//вяжи(функция_1429)("_?begin@QByteArray@@QBEPBDXZ", биб);
+		//вяжи(функция_1429)("_?начало@QByteArray@@QBEPBDXZ", биб);
 
-		//вяжи(функция_1430)("_?begin@QListData@@QBEPAPAXXZ", биб);
+		//вяжи(функция_1430)("_?начало@QListData@@QBEPAPAXXZ", биб);
 
-		//вяжи(функция_1431)("_?begin@QString@@QAEPAVQChar@@XZ", биб);
+		//вяжи(функция_1431)("_?начало@QString@@QAEPAVQChar@@XZ", биб);
 
-		//вяжи(функция_1432)("_?begin@QString@@QBEPBVQChar@@XZ", биб);
+		//вяжи(функция_1432)("_?начало@QString@@QBEPBVQChar@@XZ", биб);
 
-		//вяжи(функция_1433)("_?begin@ResultStoreBase@QtConcurrent@@QBE?AVResultIteratorBase@2@XZ", биб);
+		//вяжи(функция_1433)("_?начало@ResultStoreBase@QtConcurrent@@QBE?AVResultIteratorBase@2@XZ", биб);
 
 		//вяжи(функция_1434)("_?beginEntryList@QAbstractFileEngine@@UAEPAVQAbstractFileEngineIterator@@V?$QFlags@W4Filter@QDir@@@@ABVQStringList@@@Z", биб);
 
@@ -5544,9 +5544,9 @@
 
 		//вяжи(функция_2765)("_?isRightToLeft@QString@@QBE_NXZ", биб);
 
-		//вяжи(функция_2766)("_?isRoot@QDir@@QBE_NXZ", биб);
+		//вяжи(функция_2766)("_?корень_ли@QDir@@QBE_NXZ", биб);
 
-		//вяжи(функция_2767)("_?isRoot@QFileInfo@@QBE_NXZ", биб);
+		//вяжи(функция_2767)("_?корень_ли@QFileInfo@@QBE_NXZ", биб);
 
 		//вяжи(функция_2768)("_?isRunning@QEventLoop@@QBE_NXZ", биб);
 
@@ -10338,15 +10338,15 @@
 
 		//вяжи(функция_5162)("_?weekNumber@QDate@@QBEHPAH@Z", биб);
 
-		//вяжи(функция_5163)("_?width@QRect@@QBEHXZ", биб);
+		//вяжи(функция_5163)("_?ширина@QRect@@QBEHXZ", биб);
 
-		//вяжи(функция_5164)("_?width@QRectF@@QBENXZ", биб);
+		//вяжи(функция_5164)("_?ширина@QRectF@@QBENXZ", биб);
 
-		//вяжи(функция_5165)("_?width@QSize@@QBEHXZ", биб);
+		//вяжи(функция_5165)("_?ширина@QSize@@QBEHXZ", биб);
 
-		//вяжи(функция_5166)("_?width@QSizeF@@QBENXZ", биб);
+		//вяжи(функция_5166)("_?ширина@QSizeF@@QBENXZ", биб);
 
-		//вяжи(функция_5167)("_?width@QTextStream@@QAEHH@Z", биб);
+		//вяжи(функция_5167)("_?ширина@QTextStream@@QAEHH@Z", биб);
 
 		//вяжи(функция_5168)("_?wildcard@QRegExp@@QBE_NXZ", биб);
 
@@ -13410,17 +13410,17 @@
 
 		//вяжи(функция_6698)("_?awake@QAbstractEventDispatcher@@IAEXXZ", биб);
 
-		//вяжи(функция_6699)("_?back@?$QVector@VQPoint@@@@QAEAAVQPoint@@XZ", биб);
+		//вяжи(функция_6699)("_?задний@?$QVector@VQPoint@@@@QAEAAVQPoint@@XZ", биб);
 
-		//вяжи(функция_6700)("_?back@?$QVector@VQPoint@@@@QBEABVQPoint@@XZ", биб);
+		//вяжи(функция_6700)("_?задний@?$QVector@VQPoint@@@@QBEABVQPoint@@XZ", биб);
 
-		//вяжи(функция_6701)("_?back@?$QVector@VQPointF@@@@QAEAAVQPointF@@XZ", биб);
+		//вяжи(функция_6701)("_?задний@?$QVector@VQPointF@@@@QAEAAVQPointF@@XZ", биб);
 
-		//вяжи(функция_6702)("_?back@?$QVector@VQPointF@@@@QBEABVQPointF@@XZ", биб);
+		//вяжи(функция_6702)("_?задний@?$QVector@VQPointF@@@@QBEABVQPointF@@XZ", биб);
 
-		//вяжи(функция_6703)("_?back@?$QVector@VQXmlStreamAttribute@@@@QAEAAVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_6703)("_?задний@?$QVector@VQXmlStreamAttribute@@@@QAEAAVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_6704)("_?back@?$QVector@VQXmlStreamAttribute@@@@QBEABVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_6704)("_?задний@?$QVector@VQXmlStreamAttribute@@@@QBEABVQXmlStreamAttribute@@XZ", биб);
 
 		//вяжи(функция_6705)("_?baseName@QFileInfo@@QAE?AVQString@@_N@Z", биб);
 
@@ -13430,29 +13430,29 @@
 
 		//вяжи(функция_6708)("_?batchSize@ResultIteratorBase@QtConcurrent@@QBEHXZ", биб);
 
-		//вяжи(функция_6709)("_?begin@?$QVector@VQPoint@@@@QAEPAVQPoint@@XZ", биб);
+		//вяжи(функция_6709)("_?начало@?$QVector@VQPoint@@@@QAEPAVQPoint@@XZ", биб);
 
-		//вяжи(функция_6710)("_?begin@?$QVector@VQPoint@@@@QBEPBVQPoint@@XZ", биб);
+		//вяжи(функция_6710)("_?начало@?$QVector@VQPoint@@@@QBEPBVQPoint@@XZ", биб);
 
-		//вяжи(функция_6711)("_?begin@?$QVector@VQPointF@@@@QAEPAVQPointF@@XZ", биб);
+		//вяжи(функция_6711)("_?начало@?$QVector@VQPointF@@@@QAEPAVQPointF@@XZ", биб);
 
-		//вяжи(функция_6712)("_?begin@?$QVector@VQPointF@@@@QBEPBVQPointF@@XZ", биб);
+		//вяжи(функция_6712)("_?начало@?$QVector@VQPointF@@@@QBEPBVQPointF@@XZ", биб);
 
-		//вяжи(функция_6713)("_?begin@?$QVector@VQXmlStreamAttribute@@@@QAEPAVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_6713)("_?начало@?$QVector@VQXmlStreamAttribute@@@@QAEPAVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_6714)("_?begin@?$QVector@VQXmlStreamAttribute@@@@QBEPBVQXmlStreamAttribute@@XZ", биб);
+		//вяжи(функция_6714)("_?начало@?$QVector@VQXmlStreamAttribute@@@@QBEPBVQXmlStreamAttribute@@XZ", биб);
 
-		//вяжи(функция_6715)("_?begin@QByteArray@@QAEPADXZ", биб);
+		//вяжи(функция_6715)("_?начало@QByteArray@@QAEPADXZ", биб);
 
-		//вяжи(функция_6716)("_?begin@QByteArray@@QBEPBDXZ", биб);
+		//вяжи(функция_6716)("_?начало@QByteArray@@QBEPBDXZ", биб);
 
-		//вяжи(функция_6717)("_?begin@QListData@@QBEPAPAXXZ", биб);
+		//вяжи(функция_6717)("_?начало@QListData@@QBEPAPAXXZ", биб);
 
-		//вяжи(функция_6718)("_?begin@QString@@QAEPAVQChar@@XZ", биб);
+		//вяжи(функция_6718)("_?начало@QString@@QAEPAVQChar@@XZ", биб);
 
-		//вяжи(функция_6719)("_?begin@QString@@QBEPBVQChar@@XZ", биб);
+		//вяжи(функция_6719)("_?начало@QString@@QBEPBVQChar@@XZ", биб);
 
-		//вяжи(функция_6720)("_?begin@ResultStoreBase@QtConcurrent@@QBE?AVResultIteratorBase@2@XZ", биб);
+		//вяжи(функция_6720)("_?начало@ResultStoreBase@QtConcurrent@@QBE?AVResultIteratorBase@2@XZ", биб);
 
 		//вяжи(функция_6721)("_?beginEntryList@QAbstractFileEngine@@UAEPAVQAbstractFileEngineIterator@@V?$QFlags@W4Filter@QDir@@@@ABVQStringList@@@Z", биб);
 
@@ -16118,9 +16118,9 @@
 
 		//вяжи(функция_8052)("_?isRightToLeft@QString@@QBE_NXZ", биб);
 
-		//вяжи(функция_8053)("_?isRoot@QDir@@QBE_NXZ", биб);
+		//вяжи(функция_8053)("_?корень_ли@QDir@@QBE_NXZ", биб);
 
-		//вяжи(функция_8054)("_?isRoot@QFileInfo@@QBE_NXZ", биб);
+		//вяжи(функция_8054)("_?корень_ли@QFileInfo@@QBE_NXZ", биб);
 
 		//вяжи(функция_8055)("_?isRunning@QEventLoop@@QBE_NXZ", биб);
 
@@ -20912,15 +20912,15 @@
 
 		//вяжи(функция_10449)("_?weekNumber@QDate@@QBEHPAH@Z", биб);
 
-		//вяжи(функция_10450)("_?width@QRect@@QBEHXZ", биб);
+		//вяжи(функция_10450)("_?ширина@QRect@@QBEHXZ", биб);
 
-		//вяжи(функция_10451)("_?width@QRectF@@QBENXZ", биб);
+		//вяжи(функция_10451)("_?ширина@QRectF@@QBENXZ", биб);
 
-		//вяжи(функция_10452)("_?width@QSize@@QBEHXZ", биб);
+		//вяжи(функция_10452)("_?ширина@QSize@@QBEHXZ", биб);
 
-		//вяжи(функция_10453)("_?width@QSizeF@@QBENXZ", биб);
+		//вяжи(функция_10453)("_?ширина@QSizeF@@QBENXZ", биб);
 
-		//вяжи(функция_10454)("_?width@QTextStream@@QAEHH@Z", биб);
+		//вяжи(функция_10454)("_?ширина@QTextStream@@QAEHH@Z", биб);
 
 		//вяжи(функция_10455)("_?wildcard@QRegExp@@QBE_NXZ", биб);
 

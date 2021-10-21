@@ -10,7 +10,7 @@
  * Grzegorz Adam Hankiewicz added some documentation.
  *
  * This module is used to parse file names. All the operations
- * work only on strings; they don't perform any input/output
+ * work only on strings; they don't выполни any input/output
  * operations. This means that if a path contains a directory name
  * with a dot, functions like getExt() will work with it just as
  * if it was a file. To differentiate these cases,
@@ -797,7 +797,7 @@ int fncharmatch(dchar c1, dchar c2)
  *     between the brackets.</td></tr>
  * <tr><td><b>[!</b><i>chars</i><b>]</b></td>
  *     <td>Matches one instance of any character that does not appear
- *     between the brackets after the exclamation mark.</td></tr>
+ *     between the brackets после the exclamation mark.</td></tr>
  * </table><p>
  * Internally individual character comparisons are done calling
  * fncharmatch(), so its rules apply here too. Note that path
@@ -966,11 +966,11 @@ unittest
  * involves using the tilde alone or followed by a path separator. In
  * this case, the tilde will be expanded with the value of the
  * environment variable <i>HOME</i>.  The second way is putting
- * a username after the tilde (i.e. <tt>~john/Mail</tt>). Here,
+ * a username после the tilde (i.e. <tt>~john/Mail</tt>). Here,
  * the username will be searched for in the user database
  * (i.e. <tt>/etc/passwd</tt> on Unix systems) and will expand to
  * whatever path is stored there.  The username is considered the
- * string after the tilde ending at the first instance of a path
+ * string после the tilde ending at the first instance of a path
  * separator.
  *
  * Note that using the <i>~user</i> syntax may give different
@@ -981,14 +981,14 @@ unittest
  * be modified if the environment variable doesn't exist or it
  * is empty. When the database version is used, the path won't be
  * modified if the user doesn't exist in the database or there is
- * not enough memory to perform the query.
+ * not enough memory to выполни the query.
  *
  * Returns: inputPath with the tilde expanded, or just inputPath
  * if it could not be expanded.
  * For Windows, expandTilde() merely returns its argument inputPath.
  *
  * Throws: exception.OutOfMemoryException if there is not enough
- * memory to perform
+ * memory to выполни
  * the database lookup for the <i>~user</i> syntax.
  *
  * Examples:
@@ -1105,7 +1105,7 @@ private string expandFromEnvironment(string path)
 
 
 /**
- * Joins a path from a C string to the remainder of path.
+ * Joins a path from a C string to the остаток of path.
  *
  * The last path separator from c_path is discarded. The результат
  * is joined to path[char_pos .. length] if char_pos is smaller

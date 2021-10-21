@@ -16,7 +16,7 @@ Macros:
  *  GAMMA =  &#915;
  *  INTEGRATE = $(BIG &#8747;<подст>$(SMALL $1)</подст><sup>$2</sup>)
  *  POWER = $1<sup>$2</sup>
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  */
 module math.GammaFunction;
 
@@ -128,7 +128,7 @@ extern(D):
  * значения of a и x.
  */
 реал гаммаНеполная(реал a, реал x );
-/** ditto */
+/** описано ранее */
 реал гаммаНеполнаяКомпл(реал a, реал x );
 
 /** Inverse of complemented incomplete гамма integral

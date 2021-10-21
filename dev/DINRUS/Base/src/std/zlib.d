@@ -141,7 +141,7 @@ body
 }
 
 /*********************************************
- * ditto
+ * описано ранее
  */
 
 void[] compress(void[] buf)
@@ -276,7 +276,7 @@ alias flush слей;
 	this.level = level;
     }
 
-    /// ditto
+    /// описано ранее
     this()
     {
     }
@@ -436,7 +436,7 @@ alias flush слей;
 	this.destbufsize = destbufsize;
     }
 
-    /** ditto */
+    /** описано ранее */
     this()
     {
     }

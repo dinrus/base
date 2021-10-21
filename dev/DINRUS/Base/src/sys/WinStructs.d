@@ -232,7 +232,7 @@ export extern(D)
 		return this.вТкст("D");
 	  }
 
-	  /// ditto
+	  /// описано ранее
 	  ткст вТкст(ткст формат) {
 
 		проц гекс8Ткст(ref сим[] s, ref бцел индекс, бцел a, бцел b) {
@@ -411,7 +411,7 @@ export extern(D)
 		return сам;
 	  }
 
-	  /// ditto
+	  /// описано ранее
 	  static ДЕСЯТОК opCall(T = проц)(бцел lo, бцел mid, бцел hi, бул isNegative, ббайт шкала) {
 		ДЕСЯТОК сам;
 		сам.Старш32 = hi, сам.Средн32 = mid, сам.Младш32 = lo, сам.шкала = шкала, сам.знак = isNegative ? ОТРИЦ_ДЕСЯТОК : 0;
@@ -4028,7 +4028,7 @@ union FILE_SEGMENT_ELEMENT {
 }
 alias FILE_SEGMENT_ELEMENT* PFILE_SEGMENT_ELEMENT;
 
-// JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags constants
+// JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags константы
 const бцел
 	JOB_OBJECT_LIMIT_WORKINGSET                 = 0x0001,
 	JOB_OBJECT_LIMIT_PROCESS_TIME               = 0x0002,
@@ -4044,7 +4044,7 @@ const бцел
 	JOB_OBJECT_BREAKAWAY_OK                     = 0x0800,
 	JOB_OBJECT_SILENT_BREAKAWAY                 = 0x1000;
 
-// JOBOBJECT_BASIC_UI_RESTRICTIONS.UIRestrictionsClass constants
+// JOBOBJECT_BASIC_UI_RESTRICTIONS.UIRestrictionsClass константы
 const бцел
 	JOB_OBJECT_UILIMIT_HANDLES          = 0x0001,
 	JOB_OBJECT_UILIMIT_READCLIPBOARD    = 0x0002,
@@ -4055,14 +4055,14 @@ const бцел
 	JOB_OBJECT_UILIMIT_DESKTOP          = 0x0040,
 	JOB_OBJECT_UILIMIT_EXITWINDOWS      = 0x0080;
 
-// JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags constants
+// JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags константы
 const бцел
 	JOB_OBJECT_SECURITY_NO_ADMIN         = 0x0001,
 	JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = 0x0002,
 	JOB_OBJECT_SECURITY_ONLY_TOKEN       = 0x0004,
 	JOB_OBJECT_SECURITY_FILTER_TOKENS    = 0x0008;
 
-// JOBOBJECT_END_OF_JOB_TIME_INFORMATION.EndOfJobTimeAction constants
+// JOBOBJECT_END_OF_JOB_TIME_INFORMATION.EndOfJobTimeAction константы
 enum : бцел {
 	JOB_OBJECT_TERMINATE_AT_END_OF_JOB,
 	JOB_OBJECT_POST_AT_END_OF_JOB
@@ -4249,7 +4249,7 @@ struct POWER_ACTION_POLICY {
 }
 alias POWER_ACTION_POLICY* PPOWER_ACTION_POLICY;
 
-// POWER_ACTION_POLICY.Flags constants
+// POWER_ACTION_POLICY.Flags константы
 const ULONG
 	POWER_ACTION_QUERY_ALLOWED  = 0x00000001,
 	POWER_ACTION_UI_ALLOWED     = 0x00000002,
@@ -4259,7 +4259,7 @@ const ULONG
 	POWER_ACTION_DISABLE_WAKES  = 0x40000000,
 	POWER_ACTION_CRITICAL       = 0x80000000;
 
-// POWER_ACTION_POLICY.EventCode constants
+// POWER_ACTION_POLICY.EventCode константы
 const ULONG
 	POWER_LEVEL_USER_NOTIFY_TEXT  = 0x00000001,
 	POWER_LEVEL_USER_NOTIFY_SOUND = 0x00000002,

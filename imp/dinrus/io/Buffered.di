@@ -80,4 +80,4 @@ class БуфВывод : ФильтрВывода, БуферВывода
 
 
 public alias БуфВвод  Бввод;        /// shorthand alias
-public alias БуфВывод Бвыв;       /// ditto
+public alias БуфВывод Бвыв;       /// описано ранее

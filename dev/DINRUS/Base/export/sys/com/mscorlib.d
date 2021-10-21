@@ -1615,7 +1615,7 @@ struct NativeOverlapped {
 
 struct DictionaryEntry {
   mixin(uuid("a6cceb32-ec73-3e9b-8852-02783c97d3fa"));
-  IUnknown _key;
+  IUnknown _ключ;
   IUnknown _value;
 }
 
@@ -7134,19 +7134,19 @@ abstract final class X509Certificate {
 version (build) {
     debug {
         version (GNU) {
-            pragma(link, "DG-win");
+            pragma(link, "DG-sys.Common");
         } else version (DigitalMars) {
             pragma(link, "rulada");
         } else {
-            pragma(link, "DO-win");
+            pragma(link, "DO-sys.Common");
         }
     } else {
         version (GNU) {
-            pragma(link, "DG-win");
+            pragma(link, "DG-sys.Common");
         } else version (DigitalMars) {
             pragma(link, "rulada");
         } else {
-            pragma(link, "DO-win");
+            pragma(link, "DO-sys.Common");
         }
     }
 }

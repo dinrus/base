@@ -1917,9 +1917,9 @@ int glutGameModeGet(GLenum);
  void  glFrontFace( GLenum mode );
  void  glPointSize( GLfloat размер );
  void  glLineWidth( GLfloat ширина );
- void  glLineStipple( GLint factor, GLushort pattern );
+ void  glLineStipple( GLint фактор, GLushort pattern );
  void  glPolygonMode( GLenum face, GLenum mode );
- void  glPolygonOffset( GLfloat factor, GLfloat units );
+ void  glPolygonOffset( GLfloat фактор, GLfloat units );
  void  glPolygonStipple(  GLubyte *маска );
  void  glGetPolygonStipple( GLubyte *маска );
  void  glEdgeFlag( GLboolean flag );
@@ -2815,7 +2815,7 @@ int glutGameModeGet(GLenum);
  void  glutMenuStateFunc(сифунк_Ц);
 
 
-/* GLUT color index sub-API. */
+/* GLUT цвет index sub-API. */
  void  glutSetColor(int ndx, GLfloat red, GLfloat green, GLfloat blue);
  GLfloat  glutGetColor(int ndx, int component);
  void  glutCopyColormap(int win);

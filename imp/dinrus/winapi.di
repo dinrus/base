@@ -761,9 +761,9 @@ enum
 //
 
 //
-// The FILE_READ_DATA and FILE_WRITE_DATA constants are also defined in
+// The FILE_READ_DATA and FILE_WRITE_DATA константы are also defined in
 // devioctl.h as FILE_READ_ACCESS and FILE_WRITE_ACCESS. The values for these
-// constants *MUST* always be in sync.
+// константы *MUST* always be in sync.
 // The values are redefined in devioctl.h because they must be available to
 // both DOS and NT.
 //
@@ -1957,11 +1957,11 @@ enum
 
 /* Font Families */
     FF_DONTCARE =         (0<<4), /* Don't care or don't know. */
-    FF_ROMAN =            (1<<4), /* Variable stroke width, serifed. */
+    FF_ROMAN =            (1<<4), /* Variable stroke ширина, serifed. */
                                     /* Times Roman, Century Schoolbook, etc. */
-    FF_SWISS =            (2<<4), /* Variable stroke width, sans-serifed. */
+    FF_SWISS =            (2<<4), /* Variable stroke ширина, sans-serifed. */
                                     /* Helvetica, Swiss, etc. */
-    FF_MODERN =           (3<<4), /* Constant stroke width, serifed or sans-serifed. */
+    FF_MODERN =           (3<<4), /* Constant stroke ширина, serifed or sans-serifed. */
                                     /* Pica, Elite, Courier, etc. */
     FF_SCRIPT =           (4<<4), /* Cursive, etc. */
     FF_DECORATIVE =       (5<<4), /* Old English, etc. */
@@ -2834,7 +2834,7 @@ enum : DWORD
     PATPAINT =            cast(DWORD)0x00FB0A09, /* dest = DPSnoo                   */
     PATINVERT =           cast(DWORD)0x005A0049, /* dest = pattern XOR dest         */
     DSTINVERT =           cast(DWORD)0x00550009, /* dest = (NOT dest)               */
-    BLACKNESS =           cast(DWORD)0x00000042, /* dest = BLACK                    */
+    BLACKNESS =           cast(DWORD)0x00000042, /* dest = ЧЁРНЫЙ                    */
     WHITENESS =           cast(DWORD)0x00FF0062, /* dest = WHITE                    */
 }
 
@@ -3096,14 +3096,14 @@ alias CHAR_INFO *PCHAR_INFO;
 
 enum
 {
-    FOREGROUND_BLUE =      0x0001, // text color contains blue.
-    FOREGROUND_GREEN =     0x0002, // text color contains green.
-    FOREGROUND_RED =       0x0004, // text color contains red.
-    FOREGROUND_INTENSITY = 0x0008, // text color is intensified.
-    BACKGROUND_BLUE =      0x0010, // background color contains blue.
-    BACKGROUND_GREEN =     0x0020, // background color contains green.
-    BACKGROUND_RED =       0x0040, // background color contains red.
-    BACKGROUND_INTENSITY = 0x0080, // background color is intensified.
+    FOREGROUND_BLUE =      0x0001, // text цвет contains blue.
+    FOREGROUND_GREEN =     0x0002, // text цвет contains green.
+    FOREGROUND_RED =       0x0004, // text цвет contains red.
+    FOREGROUND_INTENSITY = 0x0008, // text цвет is intensified.
+    BACKGROUND_BLUE =      0x0010, // background цвет contains blue.
+    BACKGROUND_GREEN =     0x0020, // background цвет contains green.
+    BACKGROUND_RED =       0x0040, // background цвет contains red.
+    BACKGROUND_INTENSITY = 0x0080, // background цвет is intensified.
 }
 
 struct CONSOLE_SCREEN_BUFFER_INFO {
@@ -3822,7 +3822,7 @@ struct hostent
 	}
   }
 }
-/************************************** os.win.com *********************************************************/
+/************************************** os.winn.com *********************************************************/
 
 //alias WCHAR OLECHAR;
 alias OLECHAR *LPOLESTR;
@@ -4065,7 +4065,7 @@ extern (System):
 
 }
 
-/****************************************** os.win.stat ************************************************/
+/****************************************** os.sys.Common.stat ************************************************/
 
 extern (C):
 
@@ -5641,7 +5641,7 @@ extern(Windows):
 	const LPCSTR IDI_INFORMATION = IDI_ASTERISK;
 	
 
-	//private import os.win.base.native: RT_STRING;// 
+	//private import os.winn.base.native: RT_STRING;// 
 
 	
 	enum: LONG

@@ -1,5 +1,5 @@
 ﻿import cidrus: cosl, sinl;
-import win,stdrus: пауза;
+import sys.Common,stdrus: пауза;
 import  math.IEEE, math.Elliptic, math.Bracket, math.Math,  math.Bessel, math.GammaFunction;
 import math.BigInt; 
 

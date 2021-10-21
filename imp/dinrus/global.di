@@ -1,5 +1,5 @@
 ﻿module global;
-private import sys.WinStructs, runtime, gc, cidrus, win;
+private import sys.WinStructs, runtime, gc, cidrus, sys.Common;
 private import cidrus;
 
 static Рантайм _рт; //Главный рантайм

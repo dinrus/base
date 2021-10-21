@@ -157,7 +157,7 @@ public class ОшибкаКонтекста : Ошибка
 
 /******************************************************
  * The КонтекстСтэка is building блок of the
- * СтэкНить system. It allows the user to swap the
+ * СтэкНить system. It допускается the user to swap the
  * стэк of the выполняется program.
  *
  * For most applications, there should be no need to use
@@ -493,7 +493,7 @@ public final class КонтекстСтэка
      * Throws an exception и жниs.  The exception
      * will propagate out of the пуск method, while the
      * контекст will remain жив и functioning.
-     * The контекст may be resumed after the exception имеется
+     * The контекст may be resumed после the exception имеется
      * been thrown.
      *
      * Параметры:
@@ -610,7 +610,7 @@ public final class КонтекстСтэка
             h.дг = proc;
 
         return фм(
-                   "Контекст[sp:%8x,сн:%s,фн:%8x]",
+                   "Контекст[кп:%8x,сн:%s,фн:%8x]",
                    конткст.указатель_на_стэк,
                    названия_состояний[cast(цел)состояние],
                    h.d.фнук);
@@ -1129,7 +1129,7 @@ push dword ptr FS:[8];
                 push ESI;
                 push EDI;
 
-                //Save old sp
+                //Save old кп
                 mov dword ptr old_stack_pointer[EAX], ESP;
 
                 //Set the new стэк pointer
@@ -1320,7 +1320,7 @@ else private version(SC_LIN_ASM)
             //Note bottom & верх are switched thanks to DMD's strange notation.
             //
             //Also, this is not necessarily thread safe, since a collection could
-            //occur between when we установи the стэк ranges и when we perform a
+            //occur between when we установи the стэк ranges и when we выполни a
             //контекст switch; however since we are gauranteed to still have our range
             //marked before we leave, this is acceptable, since the результат is
             //merely under-collection.
@@ -1375,7 +1375,7 @@ else private version(SC_LIN_ASM)
                 push ESI;
                 push EDI;
 
-                //Return to previous контекст's sp.
+                //Return to previous контекст's кп.
                 mov dword ptr указатель_на_стэк[EAX], ESP;
                 mov ESP, dword ptr old_stack_pointer[EAX];
 

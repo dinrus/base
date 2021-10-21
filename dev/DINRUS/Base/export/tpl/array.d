@@ -17,9 +17,9 @@ version( TangoDoc )
     typedef цел Чис;
     typedef цел Элем;
 
-    typedef бул function( Элем )       Pred1E;
+    typedef бул function( Элем )       Пред1Э;
     typedef бул function( Элем, Элем ) Пред2Э;
-    typedef т_мера function( т_мера )   Oper1A;
+    typedef т_мера function( т_мера )   Опер1А;
 }
 
 
@@ -700,7 +700,7 @@ version( TangoDoc )
      * Возвращает:
      *  Индекс первого совпадения или же буф.length, если совпадений не найдено.
      */
-    т_мера найдиЕсли( Элем[] буф, Pred1E пред );
+    т_мера найдиЕсли( Элем[] буф, Пред1Э пред );
 }
 else
 {
@@ -783,7 +783,7 @@ version( TangoDoc )
      * Возвращает:
      *  Индекс первого совпадения или же буф.length, если совпадений не найдено.
      */
-    т_мера найдрекЕсли( Элем[] буф, Pred1E пред );
+    т_мера найдрекЕсли( Элем[] буф, Пред1Э пред );
 }
 else
 {
@@ -1202,7 +1202,7 @@ version( TangoDoc )
      * Возвращает:
      *  The число of elements where пред returns да.
      */
-    т_мера счётЕсли( Элем[] буф, Pred1E пред = Pred1E.init );
+    т_мера счётЕсли( Элем[] буф, Пред1Э пред = Пред1Э.init );
 
 }
 else
@@ -1559,7 +1559,7 @@ version( TangoDoc )
      * Возвращает:
      *  The число of elements that do not satisfy пред.
      */
-    т_мера удалиЕсли( Элем[] буф, Pred1E пред );
+    т_мера удалиЕсли( Элем[] буф, Пред1Э пред );
 }
 else
 {
@@ -1767,7 +1767,7 @@ version( TangoDoc )
      *         range $(LB)0 .. N$(RP) for any supplied значение N.  This routine
      *         may be any callable тип.
      */
-    проц shuffle( Элем[] буф, Oper1A oper = Oper1A.init );
+    проц shuffle( Элем[] буф, Опер1А oper = Опер1А.init );
 
 }
 else
@@ -1845,7 +1845,7 @@ version( TangoDoc )
      * Возвращает:
      *  The число of elements that satisfy пред.
      */
-    т_мера partition( Элем[] буф, Pred1E пред );
+    т_мера partition( Элем[] буф, Пред1Э пред );
 }
 else
 {

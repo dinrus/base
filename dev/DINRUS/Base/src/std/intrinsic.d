@@ -151,12 +151,12 @@ uint bswap(uint v);
 ubyte  inp(uint port_address);
 
 /**
- * ditto
+ * описано ранее
  */
 ushort inpw(uint port_address);
 
 /**
- * ditto
+ * описано ранее
  */
 uint   inpl(uint port_address);
 
@@ -167,12 +167,12 @@ uint   inpl(uint port_address);
 ubyte  outp(uint port_address, ubyte value);
 
 /**
- * ditto
+ * описано ранее
  */
 ushort outpw(uint port_address, ushort value);
 
 /**
- * ditto
+ * описано ранее
  */
 uint   outpl(uint port_address, uint value);
 

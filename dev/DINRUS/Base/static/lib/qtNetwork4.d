@@ -598,9 +598,9 @@
 
 		//вяжи(функция_292)("_?atEnd@QSslSocket@@UBE_NXZ", биб);
 
-		//вяжи(функция_293)("_?attribute@QNetworkReply@@QBE?AVQVariant@@W4Attribute@QNetworkRequest@@@Z", биб);
+		//вяжи(функция_293)("_?атрибут@QNetworkReply@@QBE?AVQVariant@@W4Attribute@QNetworkRequest@@@Z", биб);
 
-		//вяжи(функция_294)("_?attribute@QNetworkRequest@@QBE?AVQVariant@@W4Attribute@1@ABV2@@Z", биб);
+		//вяжи(функция_294)("_?атрибут@QNetworkRequest@@QBE?AVQVariant@@W4Attribute@1@ABV2@@Z", биб);
 
 		//вяжи(функция_295)("_?attributes@QNetworkCacheMetaData@@QBE?AV?$QHash@W4Attribute@QNetworkRequest@@VQVariant@@@@XZ", биб);
 
@@ -2928,9 +2928,9 @@
 
 		//вяжи(функция_1457)("_?atEnd@QSslSocket@@UBE_NXZ", биб);
 
-		//вяжи(функция_1458)("_?attribute@QNetworkReply@@QBE?AVQVariant@@W4Attribute@QNetworkRequest@@@Z", биб);
+		//вяжи(функция_1458)("_?атрибут@QNetworkReply@@QBE?AVQVariant@@W4Attribute@QNetworkRequest@@@Z", биб);
 
-		//вяжи(функция_1459)("_?attribute@QNetworkRequest@@QBE?AVQVariant@@W4Attribute@1@ABV2@@Z", биб);
+		//вяжи(функция_1459)("_?атрибут@QNetworkRequest@@QBE?AVQVariant@@W4Attribute@1@ABV2@@Z", биб);
 
 		//вяжи(функция_1460)("_?attributes@QNetworkCacheMetaData@@QBE?AV?$QHash@W4Attribute@QNetworkRequest@@VQVariant@@@@XZ", биб);
 
@@ -3980,7 +3980,7 @@
 
 		//вяжи(функция_1983)(ket@@UBE_NXZ", биб);
 
-		//вяжи(функция_1984)("_?attribute@QNetworkReply@@QBE?AVQ биб);
+		//вяжи(функция_1984)("_?атрибут@QNetworkReply@@QBE?AVQ биб);
 
 		//вяжи(функция_1985)(e@QNetworkRequest@@QBE?AVQVariant@@W4Attribute@1@AB биб);
 

@@ -207,7 +207,7 @@ version(D_InlineAsm_X86){
     }
 } else {
     pragma(msg,"WARNING: no atomic operations on this architecture");
-    pragma(msg,"WARNING: this is *slow* you probably want to change this!");
+    pragma(msg,"WARNING: this is *медленно* you probably want to change this!");
     цел dummy;
     // acquires a блокируй... probably you will want to skip this
     synchronized проц барьерПамяти(bool ll, bool ls, bool sl,bool ss,bool device=false)(){

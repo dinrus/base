@@ -1115,7 +1115,7 @@ if(ш<=в)
     assert(тестРазбокс!(Object)(array[2]) !is пусто);
 	скажинс("объект прошёл проверку");
     
-    /* Convert the вБокс array back into arguments. */
+    /* Convert the вБокс array задний into arguments. */
     ИнфОТипе[] array_types;
     ук array_данные;
     

@@ -47,7 +47,7 @@ class ПайпНить : Провод
     т_мера записываемо();
 
     /**
-     * Close the пиши end of the conduit.  Writing to the conduit after it is
+     * Close the пиши end of the conduit.  Writing to the conduit после it is
      * закрыт will return Кф.
      *
      * The читай end is not закрыт until the buffer is empty.

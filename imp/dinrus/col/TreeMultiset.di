@@ -33,7 +33,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     цел opApply(цел delegate(ref З з) дг);
     this();
     private this(ref Реализ дубИз);
-    ДеревоМультинабор очисти();
+    ДеревоМультинабор зачисть();
     бцел длина();
 	alias длина length;
 
@@ -43,16 +43,16 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     курсор найди(З з);
     бул содержит(З з);
     ДеревоМультинабор удали(З з);
-    ДеревоМультинабор удали(З з, ref бул был_Удалён);
+    ДеревоМультинабор удали(З з, ref бул былУдалён);
     ДеревоМультинабор добавь(З з);
-    ДеревоМультинабор добавь(З з, ref бул был_добавлен);
+    ДеревоМультинабор добавь(З з, ref бул былДобавлен);
     ДеревоМультинабор добавь(Обходчик!(З) обх);
-    ДеревоМультинабор добавь(Обходчик!(З) обх, ref бцел чло_добавленных);
+    ДеревоМультинабор добавь(Обходчик!(З) обх, ref бцел члоДобавленных);
     ДеревоМультинабор добавь(З[] массив);
-    ДеревоМультинабор добавь(З[] массив, ref бцел чло_добавленных);
+    ДеревоМультинабор добавь(З[] массив, ref бцел члоДобавленных);
     бцел счёт(З з);
     ДеревоМультинабор удалиВсе(З з);
-    ДеревоМультинабор удалиВсе(З з, ref бцел чло_Удалённых);
+    ДеревоМультинабор удалиВсе(З з, ref бцел члоУдалённых);
     ДеревоМультинабор dup();
     З дай();
     З изыми();
@@ -62,7 +62,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
 
 /**
  * Implementation of the Мультинабор interface using Красный-Чёрный trees.  this
- * allows for O(lg(n)) insertion, removal, and lookup times.  It also creates
+ * допускается for O(lg(n)) insertion, removal, and lookup times.  It also creates
  * a sorted установи of elements.  З must be comparable.
  *
  * Adding an элемент does not invalidate any cursors.
@@ -93,7 +93,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
  *
  * бул добавь(З з) -> добавь the given значение to the tree according to the order
  * defined by the compare function.  If the элемент already exists in the
- * tree, the function should добавь обх after all equivalent elements.
+ * tree, the function should добавь обх после all equivalent elements.
  *
  * Узел начало -> must be a Узел that points to the very первый valid
  * элемент in the tree, or конец if no elements exist.
@@ -107,7 +107,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
  * Узел удали(Узел p) -> removes the given элемент from the tree,
  * returns the следщ valid элемент or конец if p was последн in the tree.
  *
- * проц очисти() -> removes all elements from the tree, sets счёт to 0.
+ * проц зачисть() -> removes all elements from the tree, sets счёт to 0.
  *
  * бцел считайВсе(З з) -> returns the number of elements with the given значение.
  *
@@ -274,9 +274,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     /**
      * Clear the collection of all elements
      */
-    ДеревоМультинабор очисти()
+    ДеревоМультинабор зачисть()
     {
-        _дерево.очисти();
+        _дерево.зачисть();
         return this;
     }
 
@@ -365,17 +365,17 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
      *
      * Runs in O(lg(n)) time.
      */
-    ДеревоМультинабор удали(З з, ref бул был_Удалён)
+    ДеревоМультинабор удали(З з, ref бул былУдалён)
     {
         курсор обх = найди(з);
         if(обх == конец)
         {
-            был_Удалён = false;
+            былУдалён = false;
         }
         else
         {
             удали(обх);
-            был_Удалён = true;
+            былУдалён = true;
         }
         return this;
     }
@@ -393,16 +393,16 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds a значение to the collection. Sets был_добавлен to true if the значение was
+     * Adds a значение to the collection. Sets былДобавлен to true if the значение was
      * добавленный.
      *
      * Returns this.
      *
      * Runs in O(lg(n)) time.
      */
-    ДеревоМультинабор добавь(З з, ref бул был_добавлен)
+    ДеревоМультинабор добавь(З з, ref бул былДобавлен)
     {
-        был_добавлен = _дерево.добавь(з);
+        былДобавлен = _дерево.добавь(з);
         return this;
     }
 
@@ -420,17 +420,17 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds all the values from the iterator to the collection. Sets чло_добавленных
+     * Adds all the values from the iterator to the collection. Sets члоДобавленных
      * to the number of values добавленный from the iterator.
      *
      * Runs in O(m lg(n)) time, where m is the number of elements in
      * the iterator.
      */
-    ДеревоМультинабор добавь(Обходчик!(З) обх, ref бцел чло_добавленных)
+    ДеревоМультинабор добавь(Обходчик!(З) обх, ref бцел члоДобавленных)
     {
         бцел исхдлина = длина;
         добавь(обх);
-        чло_добавленных = длина - исхдлина;
+        члоДобавленных = длина - исхдлина;
         return this;
     }
 
@@ -448,17 +448,17 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds all the values from массив to the collection.  Sets чло_добавленных to the
+     * Adds all the values from массив to the collection.  Sets члоДобавленных to the
      * number of elements добавленный from the массив.
      *
      * Runs in O(m lg(n)) time, where m is the number of elements in
      * массив.
      */
-    ДеревоМультинабор добавь(З[] массив, ref бцел чло_добавленных)
+    ДеревоМультинабор добавь(З[] массив, ref бцел члоДобавленных)
     {
         бцел исхдлина = длина;
         добавь(массив);
-        чло_добавленных = длина - исхдлина;
+        члоДобавленных = длина - исхдлина;
         return this;
     }
 
@@ -484,14 +484,14 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
     
     /**
-     * Removes all the elements that are equal to з.  Sets чло_Удалённых to the
+     * Removes all the elements that are equal to з.  Sets члоУдалённых to the
      * number of elements removed from the multiset.
      *
      * Runs in O(m lg(n)) time, where m is the number of elements that are з.
      */
-    ДеревоМультинабор удалиВсе(З з, ref бцел чло_Удалённых)
+    ДеревоМультинабор удалиВсе(З з, ref бцел члоУдалённых)
     {
-        чло_Удалённых = _дерево.удалиВсе(з);
+        члоУдалённых = _дерево.удалиВсе(з);
         return this;
     }
 

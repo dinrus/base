@@ -2,11 +2,31 @@
 
 version (Win32)
         {
-       // public import sys.win32.UserGdi;
-       // public import winapi;
-        public  import sys.WinConsts, sys.WinIfaces, sys.WinStructs, sys.WinFuncs;
-		//public import exception;
-		//pragma(lib,"DinrusTango.lib");
+/+
+public static
+{
+ук КОНСВВОД;
+ук КОНСВЫВОД;
+ук КОНСОШ;
+//бцел ИДПРОЦЕССА;
+//ук   УКНАПРОЦЕСС;
+//ук   УКНАНИТЬ;
+}
+
+static this()
+{
+//ИДПРОЦЕССА =  GetCurrentProcessId();
+//УКНАПРОЦЕСС = cast(ук) OpenProcess(0x000F0000|0x00100000|0x0FFF,false,ИДПРОЦЕССА);
+//УКНАНИТЬ  = GetCurrentThread();
+			КОНСВВОД = ДайСтдДескр(ПСтд.Ввод);
+			//КОНСВЫВОД = ДайСтдДескр(cast(ПСтд) 0xfffffff5);
+			КОНСВЫВОД = ДайСтдДескр(ПСтд.Вывод);
+			КОНСОШ = ДайСтдДескр(ПСтд.Ошибка);
+}
++/	   
+	  
+public  import sys.WinConsts, sys.WinIfaces, sys.WinStructs, sys.WinFuncs, sys.uuid;
+
         }
 /+
 version (linux)
@@ -35,13 +55,13 @@ version (solaris)
 
 /*******************************************************************************
 
-        Stuff for sysErrorMsg(), kindly provопрed by Regan Heath.
+        Stuff for sysErrorMsg().
 
 *******************************************************************************/
 
 version (Win32)
         {
-
+private import cidrus;
         }
 else
 version (Posix)
@@ -58,4 +78,18 @@ else
 enum {
 	GetFileInfoLevelStandard,
 	GetFileInfoLevelMax
+}
+
+extern(C)
+{
+	проц  перейдиНаТочкуКонсоли( цел aX, цел aY);
+	проц установиАтрыКонсоли(ПТекстКонсоли атр);
+	цел гдеИксКонсоли();
+	цел гдеИгрекКонсоли();
+	ПТекстКонсоли дайАтрыКонсоли();
+	проц сбросьЦветКонсоли();
+	фук консВход();
+	фук консВыход();
+	фук консОш();
+
 }

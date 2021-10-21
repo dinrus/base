@@ -113,7 +113,7 @@ alias СчётчикТиков   тип_счётчик;
 const цел   шРазрешение     = 800;
 const цел   вРазрешение     = 600;
 
-// number of bits per pixel used for display. 24 => true color
+// number of bits per pixel used for display. 24 => true цвет
 const цел   битНаПиксель    = 24;
 
 
@@ -342,7 +342,7 @@ void иницСДЛ() {
 пз;
 
     иницСДЛ();
-    scope(exit) закрСДЛ();      // when we exit, perform закрСДЛ
+    scope(exit) закрСДЛ();      // when we exit, выполни закрСДЛ
 
     главЦикл:
     while (true) {
@@ -897,7 +897,7 @@ try{
     assert(тестРазбокс!(Object)(array[2]) !is пусто);
 	скажинс("объект прошёл проверку");
     
-    /* Convert the вБокс array back into arguments. */
+    /* Convert the вБокс array задний into arguments. */
     ИнфОТипе[] array_types;
     ук array_данные;
     
@@ -1056,7 +1056,7 @@ foreach(вариант; варианты)
 	catch(Исключение и){и.сбрось();}
 }
 
-hash_t hashOf( ук buf, size_t len =2, hash_t seed =10 )
+hash_t хэшУ( ук buf, size_t len =2, hash_t seed =10 )
 {
     /*
      * This is Paul Hsieh's SuperFastHash algorithm, described here:
@@ -1199,19 +1199,19 @@ MurmurHash2 для новой Нити(&закройДиск) равен:  %s
 нс;нс;
 
 скажинс(фм("
-hashOf для нового Объекта h равен:         %s
-hashOf для ткст g равен:                   %s
-hashOf для новой Нити stdrus k равен:      %s
-hashOf для новой Нити(&откройДиск) равен:  %s
+хэшУ для нового Объекта h равен:         %s
+хэшУ для ткст g равен:                   %s
+хэшУ для новой Нити stdrus k равен:      %s
+хэшУ для новой Нити(&откройДиск) равен:  %s
 
-hashOf для нового Объекта h1 равен:        %s
-hashOf для ткст g1 равен:                  %s
-hashOf для новой Нити stdrus k1 равен:     %s
-hashOf для новой Нити(&закройДиск) равен:  %s
+хэшУ для нового Объекта h1 равен:        %s
+хэшУ для ткст g1 равен:                  %s
+хэшУ для новой Нити stdrus k1 равен:     %s
+хэшУ для новой Нити(&закройДиск) равен:  %s
 
 
 ",
- hashOf(cast(void*) h), hashOf(cast(void*) g), hashOf(cast(void*) k), hashOf(cast(void*) kt), hashOf(cast(void*) h1), hashOf(cast(void*) g1), hashOf(cast(void*) k1), hashOf(cast(void*) kt2)));
+ хэшУ(cast(void*) h), хэшУ(cast(void*) g), хэшУ(cast(void*) k), хэшУ(cast(void*) kt), хэшУ(cast(void*) h1), хэшУ(cast(void*) g1), хэшУ(cast(void*) k1), хэшУ(cast(void*) kt2)));
 нс;нс;
 инфо("Из этой функции была запущена новая нить, которая 
 обнаруживает и открывает все дисководы на компьютере!!!!!

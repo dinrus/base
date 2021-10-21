@@ -14,7 +14,7 @@ import mesh.Status;
  */
 enum АтрибутныеБиты : бцел
 {
-    Нет          = 0,  ///< Clear all attribute биты
+    Нет          = 0,  ///< Clear all атрибут биты
     Нормаль        = 1,  ///< Add normals to mesh item (vertices/faces)
     Цвет         = 2,  ///< Add colors to mesh item (vertices/faces)
     ПредшПолукрай  = 4,  ///< Add storage for previous halfedge (halfedges). The bit is установи by default in the ДефолтныеТрэты.

@@ -1,4 +1,4 @@
-﻿import win, math.linalg.Matrix, math.linalg.Vector,stdrus, math.linalg.color,
+﻿import sys.Common, math.linalg.Matrix, math.linalg.Vector,stdrus, math.linalg.color,
   col.ArrayList, col.ArrayMultiset, col.HashMap, col.HashMultiset, sys.WinConsts;
 
 alias stdrus.абс абс;
@@ -290,7 +290,7 @@ pragma(lib, "dinrus.lib");
     }
 	
 	
-import col.HashSet;
+import col.ХэшНабор;
 	
 	   проц хн()
     {
@@ -324,7 +324,7 @@ import col.LinkList;
 				скажинс("=== ПРОЙДЕН ===");
     }
 
-import col.TreeMap;
+import col.КартаДерево;
 
 	    проц дк()
     {

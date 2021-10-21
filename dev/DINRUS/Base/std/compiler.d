@@ -20,7 +20,7 @@ const
      * version_major.version_minor
      */
     uint version_major = __VERSION__ / 1000;
-    uint version_minor = __VERSION__ % 1000;	/// ditto
+    uint version_minor = __VERSION__ % 1000;	/// описано ранее
 
 
     /**

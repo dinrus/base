@@ -46,7 +46,7 @@
  *  SV  = $(TR $(TD $1) $(TD $2))
  *  SVH3 = $(TR $(TH $1) $(TH $2) $(TH $3))
  *  SV3  = $(TR $(TD $1) $(TD $2) $(TD $3))
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  PLUSMN = &plusmn;
  *  INFIN = &infin;
  *  PLUSMNINF = &plusmn;&infin;
@@ -320,7 +320,7 @@ debug(UnitTest)
 }
 
 /**
- * Calculates the следщ representable значение after x in the direction of y.
+ * Calculates the следщ representable значение после x in the direction of y.
  *
  * If y > x, the результат will be the следщ largest floating-точка значение;
  * if y < x, the результат will be the следщ smallest значение.
@@ -582,7 +582,7 @@ debug(UnitTest)
 	 * Calculate кос(y) + i син(y).
 	 *
 	 * On x86 CPUs, this is a very efficient operation;
-	 * almost twice as fast as calculating син(y) и кос(y)
+	 * almost twice as быстро as calculating син(y) и кос(y)
 	 * seperately, и is the preferred метод when Всё are требуется.
 	 */
 	креал экспи(реал y)
@@ -686,13 +686,13 @@ debug(UnitTest)
 		}
 	}
 
-/** ditto */
+/** описано ранее */
 бул идентичен_ли(вреал x, вреал y)
 {
     return идентичен_ли(x.im, y.im);
 }
 
-/** ditto */
+/** описано ранее */
 бул идентичен_ли(креал x, креал y)
 {
     return идентичен_ли(x.re, y.re) && идентичен_ли(x.im, y.im);
@@ -741,7 +741,7 @@ debug(UnitTest)
     }
 }
 
-/// ditto
+/// описано ранее
 
 цел субнорм_ли(дво d)
 {
@@ -760,7 +760,7 @@ debug(UnitTest)
     }
 }
 
-/// ditto
+/// описано ранее
 
 цел субнорм_ли(реал x)
 {
@@ -1466,7 +1466,7 @@ debug(UnitTest)
 
 
 /**
- * Calculate the следщ largest floating точка значение after x.
+ * Calculate the следщ largest floating точка значение после x.
  *
  * Return the least число greater than x that is representable as a реал;
  * thus, it gives the следщ точка on the IEEE число строка.
@@ -1575,7 +1575,7 @@ export реал следщВыше(реал x)
     }
 }
 
-/** ditto */
+/** описано ранее */
 export дво следщДвоВыше(дво x)
 {
     бдол *ps = cast(бдол *)&x;
@@ -1602,7 +1602,7 @@ export дво следщДвоВыше(дво x)
     return x;
 }
 
-/** ditto */
+/** описано ранее */
 export плав следщПлавВыше(плав x)
 {
     бцел *ps = cast(бцел *)&x;
@@ -1764,13 +1764,13 @@ export реал следщНиже(реал x)
     return -следщВыше(-x);
 }
 
-/** ditto */
+/** описано ранее */
 export дво следщДвоНиже(дво x)
 {
     return -следщДвоВыше(-x);
 }
 
-/** ditto */
+/** описано ранее */
 export плав следщПлавНиже(плав x)
 {
     return -следщПлавВыше(-x);
@@ -1800,7 +1800,7 @@ debug(UnitTest)
  *  )
  *
  * Примечания:
- * This is a very fast operation, suitable for use in скорость-critical код.
+ * This is a very быстро operation, suitable for use in скорость-critical код.
  */
 цел отнравх(X)(X x, X y)
 {
@@ -1817,13 +1817,13 @@ debug(UnitTest)
     else static if (X.mant_dig==64 || X.mant_dig==113
                     || X.mant_dig==53 || X.mant_dig == 24)
     {
-        if (x == y) return X.mant_dig; // ensure diff!=0, cope with INF.
+        if (x == y) return X.mant_dig; // ensure рознь!=0, cope with INF.
 
-        X diff = фабс(x - y);
+        X рознь = фабс(x - y);
 
         бкрат *pa = cast(бкрат *)(&x);
         бкрат *pb = cast(бкрат *)(&y);
-        бкрат *pd = cast(бкрат *)(&diff);
+        бкрат *pd = cast(бкрат *)(&рознь);
 
         alias плавТрэтсИ3Е!(X) F;
 
@@ -1862,16 +1862,16 @@ debug(UnitTest)
         {
             // Difference is denormal
             // For denormals, we need в_ добавь the число of zeros that
-            // lie at the старт of diff's significand.
+            // lie at the старт of рознь's significand.
             // We do this by multИПlying by 2^реал.mant_dig
-            diff *= F.РЕЦИП_ЭПСИЛОН;
+            рознь *= F.РЕЦИП_ЭПСИЛОН;
             return bitsdiff + X.mant_dig - pd[F.БКРАТ_ПОЗ_ЭКСП];
         }
 
         if (bitsdiff > 0)
             return bitsdiff + 1; // добавь the 1 we subtracted before
 
-        // Avoопр out-by-1 ошибки when factor is almost 2.
+        // Avoопр out-by-1 ошибки when фактор is almost 2.
         static if (X.mant_dig==64 || X.mant_dig==113)   // real80 or квадрупл
         {
             return (bitsdiff == 0) ? (pa[F.БКРАТ_ПОЗ_ЭКСП] == pb[F.БКРАТ_ПОЗ_ЭКСП]) : 0;
@@ -1948,7 +1948,7 @@ debug(UnitTest)
  * involving a 'binary chop'.
  *
  * Special cases:
- * If x и y are внутри a factor of 2, (ie, отнравх(x, y) > 0), the return значение
+ * If x и y are внутри a фактор of 2, (ie, отнравх(x, y) > 0), the return значение
  * is the arithmetic mean (x + y) / 2.
  * If x и y are even powers of 2, the return значение is the geometric mean,
  *   и3еСреднее(x, y) = квкор(x * y).
@@ -1968,7 +1968,7 @@ body
     if (!((x>=0 && y>=0) || (x<=0 && y<=0))) return 0.0;
 
     // The implementation is simple: cast x и y в_ целыйs,
-    // average them (avoопрing перебор), и cast the результат back в_ a floating-точка число.
+    // average them (avoопрing перебор), и cast the результат задний в_ a floating-точка число.
 
     alias плавТрэтсИ3Е!(реал) F;
     T u;
@@ -1991,7 +1991,7 @@ body
             ++e;
             m &= 0x7FFF_FFFF_FFFF_FFFFL;
         }
-        // Сейчас do a multi-байт прав shift
+        // Сейчас do a multi-байт право shift
         бцел c = e & 1; // перенос
         e >>= 1;
         m >>>= 1;
@@ -2006,12 +2006,12 @@ body
         бдол *ul = cast(бдол *)&u;
         бдол *xl = cast(бдол *)&x;
         бдол *yl = cast(бдол *)&y;
-        // Multi-байт добавь, then multi-байт прав shift.
+        // Multi-байт добавь, then multi-байт право shift.
         бдол mh = ((xl[МАНТИССА_МСБ] & 0x7FFF_FFFF_FFFF_FFFFL)
                        + (yl[МАНТИССА_МСБ] & 0x7FFF_FFFF_FFFF_FFFFL));
         // Discard the lowest bit (в_ avoопр перебор)
         бдол ml = (xl[МАНТИССА_ЛСБ]>>>1) + (yl[МАНТИССА_ЛСБ]>>>1);
-        // добавь the lowest bit back in, if necessary.
+        // добавь the lowest bit задний in, if necessary.
         if (xl[МАНТИССА_ЛСБ] & yl[МАНТИССА_ЛСБ] & 1)
         {
             ++ml;

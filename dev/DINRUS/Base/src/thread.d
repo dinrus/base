@@ -1039,7 +1039,7 @@ export extern(D) class Нить
                 --см_кдлин;
             }
             // NOTE: Don't null out c.следщ or c.предщ because opApply currently
-            //       follows c.следщ after removing a node.  This could be easily
+            //       follows c.следщ после removing a node.  This could be easily
             //       addressed by simply returning the следщ node from this function,
             //       however, a context should never be re-added to the list anyway
             //       and having следщ and предщ be non-null is a good way to
@@ -1110,7 +1110,7 @@ export extern(D) class Нить
                 --см_ндлин;
             }
             // NOTE: Don't null out t.следщ or t.предщ because opApply currently
-            //       follows t.следщ after removing a node.  This could be easily
+            //       follows t.следщ после removing a node.  This could be easily
             //       addressed by simply returning the следщ node from this function,
             //       however, a thread should never be re-added to the list anyway
             //       and having следщ and предщ be non-null is a good way to
@@ -1221,7 +1221,7 @@ export extern(D) class Нить
     static ~this()
     {
         // NOTE: The functionality related to garbage collection must be minimally
-        //       operable after this dtor completes.  Therefore, only minimal
+        //       operable после this dtor completes.  Therefore, only minimal
         //       cleanup may occur.
 
         for( Нить t = Нить.см_ннач; t; t = t.следщ )
@@ -1593,7 +1593,7 @@ export extern(D) class Нить
         }
 
         // NOTE: Synchronizing on Нить.slock is not needed because this
-        //       function may only be called after all other threads have
+        //       function may only be called после all other threads have
         //       been suspended from внутри the same блокируй.
         for( Нить.Контекст* c = Нить.см_кнач; c; c = c.следщ )
         {
@@ -2020,7 +2020,7 @@ export extern (D)   class ГруппаНитей
                     // store oldp again with more accurate address
                     mov EAX, dword ptr 8[EBP];
                     mov [EAX], ESP;
-                    // load newp to begin context switch
+                    // load newp to начало context switch
                     mov ESP, dword ptr 12[EBP];
 
                     // load saved состояние from new stack
@@ -2055,7 +2055,7 @@ export extern (D)   class ГруппаНитей
                     // store oldp again with more accurate address
                     mov EAX, dword ptr 8[EBP];
                     mov [EAX], ESP;
-                    // load newp to begin context switch
+                    // load newp to начало context switch
                     mov ESP, dword ptr 12[EBP];
 
                     // load saved состояние from new stack
@@ -2097,7 +2097,7 @@ export extern (D)   class ГруппаНитей
 
                     // store oldp again with more accurate address
                     mov [RDI], RSP;
-                    // load newp to begin context switch
+                    // load newp to начало context switch
                     mov RSP, RSI;
 
                     // load saved состояние from new stack
@@ -3056,7 +3056,7 @@ export extern (D) class Фибра
 
             // NOTE: The order of operations here is very important.  The current
             //       stack top must be stored before м_блок is set, and суньКонтекст
-            //       must not be called until after м_блок is set.  This process
+            //       must not be called until после м_блок is set.  This process
             //       is intended to prevent a race condition with the заморозь
             //       mechanism used for garbage collection.  If it is not followed,
             //       a badly timed collection could cause the GC to scan from the
@@ -3090,7 +3090,7 @@ export extern (D) class Фибра
 
             // NOTE: The order of operations here is very important.  The current
             //       stack top must be stored before м_блок is set, and суньКонтекст
-            //       must not be called until after м_блок is set.  This process
+            //       must not be called until после м_блок is set.  This process
             //       is intended to prevent a race condition with the заморозь
             //       mechanism used for garbage collection.  If it is not followed,
             //       a badly timed collection could cause the GC to scan from the

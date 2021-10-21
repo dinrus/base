@@ -2041,7 +2041,7 @@ lconv* localeconv();
     float   fmodf(float x, float y);
     real    fmodl(real x, real y);
 
-    double  remainder(double x, double y);
+    double  остаток(double x, double y);
     float   remainderf(float x, float y);
     real    remainderl(real x, real y);
 
@@ -2186,8 +2186,8 @@ version( Windows )
 {
     struct tm
     {
-        int     tm_sec;     // seconds after the minute - [0, 60]
-        int     tm_min;     // minutes after the hour - [0, 59]
+        int     tm_sec;     // seconds после the minute - [0, 60]
+        int     tm_min;     // minutes после the hour - [0, 59]
         int     tm_hour;    // hours since midnight - [0, 23]
         int     tm_mday;    // day of the month - [1, 31]
         int     tm_mon;     // months since January - [0, 11]
@@ -2201,8 +2201,8 @@ else
 {
     struct tm
     {
-        int     tm_sec;     // seconds after the minute [0-60]
-        int     tm_min;     // minutes after the hour [0-59]
+        int     tm_sec;     // seconds после the minute [0-60]
+        int     tm_min;     // minutes после the hour [0-59]
         int     tm_hour;    // hours since midnight [0-23]
         int     tm_mday;    // day of the month [1-31]
         int     tm_mon;     // months since January [0-11]

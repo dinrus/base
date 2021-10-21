@@ -427,7 +427,7 @@ template СФункцСвязки() {
 							
 							// 3rd param is нет because there is no need to .dup static arrays just for the function below this foreach
 							// the storage exists in the whole копируйАрги function
-							// динАрги[i] is used instead of dummy_ so that цикл-local data isn't referenced in any dynamic arrays after the цикл
+							// динАрги[i] is used instead of dummy_ so that цикл-local data isn't referenced in any dynamic arrays после the цикл
 							_присвой!(typeof(funcParams[i]), typeof(dummy_), нет)(funcParams[i], динАрги[i]);
 						}
 					}
@@ -464,7 +464,7 @@ template СФункцСвязки() {
 				const бул dupStaticArrays = нет;		// because the storage exists in связанныеАрги
 			}
 
-			// the number of bound-function parameters this argument will cover after кортеж expansion
+			// the number of bound-function parameters this argument will cover после кортеж expansion
 			const цел argLen = дайДлинуАрга!(funcArgs.тип[fargI], typeof(*srcItem));
 
 			static if (типКортеж_ли!(typeof(*srcItem)) && !типКортеж_ли!(funcArgs.тип[fargI])) {
@@ -500,7 +500,7 @@ template СФункцСвязки() {
 			копируйАрги!()(funcArgs, динАрги);
 			
 			// if the function expects any parameters passed by reference, we'll have to use the примениУк template
-			// and convert pointers back to references by hand
+			// and convert pointers задний to references by hand
 			static if (!is(typeof(АлиасФ) == ПустойСлот) && Индекс_у!(PassByRef, ParamPassingMethods.тип) != -1) {
 				
 				// function parameter тип pointers (цел, float*, inout сим) -> (цел*, float*, сим*)
@@ -587,7 +587,7 @@ version (BindUseStruct) {
 
 /**
 	привяжи() can curry or "привяжи" arguments of a function, producing a different function which requires less parameters,
-	or a different order of parameters. It also allows function composition.
+	or a different order of parameters. It also допускается function composition.
 	
 	The syntax of a привяжи() вызови is:
 	
@@ -736,7 +736,7 @@ template типыДинАргов(цел i, ПарамыФункц, Связан
 	// SkipType - the тип in СвязанныеАрги that we're just processing
 	template prependType(T, SkipType) {
 		static if (типКортеж_ли!(SkipType) && !типКортеж_ли!(ПарамыФункц.тип[0])) {
-			// perform кортеж decomposition
+			// выполни кортеж decomposition
 			// e.g. if a function being bound is accepting (цел, цел) and the current тип is a Кортеж!(цел, цел),
 			// then skip just one кортеж in the bound args and the length of the кортеж in func args
 			// - skips two ints and one кортеж in the example

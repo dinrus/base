@@ -143,7 +143,7 @@ char[] digestToString(ubyte[16] digest)
 struct MD5_CTX
 {
     uint state[4] =                                   /* state (ABCD) */
-    /* magic initialization constants */
+    /* magic initialization константы */
     [0x67452301,0xefcdab89,0x98badcfe,0x10325476];
 
     ulong count;	/* number of bits, modulo 2^64 */

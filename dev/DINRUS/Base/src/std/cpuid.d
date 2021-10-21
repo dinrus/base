@@ -185,7 +185,7 @@ version(D_InlineAsm_X86)
             return s[i .. s.length];
         }
 
-        char[] stripr(char[] s) /// ditto
+        char[] stripr(char[] s) /// описано ранее
         {
 		
 			//debug(НА_КОНСОЛЬ) эхо("%s \n", s);
@@ -200,7 +200,7 @@ version(D_InlineAsm_X86)
             return s[0 .. i];
         }
 
-        char[] strip(char[] s) /// ditto
+        char[] strip(char[] s) /// описано ранее
         {
 		char[] res = stripr(stripl(s));
 			//debug(НА_КОНСОЛЬ) эхо("%s \n", res);

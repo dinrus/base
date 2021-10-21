@@ -39,13 +39,13 @@ extern(C):
 {
  /*  цел x, y, sx, sy, *sax, *say, *csax, *csay, csx, csy, ex, ey, t1, t2, sstep;
    tColorRGBA *c00, *c01, *c10, *c11;
-   tColorRGBA *sp, *csp, *dp;*/
+   tColorRGBA *кп, *csp, *dp;*/
 
    цел x, y, sx, sy;
    цел csx, csy, ex, ey, t1, t2, sstep;
    цел * sax, say, csax, csay;
    tColorRGBA * c00, c01, c10, c11;
-   tColorRGBA * sp, csp, dp;
+   tColorRGBA * кп, csp, dp;
 
    цел sgap, dgap, orderRGBA;
    
@@ -95,7 +95,7 @@ extern(C):
       }
    
    /* Pointer setup */
-   sp = csp = cast(tColorRGBA *) src.pixels;
+   кп = csp = cast(tColorRGBA *) src.pixels;
    dp = cast(tColorRGBA *) приёмник.pixels;
    sgap = src.pitch - src.w * 4;
    dgap = приёмник.pitch - приёмник.w * 4;
@@ -111,7 +111,7 @@ extern(C):
          csay = say;
          for (y = 0; y < приёмник.h; y++)
       {
-      /* Setup color source pointers */
+      /* Setup цвет source pointers */
       c00 = csp;
       c01 = csp;
       c01++;
@@ -163,15 +163,15 @@ extern(C):
          csay = say;
          for (y = 0; y < приёмник.h; y++)
       {
-      sp = csp;
+      кп = csp;
       csax = sax;
       for (x = 0; x < приёмник.w; x++)
          {
             /* Draw */
-            *dp = *sp;
+            *dp = *кп;
             /* Advance source pointers */
             csax++;
-            sp += (*csax >> 16);
+            кп += (*csax >> 16);
             /* Advance приёмник pointer */
             dp++;
          }
@@ -202,12 +202,12 @@ Zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
 цел зумПоверхностиВ (SDL_Surface * src, SDL_Surface * приёмник)
    {
    /*Uint32 x, y, sx, sy, *sax, *say, *csax, *csay, csx, csy;
-   Uint8 *sp, *dp, *csp;*/
+   Uint8 *кп, *dp, *csp;*/
 
    Uint32 x, y, sx, sy;
    Uint32 *sax, say, csax, csay;
    Uint32 csx, csy;
-   Uint8 *sp, dp, csp;
+   Uint8 *кп, dp, csp;
 
    цел dgap;
    
@@ -265,7 +265,7 @@ Zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
       }
    
    /* Pointer setup */
-   sp = csp = cast(Uint8 *) src.pixels;
+   кп = csp = cast(Uint8 *) src.pixels;
    dp = cast(Uint8 *) приёмник.pixels;
    dgap = приёмник.pitch - приёмник.w;
    
@@ -274,13 +274,13 @@ Zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
    for (y = 0; y < приёмник.h; y++)
       {
          csax = sax;
-         sp = csp;
+         кп = csp;
          for (x = 0; x < приёмник.w; x++)
       {
       /* Draw */
-      *dp = *sp;
+      *dp = *кп;
       /* Advance source pointers */
-      sp += (*csax);
+      кп += (*csax);
       csax++;
       /* Advance приёмник pointer */
       dp++;
@@ -312,8 +312,8 @@ void трансформПоверхностиКЗСА (SDL_Surface * src, SDL_Su
 {
    цел x, y, t1, t2, dx, dy, xd, yd, sdx, sdy, ax, ay, ex, ey, sw, sh;
    tColorRGBA c00, c01, c10, c11;
-   //tColorRGBA *pc, *sp;
-   tColorRGBA *pc, sp;
+   //tColorRGBA *pc, *кп;
+   tColorRGBA *pc, кп;
    цел gap, orderRGBA;
    
    /* Variable setup */
@@ -343,100 +343,100 @@ void трансформПоверхностиКЗСА (SDL_Surface * src, SDL_Su
          {
          if ((dx >= 0) && (dy >= 0) && (dx < sw) && (dy < sh))
             {
-               sp =
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
-               sp += dx;
-               c00 = *sp;
-               sp += 1;
-               c01 = *sp;
-               sp = cast(tColorRGBA *) (cast(Uint8 *) sp + src.pitch);
-               sp -= 1;
-               c10 = *sp;
-               sp += 1;
-               c11 = *sp;
+               кп += dx;
+               c00 = *кп;
+               кп += 1;
+               c01 = *кп;
+               кп = cast(tColorRGBA *) (cast(Uint8 *) кп + src.pitch);
+               кп -= 1;
+               c10 = *кп;
+               кп += 1;
+               c11 = *кп;
             }
          else if ((dx == sw) && (dy == sh))
             {
-               sp =
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
-               sp += dx;
-               c00 = *sp;
+               кп += dx;
+               c00 = *кп;
                c01 = *pc;
                c10 = *pc;
                c11 = *pc;
             }
          else if ((dx == -1) && (dy == -1))
             {
-               sp = cast(tColorRGBA *) (src.pixels);
+               кп = cast(tColorRGBA *) (src.pixels);
                c00 = *pc;
                c01 = *pc;
                c10 = *pc;
-               c11 = *sp;
+               c11 = *кп;
             }
          else if ((dx == -1) && (dy == sh))
             {
-               sp = cast(tColorRGBA *) (src.pixels);
-               sp =
+               кп = cast(tColorRGBA *) (src.pixels);
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
                c00 = *pc;
-               c01 = *sp;
+               c01 = *кп;
                c10 = *pc;
                c11 = *pc;
             }
          else if ((dx == sw) && (dy == -1))
             {
-               sp = cast(tColorRGBA *) (src.pixels);
-               sp += dx;
+               кп = cast(tColorRGBA *) (src.pixels);
+               кп += dx;
                c00 = *pc;
                c01 = *pc;
-               c10 = *sp;
+               c10 = *кп;
                c11 = *pc;
             }
          else if (dx == -1)
             {
-               sp =
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
                c00 = *pc;
-               c01 = *sp;
+               c01 = *кп;
                c10 = *pc;
-               sp = cast(tColorRGBA *) (cast(Uint8 *) sp + src.pitch);
-               c11 = *sp;
+               кп = cast(tColorRGBA *) (cast(Uint8 *) кп + src.pitch);
+               c11 = *кп;
             }
          else if (dy == -1)
             {
-               sp = cast(tColorRGBA *) (src.pixels);
-               sp += dx;
+               кп = cast(tColorRGBA *) (src.pixels);
+               кп += dx;
                c00 = *pc;
                c01 = *pc;
-               c10 = *sp;
-               sp += 1;
-               c11 = *sp;
+               c10 = *кп;
+               кп += 1;
+               c11 = *кп;
             }
          else if (dx == sw)
             {
-               sp =
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
-               sp += dx;
-               c00 = *sp;
+               кп += dx;
+               c00 = *кп;
                c01 = *pc;
-               sp = cast(tColorRGBA *) (cast(Uint8 *) sp + src.pitch);
-               c10 = *sp;
+               кп = cast(tColorRGBA *) (cast(Uint8 *) кп + src.pitch);
+               c10 = *кп;
                c11 = *pc;
             }
          else if (dy == sh)
             {
-               sp =
+               кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels +
                   src.pitch * dy);
-               sp += dx;
-               c00 = *sp;
-               sp += 1;
-               c01 = *sp;
+               кп += dx;
+               c00 = *кп;
+               кп += 1;
+               c01 = *кп;
                c10 = *pc;
                c11 = *pc;
             }
@@ -477,10 +477,10 @@ void трансформПоверхностиКЗСА (SDL_Surface * src, SDL_Su
             dy = cast(крат) (sdy >> 16);
             if ((dx >= 0) && (dy >= 0) && (dx < src.w) && (dy < src.h))
          {
-         sp =
+         кп =
             cast(tColorRGBA *) (cast(Uint8 *) src.pixels + src.pitch * dy);
-         sp += dx;
-         *pc = *sp;
+         кп += dx;
+         *pc = *кп;
          }
             sdx += icos;
             sdy += isin;
@@ -503,8 +503,8 @@ Rotates и zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
          цел isin, цел icos)
    {
    цел x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw, sh;
-   //tColorY *pc, *sp;
-   tColorY *pc, sp;
+   //tColorY *pc, *кп;
+   tColorY *pc, кп;
    цел gap;
    
    /* Variable setup */
@@ -531,9 +531,9 @@ Rotates и zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
       dy = cast(крат) (sdy >> 16);
       if ((dx >= 0) && (dy >= 0) && (dx < src.w) && (dy < src.h))
          {
-            sp = cast(tColorY *) (src.pixels);
-            sp += (src.pitch * dy + dx);
-            *pc = *sp;
+            кп = cast(tColorY *) (src.pixels);
+            кп += (src.pitch * dy + dx);
+            *pc = *кп;
          }
       sdx += icos;
       sdy += isin;
@@ -548,7 +548,7 @@ Rotates и zoomes 8bit palette/Y 'src' surface to 'приёмник' surface.
 ротозумПоверхности()
 
 Rotates и zoomes a 32bit or 8bit 'src' surface to newly created 'приёмник' surface.
-'angle' is the rotation in degrees. 'zoom' a scaling factor. If 'smooth' is 1
+'angle' is the rotation in degrees. 'zoom' a scaling фактор. If 'smooth' is 1
 then the приёмник 32bit surface is anti-есть_алиас. If the surface is not 8bit
 or 32bit RGBA/ABGR it will be converted into a 32bit RGBA format on the fly.
 
@@ -589,7 +589,7 @@ SDL_Surface *ротозумПоверхности (SDL_Surface * src, double ang
          is32bit = 1;
       }
    
-   /* Sanity проверь zoom factor */
+   /* Sanity проверь zoom фактор */
    if (zoom < VALUE_LIMIT)
       {
          zoom = VALUE_LIMIT;
@@ -612,7 +612,7 @@ SDL_Surface *ротозумПоверхности (SDL_Surface * src, double ang
          sanglezoominv *= zoominv;
          canglezoominv *= zoominv;
    
-         /* Determine приёмник width и height by rotating a centered source box */
+         /* Determine приёмник ширина и height by rotating a centered source box */
          x = rz_src.w / 2;
          y = rz_src.h / 2;
          cx = canglezoom * x;
@@ -768,7 +768,7 @@ SDL_Surface *ротозумПоверхности (SDL_Surface * src, double ang
 зумПоверхности()
 
 Zoomes a 32bit or 8bit 'src' surface to newly created 'приёмник' surface.
-'zoomx' и 'zoomy' are scaling factors for width и height. If 'smooth' is 1
+'zoomx' и 'zoomy' are scaling factors for ширина и height. If 'smooth' is 1
 then the приёмник 32bit surface is anti-есть_алиас. If the surface is not 8bit
 or 32bit RGBA/ABGR it will be converted into a 32bit RGBA format on the fly.
 
@@ -983,7 +983,7 @@ if (сдлБлокируйПоверхность (экран) == 0)
          сдлОбновиПрямоуг (экран, 0, 0, 0, 0);
       }
    
-   /* Pause for a sec */
+   /* Pause for a сек */
    сдлЗадержка (1000);
 }
 
@@ -1025,6 +1025,6 @@ if (сдлБлокируйПоверхность (экран) == 0)
          сдлОбновиПрямоуг (экран, 0, 0, 0, 0);
       }
    
-   /* Pause for a sec */
+   /* Pause for a сек */
    сдлЗадержка (1000);
 }

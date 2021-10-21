@@ -66,15 +66,15 @@ version( Windows )//errno
     ВВФБФ   = 0,
     ВВЛБФ   = 0x40,
 	ВВНБФ   = 4,
-    ВВЧИТ  = 1,	  // non-standard
-    ВВЗАП   = 2,	  // non-standard
-    ВВМОЙБУФ = 8,	  // non-standard	
-    ВВКФ   = 0x10,  // non-standard
-    ВВОШ   = 0x20,  // non-standard
-    ВВСТРЖ  = 0x40,  // non-standard
-    ВВЧЗ    = 0x80,  // non-standard
-    ВВТРАН  = 0x100, // non-standard
-    ВВПРИЛ   = 0x200, // non-standard
+    ВВЧИТ  = 1,	  // нестандартно
+    ВВЗАП   = 2,	  // нестандартно
+    ВВМОЙБУФ = 8,	  // нестандартно	
+    ВВКФ   = 0x10,  // нестандартно
+    ВВОШ   = 0x20,  // нестандартно
+    ВВСТРЖ  = 0x40,  // нестандартно
+    ВВЧЗ    = 0x80,  // нестандартно
+    ВВТРАН  = 0x100, // нестандартно
+    ВВПРИЛ   = 0x200, // нестандартно
     }
 
  enum
@@ -84,7 +84,7 @@ version( Windows )//errno
         МАКС_ОТКРФ    = 20,
         МАКС_ИМЯФ = 256, // 255 plus NULL
         МАКС_ВРЕМ      = 32767,
-        СИС_ОТКР     = 20,	// non-standard
+        СИС_ОТКР     = 20,	// нестандартно
     }
 
 const шим ШКФ = 0xFFFF;
@@ -166,17 +166,17 @@ const ЛП_ВРЕМЯ           = 2;
 const ЛП_КОЛЛЕЙТ        = 3;
 const ЛП_МОНЕТА       = 4;
 const ЛП_ВСЕ            = 6;
-const ЛП_БУМАГА          = 7;  // non-standard
-const ЛП_ИМЯ           = 8;  // non-standard
-const ЛП_АДРЕС        = 9;  // non-standard
-const ЛП_ТЕЛЕФОН      = 10; // non-standard
-const ЛП_МЕРА    = 11; // non-standard
-const ЛП_ИДЕНТИФИКАЦИЯ = 12; // non-standard
+const ЛП_БУМАГА          = 7;  // нестандартно
+const ЛП_ИМЯ           = 8;  // нестандартно
+const ЛП_АДРЕС        = 9;  // нестандартно
+const ЛП_ТЕЛЕФОН      = 10; // нестандартно
+const ЛП_МЕРА    = 11; // нестандартно
+const ЛП_ИДЕНТИФИКАЦИЯ = 12; // нестандартно
 
 enum ФИскл
 {
     Повреждён      = 1,
-    Ненорм     = 2, // non-standard
+    Ненорм     = 2, // нестандартно
     ДелениеНаНоль    = 4,
     Переполнение     = 8,
     Недополнение    = 0x10,
@@ -945,7 +945,7 @@ size_t  wcstombs(сим* s, in wchar_t* pwcs, size_t n);
 
 version( DigitalMars )
 	{
-		void* alloca(size_t size); // non-standard
+		void* alloca(size_t size); // нестандартно
 		
 	}
 	
@@ -953,8 +953,8 @@ version( Windows )
 {
     struct tm
     {
-        int     tm_sec;     // seconds after the minute - [0, 60]
-        int     tm_min;     // minutes after the hour - [0, 59]
+        int     tm_sec;     // seconds после the minute - [0, 60]
+        int     tm_min;     // minutes после the hour - [0, 59]
         int     tm_hour;    // hours since midnight - [0, 23]
         int     tm_mday;    // day of the month - [1, 31]
         int     tm_mon;     // months since January - [0, 11]
@@ -968,8 +968,8 @@ else
 {
     struct tm
     {
-        int     tm_sec;     // seconds after the minute [0-60]
-        int     tm_min;     // minutes after the hour [0-59]
+        int     tm_sec;     // seconds после the minute [0-60]
+        int     tm_min;     // minutes после the hour [0-59]
         int     tm_hour;    // hours since midnight [0-23]
         int     tm_mday;    // day of the month [1-31]
         int     tm_mon;     // months since January [0-11]
@@ -999,10 +999,10 @@ tm*     gmtime(in time_t* timer);
 tm*     localtime(in time_t* timer);
 size_t  strftime(сим* s, size_t maxsize, in сим* format, in tm* timeptr);
 
-    void  tzset();  		 // non-standard
-    void  _tzset(); 		 // non-standard
-    сим* _strdate(сим* s); // non-standard
-    сим* _strtime(сим* s); // non-standard
+    void  tzset();  		 // нестандартно
+    void  _tzset(); 		 // нестандартно
+    сим* _strdate(сим* s); // нестандартно
+    сим* _strtime(сим* s); // нестандартно
 	
 alias int     mbstate_t;
 //alias wchar_t wint_t;
@@ -1066,10 +1066,10 @@ size_t wcsftime(wchar_t* s, size_t maxsize, in wchar_t* format, in tm* timeptr);
 
 version( Windows )
 {
-    wchar_t* _wasctime(tm*);      // non-standard
-    wchar_t* _wctime(time_t*);	  // non-standard
-    wchar_t* _wstrdate(wchar_t*); // non-standard
-    wchar_t* _wstrtime(wchar_t*); // non-standard
+    wchar_t* _wasctime(tm*);      // нестандартно
+    wchar_t* _wctime(time_t*);	  // нестандартно
+    wchar_t* _wstrdate(wchar_t*); // нестандартно
+    wchar_t* _wstrtime(wchar_t*); // нестандартно
 }
 
 wint_t btowc(int c);
@@ -1148,15 +1148,15 @@ export extern (C) фук дайСтдпрн(){return стдпрн;}
         _IOFBF   = 0,
         _IOLBF   = 0x40,
 		_IONBF   = 4,
-        _IOREAD  = 1,	  // non-standard
-        _IOWRT   = 2,	  // non-standard
-        _IOMYBUF = 8,	  // non-standard	
-        _IOEOF   = 0x10,  // non-standard
-        _IOERR   = 0x20,  // non-standard
-        _IOSTRG  = 0x40,  // non-standard
-        _IORW    = 0x80,  // non-standard
-        _IOTRAN  = 0x100, // non-standard
-        _IOAPP   = 0x200, // non-standard
+        _IOREAD  = 1,	  // нестандартно
+        _IOWRT   = 2,	  // нестандартно
+        _IOMYBUF = 8,	  // нестандартно	
+        _IOEOF   = 0x10,  // нестандартно
+        _IOERR   = 0x20,  // нестандартно
+        _IOSTRG  = 0x40,  // нестандартно
+        _IORW    = 0x80,  // нестандартно
+        _IOTRAN  = 0x100, // нестандартно
+        _IOAPP   = 0x200, // нестандартно
     }
 alias дол т_максцел;
 alias бдол т_максбцел;
@@ -1899,7 +1899,7 @@ version (Windows)
 
 version( DigitalMars )
 {
-    ук разместа(т_мера разм){return адаптВыхУкз(alloca(разм));} // non-standard
+    ук разместа(т_мера разм){return адаптВыхУкз(alloca(разм));} // нестандартно
 }
 
 цел ширфл(фук поток, цел реж){return fwide( cast(FILE*)поток, реж);}  
@@ -1982,10 +1982,10 @@ wchar_t* wmemset(wchar_t* s, wchar_t c, т_мера n);
 
 version( Windows )
 {
-    wchar_t* _wasctime(tm*);      // non-standard
-    wchar_t* _wctime(time_t*);	  // non-standard
-    wchar_t* _wstrdate(wchar_t*); // non-standard
-    wchar_t* _wstrtime(wchar_t*); // non-standard
+    wchar_t* _wasctime(tm*);      // нестандартно
+    wchar_t* _wctime(time_t*);	  // нестандартно
+    wchar_t* _wstrdate(wchar_t*); // нестандартно
+    wchar_t* _wstrtime(wchar_t*); // нестандартно
 }
 
 wцел_t btowc(цел c);

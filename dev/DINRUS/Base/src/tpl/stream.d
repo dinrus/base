@@ -286,7 +286,7 @@ export:
 	   бул верниЧтоЕсть() { return возврат.length > 1; }
 
 	  // reads and returns следщ симacter from the stream,
-	  // handles симacters pushed back by отдайс()
+	  // handles симacters pushed задний by отдайс()
 	  // returns сим.init on кф.
 	  сим берис() {
 		сим c;
@@ -309,7 +309,7 @@ export:
 	  }
 
 	  // reads and returns следщ Unicode симacter from the
-	  // stream, handles симacters pushed back by отдайс()
+	  // stream, handles симacters pushed задний by отдайс()
 	  // returns шим.init on кф.
 	  шим бериш() {
 		шим c;
@@ -331,7 +331,7 @@ export:
 		return c;
 	  }
 
-	  // pushes back симacter c целo the stream; only has
+	  // pushes задний симacter c целo the stream; only has
 	  // effect on further calls to берис() and бериш()
 	  сим отдайс(сим c) {
 		  if (c == c.init) return c;
@@ -342,7 +342,7 @@ export:
 		return c;
 	  }
 
-	  // pushes back Unicode симacter c целo the stream; only
+	  // pushes задний Unicode симacter c целo the stream; only
 	  // has effect on further calls to берис() and бериш()
 	  шим отдайш(шим c) {
 		if (c == c.init) return c;
@@ -394,14 +394,14 @@ export:
 		  suppress = true;
 		  i++;
 		}
-		// читай field width
-		цел width = 0;
+		// читай field ширина
+		цел ширина = 0;
 		while (цифра(fmt[i])) {
-		  width = width * 10 + (fmt[i] - '0');
+		  ширина = ширина * 10 + (fmt[i] - '0');
 		  i++;
 		}
-		if (width == 0)
-		  width = -1;
+		if (ширина == 0)
+		  ширина = -1;
 		// skip any modifier if present
 		if (fmt[i] == 'h' || fmt[i] == 'l' || fmt[i] == 'L')
 		  i++;
@@ -452,31 +452,31 @@ export:
 			{
 			case 'd':	// decimal
 			case 'u': {
-			  while (цифра(c) && width) {
+			  while (цифра(c) && ширина) {
 				n = n * 10 + (c - '0');
-				width--;
+				ширина--;
 				c = берис();
 				count++;
 			  }
 			} break;
 
 			case 'o': {	// octal
-			  while (цифра8(c) && width) {
+			  while (цифра8(c) && ширина) {
 				n = n * 010 + (c - '0');
-				width--;
+				ширина--;
 				c = берис();
 				count++;
 			  }
 			} break;
 
 			case 'x': {	// hexadecimal
-			  while (цифра16(c) && width) {
+			  while (цифра16(c) && ширина) {
 				n *= 0x10;
 				if (цифра(c))
 				  n += c - '0';
 				else
 				  n += 0xA + (c | 0x20) - 'a';
-				width--;
+				ширина--;
 				c = берис();
 				count++;
 			  }
@@ -537,46 +537,46 @@ export:
 			  count++;
 			}
 			реал n = 0;
-			while (цифра(c) && width) {
+			while (цифра(c) && ширина) {
 			  n = n * 10 + (c - '0');
-			  width--;
+			  ширина--;
 			  c = берис();
 			  count++;
 			}
-			if (width && c == '.') {
-			  width--;
+			if (ширина && c == '.') {
+			  ширина--;
 			  c = берис();
 			  count++;
 			  дво frac = 1;
-			  while (цифра(c) && width) {
+			  while (цифра(c) && ширина) {
 			n = n * 10 + (c - '0');
 			frac *= 10;
-			width--;
+			ширина--;
 			c = берис();
 			count++;
 			  }
 			  n /= frac;
 			}
-			if (width && (c == 'e' || c == 'E')) {
-			  width--;
+			if (ширина && (c == 'e' || c == 'E')) {
+			  ширина--;
 			  c = берис();
 			  count++;
-			  if (width) {
+			  if (ширина) {
 			бул expneg = false;
 			if (c == '-') {
 			  expneg = true;
-			  width--;
+			  ширина--;
 			  c = берис();
 			  count++;
 			} else if (c == '+') {
-			  width--;
+			  ширина--;
 			  c = берис();
 			  count++;
 			}
 			реал exp = 0;
-			while (цифра(c) && width) {
+			while (цифра(c) && ширина) {
 			  exp = exp * 10 + (c - '0');
-			  width--;
+			  ширина--;
 			  c = берис();
 			  count++;
 			}
@@ -647,14 +647,14 @@ export:
 
 		case 'c': {	// симacter(s)
 		  сим* s = ва_арг!(сим*)(args);
-		  if (width < 0)
-			width = 1;
+		  if (ширина < 0)
+			ширина = 1;
 		  else
 			while (пробел(c)) {
 			c = берис();
 			count++;
 		  }
-		  while (width-- && !кф()) {
+		  while (ширина-- && !кф()) {
 			*(s++) = c;
 			c = берис();
 			count++;

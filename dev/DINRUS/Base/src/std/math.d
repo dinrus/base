@@ -193,7 +193,6 @@ alias lrint орпкцел;
 alias round окр;
 alias lround докр;
 alias trunc отсекиц;
-alias remainder остаток;
 alias isnan нч_ли;
 alias isfinite конечн_ли;
 alias isnormal норм_ли;
@@ -219,25 +218,25 @@ real abs(real x)
     return fabs(x);
 }
 
-/** ditto */
+/** описано ранее */
 long abs(long x)
 {
     return x>=0 ? x : -x;
 }
 
-/** ditto */
+/** описано ранее */
 int abs(int x)
 {
     return x>=0 ? x : -x;
 }
 
-/** ditto */
+/** описано ранее */
 real abs(creal z)
 {
     return hypot(z.re, z.im);
 }
 
-/** ditto */
+/** описано ранее */
 real abs(ireal y)
 {
     return fabs(y.im);
@@ -268,7 +267,7 @@ creal conj(creal z)
     return z.re - z.im*1i;
 }
 
-/** ditto */
+/** описано ранее */
 ireal conj(ireal y)
 {
     return -y;
@@ -325,7 +324,7 @@ creal sin(creal z)
   return cs.im * cosh(z.im) + cs.re * sinh(z.im) * 1i;
 }
 
-/** ditto */
+/** описано ранее */
 ireal sin(ireal y)
 {
   return cosh(y.im)*1i;
@@ -348,7 +347,7 @@ creal cos(creal z)
   return cs.re * cosh(z.im) - cs.im * sinh(z.im) * 1i;
 }
 
-/** ditto */
+/** описано ранее */
 real cos(ireal y)
 {
   return cosh(y.im);
@@ -709,8 +708,8 @@ extern  (C) real rndtonl(real x);
  */
 
 float sqrt(float x);    /* intrinsic */
-double sqrt(double x);  /* intrinsic */ /// ditto
-real sqrt(real x);      /* intrinsic */ /// ditto
+double sqrt(double x);  /* intrinsic */ /// описано ранее
+real sqrt(real x);      /* intrinsic */ /// описано ранее
 
 creal sqrt(creal z)
 {
@@ -885,15 +884,15 @@ real exp2(real x)
          * 
          * exp2(x) = 2^(rndint(x))* 2^(y-rndint(x))
          * The trick for high performance is to avoid the fscale(28cycles on core2),
-         * frndint(19 cycles), leaving f2xm1(19 cycles) as the only slow instruction.
+         * frndint(19 cycles), leaving f2xm1(19 cycles) as the only медленно instruction.
          * 
          * We can do frndint by using fist. BUT we can't use it for huge numbers,
          * because it will set the Invalid Operation flag is overflow or NaN occurs.
          * Fortunately, whenever this happens the результат would be zero or infinity.
          * 
-         * We can perform fscale by directly poking into the exponent. BUT this doesn't
-         * work for the (very rare) cases where the результат is subnormal. So we fall back
-         * to the slow method in that case.
+         * We can выполни fscale by directly poking into the exponent. BUT this doesn't
+         * work for the (very rare) cases where the результат is subnormal. So we fall задний
+         * to the медленно method in that case.
          */
         naked;        
         fld real ptr [ESP+4] ; // x
@@ -928,7 +927,7 @@ L_normal:
 L_subnormal:
         // Result will be subnormal.
         // In this rare case, the simple poking method doesn't work. 
-        // The speed doesn't matter, so use the slow fscale method.
+        // The speed doesn't matter, so use the медленно fscale method.
         fild dword ptr [ESP];  // scratchint
         fld1;
         fscale;
@@ -968,7 +967,7 @@ L_was_nan:
  * Calculate cos(y) + i sin(y).
  *
  * On many CPUs (such as x86), this is a very efficient operation;
- * almost twice as fast as calculating sin(y) and cos(y) separately,
+ * almost twice as быстро as calculating sin(y) and cos(y) separately,
  * and is the preferred method when both are required.
  */
 creal expi(real y)
@@ -1300,7 +1299,7 @@ real log2(real x)
 real logb(real x)               { return cidrus.логбд(x); }
 
 /************************************
- * Calculates the remainder from the calculation x/y.
+ * Calculates the остаток from the calculation x/y.
  * Returns:
  * The value of x - i * y, where i is the number of times that y can
  * be completely subtracted from x. The результат has the same sign as x.
@@ -1652,19 +1651,19 @@ long lround(real x)
 real trunc(real x) { return truncl(x); }
 
 /****************************************************
- * Calculate the remainder x REM y, following IEC 60559.
+ * Calculate the остаток x REM y, following IEC 60559.
  *
  * REM is the value of x - y * n, where n is the integer nearest the exact
  * value of x / y.
  * If |n - x / y| == 0.5, n is even.
  * If the результат is zero, it has the same sign as x.
  * Otherwise, the sign of the результат is the sign of x / y.
- * Precision mode has no effect on the remainder functions.
+ * Precision mode has no effect on the остаток functions.
  *
  * remquo returns n in the parameter n.
  *
  * $(TABLE_SV
- *  $(TR $(TH x)               $(TH y)            $(TH remainder(x, y)) $(TH n)   $(TH invalid?))
+ *  $(TR $(TH x)               $(TH y)            $(TH остаток(x, y)) $(TH n)   $(TH invalid?))
  *  $(TR $(TD $(PLUSMN)0.0)    $(TD not 0.0)      $(TD $(PLUSMN)0.0)    $(TD 0.0) $(TD no))
  *  $(TR $(TD $(PLUSMNINF))    $(TD anything)     $(TD $(NAN))          $(TD ?)   $(TD yes))
  *  $(TR $(TD anything)        $(TD $(PLUSMN)0.0) $(TD $(NAN))          $(TD ?)   $(TD yes))
@@ -1673,9 +1672,9 @@ real trunc(real x) { return truncl(x); }
  *
  * Note: remquo not supported on windows
  */
-real remainder(real x, real y) { return cidrus.остатокд(x, y); }
+real остаток(real x, real y) { return cidrus.остатокд(x, y); }
 
-real remquo(real x, real y, out int n)  /// ditto
+real remquo(real x, real y, out int n)  /// описано ранее
 {
     version (Posix)
         return remquol(x, y, &n);
@@ -1805,7 +1804,7 @@ unittest
         assert(f != 0);
 }
 
-/// ditto
+/// описано ранее
 
 int issubnormal(double d)
 {
@@ -1822,7 +1821,7 @@ unittest
         assert(f != 0);
 }
 
-/// ditto
+/// описано ранее
 
 int issubnormal(real x)
 {
@@ -1976,7 +1975,7 @@ unittest
 real nan(char[] tagp) { return cidrus.нечислод(tagp); }
 
 /**
- * Calculate the next largest floating point value after x.
+ * Calculate the next largest floating point value после x.
  *
  * Return the least number greater than x that is representable as a real;
  * thus, it gives the next point on the IEEE number line.
@@ -2065,7 +2064,7 @@ real nextUp(real x)
     }
 }
 
-/** ditto */
+/** описано ранее */
 double nextUp(double x)
 {
     ulong *ps = cast(ulong *)&x;
@@ -2087,7 +2086,7 @@ double nextUp(double x)
     return x;
 }
 
-/** ditto */
+/** описано ранее */
 float nextUp(float x)
 {
     uint *ps = cast(uint *)&x;
@@ -2132,13 +2131,13 @@ real nextDown(real x)
     return -nextUp(-x);
 }
 
-/** ditto */
+/** описано ранее */
 double nextDown(double x)
 {
     return -nextUp(-x);
 }
 
-/** ditto */
+/** описано ранее */
 float nextDown(float x)
 {
     return -nextUp(-x);
@@ -2150,7 +2149,7 @@ unittest {
 
 
 /******************************************
- * Calculates the next representable value after x in the direction of y.
+ * Calculates the next representable value после x in the direction of y.
  *
  * If y > x, the результат will be the next largest floating-point value;
  * if y < x, the результат will be the next smallest value.
@@ -2176,7 +2175,7 @@ real nextafter(real x, real y)
     }
 }
 
-/// ditto
+/// описано ранее
 float nextafter(float x, float y)
 {
     version (Windows) {
@@ -2187,7 +2186,7 @@ float nextafter(float x, float y)
     }
 }
 
-/// ditto
+/// описано ранее
 double nextafter(double x, double y)
 {
     version (Windows) {
@@ -2282,7 +2281,7 @@ real pow(real x, uint n)
     return p;
 }
 
-/// ditto
+/// описано ранее
 
 real pow(real x, int n)
 {
@@ -2493,13 +2492,13 @@ int feqrel(X)(X x, X y)
      }
   } else static if (X.mant_dig==64 || X.mant_dig==113 || X.mant_dig==53) {
 
-    if (x == y) return X.mant_dig; // ensure diff!=0, cope with INF.
+    if (x == y) return X.mant_dig; // ensure рознь!=0, cope with INF.
 
-    X diff = fabs(x - y);
+    X рознь = fabs(x - y);
 
     ushort *pa = cast(ushort *)(&x);
     ushort *pb = cast(ushort *)(&y);
-    ushort *pd = cast(ushort *)(&diff);
+    ushort *pd = cast(ushort *)(&рознь);
 
     alias floatTraits!(X) F;
 
@@ -2525,16 +2524,16 @@ int feqrel(X)(X x, X y)
     if (pd[F.EXPPOS_SHORT] == 0)
     {   // Difference is denormal
         // For denormals, we need to add the number of zeros that
-        // lie at the start of diff's significand.
+        // lie at the start of рознь's significand.
         // We do this by multiplying by 2^real.mant_dig
-        diff *= F.POW2MANTDIG;
+        рознь *= F.POW2MANTDIG;
         return bitsdiff + X.mant_dig - pd[F.EXPPOS_SHORT];
     }
 
     if (bitsdiff > 0)
         return bitsdiff + 1; // add the 1 we subtracted before
 
-    // Avoid out-by-1 errors when factor is almost 2.
+    // Avoid out-by-1 errors when фактор is almost 2.
      static if (X.mant_dig==64 || X.mant_dig==113) { // real80 or quadruple
         return (bitsdiff == 0) ? (pa[F.EXPPOS_SHORT] == pb[F.EXPPOS_SHORT]) : 0;
      } else static if (X.mant_dig==53) { // double
@@ -2602,7 +2601,7 @@ package: // Not public yet
  * involving a 'binary chop'.
  *
  * Special cases:
- * If x and y are within a factor of 2, (ie, feqrel(x, y) > 0), the return value
+ * If x and y are within a фактор of 2, (ie, feqrel(x, y) > 0), the return value
  * is the arithmetic mean (x + y) / 2.
  * If x and y are even powers of 2, the return value is the geometric mean,
  *   и3еСреднее(x, y) = sqrt(x * y).
@@ -2620,7 +2619,7 @@ body {
     if (!((x>=0 && y>=0) || (x<=0 && y<=0))) return 0.0;
 
     // The implementation is simple: cast x and y to integers,
-    // average them (avoiding overflow), and cast the результат back to a floating-point number.
+    // average them (avoiding overflow), and cast the результат задний to a floating-point number.
 
     alias floatTraits!(real) F;
     T u;
@@ -2662,7 +2661,7 @@ body {
                   + (yl[MANTISSA_MSB] & 0x7FFF_FFFF_FFFF_FFFFL));
         // Discard the lowest bit (to avoid overflow)
         ulong ml = (xl[MANTISSA_LSB]>>>1) + (yl[MANTISSA_LSB]>>>1);
-        // add the lowest bit back in, if necessary.
+        // add the lowest bit задний in, if necessary.
         if (xl[MANTISSA_LSB] & yl[MANTISSA_LSB] & 1) {
             ++ml;
             if (ml==0) ++mh;

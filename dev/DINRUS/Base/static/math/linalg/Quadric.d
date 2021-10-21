@@ -189,7 +189,7 @@ public:
     }
 
 
-    /// multiply 4D вектор from прав: Q*знач
+    /// multiply 4D вектор from право: Q*знач
     _Vec4 opMul(_Vec4)(ref _Vec4 _v)
     {
         Скаляр x=_v[0], y=_v[1], z=_v[2], w=_v[3];

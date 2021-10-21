@@ -111,77 +111,77 @@ alias spread простели;
 	    offset += bytes.length;
 	}
 
-    void write(ubyte b)		/// ditto
+    void write(ubyte b)		/// описано ранее
 	{
 	    reserve(ubyte.sizeof);
 	    this.data[offset] = b;
 	    offset += ubyte.sizeof;
 	}
 
-    void write(byte b) { write(cast(ubyte)b); }		/// ditto
-    void write(char c) { write(cast(ubyte)c); }		/// ditto
+    void write(byte b) { write(cast(ubyte)b); }		/// описано ранее
+    void write(char c) { write(cast(ubyte)c); }		/// описано ранее
 
-    void write(ushort w)		/// ditto
+    void write(ushort w)		/// описано ранее
     {
 	reserve(ushort.sizeof);
 	*cast(ushort *)&data[offset] = w;
 	offset += ushort.sizeof;
     }
 
-    void write(short s) { write(cast(ushort)s); }		/// ditto
+    void write(short s) { write(cast(ushort)s); }		/// описано ранее
 
-    void write(wchar c)		/// ditto
+    void write(wchar c)		/// описано ранее
     {
 	reserve(wchar.sizeof);
 	*cast(wchar *)&data[offset] = c;
 	offset += wchar.sizeof;
     }
 
-    void write(uint w)		/// ditto
+    void write(uint w)		/// описано ранее
     {
 	reserve(uint.sizeof);
 	*cast(uint *)&data[offset] = w;
 	offset += uint.sizeof;
     }
 
-    void write(int i) { write(cast(uint)i); }		/// ditto
+    void write(int i) { write(cast(uint)i); }		/// описано ранее
 
-    void write(ulong l)		/// ditto
+    void write(ulong l)		/// описано ранее
     {
 	reserve(ulong.sizeof);
 	*cast(ulong *)&data[offset] = l;
 	offset += ulong.sizeof;
     }
 
-    void write(long l) { write(cast(ulong)l); }		/// ditto
+    void write(long l) { write(cast(ulong)l); }		/// описано ранее
 
-    void write(float f)		/// ditto
+    void write(float f)		/// описано ранее
     {
 	reserve(float.sizeof);
 	*cast(float *)&data[offset] = f;
 	offset += float.sizeof;
     }
 
-    void write(double f)		/// ditto
+    void write(double f)		/// описано ранее
     {
 	reserve(double.sizeof);
 	*cast(double *)&data[offset] = f;
 	offset += double.sizeof;
     }
 
-    void write(real f)		/// ditto
+    void write(real f)		/// описано ранее
     {
 	reserve(real.sizeof);
 	*cast(real *)&data[offset] = f;
 	offset += real.sizeof;
     }
 
-    void write(string s)		/// ditto
+    void write(string s)		/// описано ранее
     {
 	write(cast(ubyte[])s);
     }
 
-    void write(OutBuffer buf)		/// ditto
+    void write(OutBuffer buf)		/// описано ранее
     {
 	write(buf.toBytes());
     }

@@ -178,7 +178,7 @@ CoroutinePublicT(Твхо, Твых, ПТипСопроц TCoroType)
     }
     else
     {
-        /// ditto
+        /// описано ранее
         Твых delegate(Твхо)
         какДелегат()
         {

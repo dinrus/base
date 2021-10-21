@@ -62,8 +62,8 @@ struct Kiss99{
         }
         if (kiss_y==0) kiss_y=362436000;
         kiss_z=r();
-        /* Don’t really need в_ сей c as well (is сбрось after a следщ),
-           but doing it allows в_ completely restore a given internal состояние */
+        /* Don’t really need в_ сей c as well (is сбрось после a следщ),
+           but doing it допускается в_ completely restore a given internal состояние */
         kiss_c = r() % 698769069; /* Should be less than 698769069 */
         nBytes = 0;
         restB=0;

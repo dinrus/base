@@ -218,7 +218,7 @@ int execv(string pathname, string[] argv)
     return execv(toStringz(pathname), argv_);
 }
 
-/** ditto */
+/** описано ранее */
 цел выппрог(ткст путь, ткст[] арги, ткст[] перемср)
 {
 return cast(цел) execve(cast(string) путь, cast(string[]) арги, cast(string[]) перемср);
@@ -235,7 +235,7 @@ int execve(string pathname, string[] argv, string[] envp)
     return execve(toStringz(pathname), argv_, envp_);
 }
 
-/** ditto */
+/** описано ранее */
 цел выппрогcp(ткст путь, ткст[] арги)
 {
 return cast(цел) execvp(cast(string) путь, cast(string[]) арги);
@@ -250,7 +250,7 @@ int execvp(string pathname, string[] argv)
     return execvp(toStringz(pathname), argv_);
 }
 
-/** ditto */
+/** описано ранее */
 цел выппрогср(ткст путь, ткст[] арги, ткст[] перемср)
 {
 return cast(цел) execve(cast(string) путь, cast(string[]) арги, cast(string[]) перемср);

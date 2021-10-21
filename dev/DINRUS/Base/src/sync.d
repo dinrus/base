@@ -126,7 +126,7 @@ version(D_InlineAsm_X86){
     }
 } else {
     pragma(msg,"WARNING: no atomic operations on this architecture");
-    pragma(msg,"WARNING: this is *slow* you probably want to change this!");
+    pragma(msg,"WARNING: this is *медленно* you probably want to change this!");
     цел dummy;
     // acquires a блокируй... probably you will want to skip this
     synchronized проц барьерПамяти(bool ll, bool ls, bool sl,bool ss,bool device=false)(){
@@ -1528,17 +1528,17 @@ var
   WaitResult: DWORD;
   OleThreadWnd: HWnd;
   Msg: TMsg;
-begin
+начало
   WaitResult := 0; // supress warning
   OleThreadWnd := GetOleThreadWindow;
   if OleThreadWnd <> 0 then
     while True do
-    begin
+    начало
       WaitResult := MsgWaitForMultipleObjectsEx(cHandles, Handles, dwTimeOut, QS_ALLEVENTS, dwFlags);
       if WaitResult = ЖДИ_ОБЪЕКТ_0 + cHandles then
-      begin
+      начало
         if PeekMessage(Msg, OleThreadWnd, 0, 0, PM_REMOVE) then
-        begin
+        начало
           TranslateMessage(Msg);
           DispatchMessage(Msg);
         end;
@@ -1553,7 +1553,7 @@ begin
   else if WaitResult = WAIT_IO_COMPLETION then
     Result := RPC_S_CALLPENDING
   else
-  begin
+  начало
     Result := S_OK;
     if (WaitResult >= WAIT_ABANDONED_0) and (WaitResult < WAIT_ABANDONED_0 + cHandles) then
       lpdwIndex := WaitResult - WAIT_ABANDONED_0
@@ -1568,7 +1568,7 @@ function CoWaitForMultipleHandles(dwFlags: DWORD; dwTimeOut: DWORD;
   procedure LookupProc;
   var
     Ole32Handle: HMODULE;
-  begin
+  начало
     Ole32Handle := GetModuleHandle('ole32.dll'); //do not localize
     if Ole32Handle <> 0 then
       CoWaitForMultipleHandlesProc := GetProcAddress(Ole32Handle, 'CoWaitForMultipleHandles'); //do not localize
@@ -1576,7 +1576,7 @@ function CoWaitForMultipleHandles(dwFlags: DWORD; dwTimeOut: DWORD;
       CoWaitForMultipleHandlesProc := InternalCoWaitForMultipleHandles;
   end;
 
-begin
+начало
   if not Assigned(CoWaitForMultipleHandlesProc) then
     LookupProc;
   Result := CoWaitForMultipleHandlesProc(dwFlags, dwTimeOut, cHandles, Handles, lpdwIndex)
@@ -1585,24 +1585,24 @@ end;
 { СинхроОбъект }
 
 procedure СинхроОбъект.Acquire;
-begin
+начало
 end;
 
 procedure СинхроОбъект.Release;
-begin
+начало
 end;
 
 { УкОбъект }
 
 {$IFDEF MSWINDOWS}
 constructor УкОбъект.Create(UseComWait: Boolean);
-begin
+начало
   inherited Create;
   FUseCOMWait := UseCOMWait;
 end;
 
 destructor УкОбъект.Destroy;
-begin
+начало
   ЗакройДескр(FHandle);
   inherited Destroy;
 end;
@@ -1611,10 +1611,10 @@ end;
 function УкОбъект.WaitFor(Timeout: LongWord): РезОжидания;
 var
   Index: DWORD;
-begin
+начало
 {$IFDEF MSWINDOWS}
   if FUseCOMWait then
-  begin
+  начало
     case CoWaitForMultipleHandles(0, TimeOut, 1, FHandle, Index) of
       S_OK: Result := роСигнализированный;
       RPC_S_CALLPENDING,
@@ -1624,13 +1624,13 @@ begin
       FLastError := GetLastError;
     end;
   end else
-  begin
+  начало
     case ЖдиОдинОбъект(Handle, Timeout) of
       WAIT_ABANDONED: Result := роПокинутый;
       ЖДИ_ОБЪЕКТ_0: Result := роСигнализированный;
       ЖДИ_ТАЙМАУТ: Result := роТаймаут;
       WAIT_FAILED:
-        begin
+        начало
           Result := роОшибка;
           FLastError := GetLastError;
         end;
@@ -1649,7 +1649,7 @@ end;
 constructor TEvent.Create(EventAttributes: PSecurityAttributes; ManualReset,
   InitialState: Boolean; const Name: ткст; UseCOMWait: Boolean);
 {$IFDEF MSWINDOWS}
-begin
+начало
   inherited Create(UseCOMWait);
   FHandle := CreateEvent(EventAttributes, ManualReset, InitialState, PChar(Name));
 end;
@@ -1657,7 +1657,7 @@ end;
 {$IFDEF LINUX}
 var
    Value: Integer;
-begin
+начало
   if InitialState then
     Value := 1
   else
@@ -1670,15 +1670,15 @@ end;
 {$ENDIF}
 
 constructor TEvent.Create(UseCOMWait: Boolean);
-begin
+начало
   Create(nil, True, False, '', UseCOMWait);
 end;
 
 {$IFDEF LINUX}
 function TEvent.WaitFor(Timeout: LongWord): РезОжидания;
-begin
+начало
   if Timeout = LongWord($FFFFFFFF) then
-  begin
+  начало
     sem_wait(FEvent);
     Result := роСигнализированный;
   end
@@ -1691,14 +1691,14 @@ end;
 
 procedure TEvent.SetEvent;
 {$IFDEF MSWINDOWS}
-begin
+начало
   Windows.SetEvent(Handle);
 end;
 {$ENDIF}
 {$IFDEF LINUX}
 var
   I: Integer;
-begin
+начало
   sem_getvalue(FEvent, I);
   if I = 0 then
     sem_post(FEvent);
@@ -1706,7 +1706,7 @@ end;
 {$ENDIF}
 
 procedure TEvent.ResetEvent;
-begin
+начало
 {$IFDEF MSWINDOWS}
   Windows.ResetEvent(Handle);
 {$ENDIF}
@@ -1718,52 +1718,52 @@ end;
 { TCriticalSection }
 
 constructor TCriticalSection.Create;
-begin
+начало
   inherited Create;
   InitializeCriticalSection(FSection);
 end;
 
 destructor TCriticalSection.Destroy;
-begin
+начало
   DeleteCriticalSection(FSection);
   inherited Destroy;
 end;
 
 procedure TCriticalSection.Acquire;
-begin
+начало
   EnterCriticalSection(FSection);
 end;
 
 procedure TCriticalSection.Release;
-begin
+начало
   LeaveCriticalSection(FSection);
 end;
 
 function TCriticalSection.TryEnter: Boolean;
-begin
+начало
   Result := TryEnterCriticalSection(FSection);
 end;
 
 procedure TCriticalSection.Enter;
-begin
+начало
   Acquire;
 end;
 
 procedure TCriticalSection.Leave;
-begin
+начало
   Release;
 end;
 
 { TMutex }
 
 procedure TMutex.Acquire;
-begin
+начало
   if WaitFor(БЕСК) = роОшибка then
     RaiseLastOSError;
 end;
 
 constructor TMutex.Create(UseCOMWait: Boolean);
-begin
+начало
   Create(nil, False, '', UseCOMWait);
 end;
 
@@ -1771,7 +1771,7 @@ constructor TMutex.Create(MutexAttributes: PSecurityAttributes;
   InitialOwner: Boolean; const Name: ткст; UseCOMWait: Boolean);
 var
   lpName: PChar;
-begin
+начало
   inherited Create(UseCOMWait);
   if Name <> '' then
     lpName := PChar(Name)
@@ -1786,7 +1786,7 @@ constructor TMutex.Create(DesiredAccess: LongWord; InheritHandle: Boolean;
   const Name: ткст; UseCOMWait: Boolean);
 var
   lpName: PChar;
-begin
+начало
   inherited Create(UseCOMWait);
   if Name <> '' then
     lpName := PChar(Name)
@@ -1798,7 +1798,7 @@ begin
 end;
 
 procedure TMutex.Release;
-begin
+начало
   if not ReleaseMutex(FHandle) then
     RaiseLastOSError;
 end;

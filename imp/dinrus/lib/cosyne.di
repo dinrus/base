@@ -655,7 +655,7 @@ env1(0 0.1 0 0)
 
 effects
 (
-    decimator(factor(7))
+    decimator(фактор(7))
 
     chorus(
         voices(2)

@@ -424,7 +424,7 @@ export extern(D)
             }
 
             /**
-               * Equality Operator
+               * Equality Оператор
                *
                * This is accurate to the секунда. That is, all times inside
                * the same секунда are considered equal. Milliseconds are
@@ -446,7 +446,7 @@ export extern(D)
             }
 
             /**
-               * Comparision Operator
+               * Comparision Оператор
                *
                * This is accurate to the секунда. That is, all times inside
                * the same секунда are considered equal. Milliseconds are
@@ -468,7 +468,7 @@ export extern(D)
             }
 
             /**
-               * Comparision Operator
+               * Comparision Оператор
                *
                * This is accurate to the секунда. That is, all times inside
                * the same секунда are considered equal. Milliseconds are
@@ -1214,7 +1214,7 @@ body {
     lPMark = образец.length;
     lTMark = 0;
 
-    // If we haven't got any pattern or text лев then we can finish.
+    // If we haven't got any pattern or text лево then we can finish.
     while(lPX < образец.length && lTX < текст.length)
     {
         if (образец[lPX] == kZeroOrMore)
@@ -1230,7 +1230,7 @@ body {
             // Look for next сверь in text for текущ pattern сим
             if ( lPX >= образец.length)
             {
-                // Skip rest of text if there is no pattern лев. This
+                // Skip rest of text if there is no pattern лево. This
                 // can occur when the pattern оканчивается_на with a '*'.
                 lTX = текст.length;
             }
@@ -1301,7 +1301,7 @@ body {
         }
     }
 
-    // If I have no text и no pattern лев then the text matched the pattern.
+    // If I have no text и no pattern лево then the text matched the pattern.
     if (lTX >= текст.length  && lPX >= образец.length)
         return да;
     // otherwise it doesn't.
@@ -1847,13 +1847,13 @@ export extern(D) юткст уберил(юткст s)
     }
     return s[i .. s.length];
 }
-export extern(D) ткст уберил(ткст s) /// ditto
+export extern(D) ткст уберил(ткст s) /// описано ранее
 {
     return stdrus.вЮ8(уберил(stdrus.вЮ32(s)));
 }
 
 
-export extern(D) юткст уберип(юткст s) /// ditto
+export extern(D) юткст уберип(юткст s) /// описано ранее
 {
     цел i;
 
@@ -1865,22 +1865,22 @@ export extern(D) юткст уберип(юткст s) /// ditto
     return s[0 .. i+1];
 }
 
-export extern(D) ткст уберип(ткст s) /// ditto
+export extern(D) ткст уберип(ткст s) /// описано ранее
 {
     return stdrus.вЮ8(уберип(stdrus.вЮ32(s)));
 }
 
-export extern(D) юткст убери(юткст s) /// ditto
+export extern(D) юткст убери(юткст s) /// описано ранее
 {
     return уберип(уберил(s));
 }
 
-export extern(D) шткст убери(шткст s) /// ditto
+export extern(D) шткст убери(шткст s) /// описано ранее
 {
     return stdrus.вЮ16(уберип(уберил(stdrus.вЮ32(s))));
 }
 
-export extern(D) ткст убери(ткст s) /// ditto
+export extern(D) ткст убери(ткст s) /// описано ранее
 {
     return stdrus.вЮ8(уберип(уберил(stdrus.вЮ32(s))));
 }
@@ -2387,7 +2387,7 @@ enum ОпцСоздания
                 if (stdrus.числобукв_ли(буф[поз-1]) )
                 {
                     // Instance preceeded by a alphanumic so I
-                    // move one place to the прав и try to find
+                    // move one place to the право и try to find
                     // another instance.
                     поз++;
                     continue;
@@ -2398,7 +2398,7 @@ enum ОпцСоздания
                 if (stdrus.числобукв_ли(буф[поз + текст.length - 1]) )
                 {
                     // Instance followed by a alphanumic so I
-                    // move one place to the прав и try to find
+                    // move one place to the право и try to find
                     // another instance.
                     поз++;
                     continue;
@@ -2421,7 +2421,7 @@ enum ОпцСоздания
         // Skip over текущ instance.
         поз += текст.length;
 
-        // If there is not enough characters лев, then stop searching.
+        // If there is not enough characters лево, then stop searching.
         if ((буф.length - поз) < текст.length)
             break;
 
@@ -2696,7 +2696,7 @@ export extern(D):
 
     /* Needs this to work around the 'feature' in addExt in which
        replacing an extention with an empty string leaves a dot
-       after the файл имя.
+       после the файл имя.
     */
     if (новРасш.length == 0)
     {

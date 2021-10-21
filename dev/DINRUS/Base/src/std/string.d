@@ -168,7 +168,7 @@ int cmp(char[] s1, char[] s2)
 }
 +/
 /*********************************
- * ditto
+ * описано ранее
  */
 
 int icmp(char[] s1, char[] s2)
@@ -356,7 +356,7 @@ unittest
 
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int ifind(char[] s, dchar c)
@@ -416,7 +416,7 @@ unittest
 
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int rfind(char[] s, dchar c)
@@ -457,7 +457,7 @@ unittest
 }
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int irfind(char[] s, dchar c)
@@ -606,7 +606,7 @@ unittest
 }
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int ifind(char[] s, char[] sub)
@@ -715,7 +715,7 @@ unittest
 }
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int rfind(char[] s, char[] sub)
@@ -769,7 +769,7 @@ unittest
 
 
 /******************************************
- * ditto
+ * описано ранее
  */
 
 int irfind(char[] s, char[] sub)
@@ -1568,7 +1568,7 @@ char[] stripl(char[] s)
     return s[i .. s.length];
 }
 
-char[] stripr(char[] s) /// ditto
+char[] stripr(char[] s) /// описано ранее
 {
     uint i;
 
@@ -1580,7 +1580,7 @@ char[] stripr(char[] s) /// ditto
     return s[0 .. i];
 }
 
-char[] strip(char[] s) /// ditto
+char[] strip(char[] s) /// описано ранее
 {
     return stripr(stripl(s));
 }
@@ -1678,7 +1678,7 @@ char[] chop(char[] s)
 	if (len >= 2 && s[len - 1] == '\n' && s[len - 2] == '\r')
 	    return s[0 .. len - 2];
 
-	// If we're in a tail of a UTF-8 sequence, back up
+	// If we're in a tail of a UTF-8 sequence, задний up
 	while ((s[len - 1] & 0xC0) == 0x80)
 	{
 	    len--;
@@ -1710,40 +1710,40 @@ unittest
 
 /*******************************************
  * Left justify, right justify, or center string s[]
- * in field width chars wide.
+ * in field ширина chars wide.
  */
 
-char[] ljustify(char[] s, int width)
+char[] ljustify(char[] s, int ширина)
 {
-    if (s.length >= width)
+    if (s.length >= ширина)
 	return s;
-    char[] r = new char[width];
+    char[] r = new char[ширина];
     r[0..s.length] = s;
-    r[s.length .. width] = cast(char)' ';
+    r[s.length .. ширина] = cast(char)' ';
     return r;
 }
 
-/// ditto
-char[] rjustify(char[] s, int width)
+/// описано ранее
+char[] rjustify(char[] s, int ширина)
 {
-    if (s.length >= width)
+    if (s.length >= ширина)
 	return s;
-    char[] r = new char[width];
-    r[0 .. width - s.length] = cast(char)' ';
-    r[width - s.length .. width] = s;
+    char[] r = new char[ширина];
+    r[0 .. ширина - s.length] = cast(char)' ';
+    r[ширина - s.length .. ширина] = s;
     return r;
 }
 
-/// ditto
-char[] center(char[] s, int width)
+/// описано ранее
+char[] center(char[] s, int ширина)
 {
-    if (s.length >= width)
+    if (s.length >= ширина)
 	return s;
-    char[] r = new char[width];
-    int left = (width - s.length) / 2;
+    char[] r = new char[ширина];
+    int left = (ширина - s.length) / 2;
     r[0 .. left] = cast(char)' ';
     r[left .. left + s.length] = s;
-    r[left + s.length .. width] = cast(char)' ';
+    r[left + s.length .. ширина] = cast(char)' ';
     return r;
 }
 
@@ -1777,13 +1777,13 @@ unittest
  * Same as rjustify(), but fill with '0's.
  */
 
-char[] zfill(char[] s, int width)
+char[] zfill(char[] s, int ширина)
 {
-    if (s.length >= width)
+    if (s.length >= ширина)
 	return s;
-    char[] r = new char[width];
-    r[0 .. width - s.length] = cast(char)'0';
-    r[width - s.length .. width] = s;
+    char[] r = new char[ширина];
+    r[0 .. ширина - s.length] = cast(char)'0';
+    r[ширина - s.length .. ширина] = s;
     return r;
 }
 
@@ -2299,7 +2299,7 @@ char[] toString(bool b)
     return b ? "да" : "нет";
 }
 
-/// ditto
+/// описано ранее
 char[] toString(char c)
 {
     char[] результат = new char[2];
@@ -2322,10 +2322,10 @@ unittest
     assert(s2 == "foo");
 }
 
-char[] toString(ubyte ub)  { return toString(cast(uint) ub); } /// ditto
-char[] toString(ushort us) { return toString(cast(uint) us); } /// ditto
+char[] toString(ubyte ub)  { return toString(cast(uint) ub); } /// описано ранее
+char[] toString(ushort us) { return toString(cast(uint) us); } /// описано ранее
 
-/// ditto
+/// описано ранее
 char[] toString(uint u)
 {   char[uint.sizeof * 3] buffer = void;
     int ndigits;
@@ -2370,7 +2370,7 @@ unittest
     assert(i == 0);
 }
 
-/// ditto
+/// описано ранее
 char[] toString(ulong u)
 {   char[ulong.sizeof * 3] buffer;
     int ndigits;
@@ -2411,10 +2411,10 @@ unittest
     assert(i == 0);
 }
 
-char[] toString(byte b)  { return toString(cast(int) b); } /// ditto
-char[] toString(short s) { return toString(cast(int) s); } /// ditto
+char[] toString(byte b)  { return toString(cast(int) b); } /// описано ранее
+char[] toString(short s) { return toString(cast(int) s); } /// описано ранее
 
-/// ditto
+/// описано ранее
 char[] toString(int i)
 {   char[1 + int.sizeof * 3] buffer;
     char[] результат;
@@ -2469,7 +2469,7 @@ unittest
     assert(i == 0);
 }
 
-/// ditto
+/// описано ранее
 char[] toString(long i)
 {   char[1 + long.sizeof * 3] buffer;
     char[] результат;
@@ -2526,10 +2526,10 @@ unittest
     assert(i == 0);
 }
 
-/// ditto
+/// описано ранее
 char[] toString(float f) { return toString(cast(double) f); }
 
-/// ditto
+/// описано ранее
 char[] toString(double d)
 {
     char[20] buffer;
@@ -2538,7 +2538,7 @@ char[] toString(double d)
     return buffer[0 .. len].dup;
 }
 
-/// ditto
+/// описано ранее
 char[] toString(real r)
 {
     char[20] buffer;
@@ -2547,10 +2547,10 @@ char[] toString(real r)
     return buffer[0 .. len].dup;
 }
 
-/// ditto
+/// описано ранее
 char[] toString(ifloat f) { return toString(cast(idouble) f); }
 
-/// ditto
+/// описано ранее
 char[] toString(idouble d)
 {
     char[21] buffer;
@@ -2559,7 +2559,7 @@ char[] toString(idouble d)
     return buffer[0 .. len].dup;
 }
 
-/// ditto
+/// описано ранее
 char[] toString(ireal r)
 {
     char[21] buffer;
@@ -2568,10 +2568,10 @@ char[] toString(ireal r)
     return buffer[0 .. len].dup;
 }
 
-/// ditto
+/// описано ранее
 char[] toString(cfloat f) { return toString(cast(cdouble) f); }
 
-/// ditto
+/// описано ранее
 char[] toString(cdouble d)
 {
     char[20 + 1 + 20 + 1] buffer;
@@ -2580,7 +2580,7 @@ char[] toString(cdouble d)
     return buffer[0 .. len].dup;
 }
 
-/// ditto
+/// описано ранее
 char[] toString(creal r)
 {
     char[20 + 1 + 20 + 1] buffer;
@@ -2609,7 +2609,7 @@ body
     return toString(cast(ulong)value, radix);
 }
 
-/// ditto
+/// описано ранее
 char[] toString(ulong value, uint radix)
 in
 {
@@ -3041,8 +3041,8 @@ unittest
 
 
 /**********************************************
- * Return string that is the 'successor' to s[].
- * If the rightmost character is a-zA-Z0-9, it is incremented внутри
+ * Return string that is the 'потомок' to s[].
+ * If the правейший character is a-zA-Z0-9, it is incremented внутри
  * its case or digits. If it generates a перенос, the process is
  * repeated with the one to its immediate left.
  */
@@ -3870,8 +3870,8 @@ unittest
 
 
 /******************************************
- * Compute column number after string if string starts in the
- * leftmost column, which is numbered starting from 0.
+ * Compute column number после string if string starts in the
+ * левейший column, which is numbered starting from 0.
  */
 
 size_t column(char[] string, int tabsize = 8)

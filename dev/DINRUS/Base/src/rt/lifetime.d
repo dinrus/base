@@ -564,7 +564,7 @@ body
                 if (info.размер <= newsize || info.основа != p.data)
                 {
                     if (info.размер >= РАЗМЕР_СТРАНИЦЫ && info.основа == p.data)
-                    {   // Try to extend in-place
+                    {   // Try to расширь in-place
                         auto u = смРасширь(p.data, (newsize + 1) - info.размер, (newsize + 1) - info.размер);
                         if (u)
                         {
@@ -668,7 +668,7 @@ body
                 if (info.размер <= newsize || info.основа != p.data)
                 {
                     if (info.размер >= РАЗМЕР_СТРАНИЦЫ && info.основа == p.data)
-                    {   // Try to extend in-place
+                    {   // Try to расширь in-place
                         auto u = смРасширь(p.data, (newsize + 1) - info.размер, (newsize + 1) - info.размер);
                         if (u)
                         {
@@ -734,7 +734,7 @@ extern (C) long _d_arrayappendT(TypeInfo ti, Array *px, byte[] y)
     {   byte* newdata;
 
         if (info.размер >= РАЗМЕР_СТРАНИЦЫ && info.основа == px.data)
-        {   // Try to extend in-place
+        {   // Try to расширь in-place
             auto u = смРасширь(px.data, (newsize + 1) - info.размер, (newsize + 1) - info.размер);
             if (u)
             {
@@ -774,10 +774,10 @@ extern (C)  size_t newCapacity(size_t newlength, size_t размер)
          * - Larger arrays have some space pre-allocated.
          * - As the arrays grow, the relative pre-allocated space shrinks.
          * - The logorithmic algorithm allocates relatively more space for
-         * mid-размер arrays, making it very fast for medium arrays (for
+         * mid-размер arrays, making it very быстро for medium arrays (for
          * mid-to-large arrays, this turns out to be quite a bit faster than the
          * equivalent realloc() code in C, on Linux at least. Small arrays are
-         * just as fast as GCC).
+         * just as быстро as GCC).
          * - Perhaps most importantly, overall memory usage and stress on the GC
          * is decreased significantly for demanding environments.
          */
@@ -843,7 +843,7 @@ extern (C) byte[] _d_arrayappendcT(TypeInfo ti, inout byte[] x, ...)
     {   byte* newdata;
 
         if (info.размер >= РАЗМЕР_СТРАНИЦЫ && info.основа == x.ptr)
-        {   // Try to extend in-place
+        {   // Try to расширь in-place
             auto u = смРасширь(x.ptr, (newsize + 1) - info.размер, (newsize + 1) - info.размер);
             if (u)
             {

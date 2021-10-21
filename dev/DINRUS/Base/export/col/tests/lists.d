@@ -72,5 +72,5 @@ void main()
     foreach(ref doPurge, i; &slice.очистить)
         doPurge = (i % 2 == 0);
     print(slice, "removed evens from slice");
-    print(arrayList, "arrayList after removal from slice");
+    print(arrayList, "arrayList после removal from slice");
 }

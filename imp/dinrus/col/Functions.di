@@ -1,11 +1,4 @@
-﻿/*********************************************************
-   Copyright: (C) 2008 by Steven Schveighoffer.
-              All rights reserved
-
-   License: $(LICENSE)
-
-**********************************************************/
-module col.Functions;
+﻿module col.Functions;
 
 /+ ИНТЕРФЕЙС:
 

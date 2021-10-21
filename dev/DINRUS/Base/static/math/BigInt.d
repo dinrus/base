@@ -12,7 +12,7 @@ private import math.internal.BiguintCore;
 /** A struct representing an arbitrary точность целое
  *
  * все arithmetic operations are supported, except
- * unsigned shift прав (>>>).
+ * unsigned shift право (>>>).
  * Реверсни operations are supported only for цел, дол,
  * и бдол, due в_ language limitations.
  * It реализует значение semantics using копируй-on-пиши. This means that

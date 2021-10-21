@@ -25,7 +25,7 @@ void __ULDIV__()
 	test	ECX,ECX		;
 	jz	uldiv		;
 
-	// if ECX > EDX, then quotient is 0 and remainder is [EDX,EAX]
+	// if ECX > EDX, then quotient is 0 and остаток is [EDX,EAX]
 	cmp	ECX,EDX		;
 	ja	quo0		;
 
@@ -51,7 +51,7 @@ void __ULDIV__()
 	 * If we subtract q*[d1,0] from both sides, we get:
 	 *  q*d0 > [[n2,n1]%d1,n0]
 	 * So if it is too big by one, reduce q by one to q'=q-one.
-	 * Compute remainder as:
+	 * Compute остаток as:
 	 *  r = ([n1,n0] - q'*[d1,d0]) >> s
 	 * Again, we can subtract q*[d1,0]:
 	 *  r = ([n1,n0] - q*[d1,0] - (q'*[d1,d0] - q*[d1,0])) >> s
@@ -145,7 +145,7 @@ D3:	// Divide [EDX,EAX] by EBX
 	xchg	ECX,EAX		;
 	div	EBX		;
 	// ECX,EAX = результат
-	// EDX = remainder
+	// EDX = остаток
 	mov	EBX,EDX		;
 	mov	EDX,ECX		;
 	xor	ECX,ECX		;
@@ -207,14 +207,14 @@ void __LDIV__()
 	  neg	EBX		;
 	  sbb	ECX,0		;
 	call	__ULDIV__	;
-	//neg64	ECX,EBX		;	// remainder same sign as dividend
+	//neg64	ECX,EBX		;	// остаток same sign as dividend
 	  neg	ECX		;
 	  neg	EBX		;
 	  sbb	ECX,0		;
 	ret			;
 
 L11:	call	__ULDIV__	;
-	//neg64	ECX,EBX		;	// remainder same sign as dividend
+	//neg64	ECX,EBX		;	// остаток same sign as dividend
 	  neg	ECX		;
 	  neg	EBX		;
 	  sbb	ECX,0		;

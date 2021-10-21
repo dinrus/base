@@ -16,7 +16,7 @@ Macros:
  *  GAMMA =  &#915;
  *  INTEGRATE = $(BIG &#8747;<подст>$(SMALL $1)</подст><sup>$2</sup>)
  *  POWER = $1<sup>$2</sup>
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  */
 module math.GammaFunction;
 private import math.Math;
@@ -549,7 +549,7 @@ export реал бетаНеполная(реал aa, реал bb, реал xx )
         w = betaDistExpansion2( a, b, x ) / xc;
     }
 
-    /* MultИПly w by the factor
+    /* MultИПly w by the фактор
          a      b
         x  (1-x)   Gamma(a+b) / ( a Gamma(a) Gamma(b) ) .   */
 
@@ -629,7 +629,7 @@ export реал бетаНеполнаяИнв(реал aa, реал bb, реа�
 
     /* approximation в_ inverse function */
 
-    yp = -normalDistributionInvImpl( yy0 );
+    yp = -нормДистрибуцииИнвРеализ( yy0 );
 
     if( yy0 > 0.5L ) {
         rflg = 1;
@@ -1114,7 +1114,7 @@ in {
    assert(a > 0);
 }
 body {
-    /* лев хвост of incomplete гамма function:
+    /* лево хвост of incomplete гамма function:
      *
      *          inf.      ключ
      *   a  -x   -       x
@@ -1150,7 +1150,7 @@ body {
     return ans * ax/a;
 }
 
-/** ditto */
+/** описано ранее */
 export реал гаммаНеполнаяКомпл(реал a, реал x )
 in {
    assert(x >= 0);
@@ -1253,7 +1253,7 @@ body {
 
     /* approximation в_ inverse function */
     d = 1.0L/(9.0L*a);
-    y = 1.0L - d - normalDistributionInvImpl(y0) * квкор(d);
+    y = 1.0L - d - нормДистрибуцииИнвРеализ(y0) * квкор(d);
     x = a * y * y * y;
 
     lgm = логГаммы(a);

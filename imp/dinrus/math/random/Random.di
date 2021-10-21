@@ -120,18 +120,18 @@
             (Thomas et al. Gaussian random число generators. Acm Comput Surv (2007)
             vol. 39 (4) pp. 11))
       )
-      $(LI  Циггурат метод, a very fast и accurate метод was использован for Всё Нормальный и
+      $(LI  Циггурат метод, a very быстро и accurate метод was использован for Всё Нормальный и
             эксп distributed numbers.
       )
       $(LI  гамма distribued numbers uses a метод recently proposed by Marsaglia и
-            Tsang. The метод is very fast, и should be good.
+            Tsang. The метод is very быстро, и should be good.
             My (Fawzi's) feeling is that the transformation h(x)=(1+d*x)^3 might lose
             a couple of биты of точность in some cases, but it is unclear if this
             might become visible in (*very* extensive) tests or not.
       )
        the basic исток can be easily be изменён with something else
       Efficiency:
-      $(LI  very fast methods have been использован, и some effort имеется been помести преобр_в
+      $(LI  very быстро methods have been использован, и some effort имеется been помести преобр_в
             optimizing some of them, but not все, but the interface имеется been choosen
             so that закрой в_ optimal implementation can be предоставленный through the same
             interface.
@@ -178,7 +178,7 @@ import math.random.ExpSource;
 import math.Math;
 import tpl.traits;
 
-// ----- templateFu begin --------
+// ----- templateFu начало --------
 /// компилируй время целое power
 private T ctfe_powI(T)(T x,цел p)
 {
@@ -288,17 +288,17 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
     {
         return униформа!(бцел)();
     }
-    /// ditto
+    /// описано ранее
     бцел следщ(бцел в_)
     {
         return униформаР!(бцел)(в_);
     }
-    /// ditto
+    /// описано ранее
     бцел следщ(бцел из_,бцел в_)
     {
         return униформаР2!(бцел)(из_,в_);
     }
-    /// ditto
+    /// описано ранее
     static СлуччисГ!(Синх!(ДефолтныйДвижок)) экземпляр()
     {
         return случ;
@@ -867,7 +867,7 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
             alias БазТипМассивов!(U) T;
             static if (is(T==байт)||is(T==ббайт)||is(T==сим))
             {
-                бцел знач=исток.следщ; /// begin without значение?
+                бцел знач=исток.следщ; /// начало without значение?
                 цел rest=4;
                 for (т_мера i=0; i<a.length; ++i)
                 {

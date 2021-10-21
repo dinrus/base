@@ -575,7 +575,7 @@ string[] listdir(string pathname)
  * that match pattern or regular expression r.
  * Параметры:
  *	pathname = Directory name
- *	pattern = String with wildcards, such as $(RED "*.d"). The supported
+ *	pattern = String with wildcards, such as $(КРАСНЫЙ "*.d"). The supported
  *		wildcard strings are described under fnmatch() in
  *		$(LINK2 std_path.html, std.path).
  *	r = Regular expression, for more powerful _pattern matching.

@@ -19,7 +19,7 @@
  * (c) the Pentium 4, produced by Marketing.
  *
  * This код есть been optimised for the Intel P6 семейство.
- * Generally the код remains near-optimal for Intel Core2, after translating
+ * Generally the код remains near-optimal for Intel Core2, после translating
  * EAX-> RAX, etc, since all these CPUs use essentially the same pИПeline, and
  * are typically limited by memory access.
  * The код uses techniques described in Agner Fog's superb Pentium manuals
@@ -41,7 +41,7 @@
  *
  * mulAcc(32) is multИПlyAccumulate() for a 32*32 multИПly. Thus it includes
  * function call overhead.
- * The timing for Div is quite unpredictable, but it's probably too slow
+ * The timing for Div is quite unpredictable, but it's probably too медленно
  * to be useful. On 64-bit processors, these times should
  * halve if run in 64-bit режим, except for the MMX functions.
  */
@@ -125,9 +125,9 @@ public:
         // Timing:
         // Pentium M: 2.25/цел
         // P6 семейство, Core2 have a partial flags stall when reading the перенос flag in
-        // an ADC, SBB operation after an operation such as INC or DEC which
+        // an ADC, SBB operation после an operation such as INC or DEC which
         // modifies some, but not all, flags. We avoопр this by storing перенос преобр_в
-        // a resister (AL), and restoring it after the branch.
+        // a resister (AL), and restoring it после the branch.
 
         enum { LASTPARAM = 4*4 } // 3* pushes + return address.
         asm
@@ -339,11 +339,11 @@ L_last:
             mov EBX, [ESP + LASTPARAM + 4*2]; //приёмник.length;
             mov ESI, [ESP + LASTPARAM + 4*1]; //src.ptr;
 
-            movd MM3, EAX; // numbits = биты to shift лев
+            movd MM3, EAX; // numbits = биты to shift лево
             xor EAX, 63;
             align   16;
             inc EAX;
-            movd MM4, EAX ; // 64-numbits = биты to shift прав
+            movd MM4, EAX ; // 64-numbits = биты to shift право
 
             // Get the return value преобр_в EAX
             and EAX, 31; // EAX = 32-numbits
@@ -425,10 +425,10 @@ L_length1:
             lea ESI, [ESI + 4*EBX]; // ESI = end of src
             neg EBX;                // count UP to zero.
 
-            movd MM3, EAX; // numbits = биты to shift прав
+            movd MM3, EAX; // numbits = биты to shift право
             xor EAX, 63;
             inc EAX;
-            movd MM4, EAX ; // 64-numbits = биты to shift лев
+            movd MM4, EAX ; // 64-numbits = биты to shift лево
 
             test EBX, 1;
             jz L_even;
@@ -847,18 +847,18 @@ L_enter_odd:
     }
 
     /**
-       Sets результат[#] = результат[0..лев.length] + лев[#] * прав[#]
+       Sets результат[#] = результат[0..лево.length] + лево[#] * право[#]
 
        It is defined in this way to allow cache-efficient multИПlication.
        This function is equivalent to:
         ----
-        for (цел i = 0; i< прав.length; ++i) {
-            приёмник[лев.length + i] = многобайтУмножПрибавь(приёмник[i..лев.length+i],
-                    лев, прав[i], 0);
+        for (цел i = 0; i< право.length; ++i) {
+            приёмник[лево.length + i] = многобайтУмножПрибавь(приёмник[i..лево.length+i],
+                    лево, право[i], 0);
         }
         ----
      */
-    проц многобайтУмножАккум(бцел [] приёмник, бцел[] лев, бцел [] прав)
+    проц многобайтУмножАккум(бцел [] приёмник, бцел[] лево, бцел [] право)
     {
         // Register usage
         // EDX:EAX = used in multИПly
@@ -866,9 +866,9 @@ L_enter_odd:
         // ECX = carry1
         // EBP = carry2
         // EDI = end of приёмник for this пароль through the loop. Index for outer loop.
-        // ESI = end of лев. never changes
-        // [ESP] = M = прав[i] = множитель for this пароль through the loop.
-        // прав.length is changed преобр_в приёмник.ptr+приёмник.length
+        // ESI = end of лево. never changes
+        // [ESP] = M = право[i] = множитель for this пароль through the loop.
+        // право.length is changed преобр_в приёмник.ptr+приёмник.length
         version(D_PIC)
         {
             enum { zero = 0 }
@@ -894,16 +894,16 @@ L_enter_odd:
             push EBP;
             push EAX;    // local переменная M
             mov EDI, [ESP + LASTPARAM + 4*5]; // приёмник.ptr
-            mov EBX, [ESP + LASTPARAM + 4*2]; // лев.length
-            mov ESI, [ESP + LASTPARAM + 4*3];  // лев.ptr
+            mov EBX, [ESP + LASTPARAM + 4*2]; // лево.length
+            mov ESI, [ESP + LASTPARAM + 4*3];  // лево.ptr
             lea EDI, [EDI + 4*EBX]; // EDI = end of приёмник for first пароль
 
-            mov EAX, [ESP + LASTPARAM + 4*0]; // прав.length
+            mov EAX, [ESP + LASTPARAM + 4*0]; // право.length
             lea EAX, [EDI + 4*EAX];
             mov [ESP + LASTPARAM + 4*0], EAX; // последний value for EDI
 
-            lea ESI, [ESI + 4*EBX]; // ESI = end of лев
-            mov EAX, [ESP + LASTPARAM + 4*1]; // прав.ptr
+            lea ESI, [ESI + 4*EBX]; // ESI = end of лево
+            mov EAX, [ESP + LASTPARAM + 4*1]; // право.ptr
             mov EAX, [EAX];
             mov [ESP], EAX; // M
 outer_loop:
@@ -922,11 +922,11 @@ outer_loop:
             add EDI, 4;
             cmp EDI, [ESP + LASTPARAM + 4*0]; // is EDI = &приёмник[$]?
             jz outer_done;
-            mov EAX, [ESP + LASTPARAM + 4*1]; // прав.ptr
+            mov EAX, [ESP + LASTPARAM + 4*1]; // право.ptr
             mov EAX, [EAX+4];                 // get new M
             mov [ESP], EAX;                   // save new M
-            add int ptr [ESP + LASTPARAM + 4*1], 4; // прав.ptr
-            mov EBX, [ESP + LASTPARAM + 4*2]; // лев.length
+            add int ptr [ESP + LASTPARAM + 4*1], 4; // право.ptr
+            mov EBX, [ESP + LASTPARAM + 4*2]; // лево.length
             jmp outer_loop;
 outer_done:
             pop EAX;
@@ -941,10 +941,10 @@ L_enter_odd:
     }
 
     /**  приёмник[#] /= divisor.
-     * overflow is the начальное remainder, and must be in the range 0..divisor-1.
-     * divisor must not be a power of 2 (use прав shift for that case;
+     * overflow is the начальное остаток, and must be in the range 0..divisor-1.
+     * divisor must not be a power of 2 (use право shift for that case;
      * A division by zero will occur if divisor is a power of 2).
-     * Возвращает the final remainder
+     * Возвращает the final остаток
      *
      * Based on public домен код by Eric Bainville.
      * (http://www.bealto.com/) Used with permission.
@@ -977,7 +977,7 @@ L_enter_odd:
 
             // Loop from msb to lsb
             lea     EDI, [EDI + 4*EBX];
-            mov EBP, EAX; // rem is the input remainder, in 0..divisor-1
+            mov EBP, EAX; // rem is the input остаток, in 0..divisor-1
             // Build the pseudo-inverse of divisor ключ: 2^64/ключ
             // First determine the shift in ecx to get the max число of биты in kinv
             xor     ECX, ECX;
@@ -989,7 +989,7 @@ kinv1:
             shl     EAX, 1;
             jnc     kinv1;
             dec     ECX;
-            // Here, ecx is a лев shift moving the msb of ключ to bit 32
+            // Here, ecx is a лево shift moving the msb of ключ to bit 32
 
             mov     EAX, 1;
             shl     EAX, CL;
@@ -1016,7 +1016,7 @@ L2:
             shl     EAX, 1;
             rcl     EDX, 1;
 
-            // MultИПly by ключ and вычти to get remainder
+            // MultИПly by ключ and вычти to get остаток
             // Subtraction must be done on two words
             mov     EAX, EDX;
             mov     ESI, EDX; // quot = high word
@@ -1025,13 +1025,13 @@ L2:
             sbb     EBX, EDX;
             jz      Lb;  // high word is 0, goto исправь on single word
 
-            // Adjust quotient and remainder on two words
+            // Adjust quotient and остаток on two words
 Ld:     inc     ESI;
             sub     EBP, [ESP + LASTPARAM+LOCALS]; //divisor;
             sbb     EBX, 0;
             jnz     Ld;
 
-            // Adjust quotient and remainder on single word
+            // Adjust quotient and остаток on single word
 Lb:     cmp     EBP, [ESP + LASTPARAM+LOCALS]; //divisor;
             jc      Lc; // rem in 0..divisor-1, ОК
             sub     EBP, [ESP + LASTPARAM+LOCALS]; //divisor;
@@ -1048,7 +1048,7 @@ Lc:
             pop EAX; // discard kinv
             pop EAX; // discard mask
 
-            mov     EAX, EBP; // return final remainder
+            mov     EAX, EBP; // return final остаток
             pop     EBP;
             pop     EBX;
             pop     EDI;
@@ -1079,7 +1079,7 @@ Lc:
            As for multibyteAdd, we save & restore перенос flag through the loop.
 
            The timing is entirely dictated by the dependency chain. We could
-           improve it by moving the mov EAX after the adc [EDI], EAX. Probably not worthwhile.
+           improve it by moving the mov EAX после the adc [EDI], EAX. Probably not worthwhile.
         */
         enum { LASTPARAM = 4*5 } // 4* pushes + return address.
         asm
@@ -1194,7 +1194,7 @@ length2:
             mov EBX, [ESP + LASTPARAM + 4*0]; // src.length
             mov ESI, [ESP + LASTPARAM + 4*1];  // src.ptr
 
-            lea ESI, [ESI + 4*EBX]; // ESI = end of лев
+            lea ESI, [ESI + 4*EBX]; // ESI = end of лево
             add int ptr [ESP + LASTPARAM + 4*1], 4; // src.ptr, used for getting M
 
             // local переменная [ESP + LASTPARAM + 4*2] = последний value for EDI

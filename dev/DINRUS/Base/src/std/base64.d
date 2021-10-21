@@ -56,14 +56,14 @@ body
 	uint strmax = str.length / 3;
 	uint strleft = str.length % 3;
 	uint x;
-	char* sp, bp;
+	char* кп, bp;
 	
 	bp = &buf[0];
-	sp = &str[0];
+	кп = &str[0];
 	for(stri = 0; stri != strmax; stri++)
 	{
-		x = (sp[0] << 16) | (sp[1] << 8) | (sp[2]);
-		sp+= 3;
+		x = (кп[0] << 16) | (кп[1] << 8) | (кп[2]);
+		кп+= 3;
 		*bp++ = array[(x & 0b11111100_00000000_00000000) >> 18];
 		*bp++ = array[(x & 0b00000011_11110000_00000000) >> 12];
 		*bp++ = array[(x & 0b00000000_00001111_11000000) >> 6];
@@ -73,8 +73,8 @@ body
 	switch(strleft)
 	{
 		case 2:
-			x = (sp[0] << 16) | (sp[1] << 8);
-			sp += 2;
+			x = (кп[0] << 16) | (кп[1] << 8);
+			кп += 2;
 			*bp++ = array[(x & 0b11111100_00000000_00000000) >> 18];
 			*bp++ = array[(x & 0b00000011_11110000_00000000) >> 12];
 			*bp++ = array[(x & 0b00000000_00001111_11000000) >> 6];
@@ -82,7 +82,7 @@ body
 			break;
 		
 		case 1:
-			x = *sp++ << 16;
+			x = *кп++ << 16;
 			*bp++ = array[(x & 0b11111100_00000000_00000000) >> 18];
 			*bp++ = array[(x & 0b00000011_11110000_00000000) >> 12];
 			*bp++ = '=';
@@ -185,27 +185,27 @@ body
 	uint estri;
 	uint estrmax = estr.length / 4;
 	uint x;
-	char* sp, bp;
+	char* кп, bp;
 	char ch;
 	
-	sp = &estr[0];
+	кп = &estr[0];
 	bp = &buf[0];
 	for(estri = 0; estri != estrmax; estri++)
 	{
-		x = arrayIndex(sp[0]) << 18 | arrayIndex(sp[1]) << 12;
-		sp += 2;
+		x = arrayIndex(кп[0]) << 18 | arrayIndex(кп[1]) << 12;
+		кп += 2;
 
-		ch = *sp++;
+		ch = *кп++;
 		if(ch == '=')
 		{
-			if(*sp++ != '=')
+			if(*кп++ != '=')
 				badc('=');
 			*bp++ = cast(char) (x >> 16);
 			break;
 		}
 		x |= arrayIndex(ch) << 6;
 		
-		ch = *sp++;
+		ch = *кп++;
 		if(ch == '=')
 		{
 			*bp++ = cast(char) (x >> 16);

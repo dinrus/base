@@ -13,6 +13,8 @@ typedef struct Complex
     long double im;
 } Complex;
 
+//export extern(C):
+
 Complex _complex_div(Complex x, Complex y)
 {
     Complex q;

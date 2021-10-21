@@ -119,7 +119,7 @@ template Закрепи(Т)
     /**
     Makes value of x to be not меньше than inf. Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепиПод(inout Т x, Т inf)
     {
@@ -129,7 +129,7 @@ template Закрепи(Т)
     /**
     Makes value of x to be not больше than sup. Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепиНад(inout Т x, Т sup)
     {
@@ -140,7 +140,7 @@ template Закрепи(Т)
     Makes value of x to be nor меньше than inf nor больше than sup.
     Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепи(inout Т x, Т inf, Т sup)
     {

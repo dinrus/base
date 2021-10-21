@@ -66,7 +66,7 @@ void _Cmul()
         int recalc = 0;
         if ( isinf( a) || isinf( b) )
         {   // z is infinite
-            // "Box" the infinity and change NaNs in the other factor to 0
+            // "Box" the infinity and change NaNs in the other фактор to 0
             a = copysignl( isinf( a) ? 1.0 : 0.0, a);
             b = copysignl( isinf( b) ? 1.0 : 0.0, b);
             if (isnan( c)) c = copysignl( 0.0, c);
@@ -75,7 +75,7 @@ void _Cmul()
         }
         if (isinf(c) || isinf(d))
         {   // w is infinite
-            // "Box" the infinity and change NaNs in the other factor to 0
+            // "Box" the infinity and change NaNs in the other фактор to 0
             c = copysignl( isinf( c) ? 1.0 : 0.0, c);
             d = copysignl( isinf( d) ? 1.0 : 0.0, d);
             if (isnan( a)) a = copysignl( 0.0, a);

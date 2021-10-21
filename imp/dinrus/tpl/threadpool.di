@@ -77,7 +77,7 @@ private
 
     // Worker threads вызов сообщи on this when they are готово with a дело or are
     // completely готово.
-    // This allows a graceful shut down and is necessary since присвой есть в_
+    // This допускается a graceful shut down and is necessary since присвой есть в_
     // жди for a дело в_ become available
     Условие активностьТрудяги;
 
@@ -245,7 +245,7 @@ private
         return флагДай(активные_дела);
     }
 
-    /// Block until все pending jobs complete, but do not shut down.  This allows ещё tasks в_ be добавьed later.
+    /// Block until все pending jobs complete, but do not shut down.  This допускается ещё tasks в_ be добавьed later.
     проц жди()
     {    
         m.блокируй();

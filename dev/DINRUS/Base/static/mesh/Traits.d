@@ -90,7 +90,7 @@ template VertexTraits(defs... )
     /// The default 3D texture coordinate type is auxd.OpenMesh.Век3п.
     alias Век3п  ТексКоорд3Д;
 
-    /// The default color type is auxd.OpenMesh.Vec3uc.
+    /// The default цвет type is auxd.OpenMesh.Vec3uc.
     alias Век3бб Цвет;
 
     struct VertexT(Base,Refs) /* : Base */ {}
@@ -104,7 +104,7 @@ template VertexTraits(defs... )
     const бцел FaceAttributes = 0;
 }
 
-/// TODO: Currently there isn't a way to extend the traits
+/// TODO: Currently there isn't a way to расширь the traits
 /// The original код inherited from Base but we can't do that
 /// because structs can't inherit.  I can't think of a good way to do it
 /// и still maintain the value-type semantics in текущ D
@@ -113,10 +113,10 @@ template VertexTraits(defs... )
 //== CLASS DEFINITION =========================================================
 
 
-/** Helper class to merge two mesh traits.
+/** Helper class to совмести two mesh traits.
  *  \internal
  *
- *  With the помощь of this class it's possible to merge two mesh traits.
+ *  With the помощь of this class it's possible to совмести two mesh traits.
  *  Whereby \c _Traits1 overrides equally named symbols of \c _Traits2.
  *
  *  For your convenience use the provided defines \c OM_Merge_Traits
@@ -169,7 +169,7 @@ struct MergeTraits(_Traits1,_Traits2)
 /**
     Macro for merging two traits classes _S1 и _S2 into one traits class _D.
     Note that in case of ambiguities class _S1 overrides _S2, especially
-    the point/normal/color/texcoord type to be использован is taken from _S1.Точка/
+    the point/normal/цвет/texcoord type to be использован is taken from _S1.Точка/
     _S1.Нормаль/_S1.Цвет/_S1.ТексКоорд.
 */
 template OM_Merge_Traits(_S1, _S2, alias _D)

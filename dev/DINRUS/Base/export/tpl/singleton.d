@@ -53,9 +53,9 @@ class Синглтон(T)
 public:
 
     /** Функция доступа к синглтону.
-        Use this function to obtain a reference to the instance of the 
-        encapsulated class. Note that this instance is unique and created
-        on the first call to Экземпляр().
+        Эта функция используется для получения ссылки на экземпляр 
+        инкапсулированного класса. Этот экземпляр уникален и создаётся
+        при первом вызове Экземпляр().
     */
 
     static T Экземпляр()
@@ -65,7 +65,7 @@ public:
             // check if singleton жив
             if (разрушен__)
             {
-                приМёртвойССылке();
+                приМёртвойСсылке();
             }
             // first time request -> initialize
             else
@@ -79,14 +79,14 @@ public:
 
 private:
 
-    // создай a new singleton and store its pointer
+    // создать новый синглтон и сохранить его указатель
     static проц создай()
     {
         укнаэкз__ = new T;
     }
   
-    // Will be called if instance is accessed after its lifetime has expired
-    static проц приМёртвойССылке()
+    // Вызывается при доступе к экземпляру, когда его лайфтайм исчерпан
+    static проц приМёртвойСсылке()
     {
         throw new ОшибкаРантайма("[Ошибка синглтона] - Обнаружена мёртвая ссылка!\n");
     }

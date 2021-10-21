@@ -1,6 +1,6 @@
 module tpl.com;
 import tpl.all, sys.uuid;
-import stdrus, cidrus, gc, win;
+import stdrus, cidrus, gc, sys.Common;
 
 extern(C) проц ошибкаНехваткиПамяти();
 extern(Windows) цел CLSIDFromProgID(in шткст0 lpszProgID, КЛСИД* lpclsid);

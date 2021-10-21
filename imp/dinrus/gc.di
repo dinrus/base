@@ -137,7 +137,7 @@ void gc_addRoot( void* p );
 void gc_addRange( void* p, size_t разм );
 void gc_removeRoot( void* p );
 void gc_removeRange( void* p );
-void gc_monitor(ddel begin, dint end );+/
+void gc_monitor(ddel начало, dint end );+/
 void gc_printStats(gc_t gc);
 /+GCStats gc_stats();
 void _d_gc_addrange(void *pbot, void *ptop);

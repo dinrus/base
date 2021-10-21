@@ -35,7 +35,6 @@ bool disjoint(T)(T[] a, T[] b)
 
 alias float T;
 
-export extern (C):
 
 /* ======================================================================== */
 /* ======================================================================== */
@@ -137,12 +136,14 @@ private template CodeGenSliceSliceOp(char[] opD, char[] opSSE, char[] op3DNow)
         }
     }
 
-    // Handle remainder
+    // Handle остаток
     while (aptr < aend)
         *aptr++ = *bptr++ ` ~ opD ~ ` *cptr++;
 
     return a;`;
 }
+
+export extern (C):
 
 /* ======================================================================== */
 
@@ -349,7 +350,7 @@ private template CodeGenExpSliceOpAssign(char[] opD, char[] opSSE, char[] op3DNo
                 while (aptr < aabeg)
                     *aptr++ ` ~ opD ~ ` value;
 
-                // process aligned slice with fast SSE operations
+                // process aligned slice with быстро SSE operations
                 asm
                 {
                     mov ESI, aabeg;
@@ -1380,7 +1381,7 @@ body
     auto aend = aptr + a.length;
     auto bptr = b.ptr;
 
-    // Handle remainder
+    // Handle остаток
     while (aptr < aend)
         *aptr++ += *bptr++ * value;
 

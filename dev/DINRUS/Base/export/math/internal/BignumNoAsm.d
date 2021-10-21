@@ -72,7 +72,7 @@ enum : цел { KARATSUBASQUARELIMIT=12 }; // Minimum value for which square Kar
 проц многобайтУмножАккум(бцел [] приёмник, бцел[] left, бцел [] right);
 
 /**  приёмник[] /= divisor.
- * overflow is the начальное remainder, and must be in the range 0..divisor-1.
+ * overflow is the начальное остаток, and must be in the range 0..divisor-1.
  */
 бцел многобайтПрисвойДеление(бцел [] приёмник, бцел divisor, бцел overflow);
 

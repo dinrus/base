@@ -826,9 +826,9 @@ int glutGameModeGet(GLenum);
  проц  glFrontFace( GLenum mode );
  проц  glPointSize( GLfloat размер );
  проц  glLineWidth( GLfloat ширина );
- проц  glLineStipple( GLint factor, GLushort pattern );
+ проц  glLineStipple( GLint фактор, GLushort pattern );
  проц  glPolygonMode( GLenum face, GLenum mode );
- проц  glPolygonOffset( GLfloat factor, GLfloat units );
+ проц  glPolygonOffset( GLfloat фактор, GLfloat units );
  проц  glPolygonStipple(  GLubyte *mask );
  проц  glGetPolygonStipple( GLubyte *mask );
  проц  glEdgeFlag( GLboolean flag );
@@ -1674,13 +1674,13 @@ int glutGameModeGet(GLenum);
 /* GLUT window sub-API. */
  int  glutCreateWindow( char *title);
 
- int  glutCreateSubWindow(int win, int x, int y, int ширина, int высота);
- проц  glutDestroyWindow(int win);
+ int  glutCreateSubWindow(int sys.Common, int x, int y, int ширина, int высота);
+ проц  glutDestroyWindow(int sys.Common);
  проц  glutPostRedisplay();
 
  проц  glutSwapBuffers();
  int  glutGetWindow();
- проц  glutSetWindow(int win);
+ проц  glutSetWindow(int sys.Common);
  проц  glutSetWindowTitle( char *title);
  проц  glutSetIconTitle( char *title);
  проц  glutPositionWindow(int x, int y);
@@ -1725,10 +1725,10 @@ int glutGameModeGet(GLenum);
  проц  glutMenuStateFunc(сифунк_Ц);
 
 
-/* GLUT color index sub-API. */
+/* GLUT цвет index sub-API. */
  проц  glutSetColor(int ndx, GLfloat red, GLfloat green, GLfloat blue);
  GLfloat  glutGetColor(int ndx, int component);
- проц  glutCopyColormap(int win);
+ проц  glutCopyColormap(int sys.Common);
 
 /* GLUT state retrieval sub-API. */
  int  glutGet(GLenum тип);
@@ -1764,10 +1764,10 @@ int glutGameModeGet(GLenum);
  
  проц glutInitDisplayString(GLchar* а);
  
- проц glutPostWindowRedisplay(int win);
+ проц glutPostWindowRedisplay(int sys.Common);
  проц  glutWarpPointer(int x, int y);
   проц  glutSetCursor(int cursor);
-  проц  glutPostWindowOverlayRedisplay(int win);
+  проц  glutPostWindowOverlayRedisplay(int sys.Common);
   проц glutShowOverlay();
 проц  glutHideOverlay();
 

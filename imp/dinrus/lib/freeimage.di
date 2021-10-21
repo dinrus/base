@@ -205,7 +205,7 @@ const uint  FI_RGBA_RED				= 2,
 
 const uint FI_RGBA_RGB_MASK	= (FI_RGBA_RED_MASK|FI_RGBA_GREEN_MASK|FI_RGBA_BLUE_MASK);
 
-// The 16bit macros only include masks and shifts, since each color element is not byte aligned
+// The 16bit macros only include masks and shifts, since each цвет element is not byte aligned
 
 const ushort    FI16_555_RED_MASK		= 0x7C00,
                 FI16_555_GREEN_MASK		= 0x03E0,
@@ -288,22 +288,22 @@ enum FREE_IMAGE_TYPE {
 	FIT_RGBAF	= 12	// 128-bit RGBA float image	: 4 x 32-bit IEEE floating point
 };
 
-/** Image color type used in FreeImage.
+/** Image цвет type used in FreeImage.
 */
 enum FREE_IMAGE_COLOR_TYPE {
 	FIC_MINISWHITE = 0,		// min value is white
     FIC_MINISBLACK = 1,		// min value is black
-    FIC_RGB        = 2,		// RGB color model
-    FIC_PALETTE    = 3,		// color map indexed
-	FIC_RGBALPHA   = 4,		// RGB color model with alpha channel
-	FIC_CMYK       = 5		// CMYK color model
+    FIC_RGB        = 2,		// RGB цвет model
+    FIC_PALETTE    = 3,		// цвет map indexed
+	FIC_RGBALPHA   = 4,		// RGB цвет model with alpha channel
+	FIC_CMYK       = 5		// CMYK цвет model
 };
 
 /** Color quantization algorithms.
 Constants used in FreeImage_ColorQuantize.
 */
 enum FREE_IMAGE_QUANTIZE {
-    FIQ_WUQUANT = 0,		// Xiaolin Wu color quantization algorithm
+    FIQ_WUQUANT = 0,		// Xiaolin Wu цвет quantization algorithm
     FIQ_NNQUANT = 1			// NeuQuant neural-net quantization algorithm by Anthony Dekker
 };
 
@@ -355,7 +355,7 @@ enum FREE_IMAGE_FILTER {
 };
 
 /** Color channels.
-Constants used in color manipulation routines.
+Constants used in цвет manipulation routines.
 */
 enum FREE_IMAGE_COLOR_CHANNEL {
 	FICC_RGB	= 0,	// Use red, green and blue channels
@@ -490,7 +490,7 @@ alias void function(Plugin *plugin, int format_id) FI_InitProc;
 } // PLUGINS
 
 
-// Load / Save flag constants -----------------------------------------------
+// Load / Save flag константы -----------------------------------------------
 
 const uint  BMP_DEFAULT         = 0,
             BMP_SAVE_RLE        = 1,
@@ -498,14 +498,14 @@ const uint  BMP_DEFAULT         = 0,
             DDS_DEFAULT			= 0,
             FAXG3_DEFAULT		= 0,
             GIF_DEFAULT			= 0,
-            GIF_LOAD256			= 1,	// Load the image as a 256 color image with ununsed palette entries, if it's 16 or 2 color
+            GIF_LOAD256			= 1,	// Load the image as a 256 цвет image with ununsed palette entries, if it's 16 or 2 цвет
             GIF_PLAYBACK		= 2,	// 'Play' the GIF to generate each frame (as 32bpp) instead of returning raw frame data when loading
             HDR_DEFAULT			= 0,
             ICO_DEFAULT         = 0,
             ICO_MAKEALPHA		= 1,	// convert to 32bpp and create an alpha channel from the AND-mask when loading
             IFF_DEFAULT         = 0,
             JPEG_DEFAULT        = 0,		// loading (see JPEG_FAST); saving (see JPEG_QUALITYGOOD)
-            JPEG_FAST           = 0x0001,	// load the file as fast as possible, sacrificing some quality
+            JPEG_FAST           = 0x0001,	// load the file as быстро as possible, sacrificing some quality
             JPEG_ACCURATE       = 0x0002,	// load the file with the best quality, sacrificing some speed
             JPEG_CMYK			= 0x0004,	// load separated CMYK "as is" (use | to combine with other load flags)
             JPEG_QUALITYSUPERB  = 0x80,	// save with superb quality (100:1)
@@ -573,8 +573,8 @@ void FreeImage_SetOutputMessage(FreeImage_OutputMessageFunction omf);
 
 // Allocate / Clone / Unload routines ---------------------------------------
 
-FIBITMAP *FreeImage_Allocate(int width, int height, int bpp, unsigned red_mask = 0, unsigned green_mask = 0, unsigned blue_mask = 0);
-FIBITMAP *FreeImage_AllocateT(FREE_IMAGE_TYPE type, int width, int height, int bpp = 8, unsigned red_mask = 0, unsigned green_mask = 0, unsigned blue_mask = 0);
+FIBITMAP *FreeImage_Allocate(int ширина, int height, int bpp, unsigned red_mask = 0, unsigned green_mask = 0, unsigned blue_mask = 0);
+FIBITMAP *FreeImage_AllocateT(FREE_IMAGE_TYPE type, int ширина, int height, int bpp = 8, unsigned red_mask = 0, unsigned green_mask = 0, unsigned blue_mask = 0);
 FIBITMAP * FreeImage_Clone(FIBITMAP *dib);
 void FreeImage_Unload(FIBITMAP *dib);
 
@@ -775,7 +775,7 @@ FIBITMAP *FreeImage_ColorQuantizeEx(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize 
 FIBITMAP *FreeImage_Threshold(FIBITMAP *dib, BYTE T);
 FIBITMAP *FreeImage_Dither(FIBITMAP *dib, FREE_IMAGE_DITHER algorithm);
 
-FIBITMAP *FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, BOOL topdown = FALSE);
+FIBITMAP *FreeImage_ConvertFromRawBits(BYTE *bits, int ширина, int height, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, BOOL topdown = FALSE);
 void FreeImage_ConvertToRawBits(BYTE *bits, FIBITMAP *dib, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, BOOL topdown = FALSE);
 
 FIBITMAP *FreeImage_ConvertToRGBF(FIBITMAP *dib);
@@ -852,7 +852,7 @@ BOOL FreeImage_JPEGTransform(char *src_file, char *dst_file, FREE_IMAGE_JPEG_OPE
 FIBITMAP *FreeImage_Rescale(FIBITMAP *dib, int dst_width, int dst_height, FREE_IMAGE_FILTER filter);
 FIBITMAP *FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert = TRUE);
 
-// color manipulation routines (point operations)
+// цвет manipulation routines (point operations)
 BOOL FreeImage_AdjustCurve(FIBITMAP *dib, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel);
 BOOL FreeImage_AdjustGamma(FIBITMAP *dib, double gamma);
 BOOL FreeImage_AdjustBrightness(FIBITMAP *dib, double percentage);
@@ -885,9 +885,9 @@ class FreeImageBitmap
         load(filename);
     }
 
-    this(uint width, uint height, uint bpp)
+    this(uint ширина, uint height, uint bpp)
     {
-        fib = FreeImage_Allocate(width, height, bpp);
+        fib = FreeImage_Allocate(ширина, height, bpp);
     }
 
     ~this()
@@ -921,7 +921,7 @@ class FreeImageBitmap
         return fib !is null;
     }
 
-    uint width()
+    uint ширина()
     {
         return FreeImage_GetWidth(fib);
     }

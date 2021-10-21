@@ -122,7 +122,7 @@ ubyte[256] UTF8stride =
     return n;
 }
 
-/** ditto */
+/** описано ранее */
 
 т_мера toUCSindex(wchar[] s, т_мера i)
 {
@@ -141,7 +141,7 @@ ubyte[256] UTF8stride =
     return n;
 }
 
-/** ditto */
+/** описано ранее */
 
 т_мера toUCSindex(дим[] s, т_мера i)
 {
@@ -166,7 +166,7 @@ ubyte[256] UTF8stride =
     return i;
 }
 
-/** ditto */
+/** описано ранее */
 
 т_мера toUTFindex(wchar[] s, т_мера n)
 {
@@ -180,7 +180,7 @@ ubyte[256] UTF8stride =
     return i;
 }
 
-/** ditto */
+/** описано ранее */
 
 т_мера toUTFindex(дим[] s, т_мера n)
 {
@@ -537,7 +537,7 @@ unittest
     }
 }
 
-/** ditto */
+/** описано ранее */
 дим decode(wchar[] ткт, ref т_мера индекс)
 {
 assert(ткт.length && индекс < ткт.length);
@@ -619,7 +619,7 @@ assert(ткт.length && индекс < ткт.length);
     }
 +/
 
-/** ditto */
+/** описано ранее */
 
 дим decode(дим[] s, inout т_мера инд)
     in
@@ -749,7 +749,7 @@ unittest
     assert(s == "abcda\xC2\xA9\xE2\x89\xA0");
 }
 
-/** ditto */
+/** описано ранее */
 
 void encode(inout wchar[] s, дим c)
     in
@@ -775,7 +775,7 @@ void encode(inout wchar[] s, дим c)
 	s = r;
     }
 
-/** ditto */
+/** описано ранее */
 
 void encode(inout дим[] s, дим c)
     in
@@ -805,7 +805,7 @@ void validate(ткст s)
     }
 }
 
-/** ditto */
+/** описано ранее */
 
 void validate(wchar[] s)
 {
@@ -818,7 +818,7 @@ void validate(wchar[] s)
     }
 }
 
-/** ditto */
+/** описано ранее */
 
 void validate(дим[] s)
 {
@@ -883,7 +883,7 @@ void validate(дим[] s)
 	return s;
     }
 
-/** ditto */
+/** описано ранее */
 
 ткст toUTF8(wchar[] s)
 {
@@ -897,7 +897,7 @@ void validate(дим[] s)
     {	wchar c = s[i];
 
 	if (c <= 0x7F)
-	    r[i] = cast(сим)c;		// fast path for ascii
+	    r[i] = cast(сим)c;		// быстро path for ascii
 	else
 	{
 	    r.length = i;
@@ -911,7 +911,7 @@ void validate(дим[] s)
     return r;
 }
 
-/** ditto */
+/** описано ранее */
 
 ткст toUTF8(дим[] s)
 {
@@ -925,7 +925,7 @@ void validate(дим[] s)
     {	дим c = s[i];
 
 	if (c <= 0x7F)
-	    r[i] = cast(сим)c;		// fast path for ascii
+	    r[i] = cast(сим)c;		// быстро path for ascii
 	else
 	{
 	    r.length = i;
@@ -991,7 +991,7 @@ wchar[] toUTF16(ткст s)
     return r;
 }
 
-/** ditto */
+/** описано ранее */
 
 wchar* toUTF16z(ткст s)
 {
@@ -1018,7 +1018,7 @@ wchar* toUTF16z(ткст s)
     return r.ptr;
 }
 
-/** ditto */
+/** описано ранее */
 
 wchar[] toUTF16(wchar[] s)
     in
@@ -1030,7 +1030,7 @@ wchar[] toUTF16(wchar[] s)
 	return s;
     }
 
-/** ditto */
+/** описано ранее */
 
 wchar[] toUTF16(дим[] s)
 {
@@ -1071,7 +1071,7 @@ wchar[] toUTF16(дим[] s)
     return r[0 .. j];
 }
 
-/** ditto */
+/** описано ранее */
 
 дим[] toUTF32(wchar[] s)
 {
@@ -1092,7 +1092,7 @@ wchar[] toUTF16(дим[] s)
     return r[0 .. j];
 }
 
-/** ditto */
+/** описано ранее */
 
 дим[] toUTF32(дим[] s)
     in

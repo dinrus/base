@@ -76,29 +76,43 @@ copy %this%\export\lib\*.d  %R%\lib\*.di
 
 mkdir %R%\col
 mkdir %R%\col\model
+mkdir %R%\col\impl
+mkdir %R%\col\iterator
 copy %this%\export\col\*.d  %R%\col\*.di
 copy %this%\export\col\model\*.d  %R%\col\model\*.di
-
-mkdir %R%\linalg
-copy %this%\export\linalg\*.d  %R%\linalg\*.di
+copy %this%\export\col\impl\*.d %R%\col\impl\*.d
+copy %this%\export\col\iterator\*.d %R%\col\iterator\*.d
 
 mkdir %R%\geom
 copy %this%\export\geom\*.d  %R%\geom\*.di
 
 mkdir %R%\math
 copy %this%\export\math\*.d  %R%\math\*.di
+mkdir %R%\math\internal
+copy %this%\export\math\internal\*.d  %R%\math\internal\*.di
+mkdir %R%\math\random
+copy %this%\export\math\random\*.d  %R%\math\random\*.di
+mkdir %R%\math\random\engines
+copy %this%\export\math\random\engines\*.d  %R%\math\random\engines\*.di
+mkdir %R%\math\linalg
+copy %this%\export\math\linalg\*.d  %R%\math\linalg\*.di
 
 mkdir %R%\util
 copy %this%\export\util\*.d  %R%\util\*.di
 
+mkdir %R%\crypto
+mkdir %R%\crypto\cipher
+mkdir %R%\crypto\digest
+copy %this%\export\crypto\*.d %R%\crypto\*.di
+copy %this%\export\crypto\cipher\*.d %R%\crypto\cipher\*.di
+copy %this%\export\crypto\digest\*.d %R%\crypto\digest\*.di
 
-
-::mkdir %R%\io
-::mkdir %R%\io\device
-::mkdir %R%\io\stream
-::copy %this%\export\io\*.d  %R%\io\*.di
-::copy %this%\export\io\device\*.d  %R%\io\*.di
-::copy %this%\export\io\stream\*.d  %R%\io\*.di
+mkdir %R%\io
+mkdir %R%\io\device
+mkdir %R%\io\stream
+copy %this%\export\io\*.d  %R%\io\*.di
+copy %this%\export\io\device\*.d  %R%\io\*.di
+copy %this%\export\io\stream\*.d  %R%\io\*.di
 
 :::Compiling C code
 
@@ -113,8 +127,7 @@ copy %this%\export\util\*.d  %R%\util\*.di
 :Base
 :::Creating respond file
 :::%this%\src\io\*d %this%\src\io\device\*.d %this%\src\io\stream\*.d
-:::%LS% -d %this%\src\io\*d %this%\src\io\device\*.d %this%\src\io\stream\*.d 
-%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d>>%this%\objs.rsp
+%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d>>%this%\objs.rsp
 
 :::Make DinrusBase.dll
 
@@ -147,6 +160,7 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 %DMD%  -c -O  -g -of%this%\stdrus.obj %this%\export\stdrus.d -I%R%
 %DMD%  -c -O  -g -of%this%\stdrusex.obj %this%\export\stdrusex.d -I%R%
 %DMD%  -c -O  -g -of%this%\runtime.obj %this%\export\runtime.d -I%R%
+%DMD%  -c -O  -g -of%this%\runtimetraits.obj %this%\export\runtimetraits.d -I%R%
 %DMD%  -c -O  -g -of%this%\object.obj %this%\export\object.d -I%R%
 
 %DMD%  -c -O  -g -of%this%\gc.obj %this%\export\gc.d -I%R%
@@ -156,7 +170,6 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 %DMD%  -c -O  -g -of%this%\ini.obj %this%\static\ini.d -I%R%
 %DMD%  -c -O  -g -of%this%\stringz.obj %this%\export\stringz.d -I%R%
 
-%DMD%  -c -O  -g -of%this%\win.obj %this%\export\win.d -I%R%
 %DMD%  -c -O  -g -of%this%\wincom.obj %this%\export\com.d -I%R%
 %DMD%  -c -O  -g -of%this%\dinrus.obj %this%\export\dinrus.d -I%R%
 %DMD%  -c -O  -g -of%this%\exception.obj %this%\export\exception.d -I%R%
@@ -196,6 +209,10 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 %DMD%  -c -O  -g -of%this%\comtpl.obj %this%\export\tpl\com.d -I%R%
 %DMD%  -c -O  -g  -of%this%\std.obj %this%\export\tpl\std.d -I%R%
 %DMD%  -c -O  -g  -of%this%\weakref.obj %this%\export\tpl\weakref.d -I%R%
+%DMD%  -c -O  -g  -of%this%\tplarray.obj %this%\export\tpl\array.d -I%R%
+%DMD%  -c -O  -g  -of%this%\tplsigstruct.obj %this%\export\tpl\sigstruct.d -I%R%
+%DMD%  -c -O  -g  -of%this%\tpltuple.obj %this%\export\tpl\tuple.d -I%R%
+%DMD%  -c -O  -g  -of%this%\tplthreadpool.obj %this%\export\tpl\threadpool.d -I%R%
 :pause
 %DMD%  -c -O  -g -of%this%\WinStructs.obj %this%\export\sys\WinStructs.d -I%R%
 
@@ -225,7 +242,7 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 :::Making library with static content
 :dinrus2
 
-%DMD% -lib -of%this%\dinrus2.lib %this%\base.obj  %this%\object.obj  %this%\cidrus.obj  %this%\stdrus.obj  %this%\dinrus.obj  %this%\win.obj  %this%\runtime.obj  %this%\gc.obj  %this%\thread.obj  %this%\sync.obj  %this%\stringz.obj   %this%\all.obj  %this%\bind.obj  %this%\box.obj  %this%\metastrings.obj  %this%\minmax.obj  %this%\signal.obj  %this%\args.obj  %this%\typetuple.obj  %this%\traits.obj  %this%\exception.obj %LDIR%\minit.obj  %this%\WinStructs.obj  %this%\WinIfaces.obj  %this%\WinConsts.obj  %this%\WinFuncs.obj  %this%\WinProcess.obj  %this%\comtpl.obj  %this%\wincom.obj  %this%\shell32.obj  %this%\stream.obj  %this%\memory.obj %this%\activex.obj  %this%\winapi.obj  %this%\singleton.obj  %this%\alloc.obj  %this%\collection.obj  %this%\ini.obj  %this%\Std.obj  %this%\uuid.obj  %this%\comsys.obj  %this%\rotozoom.obj  %this%\scomall.obj  %this%\global.obj  %this%\weakref.obj %this%\registry.obj %this%\stdrusex.obj %this%\usergdi.obj %this%\msscript.obj %this%\sysCommon.obj %this%\Cdinr.lib
+%DMD% -lib -of%this%\dinrus2.lib %this%\base.obj  %this%\object.obj  %this%\cidrus.obj  %this%\stdrus.obj  %this%\dinrus.obj %this%\runtime.obj %this%\runtimetraits.obj  %this%\gc.obj  %this%\thread.obj  %this%\sync.obj  %this%\stringz.obj   %this%\all.obj  %this%\bind.obj  %this%\box.obj  %this%\metastrings.obj  %this%\minmax.obj  %this%\signal.obj  %this%\args.obj  %this%\typetuple.obj  %this%\traits.obj %this%\tpltuple.obj %this%\tplthreadpool.obj  %this%\exception.obj %LDIR%\minit.obj  %this%\WinStructs.obj  %this%\WinIfaces.obj  %this%\WinConsts.obj  %this%\WinFuncs.obj  %this%\WinProcess.obj  %this%\comtpl.obj  %this%\wincom.obj  %this%\shell32.obj  %this%\stream.obj  %this%\memory.obj %this%\activex.obj  %this%\winapi.obj  %this%\singleton.obj  %this%\alloc.obj  %this%\collection.obj  %this%\ini.obj  %this%\Std.obj  %this%\uuid.obj  %this%\comsys.obj  %this%\rotozoom.obj  %this%\scomall.obj  %this%\global.obj  %this%\weakref.obj %this%\registry.obj %this%\stdrusex.obj %this%\usergdi.obj %this%\msscript.obj %this%\sysCommon.obj %this%\tplarray.obj %this%\tplsigstruct.obj %this%\Cdinr.lib
 @if exist %this%\dinrus2.lib  goto Join
 @if not exist %this%\dinrus2.lib pause
 cls
@@ -249,7 +266,7 @@ cls
 pause
 
 :Col
-%LS% -d %this%\static\col\*.d  %this%\static\col\model\*.d>>%this%\col.rsp
+%LS% -d %this%\export\col\*.d  %this%\export\col\model\*.d %this%\export\col\impl\*.d %this%\export\col\iterator\*.d>>%this%\col.rsp
 %DMD% -lib -of%this%\col.lib @%this%\col.rsp
 @if exist %this%\col.lib del %this%\col.rsp
 @if exist %this%\col.lib goto Util
@@ -259,24 +276,14 @@ cls
 @goto Col
 
 :Util
-%LS% -d %this%\static\util\*.d>>%this%\ut.rsp
+%LS% -d %this%\static\util\*.d %this%\static\util\uuid\*.d %this%\static\util\log\*.d %this%\static\util\log\model\*.d %this%\static\util\digest\*.d %this%\export\crypto\*.d %this%\static\util\cipher\*.d>>%this%\ut.rsp
 %DMD% -lib -of%this%\util.lib @%this%\ut.rsp
 @if exist %this%\util.lib del %this%\ut.rsp
-@if exist %this%\util.lib goto LinALg
+@if exist %this%\util.lib goto Mesh
 @if not exist %this%\util.lib pause
 @del %this%\ut.rsp
 cls
 @goto Util
-
-:LinAlg
-%LS% -d %this%\static\linalg\*.d>>%this%\la.rsp
-%DMD% -lib -of%this%\la.lib @%this%\la.rsp
-@if exist %this%\la.lib del %this%\la.rsp
-@if exist %this%\la.lib goto Mesh
-@if not exist %this%\la.lib pause
-@del %this%\la.rsp
-cls
-@goto LinAlg
 
 :Mesh
 %LS% -d %this%\static\mesh\*.d>>%this%\mesh.rsp
@@ -308,9 +315,8 @@ cls
 cls
 @goto Geom
 
-
 :Math
-%LS% -d %this%\export\math\*.d>>%this%\math.rsp
+%LS% -d %this%\static\math\*.d %this%\static\math\linalg\*.d %this%\static\math\internal\*.d %this%\static\math\random\*.d %this%\static\math\random\engines\*.d>>%this%\math.rsp
 %DMD% -lib -of%this%\math.lib @%this%\math.rsp
 @if exist %this%\math.lib del %this%\math.rsp
 @if exist %this%\math.lib goto IO
@@ -321,10 +327,11 @@ cls
 
 :IO
 goto finish
-%LS% -d %this%\export\io\*.d %this%\export\io\device\*.d %this%\export\io\stream\*.d>>%this%\io.rsp
+
+%LS% -d %this%\static\io\*.d %this%\static\io\device\*.d %this%\static\io\stream\*.d>>%this%\io.rsp
 %DMD% -lib -of%this%\io.lib @%this%\io.rsp
 @if exist %this%\io.lib del %this%\io.rsp
-@if exist %this%\io.lib goto DRwin32
+@if exist %this%\io.lib goto finish
 @if not exist %this%\io.lib pause
 @del %this%\io.rsp
 cls
@@ -370,12 +377,11 @@ cd %this%
 %LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\col.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\util.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\la.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\st.lib
 %LIB% -p256  %this%\Dinrus.lib %this%\math.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
+%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
 %LIB% -p256  %this%\Dinrus.lib %ARCDIR%\arc2.lib
 %LIB% -p256  %this%\Dinrus.lib %MINIDDIR%\rminid.lib
 
@@ -387,6 +393,7 @@ cd %this%
 ::%LIB% -p256  Dinrus.lib %LDIR%\DImport.lib
 copy %this%\Dinrus.lib %LDIR%
 copy %this%\Dinrus.lib %LDIR%\Dinrus_dbg.lib
+copy %this%\Dinrus.lib %this%\Dinrus_dbg.lib
 
 ::%PACK% %this%\DinrusBase.dll
 copy %this%\DinrusBase.dll %DINRUS%

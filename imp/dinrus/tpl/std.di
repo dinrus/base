@@ -1,12 +1,5 @@
 ﻿//============================================================================
-// Std.d - some standard simple utilties
-//
-// Description: 
-//   <TODO:>
-//
-// Author:  William V. Baxter III
-// Created: 30 Aug 2007
-// Written in the D Programming Language (http://www.digitalmars.com/d)
+// Некоторые простые стандартные утилиты
 //============================================================================
 
 module tpl.std;

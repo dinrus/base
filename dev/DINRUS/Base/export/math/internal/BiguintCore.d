@@ -67,7 +67,7 @@ const цел CACHELIMIT;   // Half the размер of the данные кэш.
 const цел FASTDIVLIMIT; // crossover в_ recursive division
 
 
-// These constants are использован by shift operations
+// These константы are использован by shift operations
 static if (БольшЦифра.sizeof == цел.sizeof)
 {
     enum { LG2BIGDIGITBITS = 5, BIGDIGITSHIFTMASK = 31 };

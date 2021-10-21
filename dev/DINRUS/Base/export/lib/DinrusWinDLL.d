@@ -24,7 +24,7 @@ extern(D):
 ткст отделиИмяфСРасш(ткст путь);
 ткст дайПолныйПуть(ткст путь);
 
-/// Specifies constants used to retrieve directory paths to system special folders.
+/// Specifies константы used to retrieve directory paths to system special folders.
 enum ПОсобаяПапка {
   РабочийСтол = 0x0000,                 /// The logical _Desktop rather than the physical file system location.
   Интернет = 0x0001,                /// 

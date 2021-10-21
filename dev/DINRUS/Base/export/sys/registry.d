@@ -264,26 +264,26 @@ extern(D) class Реестр
 {
     this();
 
-    /// Returns the root ключ for the HKEY_CLASSES_ROOT hive
-    static Ключ  кореньКлассов() ;
+    /// Возвращает корневой ключ для HKEY_CLASSES_ROOT
+    static Ключ  кореньКлассов();
 	
-    /// Returns the root ключ for the HKEY_CURRENT_USER hive
+    /// Возвращает корневой ключ для HKEY_CURRENT_USER
     static Ключ  текущийПользователь();
 	
-    /// Returns the root ключ for the HKEY_LOCAL_MACHINE hive
-    static Ключ  локальнаяМашина() ;
+    /// Возвращает корневой ключ для HKEY_LOCAL_MACHINE
+    static Ключ  локальнаяМашина();
 	
-    /// Returns the root ключ for the HKEY_USERS hive
-    static Ключ  пользователи()      ;
+    /// Возвращает корневой ключ для HKEY_USERS
+    static Ключ  пользователи();
 	
-    /// Returns the root ключ for the HKEY_PERFORMANCE_DATA hive
-    static Ключ  данныеПроизводительности()  ;
+    /// Возвращает корневой ключ для HKEY_PERFORMANCE_DATA
+    static Ключ  данныеПроизводительности();
 	
-    /// Returns the root ключ for the HKEY_CURRENT_CONFIG hive
-    static Ключ  текущаяКонфигурация()   ;
+    /// Возвращает корневой ключ для HKEY_CURRENT_CONFIG
+    static Ключ  текущаяКонфигурация();
 	
-    /// Returns the root ключ for the HKEY_DYN_DATA hive
-    static Ключ  динДанные()       ;
+    /// Возвращает корневой ключ для HKEY_DYN_DATA
+    static Ключ  динДанные();
 
 }
 

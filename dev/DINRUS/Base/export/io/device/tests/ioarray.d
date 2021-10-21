@@ -1,9 +1,9 @@
   module ioarray;
   
   //import io.Stdout;
- //   import io.device.Array, io.device.BitBucket;
+    import io.device.Array, io.device.BitBucket;
 	import thread, io.device.ThreadPipe;
-//	alias io.device.Array.Массив Массив;
+	alias io.device.Array.Массив Массив;
 
     проц testThreadPipe()
     {
@@ -38,7 +38,7 @@
     проц main()
     {
 
-      /+
+      
 	  auto b = new Массив(6, 10);
         b.сместись (0);
         b.пиши ("fubar");
@@ -59,10 +59,10 @@
         a.пиши("b"); // at the moment it works, disallow?
         бцел[4] x = 0;
         a.читай(x);
-      //  foreach (el;x)
-          //  assert(el == 0);
+        foreach (el;x)
+            assert(el == 0);
    ///////////////////////////////   
-   +/
-   	    testThreadPipe();
+   
+   	   // testThreadPipe();
 									   
     }

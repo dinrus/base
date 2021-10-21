@@ -1,26 +1,14 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2006 Keinfarbton. All rights reserved
-
-        license:        BSD style: $(LICENSE)
-
-        version:        Initial release: October 2006
-
-        author:         Keinfarbton & Kris
-
-*******************************************************************************/
-
-module stringz;
+﻿module stringz;
 
 export:
 
 /*********************************
- * Convert array of симs to a C-style 0 terminated string.
- * Providing a врм will use that instead of the heap, where
- * appropriate.
+ * Преобразовать массив из сим в ткст в стиле Си с окончанием 0.
+ * При предоставлении врм, он используется вместо кучи, при
+ * такой возможности.
  */
 
-сим* вТкст0 (ткст s, ткст врм=null)
+сим* вТкст0 (ткст s, ткст врм = null)
 {
         static ткст empty = "\0";
 

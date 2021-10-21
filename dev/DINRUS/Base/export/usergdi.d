@@ -6180,9 +6180,9 @@ alias ANIMATIONINFO* PANIMATIONINFO;
 
 struct RECT
 {
-    LONG лев;
+    LONG лево;
     LONG top;
-    LONG прав;
+    LONG право;
     LONG bottom;
 }
 
@@ -6194,9 +6194,9 @@ alias RECT* PRECT;
 
 struct RECTL
 {
-    LONG лев;
+    LONG лево;
     LONG top;
-    LONG прав;
+    LONG право;
     LONG bottom;
 }
 

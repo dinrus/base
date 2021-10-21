@@ -56,7 +56,7 @@ public class ОшибкаКонтекста : Ошибка
 
 /******************************************************
  * The КонтекстСтэка is building блок of the
- * СтэкНить system. It allows the user to swap the
+ * СтэкНить system. It допускается the user to swap the
  * стэк of the выполняется program.
  *
  * For most applications, there should be no need to use
@@ -246,7 +246,7 @@ public final class КонтекстСтэка
      * Throws an exception и жниs.  The exception
      * will propagate out of the пуск method, while the
      * контекст will remain жив и functioning.
-     * The контекст may be resumed after the exception имеется
+     * The контекст may be resumed после the exception имеется
      * been thrown.
      *
      * Параметры:

@@ -17,7 +17,7 @@ private import tpl.array;
  * slots).  When a signal is called, that вызов will be propagated в_ each
  * attached slot in a синхронно manner.  It is legal for a slot в_ вызов a
  * signal's прикрепи and открепи methods when it is signaled.  When this occurs,
- * прикрепи события will be queued and processed after the signal есть propagated
+ * прикрепи события will be queued and processed после the signal есть propagated
  * в_ все slots, but открепи события are processed immediately.  This ensures
  * that it is safe for slots в_ be deleted at any время, even within a slot
  * routine.

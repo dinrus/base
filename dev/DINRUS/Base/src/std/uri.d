@@ -332,10 +332,10 @@ private dchar[] URI_Decode(char[] string, uint reservedSet)
 	if (C < uri_flags.length && uri_flags[C] & reservedSet)
 	{
 	    // R ~= s[start .. k + 1];
-	    int width = (k + 1) - start;
-	    for (int ii = 0; ii < width; ii++)
+	    int ширина = (k + 1) - start;
+	    for (int ii = 0; ii < ширина; ii++)
 		R[Rlen + ii] = s[start + ii];
-	    Rlen += width;
+	    Rlen += ширина;
 	}
 	else
 	{

@@ -9,7 +9,7 @@
 
 /**
  * Macros:
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  SUP = <вринтервал стиль="vertical-align:super;font-размер:smaller">$0</вринтервал>
  *  GAMMA =  &#915;
  *  INTEGRAL = &#8747;
@@ -52,7 +52,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
 */
 реал normalDistribution(реал a);
 
-/** ditto */
+/** описано ранее */
 реал normalDistributionCompl(реал a);
 
 /******************************
@@ -70,7 +70,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  */
 реал normalDistributionInv(реал p);
 
-/** ditto */
+/** описано ранее */
 реал normalDistributionComplInv(реал p);
 
 /** Student's t cumulative ни в каком дистрибутиве function
@@ -92,7 +92,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  * For t < -1.6, this is the метод of computation.  For higher t,
  * a direct метод is производный из_ integration by части.
  * Since the function is symmetric about t=0, the area under the
- * прав хвост of the density is найдено by calling the function
+ * право хвост of the density is найдено by calling the function
  * with -t instead of t.
  */
 реал studentsTDistribution(цел nu, реал t);
@@ -136,7 +136,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  *  x  = Must be >= 0
  */
 реал fDistribution(цел df1, цел df2, реал x);
-/** ditto */
+/** описано ранее */
 реал fDistributionCompl(цел df1, цел df2, реал x);
 
 /*
@@ -159,15 +159,15 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  *      x = df2 z / (df1 (1-z)).
 */
 
-/** ditto */
+/** описано ранее */
 реал fDistributionComplInv(цел df1, цел df2, реал p );
 
 /** $(POWER &chi;,2) cumulative ни в каком дистрибутиве function и its complement.
  *
- * Возвращает the area under the лев hand хвост (из_ 0 в_ x)
+ * Возвращает the area under the лево hand хвост (из_ 0 в_ x)
  * of the Chi square probability density function with
  * знач degrees of freedom. The complement returns the area under
- * the прав hand хвост (из_ x в_ &infin;).
+ * the право hand хвост (из_ x в_ &infin;).
  *
  *  chiSqrDistribution(x | знач) = ($(INTEGRATE 0, x)
  *          $(POWER t, знач/2-1) $(POWER e, -t/2) dt )
@@ -183,7 +183,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  *
  */
 реал chiSqrDistribution(реал знач, реал x);
-/** ditto */
+/** описано ранее */
 реал chiSqrDistributionCompl(реал знач, реал x);
 
 /**
@@ -213,7 +213,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  */
 реал gammaDistribution(реал a, реал b, реал x);
 
-/** ditto */
+/** описано ранее */
 реал gammaDistributionCompl(реал a, реал b, реал x );
 
 /**********************
@@ -239,13 +239,13 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  */
 реал betaDistribution(реал a, реал b, реал x );
 
-/** ditto */
+/** описано ранее */
 реал betaDistributionCompl(реал a, реал b, реал x);
 
-/** ditto */
+/** описано ранее */
 реал betaDistributionInv(реал a, реал b, реал y);
 
-/** ditto */
+/** описано ранее */
 реал betaDistributionComplInv(реал a, реал b, реал y);
 
 /**
@@ -268,10 +268,10 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  * The аргументы must Всё be positive.
  */
 реал poissonDistribution(цел ключ, реал m );
-/** ditto */
+/** описано ранее */
 реал poissonDistributionCompl(цел ключ, реал m );
 
-/** ditto */
+/** описано ранее */
 реал poissonDistributionInv( цел ключ, реал p );
 
 /***********************************
@@ -293,7 +293,7 @@ Journal of Statistical Software <b>11</b>, (July 2004).
  * The аргументы must be positive, with p ranging из_ 0 в_ 1, и ключ<=n.
  */
 реал binomialDistribution(цел ключ, цел n, реал p );
-/** ditto */
+/** описано ранее */
 реал binomialDistributionCompl(цел ключ, цел n, реал p );
  
 /** Inverse binomial ни в каком дистрибутиве
@@ -337,5 +337,5 @@ Journal of Statistical Software <b>11</b>, (July 2004).
 
 реал negativeBinomialDistribution(цел ключ, цел n, реал p );
 
-/** ditto */
+/** описано ранее */
 реал negativeBinomialDistributionInv(цел ключ, цел n, реал p );

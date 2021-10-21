@@ -48,25 +48,25 @@ export extern (C) long _adSort(Array a, TypeInfo ti)
 {
   byte* base;
   byte*[40] stack;              // stack
-  byte** sp;                    // stack pointer
+  byte** кп;                    // stack pointer
   byte* i, j, limit;            // scan and limit pointers
   uint thresh;                  // size of _maxspan elements in bytes
-  uint width = ti.tsize();
+  uint ширина = ti.tsize();
 
   base = cast(byte *)a.ptr;
-  thresh = _maxspan * width;             // init threshold
-  sp = stack.ptr;                        // init stack pointer
-  limit = base + a.length * width;       // pointer past end of array
+  thresh = _maxspan * ширина;             // init threshold
+  кп = stack.ptr;                        // init stack pointer
+  limit = base + a.length * ширина;       // pointer past end of array
   while (1)                              // repeat until done then return
   {
     while (limit - base > thresh)        // if more than _maxspan elements
     {
       //swap middle, base
       ti.swap((cast(uint)(limit - base) >> 1) -
-           (((cast(uint)(limit - base) >> 1)) % width) + base, base);
+           (((cast(uint)(limit - base) >> 1)) % ширина) + base, base);
 
-      i = base + width;                 // i scans from left to right
-      j = limit - width;                // j scans from right to left
+      i = base + ширина;                 // i scans from left to right
+      j = limit - ширина;                // j scans from right to left
 
       if (ti.compare(i, j) > 0)         // Sedgewick's
         ti.swap(i, j);                  //    three-element sort
@@ -78,10 +78,10 @@ export extern (C) long _adSort(Array a, TypeInfo ti)
       while (1)
       {
         do                              // move i right until *i >= pivot
-          i += width;
+          i += ширина;
         while (ti.compare(i, base) < 0);
         do                              // move j left until *j <= pivot
-          j -= width;
+          j -= ширина;
         while (ti.compare(j, base) > 0);
         if (i > j)                      // break loop if pointers crossed
           break;
@@ -90,38 +90,38 @@ export extern (C) long _adSort(Array a, TypeInfo ti)
       ti.swap(base, j);                 // move pivot into correct place
       if (j - base > limit - i)         // if left subarray is larger...
       {
-        sp[0] = base;                   // stack left subarray base
-        sp[1] = j;                      //    and limit
+        кп[0] = base;                   // stack left subarray base
+        кп[1] = j;                      //    and limit
         base = i;                       // sort the right subarray
       }
       else                              // else right subarray is larger
       {
-        sp[0] = i;                      // stack right subarray base
-        sp[1] = limit;                  //    and limit
+        кп[0] = i;                      // stack right subarray base
+        кп[1] = limit;                  //    and limit
         limit = j;                      // sort the left subarray
       }
-      sp += 2;                          // increment stack pointer
-      assert(sp < cast(byte**)stack + stack.length);
+      кп += 2;                          // increment stack pointer
+      assert(кп < cast(byte**)stack + stack.length);
     }
 
     // Insertion sort on remaining subarray
-    i = base + width;
+    i = base + ширина;
     while (i < limit)
     {
       j = i;
-      while (j > base && ti.compare(j - width, j) > 0)
+      while (j > base && ti.compare(j - ширина, j) > 0)
       {
-        ti.swap(j - width, j);
-        j -= width;
+        ti.swap(j - ширина, j);
+        j -= ширина;
       }
-      i += width;
+      i += ширина;
     }
 
-    if (sp > stack.ptr)                 // if any entries on stack...
+    if (кп > stack.ptr)                 // if any entries on stack...
     {
-      sp -= 2;                          // pop the base and limit
-      base = sp[0];
-      limit = sp[1];
+      кп -= 2;                          // pop the base and limit
+      base = кп[0];
+      limit = кп[1];
     }
     else                                // else stack empty, all done
       return *cast(long*)(&a);

@@ -289,7 +289,7 @@ pragma(lib, "dinrus.lib");
     }
 	
 	
-import col.HashSet;
+import col.ХэшНабор;
 	
 	   проц хн()
     {
@@ -323,7 +323,7 @@ import col.LinkList;
 				скажинс("=== ПРОЙДЕН ===");
     }
 
-import col.TreeMap;
+import col.КартаДерево;
 
 	    проц дк()
     {

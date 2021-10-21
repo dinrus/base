@@ -61,7 +61,7 @@ alias ptr укз;
 		b.length = newdim;		// realloc
 		ptr = b.ptr;
 		if (newdim & 31)
-		{   // Set any pad bits to 0
+		{   // Set any пад bits to 0
 		    ptr[newdim - 1] &= ~(~0 << (newdim & 31));
 		}
 	    }
@@ -83,7 +83,7 @@ alias ptr укз;
 	return cast(bool)bt(ptr, i);
     }
 
-    /** ditto */
+    /** описано ранее */
     bool opIndexAssign(bool b, size_t i)
     in
     {
@@ -151,7 +151,7 @@ alias ptr укз;
 	return результат;
     }
 
-    /** ditto */
+    /** описано ранее */
     int opApply(int delegate(inout size_t, inout bool) дг)
     {
 	int результат;
@@ -877,7 +877,7 @@ alias ptr укз;
     }
 
     /***************************************
-     * ditto
+     * описано ранее
      */
 
     BitArray opCatAssign(BitArray b)
@@ -924,7 +924,7 @@ alias ptr укз;
 	return r;
     }
 
-    /** ditto */
+    /** описано ранее */
     BitArray opCat_r(bool b)
     {
 	BitArray r;
@@ -936,7 +936,7 @@ alias ptr укз;
 	return r;
     }
 
-    /** ditto */
+    /** описано ранее */
     BitArray opCat(BitArray b)
     {
 	BitArray r;

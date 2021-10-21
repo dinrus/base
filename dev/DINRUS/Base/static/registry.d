@@ -108,7 +108,7 @@ private typedef бцел Reserved;
     цел         cDelimiters =   128;
     ткст[]   tokens      =   new ткст[cDelimiters];
     цел         start;
-    цел         begin;
+    цел         начало;
     цел         cTokens;
 
     /// Ensures that the tokens array is big enough
@@ -122,45 +122,45 @@ private typedef бцел Reserved;
 
     if(bElideBlanks)
     {
-        for(start = 0, begin = 0, cTokens = 0; begin < source.length; ++begin)
+        for(start = 0, начало = 0, cTokens = 0; начало < source.length; ++начало)
         {
-            if(source[begin] == delimiter)
+            if(source[начало] == delimiter)
             {
-                if(start < begin)
+                if(start < начало)
                 {
                     ensure_length();
 
-                    tokens[cTokens++]   =   source[start .. begin];
+                    tokens[cTokens++]   =   source[start .. начало];
                 }
 
-                start = begin + 1;
+                start = начало + 1;
             }
         }
 
-        if(start < begin)
+        if(start < начало)
         {
             ensure_length();
 
-            tokens[cTokens++]   =   source[start .. begin];
+            tokens[cTokens++]   =   source[start .. начало];
         }
     }
     else
     {
-        for(start = 0, begin = 0, cTokens = 0; begin < source.length; ++begin)
+        for(start = 0, начало = 0, cTokens = 0; начало < source.length; ++начало)
         {
-            if(source[begin] == delimiter)
+            if(source[начало] == delimiter)
             {
                 ensure_length();
 
-                tokens[cTokens++]   =   source[start .. begin];
+                tokens[cTokens++]   =   source[start .. начало];
 
-                start = begin + 1;
+                start = начало + 1;
             }
         }
 
         ensure_length();
 
-        tokens[cTokens++]   =   source[start .. begin];
+        tokens[cTokens++]   =   source[start .. начало];
     }
 
     tokens.length = cTokens;
@@ -186,7 +186,7 @@ private typedef бцел Reserved;
 /// \brief This library provides Win32 Registry facilities
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Private constants
+ * Private константы
  */
 
 private const бцел DELETE                      =   0x00010000L;

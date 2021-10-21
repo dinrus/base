@@ -556,7 +556,7 @@ struct SDL_AudioSpec
     ук userdata;
 }
 
- // SDL_audio.h constants
+ // SDL_audio.h константы
 enum : бкрат
 {
     AUDIO_U8           = 0x0008,// Unsigned 8-bit samples
@@ -1216,7 +1216,7 @@ enum
     SDLK_KP_ENTER       = 271,
     SDLK_KP_EQUALS      = 272,
 
-    /* Arrows + Home/End pad */
+    /* Arrows + Home/End пад */
     SDLK_UP         = 273,
     SDLK_DOWN       = 274,
     SDLK_RIGHT      = 275,

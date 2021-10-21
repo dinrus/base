@@ -42,7 +42,7 @@ public:
  * Uses an algorithm based on TOMS748, which uses inverse cubic interpolation
  * whenever possible, иначе reverting в_ parabolic or secant
  * interpolation. Compared в_ TOMS748, this implementation improves worst-case
- * performance by a factor of ещё than 100, и typical performance by a factor
+ * performance by a фактор of ещё than 100, и typical performance by a фактор
  * of 2. For 80-bit reals, most problems require 8 - 15 calls в_ f(x) в_ achieve
  * full machine точность. The worst-case performance (pathological cases) is
  * approximately twice the число of биты.
@@ -117,7 +117,7 @@ body
 
     /* Perform a secant interpolation. If the результат would lie on a or b, or if
       a и b differ so wildly in magnitude that the результат would be meaningless,
-      perform a bisection instead.
+      выполни a bisection instead.
      */
     T secant_interpolate(T a, T b, T fa, T fb)
     {
@@ -281,10 +281,10 @@ whileloop:
         if((fa == 0) || tolerance(БрэкетРез!(T,R)(a, b, fa, fb)))
             break;
 
-        // We must ensure that the bounds reduce by a factor of 2
+        // We must ensure that the bounds reduce by a фактор of 2
         // (DAC: in binary пространство!) every iteration. If we haven't achieved this
         // yet (DAC: or if we don't yet know что the exponent is),
-        // perform a binary chop.
+        // выполни a binary chop.
 
         if( (a==0 || b==0 ||
                 (фабс(a) >= 0.5 * фабс(b) && фабс(b) >= 0.5 * фабс(a)))

@@ -637,7 +637,7 @@ export extern(D) struct МассивБит
 		b.length = newdim;		// realloc
 		ptr = b.ptr;
 		if (newdim & 31)
-		{   // Уст any pad bits to 0
+		{   // Уст any пад bits to 0
 		    ptr[newdim - 1] &= ~(~0 << (newdim & 31));
 		}
 	    }
@@ -656,7 +656,7 @@ export extern(D) struct МассивБит
 	return cast(бул)bt(ptr, i);
     }
 
-    /** ditto */
+    /** описано ранее */
    export бул opIndexAssign(бул b, т_мера i)
     in
     {
@@ -1351,7 +1351,7 @@ version (DigitalMarsC)
     extern  (C)
     {
 	extern  сим* function(цел c, цел флаги, цел точность, реал* pdзнач,
-	    сим* буф, цел* psl, цел width) __pfloatfmt;
+	    сим* буф, цел* psl, цел ширина) __pfloatfmt;
     }
 }
 else
@@ -2153,7 +2153,7 @@ auto args = _arguments;
 		{
 		    if (c > 0x7F)	// if UTF sequence
 		    {
-			i--;		// back up and decode UTF sequence
+			i--;		// задний up and decode UTF sequence
 			c = std.utf.decode(fmt, i);
 		    }
 		Lputc:
@@ -2181,7 +2181,7 @@ auto args = _arguments;
 		    break;
 		}
 
-		// Get field width
+		// Get field ширина
 		ширина_поля = 0;
 		if (c == '*')
 		{
@@ -2783,77 +2783,77 @@ export	проц резервируй(бцел члобайт)
 	    смещение += байты.length;
 	}
 
-  export  проц пиши(ббайт b)		/// ditto
+  export  проц пиши(ббайт b)		/// описано ранее
 	{
 	    резервируй(ббайт.sizeof);
 	    this.данные[смещение] = b;
 	    смещение += ббайт.sizeof;
 	}
 
-  export  проц пиши(байт b) { пиши(cast(ббайт)b); }		/// ditto
- export   проц пиши(сим c) { пиши(cast(ббайт)c); }		/// ditto
+  export  проц пиши(байт b) { пиши(cast(ббайт)b); }		/// описано ранее
+ export   проц пиши(сим c) { пиши(cast(ббайт)c); }		/// описано ранее
 
- export   проц пиши(бкрат w)		/// ditto
+ export   проц пиши(бкрат w)		/// описано ранее
     {
 	резервируй(бкрат.sizeof);
 	*cast(бкрат *)&данные[смещение] = w;
 	смещение += бкрат.sizeof;
     }
 
-  export  проц пиши(крат т) { пиши(cast(бкрат)т); }		/// ditto
+  export  проц пиши(крат т) { пиши(cast(бкрат)т); }		/// описано ранее
 
-  export  проц пиши(шим c)		/// ditto
+  export  проц пиши(шим c)		/// описано ранее
     {
 	резервируй(шим.sizeof);
 	*cast(шим *)&данные[смещение] = c;
 	смещение += шим.sizeof;
     }
 
-  export  проц пиши(бцел w)		/// ditto
+  export  проц пиши(бцел w)		/// описано ранее
     {
 	резервируй(бцел.sizeof);
 	*cast(бцел *)&данные[смещение] = w;
 	смещение += бцел.sizeof;
     }
 
-  export  проц пиши(цел i) { пиши(cast(бцел)i); }		/// ditto
+  export  проц пиши(цел i) { пиши(cast(бцел)i); }		/// описано ранее
 
-  export  проц пиши(бдол l)		/// ditto
+  export  проц пиши(бдол l)		/// описано ранее
     {
 	резервируй(бдол.sizeof);
 	*cast(бдол *)&данные[смещение] = l;
 	смещение += бдол.sizeof;
     }
 
-  export  проц пиши(дол l) { пиши(cast(бдол)l); }		/// ditto
+  export  проц пиши(дол l) { пиши(cast(бдол)l); }		/// описано ранее
 
-   export проц пиши(плав f)		/// ditto
+   export проц пиши(плав f)		/// описано ранее
     {
 	резервируй(плав.sizeof);
 	*cast(плав *)&данные[смещение] = f;
 	смещение += плав.sizeof;
     }
 
-   export проц пиши(дво f)		/// ditto
+   export проц пиши(дво f)		/// описано ранее
     {
 	резервируй(дво.sizeof);
 	*cast(дво *)&данные[смещение] = f;
 	смещение += дво.sizeof;
     }
 
-  export  проц пиши(реал f)		/// ditto
+  export  проц пиши(реал f)		/// описано ранее
     {
 	резервируй(реал.sizeof);
 	*cast(реал *)&данные[смещение] = f;
 	смещение += реал.sizeof;
     }
 
-   export проц пиши(ткст т)		/// ditto
+   export проц пиши(ткст т)		/// описано ранее
     {
 	пиши(cast(ббайт[])т);
     }
 
-   export проц пиши(БуферВывода буф)		/// ditto
+   export проц пиши(БуферВывода буф)		/// описано ранее
     {
 	пиши(буф.вБайты());
     }
@@ -3076,7 +3076,7 @@ import std.math;
 реал округли(реал x){return std.math.round(x);}
 дол докругли(реал x){return std.math.lround(x);}
 реал упрости(реал x){return std.math.trunc(x);}
-реал остаток(реал x, реал y){return std.math.remainder(x, y);}
+реал остаток(реал x, реал y){return std.math.остаток(x, y);}
 бул нч_ли(реал x){return cast(бул) std.math.isnan(x);}
 бул конечен_ли(реал р){return cast(бул) std.math.isfinite(р);}
 
@@ -3085,13 +3085,13 @@ import std.math;
 бул субнорм_ли(реал п){return cast(бул) std.math.issubnormal(п);}
 бул беск_ли(реал р){return cast(бул) std.math.isinf(р);}
 бул идентичен_ли(реал р, реал д){return std.math.isIdentical(р, д);}
-/** ditto */
+/** описано ранее */
 бул идентичен_ли(вреал x, вреал y)
 {
     return идентичен_ли(x.im, y.im);
 }
 
-/** ditto */
+/** описано ранее */
 бул идентичен_ли(креал x, креал y)
 {
     return идентичен_ли(x.re, y.re) && идентичен_ли(x.im, y.im);
@@ -3148,7 +3148,7 @@ import std.math2;
 реал асек(реал р){return std.math2.asec(р);}
 реал акосек(реал р){return std.math2.acosec(р);}
 реал кот(реал р){return std.math2.cot(р);}
-реал сек(реал р){return std.math2.sec(р);}
+реал сек(реал р){return std.math2.сек(р);}
 реал косек(реал р){return std.math2.cosec(р);}
 реал гкот(реал р){return std.math2.coth(р);}
 реал гсек(реал р){return std.math2.sech(р);}
@@ -3374,7 +3374,7 @@ export extern (D) class РегВыр
 	return this;
     }
 
-    /** ditto */
+    /** описано ранее */
    export  цел opApply(цел delegate(inout РегВыр) дг)
     {
 	цел результат;
@@ -3431,8 +3431,8 @@ export extern (D) class РегВыр
 
     enum РВА
     {
-	глоб		= 1,	// has the g attribute
-	любрег	= 2,	// has the i attribute
+	глоб		= 1,	// has the g атрибут
+	любрег	= 2,	// has the i атрибут
 	многострок	= 4,	// if treat as multiple lines separated
 				// by newlines, or as a single строка
 	тчксовплф	= 8,	// if . matches \n
@@ -4284,7 +4284,7 @@ export цел пробнсвер(цел pc, цел pcend)
 		    истк++;
 		    s2 = истк;
 
-		    // If no сверь after consumption, but it
+		    // If no сверь после consumption, but it
 		    // did сверь before, then no сверь
 		    if (!пробнсвер(pc, программа.length))
 		    {
@@ -4370,7 +4370,7 @@ export цел пробнсвер(цел pc, цел pcend)
 			    break;
 			}
 
-			// If no сверь after consumption, but it
+			// If no сверь после consumption, but it
 			// did сверь before, then no сверь
 			if (!пробнсвер(pop + длин, программа.length))
 			{
@@ -5205,7 +5205,7 @@ body
 		    c = c * 16 + (tc - 'a' + 10);
 		else if ('A' <= tc && tc <= 'F')
 		    c = c * 16 + (tc - 'A' + 10);
-		else if (i == 0)	// if no hex digits after \x
+		else if (i == 0)	// if no hex digits после \x
 		{
 		    // Not a значid \xXX sequence
 		    return 'x';
@@ -6208,10 +6208,10 @@ export:
       }
     }
     super.слей();
-    дол diff = cast(дол)текБуфПоз-позИстокаБуф;
-    if (diff != 0 && сканируемый()) {
+    дол рознь = cast(дол)текБуфПоз-позИстокаБуф;
+    if (рознь != 0 && сканируемый()) {
       // move actual файл poцелer to current позиция
-      позПотока = п.сместись(diff, ППозКурсора.Тек);
+      позПотока = п.сместись(рознь, ППозКурсора.Тек);
     }
     // reset буфер данные to be empty
     позИстокаБуф = текБуфПоз = длинаБуф = 0;
@@ -6534,8 +6534,8 @@ export:
   ~this(){}
 
   this(ббайт[] буф = null) {super (буф);  }
-  this(байт[] буф) { this(cast(ббайт[]) буф);}	/// ditto
-  this(ткст буф) {this(cast(ббайт[]) буф); } /// ditto
+  this(байт[] буф) { this(cast(ббайт[]) буф);}	/// описано ранее
+  this(ткст буф) {this(cast(ббайт[]) буф); } /// описано ранее
 
   /// Ensure the stream can hold count bytes.
   проц резервируй(т_мера count) {

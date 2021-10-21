@@ -167,11 +167,11 @@ class ОбъектДжейСОН:ТипДжейСОН {
 	/// Nothing to see here except for the boring constructor, move along.
 	this(){}
 	protected ТипДжейСОН[ткст] _ветви;
-	/// Operator overload for установиting ключи in the AA.
+	/// Оператор overload for установиting ключи in the AA.
 	проц opIndexAssign(ТипДжейСОН тип,ткст ключ) {
 		_ветви[ключ] = тип;
 	}
-	/// Operator overload for accessing значения already in the AA.
+	/// Оператор overload for accessing значения already in the AA.
 	/// Returns: The ветвь узел if it exists, otherwise пусто.
 	ТипДжейСОН opIndex(ткст ключ) {
 		return (ключ in _ветви)?_ветви[ключ]:пусто;
@@ -179,7 +179,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 	/// Allow the user to дай the number of элементы in this object
 	/// Returns: The number of ветвь узелs contained внутри this ОбъектДжейСОН
 	цел длина() {return _ветви.length;}
-	/// Operator overload for foreach iteration through the object with значения only
+	/// Оператор overload for foreach iteration through the object with значения only
 	цел opApply(цел delegate(ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ветвь;_ветви) {
@@ -188,7 +188,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the object with значения only и allow modification of the reference
+	/// Оператор overload for foreach iteration through the object with значения only и allow modification of the reference
 	цел opApply(цел delegate(ref ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ref ветвь;_ветви) {
@@ -197,7 +197,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the object with ключ и value
+	/// Оператор overload for foreach iteration through the object with ключ и value
 	цел opApply(цел delegate(ткст,ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ключ,ветвь;_ветви) {
@@ -206,7 +206,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the object with ключ и value и allow modification of the reference
+	/// Оператор overload for foreach iteration through the object with ключ и value и allow modification of the reference
 	цел opApply(цел delegate(ткст,ref ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ключ,ref ветвь;_ветви) {
@@ -256,7 +256,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 			auto jstr = new ТкстДжейСОН();
 			jstr.парсируй(исток);
 			исток = уберислева(исток);
-			if (исток[0] != ':') throw new ОшибкаДжейСОН("Missing ':' after keystring in object before: "~исток);
+			if (исток[0] != ':') throw new ОшибкаДжейСОН("Missing ':' после keystring in object before: "~исток);
 			исток = уберислева(исток[1..$]);
 			_ветви[jstr.дай] = помПарсинга(исток);
 			исток = уберислева(исток);
@@ -281,12 +281,12 @@ class МассивДжейСОН:ТипДжейСОН {
 	/// Nothing to see here, move along.
 	this(){}
 	ТипДжейСОН[] _ветви;
-	/// Operator overload to allow addition of children
+	/// Оператор overload to allow addition of children
 	проц opCatAssign(ТипДжейСОН ветвь) {
 	ТипДжейСОН в = ветвь;
 		_ветви ~= в;
 	}
-	/// Operator overload to allow доступ of children
+	/// Оператор overload to allow доступ of children
 	/// Returns: The ветвь узел if it exists, otherwise пусто.
 	ТипДжейСОН opIndex(цел ключ) {
 		return _ветви[ключ];
@@ -294,7 +294,7 @@ class МассивДжейСОН:ТипДжейСОН {
 	/// Allow the user to дай the number of элементы in this object
 	/// Returns: The number of ветвь узелs contained внутри this ОбъектДжейСОН
 	цел длина() {return _ветви.length;}
-	/// Operator overload for foreach iteration through the массив with значения only
+	/// Оператор overload for foreach iteration through the массив with значения only
 	цел opApply(цел delegate(ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ветвь;_ветви) {
@@ -303,7 +303,7 @@ class МассивДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the массив with значения only и allow modification of the reference
+	/// Оператор overload for foreach iteration through the массив with значения only и allow modification of the reference
 	цел opApply(цел delegate(ref ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ref ветвь;_ветви) {
@@ -312,7 +312,7 @@ class МассивДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the массив with ключ и value
+	/// Оператор overload for foreach iteration through the массив with ключ и value
 	цел opApply(цел delegate(цел,ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ключ,ветвь;_ветви) {
@@ -321,7 +321,7 @@ class МассивДжейСОН:ТипДжейСОН {
 		}
 		return 0;
 	}
-	/// Operator overload for foreach iteration through the массив with ключ и value и allow modification of the reference
+	/// Оператор overload for foreach iteration through the массив with ключ и value и allow modification of the reference
 	цел opApply(цел delegate(цел,ref ТипДжейСОН) дг) {
 		цел рез;
 		foreach(ключ,ref ветвь;_ветви) {
@@ -696,7 +696,7 @@ unittest {
 	jstr = jstr.читайДжейСОН().вТкст;
 	writef("Parsed JSON ткст: " ~ jstr ~ "\n");
 	writef("Output using вФТкст:\n"~jstr.читайДжейСОН().вФТкст~"\nEnd pretty output\n");
-	// ensure that the ткст doesn't измени after a секунда reading, it shouldn't
+	// ensure that the ткст doesn't измени после a секунда reading, it shouldn't
 	assert(jstr.читайДжейСОН().вТкст == jstr);
 	// ensure that pretty output still parses properly и doesn't измени
 	jstr = jstr.читайДжейСОН().вФТкст;

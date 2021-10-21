@@ -58,9 +58,9 @@ extern (Windows)
     клОк.пиктограммаМал = LoadIconA (NULL, IDI_APPLICATION);
     клОк.курсор = LoadCursorA (NULL, IDC_ARROW);
     клОк.имяМеню = NULL;                 /* No menu */
-    клОк.упрэлтыЭкстра = 0;                      /* No extra bytes after the window class */
+    клОк.упрэлтыЭкстра = 0;                      /* No extra bytes после the window class */
     клОк.окнаЭкстра = 0;                      /* structure or the window instance */
-    /* Use Windows's default color as the background of the window */
+    /* Use Windows's default цвет as the background of the window */
     клОк.фон = cast(HBRUSH) COLOR_BACKGROUND;
 
     /* Register the window class, and if it fails quit the program */
@@ -75,7 +75,7 @@ extern (Windows)
            WS_OVERLAPPEDWINDOW, /* default window */
            CW_USEDEFAULT,       /* Windows decides the position */
            CW_USEDEFAULT,       /* where the window ends up on the screen */
-           544,                 /* The programs width */
+           544,                 /* The programs ширина */
            375,                 /* and height in pixels */
            HWND_DESKTOP,        /* The window is a child-window to desktop */
            NULL,                /* No menu */

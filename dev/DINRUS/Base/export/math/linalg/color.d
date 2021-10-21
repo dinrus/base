@@ -14,7 +14,7 @@ floats and to convert them to integer just when it is necessary.
 Normal диапазон for плав components' values is [0; 1]. Normal диапазон for integer
 values is [0; 255] for Цвет3 and Цвет4, and [0; 240] for ХСЛ. Each struct
 has several methods to convert native плав representation to integer and
-back.
+задний.
 
 Authors:
     Victor Nakoryakov, nail-mail[at]mail.ru
@@ -106,7 +106,7 @@ in implemented structs and routines.
         /** Component-wise equality operator. */
         бул opEquals(ХСЛ hsl);
 
-        /** Возвращает: Цвет3 representing the same color as this triple. */
+        /** Возвращает: Цвет3 representing the same цвет as this triple. */
         Цвет3 вЦвет3();
 }
 
@@ -134,7 +134,7 @@ in implemented structs and routines.
         static Цвет3 нч = { т_плав.nan, т_плав.nan, т_плав.nan };
 
         /**
-        Method to construct color in C-like syntax.
+        Method to construct цвет in C-like syntax.
 
         Примеры:
         ------------
@@ -144,7 +144,7 @@ in implemented structs and routines.
         static Цвет3 opCall(т_плав к, т_плав з, т_плав с);
 
         /**
-        Method to construct color in C-like syntax from value specified
+        Method to construct цвет in C-like syntax from value specified
         in бцел parameter.
 
         Params:
@@ -162,7 +162,7 @@ in implemented structs and routines.
         проц установи(т_плав к, т_плав з, т_плав с);
 
         /**
-        Sets components according to color packed in ист бцел argument.
+        Sets components according to цвет packed in ист бцел argument.
 
         Params:
             ист     = бцел to extract value from.
@@ -203,7 +203,7 @@ in implemented structs and routines.
 
         /**
         Возвращает:
-            This color packed to бцел.
+            This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
         Throws:
@@ -214,11 +214,11 @@ in implemented structs and routines.
 
         /**
         Возвращает:
-            ХСЛ triple representing same color as this.
+            ХСЛ triple representing same цвет as this.
         */
         ХСЛ вХСЛ();
 		
-        /** Возвращает: т_плав pointer to к component of this color. It'с like а _ptr method for arrays. */
+        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз();
 
         /**
@@ -298,7 +298,7 @@ in implemented structs and routines.
         /**
         Routines known as swizzling.
         Возвращает:
-            New color constructed from this one and having component values
+            New цвет constructed from this one and having component values
             that correspond to method name.
         */
         Цвет4 кзс0();
@@ -333,7 +333,7 @@ in implemented structs and routines.
         static Цвет4 нч = { т_плав.nan, т_плав.nan, т_плав.nan, т_плав.nan };
 
         /**
-        Methods to construct color in C-like syntax.
+        Methods to construct цвет in C-like syntax.
 
         Примеры:
         ------------
@@ -349,7 +349,7 @@ in implemented structs and routines.
 
 
         /**
-        Method to construct color in C-like syntax from value specified
+        Method to construct цвет in C-like syntax from value specified
         in бцел parameter.
 
         Params:
@@ -370,7 +370,7 @@ in implemented structs and routines.
         проц установи(Цвет3 кзс, т_плав а);
 
         /**
-        Sets components according to color packed in ист бцел argument.
+        Sets components according to цвет packed in ист бцел argument.
 
         Params:
             ист     = бцел to extract value from.
@@ -416,7 +416,7 @@ in implemented structs and routines.
 
         /**
         Возвращает:
-            This color packed to бцел.
+            This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
         Throws:
@@ -427,13 +427,13 @@ in implemented structs and routines.
 
         /**
         Возвращает:
-            ХСЛ triple representing same color as this.
+            ХСЛ triple representing same цвет as this.
 
         Alpha value is ignored.
         */
         ХСЛ вХСЛ();
 
-        /** Возвращает: т_плав pointer to к component of this color. It'с like а _ptr method for arrays. */
+        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз();
 
 
@@ -515,7 +515,7 @@ in implemented structs and routines.
         /**
         Routine known as swizzling.
         Возвращает:
-            Цвет3 representing RGB part of this color.
+            Цвет3 representing RGB part of this цвет.
         */
         Цвет3 кзс();
 
@@ -590,14 +590,14 @@ alias Век3п   Color3f;
 alias Век3д   Color3d;
 
 
-/** convert hsv color to rgb color 
-   From: http://www.cs.rit.edu/~ncs/color/t_convert.html
+/** convert hsv цвет to rgb цвет 
+   From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html
    HSV and RGB components all on [0,1] interval.
 */
 проц HSV_to_RGB(ref Color3f hsv,  Color3f* rgb);
 
-/** convert rgb color to hsv color 
- *   From: http://www.cs.rit.edu/~ncs/color/t_convert.html 
+/** convert rgb цвет to hsv цвет 
+ *   From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html 
  *   х = [0,1], с = [0,1], v = [0,1]
  *		if с == 0, then х = -1 (undefined)
  */

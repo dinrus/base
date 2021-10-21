@@ -1,8 +1,8 @@
 ﻿module rt.aApply;
 
-/* This code handles decoding UTF strings for foreach loops.
- * There are 6 combinations of conversions between char, wchar,
- * and dchar, and 2 of each of those.
+/* Этот код обрабатывает раскодирование строк UTF для циклов foreach.
+ * Существует 6 комбинация для преобразования между сим, шим и дим,
+ * и 2 для каждой из них.
  */
 
 private import std.utf, base;

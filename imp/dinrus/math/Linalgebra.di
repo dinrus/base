@@ -40,8 +40,8 @@ $(UL
     Виктор Накоряков, nail-mail[at]mail.ru
 
 Macros:
-    MAT33     = <таблица стиль="border-лев: дво 3px #666666; border-прав: дво 3px #666666;
-                 margin-лев: 3em;">$0</таблица>
+    MAT33     = <таблица стиль="border-лево: дво 3px #666666; border-право: дво 3px #666666;
+                 margin-лево: 3em;">$0</таблица>
     MAT33_ROW = <tr><td>$1</td><td>$2</td><td>$3</td></tr>
 */
 module math.Linalgebra;
@@ -387,7 +387,7 @@ private template ЛинейнаяАлгебра(т_плав)
 
         /**
         Возвращает: Производную пересечения между заданными векторами. Результатом является скаляр c,
-        при этом [a.x a.y 0], [b.x b.y 0], [0,0,c] образуют правую тройку (прав-hand tripple).
+        при этом [a.x a.y 0], [b.x b.y 0], [0,0,c] образуют правую тройку (право-hand tripple).
         */
         реал кросс(Вектор2 a, Вектор2 b)
         {
@@ -707,7 +707,7 @@ private template ЛинейнаяАлгебра(т_плав)
 
         /**
         Возвращает: Cross product between passed vectors. Result is вектор c
-        so that a, b, c forms прав-hand tripple.
+        so that a, b, c forms право-hand tripple.
         */
         Вектор3 кросс(Вектор3 a, Вектор3 b)
         {
@@ -1911,12 +1911,12 @@ private template ЛинейнаяАлгебра(т_плав)
         Method is useful to decompose your matrix into вращение 'Q' и масштабируй+shear 'S'. If you
         didn't use shear transform matrix S will be diagonal, i.e. represent масштабируй. This can
         have many applications, particulary you can use method for suppressing errors in pure
-        вращение matrices after дол multiplication chain.
+        вращение matrices после дол multiplication chain.
 
         Params:
-            Q = Output matrix, will be orthogonal after decomposition.
+            Q = Output matrix, will be orthogonal после decomposition.
                 Аргумент shouldn't be пусто.
-            S = Output matrix, will be symmetric non-negative definite after
+            S = Output matrix, will be symmetric non-negative definite после
                 decomposition. Аргумент shouldn't be пусто.
 
         Примеры:
@@ -2596,12 +2596,12 @@ private template ЛинейнаяАлгебра(т_плав)
         Method is useful to decompose your matrix into вращение 'Q' и масштабируй+shear 'S'. If you
         didn't use shear transform matrix S will be diagonal, i.e. represent масштабируй. This can
         have many applications, particulary you can use method for suppressing errors in чисто
-        вращение matrices after дол multiplication chain.
+        вращение matrices после дол multiplication chain.
 
         Params:
-            Q = Output matrix, will be orthogonal after decomposition.
+            Q = Output matrix, will be orthogonal после decomposition.
                 Аргумент shouldn't be пусто.
-            S = Output matrix, will be symmetric non-negative definite after
+            S = Output matrix, will be symmetric non-negative definite после
                 decomposition. Аргумент shouldn't be пусто.
 
         Примеры:
@@ -3266,7 +3266,7 @@ private template ЛинейнаяАлгебра(т_плав)
         Constructs one-point perspecive projection matrix.
         Params:
             fov =       Field of view in vertical plane in радианы.
-            aspect =    Frustum's width / height coefficient. It shouldn't be 0.
+            aspect =    Frustum's ширина / height coefficient. It shouldn't be 0.
             near =      Distance to near plane.
             near =      Distance to far plane.
         */
@@ -3292,8 +3292,8 @@ private template ЛинейнаяАлгебра(т_плав)
         Constructs view matrix.
         Params:
             eye =       Viewer's eye позиция.
-            target =    View target.
-            up =        View up вектор.
+            target =    Обзор target.
+            up =        Обзор up вектор.
 
         Аргументы should not be complanar, elsewise matrix will contain infinity
         элементы. You can проверь this with нормален_ли() method.

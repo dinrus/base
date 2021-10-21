@@ -443,16 +443,16 @@ struct Прямоугольник
         {
         case 7:
             поз = знач;
-            break; // this top-лев == знач
+            break; // this top-лево == знач
         case 3:
             поз = знач - дим;
-            break; // this bottom-прав == знач
+            break; // this bottom-право == знач
         case 1:
             поз = Точка(знач.ш, знач.в - высота + 1);
-            break; // this bottom-лев == знач
+            break; // this bottom-лево == знач
         case 9:
             поз = Точка(знач.ш - ширина + 1, знач.в);
-            break; // this top-прав == знач
+            break; // this top-право == знач
         case 8:
             поз = Точка(знач.ш - ширина / 2, знач.в);
             break; // this top-middle == знач
@@ -461,10 +461,10 @@ struct Прямоугольник
             break; // this bottom-middle == знач
         case 4:
             поз = Точка(знач.ш, знач.в - высота / 2);
-            break; // this center-лев == знач
+            break; // this center-лево == знач
         case 6:
             поз = Точка(знач.ш - ширина + 1, знач.в - высота / 2);
-            break; // this center-прав == знач
+            break; // this center-право == знач
         case 5:
             поз = Точка(знач.ш - ширина / 2, знач.в - высота / 2);
             break; // this center-middle == знач
@@ -473,7 +473,7 @@ struct Прямоугольник
         }
     }
 
-    // position attribute
+    // position атрибут
     Точка поз()
     {
         return исх;
@@ -485,7 +485,7 @@ struct Прямоугольник
         return исх = поз;
     }
 
-    // dimension attribute
+    // dimension атрибут
     Размер  дим()
     {
         return Размер(ширина(),высота());

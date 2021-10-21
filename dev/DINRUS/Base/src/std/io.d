@@ -667,7 +667,7 @@ size_t readln(фук fp, inout ткст buf)
     }
 }
 
-/** ditto */
+/** описано ранее */
 size_t readln(inout ткст buf)
 {
     return readln(cidrus.stdin, buf);

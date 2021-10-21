@@ -2,7 +2,7 @@
 // Version 1.0
 
 /*[uuid("50a7e9b0-70ef-11d1-b75a-00a0c90564fe")]*/
-module sys.COM.shell32;
+module sys.com.shell32;
 
 /*[importlib("STDOLE2.TLB")]*/
 package import 	sys.WinStructs, sys.WinConsts, sys.WinFuncs, sys.WinIfaces, sys.uuid, tpl.com;
@@ -87,7 +87,7 @@ enum ShellSpecialFolderConstants {
 
 // Interfaces
 
-// Folder View Events Forwarder Object
+// Folder Обзор Events Forwarder Object
 interface IFolderViewOC : ИДиспетчер {
   mixin(ууид("9ba05970-f6a8-11cf-a442-00a0c90a8f39"));
   // Set the ShellFolderView object to monitor events of.
@@ -263,7 +263,7 @@ interface Folder2 : Folder {
   /*[id(0x60030002)]*/ цел Synchronize();
   // Should the WebView barricade be shown?
   /*[id(0x00000001)]*/ цел get_HaveToShowWebViewBarricade(out крат pbHaveToShowWebViewBarricade);
-  // Call this after the WebView barricade is dismissed by the user
+  // Call this после the WebView barricade is dismissed by the user
   /*[id(0x60030004)]*/ цел DismissedWebViewBarricade();
 }
 
@@ -371,9 +371,9 @@ interface IShellFolderViewDual : ИДиспетчер {
 // definition of interface IShellFolderViewDual2
 interface IShellFolderViewDual2 : IShellFolderViewDual {
   mixin(ууид("31c147b6-0ade-4a3c-b514-ddf932ef6d17"));
-  // Get Current View Mode
+  // Get Current Обзор Mode
   /*[id(0x60030000)]*/ цел get_CurrentViewMode(out бцел pViewMode);
-  // Get Current View Mode
+  // Get Current Обзор Mode
   /*[id(0x60030000)]*/ цел put_CurrentViewMode(бцел pViewMode);
   // Select Item относительный to the Current Item
   /*[id(0x60030002)]*/ цел SelectItemRelative(цел iRelative);
@@ -535,7 +535,7 @@ interface IPassportClientServices : ИДиспетчер {
 
 // CoClasses
 
-// Shell Folder View Events Router.
+// Shell Folder Обзор Events Router.
 abstract final class ShellFolderViewOC {
   mixin(ууид("9ba05971-f6a8-11cf-a442-00a0c90a8f39"));
   mixin Интерфейсы!(IFolderViewOC);
@@ -553,7 +553,7 @@ abstract final class ShellLinkObject {
   mixin Интерфейсы!(IShellLinkDual);
 }
 
-// Shell Folder View Object
+// Shell Folder Обзор Object
 abstract final class ShellFolderView {
   mixin(ууид("62112aa1-ebe4-11cf-a5fb-0020afe7292d"));
   mixin Интерфейсы!(IShellFolderViewDual2);

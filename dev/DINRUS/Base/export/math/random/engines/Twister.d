@@ -23,7 +23,7 @@ private import Целое = text.convert.Integer;
         The Mersenne twister is a pseudorandom число generator linked в_
         CR developed in 1997 by Makoto Matsumoto и Takuji Nishimura that
         is based on a matrix linear recurrence over a finite binary field
-        F2. It provопрes for fast generation of very high quality pseudorandom
+        F2. It provопрes for быстро generation of very high quality pseudorandom
         numbers, having been designed specifically в_ rectify many of the
         flaws найдено in older algorithms.
 
@@ -39,7 +39,7 @@ private import Целое = text.convert.Integer;
         3. It проходки numerous tests for statistical randomness, включая
            the stringent Diehard tests.
 
-        4. It is fast.
+        4. It is быстро.
         ---
 
 *******************************************************************************/

@@ -55,7 +55,7 @@ version (DigitalMarsC)
     extern  (C)
     {
 	extern  char* function(int c, int flags, int precision, real* pdval,
-	    char* buf, int* psl, int width) __pfloatfmt;
+	    char* buf, int* psl, int ширина) __pfloatfmt;
     }
 }
 else
@@ -214,7 +214,7 @@ private TypeInfo primitiveTypeInfo(Mangle m)
  *	<a name="format-string">$(I Format strings)</a>
  *	consist of characters interspersed with
  *	$(I format specifications). Characters are simply copied
- *	to the output (such as putc) after any necessary conversion
+ *	to the output (such as putc) после any necessary conversion
  *	to the corresponding UTF-8 sequence.
  *
  *	A $(I format specification) starts with a '%' character,
@@ -306,7 +306,7 @@ $(I FormatChar):
 	<dt>$(B '0')
 	<dd> For integer and floating point formatting when not nan or
 	infinity, use leading zeros
-	to pad rather than spaces.
+	to пад rather than spaces.
 	Ignore if there's a $(I Precision).
 
 	<dt>$(B ' ')
@@ -315,10 +315,10 @@ $(I FormatChar):
 
     <dt>$(I Width)
     <dd>
-    Specifies the minimum field width.
-    If the width is a $(B *), the следщ argument, which must be
-    of type $(B int), is taken as the width.
-    If the width is negative, it is as if the $(B -) was given
+    Specifies the minimum field ширина.
+    If the ширина is a $(B *), the следщ argument, which must be
+    of type $(B int), is taken as the ширина.
+    If the ширина is negative, it is as if the $(B -) was given
     as a $(I Flags) character.
 
     <dt>$(I Precision)
@@ -372,16 +372,16 @@ $(I FormatChar):
 
 	<dt>$(B 'e','E')
 	<dd> A floating point number is formatted as one digit before
-	the decimal point, $(I Precision) digits after, the $(I FormatChar),
+	the decimal point, $(I Precision) digits после, the $(I FormatChar),
 	&plusmn;, followed by at least a two digit exponent: $(I d.dddddd)e$(I &plusmn;dd).
 	If there is no $(I Precision), six
-	digits are generated after the decimal point.
+	digits are generated после the decimal point.
 	If the $(I Precision) is 0, no decimal point is generated.
 
 	<dt>$(B 'f','F')
 	<dd> A floating point number is formatted in decimal notation.
 	The $(I Precision) specifies the number of digits generated
-	after the decimal point. It defaults to six. At least one digit
+	после the decimal point. It defaults to six. At least one digit
 	is generated before the decimal point. If the $(I Precision)
 	is zero, no decimal point is generated.
 
@@ -393,14 +393,14 @@ $(I FormatChar):
 	is greater than -5 and less than the $(I Precision).
 	The $(I Precision) specifies the number of significant
 	digits, and defaults to six.
-	Trailing zeros are elided after the decimal point, if the fractional
+	Trailing zeros are elided после the decimal point, if the fractional
 	part is zero then no decimal point is generated.
 
 	<dt>$(B 'a','A')
 	<dd> A floating point number is formatted in hexadecimal
 	exponential notation 0x$(I h.hhhhhh)p$(I &plusmn;d).
 	There is one hexadecimal digit before the decimal point, and as
-	many after as specified by the $(I Precision).
+	many после as specified by the $(I Precision).
 	If the $(I Precision) is zero, no decimal point is generated.
 	If there is no $(I Precision), as many hexadecimal digits as
 	necessary to exactly represent the mantissa are generated.
@@ -1169,7 +1169,7 @@ void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list argptr)
 		{
 		    if (c > 0x7F)	// if UTF sequence
 		    {
-			i--;		// back up and decode UTF sequence
+			i--;		// задний up and decode UTF sequence
 			c = std.utf.decode(fmt, i);
 		    }
 		Lputc:
@@ -1197,7 +1197,7 @@ void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list argptr)
 		    break;
 		}
 
-		// Get field width
+		// Get field ширина
 		field_width = 0;
 		if (c == '*')
 		{

@@ -4,7 +4,7 @@
  * Привязка аргументов к функции.
  *
  * References:
- *	$(LINK2 http://www.boost.org/libs/привяжи/привяжи.html, boost::привяжи)	
+ *	$(LINK2 http://www.boost.org/libs/bind/bind.html, boost::bind)	
  * Authors: Tomasz Stachowiak
  * Date: November 28, 2006
  * Macros:
@@ -121,15 +121,11 @@ template КортежУказателей(T) ;
 
 +/
 
-
-
-
 struct ДинАрг(цел i) {
 	static assert (i >= 0);
 	
 	alias i аргНом;
 }
-
 
 /**
 	При передаче функции 'привяжи' будут обозначать динамические параметры: те, что не связаны статически.
@@ -146,9 +142,7 @@ const ДинАрг!(7) _7;		/// описано ранее
 const ДинАрг!(8) _8;		/// описано ранее
 const ДинАрг!(9) _9;		/// описано ранее
 
-
-
-/*
+/**
 	Выявить, есть ли данный тип ДинАрг с любым индексом
 */
 template динАрг_ли(T) {
@@ -159,24 +153,21 @@ template динАрг_ли(T) {
 	} else static const бул динАрг_ли = нет;
 }
 
-
-/*
+/**
 	Выявить, есть ли данный тип ДинАрг с указанным индексом
 */
 template динАрг_ли(T, цел i) {
 	static const бул динАрг_ли = is(T : ДинАрг!(i));
 }
 
-
-/*
+/**
 	Преобразовать из типа статического массива в тип динамического массива
 */
 template ТипДинМас(T) {
 	alias typeof(T[0])[] ТипДинМас;
 }
 
-
-/*
+/**
 	Присваивает одну сущность другой. Так как статические массивы не поддерживают нормального присваивания, то к ним применяется присваивание среза.
 	
 	Парамы:
@@ -195,8 +186,7 @@ template _присвой(T) {
 	}
 }
 
-
-/*
+/**
 	Присваивает и потенциально преобразует одну сущность в другую.
 	
 	Как правило, используются только косвенные преобразования, но когда оба операнда числовых типов, то над ними прозводится явное приведение к типу.
@@ -240,8 +230,6 @@ template _присвой(T, Y, бул копироватьСтатМас =да) 
 	}
 }
 
-
-
 /**
 	Простая структура-кортеж с некоторыми основными операциями
 */
@@ -267,7 +255,6 @@ struct Кортеж(T ...) {
 		alias .Кортеж!(T, X) добавьТ;
 	}
 
-
 	/**
 		Получает кортеж с добавочным элементом в конце
 	*/
@@ -278,8 +265,7 @@ struct Кортеж(T ...) {
 		}
 		_присвой!(typeof(x))(рез.значение[$-1], x);
 		return рез;
-	}
-	
+	}	
 	
 	/**
 		Статически получает кортежный тип с добавочным элементом в начале
@@ -287,7 +273,6 @@ struct Кортеж(T ...) {
 	template приставьТ(X) {
 		alias .Кортеж!(X, T) приставьТ;
 	}
-
 
 	/**
 		Получает кортеж с добавочным элементом в начале
@@ -299,8 +284,7 @@ struct Кортеж(T ...) {
 		}
 		_присвой!(typeof(x))(рез.значение[0], x);
 		return рез;
-	}
-	
+	}	
 	
 	/**
 		Статически конкатенирует (объединяет) два типа кортежей
@@ -311,8 +295,7 @@ struct Кортеж(T ...) {
 		} else {
 			alias .Кортеж!(тип, T) конкатенируйТ;
 		}
-	}
-	
+	}	
 	
 	ткст вТкст() {
 		auto рез = "(" ~ форматируй(значение[0]);
@@ -322,7 +305,6 @@ struct Кортеж(T ...) {
 		return рез ~ ")";
 	}
 }
-
 
 /**
 	Структура пустого кортежа
@@ -335,8 +317,8 @@ struct Кортеж() {
 	}
 	
 
-	alias ПустойКортеж_!()	тип;		/// an empty built-in кортеж
-	alias ПустойКортеж_!()	значение;		/// an empty built-in кортеж
+	alias ПустойКортеж_!()	тип;		/// пустой встроенный кортеж
+	alias ПустойКортеж_!()	значение;		/// пустой встроенный кортеж
 	
 	const бул	кортежВыражений = нет;	
 	const цел	length = 0;
@@ -369,7 +351,6 @@ struct Кортеж() {
 	}
 }
 
-
 /**
 	Динамически создаёт кортеж из заданных элементов
 */
@@ -380,7 +361,6 @@ struct Кортеж() {
 	}
 	return рез;
 }
-
 
 /**
 	Проверяет, является ли данный тип структурой Кортеж любой длины
@@ -401,8 +381,6 @@ static assert(!типКортеж_ли!(Object));
 static assert(!типКортеж_ли!(цел));
 
 
-
-
 template minNumArgs_impl(alias fn, fnT) {
 	alias КортежТипаПараметр!(fnT) Парамы;
 	Парамы парамы = void;
@@ -419,6 +397,7 @@ template minNumArgs_impl(alias fn, fnT) {
 	
 	alias цикл!().рез рез;
 }
+
 /**
 	Найти минимальное число аргументов, к-е д. б. представлено данной функции
 */
@@ -426,22 +405,21 @@ template минЧлоАргов(alias fn, fnT = typeof(&fn)) {
 	const цел минЧлоАргов = minNumArgs_impl!(fn, fnT).рез;
 }
 
-
 // mixed into СвязаннаяФункц struct/class
 template СФункцСвязки() {
 	// мета
-	alias FAlias_													АлиасФ;
-	alias FT															ТипФункц;
-	alias AllBoundArgs_										ВсеСвязанныеАрги;		// all arguments given to привяжи() or привяжиАлиас()
+	alias FAlias_	АлиасФ;
+	alias FT	ТипФункц;
+	alias AllBoundArgs_	 ВсеСвязанныеАрги;		// all arguments given to привяжи() or привяжиАлиас()
 	
 	static if (!is(typeof(АлиасФ) == ПустойСлот)) {
-		alias Кортеж!(КортежТипаПараметр!(FT))				RealFuncParams;	// the parameters of the bound function
+		alias Кортеж!(КортежТипаПараметр!(FT))	RealFuncParams;	// the parameters of the bound function
 		alias СсылПарамыФункцВВидеУков!(АлиасФ)	ПарамыФункц;			// references converted to pointers
 	} else {
-		alias Кортеж!(КортежТипаПараметр!(FT))			ПарамыФункц;			// the parameters of the bound function
+		alias Кортеж!(КортежТипаПараметр!(FT))	ПарамыФункц;			// the parameters of the bound function
 	}
 	
-	alias ВозврТип!(FT)										ВозврТип;				// the return тип of the bound function
+	alias ВозврТип!(FT)		ВозврТип;				// the return тип of the bound function
 	alias ИзвлечённыеСвязанныеАрги!(ВсеСвязанныеАрги.тип)	СвязанныеАрги;			// 'saved' arguments. this includes nested/composed functions
 	
 	
@@ -449,7 +427,7 @@ template СФункцСвязки() {
 	static if (!is(typeof(АлиасФ) == ПустойСлот)) {
 		const цел минАрговФции = минЧлоАргов!(АлиасФ);
 		
-		alias КортежМетодовПередачиПараметров!(АлиасФ)			ParamPassingMethods;	// find out whether the function expects parameters by значение or reference
+		alias КортежМетодовПередачиПараметров!(АлиасФ)	ParamPassingMethods;	// find out whether the function expects parameters by значение or reference
 	} else {
 		const цел минАрговФции = ПарамыФункц.length;
 	}
@@ -528,7 +506,7 @@ template СФункцСвязки() {
 							
 							// 3rd param is нет because there is no need to .dup static arrays just for the function below this foreach
 							// the storage exists in the whole копируйАрги function
-							// динАрги[i] is used instead of dummy_ so that цикл-local data isn't referenced in any dynamic arrays after the цикл
+							// динАрги[i] is used instead of dummy_ so that цикл-local data isn't referenced in any dynamic arrays после the цикл
 							_присвой!(typeof(funcParams[i]), typeof(dummy_), нет)(funcParams[i], динАрги[i]);
 						}
 					}
@@ -565,7 +543,7 @@ template СФункцСвязки() {
 				const бул dupStaticArrays = нет;		// because the storage exists in связанныеАрги
 			}
 
-			// the number of bound-function parameters this argument will cover after кортеж expansion
+			// the number of bound-function parameters this argument will cover после кортеж expansion
 			const цел argLen = дайДлинуАрга!(funcArgs.тип[fargI], typeof(*srcItem));
 
 			static if (типКортеж_ли!(typeof(*srcItem)) && !типКортеж_ли!(funcArgs.тип[fargI])) {
@@ -601,7 +579,7 @@ template СФункцСвязки() {
 			копируйАрги!()(funcArgs, динАрги);
 			
 			// if the function expects any parameters passed by reference, we'll have to use the примениУк template
-			// and convert pointers back to references by hand
+			// and convert pointers задний to references by hand
 			static if (!is(typeof(АлиасФ) == ПустойСлот) && Индекс_у!(PassByRef, ParamPassingMethods.тип) != -1) {
 				
 				// function parameter тип pointers (цел, float*, inout сим) -> (цел*, float*, сим*)
@@ -688,7 +666,7 @@ version (BindUseStruct) {
 
 /**
 	привяжи() can curry or "привяжи" arguments of a function, producing a different function which requires less parameters,
-	or a different order of parameters. It also allows function composition.
+	or a different order of parameters. It also допускается function composition.
 	
 	The syntax of a привяжи() вызови is:
 	
@@ -836,7 +814,7 @@ template типыДинАргов(цел i, ПарамыФункц, Связан
 	// SkipType - the тип in СвязанныеАрги that we're just processing
 	template prependType(T, SkipType) {
 		static if (типКортеж_ли!(SkipType) && !типКортеж_ли!(ПарамыФункц.тип[0])) {
-			// perform кортеж decomposition
+			// выполни кортеж decomposition
 			// e.g. if a function being bound is accepting (цел, цел) and the current тип is a Кортеж!(цел, цел),
 			// then skip just one кортеж in the bound args and the length of the кортеж in func args
 			// - skips two ints and one кортеж in the example
@@ -902,7 +880,6 @@ protected template макЦел(цел a, цел b) {
 	else static const цел макЦел = b;
 }
 
-
 /*
 	Given a list of СвязанныеАрги, it returns the nuber of args that should be specified dynamically
 */
@@ -928,7 +905,6 @@ template члоДинАргов(СвязанныеАрги) {
 	}
 }
 
-
 /*
 	Used internally to mark a parameter which is a dummy placeholder
 	E.g. when using привяжи(&f, привяжи(&g, _1), _0), then the inner bound function will use an ПустойСлот for its 0-th parameter
@@ -938,7 +914,6 @@ struct ПустойСлот {
 		return "_";
 	}
 }
-
 
 /*
 	Get a кортеж of all dynamic args a function binding will need
@@ -971,7 +946,6 @@ template дайТипыДинАргов(ПарамыФункц, Связанны
 	alias цикл!(0).рез рез;
 }
 
-
 /*
 	Given a кортеж that привяжи() was called with, it will detect which types need to be stored in a СвязаннаяФункц object
 */
@@ -991,7 +965,6 @@ template ИзвлечённыеСвязанныеАрги(СвязанныеАр
 	}
 }
 
-
 /*
 	Given a кортеж that привяжи() was called with, it will copy all data that a СвязаннаяФункц object will store into an ИзвлечённыеСвязанныеАрги кортеж
 */
@@ -1010,7 +983,6 @@ template ИзвлечённыеСвязанныеАрги(СвязанныеАр
 	}
 }
 
-
 /*
 	Number of args in the bound function that this Src арг will cover
 */
@@ -1026,7 +998,6 @@ template дайДлинуАрга(Dst, Src) {
 	}
 }
 
-
 /*
 	Tell whether a parameter тип кортеж contains an ПустойСлот struct
 */
@@ -1034,12 +1005,8 @@ template СодержитТипПустойСлот(СписокПараметр
 	const бул СодержитТипПустойСлот = -1 != Индекс_у!(ПустойСлот, СписокПараметров);
 }
 
-
 // just something to be default in привяжи(). привяжиАлиас() will use real aliases.
 const ПустойСлот АлиасПусто;
-
-
-
 
 struct PassByCopy	{}
 struct PassByRef	{}
@@ -1091,7 +1058,7 @@ template FuncReferenceParamsAsPointers_impl(alias Func) {
 	alias цикл!(0).рез рез;
 }
 
-/*
+/**
 	Takes a function/delegate alias and converts its refence parameters to pointers. E.g.
 	
 	проц function(цел, inout сим, float*)    ->   (цел, сим*, float*)
@@ -1101,8 +1068,7 @@ template СсылПарамыФункцВВидеУков(alias Func) {
 }
 
 
-
-/*
+/**
 	Converts a кортеж of types to a кортеж containing pointer types of the original types
 */
 template КортежУказателей(T) {
@@ -1113,9 +1079,7 @@ template КортежУказателей(T) {
 	}
 }
 
-
-
-/*
+/**
 	Calls a function, dereferencing a pointer кортеж for each argument
 */
 ВозврТип примениУк(ВозврТип, FN, T ...)(FN fn, T t) {

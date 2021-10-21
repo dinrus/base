@@ -59,7 +59,7 @@ const цел CACHELIMIT;   // Half the размер of the данные кэш.
 const цел FASTDIVLIMIT; // crossover в_ recursive division
 
 
-// These constants are использован by shift operations
+// These константы are использован by shift operations
 static if (БольшЦифра.sizeof == цел.sizeof) {
     enum { LG2BIGDIGITBITS = 5, BIGDIGITSHIFTMASK = 31 };
     alias бкрат BIGHALFDIGIT;
@@ -230,7 +230,7 @@ public:
     большбцелВГекс(buff[$ - lenBytes - mainSeparatorBytes .. $], данные, разделитель);
     if (extraPad > 0) {
         if (разделитель) {
-            т_мера старт = frontExtraBytes; // первый индекс в_ pad
+            т_мера старт = frontExtraBytes; // первый индекс в_ пад
             if (extraPad &7) {
                 // Do 1 в_ 7 extra zeros.
                 buff[frontExtraBytes .. frontExtraBytes + (extraPad & 7)] = padChar;
@@ -373,7 +373,7 @@ public:
 // If wantSub is да, return абс(x-y), negating знак if x<y
 static БольшБцел addOrSubInt(БольшБцел x, бдол y, бул wantSub, бул *знак) {
     БольшБцел r;
-    if (wantSub) { // perform a subtraction
+    if (wantSub) { // выполни a subtraction
         if (x.данные.length > 2) {
             r.данные = subInt(x.данные, y);                
         } else { // could change знак!
@@ -404,7 +404,7 @@ static БольшБцел addOrSubInt(БольшБцел x, бдол y, бул w
 // If wantSub is да, return абс(x - y), negating знак if x<y
 static БольшБцел addOrSub(БольшБцел x, БольшБцел y, бул wantSub, бул *знак) {
     БольшБцел r;
-    if (wantSub) { // perform a subtraction
+    if (wantSub) { // выполни a subtraction
         r.данные = подст(x.данные, y.данные, знак);
         if (r.ноль_ли()) {
             *знак = нет;
@@ -511,7 +511,7 @@ static БольшБцел mod(БольшБцел x, БольшБцел y)
 
 /**
  * Return a БольшБцел which is x raised в_ the power of y.
- * Метод: Powers of 2 are removed из_ x, then лев-в_-прав binary
+ * Метод: Powers of 2 are removed из_ x, then лево-в_-право binary
  * exponentiation is использован.
  * Memory allocation is minimized: at most one temporary БольшБцел is использован.
  */
@@ -579,7 +579,7 @@ static БольшБцел степень(БольшБцел x, бдол y)
     // Single цифра case: +1 is for final множитель, + 1 is for spare evenbits.
     бдол estimatelength = singledigit ? firstnonzero*y + y0*1 + 2 + ((evenbits*y) >> LG2BIGDIGITBITS) 
         : x.данные.length * y; // estimated length in BigDigits
-    // (Estimated length can overestimate by a factor of 2, if x.данные.length ~ 2).
+    // (Estimated length can overestimate by a фактор of 2, if x.данные.length ~ 2).
     if (estimatelength > бцел.max/(4*БольшЦифра.sizeof)) assert(0, "Overflow in БольшЦел.степень");
     
     // The результат буфер включает пространство for все the trailing zeros
@@ -596,7 +596,7 @@ static БольшБцел степень(БольшБцел x, бдол y)
         r1[0] = x0;
         y = y0;        
     } else {
-        // It's not worth прав shifting by evenbits unless we also shrink the length after each 
+        // It's not worth право shifting by evenbits unless we also shrink the length после each 
         // multИПly or squaring operation. That might still be worthwhile for large y.
         r1 = t1[0..x.данные.length - firstnonzero];
         r1[0..$] = x.данные[firstnonzero..$];
@@ -966,7 +966,7 @@ unittest {
         // between 1.414:1 и 1:1. Use Karatsuba on each чанк. 
         //
         // For maximum performance, we want the ratio в_ be as закрой в_ 
-        // 1:1 as possible. To achieve this, we can either pad x or y.
+        // 1:1 as possible. To achieve this, we can either пад x or y.
         // The best choice depends on the модуль x%y.       
         бцел чисчанки = x.length / y.length;
         бцел чанкиize = y.length;
@@ -980,7 +980,7 @@ unittest {
             // (We're паддинг y with zeros)
             чанкиize += extra / cast(дво)чисчанки;
             extra = x.length - чанкиize*чисчанки;
-            // there will probably be a few лев over.
+            // there will probably be a few лево over.
             // Every чанк will either have размер чанкиize, or чанкиize+1.
             maxchunk = чанкиize + 1;
             pдобавимY = да;
@@ -1054,21 +1054,21 @@ unittest {
 
 import stdrus : пубр;
 
-/// if remainder is пусто, only calculate quotient.
-проц divModInternal(БольшЦифра [] quotient, БольшЦифра[] remainder, БольшЦифра [] u, БольшЦифра [] знач)
+/// if остаток is пусто, only calculate quotient.
+проц divModInternal(БольшЦифра [] quotient, БольшЦифра[] остаток, БольшЦифра [] u, БольшЦифра [] знач)
 {
     assert(quotient.length == u.length - знач.length + 1);
-    assert(remainder==пусто || remainder.length == знач.length);
+    assert(остаток==пусто || остаток.length == знач.length);
     assert(знач.length > 1);
     assert(u.length >= знач.length);
     
-    // Normalize by shifting знач лев just enough so that
-    // its high-order bit is on, и shift u лев the
+    // Normalize by shifting знач лево just enough so that
+    // its high-order bit is on, и shift u лево the
     // same amount. The highest bit of u will never be установи.
    
     БольшЦифра [] vn = new БольшЦифра[знач.length];
     БольшЦифра [] un = new БольшЦифра[u.length + 1];
-    // How much в_ лев shift знач, so that its MSB is установи.
+    // How much в_ лево shift знач, so that its MSB is установи.
     бцел s = BIGDIGITSHIFTMASK - пубр(знач[$-1]);
     if (s!=0) {
         многобайтСдвигЛ(vn, знач, s);        
@@ -1084,10 +1084,10 @@ import stdrus : пубр;
         fastDivMod(quotient, un, vn);        
     }
     
-    // Unnormalize remainder, if требуется.
-    if (remainder != пусто) {
-        if (s == 0) remainder[] = un[0..vn.length];
-        else многобайтСдвигП(remainder, un[0..vn.length+1], s);
+    // Unnormalize остаток, if требуется.
+    if (остаток != пусто) {
+        if (s == 0) остаток[] = un[0..vn.length];
+        else многобайтСдвигП(остаток, un[0..vn.length+1], s);
     }
     delete un;
     delete vn;
@@ -1260,14 +1260,14 @@ private:
 // with COW.
 
 // Classic 'schoolbook' multИПlication.
-проц mulSimple(БольшЦифра[] результат, БольшЦифра [] лев, БольшЦифра[] прав)
+проц mulSimple(БольшЦифра[] результат, БольшЦифра [] лево, БольшЦифра[] право)
 in {    
-    assert(результат.length == лев.length + прав.length);
-    assert(прав.length>1);
+    assert(результат.length == лево.length + право.length);
+    assert(право.length>1);
 }
 body {
-    результат[лев.length] = многобайтУмнож(результат[0..лев.length], лев, прав[0], 0);   
-    многобайтУмножАккум(результат[1..$], лев, прав[1..$]);
+    результат[лево.length] = многобайтУмнож(результат[0..лево.length], лево, право[0], 0);   
+    многобайтУмножАккум(результат[1..$], лево, право[1..$]);
 }
 
 // Classic 'schoolbook' squaring
@@ -1284,70 +1284,70 @@ body {
 // добавь two бцелs of possibly different lengths. Результат must be as дол
 // as the larger length.
 // Возвращает перенос (0 or 1).
-бцел addSimple(БольшЦифра [] результат, БольшЦифра [] лев, БольшЦифра [] прав)
+бцел addSimple(БольшЦифра [] результат, БольшЦифра [] лево, БольшЦифра [] право)
 in {
-    assert(результат.length == лев.length);
-    assert(лев.length >= прав.length);
-    assert(прав.length>0);
+    assert(результат.length == лево.length);
+    assert(лево.length >= право.length);
+    assert(право.length>0);
 }
 body {
-    бцел перенос = multibyteAdd(результат[0..прав.length],
-            лев[0..прав.length], прав, 0);
-    if (прав.length < лев.length) {
-        результат[прав.length..лев.length] = лев[прав.length .. $];            
-        перенос = многобайтИнкрПрисвой!('+')(результат[прав.length..$], перенос);
+    бцел перенос = multibyteAdd(результат[0..право.length],
+            лево[0..право.length], право, 0);
+    if (право.length < лево.length) {
+        результат[право.length..лево.length] = лево[право.length .. $];            
+        перенос = многобайтИнкрПрисвой!('+')(результат[право.length..$], перенос);
     }
     return перенос;
 }
 
-//  результат = лев - прав
+//  результат = лево - право
 // returns перенос (0 or 1)
-БольшЦифра subSimple(БольшЦифра [] результат, БольшЦифра [] лев, БольшЦифра [] прав)
+БольшЦифра subSimple(БольшЦифра [] результат, БольшЦифра [] лево, БольшЦифра [] право)
 in {
-    assert(результат.length == лев.length);
-    assert(лев.length >= прав.length);
-    assert(прав.length>0);
+    assert(результат.length == лево.length);
+    assert(лево.length >= право.length);
+    assert(право.length>0);
 }
 body {
-    БольшЦифра перенос = multibyteSub(результат[0..прав.length],
-            лев[0..прав.length], прав, 0);
-    if (прав.length < лев.length) {
-        результат[прав.length..лев.length] = лев[прав.length .. $];            
-        перенос = многобайтИнкрПрисвой!('-')(результат[прав.length..$], перенос);
-    } //else if (результат.length==лев.length+1) { результат[$-1] = перенос; перенос=0; }
+    БольшЦифра перенос = multibyteSub(результат[0..право.length],
+            лево[0..право.length], право, 0);
+    if (право.length < лево.length) {
+        результат[право.length..лево.length] = лево[право.length .. $];            
+        перенос = многобайтИнкрПрисвой!('-')(результат[право.length..$], перенос);
+    } //else if (результат.length==лево.length+1) { результат[$-1] = перенос; перенос=0; }
     return перенос;
 }
 
 
-/* результат = результат - прав 
- * Возвращает перенос = 1 if результат was less than прав.
+/* результат = результат - право 
+ * Возвращает перенос = 1 if результат was less than право.
 */
-БольшЦифра subAssignSimple(БольшЦифра [] результат, БольшЦифра [] прав)
+БольшЦифра subAssignSimple(БольшЦифра [] результат, БольшЦифра [] право)
 {
-    assert(результат.length >= прав.length);
-    бцел c = multibyteSub(результат[0..прав.length], результат[0..прав.length], прав, 0); 
-    if (c && результат.length > прав.length) c = многобайтИнкрПрисвой!('-')(результат[прав.length .. $], c);
+    assert(результат.length >= право.length);
+    бцел c = multibyteSub(результат[0..право.length], результат[0..право.length], право, 0); 
+    if (c && результат.length > право.length) c = многобайтИнкрПрисвой!('-')(результат[право.length .. $], c);
     return c;
 }
 
-/* результат = результат + прав
+/* результат = результат + право
 */
-БольшЦифра добавьAssignSimple(БольшЦифра [] результат, БольшЦифра [] прав)
+БольшЦифра добавьAssignSimple(БольшЦифра [] результат, БольшЦифра [] право)
 {
-    assert(результат.length >= прав.length);
-    бцел c = multibyteAdd(результат[0..прав.length], результат[0..прав.length], прав, 0);
-    if (c && результат.length > прав.length) {
-       c = многобайтИнкрПрисвой!('+')(результат[прав.length .. $], c);
+    assert(результат.length >= право.length);
+    бцел c = multibyteAdd(результат[0..право.length], результат[0..право.length], право, 0);
+    if (c && результат.length > право.length) {
+       c = многобайтИнкрПрисвой!('+')(результат[право.length .. $], c);
     }
     return c;
 }
 
-/* performs результат += wantSub? - прав : прав;
+/* performs результат += wantSub? - право : право;
 */
-БольшЦифра добавьOrSubAssignSimple(БольшЦифра [] результат, БольшЦифра [] прав, бул wantSub)
+БольшЦифра добавьOrSubAssignSimple(БольшЦифра [] результат, БольшЦифра [] право, бул wantSub)
 {
-  if (wantSub) return subAssignSimple(результат, прав);
-  else return добавьAssignSimple(результат, прав);
+  if (wantSub) return subAssignSimple(результат, право);
+  else return добавьAssignSimple(результат, право);
 }
 
 
@@ -1558,7 +1558,7 @@ body {
  * Given u и знач, calculates  quotient  = u/знач, u = u%знач.
  * знач must be normalized (ie, the MSB of знач must be 1).
  * The most significant words of quotient и u may be zero.
- * u[0..знач.length] holds the remainder.
+ * u[0..знач.length] holds the остаток.
  */
 проц schoolbookDivMod(БольшЦифра [] quotient, БольшЦифра [] u, in БольшЦифра [] знач)
 {
@@ -1619,7 +1619,7 @@ div3by2done:    ;
         бцел перенос = многобайтУмножПрибавь!('-')(u[j..j+знач.length], знач, qhat, 0);
 
         if (u[j+знач.length] < перенос) {
-            // If we subtracted too much, добавь back
+            // If we subtracted too much, добавь задний
             --qhat;
             перенос -= multibyteAdd(u[j..j+знач.length],u[j..j+знач.length], знач, 0);
         }
@@ -1649,13 +1649,13 @@ private:
 
 private:
     
-// Возвращает the highest значение of i for which лев[i]!=прав[i],
-// or 0 if лев[]==прав[]
-цел highestDifferentDigit(БольшЦифра [] лев, БольшЦифра [] прав)
+// Возвращает the highest значение of i for which лево[i]!=право[i],
+// or 0 if лево[]==право[]
+цел highestDifferentDigit(БольшЦифра [] лево, БольшЦифра [] право)
 {
-    assert(лев.length == прав.length);
-    for (цел i=лев.length-1; i>0; --i) {
-        if (лев[i]!=прав[i]) return i;
+    assert(лево.length == право.length);
+    for (цел i=лево.length-1; i>0; --i) {
+        if (лево[i]!=право[i]) return i;
     }
     return 0;
 }
@@ -1671,7 +1671,7 @@ private:
     return ключ;
 }
 
-/* Calculate quotient и remainder of u / знач using fast recursive division.
+/* Calculate quotient и остаток of u / знач using быстро recursive division.
   знач must be normalised, и must be at least half as дол as u.
   Given u и знач, знач normalised, calculates  quotient  = u/знач, u = u%знач.
   Algorithm is described in 
@@ -1680,7 +1680,7 @@ private:
   - R.P. Brent и P. Zimmermann, "Modern Computer Arithmetic", 
     Версия 0.2, p. 26, (June 2008).
 Возвращает:    
-    u[0..знач.length] is the remainder. u[знач.length..$] is corrupted.
+    u[0..знач.length] is the остаток. u[знач.length..$] is corrupted.
     черновик is temporary storage пространство, must be at least as дол as quotient.
 */
 проц recursiveDivMod(БольшЦифра[] quotient, БольшЦифра[] u, in БольшЦифра[] знач,

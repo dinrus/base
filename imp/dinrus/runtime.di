@@ -1,6 +1,6 @@
 ﻿module runtime;
 pragma(lib,"dinrus.lib");
-private import  gc, global, win;
+private import  gc, global, sys.Common;
 
 /////////////////////////////
 //Структура для инициализации рантайма Динрус
@@ -51,7 +51,7 @@ alias старт opCall;
 	 size_t capacity(void[] p);
 	 void[] malloc(size_t nbytes);
 	 void[] realloc(void* p, size_t nbytes);
-	 size_t extend(void* p, size_t minbytes, size_t maxbytes);
+	 size_t расширь(void* p, size_t minbytes, size_t maxbytes);
 	//size_t capacity(void* p);
 	 void new_finalizer(void *p, bool dummy);
 }

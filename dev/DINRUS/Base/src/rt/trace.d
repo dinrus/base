@@ -1,6 +1,6 @@
 ﻿
-/* Trace dynamic profiler.
- * For use with the Digital Mars DMD compiler.
+/* Динамический профилировщик трассировки.
+ * Для использования с компилятором Digital Mars DMD.
  * Copyright (C) 1995-2006 by Digital Mars
  * All Rights Reserved
  * Written by Walter Bright
@@ -19,209 +19,207 @@ private
     import cidrus;
 }
 
-alias ФАЙЛ FILE;
+extern(C) ткст0 unmangle_ident(ткст0);    // из библиотеки рантайма DMC++
 
-export extern (C):
-
-char* unmangle_ident(char*);    // from DMC++ runtime library
-
-alias long timer_t;
+alias дол т_таймер;
 
 /////////////////////////////////////
 //
 
-struct SymPair
+struct СимПара
 {
-    SymPair* next;
-    Symbol* sym;        // function that is called
-    uint count;         // number of times sym is called
+    СимПара* следщ;
+    Символ* симв;        // вызываемая функция
+    бцел счёт;         // число вызовов символа
 }
 
 /////////////////////////////////////
-// A Symbol for each function name.
+// Символ имени каждой функции.
 
-struct Symbol
+struct Символ
 {
-        Symbol* Sl, Sr;         // left, right children
-        SymPair* Sfanin;        // list of calling functions
-        SymPair* Sfanout;       // list of called functions
-        timer_t totaltime;      // aggregate time
-        timer_t functime;       // time excluding subfunction calls
-        ubyte Sflags;
-        char[] Sident;          // name of symbol
+        Символ* Сл, Сп;         // левый, правый отпрыск
+        СимПара* Sfanin;        // список вызываемых функций
+        СимПара* Sfanout;       // список вызванных функций
+        т_таймер общвремя;      // общее время
+        т_таймер функцвремя;       // время за исключением вызовов подфункций
+        ббайт Сфлаги;
+        ткст Сидент;          // имя символа
 }
 
-const ubyte SFvisited = 1;      // visited
+const ббайт СФпосещённые = 1;      // посещённые
 
-static Symbol* root;            // root of symbol table
+static Символ* корень;            // корень таблицы символов
 
 //////////////////////////////////
-// Build a linked list of these.
+// Строит линкованный список.
 
-struct Stack
+struct Стэк
 {
-    Stack* prev;
-    Symbol* sym;
-    timer_t starttime;          // time when function was entered
-    timer_t ohd;                // overhead of all the bookkeeping code
-    timer_t subtime;            // time used by all subfunctions
+    Стэк* предш;
+    Символ* симв;
+    т_таймер стартвремя;          // время вхождения в функцию
+    т_таймер изб;                // избыток всего учитываемого кода
+    т_таймер подвремя;            // время, использованное всеми подфункциями
 }
 
-static Stack* stack_freelist;
-static Stack* trace_tos;                // top of stack
-static int trace_inited;                // !=0 if initialized
-static timer_t trace_ohd;
+static Стэк* стэк_фрисписок;
+static Стэк* след_верхстэка;                // верх стэка
+static цел след_инициирован;                // !=0 если инициализовано
+static т_таймер след_изб;
 
-static Symbol** psymbols;
-static uint nsymbols;           // number of symbols
+static Символ** укНаСимволы;
+static бцел члосимв;           // число символов
 
-static char[] trace_logfilename = "trace.log";
-static FILE* fplog;
+static ткст след_имялогфайла = "trace.log";
+static ФАЙЛ* фукНаЛог;
 
-static char[] trace_deffilename = "trace.def";
-static FILE* fpdef;
+static ткст след_имядеффайла = "trace.def";
+static ФАЙЛ* фукНаДеф;
 
+///////////////////////////////////////
+export extern(C):
 
 ////////////////////////////////////////
-// Set file name for output.
-// A file name of "" means write results to stdout.
-// Returns:
-//      0       success
-//      !=0     failure
+// Установить имя файла для вывода.
+// Имя файла "" означает запись результатов в стдвыв.
+// Возвращает:
+//      0       успех
+//      !=0     провал
 
-int trace_setlogfilename(char[] name)
+цел trace_setlogfilename(ткст имя)
 {
-    trace_logfilename = name;
+    след_имялогфайла = имя;
     return 0;
 }
 
 ////////////////////////////////////////
-// Set file name for output.
-// A file name of "" means write results to stdout.
-// Returns:
-//      0       success
-//      !=0     failure
+// Установить имя файла для вывода.
+// Имя файла "" означает запись результатов в стдвыв.
+// Возвращает:
+//      0       успех
+//      !=0     провал
 
-int trace_setdeffilename(char[] name)
+цел trace_setdeffilename(ткст имя)
 {
-    trace_deffilename = name;
+    след_имядеффайла = имя;
     return 0;
 }
 
 ////////////////////////////////////////
-// Output optimal function link order.
+// Вывести оптималный порядок компоновки функций.
 
-static void trace_order(Symbol *s)
+static проц trace_order(Символ *s)
 {
     while (s)
     {
         trace_place(s,0);
-        if (s.Sl)
-            trace_order(s.Sl);
-        s = s.Sr;
+        if (s.Сл)
+            trace_order(s.Сл);
+        s = s.Сп;
     }
 }
 
 //////////////////////////////////////////////
 //
 
-static Stack* stack_malloc()
-{   Stack *s;
+static Стэк* stack_malloc()
+{   Стэк *s;
 
-    if (stack_freelist)
-    {   s = stack_freelist;
-        stack_freelist = s.prev;
+    if (стэк_фрисписок)
+    {   s = стэк_фрисписок;
+        стэк_фрисписок = s.предш;
     }
     else
-        s = cast(Stack *)trace_malloc(Stack.sizeof);
+        s = cast(Стэк *)trace_malloc(Стэк.sizeof);
     return s;
 }
 
 //////////////////////////////////////////////
 //
 
-static void stack_free(Stack *s)
+static проц stack_free(Стэк *s)
 {
-    s.prev = stack_freelist;
-    stack_freelist = s;
+    s.предш = стэк_фрисписок;
+    стэк_фрисписок = s;
 }
 
 //////////////////////////////////////
-// Qsort() comparison routine for array of pointers to SymPair's.
+// Процедура сравнения Qsort() для массива указателей на СимПары.
 
-static int sympair_cmp(in void* e1, in void* e2)
-{   SymPair** psp1;
-    SymPair** psp2;
+static цел sympair_cmp(in ук e1, in ук e2)
+{   СимПара** psp1;
+    СимПара** psp2;
 
-    psp1 = cast(SymPair**)e1;
-    psp2 = cast(SymPair**)e2;
+    psp1 = cast(СимПара**)e1;
+    psp2 = cast(СимПара**)e2;
 
-    return (*psp2).count - (*psp1).count;
+    return (*psp2).счёт - (*psp1).счёт;
 }
 
 //////////////////////////////////////
-// Place symbol s, and then place any fan ins or fan outs with
-// counts greater than count.
+// Поместить символ s, затем поместить любые fan ins или fan outs со
+// счетами, более чем счёт.
 
-static void trace_place(Symbol *s, uint count)
-{   SymPair* sp;
-    SymPair** base;
+static проц trace_place(Символ *s, бцел счёт)
+{   СимПара* сп;
+    СимПара** ова;
 
-    if (!(s.Sflags & SFvisited))
-    {   size_t num;
-        uint u;
+    if (!(s.Сфлаги & СФпосещённые))
+    {   т_мера чло;
+        бцел u;
 
-        //printf("\t%.*s\t%u\n", s.Sident, count);
-        fprintf(fpdef,"\t%.*s\n", s.Sident);
-        s.Sflags |= SFvisited;
+        //printf("\t%.*s\t%u\n", s.Сидент, счёт);
+        fprintf(фукНаДеф,"\t%.*s\n", s.Сидент);
+        s.Сфлаги |= СФпосещённые;
 
-        // Compute number of items in array
-        num = 0;
-        for (sp = s.Sfanin; sp; sp = sp.next)
-            num++;
-        for (sp = s.Sfanout; sp; sp = sp.next)
-            num++;
-        if (!num)
+        // Вычислить число элементов в массиве
+        чло = 0;
+        for (сп = s.Sfanin; сп; сп = сп.следщ)
+            чло++;
+        for (сп = s.Sfanout; сп; сп = сп.следщ)
+            чло++;
+        if (!чло)
             return;
 
-        // Allocate and fill array
-        base = cast(SymPair**)trace_malloc(SymPair.sizeof * num);
+        // Разместить и заполнить массив
+        ова = cast(СимПара**)trace_malloc(СимПара.sizeof * чло);
         u = 0;
-        for (sp = s.Sfanin; sp; sp = sp.next)
-            base[u++] = sp;
-        for (sp = s.Sfanout; sp; sp = sp.next)
-            base[u++] = sp;
+        for (сп = s.Sfanin; сп; сп = сп.следщ)
+            ова[u++] = сп;
+        for (сп = s.Sfanout; сп; сп = сп.следщ)
+            ова[u++] = сп;
 
-        // Sort array
-        qsort(base, num, (SymPair *).sizeof, &sympair_cmp);
+        // Сортировать массив
+        qsort(ова, чло, (СимПара *).sizeof, &sympair_cmp);
 
-        //for (u = 0; u < num; u++)
-            //printf("\t\t%.*s\t%u\n", base[u].sym.Sident, base[u].count);
+        //for (u = 0; u < чло; u++)
+            //printf("\t\t%.*s\t%u\n", ова[u].симв.Сидент, ова[u].счёт);
 
-        // Place symbols
-        for (u = 0; u < num; u++)
+        // Поместить символы
+        for (u = 0; u < чло; u++)
         {
-            if (base[u].count >= count)
-            {   uint u2;
-                uint c2;
+            if (ова[u].счёт >= счёт)
+            {   бцел u2;
+                бцел c2;
 
-                u2 = (u + 1 < num) ? u + 1 : u;
-                c2 = base[u2].count;
-                if (c2 < count)
-                    c2 = count;
-                trace_place(base[u].sym,c2);
+                u2 = (u + 1 < чло) ? u + 1 : u;
+                c2 = ова[u2].счёт;
+                if (c2 < счёт)
+                    c2 = счёт;
+                trace_place(ова[u].симв,c2);
             }
             else
                 break;
         }
 
-        // Clean up
-        trace_free(base);
+        // Очистить
+        trace_free(ова);
     }
 }
 
 /////////////////////////////////////
-// Initialize and terminate.
+// Инициализация и терминация.
 
 static this()
 {
@@ -234,158 +232,158 @@ static ~this()
 }
 
 ///////////////////////////////////
-// Report results.
-// Also compute nsymbols.
+// Выводит отчёт о результатах.
+// Также вычисляет члосимв.
 
-static void trace_report(Symbol* s)
-{   SymPair* sp;
-    uint count;
+static проц trace_report(Символ* s)
+{   СимПара* сп;
+    бцел счёт;
 
     //printf("trace_report()\n");
     while (s)
-    {   nsymbols++;
-        if (s.Sl)
-            trace_report(s.Sl);
-        fprintf(fplog,"------------------\n");
-        count = 0;
-        for (sp = s.Sfanin; sp; sp = sp.next)
+    {   члосимв++;
+        if (s.Сл)
+            trace_report(s.Сл);
+        fprintf(фукНаЛог,"------------------\n");
+        счёт = 0;
+        for (сп = s.Sfanin; сп; сп = сп.следщ)
         {
-            fprintf(fplog,"\t%5d\t%.*s\n", sp.count, sp.sym.Sident);
-            count += sp.count;
+            fprintf(фукНаЛог,"\t%5d\t%.*s\n", сп.счёт, сп.симв.Сидент);
+            счёт += сп.счёт;
         }
-        fprintf(fplog,"%.*s\t%u\t%lld\t%lld\n",s.Sident,count,s.totaltime,s.functime);
-        for (sp = s.Sfanout; sp; sp = sp.next)
+        fprintf(фукНаЛог,"%.*s\t%u\t%lld\t%lld\n",s.Сидент,счёт,s.общвремя,s.функцвремя);
+        for (сп = s.Sfanout; сп; сп = сп.следщ)
         {
-            fprintf(fplog,"\t%5d\t%.*s\n",sp.count,sp.sym.Sident);
+            fprintf(фукНаЛог,"\t%5d\t%.*s\n",сп.счёт,сп.симв.Сидент);
         }
-        s = s.Sr;
+        s = s.Сп;
     }
 }
 
 ////////////////////////////////////
-// Allocate and fill array of symbols.
+// Разместить и заполнить массив символов.
 
-static void trace_array(Symbol *s)
-{   static uint u;
+static проц trace_array(Символ *s)
+{   static бцел u;
 
-    if (!psymbols)
+    if (!укНаСимволы)
     {   u = 0;
-        psymbols = cast(Symbol **)trace_malloc((Symbol *).sizeof * nsymbols);
+        укНаСимволы = cast(Символ **)trace_malloc((Символ *).sizeof * члосимв);
     }
     while (s)
     {
-        psymbols[u++] = s;
-        trace_array(s.Sl);
-        s = s.Sr;
+        укНаСимволы[u++] = s;
+        trace_array(s.Сл);
+        s = s.Сп;
     }
 }
 
 
 //////////////////////////////////////
-// Qsort() comparison routine for array of pointers to Symbol's.
+// Процедура сравнения Qsort() для массива указателей на Символы.
 
-static int symbol_cmp(in void* e1, in void* e2)
-{   Symbol** ps1;
-    Symbol** ps2;
-    timer_t diff;
+static цел symbol_cmp(in ук e1, in ук e2)
+{   Символ** ps1;
+    Символ** ps2;
+    т_таймер рознь;
 
-    ps1 = cast(Symbol **)e1;
-    ps2 = cast(Symbol **)e2;
+    ps1 = cast(Символ **)e1;
+    ps2 = cast(Символ **)e2;
 
-    diff = (*ps2).functime - (*ps1).functime;
-    return (diff == 0) ? 0 : ((diff > 0) ? 1 : -1);
+    рознь = (*ps2).функцвремя - (*ps1).функцвремя;
+    return (рознь == 0) ? 0 : ((рознь > 0) ? 1 : -1);
 }
 
 
 ///////////////////////////////////
-// Report function timings
+// Отчёт о таймингах функций
 
-static void trace_times(Symbol* root)
-{   uint u;
-    timer_t freq;
+static проц trace_times(Символ* корень)
+{   бцел u;
+    т_таймер freq;
 
     // Sort array
-    qsort(psymbols, nsymbols, (Symbol *).sizeof, &symbol_cmp);
+    qsort(укНаСимволы, члосимв, (Символ *).sizeof, &symbol_cmp);
 
     // Print array
     QueryPerformanceFrequency(&freq);
-    fprintf(fplog,"\n======== Частота таймера %lld тиков/сек, время в микросекундах ========\n\n",freq);
-    fprintf(fplog,"  Num          Tree        Func        Per\n");
-    fprintf(fplog,"  Calls        Time        Time        Call\n\n");
-    for (u = 0; u < nsymbols; u++)
-    {   Symbol* s = psymbols[u];
-        timer_t tl,tr;
-        timer_t fl,fr;
-        timer_t pl,pr;
-        timer_t percall;
-        SymPair* sp;
-        uint calls;
-        char[] id;
+    fprintf(фукНаЛог,"\n======== Частота таймера %lld тиков/сек, время в микросекундах ========\n\n",freq);
+    fprintf(фукНаЛог,"  Num          Tree        Func        Per\n");
+    fprintf(фукНаЛог,"  Calls        Time        Time        Call\n\n");
+    for (u = 0; u < члосимв; u++)
+    {   Символ* s = укНаСимволы[u];
+        т_таймер tl,tr;
+        т_таймер fl,fr;
+        т_таймер pl,pr;
+        т_таймер percall;
+        СимПара* сп;
+        бцел вызовы;
+        ткст id;
 
         version (Win32)
         {
-            char* p = (s.Sident ~ '\0').ptr;
+            ткст0 p = (s.Сидент ~ '\0').ptr;
             p = unmangle_ident(p);
             if (p)
                 id = p[0 .. strlen(p)];
         }
         if (!id)
-            id = s.Sident;
-        calls = 0;
-        for (sp = s.Sfanin; sp; sp = sp.next)
-            calls += sp.count;
-        if (calls == 0)
-            calls = 1;
+            id = s.Сидент;
+        вызовы = 0;
+        for (сп = s.Sfanin; сп; сп = сп.следщ)
+            вызовы += сп.счёт;
+        if (вызовы == 0)
+            вызовы = 1;
 
 version (all)
 {
-        tl = (s.totaltime * 1000000) / freq;
-        fl = (s.functime  * 1000000) / freq;
-        percall = s.functime / calls;
-        pl = (s.functime * 1000000) / calls / freq;
+        tl = (s.общвремя * 1000000) / freq;
+        fl = (s.функцвремя  * 1000000) / freq;
+        percall = s.функцвремя / вызовы;
+        pl = (s.функцвремя * 1000000) / вызовы / freq;
 
-        fprintf(fplog,"%7d%12lld%12lld%12lld     %.*s\n",
-            calls,tl,fl,pl,id);
+        fprintf(фукНаЛог,"%7d%12lld%12lld%12lld     %.*s\n",
+            вызовы,tl,fl,pl,id);
 }
 else
 {
-        tl = s.totaltime / freq;
-        tr = ((s.totaltime - tl * freq) * 10000000) / freq;
+        tl = s.общвремя / freq;
+        tr = ((s.общвремя - tl * freq) * 10000000) / freq;
 
-        fl = s.functime  / freq;
-        fr = ((s.functime  - fl * freq) * 10000000) / freq;
+        fl = s.функцвремя  / freq;
+        fr = ((s.функцвремя  - fl * freq) * 10000000) / freq;
 
-        percall = s.functime / calls;
+        percall = s.функцвремя / вызовы;
         pl = percall  / freq;
         pr = ((percall  - pl * freq) * 10000000) / freq;
 
-        fprintf(fplog,"%7d\t%3lld.%07lld\t%3lld.%07lld\t%3lld.%07lld\t%.*s\n",
-            calls,tl,tr,fl,fr,pl,pr,id);
+        fprintf(фукНаЛог,"%7d\t%3lld.%07lld\t%3lld.%07lld\t%3lld.%07lld\t%.*s\n",
+            вызовы,tl,tr,fl,fr,pl,pr,id);
 }
-        if (id !is s.Sident)
+        if (id !is s.Сидент)
             cidrus.free(id.ptr);
     }
 }
 
 
 ///////////////////////////////////
-// Initialize.
+// Инициализует.
 
-static void trace_init()
+static проц trace_init()
 {
-    if (!trace_inited)
+    if (!след_инициирован)
     {
-        trace_inited = 1;
+        след_инициирован = 1;
 
-        {   // See if we can determine the overhead.
-            uint u;
-            timer_t starttime;
-            timer_t endtime;
-            Stack *st;
+        {   // Проверить, можем ли определить избыток.
+            бцел u;
+            т_таймер стартвремя;
+            т_таймер конвремя;
+            Стэк *st;
 
-            st = trace_tos;
-            trace_tos = null;
-            QueryPerformanceCounter(&starttime);
+            st = след_верхстэка;
+            след_верхстэка = null;
+            QueryPerformanceCounter(&стартвремя);
             for (u = 0; u < 100; u++)
             {
                 asm
@@ -395,74 +393,74 @@ static void trace_init()
                     call _trace_epi_n   ;
                 }
             }
-            QueryPerformanceCounter(&endtime);
-            trace_ohd = (endtime - starttime) / u;
-            //printf("trace_ohd = %lld\n",trace_ohd);
-            if (trace_ohd > 0)
-                trace_ohd--;            // round down
-            trace_tos = st;
+            QueryPerformanceCounter(&конвремя);
+            след_изб = (конвремя - стартвремя) / u;
+            //printf("след_изб = %lld\n",след_изб);
+            if (след_изб > 0)
+                след_изб--;            // round down
+            след_верхстэка = st;
         }
     }
 }
 
 /////////////////////////////////
-// Terminate.
+// Терминирует.
 
-void trace_term()
+проц trace_term()
 {
     //printf("trace_term()\n");
-    if (trace_inited == 1)
-    {   Stack *n;
+    if (след_инициирован == 1)
+    {   Стэк *n;
 
-        trace_inited = 2;
+        след_инициирован = 2;
 
-        // Free remainder of the stack
-        while (trace_tos)
+        // Free остаток of the stack
+        while (след_верхстэка)
         {
-            n = trace_tos.prev;
-            stack_free(trace_tos);
-            trace_tos = n;
+            n = след_верхстэка.предш;
+            stack_free(след_верхстэка);
+            след_верхстэка = n;
         }
 
-        while (stack_freelist)
+        while (стэк_фрисписок)
         {
-            n = stack_freelist.prev;
-            stack_free(stack_freelist);
-            stack_freelist = n;
+            n = стэк_фрисписок.предш;
+            stack_free(стэк_фрисписок);
+            стэк_фрисписок = n;
         }
 
         // Merge in data from any existing file
         trace_merge();
 
         // Report results
-        fplog = fopen(trace_logfilename.ptr, "w");
-        //fplog = rt.core.stdc.stdio.stdout;
-        if (fplog)
-        {   nsymbols = 0;
-            trace_report(root);
-            trace_array(root);
-            trace_times(root);
-            fclose(fplog);
+        фукНаЛог = fopen(след_имялогфайла.ptr, "w");
+        //фукНаЛог = rt.core.stdc.stdio.stdout;
+        if (фукНаЛог)
+        {   члосимв = 0;
+            trace_report(корень);
+            trace_array(корень);
+            trace_times(корень);
+            fclose(фукНаЛог);
         }
 
         // Output function link order
-        fpdef = fopen(trace_deffilename.ptr,"w");
-        if (fpdef)
-        {   fprintf(fpdef,"\nФУНКЦИИ\n");
-            trace_order(root);
-            fclose(fpdef);
+        фукНаДеф = fopen(след_имядеффайла.ptr,"w");
+        if (фукНаДеф)
+        {   fprintf(фукНаДеф,"\nФУНКЦИИ\n");
+            trace_order(корень);
+            fclose(фукНаДеф);
         }
 
-        trace_free(psymbols);
-        psymbols = null;
+        trace_free(укНаСимволы);
+        укНаСимволы = null;
     }
 }
 
 /////////////////////////////////
 // Our storage allocator.
 
-static void *trace_malloc(size_t nbytes)
-{   void *p;
+static проц *trace_malloc(т_мера nbytes)
+{   проц *p;
 
     p = malloc(nbytes);
     if (!p)
@@ -470,7 +468,7 @@ static void *trace_malloc(size_t nbytes)
     return p;
 }
 
-static void trace_free(void *p)
+static проц trace_free(проц *p)
 {
     cidrus.free(p);
 }
@@ -478,159 +476,159 @@ static void trace_free(void *p)
 //////////////////////////////////////////////
 //
 
-static Symbol* trace_addsym(char[] id)
+static Символ* trace_addsym(ткст id)
 {
-    Symbol** parent;
-    Symbol* rover;
-    Symbol* s;
-    int cmp;
+    Символ** parent;
+    Символ* rover;
+    Символ* s;
+    цел cmp;
     char c;
 
     //printf("trace_addsym('%s',%d)\n",p,len);
-    parent = &root;
+    parent = &корень;
     rover = *parent;
     while (rover !is null)               // while we haven't run out of tree
     {
-        cmp = std.string.cmp (id, rover.Sident);
+        cmp = std.string.cmp (id, rover.Сидент);
         if (cmp == 0)
         {
             return rover;
         }
         parent = (cmp < 0) ?            /* if we go down left side      */
-            &(rover.Sl) :               /* then get left child          */
-            &(rover.Sr);                /* else get right child         */
+            &(rover.Сл) :               /* then get left child          */
+            &(rover.Сп);                /* else get right child         */
         rover = *parent;                /* get child                    */
     }
     /* not in table, so insert into table       */
-    s = cast(Symbol *)trace_malloc(Symbol.sizeof);
-    memset(s,0,Symbol.sizeof);
-    s.Sident = id;
+    s = cast(Символ *)trace_malloc(Символ.sizeof);
+    memset(s,0,Символ.sizeof);
+    s.Сидент = id;
     *parent = s;                        // link new symbol into tree
     return s;
 }
 
 /***********************************
- * Add symbol s with count to SymPair list.
+ * Add symbol s with счёт to СимПара list.
  */
 
-static void trace_sympair_add(SymPair** psp, Symbol* s, uint count)
-{   SymPair* sp;
+static проц trace_sympair_add(СимПара** psp, Символ* s, бцел счёт)
+{   СимПара* сп;
 
-    for (; 1; psp = &sp.next)
+    for (; 1; psp = &сп.следщ)
     {
-        sp = *psp;
-        if (!sp)
+        сп = *psp;
+        if (!сп)
         {
-            sp = cast(SymPair *)trace_malloc(SymPair.sizeof);
-            sp.sym = s;
-            sp.count = 0;
-            sp.next = null;
-            *psp = sp;
+            сп = cast(СимПара *)trace_malloc(СимПара.sizeof);
+            сп.симв = s;
+            сп.счёт = 0;
+            сп.следщ = null;
+            *psp = сп;
             break;
         }
-        else if (sp.sym == s)
+        else if (сп.симв == s)
         {
             break;
         }
     }
-    sp.count += count;
+    сп.счёт += счёт;
 }
 
 //////////////////////////////////////////////
 //
 
-static void trace_pro(char[] id)
+static проц trace_pro(ткст id)
 {
-    Stack* n;
-    Symbol* s;
-    timer_t starttime;
-    timer_t t;
+    Стэк* n;
+    Символ* s;
+    т_таймер стартвремя;
+    т_таймер t;
 
-    QueryPerformanceCounter(&starttime);
+    QueryPerformanceCounter(&стартвремя);
     if (id.length == 0)
         return;
-    if (!trace_inited)
+    if (!след_инициирован)
         trace_init();                   // initialize package
     n = stack_malloc();
-    n.prev = trace_tos;
-    trace_tos = n;
+    n.предш = след_верхстэка;
+    след_верхстэка = n;
     s = trace_addsym(id);
-    trace_tos.sym = s;
-    if (trace_tos.prev)
+    след_верхстэка.симв = s;
+    if (след_верхстэка.предш)
     {
-        Symbol* prev;
-        int i;
+        Символ* предш;
+        цел i;
 
         // Accumulate Sfanout and Sfanin
-        prev = trace_tos.prev.sym;
-        trace_sympair_add(&prev.Sfanout,s,1);
-        trace_sympair_add(&s.Sfanin,prev,1);
+        предш = след_верхстэка.предш.симв;
+        trace_sympair_add(&предш.Sfanout,s,1);
+        trace_sympair_add(&s.Sfanin,предш,1);
     }
     QueryPerformanceCounter(&t);
-    trace_tos.starttime = starttime;
-    trace_tos.ohd = trace_ohd + t - starttime;
-    trace_tos.subtime = 0;
-    //printf("trace_tos.ohd=%lld, trace_ohd=%lld + t=%lld - starttime=%lld\n",
-    //  trace_tos.ohd,trace_ohd,t,starttime);
+    след_верхстэка.стартвремя = стартвремя;
+    след_верхстэка.изб = след_изб + t - стартвремя;
+    след_верхстэка.подвремя = 0;
+    //printf("след_верхстэка.изб=%lld, след_изб=%lld + t=%lld - стартвремя=%lld\n",
+    //  след_верхстэка.изб,след_изб,t,стартвремя);
 }
 
 /////////////////////////////////////////
 //
 
-static void trace_epi()
-{   Stack* n;
-    timer_t endtime;
-    timer_t t;
-    timer_t ohd;
+static проц trace_epi()
+{   Стэк* n;
+    т_таймер конвремя;
+    т_таймер t;
+    т_таймер изб;
 
     //printf("trace_epi()\n");
-    if (trace_tos)
+    if (след_верхстэка)
     {
-        timer_t starttime;
-        timer_t totaltime;
+        т_таймер стартвремя;
+        т_таймер общвремя;
 
-        QueryPerformanceCounter(&endtime);
-        starttime = trace_tos.starttime;
-        totaltime = endtime - starttime - trace_tos.ohd;
-        if (totaltime < 0)
-        {   //printf("endtime=%lld - starttime=%lld - trace_tos.ohd=%lld < 0\n",
-            //  endtime,starttime,trace_tos.ohd);
-            totaltime = 0;              // round off error, just make it 0
+        QueryPerformanceCounter(&конвремя);
+        стартвремя = след_верхстэка.стартвремя;
+        общвремя = конвремя - стартвремя - след_верхстэка.изб;
+        if (общвремя < 0)
+        {   //printf("конвремя=%lld - стартвремя=%lld - след_верхстэка.изб=%lld < 0\n",
+            //  конвремя,стартвремя,след_верхстэка.изб);
+            общвремя = 0;              // round off error, just make it 0
         }
 
-        // totaltime is time spent in this function + all time spent in
+        // общвремя is time spent in this function + all time spent in
         // subfunctions - bookkeeping overhead.
-        trace_tos.sym.totaltime += totaltime;
+        след_верхстэка.симв.общвремя += общвремя;
 
-        //if (totaltime < trace_tos.subtime)
-        //printf("totaltime=%lld < trace_tos.subtime=%lld\n",totaltime,trace_tos.subtime);
-        trace_tos.sym.functime  += totaltime - trace_tos.subtime;
-        ohd = trace_tos.ohd;
-        n = trace_tos.prev;
-        stack_free(trace_tos);
-        trace_tos = n;
+        //if (общвремя < след_верхстэка.подвремя)
+        //printf("общвремя=%lld < след_верхстэка.подвремя=%lld\n",общвремя,след_верхстэка.подвремя);
+        след_верхстэка.симв.функцвремя  += общвремя - след_верхстэка.подвремя;
+        изб = след_верхстэка.изб;
+        n = след_верхстэка.предш;
+        stack_free(след_верхстэка);
+        след_верхстэка = n;
         if (n)
         {   QueryPerformanceCounter(&t);
-            n.ohd += ohd + t - endtime;
-            n.subtime += totaltime;
-            //printf("n.ohd = %lld\n",n.ohd);
+            n.изб += изб + t - конвремя;
+            n.подвремя += общвремя;
+            //printf("n.изб = %lld\n",n.изб);
         }
     }
 }
 
 
-////////////////////////// FILE INTERFACE /////////////////////////
+////////////////////////// ФАЙЛ INTERFACE /////////////////////////
 
 /////////////////////////////////////
 // Read line from file fp.
-// Returns:
+// Возвращает:
 //      trace_malloc'd line buffer
 //      null if end of file
 
-static char* trace_readline(FILE* fp)
-{   int c;
-    int dim;
-    int i;
+static ткст0 trace_readline(ФАЙЛ* fp)
+{   цел c;
+    цел dim;
+    цел i;
     char *buf;
 
     //printf("trace_readline(%p)\n", fp);
@@ -683,16 +681,16 @@ static char *skipspace(char *p)
 ////////////////////////////////////////////////////////
 // Merge in profiling data from existing file.
 
-static void trace_merge()
-{   FILE* fp;
+static проц trace_merge()
+{   ФАЙЛ* fp;
     char *buf;
     char *p;
-    uint count;
-    Symbol *s;
-    SymPair *sfanin;
-    SymPair **psp;
+    бцел счёт;
+    Символ *s;
+    СимПара *sfanin;
+    СимПара **psp;
 
-    if (trace_logfilename && (fp = fopen(trace_logfilename.ptr,"r")) !is null)
+    if (след_имялогфайла && (fp = fopen(след_имялогфайла.ptr,"r")) !is null)
     {
         buf = null;
         sfanin = null;
@@ -710,14 +708,14 @@ static void trace_merge()
                     goto L1;
                 case ' ':
                 case '\t':              // fan in or fan out line
-                    count = strtoul(buf,&p,10);
+                    счёт = strtoul(buf,&p,10);
                     if (p == buf)       // if invalid conversion
                         continue;
                     p = skipspace(p);
                     if (!*p)
                         continue;
                     s = trace_addsym(p[0 .. strlen(p)]);
-                    trace_sympair_add(psp,s,count);
+                    trace_sympair_add(psp,s,счёт);
                     break;
                 default:
                     if (!isalpha(*buf))
@@ -737,12 +735,12 @@ static void trace_merge()
                     //printf("trace_addsym('%s')\n",buf);
                     s = trace_addsym(buf[0 .. strlen(buf)]);
                     if (s.Sfanin)
-                    {   SymPair *sp;
+                    {   СимПара *сп;
 
-                        for (; sfanin; sfanin = sp)
+                        for (; sfanin; sfanin = сп)
                         {
-                            trace_sympair_add(&s.Sfanin,sfanin.sym,sfanin.count);
-                            sp = sfanin.next;
+                            trace_sympair_add(&s.Sfanin,sfanin.симв,sfanin.счёт);
+                            сп = sfanin.следщ;
                             trace_free(sfanin);
                         }
                     }
@@ -752,14 +750,14 @@ static void trace_merge()
                     sfanin = null;
                     psp = &s.Sfanout;
 
-                    {   timer_t t;
+                    {   т_таймер t;
 
                         p++;
-                        count = strtoul(p,&p,10);
-                        t = cast(long)strtoull(p,&p,10);
-                        s.totaltime += t;
-                        t = cast(long)strtoull(p,&p,10);
-                        s.functime += t;
+                        счёт = strtoul(p,&p,10);
+                        t = cast(дол)strtoull(p,&p,10);
+                        s.общвремя += t;
+                        t = cast(дол)strtoull(p,&p,10);
+                        s.функцвремя += t;
                     }
                     break;
             }
@@ -774,7 +772,7 @@ static void trace_merge()
 /////////////////////////////////////////////
 // Function called by trace code in function prolog.
 
-void _trace_pro_n()
+проц _trace_pro_n()
 {
     /* Length of string is either:
      *  db      length
@@ -844,7 +842,7 @@ void _trace_pro_n()
 // Function called by trace code in function epilog.
 
 
-void _trace_epi_n()
+проц _trace_epi_n()
 {
     version (OSX) { // 16 byte align stack
         asm{
@@ -878,15 +876,15 @@ version (Win32)
 {
     extern (Windows)
     {
-        export int QueryPerformanceCounter(timer_t *);
-        export int QueryPerformanceFrequency(timer_t *);
+        export цел QueryPerformanceCounter(т_таймер *);
+        export цел QueryPerformanceFrequency(т_таймер *);
     }
 }
 else version (X86)
 {
     extern (D)
     {
-        void QueryPerformanceCounter(timer_t* ctr)
+        проц QueryPerformanceCounter(т_таймер* ctr)
         {
             asm
             {   naked                   ;
@@ -898,7 +896,7 @@ else version (X86)
             }
         }
 
-        void QueryPerformanceFrequency(timer_t* freq)
+        проц QueryPerformanceFrequency(т_таймер* freq)
         {
             *freq = 3579545;
         }

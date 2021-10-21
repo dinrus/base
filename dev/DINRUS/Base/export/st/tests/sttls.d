@@ -1,5 +1,5 @@
 module sttls;
-import st.tls, stdrus, win;
+import st.tls, stdrus, sys.Common;
 
 extern(Windows) бцел ФункцНити(ук данные) 
 { 

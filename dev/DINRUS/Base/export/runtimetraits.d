@@ -92,7 +92,7 @@ struct примениИнтерфейсы
 
 /** Возвращает список of все типы that are производный из_ the given тип. This does not 
  * счёт interfaces; that is, if тип is an interface, you will only получи производный 
- * interfaces back. It is an expensive operations. */
+ * interfaces задний. It is an expensive operations. */
 ИнфОКлассе[] производныеТипы (ИнфОКлассе тип);
 
 ///

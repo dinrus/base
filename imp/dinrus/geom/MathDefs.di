@@ -2,7 +2,7 @@
 
 import stdrus;
 
-/** comparison operators with user-selected precision control
+/** Операторы сравнения с выбранным пользователем контролем точности
 */
 бул ноль_ли(T, Реал)(T _a, Реал _эпс)
 { return фабс(_a) < _эпс; }
@@ -51,7 +51,7 @@ import stdrus;
 бул меньшравн_ли(T1, T2)(T1 a, T2 b)
 { return (a < b) || равн_ли(a,b); }
 
-/// Trigonometry/angles - related
+/// Тригонометрия/углы - относительно
 
 T рабоч_уарг(T)(T _уарг)
 {
@@ -66,9 +66,9 @@ T рабоч_уарг(T)(T _уарг)
   return _уарг;
 }
 
-/** returns the угол determined by its _кос and the sign of its _син
-    result is positive if the угол is in [0:pi]
-    and negative if it is in [pi:2pi]
+/** Возвращает угол, определённые по его _кос, и знак его _син
+    результат положителен, если угол входит в [0:pi]
+    и отрицательный, если угол находится в [pi:2pi]
 */
 T угол(T)(T _кос_угла, T _син_угла)
 {//sanity checks - otherwise acos will return nan

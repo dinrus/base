@@ -1,6 +1,6 @@
 ﻿module io.Console;
 
-//private import  win: КОНСВВОД, КОНСВЫВОД, КОНСОШ;
+//private import  sys.Common: КОНСВВОД, КОНСВЫВОД, КОНСОШ;
 
 private import  io.device.Device,
                 io.stream.Buffered, sys.Common;
@@ -766,8 +766,6 @@ body
 	Квывод(бдолВЮ8(врем,ткт));
 	}
 	
-alias скажи say, console, консоль;
-
 	проц скажинс(ткст ткт){Квывод(ткт).нс;}
 	
 	проц скажинс(бдол ткт)

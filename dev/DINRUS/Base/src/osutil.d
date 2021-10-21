@@ -23,7 +23,7 @@ char [] ctfe_i2a(int i){
     else
         return res;
 }
-/// ditto
+/// описано ранее
 char [] ctfe_i2a(long i){
     char[] digit="0123456789";
     char[] res="";
@@ -44,7 +44,7 @@ char [] ctfe_i2a(long i){
     else
         return res;
 }
-/// ditto
+/// описано ранее
 char [] ctfe_i2a(uint i){
     char[] digit="0123456789";
     char[] res="";
@@ -58,7 +58,7 @@ char [] ctfe_i2a(uint i){
     }
     return res;
 }
-/// ditto
+/// описано ранее
 char [] ctfe_i2a(ulong i){
     char[] digit="0123456789";
     char[] res="";
@@ -207,7 +207,7 @@ else static if (is(typeof(malloc))) // else version (GC_Use_Alloc_Malloc)
     // NOTE: This assumes cidrus.malloc granularity is at least (ук).sizeof.  If
     //       (req_size + РАЗМЕР_СТРАНИЦЫ) is allocated, and the pointer is rounded up
     //       to РАЗМЕР_СТРАНИЦЫ alignment, there will be space for a ук at the end
-    //       after РАЗМЕР_СТРАНИЦЫ bytes used by the GC.
+    //       после РАЗМЕР_СТРАНИЦЫ bytes used by the GC.
 
 
     

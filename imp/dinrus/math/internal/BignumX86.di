@@ -19,7 +19,7 @@
  * (c) the Pentium 4, produced by Marketing.
  *
  * This код есть been optimised for the Intel P6 семейство.
- * Generally the код remains near-optimal for Intel Core2, after translating
+ * Generally the код remains near-optimal for Intel Core2, после translating
  * EAX-> RAX, etc, since all these CPUs use essentially the same pИПeline, and
  * are typically limited by memory access.
  * The код uses techniques described in Agner Fog's superb Pentium manuals
@@ -41,7 +41,7 @@
  *
  * mulAcc(32) is multИПlyAccumulate() for a 32*32 multИПly. Thus it includes
  * function call overhead.
- * The timing for Div is quite unpredictable, but it's probably too slow
+ * The timing for Div is quite unpredictable, but it's probably too медленно
  * to be useful. On 64-bit processors, these times should
  * halve if run in 64-bit режим, except for the MMX functions.
  */
@@ -154,10 +154,10 @@ public:
     проц многобайтУмножАккум(бцел [] приёмник, бцел[] left, бцел [] right);
 
     /**  приёмник[#] /= divisor.
-     * overflow is the начальное remainder, and must be in the range 0..divisor-1.
+     * overflow is the начальное остаток, and must be in the range 0..divisor-1.
      * divisor must not be a power of 2 (use right shift for that case;
      * A division by zero will occur if divisor is a power of 2).
-     * Returns the final remainder
+     * Returns the final остаток
      *
      * Based on public домен код by Eric Bainville.
      * (http://www.bealto.com/) Used with permission.

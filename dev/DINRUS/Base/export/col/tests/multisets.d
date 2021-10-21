@@ -56,7 +56,7 @@ void main()
     //
     Стдвыв("convenient element in arrayMS: ")(arrayMS.дай).нс;
     Стдвыв("removed convenient element in arrayMS: ")(arrayMS.изыми).нс;
-    print(arrayMS, "arrayMS after take");
+    print(arrayMS, "arrayMS после take");
 
     //
     // You can dup a multiset, and then add data to it.

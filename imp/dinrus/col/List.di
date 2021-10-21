@@ -66,7 +66,7 @@ struct Список(Т)
     alias обходчик_списка_рев!(Т) реверсОбходчик;
 
 
-    обходчик приставь(ref Т новДанные);
+    обходчик надставь(ref Т новДанные);
     проц opCatAssign(ref Т новДанные);
     обходчик предпоставь(ref Т новДанные);
     обходчик вставь(обходчик обход, ref Т новДанные);
@@ -211,14 +211,14 @@ public:
     alias обходчик_списка!(Т) обходчик;
     alias обходчик_списка_рев!(Т) реверсОбходчик;
 
-    /// приставь an элт to the список
-    обходчик приставь(ref Т новДанные)
+    /// надставь an элт to the список
+    обходчик надставь(ref Т новДанные)
     {
         return вставь_узел_перед(&якорь_, новДанные);
     }
 
-    /// Also приставь an элт to the список using L ~= элт syntax.
-    проц opCatAssign(/*const*/ ref Т новДанные) { приставь(новДанные); }
+    /// Also надставь an элт to the список using L ~= элт syntax.
+    проц opCatAssign(/*const*/ ref Т новДанные) { надставь(новДанные); }
 
     /// предпоставь an элт onto the голова of список
     обходчик предпоставь(ref Т новДанные)
@@ -407,7 +407,7 @@ public:
 
 /+
 	// http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
-	/// perform merge sort on this linked список 
+	/// выполни совмести sort on this linked список 
 	проц sort()
 	{
 		Узел* p;
@@ -437,7 +437,7 @@ public:
 
 			while (p !is пусто) 
 			{
-				nmerges++;  /* there exists a merge to be done */
+				nmerges++;  /* there exists a совмести to be done */
 				/* step `insize' places along from p */
 				q = p;
 				psize = 0;
@@ -451,14 +451,14 @@ public:
 					if (q is пусто) break;
 				}
 
-				/* if q hasn'т fallen off конец, we have two lists to merge */
+				/* if q hasn'т fallen off конец, we have two lists to совмести */
 				qsize = insize;
 
-				/* now we have two lists; merge them */
+				/* now we have two lists; совмести them */
 				while (psize > 0 || (qsize > 0 && q !is пусто)) 
 				{
 
-					/* decide whether следщ element of merge comes from p or q */
+					/* decide whether следщ element of совмести comes from p or q */
 					if (psize == 0) 
 					{
 						/* p is пуст; e must come from q. */
@@ -496,7 +496,7 @@ public:
 		
 			хвост.следщ = пусто;
 
-			/* If we have done only one merge, we're finished. */
+			/* If we have done only one совмести, we're finished. */
 			if (nmerges <= 1)   /* allow for nmerges==0, the пуст список case */
 				return;
 
@@ -556,9 +556,9 @@ unittest {
 
     ilist ~= 1;
     assert(! ilist.пуст());
-    ilist.приставь(2);
+    ilist.надставь(2);
     ilist ~= 3;
-    ilist.приставь(4);
+    ilist.надставь(4);
     ilist ~= 5;
 
     assert(! ilist.пуст());

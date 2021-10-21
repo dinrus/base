@@ -31,8 +31,8 @@ version (Posix)
 
         KISS (из_ George Marsaglia)
 
-        The опрea is в_ use simple, fast, indivопрually promising
-        generators в_ получи a composite that will be fast, easy в_ код
+        The опрea is в_ use simple, быстро, indivопрually promising
+        generators в_ получи a composite that will be быстро, easy в_ код
         have a very дол период и пароль все the tests помести в_ it.
         The three components of KISS are
         ---

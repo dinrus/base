@@ -8,7 +8,7 @@
  */
 /**
  * Macros:
- *  NAN = $(RED NAN)
+ *  NAN = $(КРАСНЫЙ NAN)
  *  SUP = <вринтервал стиль="vertical-align:super;font-размер:smaller">$0</вринтервал>
  *  GAMMA =  &#915;
  *  INTEGRAL = &#8747;
@@ -111,7 +111,7 @@ package
     Journal of Statistical Software <b>11</b>, (July 2004).
     */
 	
-   ///// реал normalDistributionImpl(реал a);
+   ///// реал нормДистрибуцииРеализ(реал a);
 
 
 
@@ -129,5 +129,5 @@ package
      * where w = p - 0.5 .
      */
 	 
-  //// реал normalDistributionInvImpl(реал p);
+  //// реал нормДистрибуцииИнвРеализ(реал p);
 }

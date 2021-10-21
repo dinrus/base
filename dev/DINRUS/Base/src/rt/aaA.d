@@ -6,14 +6,14 @@ private
 	import tpl.args;
 
 
-    extern (C) void* gc_malloc( size_t sz, uint ba = 0 );
-    extern (C) void* gc_calloc( size_t sz, uint ba = 0 );
-    extern (C) void  gc_free( void* p );
+    extern (C) ук gc_malloc( т_мера sz, бцел ba = 0 );
+    extern (C) ук gc_calloc( т_мера sz, бцел ba = 0 );
+    extern (C) проц  gc_free( ук p );
 }
 
-// Auto-rehash and pre-allocate - Dave Fladebo
+// Авторехэширование и предаллокация
 
-static size_t[] prime_list = [
+static т_мера[] prime_list = [
               97UL,            389UL,
            1_543UL,          6_151UL,
           24_593UL,         98_317UL,
@@ -24,20 +24,20 @@ static size_t[] prime_list = [
 //  8_589_934_513UL, 17_179_869_143UL
 ];
 
-/* This is the type of the return value for dynamic arrays.
- * It should be a type that is returned in registers.
- * Although DMD will return types of Array in registers,
- * gcc will not, so we instead use a 'long'.
+/* Это тип возвратного значения для динамических массивов.
+ * Он должен соответствовать типу, возвращаемому в регистры.
+ * Хотя DMD возвращает типы Массива в регистрах,
+ * gcc этого не делает, поэтому мы используем вместо этого 'long'.
  */
-alias void[] ArrayRet_t;
+alias проц[] ArrayRet_t;
 
 struct Array
 {
-    size_t length;
-    void* ptr;
+    т_мера length;
+    ук ptr;
 }
 
-    aaA*[] newaaA(size_t len)
+    aaA*[] newaaA(т_мера len)
     {
         auto ptr = cast(aaA**) gc_malloc(
             len * (aaA*).sizeof, ПАтрБлока.БезНутра);
@@ -45,20 +45,21 @@ struct Array
         ret[] = null;
         return ret;
     }
+export extern (C):
 
 /**********************************
- * Align to next pointer boundary, so that
- * GC won't be faced with misaligned pointers
- * in value.
+ * Разместить на следующей границе указателя, так чтобы
+ * СМ не столкнулся с неправильно размещёнными указателями
+ * на значение.
  */
 
-size_t aligntsize(size_t tsize)
+т_мера aligntsize(т_мера tsize)
 {
     // Is pointer alignment on the x64 4 bytes or 8?
-    return (tsize + size_t.sizeof - 1) & ~(size_t.sizeof - 1);
+    return (tsize + т_мера.sizeof - 1) & ~(т_мера.sizeof - 1);
 }
 
-void* _aaGetX(AA* aa, TypeInfo keyti, size_t valuesize, void* pkey)
+ук _aaGetX(AA* aa, TypeInfo keyti, т_мера valuesize, ук pkey)
 in
 {
     assert(aa);
@@ -72,7 +73,7 @@ out (result)
 }
 body
 {
-    size_t i;
+    т_мера i;
     aaA *e;
    // printf("keyti = %p\n", keyti);
   //  printf("aa = %p\n", aa);
@@ -103,7 +104,7 @@ body
 
     // Not found, create new elem
     //printf("create new one\n");
-    size_t size = aaA.sizeof + aligntsize(keytitsize) + valuesize;
+    т_мера size = aaA.sizeof + aligntsize(keytitsize) + valuesize;
     e = cast(aaA *) gc_malloc(size);
     e.next = null;
     e.hash = key_hash;
@@ -121,23 +122,23 @@ body
     }
 
 Lret:
-    return cast(void *)(e + 1) + aligntsize(keytitsize);
+    return cast(проц *)(e + 1) + aligntsize(keytitsize);
 }
 
-void* _aaGetRvalueX(AA aa, TypeInfo keyti, size_t valuesize, void* pkey)
+ук _aaGetRvalueX(AA aa, TypeInfo keyti, т_мера valuesize, ук pkey)
 {
     //printf("_aaGetRvalue(valuesize = %u)\n", valuesize);
     if (!aa.a)
         return null;
 
-    auto keysize = aligntsize(keyti.tsize());
+    auto ключразм = aligntsize(keyti.tsize());
     auto len = aa.a.b.length;
 
     if (len)
     {
         auto key_hash = keyti.getHash(pkey);
         //printf("hash = %d\n", key_hash);
-        size_t i = key_hash % len;
+        т_мера i = key_hash % len;
         auto e = aa.a.b[i];
         while (e !is null)
         {
@@ -145,7 +146,7 @@ void* _aaGetRvalueX(AA aa, TypeInfo keyti, size_t valuesize, void* pkey)
             {
                 auto c = keyti.compare(pkey, e + 1);
                 if (c == 0)
-                    return cast(void *)(e + 1) + keysize;
+                    return cast(проц *)(e + 1) + ключразм;
             }
             e = e.next;
         }
@@ -153,7 +154,7 @@ void* _aaGetRvalueX(AA aa, TypeInfo keyti, size_t valuesize, void* pkey)
     return null;    // not found, caller will throw exception
 }
 
-void* _aaInX(AA aa, TypeInfo keyti, void* pkey)
+ук _aaInX(AA aa, TypeInfo keyti, ук pkey)
 in
 {
 }
@@ -165,7 +166,7 @@ body
 {
     if (aa.a)
     {
-        //printf("_aaIn(), .length = %d, .ptr = %x\n", aa.a.length, cast(uint)aa.a.ptr);
+        //printf("_aaIn(), .length = %d, .ptr = %x\n", aa.a.length, cast(бцел)aa.a.ptr);
         auto len = aa.a.b.length;
 
         if (len)
@@ -180,7 +181,7 @@ body
                 {
                     auto c = keyti.compare(pkey, e + 1);
                     if (c == 0)
-                        return cast(void *)(e + 1) + aligntsize(keyti.tsize());
+                        return cast(проц *)(e + 1) + aligntsize(keyti.tsize());
                 }
                 e = e.next;
             }
@@ -191,7 +192,7 @@ body
     return null;
 }
 
-bool _aaDelX(AA aa, TypeInfo keyti, void* pkey)
+bool _aaDelX(AA aa, TypeInfo keyti, ук pkey)
 {
     aaA *e;
 
@@ -199,7 +200,7 @@ bool _aaDelX(AA aa, TypeInfo keyti, void* pkey)
     {
         auto key_hash = keyti.getHash(pkey);
         //printf("hash = %d\n", key_hash);
-        size_t i = key_hash % aa.a.b.length;
+        т_мера i = key_hash % aa.a.b.length;
         auto pe = &aa.a.b[i];
         while ((e = *pe) !is null) // null means not found
         {
@@ -220,13 +221,13 @@ bool _aaDelX(AA aa, TypeInfo keyti, void* pkey)
     return false;
 }
 
-export extern (C):
+
 
 /****************************************************
  * Определяет длину элементов в ассоциативном массиве.
  */
 
-size_t _aaLen(AA aa)
+т_мера _aaLen(AA aa)
 in
 {
     //printf("_aaLen()+\n");
@@ -234,7 +235,7 @@ in
 }
 out (result)
 {
-    size_t len = 0;
+    т_мера len = 0;
 
     if (aa.a)
     {
@@ -261,30 +262,30 @@ body
  * Добавляется запись ключа, если она там ещё отсутствует.
  */
 
-void* _aaGet(AA* aa, TypeInfo keyti, size_t valuesize, ...)
+ук _aaGet(AA* aa, TypeInfo keyti, т_мера valuesize, ...)
 {
-    return _aaGetX(aa, keyti, valuesize, cast(void*)(&valuesize + 1));
+    return _aaGetX(aa, keyti, valuesize, cast(ук)(&valuesize + 1));
 }
 
 /*************************************************
- * Получает из ассоциативного массива значенние, индексированное ключом.
+ * Получает из ассоциативного массива значение, индексированное ключом.
 * Возвращает null, если его там ещё нет.
  */
-void* _aaGetRvalue(AA aa, TypeInfo keyti, size_t valuesize, ...)
+ук _aaGetRvalue(AA aa, TypeInfo keyti, т_мера valuesize, ...)
 {
-    return _aaGetRvalueX(aa, keyti, valuesize, cast(void*)(&valuesize + 1));
+    return _aaGetRvalueX(aa, keyti, valuesize, cast(ук)(&valuesize + 1));
 }
 
 /*************************************************
- * Determine if key is in aa.
- * Returns:
- *      null    not in aa
- *      !=null  in aa, return pointer to value
+ * Определить, находится ли ключ в aa.
+ * Возвращает:
+ *      null    нет в aa
+ *      !=null  в aa, возвращает указатель на значение
  */
 
- void* _aaIn(AA aa, TypeInfo keyti, ...)
+ ук _aaIn(AA aa, TypeInfo keyti, ...)
 {
-    return _aaInX(aa, keyti, cast(void*)(&keyti + 1));
+    return _aaInX(aa, keyti, cast(ук)(&keyti + 1));
 }
 
 /*************************************************
@@ -294,25 +295,25 @@ void* _aaGetRvalue(AA aa, TypeInfo keyti, size_t valuesize, ...)
 
  bool _aaDel(AA aa, TypeInfo keyti, ...)
 {
-    return _aaDelX(aa, keyti, cast(void*)(&keyti + 1));
+    return _aaDelX(aa, keyti, cast(ук)(&keyti + 1));
 }
 
 /********************************************
- * Produce array of values from aa.
+ * Производит массив значений из aa.
  */
 
-ArrayRet_t _aaValues(AA aa, size_t keysize, size_t valuesize)
+ArrayRet_t _aaValues(AA aa, т_мера ключразм, т_мера valuesize)
 {
-    size_t resi;
+    т_мера resi;
     Array a;
 
-    auto alignsize = aligntsize(keysize);
+    auto alignsize = aligntsize(ключразм);
 
     if (aa.a)
     {
         a.length = _aaLen(aa);
         a.ptr = cast(byte*) gc_malloc(a.length * valuesize,
-                                      valuesize < (void*).sizeof ? ПАтрБлока.НеСканировать : 0);
+                                      valuesize < (ук).sizeof ? ПАтрБлока.НеСканировать : 0);
         resi = 0;
         foreach (e; aa.a.b)
         {
@@ -332,10 +333,10 @@ ArrayRet_t _aaValues(AA aa, size_t keysize, size_t valuesize)
 
 
 /********************************************
- * Rehash an array.
+ * Рехешировать массив.
  */
 
-void* _aaRehash(AA* paa, TypeInfo keyti)
+ук _aaRehash(AA* paa, TypeInfo keyti)
 in
 {
     //_aaInvAh(paa);
@@ -353,7 +354,7 @@ body
         auto aa = paa.a;
         auto len = _aaLen(*paa);
         if (len)
-        {   size_t i;
+        {   т_мера i;
 
             for (i = 0; i < prime_list.length - 1; i++)
             {
@@ -388,10 +389,10 @@ body
 }
 
 /********************************************
- * Balance an array.
+ * Сбалансировать массив.
  */
 /+
-void _aaBalance(AA* paa)
+проц _aaBalance(AA* paa)
 {
     //printf("_aaBalance()\n");
     if (paa.a)
@@ -403,8 +404,8 @@ void _aaBalance(AA* paa)
         {
             /* Temporarily store contents of bucket in array[]
              
-            size_t k = 0;
-            void addToArray(aaA* e)
+            т_мера k = 0;
+            проц addToArray(aaA* e)
             {
                 while (e)
                 {   addToArray(e.left);
@@ -418,7 +419,7 @@ void _aaBalance(AA* paa)
             /* The contents of the bucket are now sorted into array[].
              * Rebuild the tree.
              */
-            void buildTree(aaA** p, size_t x1, size_t x2)
+            проц buildTree(aaA** p, т_мера x1, т_мера x2)
             {
                 if (x1 >= x2)
                     *p = null;
@@ -436,22 +437,22 @@ void _aaBalance(AA* paa)
 }
 +/
 /********************************************
- * Produce array of N byte keys from aa.
+ * Произвести массив из N-байтных ключей из aa.
  */
 
-ArrayRet_t _aaKeys(AA aa, size_t keysize)
+ArrayRet_t _aaKeys(AA aa, т_мера ключразм)
 {
     auto len = _aaLen(aa);
     if (!len)
         return null;
-    auto res = (cast(byte*) gc_malloc(len * keysize,
-                                 !(aa.a.keyti.flags() & 1) ? ПАтрБлока.НеСканировать : 0))[0 .. len * keysize];
-    size_t resi = 0;
+    auto res = (cast(byte*) gc_malloc(len * ключразм,
+                                 !(aa.a.keyti.flags() & 1) ? ПАтрБлока.НеСканировать : 0))[0 .. len * ключразм];
+    т_мера resi = 0;
     foreach (e; aa.a.b)
     {
         while (e)
         {
-            cidrus.memcpy(&res[resi * keysize], cast(byte*)(e + 1), keysize);
+            cidrus.memcpy(&res[resi * ключразм], cast(byte*)(e + 1), ключразм);
             resi++;
             e = e.next;
         }
@@ -508,26 +509,26 @@ unittest
     }
 }
 /**********************************************
- * 'apply' for associative arrays - to support foreach
+ * 'apply' для ассоциативных массивов - для поддержки foreach
  */
 
 // dg is D, but _aaApply() is C
 
-int _aaApply(AA aa, size_t keysize, dg_t dg)
+int _aaApply(AA aa, т_мера ключразм, dg_t dg)
 {
     if (!aa.a)
     {
         return 0;
     }
 
-    auto alignsize = aligntsize(keysize);
-    //printf("_aaApply(aa = x%llx, keysize = %d, dg = x%llx)\n", aa.a, keysize, dg);
+    auto alignsize = aligntsize(ключразм);
+    //printf("_aaApply(aa = x%llx, ключразм = %d, dg = x%llx)\n", aa.a, ключразм, dg);
 
     foreach (e; aa.a.b)
     {
         while (e)
         {
-            auto result = dg(cast(void *)(e + 1) + alignsize);
+            auto result = dg(cast(проц *)(e + 1) + alignsize);
             if (result)
                 return result;
             e = e.next;
@@ -538,22 +539,22 @@ int _aaApply(AA aa, size_t keysize, dg_t dg)
 
 // dg is D, but _aaApply2() is C
 
-int _aaApply2(AA aa, size_t keysize, dg2_t dg)
+int _aaApply2(AA aa, т_мера ключразм, dg2_t dg)
 {
     if (!aa.a)
     {
         return 0;
     }
 
-    //printf("_aaApply(aa = x%llx, keysize = %d, dg = x%llx)\n", aa.a, keysize, dg);
+    //printf("_aaApply(aa = x%llx, ключразм = %d, dg = x%llx)\n", aa.a, ключразм, dg);
 
-    auto alignsize = aligntsize(keysize);
+    auto alignsize = aligntsize(ключразм);
 
     foreach (e; aa.a.b)
     {
         while (e)
         {
-            auto result = dg(e + 1, cast(void *)(e + 1) + alignsize);
+            auto result = dg(e + 1, cast(проц *)(e + 1) + alignsize);
             if (result)
                 return result;
             e = e.next;
@@ -565,20 +566,20 @@ int _aaApply2(AA aa, size_t keysize, dg2_t dg)
 
 
 /***********************************
- * Construct an associative array of type ti from
- * length pairs of key/value pairs.
+ * Конструирует ассоциативный массив типа ti из
+ * пар длин пар ключ/значение.
  */
 
-BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
+BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, т_мера length, ...)
 {
     auto valuesize = ti.next.tsize();           // value size
     auto keyti = ti.key;
-    auto keysize = keyti.tsize();               // key size
+    auto ключразм = keyti.tsize();               // key size
     BB* result;
 
-    //printf("_d_assocarrayliteralT(keysize = %d, valuesize = %d, length = %d)\n", keysize, valuesize, length);
+    //printf("_d_assocarrayliteralT(ключразм = %d, valuesize = %d, length = %d)\n", ключразм, valuesize, length);
     //printf("tivalue = %.*s\n", ti.next.classinfo.name);
-    if (length == 0 || valuesize == 0 || keysize == 0)
+    if (length == 0 || valuesize == 0 || ключразм == 0)
     {
     }
     else
@@ -588,7 +589,7 @@ BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
 
         result = new BB();
         result.keyti = keyti;
-        size_t i;
+        т_мера i;
 
         for (i = 0; i < prime_list.length - 1; i++)
         {
@@ -598,15 +599,15 @@ BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
         auto len = prime_list[i];
         result.b = newaaA(len);
 
-        size_t keystacksize   = (keysize   + int.sizeof - 1) & ~(int.sizeof - 1);
-        size_t valuestacksize = (valuesize + int.sizeof - 1) & ~(int.sizeof - 1);
+        т_мера keystacksize   = (ключразм   + int.sizeof - 1) & ~(int.sizeof - 1);
+        т_мера valuestacksize = (valuesize + int.sizeof - 1) & ~(int.sizeof - 1);
 
-        size_t keytsize = aligntsize(keysize);
+        т_мера keytsize = aligntsize(ключразм);
 
-        for (size_t j = 0; j < length; j++)
-        {   void* pkey = q;
+        for (т_мера j = 0; j < length; j++)
+        {   ук pkey = q;
             q += keystacksize;
-            void* pvalue = q;
+            ук pvalue = q;
             q += valuestacksize;
             aaA* e;
 
@@ -621,8 +622,8 @@ BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
                 {
                     // Not found, create new elem
                     //printf("create new one\n");
-                    e = cast(aaA *) cast(void*) new void[aaA.sizeof + keytsize + valuesize];
-                    cidrus.memcpy(e + 1, pkey, keysize);
+                    e = cast(aaA *) cast(ук) new проц[aaA.sizeof + keytsize + valuesize];
+                    cidrus.memcpy(e + 1, pkey, ключразм);
                     e.hash = key_hash;
                     *pe = e;
                     result.nodes++;
@@ -636,7 +637,7 @@ BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
                 }
                 pe = &e.next;
             }
-            cidrus.memcpy(cast(void *)(e + 1) + keytsize, pvalue, valuesize);
+            cidrus.memcpy(cast(проц *)(e + 1) + keytsize, pvalue, valuesize);
         }
 
         va_end(q);
@@ -645,18 +646,18 @@ BB* _d_assocarrayliteralT(TypeInfo_AssociativeArray ti, size_t length, ...)
 }
 
 
-BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, void[] keys, void[] values)
+BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, проц[] keys, проц[] values)
 {
     auto valuesize = ti.next.tsize();           // value size
     auto keyti = ti.key;
-    auto keysize = keyti.tsize();               // key size
+    auto ключразм = keyti.tsize();               // key size
     auto length = keys.length;
     BB* result;
 
-    //printf("_d_assocarrayliteralT(keysize = %d, valuesize = %d, length = %d)\n", keysize, valuesize, length);
+    //printf("_d_assocarrayliteralT(ключразм = %d, valuesize = %d, length = %d)\n", ключразм, valuesize, length);
     //printf("tivalue = %.*s\n", ti.next.classinfo.name);
     assert(length == values.length);
-    if (length == 0 || valuesize == 0 || keysize == 0)
+    if (length == 0 || valuesize == 0 || ключразм == 0)
     {
     }
     else
@@ -664,7 +665,7 @@ BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, void[] keys, void[] val
         result = new BB();
         result.keyti = keyti;
 
-        size_t i;
+        т_мера i;
         for (i = 0; i < prime_list.length - 1; i++)
         {
             if (length <= prime_list[i])
@@ -673,10 +674,10 @@ BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, void[] keys, void[] val
         auto len = prime_list[i];
         result.b = newaaA(len);
 
-        size_t keytsize = aligntsize(keysize);
+        т_мера keytsize = aligntsize(ключразм);
 
-        for (size_t j = 0; j < length; j++)
-        {   auto pkey = keys.ptr + j * keysize;
+        for (т_мера j = 0; j < length; j++)
+        {   auto pkey = keys.ptr + j * ключразм;
             auto pvalue = values.ptr + j * valuesize;
             aaA* e;
 
@@ -691,8 +692,8 @@ BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, void[] keys, void[] val
                 {
                     // Not found, create new elem
                     //printf("create new one\n");
-                    e = cast(aaA *) cast(void*) new void[aaA.sizeof + keytsize + valuesize];
-                    cidrus.memcpy(e + 1, pkey, keysize);
+                    e = cast(aaA *) cast(ук) new проц[aaA.sizeof + keytsize + valuesize];
+                    cidrus.memcpy(e + 1, pkey, ключразм);
                     e.hash = key_hash;
                     *pe = e;
                     result.nodes++;
@@ -706,17 +707,17 @@ BB* _d_assocarrayliteralTX(TypeInfo_AssociativeArray ti, void[] keys, void[] val
                 }
                 pe = &e.next;
             }
-            cidrus.memcpy(cast(void *)(e + 1) + keytsize, pvalue, valuesize);
+            cidrus.memcpy(cast(проц *)(e + 1) + keytsize, pvalue, valuesize);
         }
     }
     return result;
 }
 
 /***********************************
- * Compare AA contents for equality.
- * Returns:
- *      1       equal
- *      0       not equal
+ * Сравнить содержимое AA на равенство.
+ * Возвращает:
+ *      1       равно
+ *      0       не равно
  */
 int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
 {
@@ -727,7 +728,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
     if (e1.a is e2.a)
         return 1;
 
-    size_t len = _aaLen(e1);
+    т_мера len = _aaLen(e1);
     if (len != _aaLen(e2))
         return 0;
 
@@ -744,7 +745,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
             //  collectively in generating the library. Fixing object.di
             //  requires changes to std.format in Phobos, fixing object_.d
             //  makes Phobos's unittest fail, so this hack is employed here to
-            //  avoid irrelevant changes.
+            //  aпроц irrelevant changes.
             static if (is(typeof(&tiConst.base) == TypeInfo*))
                 tiRaw = tiConst.base;
             else
@@ -761,15 +762,15 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
 
     auto keyti = ti.key;
     auto valueti = ti.next;
-    auto keysize = aligntsize(keyti.tsize());
+    auto ключразм = aligntsize(keyti.tsize());
     auto len2 = e2.a.b.length;
 
     int _aaKeys_x(aaA* e)
     {
         do
         {
-            auto pkey = cast(void*)(e + 1);
-            auto pvalue = pkey + keysize;
+            auto pkey = cast(ук)(e + 1);
+            auto pvalue = pkey + ключразм;
             //printf("key = %d, value = %g\n", *cast(int*)pkey, *cast(double*)pvalue);
 
             // We have key/value for e1. See if they exist in e2
@@ -790,7 +791,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
                     if (c == 0)
                     {   // Found key in e2. Compare values
                         //printf("key equals\n");
-                        auto pvalue2 = cast(void *)(f + 1) + keysize;
+                        auto pvalue2 = cast(проц *)(f + 1) + ключразм;
                         if (valueti.equals(pvalue, pvalue2))
                         {
                             //printf("value equals\n");

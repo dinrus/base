@@ -14,7 +14,7 @@
 * Normal диапазон for плав components' значения is [0; 1]. Normal диапазон for integer
 * значения is [0; 255] for Цвет3 и Цвет4, и [0; 240] for ХСЛ. Each struct
 * имеется several methods to convert native плав representation to integer и
-* back.
+* задний.
 * 
 * Authors:
  *    Victor Nakoryakov, nail-mail[at]mail.ru
@@ -138,7 +138,7 @@ template Цвет(т_плав)
         return х == hsl.х && с == hsl.с && л == hsl.л;
     }
 
-    /** Возвращает: Цвет3 representing the same color as this triple. */
+    /** Возвращает: Цвет3 representing the same цвет as this triple. */
     Цвет3 вЦвет3()
     {
         const крат кзсMax = cast(крат)кзсК;
@@ -223,7 +223,7 @@ template Цвет(т_плав)
         static Цвет3 нч = { т_плав.nan, т_плав.nan, т_плав.nan };
 
         /**
-    *     Method to construct color in C-like syntax.
+    *     Method to construct цвет in C-like syntax.
 	* 
     *     Примеры:
     *     ------------
@@ -238,7 +238,7 @@ template Цвет(т_плав)
         }
 
         /**
-    *     Method to construct color in C-like syntax from value specified
+    *     Method to construct цвет in C-like syntax from value specified
     *     in бцел parameter.
 	* 
     *     Params:
@@ -266,7 +266,7 @@ template Цвет(т_плав)
         }
 
         /**
-        Sets components according to color packed in ист бцел аргумент.
+        Sets components according to цвет packed in ист бцел аргумент.
 
         Params:
             ист     = бцел to выкинь value from.
@@ -356,7 +356,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            This color packed to бцел.
+            This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
         Throws:
@@ -386,7 +386,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            ХСЛ triple representing same color as this.
+            ХСЛ triple representing same цвет as this.
         */
         ХСЛ вХСЛ()
         {
@@ -446,7 +446,7 @@ template Цвет(т_плав)
             return возвр;
         }
 
-        /** Возвращает: т_плав pointer to к component of this color. It'с like а _ptr method for arrays. */
+        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз()
         {
             return cast(т_плав*)this;
@@ -541,7 +541,7 @@ template Цвет(т_плав)
             .закрепиПод(с, беск);
         }
 
-        /** Возвращает: Copy of this color with all components меньше than беск seted to беск. */
+        /** Возвращает: Copy of this цвет with all components меньше than беск seted to беск. */
         Цвет3 закреплённыйПод(т_плав беск = 0)
         {
             Цвет3 возвр = *this;
@@ -557,7 +557,7 @@ template Цвет(т_плав)
             .закрепиНад(с, sup);
         }
 
-        /** Возвращает: Copy of this color with all components больше than sup seted to sup. */
+        /** Возвращает: Copy of this цвет with all components больше than sup seted to sup. */
         Цвет3 закреплённыйНад(т_плав sup = 1)
         {
             Цвет3 возвр = *this;
@@ -577,7 +577,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            Copy of this color with all components меньше than беск seted to беск
+            Copy of this цвет with all components меньше than беск seted to беск
             и all components больше than sup seted to sup.
         */
         Цвет3 закреплённый(т_плав беск = 0, т_плав sup = 1)
@@ -587,19 +587,19 @@ template Цвет(т_плав)
             return возвр;
         }
 
-        /** Возвращает: Copy of this color with плав type components. */
+        /** Возвращает: Copy of this цвет with плав type components. */
         Цвет3п вЦвет3п()
         {
             return Цвет3п(cast(плав)к, cast(плав)з, cast(плав)с);
         }
 
-        /** Возвращает: Copy of this color with дво type components. */
+        /** Возвращает: Copy of this цвет with дво type components. */
         Цвет3д вЦвет3д()
         {
             return Цвет3д(cast(дво)к, cast(дво)з, cast(дво)с);
         }
 
-        /** Возвращает: Copy of this color with реал type components. */
+        /** Возвращает: Copy of this цвет with реал type components. */
         Цвет3р вЦвет3р()
         {
             return Цвет3р(cast(реал)к, cast(реал)з, cast(реал)с);
@@ -608,7 +608,7 @@ template Цвет(т_плав)
         /**
         Routines known as swizzling.
         Возвращает:
-            Нов color constructed from this one и having component значения
+            Нов цвет constructed from this one и having component значения
             that correspond to method имя.
         */
         Цвет4 кзс0()
@@ -653,7 +653,7 @@ template Цвет(т_плав)
         static Цвет4 нч = { т_плав.nan, т_плав.nan, т_плав.nan, т_плав.nan };
 
         /**
-        Methods to construct color in C-like syntax.
+        Methods to construct цвет in C-like syntax.
 
         Примеры:
         ------------
@@ -679,7 +679,7 @@ template Цвет(т_плав)
 
 
         /**
-        Method to construct color in C-like syntax from value specified
+        Method to construct цвет in C-like syntax from value specified
         in бцел parameter.
 
         Params:
@@ -717,7 +717,7 @@ template Цвет(т_плав)
 
 
         /**
-        Sets components according to color packed in ист бцел аргумент.
+        Sets components according to цвет packed in ист бцел аргумент.
 
         Params:
             ист     = бцел to выкинь value from.
@@ -823,7 +823,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            This color packed to бцел.
+            This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
         Throws:
@@ -854,7 +854,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            ХСЛ triple representing same color as this.
+            ХСЛ triple representing same цвет as this.
 
         Alpha value is ignored.
         */
@@ -863,7 +863,7 @@ template Цвет(т_плав)
             return кзс.вХСЛ();
         }
 
-        /** Возвращает: т_плав pointer to к component of this color. It'с like а _ptr method for arrays. */
+        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз()
         {
             return cast(т_плав*)this;
@@ -965,7 +965,7 @@ template Цвет(т_плав)
             .закрепиПод(а, беск);
         }
 
-        /** Возвращает: Copy of this color with all components меньше than беск seted to беск. */
+        /** Возвращает: Copy of this цвет with all components меньше than беск seted to беск. */
         Цвет4 закреплённыйПод(т_плав беск = 0)
         {
             Цвет4 возвр = *this;
@@ -982,7 +982,7 @@ template Цвет(т_плав)
             .закрепиНад(а, sup);
         }
 
-        /** Возвращает: Copy of this color with all components больше than sup seted to sup. */
+        /** Возвращает: Copy of this цвет with all components больше than sup seted to sup. */
         Цвет4 закреплённыйНад(т_плав sup = 1)
         {
             Цвет4 возвр = *this;
@@ -1002,7 +1002,7 @@ template Цвет(т_плав)
 
         /**
         Возвращает:
-            Copy of this color with all components меньше than беск seted to беск
+            Copy of this цвет with all components меньше than беск seted to беск
             и all components больше than sup seted to sup.
         */
         Цвет4 закреплённый(т_плав беск = 0, т_плав sup = 1)
@@ -1012,19 +1012,19 @@ template Цвет(т_плав)
             return возвр;
         }
 
-        /** Возвращает: Copy of this color with плав type components. */
+        /** Возвращает: Copy of this цвет with плав type components. */
         Цвет4п вЦвет4п()
         {
             return Цвет4п(cast(плав)к, cast(плав)з, cast(плав)с, cast(плав)а);
         }
 
-        /** Возвращает: Copy of this color with дво type components. */
+        /** Возвращает: Copy of this цвет with дво type components. */
         Цвет4д вЦвет4д()
         {
             return Цвет4д(cast(дво)к, cast(дво)з, cast(дво)с, cast(дво)а);
         }
 
-        /** Возвращает: Copy of this color with реал type components. */
+        /** Возвращает: Copy of this цвет with реал type components. */
         Цвет4р вЦвет4р()
         {
             return Цвет4р(cast(реал)к, cast(реал)з, cast(реал)с, cast(реал)а);
@@ -1033,7 +1033,7 @@ template Цвет(т_плав)
         /**
         Routine known as swizzling.
         Возвращает:
-            Цвет3 representing RGB part of this color.
+            Цвет3 representing RGB part of this цвет.
         */
         Цвет3 кзс()
         {
@@ -1122,8 +1122,8 @@ alias Век3п   Color3f;
 alias Век3д   Color3d;
 
 
-/** convert hsv color to rgb color
-   From: http://www.cs.rit.edu/~ncs/color/t_convert.html
+/** convert hsv цвет to rgb цвет
+   From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html
    HSV и RGB components all on [0,1] интервал.
 */
 проц HSV_to_RGB(ref Color3f hsv,  Color3f* rgb)
@@ -1186,8 +1186,8 @@ alias Век3д   Color3d;
     (*rgb)[2]=b;
 }
 
-/** convert rgb color to hsv color
- *   From: http://www.cs.rit.edu/~ncs/color/t_convert.html
+/** convert rgb цвет to hsv цвет
+ *   From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html
  *   х = [0,1], с = [0,1], знач = [0,1]
  *		if с == 0, then х = -1 (undefined)
  */

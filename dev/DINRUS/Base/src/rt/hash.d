@@ -5,7 +5,7 @@ export:
 /// hashes bStart[0..length] bytes
 extern (C) hash_t rt_hash_str(void *bStart,size_t length, hash_t seed=cast(hash_t)0){
     static if (is(hash_t==uint)||is(hash_t==int)){
-        return cast(hash_t) hashOf/*murmurHashAligned2*/(bStart,length,/*cast(uint)*/seed);
+        return cast(hash_t) хэшУ/*murmurHashAligned2*/(bStart,length,/*cast(uint)*/seed);
     } else static if (is(hash_t==ulong)||is(hash_t==long)){
         return cast(hash_t)lookup8_hash(cast(ubyte*)bStart,length,cast(ulong)seed);
     } else {
@@ -16,7 +16,7 @@ extern (C) hash_t rt_hash_str(void *bStart,size_t length, hash_t seed=cast(hash_
 /// hashes bStart[0..length] size_t
 extern (C) hash_t rt_hash_block(size_t *bStart,size_t length, hash_t seed=cast(hash_t)0){
     static if (is(hash_t==uint)||is(hash_t==int)){
-        return cast(hash_t)hashOf/*murmurHashAligned2*/(bStart,length,/*cast(uint)*/seed);
+        return cast(hash_t)хэшУ/*murmurHashAligned2*/(bStart,length,/*cast(uint)*/seed);
     } else static if (is(hash_t==ulong)||is(hash_t==long)){
         return cast(hash_t)lookup8_hash2(cast(ulong*)bStart,length,cast(ulong)seed);
     } else {
@@ -430,7 +430,7 @@ the return value.  No funnels.  Every 1-bit and 2-bit delta achieves
 avalanche.  About 41+5len instructions.
 
 The best hash table sizes are powers of 2.  There is no need to do
-mod a prime (mod is sooo slow!).  If you need less than 64 bits,
+mod a prime (mod is sooo медленно!).  If you need less than 64 bits,
 use a bitmask.  For example, if you need only 10 bits, do
   h = (h & hashmask(10));
 In which case, the hash table should have hashsize(10) elements.
@@ -573,7 +573,7 @@ debug(UnitTest){
     }
 }
   //Используется в DMD2
-hash_t hashOf( /*const (void)*/ук buf, size_t len, hash_t seed = 0 )
+hash_t хэшУ( /*const (void)*/ук buf, size_t len, hash_t seed = 0 )
 {
     /*
      * This is Paul Hsieh's SuperFastHash algorithm, described here:

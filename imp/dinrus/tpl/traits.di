@@ -138,47 +138,6 @@ unittest
     assert(КортежТипаОснова!(Объект).length == 0);
 }
 
-/* *******************************************
- */
-private template isStaticArray_impl(Т)
-{
-    const Т inst = void;
-    
-    static if (is(typeof(Т.length)))
-    {
-	static if (!is(Т == typeof(Т.init)))
-	{			// abuses the fact that цел[5].init == цел
-	    static if (is(Т == typeof(Т[0])[inst.length]))
-	    {	// sanity check. this check alone isn't enough because dmd complains about dynamic arrays
-		const бул рез =да;
-	    }
-	    else
-		const бул рез = нет;
-	}
-	else
-	    const бул рез = нет;
-    }
-    else
-    {
-	    const бул рез = нет;
-    }
-}
-/**
- * Detect whether тип Т is a static массив.
- */
-template статМас_ли(Т)
-{
-    const бул статМас_ли = isStaticArray_impl!(Т).рез;
-}
-
-
-static assert (статМас_ли!(цел[51]));
-static assert (статМас_ли!(цел[][2]));
-static assert (статМас_ли!(сим[][цел][11]));
-static assert (!статМас_ли!(цел[]));
-static assert (!статМас_ли!(цел[сим]));
-static assert (!статМас_ли!(цел[1][]));
-
 /**
  * Сообщает, является ли кортеж Т кортежем выражений.
  */
@@ -257,8 +216,8 @@ unittest
  * ---
  * import std.traits;
  * цел foo(цел, дол);
- * проц bar(КортежТипаПараметров!(foo));      // declares проц bar(цел, дол);
- * проц abc(КортежТипаПараметров!(foo)[1]);   // declares проц abc(дол);
+ * проц bar(КортежТипаПараметров!(foo));      // декларирует проц bar(цел, дол);
+ * проц abc(КортежТипаПараметров!(foo)[1]);   // декларирует проц abc(дол);
  * ---
  */
 template КортежТипаПараметров(alias дг)
@@ -548,13 +507,12 @@ static assert(естьСырАлиасинг!(S4));
 */
 protected template естьСырАлиасинг(Т...)
 {
-    const естьСырАлиасинг
-        = ЕстьЛиСыройУк_реализ!(КортежТиповПредставления!(Т)).результат;
+    const естьСырАлиасинг = ЕстьЛиСыройУк_реализ!(КортежТиповПредставления!(Т)).результат;
 }
 
 unittest
 {
-// simple типы
+// простые типы
     static assert(!естьСырАлиасинг!(цел));
     static assert(естьСырАлиасинг!(сим*));
 // ссылки не являются сырыми указателями
@@ -613,7 +571,7 @@ protected template имеетОбъекты(Т...)
 
 /**
 * Возвращает $(D да), тогда и только тогда, если представление $(D Т)
-* включает в себя хотябы одно из следующего:
+* включает в себя хотя бы одно из следующего:
 *  $(OL $(LI сырой указатель $(D U*) и $(D U)не инвариант;)
 *  $(LI  массив $(D U[]) и $(D U) iне инвариант;) 
 * $(LI ссылка на тип класса $(D C) и $(D C) не инвариант.))
@@ -628,7 +586,7 @@ unittest
 {
     struct S1 { цел a; Объект b; }
     static assert(имеетАлиасинг!(S1));
-    struct S2 { string a; }
+    struct S2 { ткст a; }
     static assert(!имеетАлиасинг!(S2));
 }
 
@@ -897,7 +855,7 @@ unittest
 }
 
 /**
- * Detect whether Т is a built-in integral type
+ * Определить, является ли Т встроенным целочисленным типом.
  */
 
 template интегральный_ли(Т)
@@ -908,7 +866,7 @@ template интегральный_ли(Т)
 }
 
 /**
- * Detect whether Т is a built-in floating point type
+ * Определить, является ли Т встроенным типом с плавающей точкой.
  */
 
 template дробный_ли(Т)
@@ -918,7 +876,7 @@ template дробный_ли(Т)
 }
 
 /**
- * Detect whether Т is a built-in numeric type
+ * Определить, является ли Т встроенным числовым типом.
  */
 
 template числовой_ли(Т)
@@ -957,7 +915,7 @@ template типСим_ли( T )
 }
 
 /**
- * Оценивается в да, если T является an associative Массив тип.
+ * Оценивается в да, если T является типом ассоциативный Массив.
  */
 template типАссоцМас_ли( T )
 {
@@ -970,19 +928,44 @@ static assert(типАссоцМас_ли!(цел[цел]));
 static assert(типАссоцМас_ли!(цел[string]));
 static assert(типАссоцМас_ли!(сим[5][цел]));
 
-/**
- * Detect whether type Т is a static массив.
+/* *******************************************
  */
+private template статМас_ли_реализ(Т)
+{
+    const Т inst = void;
+    
+    static if (is(typeof(Т.length)))
+    {
+	static if (!is(Т == typeof(Т.init)))
+	{			// Не принимает тот факт, что цел[5].init == цел
+	    static if (is(Т == typeof(Т[0])[inst.length]))
+	    {	// Санитарная проверка. Самой этой проверки недостаточно, так как dmd жалуется на динамические массивы
+		const бул рез =да;
+	    }
+	    else
+		const бул рез = нет;
+	}
+	else
+	    const бул рез = нет;
+    }
+    else
+    {
+	    const бул рез = нет;
+    }
+}
+/**
+ * Определяет, является ли тип Т статическим массивом.
+ */
+template статМас_ли(Т)
+{
+    const бул статМас_ли = статМас_ли_реализ!(Т).рез;
+}
+
 template статМас_ли(Т : U[N], U, т_мера N)
 {
     const бул статМас_ли = да;
 }
-/*
-template статМас_ли(Т)
-{
-    const бул статМас_ли = нет;
-}
-*/
+
 static assert (статМас_ли!(цел[51]));
 static assert (статМас_ли!(цел[][2]));
 static assert (статМас_ли!(сим[][цел][11]));
@@ -996,7 +979,7 @@ static assert (!статМас_ли!(цел[цел]));
 static assert (!статМас_ли!(цел));
 
 /**
- * Detect whether type Т is a dynamic массив.
+ * Определить, является ли тип Т динамическим массивом.
  */
 template динМас_ли(Т, U = void)
 {
@@ -1012,7 +995,7 @@ static assert(динМас_ли!(цел[]));
 static assert(!динМас_ли!(цел[5]));
 
 /**
- * Detect whether type Т is an массив.
+ * Определить, является ли тип Т массивом.
  */
 template массив_ли(Т)
 {
@@ -1026,8 +1009,8 @@ static assert(!массив_ли!(бцел[бцел]));
 static assert(массив_ли!(проц[]));
 
 /**
- * Returns the corresponding беззначный type for Т. Т must be a numeric
- * integral type, otherwise a compile-time error occurs.
+ * Возвращает соответствующий беззначный тип для Т. Т должен быть
+ * числовым интегральным типом, иначе имеет место быть ошибка времени компиляции.
  */
 
 template беззначный(Т) {
@@ -1471,8 +1454,8 @@ template КортежПараметровИз( Фн )
 
 
 /**
- * Evaluates to a tuple representing the parameters of fn.  n is required to
- * be callable.
+ * Оценивается в кортеж, представляющий параметры fn.  n должно быть
+ * вызываемым.
  */
 template КортежПараметровИз( alias фн )
 {
@@ -1484,8 +1467,8 @@ template КортежПараметровИз( alias фн )
 
 
 /**
- * Evaluates to a tuple representing the ancestors of Т.  Т is required to be
- * a class or interface type.
+ * Оценивается в кортеж, представляющий потомков Т.  Т должен быть
+ * типом класс или интерфейс.
  */
 template КортежТиповОсновУ( Т )
 {
@@ -1517,7 +1500,7 @@ template ТипЭлтовМассива(Т:Т[])
 }
 
 /**
- * Count the []'s on an array type
+ * Считает []'ки на типе массив
  */
 template рангМассива(T)
 {
@@ -1549,7 +1532,7 @@ template размерСтатМассива(Т)
     const size_t размерСтатМассива=(Т).sizeof / typeof(Т.init).sizeof;
 }
 
-/// is Т is static array returns a dynamic array, otherwise returns Т
+/// Если Т статический массив, возвращает динамический массив, иначе возвращает Т.
 template ТипДинМас(Т)
 {
     static if( типСтатМас_ли!(Т) )
@@ -1607,7 +1590,7 @@ debug( UnitTest )
     else
         return рез;
 }
-/// ditto
+/// описано
 сим[] ctfe_i2a(дол i)
 {
     ткст цифра="0123456789";
@@ -1632,7 +1615,7 @@ debug( UnitTest )
     else
         return рез;
 }
-/// ditto
+/// описано
 сим[] ctfe_i2a(бцел i)
 {
     ткст цифра="0123456789";
@@ -1649,7 +1632,7 @@ debug( UnitTest )
     }
     return рез;
 }
-/// ditto
+/// описано
 сим[] ctfe_i2a(бдол i)
 {
     ткст цифра="0123456789";

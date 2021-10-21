@@ -66,13 +66,13 @@ However the cost of such possibility is little calculation overhead.
      */
 
     if (x == y)
-        return true; // ensure diff!=0, cope with INF.
+        return true; // ensure рознь!=0, cope with INF.
 
-    реал diff = фабс(x - y);
+    реал рознь = фабс(x - y);
 
     бкрат *pa = cast(бкрат*)(&x);
     бкрат *pb = cast(бкрат*)(&y);
-    бкрат *pd = cast(бкрат*)(&diff);
+    бкрат *pd = cast(бкрат*)(&рознь);
 
     // This проверь is added by me. If absolute difference between
     // x и y is меньше than 2^(-абспрец) then count them равны.
@@ -94,9 +94,9 @@ However the cost of such possibility is little calculation overhead.
     {
         // Difference is denormal
         // For denormals, we need to add the number of zeros that
-        // lie at the start of diff's mantissa.
+        // lie at the start of рознь's mantissa.
         // We do this by multiplying by 2^реал.mant_dig
-        diff *= 0x1p+63;
+        рознь *= 0x1p+63;
         return bitsdiff + реал.mant_dig - pd[4] >= отнпрец;
     }
 
@@ -209,7 +209,7 @@ template Закрепи(Т)
     /**
     Makes value of x to be not меньше than беск. Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепиПод(inout Т x, Т беск)
     {
@@ -219,7 +219,7 @@ template Закрепи(Т)
     /**
     Makes value of x to be not больше than sup. Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепиНад(inout Т x, Т sup)
     {
@@ -230,7 +230,7 @@ template Закрепи(Т)
     Makes value of x to be nor меньше than беск nor больше than sup.
     Method can change value of x.
     Возвращает:
-        Copy of x after clamping is applied.
+        Copy of x после clamping is applied.
     */
     Т закрепи(inout Т x, Т беск, Т sup)
     {

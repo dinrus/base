@@ -849,7 +849,7 @@ const DWORD
 	IMAGE_SCN_MEM_READ               = 0x40000000,
 	IMAGE_SCN_MEM_WRITE              = 0x80000000;
 
-/*	The following constants are mostlydocumented at
+/*	The following константы are mostlydocumented at
  *	http://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/pecoff.doc
  *	but don't seem to be defined in the HTML docs.
  */
@@ -1124,7 +1124,7 @@ enum {
 	IMAGE_REL_BASED_HIGHADJ,
 	IMAGE_REL_BASED_MIPS_JMPADDR
 }
-// End of constants documented in pecoff.doc
+// End of константы documented in pecoff.doc
 
 const size_t IMAGE_ARCHIVE_START_SIZE = 8;
 
@@ -2877,14 +2877,14 @@ enum ПСисМетрика //SM_xxxx
 
 enum ПАтрыИнфосим
 {
-    СинийПП =      0x0001, // text color contains blue.
-    ЗелёныйПП =     0x0002, // text color contains green.
-    КрасныйПП =       0x0004, // text color contains red.
-    ИнтПП = 0x0008, // text color is intensified.
-    СинийЗП =      0x0010, // background color contains blue.
-    ЗелёныйЗП =     0x0020, // background color contains green.
-    КрасныйЗП =       0x0040, // background color contains red.
-    ИнтЗП = 0x0080, // background color is intensified.
+    СинийПП =      0x0001, // text цвет contains blue.
+    ЗелёныйПП =     0x0002, // text цвет contains green.
+    КрасныйПП =       0x0004, // text цвет contains red.
+    ИнтПП = 0x0008, // text цвет is intensified.
+    СинийЗП =      0x0010, // background цвет contains blue.
+    ЗелёныйЗП =     0x0020, // background цвет contains green.
+    КрасныйЗП =       0x0040, // background цвет contains red.
+    ИнтЗП = 0x0080, // background цвет is intensified.
 }
 alias ПАтрыИнфосим ПТекстКонсоли;
 
@@ -3010,7 +3010,7 @@ enum : бцел
     PATPAINT =            cast(бцел)0x00FB0A09, /* dest = DPSnoo                   */
     PATINVERT =           cast(бцел)0x005A0049, /* dest = pattern XOR dest         */
     DSTINVERT =           cast(бцел)0x00550009, /* dest = (NOT dest)               */
-    BLACKNESS =           cast(бцел)0x00000042, /* dest = BLACK                    */
+    BLACKNESS =           cast(бцел)0x00000042, /* dest = ЧЁРНЫЙ                    */
     WHITENESS =           cast(бцел)0x00FF0062, /* dest = WHITE                    */
 }
 +/
@@ -3519,11 +3519,11 @@ enum
 
 /* Font Families */
     FF_DONTCARE =         (0<<4), /* Don't care or don't know. */
-    FF_ROMAN =            (1<<4), /* Variable stroke width, serifed. */
+    FF_ROMAN =            (1<<4), /* Variable stroke ширина, serifed. */
                                     /* Times Roman, Century Schoolbook, etc. */
-    FF_SWISS =            (2<<4), /* Variable stroke width, sans-serifed. */
+    FF_SWISS =            (2<<4), /* Variable stroke ширина, sans-serifed. */
                                     /* Helvetica, Swiss, etc. */
-    FF_MODERN =           (3<<4), /* Constant stroke width, serifed or sans-serifed. */
+    FF_MODERN =           (3<<4), /* Constant stroke ширина, serifed or sans-serifed. */
                                     /* Pica, Elite, Courier, etc. */
     FF_SCRIPT =           (4<<4), /* Cursive, etc. */
     FF_DECORATIVE =       (5<<4), /* Old English, etc. */

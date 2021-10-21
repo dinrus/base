@@ -69,7 +69,7 @@ private typedef бцел Reserved;
     цел         cDelimiters =   128;
     ткст[]   tokens      =   new ткст[cDelimiters];
     цел         start;
-    цел         begin;
+    цел         начало;
     цел         cTokens;
 
     /// Ensures that the tokens array is big enough
@@ -83,45 +83,45 @@ private typedef бцел Reserved;
 
     if(bElideBlanks)
     {
-        for(start = 0, begin = 0, cTokens = 0; begin < исходник.length; ++begin)
+        for(start = 0, начало = 0, cTokens = 0; начало < исходник.length; ++начало)
         {
-            if(исходник[begin] == разграничитель)
+            if(исходник[начало] == разграничитель)
             {
-                if(start < begin)
+                if(start < начало)
                 {
                     ensure_length();
 
-                    tokens[cTokens++]   =   исходник[start .. begin];
+                    tokens[cTokens++]   =   исходник[start .. начало];
                 }
 
-                start = begin + 1;
+                start = начало + 1;
             }
         }
 
-        if(start < begin)
+        if(start < начало)
         {
             ensure_length();
 
-            tokens[cTokens++]   =   исходник[start .. begin];
+            tokens[cTokens++]   =   исходник[start .. начало];
         }
     }
     else
     {
-        for(start = 0, begin = 0, cTokens = 0; begin < исходник.length; ++begin)
+        for(start = 0, начало = 0, cTokens = 0; начало < исходник.length; ++начало)
         {
-            if(исходник[begin] == разграничитель)
+            if(исходник[начало] == разграничитель)
             {
                 ensure_length();
 
-                tokens[cTokens++]   =   исходник[start .. begin];
+                tokens[cTokens++]   =   исходник[start .. начало];
 
-                start = begin + 1;
+                start = начало + 1;
             }
         }
 
         ensure_length();
 
-        tokens[cTokens++]   =   исходник[start .. begin];
+        tokens[cTokens++]   =   исходник[start .. начало];
     }
 
     tokens.length = cTokens;
@@ -169,7 +169,7 @@ private typedef бцел Reserved;
 /// \brief This library provides Win32 Реестр facilities
 
 /* /////////////////////////////////////////////////////////////////////////////
- * Private constants
+ * Private константы
  */
 
 private const бцел DELETE                      =   0x00010000L;

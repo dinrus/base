@@ -7,7 +7,7 @@ public import math.linalg.color, tpl.singleton, tpl.std, math.linalg.Vector ;
 //@{
 
 //-----------------------------------------------------------------------------
-/// Cast one color вектор to another.
+/// Cast one цвет вектор to another.
 
 //-----------------------------------------------------------------------------
 

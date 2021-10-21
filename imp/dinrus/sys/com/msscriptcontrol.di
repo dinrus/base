@@ -1,6 +1,6 @@
-﻿module os.win.tlb.msscriptcontrol;
+﻿module sys.com.msscriptcontrol;
 
-private import os.win.com.core;
+//private import os.sys.Common.com.core;
 
 enum ScriptControlStates {
   Initialized = 0x00000000,

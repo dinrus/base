@@ -168,11 +168,11 @@ public:
 /// опрentical (eg, use instruction pairing for группа 4). Major
 /// instruction установи improvements occur внутри each группа.
 
-/// Does this CPU perform better on AMD K7 код than PentiumPro..Core2 код?
+/// Does this CPU выполни better on AMD K7 код than PentiumPro..Core2 код?
 бул preferAthlon() ;
-/// Does this CPU perform better on Pentium4 код than PentiumPro..Core2 код?
+/// Does this CPU выполни better on Pentium4 код than PentiumPro..Core2 код?
 бул preferPentium4() ;
-/// Does this CPU perform better on Pentium I код than Pentium Pro код?
+/// Does this CPU выполни better on Pentium I код than Pentium Pro код?
 бул preferPentium1() ;
 
 public:
@@ -222,7 +222,7 @@ enum : бцел
     SSE41_BIT = 1<<19,
     SSE42_BIT = 1<<20,
     POPCNT_BIT = 1<<23,
-    AES_BIT = 1<<25, // AES instructions из_ AVX
+    AES_BIT = 1<<25, // АЭС instructions из_ AVX
     OSXSAVE_BIT = 1<<27, // Used for AVX
     AVX_BIT = 1<<28
 }
@@ -282,7 +282,7 @@ version(GNU)
 
 version(Really_D_InlineAsm_X86)
 {
-// Note that this код will also work for Itanium, after changing the
+// Note that this код will also work for Itanium, после changing the
 // регистрируй names in the asm код.
 
     бцел max_cpuid, max_extended_cpuid;

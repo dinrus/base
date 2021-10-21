@@ -6,7 +6,7 @@
  *
  * Currently only implemented for Tango.
  */
-import col.HashSet;
+import col.ХэшНабор;
 import col.TreeSet;
 import col.ArrayList;
 import io.Stdout;
