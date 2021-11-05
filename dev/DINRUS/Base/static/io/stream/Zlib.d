@@ -17,22 +17,12 @@
 
 module io.stream.Zlib;
 
-private import zlib;
-
-private import stringz :
-изТкст0;
-
-private import exception :
-ВВИскл;
-
-private import io.device.Conduit :
-ФильтрВвода, ФильтрВывода;
-
-private import io.model :
-ИПотокВвода, ИПотокВывода, ИПровод;
-
-private import text.convert.Integer :
-вТкст;
+private import lib.zlib;
+private import stringz : изТкст0;
+private import exception : ВВИскл;
+private import io.device.Conduit : ФильтрВвода, ФильтрВывода;
+private import io.model : ИПотокВвода, ИПотокВывода, ИПровод;
+private import text.convert.Integer : вТкст;
 
 
 /* This constant controls the размер of the ввод/вывод buffers we use

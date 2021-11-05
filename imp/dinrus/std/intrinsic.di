@@ -38,7 +38,7 @@ int bsf(uint v);
  * Returns:
  *	The bit number of the first bit set.
  *	The return value is undefined if v is zero.
- * Example:
+ * Пример:
  * ---
  * import std.stdio;
  * import std.intrinsic;
@@ -90,7 +90,7 @@ p[index / (uint.sizeof*8)] & (1 << (index & ((uint.sizeof*8) - 1)))
  * 	A non-zero value if the bit was set, and a zero
  *	if it was clear.
  *
- * Example: 
+ * Пример: 
  * ---
 import std.stdio;
 import std.intrinsic;
@@ -175,5 +175,113 @@ ushort outpw(uint port_address, ushort value);
  * описано ранее
  */
 uint   outpl(uint port_address, uint value);
+
+/**
+ *  Вычисляет число установленных битов в 32-битном целом.
+ */
+цел popcnt( бцел x )
+{
+    // Avoопр branches, and the potential for cache misses which
+    // could be incurred with a table отыщи.
+
+    // We need в_ маска alternate биты в_ prevent the
+    // sum из_ overflowing.
+    // добавь neighbouring биты. Each bit is 0 or 1.
+    x = x - ((x>>1) & 0x5555_5555);
+    // сейчас each two биты of x is a число 00,01 or 10.
+    // сейчас добавь neighbouring pairs
+    x = ((x&0xCCCC_CCCC)>>2) + (x&0x3333_3333);
+    // сейчас each nibble holds 0000-0100. добавим them won't
+    // перебор any ещё, so we don't need в_ маска any ещё
+
+    // Сейчас добавь the nibbles, then the байты, then the words
+    // We still need в_ маска в_ prevent дво-counting.
+    // Note that if we used a rotate instead of a shift, we
+    // wouldn't need the маски, and could just divопрe the sum
+    // by 8 в_ account for the дво-counting.
+    // On some CPUs, it may be faster в_ выполни a multИПly.
+
+    x += (x>>4);
+    x &= 0x0F0F_0F0F;
+    x += (x>>8);
+    x &= 0x00FF_00FF;
+    x += (x>>16);
+    x &= 0xFFFF;
+    return x;
+}
+
+
+debug( UnitTest )
+{
+    unittest
+    {
+      assert( popcnt( 0 ) == 0 );
+      assert( popcnt( 7 ) == 3 );
+      assert( popcnt( 0xAA )== 4 );
+      assert( popcnt( 0x8421_1248 ) == 8 );
+      assert( popcnt( 0xFFFF_FFFF ) == 32 );
+      assert( popcnt( 0xCCCC_CCCC ) == 16 );
+      assert( popcnt( 0x7777_7777 ) == 24 );
+    }
+}
+
+
+/**
+ * Разворачивает биты в 32-битном целочисленном типе.
+ */
+бцел битсвоп( бцел x )
+{
+
+    version( D_InlineAsm_X86 )
+    {
+        asm
+        {
+            // Author: Tiago Gasiba.
+            mov EDX, EAX;
+            shr EAX, 1;
+            and EDX, 0x5555_5555;
+            and EAX, 0x5555_5555;
+            shl EDX, 1;
+            or  EAX, EDX;
+            mov EDX, EAX;
+            shr EAX, 2;
+            and EDX, 0x3333_3333;
+            and EAX, 0x3333_3333;
+            shl EDX, 2;
+            or  EAX, EDX;
+            mov EDX, EAX;
+            shr EAX, 4;
+            and EDX, 0x0f0f_0f0f;
+            and EAX, 0x0f0f_0f0f;
+            shl EDX, 4;
+            or  EAX, EDX;
+            bswap EAX;
+        }
+    }
+    else
+    {
+        // своп odd and even биты
+        x = ((x >> 1) & 0x5555_5555) | ((x & 0x5555_5555) << 1);
+        // своп consecutive pairs
+        x = ((x >> 2) & 0x3333_3333) | ((x & 0x3333_3333) << 2);
+        // своп nibbles
+        x = ((x >> 4) & 0x0F0F_0F0F) | ((x & 0x0F0F_0F0F) << 4);
+        // своп байты
+        x = ((x >> 8) & 0x00FF_00FF) | ((x & 0x00FF_00FF) << 8);
+        // своп 2-байт дол pairs
+        x = ( x >> 16              ) | ( x               << 16);
+        return x;
+
+    }
+}
+
+
+debug( UnitTest )
+{
+    unittest
+    {
+        assert( битсвоп( 0x8000_0100 ) == 0x0080_0001 );
+    }
+}
 
 

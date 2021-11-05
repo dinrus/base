@@ -42,7 +42,7 @@ private enum
     allocated Массив if no буфер was предоставленный. Normalization modifies
     this копируй before returning the relevant срез.
 
-    Examples:
+    Примеры:
     -----
      нормализуй("/home/foo/./bar/../../john/doe"); // => "/home/john/doe"
     -----
@@ -290,7 +290,7 @@ debug (UnitTest)
 
             Throws: Nothing.
 
-            Examples:
+            Примеры:
             -----
             version(Win32)
             {
@@ -458,7 +458,7 @@ debug (UnitTest)
 
             Throws: Nothing.
 
-            Examples:
+            Примеры:
             -----
             version(Win32)
             {

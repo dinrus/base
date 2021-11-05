@@ -1,8 +1,4 @@
 ﻿/**
- * Copyright: Copyright (C) Thomas Dixon 2008. Все права защищены.
- * License:   BSD стиль: $(LICENSE)
- * Authors:   Thomas Dixon
- *
  * Note: This probably needs optimized.
  */
 
@@ -11,7 +7,7 @@ module crypto.cipher.Blowfish;
 private import crypto.cipher.Cipher;
 
 /** Implementation of the Камбала cipher designed by Bruce Schneier. */
-class Камбала : ШифрБлок
+export class Камбала : ШифрБлок
 {
     private
     {
@@ -210,25 +206,25 @@ class Камбала : ШифрБлок
         ббайт[] рабочийКлюч;
     } // конец private
 
-    final override ткст имя()
+    export override ткст имя()
     {
         return "Камбала";
     }
 
-    final override бцел размерБлока()
+    export override бцел размерБлока()
     {
         return BLOCK_SIZE;
     }
 
-    final проц init(бул зашифруй, СимметричныйКлюч keyParams)
+    export проц иниц(бул зашифруй, СимметричныйКлюч парамыКлюча)
     {
         _зашифровать = зашифруй;
 
-        бцел длин = keyParams.ключ.length;
+        бцел длин = парамыКлюча.ключ.length;
         if (длин < MIN_KEY_SIZE || длин > MAX_KEY_SIZE)
             не_годится(имя()~": Неверный ключ length (требует 4-56 байты)");
 
-        рабочийКлюч = keyParams.ключ;
+        рабочийКлюч = парамыКлюча.ключ;
 
         // Yes, this is ghetto. I know.
         _инициализован = да;
@@ -247,7 +243,7 @@ class Камбала : ШифрБлок
                 + S3[cast(ббайт)x]);
     }
 
-    final override бцел обнови(проц[] ввод_, проц[] вывод_)
+    export override бцел обнови(проц[] ввод_, проц[] вывод_)
     {
         if (!_инициализован)
             не_годится(имя()~": Шифр not инициализован.");
@@ -279,7 +275,7 @@ class Камбала : ШифрБлок
         return BLOCK_SIZE;
     }
 
-    final override проц сбрось()
+    export override проц сбрось()
     {
         установи(рабочийКлюч);
     }
@@ -352,7 +348,7 @@ debug (UnitTest)
 {
     unittest
     {
-        static ткст[] test_keys = [
+        static ткст[] ключи_теста = [
             "0000000000000000",
             "ffffffffffffffff",
             "57686f206973204a6f686e2047616c743f", // I don't know, do you?
@@ -362,7 +358,7 @@ debug (UnitTest)
             "fedcba9876543210"
         ];
 
-        static ткст[] test_plaintexts = [
+        static ткст[] простыеТексты_теста = [
             "0000000000000000",
             "ffffffffffffffff",
             "fedcba9876543210",
@@ -372,7 +368,7 @@ debug (UnitTest)
             "0123456789abcdef"
         ];
 
-        static ткст[] test_ciphertexts = [
+        static ткст[] тексты_тестаШифра = [
             "4ef997456198dd78",
             "51866fd5b85ecb8a",
             "cc91732b8022f684",
@@ -383,25 +379,25 @@ debug (UnitTest)
         ];
 
         Камбала t = new Камбала();
-        foreach (бцел i, ткст test_key; test_keys)
+        foreach (бцел i, ткст test_key; ключи_теста)
         {
             ббайт[] буфер = new ббайт[t.размерБлока];
             ткст результат;
             СимметричныйКлюч ключ = new СимметричныйКлюч(БайтКонвертер.раскодируйГекс(test_key));
 
             // Encryption
-            t.init(да, ключ);
-            t.обнови(БайтКонвертер.раскодируйГекс(test_plaintexts[i]), буфер);
+            t.иниц(да, ключ);
+            t.обнови(БайтКонвертер.раскодируйГекс(простыеТексты_теста[i]), буфер);
             результат = БайтКонвертер.кодируйГекс(буфер);
-            assert(результат == test_ciphertexts[i],
-            t.имя~": ("~результат~") != ("~test_ciphertexts[i]~")");
+            assert(результат == тексты_тестаШифра[i],
+            t.имя~": ("~результат~") != ("~тексты_тестаШифра[i]~")");
 
             // Decryption
-            t.init(нет, ключ);
-            t.обнови(БайтКонвертер.раскодируйГекс(test_ciphertexts[i]), буфер);
+            t.иниц(нет, ключ);
+            t.обнови(БайтКонвертер.раскодируйГекс(тексты_тестаШифра[i]), буфер);
             результат = БайтКонвертер.кодируйГекс(буфер);
-            assert(результат == test_plaintexts[i],
-            t.имя~": ("~результат~") != ("~test_plaintexts[i]~")");
+            assert(результат == простыеТексты_теста[i],
+            t.имя~": ("~результат~") != ("~простыеТексты_теста[i]~")");
         }
     }
 }

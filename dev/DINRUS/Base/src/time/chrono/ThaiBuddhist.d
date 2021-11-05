@@ -26,7 +26,7 @@ export class ТаиБуддистский : ГрегорианВОснове
      * $(I Property.) Переписано. Retrieves the определитель associated with the текущ Календарь.
      * Возвращает: Целое, представляющее определитель of the текущ Календарь.
      */
-    export override бцел опр()
+    export override бцел ид()
     {
         return ТАИ;
     }

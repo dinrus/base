@@ -294,7 +294,7 @@ unittest {
     assert(гамма(МАКСГАММА)< реал.infinity);
     assert(гамма(МАКСГАММА*2) == реал.infinity);
 
-    // Test some high-точность значения (50 decimal цифры)
+    // Test some high-точность значения (50 десяток цифры)
     const реал SQRT_PI = 1.77245385090551602729816748334114518279754945612238L;
 
     version(FailsOnLinux) assert(отнравх(гамма(0.5L), SQRT_PI) == реал.mant_dig);
@@ -329,7 +329,7 @@ export реал логГаммы(реал x)
      *
      * For аргументы greater than 33, the logarithm of the гамма
      * function is approximated by the logarithmic version of
-     * Stirling's formula using a polynomial approximation of
+     * Stirling's formula using a полиномиал approximation of
      * degree 4. Аргументы between -33 и +33 are reduced by
      * recurrence в_ the интервал [2,3] of a rational approximation.
      * The cosecant reflection formula is employed for аргументы
@@ -858,8 +858,8 @@ unittest { // also tested by the нормаль ни в каком дистри�
     // half the код in this function is unnecessary; there is potential for
     // significant improvement over the original CEPHES код.
 
-// Excel 2003 gives clearly erroneous результатs (betadist>1) when a и x are tiny и b is huge.
-// The correct результатs are for these следщ tests are неизвестное.
+// Excel 2003 gives clearly erroneous результаты (betadist>1) when a и x are tiny и b is huge.
+// The correct результаты are for these следщ tests are неизвестное.
 
 //    реал testpoint1 = бетаНеполная(1e-10, 5e20, 8e-21);
 //    assert(testpoint1 == 0x1.ffff_ffff_c906_404cp-1L);

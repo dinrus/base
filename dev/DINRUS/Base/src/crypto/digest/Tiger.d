@@ -1,14 +1,6 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2006 Dinrus. Все права защищены
-
-        license:        BSD стиль: see doc/license.txt for details
-
-        version:        Initial release: Feb 2006
-
-        author:         Regan Heath, Oskar Linde
-
-        This module реализует the Tiger algorithm by Ross Anderson и Eli
+        This module реализует the Тигр algorithm by Ross Anderson и Eli
         Biham.
 
 *******************************************************************************/
@@ -25,7 +17,7 @@ public  import crypto.digest.Digest;
 
 *******************************************************************************/
 
-final class Tiger : MerkleDamgard
+export class Тигр : МерклеДамгард
 {
         private бдол[3]        контекст;
         private бцел            npass = 3;
@@ -44,11 +36,11 @@ final class Tiger : MerkleDamgard
 
         /***********************************************************************
 
-                Конструирует Tiger
+                Конструирует Тигр
 
         ***********************************************************************/
 
-        this() { }
+        export this() { }
 
         /***********************************************************************
 
@@ -56,7 +48,7 @@ final class Tiger : MerkleDamgard
                 
         ***********************************************************************/
 
-        override бцел размерДайджеста() {return 24;}
+        export override бцел размерДайджеста() {return 24;}
         
 
         /***********************************************************************
@@ -68,7 +60,7 @@ final class Tiger : MerkleDamgard
 
         ***********************************************************************/
 
-        override проц сбрось()
+        export override проц сбрось()
         {
                 super.сбрось();
                 контекст[] = начальное[];
@@ -87,7 +79,7 @@ final class Tiger : MerkleDamgard
 
         ***********************************************************************/
 
-        override проц создайДайджест(ббайт[] буф)
+        export override проц создайДайджест(ббайт[] буф)
         {
                 version (БигЭндиан)
                         ПерестановкаБайт.своп64 (контекст.ptr, контекст.length * бдол.sizeof);
@@ -102,14 +94,14 @@ final class Tiger : MerkleDamgard
                 the число of проходки
 
                 Примечания:
-                The Tiger algorithm may выполни an arbitrary число of проходки
+                The Тигр algorithm may выполни an arbitrary число of проходки
                 the minimum recommended число is 3 и this число should be
                 quite безопасно however the "ultra-cautious" may wish в_ increase
                 this число.
 
         ***********************************************************************/
 
-        бцел проходки()
+        export бцел проходки()
         {
                 return npass;
         }
@@ -122,14 +114,14 @@ final class Tiger : MerkleDamgard
                 n = the число of проходки в_ выполни
 
                 Примечания:
-                The Tiger algorithm may выполни an arbitrary число of проходки
+                The Тигр algorithm may выполни an arbitrary число of проходки
                 the minimum recommended число is 3 и this число should be
                 quite безопасно however the "ultra-cautious" may wish в_ increase
                 this число.
 
         ***********************************************************************/
 
-        проц проходки(бцел n)
+        export проц проходки(бцел n)
         {
                 if (n < 3) return ;
                 npass = n;
@@ -144,11 +136,11 @@ final class Tiger : MerkleDamgard
 
                 Примечания:
                 Specifies the размер (in байты) of the блок of данные в_ пароль в_
-                each вызов в_ трансформируй(). For Tiger the размерБлока is 64.
+                each вызов в_ трансформируй(). For Тигр the размерБлока is 64.
 
         ***********************************************************************/
 
-        protected override бцел размерБлока() { return 64; }
+        export  override бцел размерБлока() { return 64; }
 
         /***********************************************************************
 
@@ -160,11 +152,11 @@ final class Tiger : MerkleDamgard
                 Примечания:
                 Specifies the размер (in байты) of the паддинг which uses the
                 length of the данные which имеется been ciphered, this паддинг is
-                carried out by the падДлин метод. For Tiger the добавьРазмер is 8.
+                carried out by the падДлин метод. For Тигр the добавьРазмер is 8.
 
         ***********************************************************************/
 
-        protected бцел добавьРазмер()   { return 8;  }
+        export  бцел добавьРазмер()   { return 8;  }
 
         /***********************************************************************
 
@@ -180,7 +172,7 @@ final class Tiger : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц падСооб(ббайт[] at)
+        export  override проц падСооб(ббайт[] at)
         {
                 at[0] = padChar;
                 at[1..at.length] = 0;
@@ -201,7 +193,7 @@ final class Tiger : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц падДлин(ббайт[] at, бдол length)
+        export  override проц падДлин(ббайт[] at, бдол length)
         {
                 length <<= 3;
                 littleEndian64((cast(ббайт*)&length)[0..8],cast(бдол[]) at); 
@@ -222,7 +214,7 @@ final class Tiger : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц трансформируй(ббайт[] ввод)
+        export  override проц трансформируй(ббайт[] ввод)
         {
                 бдол tmpa,a,b,c;
                 бдол[8] x;
@@ -851,15 +843,15 @@ debug(UnitTest)
         static ткст[] strings = [
                 "",
                 "abc",
-                "Tiger",
+                "Тигр",
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-",
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ=abcdefghijklmnopqrstuvwxyz+0123456789",
-                "Tiger - A Быстрый Нов Хэш Function, by Ross Anderson и Eli Biham",
-                "Tiger - A Быстрый Нов Хэш Function, by Ross Anderson и Eli Biham, proceedings of Быстрый Software Encryption 3, Camмост.",
+                "Тигр - A Быстрый Нов Хэш Function, by Ross Anderson и Eli Biham",
+                "Тигр - A Быстрый Нов Хэш Function, by Ross Anderson и Eli Biham, proceedings of Быстрый Software Encryption 3, Camмост.",
                 "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq",
                 x"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000",
         ];
-        static ткст[] результатs = [
+        static ткст[] результаты = [
                 "3293ac630c13f0245f92bbb1766e16167a4e58492dde73f3",
                 "2aab1484e8c158f2bfb8c5ff41b57a525129131c957b5f93",
                 "dd00230799f5009fec6debc838bb6a27df2b9d6f110c7937",
@@ -871,14 +863,14 @@ debug(UnitTest)
                 "5ab6ff5b263acfab2013c3068c03a82979ea6db287a3ecdd",
         ];
 
-        Tiger h = new Tiger();
+        Тигр h = new Тигр();
 
         foreach(цел i, ткст s; strings) {
                 h.обнови(cast(ббайт[]) s);
 
                 ткст d = h.гексДайджест();
 
-                assert(d == результатs[i],":("~s~")("~d~")!=("~результатs[i]~")");
+                assert(d == результаты[i],":("~s~")("~d~")!=("~результаты[i]~")");
 
         }
         }

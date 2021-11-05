@@ -354,7 +354,7 @@ class Массив : Провод, БуферВвода, БуферВывода,
             Note also that the срез should be .dup'd if you wish в_
             retain it.
 
-            Examples:
+            Примеры:
             ---
             // создай a буфер with some контент
             auto буфер = new Буфер ("hello world");

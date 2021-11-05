@@ -900,7 +900,7 @@ unittest
     f = toFloat("3.40282e+38");
     assert(toString(f) == toString(3.40282e+38));
 
-    // nan
+    // нч
     f = toFloat("nan");
     assert(toString(f) == toString(float.nan));
 
@@ -977,7 +977,7 @@ unittest
     assert(toString(d) == toString(1.79769e+308));
     assert(toString(d) == toString(double.max));
 
-    // nan
+    // нч
     d = toDouble("nan");
     assert(toString(d) == toString(double.nan));
     //assert(cast(real)d == cast(real)double.nan);
@@ -1055,7 +1055,7 @@ unittest
     r = toReal(toString(real.max));
     assert(toString(r) == toString(real.max));
 
-    // nan
+    // нч
     r = toReal("nan");
     assert(toString(r) == toString(real.nan));
     //assert(r == real.nan);
@@ -1079,7 +1079,7 @@ unittest
 version (none)
 {   /* These are removed for the moment because of concern about
      * what to do about the 'i' suffix. Should it be there?
-     * Should it not? What about 'nan', should it be 'nani'?
+     * Should it not? What about 'нч', should it be 'nani'?
      * 'infinity' or 'infinityi'?
      * Should it match what toString(ifloat) does with the 'i' suffix?
      */
@@ -1113,7 +1113,7 @@ unittest
     assert(toString(ift) == toString(ifloat.max));
     assert(feq(cast(ireal)ift, cast(ireal)ifloat.max));
    
-    // nan
+    // нч
     ift = toIfloat("nani");
     assert(cast(real)ift == cast(real)ifloat.nan);
 
@@ -1153,7 +1153,7 @@ unittest
     assert(feq(cast(ireal)id.re, cast(ireal)idouble.max.re));
     assert(feq(cast(ireal)id.im, cast(ireal)idouble.max.im));
     
-    // nan
+    // нч
     id = toIdouble("nani");
     assert(cast(real)id == cast(real)idouble.nan);
 
@@ -1193,7 +1193,7 @@ unittest
     assert(feq(cast(real)ir.re, cast(real)ireal.max.re));
     //assert(feq(cast(real)ir.im, cast(real)ireal.max.im));
 
-    // nan
+    // нч
     ir = toIreal("nani");
     assert(cast(real)ir == cast(real)ireal.nan);
 
@@ -1267,9 +1267,9 @@ unittest
     cf = toCfloat(toString(cfloat.max));
     assert(toString(cf) == toString(cfloat.max));
    
-    // nan ( nan+nani )
+    // нч ( nan+nani )
     cf = toCfloat("nani");
-    //writefln("toCfloat() cf=%g, cf=\"%s\", nan=%s", 
+    //writefln("toCfloat() cf=%g, cf=\"%s\", нч=%s", 
     //         cf, toString(cf), toString(cfloat.nan));
     assert(toString(cf) == toString(cfloat.nan));
 
@@ -1344,7 +1344,7 @@ unittest
     assert(toString( cd ) == toString(cdouble.max));
     assert(feq(cast(creal)cd, cast(creal)cdouble.max));
 
-    // nan ( nan+nani )
+    // нч ( nan+nani )
     cd = toCdouble("nani");
     assert(toString(cd) == toString(cdouble.nan));
 
@@ -1385,7 +1385,7 @@ creal toCreal(in char[] s)
     endptr = &s2[s2.length - 1];
     r2 = strtold(s2, &endptr); //atof(s2);
 
-    //writefln("toCreal() r1=%g, r2=%g, s1=\"%s\", s2=\"%s\", nan=%g", 
+    //writefln("toCreal() r1=%g, r2=%g, s1=\"%s\", s2=\"%s\", нч=%g", 
     //          r1, r2, s1, s2, creal.nan);
    
     if (s1 =="nan" && s2 == "nani")
@@ -1434,7 +1434,7 @@ unittest
     assert(toString(cr) == toString(creal.max));
     assert(feq(cr, creal.max));
 
-    // nan ( nan+nani )
+    // нч ( nan+nani )
     cr = toCreal("nani");
     assert(toString(cr) == toString(creal.nan));
 

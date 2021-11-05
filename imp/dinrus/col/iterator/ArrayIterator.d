@@ -6,13 +6,7 @@ private import col.model.GuardIterator;
 
 
 /**
- *
  * ОбходчикМассива допускается you в_ use массивы as Iterators
- *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 
 public class ОбходчикМассива(T) : СтражОбходчик!(T)

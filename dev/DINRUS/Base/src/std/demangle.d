@@ -38,7 +38,7 @@ private class MangleException : Exception
  * Demangle D mangled names.
  *
  * If it is not a D mangled name, it returns its argument name.
- * Example:
+ * Пример:
  *	This program reads standard in and writes it to standard out,
  *	pretty-printing any found D mangled names.
 -------------------

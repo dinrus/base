@@ -16,7 +16,7 @@
 
     This module is использован в_ раскодируй и кодируй base64 ткст массивы. 
 
-    Example:
+    Пример:
     ---
     ткст blah = "Hello there, my имя is Jeff.";
     scope encodebuf = new сим[вычислиРазмерКодир(cast(ббайт[])blah)];
@@ -111,7 +111,7 @@ export цел кодируйЧанк(ббайт[] данные, ткст буф,
     данные = что is в_ be кодирован
     буф = буфер large enough в_ hold кодирован данные
 
-    Example:
+    Пример:
     ---
     сим[512] encodebuf;
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?", encodebuf);
@@ -169,7 +169,7 @@ body
     Параметры:
     данные = что is в_ be кодирован
 
-    Example:
+    Пример:
     ---
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?");
     Стдвыв(myEncodedString).нс; // SGVsbG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
@@ -205,7 +205,7 @@ body
     Параметры:
     данные = что is в_ be decoded
 
-    Example:
+    Пример:
     ---
     ткст myDecodedString = cast(ткст)раскодируй("SGVsbG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==");
     Стдвыв(myDecodedString).нс; // Hello, как are you today?
@@ -239,7 +239,7 @@ body
     данные = что is в_ be decoded
     буф = a big enough Массив в_ hold the decoded данные
 
-    Example:
+    Пример:
     ---
     ббайт[512] decodebuf;
     ткст myDecodedString = cast(ткст)раскодируй("SGVsbG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==", decodebuf);

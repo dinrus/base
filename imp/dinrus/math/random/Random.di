@@ -114,7 +114,7 @@
       )
       $(LI  floating точка униформа generator always initializes the full mantissa, the
             only flaw is a (*very* small) predilection of 0 as least important bit
-            (IEEE rounds в_ 0 in case of tie).
+            (IEEE круги в_ 0 in case of tie).
             Using a метод that initializes the full mantissa was shown в_ improve the
             quality of subsequntly производный нормаль distribued numbers
             (Thomas et al. Gaussian random число generators. Acm Comput Surv (2007)
@@ -233,7 +233,7 @@ template плав_ли(T)
 /// not easy в_ invert, и with a relatively small ключ (but not too small)
 alias KissCmwc_32_1 ДефолтныйДвижок;
 
-/// Class that represents генератор случайных чисел.
+/// Класс that represents генератор случайных чисел.
 /// Normally you should получи random numbers either with вызов-like interface:
 ///   auto r=new Случай(); r(i)(j)(ключ);
 /// or with рандомируй

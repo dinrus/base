@@ -1,5 +1,5 @@
 ﻿pragma(lib, "dinrus.lib");
-import win, stdrus, json;
+import stdrus, json;
 
 бцел MurmurHash2 ( ук key, цел len = 2 , бцел seed = 10 )
 {

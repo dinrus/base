@@ -18,7 +18,7 @@
     allocated Массив if no буфер was предоставленный. Normalization modifies
     this копируй before returning the relevant срез.
 
-    Examples:
+    Примеры:
     -----
      нормализуй("/home/foo/./bar/../../john/doe"); // => "/home/john/doe"
     -----
@@ -55,7 +55,7 @@
 
             Throws: Nothing.
 
-            Examples:
+            Примеры:
             -----
             version(Win32)
             {
@@ -88,7 +88,7 @@
 
             Throws: Nothing.
 
-            Examples:
+            Примеры:
             -----
             version(Win32)
             {

@@ -1,4 +1,4 @@
-﻿import lib.sdl, dinrus, win;
+﻿import lib.sdl, dinrus;
 
 
 проц Рисуй (ПоверхностьСДЛ *экран)

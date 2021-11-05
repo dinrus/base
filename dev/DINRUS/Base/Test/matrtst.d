@@ -1,4 +1,4 @@
-﻿import win, math.linalg.Matrix, math.linalg.Vector,stdrus, math.linalg.color,
+﻿import math.linalg.Matrix, math.linalg.Vector,stdrus, math.linalg.color,
   col.ArrayList, col.ArrayMultiset, col.HashMap, col.HashMultiset, sys.WinConsts;
 
 

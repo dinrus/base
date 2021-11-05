@@ -124,7 +124,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.содержит
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.impl.Collection.Коллекция.содержит
     **/
     public final бул содержит(T элемент)
@@ -137,7 +137,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.экземпляры
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.impl.Collection.Коллекция.экземпляры
     **/
     public final бцел экземпляры(T элемент)
@@ -150,7 +150,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.элементы
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.impl.Collection.Коллекция.элементы
     **/
     public final СтражОбходчик!(T) элементы()
@@ -160,7 +160,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.model.View.Обзор.opApply
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.model.View.Обзор.opApply
     **/
     цел opApply (цел delegate (inout T значение) дг)
@@ -175,7 +175,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.ElementSortedCollection.сравнитель
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.ElementSortedCollection.сравнитель
     **/
     public final КомпараторТ сравнитель()
@@ -185,7 +185,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Reset the сравнитель. Will cause a reorganization of the дерево.
-     * Время complexity: O(n лог n).
+     * Временная ёмкость: O(n лог n).
     **/
     public final проц сравнитель(КомпараторТ cmp)
     {
@@ -217,7 +217,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.очисть.
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.impl.Collection.Коллекция.очисть
     **/
     public final проц очисть()
@@ -228,7 +228,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.удалиВсе.
-     * Время complexity: O(лог n * экземпляры(элемент)).
+     * Временная ёмкость: O(лог n * экземпляры(элемент)).
      * See_Also: col.impl.Collection.Коллекция.удалиВсе
     **/
     public final проц удалиВсе(T элемент)
@@ -239,7 +239,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.removeOneOf.
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.impl.Collection.Коллекция.removeOneOf
     **/
     public final проц удали(T элемент)
@@ -249,7 +249,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.replaceOneOf
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.impl.Collection.Коллекция.replaceOneOf
     **/
     public final проц замени(T старЭлемент, T новЭлемент)
@@ -259,7 +259,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.replaceAllOf.
-     * Время complexity: O(лог n * экземпляры(старЭлемент)).
+     * Временная ёмкость: O(лог n * экземпляры(старЭлемент)).
      * See_Also: col.impl.Collection.Коллекция.replaceAllOf
     **/
     public final проц замениВсе(T старЭлемент, T новЭлемент)
@@ -269,7 +269,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.возьми.
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * Takes the least элемент.
      * See_Also: col.impl.Collection.Коллекция.возьми
     **/
@@ -293,7 +293,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.MutableBag.добавьIfAbsent
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.MutableBag.добавьIfAbsent
     **/
     public final проц добавьЕсли (T элемент)
@@ -304,7 +304,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
     /**
      * Implements col.MutableBag.добавь.
-     * Время complexity: O(лог n).
+     * Временная ёмкость: O(лог n).
      * See_Also: col.MutableBag.добавь
     **/
     public final проц добавь (T элемент)

@@ -604,7 +604,7 @@ static БольшБцел степень(БольшБцел x, бдол y)
 
     if (y>1) {    // Набор r1 = r1 ^^ y.
          
-        // The secondary буфер only needs пространство for the multИПlication результатs    
+        // The secondary буфер only needs пространство for the multИПlication результаты    
         БольшЦифра [] secondaryBuffer = new БольшЦифра[результатBuffer.length - результат_start];
         БольшЦифра [] t2 = secondaryBuffer;
         БольшЦифра [] r2;
@@ -1130,11 +1130,11 @@ private:
     return buff;
 }
 
-/** Convert a big бцел преобр_в a decimal ткст.
+/** Convert a big бцел преобр_в a десяток ткст.
  *
  * Параметры:
  *  данные    The bigбцел в_ be преобразованый. Will be destroyed.
- *  buff    The приёмник буфер for the decimal ткст. Must be
+ *  buff    The приёмник буфер for the десяток ткст. Must be
  *          large enough в_ сохрани the результат, включая leading zeros.
  *          Will be filled backwards, starting из_ buff[$-1].
  *
@@ -1162,12 +1162,12 @@ private:
     return sofar;
 }
 
-/** Convert a decimal ткст преобр_в a big бцел.
+/** Convert a десяток ткст преобр_в a big бцел.
  *
  * Параметры:
  *  данные    The bigбцел в_ be принять the результат. Must be large enough в_ 
  *          сохрани the результат.
- *  s       The decimal ткст. May contain 0..9, or _. Will be preserved.
+ *  s       The десяток ткст. May contain 0..9, or _. Will be preserved.
  *
  * The требуется length for the приёмник буфер is slightly less than
  *  1 + s.length/лог2(10) = 1 + s.length/3.3219.
@@ -1179,7 +1179,7 @@ private:
     // Convert в_ основа 1e19 = 10_000_000_000_000_000_000.
     // (this is the largest power of 10 that will fit преобр_в a дол).
     // The length will be less than 1 + s.length/лог2(10) = 1 + s.length/3.3219.
-    // 485 биты will only just fit преобр_в 146 decimal цифры.
+    // 485 биты will only just fit преобр_в 146 десяток цифры.
     бцел lo = 0;
     бцел x = 0;
     бдол y = 0;

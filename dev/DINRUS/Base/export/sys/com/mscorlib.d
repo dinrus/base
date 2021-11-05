@@ -488,7 +488,7 @@ enum TypeAttributes {
   SequentialLayout = 0x00000008,
   ExplicitLayout = 0x00000010,
   ClassSemanticsMask = 0x00000020,
-  Class = 0x00000000,
+  Класс = 0x00000000,
   Interface = 0x00000020,
   Abstract = 0x00000080,
   Sealed = 0x00000100,
@@ -869,7 +869,7 @@ enum UnmanagedType {
   ByValTStr = 0x00000017,
   IUnknown = 0x00000019,
   IDispatch = 0x0000001A,
-  Struct = 0x0000001B,
+  Структура = 0x0000001B,
   Interface = 0x0000001C,
   SafeArray = 0x0000001D,
   ByValArray = 0x0000001E,
@@ -1892,17 +1892,17 @@ interface IDeserializationCallback : IDispatch {
 interface _Activator : IUnknown {
   mixin(uuid("03973551-57a1-3900-a2b5-9083e3ff2943"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _AppDomain : IUnknown {
   mixin(uuid("05f696dc-2b29-3663-ad8b-c4389cf2a713"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2000,17 +2000,17 @@ interface IAppDomainSetup : IUnknown {
 interface _Attribute : IUnknown {
   mixin(uuid("917b14d0-2d9e-38b8-92a9-381acf52f7c0"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _Thread : IUnknown {
   mixin(uuid("c281c7f1-4aa9-3517-961a-463cfed57e75"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface IObjectReference : IDispatch {
@@ -2046,9 +2046,9 @@ interface ICustomAttributeProvider : IDispatch {
 interface _MemberInfo : IUnknown {
   mixin(uuid("f7102fa9-cabb-3a74-a6da-b4567ef1b079"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2065,9 +2065,9 @@ interface _MemberInfo : IUnknown {
 interface _Type : IUnknown {
   mixin(uuid("bca8b44d-aad6-3a86-8ab7-03349f4f2da2"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2390,17 +2390,17 @@ interface _Assembly : IDispatch {
 interface _AssemblyName : IUnknown {
   mixin(uuid("b42b6aac-317e-34d5-9fa9-093bb4160c50"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _MethodBase : IUnknown {
   mixin(uuid("6240837a-707f-3181-8e98-a36ae086766b"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2437,9 +2437,9 @@ interface _MethodBase : IUnknown {
 interface _MethodInfo : IUnknown {
   mixin(uuid("ffcc1b5d-ecb8-38dd-9b01-3dc8abc2aa5f"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2479,9 +2479,9 @@ interface _MethodInfo : IUnknown {
 interface _ConstructorInfo : IUnknown {
   mixin(uuid("e9a19478-9646-3679-9b10-8411ae1fd57d"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2520,9 +2520,9 @@ interface _ConstructorInfo : IUnknown {
 interface _FieldInfo : IUnknown {
   mixin(uuid("8a7c1442-a9fb-366b-80d8-4939ffa6dbe0"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2559,9 +2559,9 @@ interface _FieldInfo : IUnknown {
 interface _PropertyInfo : IUnknown {
   mixin(uuid("f59ed4e4-e68f-3218-bd77-061aa82824bf"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2594,9 +2594,9 @@ interface _PropertyInfo : IUnknown {
 interface _EventInfo : IUnknown {
   mixin(uuid("9de59c64-d889-35a1-b897-587d74469e5b"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
   /*[id(0x00000000)]*/ int get_ToString(out wchar* pRetVal);
   /*[id(0x60010005)]*/ int Equals(VARIANT other, out short pRetVal);
   /*[id(0x60010006)]*/ int GetHashCode(out int pRetVal);
@@ -2625,17 +2625,17 @@ interface _EventInfo : IUnknown {
 interface _ParameterInfo : IUnknown {
   mixin(uuid("993634c4-e47a-32cc-be08-85f567dc27d6"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _Module : IUnknown {
   mixin(uuid("d002e9ba-d9e3-3749-b1d3-d565a08b13e7"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface IFormatterConverter : IDispatch {
@@ -2789,7 +2789,7 @@ interface ITypeLibConverter : IUnknown {
   mixin(uuid("f1c3bf78-c3e4-11d3-88e7-00902754c43a"));
   /*[id(0x60010000)]*/ int ConvertTypeLibToAssembly(IUnknown typeLib, wchar* asmFileName, TypeLibImporterFlags flags, ITypeLibImporterNotifySink notifySink,  SAFEARRAY publicKey, _StrongNameKeyPair keyPair, wchar* asmNamespace, _Version asmVersion, out _AssemblyBuilder pRetVal);
   /*[id(0x60010001)]*/ int ConvertAssemblyToTypeLib(_Assembly Assembly, wchar* typeLibName, TypeLibExporterFlags flags, ITypeLibExporterNotifySink notifySink, out IUnknown pRetVal);
-  /*[id(0x60010002)]*/ int GetPrimaryInteropAssembly(GUID G, int major, int minor, int lcid, out wchar* asmName, out wchar* asmCodeBase, out short pRetVal);
+  /*[id(0x60010002)]*/ int GetPrimaryInteropAssembly(GUID G, int major, int minor, int лкид, out wchar* asmName, out wchar* asmCodeBase, out short pRetVal);
   /*[id(0x60010003)]*/ int ConvertTypeLibToAssembly_2(IUnknown typeLib, wchar* asmFileName, int flags, ITypeLibImporterNotifySink notifySink,  SAFEARRAY publicKey, _StrongNameKeyPair keyPair, short unsafeInterfaces, out _AssemblyBuilder pRetVal);
 }
 
@@ -3171,121 +3171,121 @@ interface ISoapMessage : IDispatch {
 interface _AssemblyBuilder : IUnknown {
   mixin(uuid("bebb2505-8b54-3443-aead-142a16dd9cc7"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _ConstructorBuilder : IUnknown {
   mixin(uuid("ed3e4384-d7e2-3fa7-8ffd-8940d330519a"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _CustomAttributeBuilder : IUnknown {
   mixin(uuid("be9acce8-aaff-3b91-81ae-8211663f5cad"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _EnumBuilder : IUnknown {
   mixin(uuid("c7bd73de-9f85-3290-88ee-090b8bdfe2df"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _EventBuilder : IUnknown {
   mixin(uuid("aadaba99-895d-3d65-9760-b1f12621fae8"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _FieldBuilder : IUnknown {
   mixin(uuid("ce1a3bf5-975e-30cc-97c9-1ef70f8f3993"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _ILGenerator : IUnknown {
   mixin(uuid("a4924b27-6e3b-37f7-9b83-a4501955e6a7"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _LocalBuilder : IUnknown {
   mixin(uuid("4e6350d1-a08b-3dec-9a3e-c465f9aeec0c"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _MethodBuilder : IUnknown {
   mixin(uuid("007d8a14-fdf3-363e-9a0b-fec0618260a2"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _MethodRental : IUnknown {
   mixin(uuid("c2323c25-f57f-3880-8a4d-12ebea7a5852"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _ModuleBuilder : IUnknown {
   mixin(uuid("d05ffa9a-04af-3519-8ee1-8d93ad73430b"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _ParameterBuilder : IUnknown {
   mixin(uuid("36329eba-f97a-3565-bc07-0ed5c6ef19fc"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _PropertyBuilder : IUnknown {
   mixin(uuid("15f9a479-9397-3a63-acbd-f51977fb0f02"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _SignatureHelper : IUnknown {
   mixin(uuid("7d13dd37-5a04-393c-bbca-a5fea802893d"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface _TypeBuilder : IUnknown {
   mixin(uuid("7e5678ee-48b3-3f83-b076-c58543498a58"));
   /*[id(0x60010000)]*/ int GetTypeInfoCount(out uint pcTInfo);
-  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint lcid, int ppTInfo);
-  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint lcid, int rgDispId);
-  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint lcid, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
+  /*[id(0x60010001)]*/ int GetTypeInfo(uint iTInfo, uint лкид, int ppTInfo);
+  /*[id(0x60010002)]*/ int GetIDsOfNames(ref GUID riid, int rgszNames, uint cNames, uint лкид, int rgDispId);
+  /*[id(0x60010003)]*/ int Invoke(uint dispIdMember, ref GUID riid, uint лкид, short wFlags, int pDispParams, int pVarResult, int pExcepInfo, int puArgErr);
 }
 
 interface ICryptoTransform : IDispatch {
@@ -4189,7 +4189,7 @@ interface _JapaneseCalendar : IDispatch {
   mixin(uuid("d662ae3f-cef9-38b4-bb8e-5d8dd1dbf806"));
 }
 
-interface _KoreanCalendar : IDispatch {
+interface _КорейскийCalendar : IDispatch {
   mixin(uuid("48bea6c4-752e-3974-8ca8-cfb6274e2379"));
 }
 
@@ -6311,9 +6311,9 @@ abstract final class JapaneseCalendar {
   mixin Interfaces!(_JapaneseCalendar, _Object, ICloneable);
 }
 
-abstract final class KoreanCalendar {
+abstract final class КорейскийCalendar {
   mixin(uuid("1a06a4dc-e239-3717-89e1-d0683f3a5320"));
-  mixin Interfaces!(_KoreanCalendar, _Object, ICloneable);
+  mixin Interfaces!(_КорейскийCalendar, _Object, ICloneable);
 }
 
 abstract final class StringInfo {

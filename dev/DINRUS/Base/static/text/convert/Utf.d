@@ -51,18 +51,9 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-ткст  вТкст (ткст ист, ткст приёмн, бцел* ate=пусто)
-{
-    return ист;
-}
-шим[] вТкст (шим[] ист, шим[] приёмн, бцел* ate=пусто)
-{
-    return ист;
-}
-дим[] вТкст (дим[] ист, дим[] приёмн, бцел* ate=пусто)
-{
-    return ист;
-}
+extern(D) ткст  вТкст (ткст ист, ткст приёмн, бцел* взято=пусто);
+extern(D) шим[] вТкст (шим[] ист, шим[] приёмн, бцел* взято=пусто);
+extern(D) дим[] вТкст (дим[] ист, дим[] приёмн, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -88,72 +79,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
             вывод = результат;
         ---
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-ткст вТкст (шим[] ввод, ткст вывод=пусто, бцел* ate=пусто)
-{
-    if (ate)
-        *ate = ввод.length;
-    else
-    {
-        // potentially reallocate вывод
-        цел estimate = ввод.length * 2 + 3;
-        if (вывод.length < estimate)
-            вывод.length = estimate;
-    }
-
-    сим* pOut = вывод.ptr;
-    сим* pMax = pOut + вывод.length - 3;
-
-    foreach (цел eaten, шим b; ввод)
-    {
-        // about в_ перебор the вывод?
-        if (pOut > pMax)
-        {
-            // if Потокing, just return the неиспользовано ввод
-            if (ate)
-            {
-                *ate = eaten;
-                break;
-            }
-
-            // reallocate the вывод буфер
-            цел длин = pOut - вывод.ptr;
-            вывод.length = длин + длин / 2;
-            pOut = вывод.ptr + длин;
-            pMax = вывод.ptr + вывод.length - 3;
-        }
-
-        if (b < 0x80)
-            *pOut++ = b;
-        else if (b < 0x0800)
-        {
-            pOut[0] = cast(шим)(0xc0 | ((b >> 6) & 0x3f));
-            pOut[1] = cast(шим)(0x80 | (b & 0x3f));
-            pOut += 2;
-        }
-        else if (b < 0xd800 || b > 0xdfff)
-        {
-            pOut[0] = cast(шим)(0xe0 | ((b >> 12) & 0x3f));
-            pOut[1] = cast(шим)(0x80 | ((b >> 6)  & 0x3f));
-            pOut[2] = cast(шим)(0x80 | (b & 0x3f));
-            pOut += 3;
-        }
-        else
-            // deal with surrogate-pairs
-            return вТкст (вТкст32(ввод, пусто, ate), вывод);
-    }
-
-    // return the produced вывод
-    return вывод [0..(pOut - вывод.ptr)];
-}
+extern(D) ткст вТкст (шим[] ввод, ткст вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -167,79 +102,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-шим[] вТкст16 (ткст ввод, шим[] вывод=пусто, бцел* ate=пусто)
-{
-    цел     produced;
-    сим*   pIn = ввод.ptr;
-    сим*   pMax = pIn + ввод.length;
-    сим*   pValid;
-
-    if (ate is пусто)
-        if (ввод.length > вывод.length)
-            вывод.length = ввод.length;
-
-    if (ввод.length)
-        foreach (ref шим d; вывод)
-    {
-        pValid = pIn;
-        шим b = cast(шим) *pIn;
-
-        if (b & 0x80)
-            if (b < 0xe0)
-            {
-                b &= 0x1f;
-                b = cast(шим)((b << 6) | (*++pIn & 0x3f));
-            }
-            else if (b < 0xf0)
-            {
-                b &= 0x0f;
-                b = cast(шим)((b << 6) | (pIn[1] & 0x3f));
-                b = cast(шим)((b << 6) | (pIn[2] & 0x3f));
-                pIn += 2;
-            }
-            else
-                // deal with surrogate-pairs
-                return вТкст16 (вТкст32(ввод, пусто, ate), вывод);
-
-        d = b;
-        ++produced;
-
-        // dопр we читай past the конец of the ввод?
-        if (++pIn >= pMax)
-            if (pIn > pMax)
-            {
-                // yep ~ return хвост or throw ошибка?
-                if (ate)
-                {
-                    pIn = pValid;
-                    --produced;
-                    break;
-                }
-                onUnicodeError ("Unicode.вТкст16 : utf8 ввод неполон", pIn - ввод.ptr);
-            }
-            else
-                break;
-    }
-
-    // do we still have some ввод лево?
-    if (ate)
-        *ate = pIn - ввод.ptr;
-    else if (pIn < pMax)
-        // this should never happen!
-        onUnicodeError ("Unicode.вТкст16 : utf8 перебор", pIn - ввод.ptr);
-
-    // return the produced вывод
-    return вывод [0..produced];
-}
+extern(D) шим[] вТкст16 (ткст ввод, шим[] вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -256,79 +128,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-ткст вТкст (дим[] ввод, ткст вывод=пусто, бцел* ate=пусто)
-{
-    if (ate)
-        *ate = ввод.length;
-    else
-    {
-        // potentially reallocate вывод
-        цел estimate = ввод.length * 2 + 4;
-        if (вывод.length < estimate)
-            вывод.length = estimate;
-    }
-
-    сим* pOut = вывод.ptr;
-    сим* pMax = pOut + вывод.length - 4;
-
-    foreach (цел eaten, дим b; ввод)
-    {
-        // about в_ перебор the вывод?
-        if (pOut > pMax)
-        {
-            // if Потокing, just return the неиспользовано ввод
-            if (ate)
-            {
-                *ate = eaten;
-                break;
-            }
-
-            // reallocate the вывод буфер
-            цел длин = pOut - вывод.ptr;
-            вывод.length = длин + длин / 2;
-            pOut = вывод.ptr + длин;
-            pMax = вывод.ptr + вывод.length - 4;
-        }
-
-        if (b < 0x80)
-            *pOut++ = b;
-        else if (b < 0x0800)
-        {
-            pOut[0] = cast(шим)(0xc0 | ((b >> 6) & 0x3f));
-            pOut[1] = cast(шим)(0x80 | (b & 0x3f));
-            pOut += 2;
-        }
-        else if (b < 0x10000)
-        {
-            pOut[0] = cast(шим)(0xe0 | ((b >> 12) & 0x3f));
-            pOut[1] = cast(шим)(0x80 | ((b >> 6)  & 0x3f));
-            pOut[2] = cast(шим)(0x80 | (b & 0x3f));
-            pOut += 3;
-        }
-        else if (b < 0x110000)
-        {
-            pOut[0] = cast(шим)(0xf0 | ((b >> 18) & 0x3f));
-            pOut[1] = cast(шим)(0x80 | ((b >> 12) & 0x3f));
-            pOut[2] = cast(шим)(0x80 | ((b >> 6)  & 0x3f));
-            pOut[3] = cast(шим)(0x80 | (b & 0x3f));
-            pOut += 4;
-        }
-        else
-            onUnicodeError ("Unicode.вТкст : неправильный дим", eaten);
-    }
-
-    // return the produced вывод
-    return вывод [0..(pOut - вывод.ptr)];
-}
+extern(D) ткст вТкст (дим[] ввод, ткст вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -343,87 +152,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-дим[] вТкст32 (ткст ввод, дим[] вывод=пусто, бцел* ate=пусто)
-{
-    цел     produced;
-    сим*   pIn = ввод.ptr;
-    сим*   pMax = pIn + ввод.length;
-    сим*   pValid;
-
-    if (ate is пусто)
-        if (ввод.length > вывод.length)
-            вывод.length = ввод.length;
-
-    if (ввод.length)
-        foreach (ref дим d; вывод)
-    {
-        pValid = pIn;
-        дим b = cast(дим) *pIn;
-
-        if (b & 0x80)
-            if (b < 0xe0)
-            {
-                b &= 0x1f;
-                b = (b << 6) | (*++pIn & 0x3f);
-            }
-            else if (b < 0xf0)
-            {
-                b &= 0x0f;
-                b = (b << 6) | (pIn[1] & 0x3f);
-                b = (b << 6) | (pIn[2] & 0x3f);
-                pIn += 2;
-            }
-            else
-            {
-                b &= 0x07;
-                b = (b << 6) | (pIn[1] & 0x3f);
-                b = (b << 6) | (pIn[2] & 0x3f);
-                b = (b << 6) | (pIn[3] & 0x3f);
-
-                if (b >= 0x110000)
-                    onUnicodeError ("Unicode.вТкст32 : utf8 ввод ошибочен", pIn - ввод.ptr);
-                pIn += 3;
-            }
-
-        d = b;
-        ++produced;
-
-        // dопр we читай past the конец of the ввод?
-        if (++pIn >= pMax)
-            if (pIn > pMax)
-            {
-                // yep ~ return хвост or throw ошибка?
-                if (ate)
-                {
-                    pIn = pValid;
-                    --produced;
-                    break;
-                }
-                onUnicodeError ("Unicode.вТкст32 : utf8 ввод неполон", pIn - ввод.ptr);
-            }
-            else
-                break;
-    }
-
-    // do we still have some ввод лево?
-    if (ate)
-        *ate = pIn - ввод.ptr;
-    else if (pIn < pMax)
-        // this should never happen!
-        onUnicodeError ("Unicode.вТкст32 : utf8 перебор", pIn - ввод.ptr);
-
-    // return the produced вывод
-    return вывод [0..produced];
-}
+extern(D) дим[] вТкст32 (ткст ввод, дим[] вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -438,63 +176,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто, бцел* ate=пусто)
-{
-    if (ate)
-        *ate = ввод.length;
-    else
-    {
-        цел estimate = ввод.length * 2 + 2;
-        if (вывод.length < estimate)
-            вывод.length = estimate;
-    }
-
-    шим* pOut = вывод.ptr;
-    шим* pMax = pOut + вывод.length - 2;
-
-    foreach (цел eaten, дим b; ввод)
-    {
-        // about в_ перебор the вывод?
-        if (pOut > pMax)
-        {
-            // if Потокing, just return the неиспользовано ввод
-            if (ate)
-            {
-                *ate = eaten;
-                break;
-            }
-
-            // reallocate the вывод буфер
-            цел длин = pOut - вывод.ptr;
-            вывод.length = длин + длин / 2;
-            pOut = вывод.ptr + длин;
-            pMax = вывод.ptr + вывод.length - 2;
-        }
-
-        if (b < 0x10000)
-            *pOut++ = b;
-        else if (b < 0x110000)
-        {
-            pOut[0] = cast(шим)(0xd800 | (((b - 0x10000) >> 10) & 0x3ff));
-            pOut[1] = cast(шим)(0xdc00 | ((b - 0x10000) & 0x3ff));
-            pOut += 2;
-        }
-        else
-            onUnicodeError ("Unicode.вТкст16 : неправильный дим", eaten);
-    }
-
-    // return the produced вывод
-    return вывод [0..(pOut - вывод.ptr)];
-}
+extern(D) шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -508,68 +199,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is предоставленный, it will be установи в_ the число of
+        Where 'взято' is предоставленный, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-дим[] вТкст32 (шим[] ввод, дим[] вывод=пусто, бцел* ate=пусто)
-{
-    цел     produced;
-    шим*  pIn = ввод.ptr;
-    шим*  pMax = pIn + ввод.length;
-    шим*  pValid;
-
-    if (ate is пусто)
-        if (ввод.length > вывод.length)
-            вывод.length = ввод.length;
-
-    if (ввод.length)
-        foreach (ref дим d; вывод)
-    {
-        pValid = pIn;
-        дим b = cast(дим) *pIn;
-
-        // simple conversion ~ see http://www.unicode.org/faq/utf_bom.html#35
-        if (b >= 0xd800 && b <= 0xdfff)
-            b = ((b - 0xd7c0) << 10) + (*++pIn - 0xdc00);
-
-        if (b >= 0x110000)
-            onUnicodeError ("Unicode.вТкст32 :utf16 ввод неверен", pIn - ввод.ptr);
-
-        d = b;
-        ++produced;
-
-        if (++pIn >= pMax)
-            if (pIn > pMax)
-            {
-                // yep ~ return хвост or throw ошибка?
-                if (ate)
-                {
-                    pIn = pValid;
-                    --produced;
-                    break;
-                }
-                onUnicodeError ("Unicode.вТкст32 : utf16 ввод неполон", pIn - ввод.ptr);
-            }
-            else
-                break;
-    }
-
-    // do we still have some ввод лево?
-    if (ate)
-        *ate = pIn - ввод.ptr;
-    else if (pIn < pMax)
-        // this should never happen!
-        onUnicodeError ("Unicode.вТкст32 : utf16 перебор", pIn - ввод.ptr);
-
-    // return the produced вывод
-    return вывод [0..produced];
-}
+extern(D) дим[] вТкст32 (шим[] ввод, дим[] вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -579,11 +218,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-дим раскодируй (ткст ист, ref бцел ate)
-{
-    дим[1] возвр;
-    return вТкст32 (ист, возвр, &ate)[0];
-}
+extern(D) дим раскодируй (ткст ист, ref бцел взято);
 
 /*******************************************************************************
 
@@ -592,11 +227,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-дим раскодируй (шим[] ист, ref бцел ate)
-{
-    дим[1] возвр;
-    return вТкст32 (ист, возвр, &ate)[0];
-}
+extern(D) дим раскодируй (шим[] ист, ref бцел взято);
 
 /*******************************************************************************
 
@@ -605,10 +236,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-ткст кодируй (ткст приёмн, дим c)
-{
-    return вТкст ((&c)[0..1], приёмн);
-}
+extern(D) ткст кодируй (ткст приёмн, дим c);
 
 /*******************************************************************************
 
@@ -617,10 +245,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-шим[] кодируй (шим[] приёмн, дим c)
-{
-    return вТкст16 ((&c)[0..1], приёмн);
-}
+extern(D) шим[] кодируй (шим[] приёмн, дим c);
 
 /*******************************************************************************
 
@@ -628,10 +253,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-бул действителен (дим c)
-{
-    return (c < 0xD800 || (c > 0xDFFF && c <= 0x10FFFF));
-}
+extern(D) бул действителен (дим c);
 
 /*******************************************************************************
 

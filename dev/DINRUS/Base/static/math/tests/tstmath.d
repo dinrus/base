@@ -494,7 +494,7 @@ assert(гаммаНеполнаяКомплИнв(3, 0)==реал.infinity);
     assert(гамма(МАКСГАММА)< реал.infinity);
     assert(гамма(МАКСГАММА*2) == реал.infinity);
 
-    // Test some high-precision значения (50 decimal цифры)
+    // Test some high-precision значения (50 десяток цифры)
     const реал SQRT_PI = 1.77245385090551602729816748334114518279754945612238L;
 
     version(FailsOnLinux) assert(отнравх(гамма(0.5L), SQRT_PI) == реал.mant_dig);

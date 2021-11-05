@@ -22,7 +22,7 @@ private import tpl.array;
  * that it is safe for slots в_ be deleted at any время, even within a slot
  * routine.
  *
- * Example:
+ * Пример:
  * -----------------------------------------------------------------------------
  *
  * class Кнопка

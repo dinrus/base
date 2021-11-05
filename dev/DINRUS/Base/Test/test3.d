@@ -699,7 +699,7 @@ the quick brown fox jumps over the lazy dog\r
 
     т = форматируй(1.67, " %A ", -1.28, плав.nan);
     /* The host C library is used to format floats.
-     * C99 doesn't specify what the hex digit before the decimal point
+     * C99 doesn't specify what the hex digit before the десяток point
      * is for %A.
      */
     version (Posix)

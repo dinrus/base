@@ -59,7 +59,7 @@ template Индекс_у(T, ТСписок...)
 /**
  * Returns a typetuple created from ТСписок with the first occurrence,
  * if any, of T removed.
- * Example:
+ * Пример:
  * ---
  * Вырезать!(дол, цел, дол, double, сим)
  * // is the same as:
@@ -79,7 +79,7 @@ template Вырезать(T, ТСписок...)
 /**
  * Returns a typetuple created from ТСписок with the all occurrences,
  * if any, of T removed.
- * Example:
+ * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел) TL;
  *
@@ -101,7 +101,7 @@ template ВырезатьВсе(T, ТСписок...)
 /**
  * Returns a typetuple created from ТСписок with the all duplicate
  * типы removed.
- * Example:
+ * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел, float) TL;
  *
@@ -121,7 +121,7 @@ template БезДубликатов(ТСписок...)
 /**
  * Returns a typetuple created from ТСписок with the first occurrence
  * of тип T, if found, replaced with тип U.
- * Example:
+ * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел, float) TL;
  *
@@ -143,7 +143,7 @@ template Заменить(T, U, ТСписок...)
 /**
  * Returns a typetuple created from ТСписок with all occurrences
  * of тип T, if found, replaced with тип U.
- * Example:
+ * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел, float) TL;
  *
@@ -164,7 +164,7 @@ template ЗаменитьВсе(T, U, ТСписок...)
 
 /**
  * Returns a typetuple created from ТСписок with the order reversed.
- * Example:
+ * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел, float) TL;
  *
@@ -184,7 +184,7 @@ template Реверсировать(ТСписок...)
 /**
  * Returns the тип from ТСписок that is the most derived from тип T.
  * If none are found, T is returned.
- * Example:
+ * Пример:
  * ---
  * class A { }
  * class B : A { }
@@ -207,7 +207,7 @@ template ПоследнийПроизводный(T, ТСписок...)
 /**
  * Returns the typetuple ТСписок with the типы sorted so that the most
  * derived типы come first.
- * Example:
+ * Пример:
  * ---
  * class A { }
  * class B : A { }

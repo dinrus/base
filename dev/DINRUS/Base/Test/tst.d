@@ -1,5 +1,5 @@
 ﻿import thread, io.device.ThreadPipe;
-import win, stdrus:пауза;
+import stdrus:пауза;
 
 	void tst()
 	{

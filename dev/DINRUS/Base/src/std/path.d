@@ -94,7 +94,7 @@ version (Posix) alias std.string.cmp fcmp;
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -197,7 +197,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -265,7 +265,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -341,7 +341,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -406,7 +406,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * getDrive(r"d:\path\foo.bat") => "d:"
  * -----
@@ -447,7 +447,7 @@ string getDrive(string fullname)
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * defaultExt("foo.txt", "raw") => "foo.txt"
  * defaultExt("foo.", "raw") => "foo.raw"
@@ -487,7 +487,7 @@ string defaultExt(string filename, string ext)
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * addExt("foo.txt", "raw") => "foo.raw"
  * addExt("foo.", "raw") => "foo.raw"
@@ -525,7 +525,7 @@ string addExt(string filename, string ext)
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -581,7 +581,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -747,7 +747,7 @@ unittest
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -810,7 +810,7 @@ int fncharmatch(dchar c1, dchar c2)
  *
  * Throws: Nothing.
  *
- * Examples:
+ * Примеры:
  * -----
  * version(Win32)
  * {
@@ -991,7 +991,7 @@ unittest
  * memory to выполни
  * the database lookup for the <i>~user</i> syntax.
  *
- * Examples:
+ * Примеры:
  * -----
  * import std.path;
  *

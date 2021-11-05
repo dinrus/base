@@ -1,14 +1,6 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2009 Dinrus. Все права защищены
-
-        license:        BSD стиль: see doc/license.txt for details
-
-        version:        Initial release: Sep 2009
-
-        author:         Kai Nacke
-
-        This module реализует the Ripemd160 algorithm by Hans Dobbertin,
+        This module реализует the Райпмд160 algorithm by Hans Dobbertin,
         Antoon Bosselaers и Bart Preneel.
 
         See http://homes.esat.kuleuven.be/~bosselae/rИПemd160.html for ещё
@@ -30,7 +22,7 @@ public  import crypto.digest.Digest;
 
 *******************************************************************************/
 
-final class Ripemd160 : MerkleDamgard
+export class Райпмд160 : МерклеДамгард
 {
     private бцел[5]        контекст;
     private const бцел     padChar = 0x80;
@@ -50,19 +42,19 @@ final class Ripemd160 : MerkleDamgard
 
     /***********************************************************************
 
-    	Construct a Ripemd160
+    	Construct a Райпмд160
 
      ***********************************************************************/
 
-    this() { }
+    export this() { }
 
     /***********************************************************************
 
-    	The размер of a Ripemd160 дайджест is 20 байты
+    	The размер of a Райпмд160 дайджест is 20 байты
 
      ***********************************************************************/
 
-    override бцел размерДайджеста()
+   export  override бцел размерДайджеста()
     {
         return 20;
     }
@@ -77,7 +69,7 @@ final class Ripemd160 : MerkleDamgard
 
      ***********************************************************************/
 
-    override проц сбрось()
+    export override проц сбрось()
     {
         super.сбрось();
         контекст[] = начальное[];
@@ -96,7 +88,7 @@ final class Ripemd160 : MerkleDamgard
 
      ***********************************************************************/
 
-    override проц создайДайджест(ббайт[] буф)
+    export override проц создайДайджест(ббайт[] буф)
     {
         version (БигЭндиан)
         ПерестановкаБайт.своп32 (контекст.ptr, контекст.length * бцел.sizeof);
@@ -114,11 +106,11 @@ final class Ripemd160 : MerkleDamgard
 
     	Примечания:
     	Specifies the размер (in байты) of the блок of данные в_ пароль в_
-    	each вызов в_ трансформируй(). For Ripemd160 the размерБлока is 64.
+    	each вызов в_ трансформируй(). For Райпмд160 the размерБлока is 64.
 
      ***********************************************************************/
 
-    protected override бцел размерБлока()
+    export  override бцел размерБлока()
     {
         return 64;
     }
@@ -133,11 +125,11 @@ final class Ripemd160 : MerkleDamgard
     	Примечания:
     	Specifies the размер (in байты) of the паддинг which uses the
     	length of the данные which имеется been ciphered, this паддинг is
-    	carried out by the падДлин метод. For Ripemd160 the добавьРазмер is 8.
+    	carried out by the падДлин метод. For Райпмд160 the добавьРазмер is 8.
 
      ***********************************************************************/
 
-    protected бцел добавьРазмер()
+    export  бцел добавьРазмер()
     {
         return 8;
     }
@@ -156,7 +148,7 @@ final class Ripemd160 : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц падСооб(ббайт[] at)
+    export  override проц падСооб(ббайт[] at)
     {
         at[0] = padChar;
         at[1..at.length] = 0;
@@ -177,7 +169,7 @@ final class Ripemd160 : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц падДлин(ббайт[] at, бдол length)
+    export  override проц падДлин(ббайт[] at, бдол length)
     {
         length <<= 3;
         littleEndian64((cast(ббайт*)&length)[0..8],cast(бдол[]) at);
@@ -198,7 +190,7 @@ final class Ripemd160 : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц трансформируй(ббайт[] ввод)
+    export  override проц трансформируй(ббайт[] ввод)
     {
         бцел al, bl, cl, dl, el;
         бцел ar, br, вк, dr, er;
@@ -573,7 +565,7 @@ debug(UnitTest)
             "12345678901234567890123456789012345678901234567890123456789012345678901234567890"
         ];
 
-        static ткст[] результатs =
+        static ткст[] результаты =
         [
             "9c1185a5c5e9fc54612808977ee8f548b2258d31",
             "0bdc9d2d256b3ee9daae347be6f4dc835a467ffe",
@@ -585,14 +577,14 @@ debug(UnitTest)
             "9b752e45573d4b39f4dbd3323cab82bf63326bfb"
         ];
 
-        Ripemd160 h = new Ripemd160();
+        Райпмд160 h = new Райпмд160();
 
         foreach (цел i, ткст s; strings)
         {
             h.обнови(cast(ббайт[]) s);
             ткст d = h.гексДайджест;
 
-            assert(d == результатs[i],":("~s~")("~d~")!=("~результатs[i]~")");
+            assert(d == результаты[i],":("~s~")("~d~")!=("~результаты[i]~")");
         }
 
 

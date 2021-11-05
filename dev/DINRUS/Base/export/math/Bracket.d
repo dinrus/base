@@ -139,13 +139,13 @@ body
     }
 
     /* Uses 'numsteps' newton steps в_ approximate the zero in [a..b] of the
-       quadratic polynomial interpolating f(x) at a, b, и d.
+       quadratic полиномиал interpolating f(x) at a, b, и d.
        Возвращает:
-         The approximate zero in [a..b] of the quadratic polynomial.
+         The approximate zero in [a..b] of the quadratic полиномиал.
     */
     T newtonQuadratic(цел numsteps)
     {
-        // Find the coefficients of the quadratic polynomial.
+        // Find the coefficients of the quadratic полиномиал.
         T a0 = fa;
         T a1 = (fb - fa)/(b - a);
         T a2 = ((fd - fb)/(d - b) - a1)/(d - a);

@@ -3,28 +3,21 @@
 private import col.impl.Cell;
 
 /**
- *
- *
- * CLCells are cells that are always arranged in circular списки
- * They are  implementation tools
- *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
+ * ЯчейкиЦС - это ячейки, которые всегда организованы в виде циркулярных списков
+ * и служат инструментами для реализации.
 **/
 
 public class ЯчейкаЦС(T) : Ячейка!(T)
 {
-    // экземпляр variables
+    // Переменные экземпляра
 
     private ЯчейкаЦС следщ_;
     private ЯчейкаЦС предш_;
 
-    // constructors
+    // Конструкторы
 
     /**
-     * Make a ячейка with contents знач, previous ячейка p, следщ ячейка n
+     *Создать ячейку с содержимым знач, предыдущей ячейкой p и следующей ячейкой n.
     **/
 
     public this (T знач, ЯчейкаЦС p, ЯчейкаЦС n)
@@ -35,7 +28,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * Make a singular ячейка
+     * Создать единичную ячейку.
     **/
 
     public this (T знач)
@@ -46,7 +39,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * Make a singular ячейка with пусто contents
+     * Создать единичную ячейку с пустым содержимым.
     **/
 
     public this ()
@@ -57,7 +50,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * return следщ ячейка
+     * Вернуть следующую ячейку.
     **/
 
     public final ЯчейкаЦС следщ()
@@ -66,7 +59,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * Набор следщ ячейка. You probably don't want в_ вызов this
+     * Установить следующую ячейку. Возможно, вызывать this не потребуется.
     **/
 
     public final проц следщ(ЯчейкаЦС n)

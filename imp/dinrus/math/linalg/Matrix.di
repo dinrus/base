@@ -42,7 +42,7 @@ struct Матрица(Т, цел M, цел N)
     }
 
     /** This contstructor takes M*N elements listed in ряд-major order.
-     *  Example:
+     *  Пример:
      *      auto M = Матрица!(плав,2,3)( a00, a01, a02
      *                                    a10, a11, a12 );
      */
@@ -50,7 +50,7 @@ struct Матрица(Т, цел M, цел N)
 
 
     /** This constructor takes an array of M*N elements listed in ряд-major order:
-     *  Example:
+     *  Пример:
      *      auto M = Матрица!(плав,2,3)([ a00, a01, a02
      *                                     a10, a11, a12 ]);
      */
@@ -73,7 +73,7 @@ struct Матрица(Т, цел M, цел N)
 
 
     /** This constructor takes an array of M*N elements listed in ряд-major order:
-     *  Example:
+     *  Пример:
      *      auto M = Матрица!(плав,2,3)([ a00, a01, a02
      *                                     a10, a11, a12 ]);
      */
@@ -82,7 +82,7 @@ struct Матрица(Т, цел M, цел N)
     }
 
     /** This constructor takes an array of M*N elements listed in column-major order:
-     *  Example:
+     *  Пример:
      *      auto M = Матрица!(плав,2,3)([ a00, a10,
      *                                     a01, a11,
      *                                     a02, a12 ]);

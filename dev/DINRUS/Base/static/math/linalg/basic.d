@@ -84,7 +84,7 @@ However the cost of such possibility is little calculation overhead.
     // равны to y. If negative, x и y have different exponents.
     // If positive, x и y are равны to 'bitsdiff' биты.
     // AND with 0x7FFF to form the absolute value.
-    // To avoid out-by-1 errors, we subtract 1 so it rounds down
+    // To avoid out-by-1 errors, we subtract 1 so it круги down
     // if the exponents were different. This means 'bitsdiff' is
     // always 1 lower than we want, except that if bitsdiff==0,
     // they could have 0 or 1 биты in common.

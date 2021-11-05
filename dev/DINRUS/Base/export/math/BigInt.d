@@ -20,7 +20,7 @@ private import math.internal.BiguintCore;
  * allocation. (But note that for most bigint operations, куча allocation is
  * inevitable anyway).
  *
- * Performance is excellent for numbers below ~1000 decimal цифры.
+ * Performance is excellent for numbers below ~1000 десяток цифры.
  * For X86 machines, highly optimised assembly routines are использован.
  */
 struct БольшЦел
@@ -29,8 +29,8 @@ private:
     БольшБцел данные;     // БольшЦел добавьs signed arithmetic в_ БольшБцел.
     бул знак = нет;
 public:
-    /// Construct a БольшЦел из_ a decimal or hexadecimal ткст.
-    /// The число must be in the form of a D decimal or hex literal:
+    /// Construct a БольшЦел из_ a десяток or hexadecimal ткст.
+    /// The число must be in the form of a D десяток or hex literal:
     /// It may have a leading + or - знак; followed by "0x" if hexadecimal.
     /// Underscores are permitted.
     /// BUG: Should throw a ИсклНелегальногоАргумента/ConvError if не_годится character найдено

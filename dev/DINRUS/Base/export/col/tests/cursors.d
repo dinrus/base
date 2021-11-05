@@ -2,7 +2,7 @@
  * Copyright (C) 2008 by Steven Schveighoffer
  * all rights reserved.
  *
- * Examples of how cursors can be used.
+ * Примеры of how cursors can be used.
  *
  * Currently only implemented for Tango.
  */

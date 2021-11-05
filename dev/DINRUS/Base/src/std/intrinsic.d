@@ -38,7 +38,7 @@ int bsf(uint v);
  * Returns:
  *	The bit number of the first bit set.
  *	The return value is undefined if v is zero.
- * Example:
+ * Пример:
  * ---
  * import std.io;
  * import std.intrinsic;
@@ -90,7 +90,7 @@ p[index / (uint.sizeof*8)] & (1 << (index & ((uint.sizeof*8) - 1)))
  * 	A non-zero value if the bit was set, and a zero
  *	if it was clear.
  *
- * Example: 
+ * Пример: 
  * ---
 import std.io;
 import std.intrinsic;

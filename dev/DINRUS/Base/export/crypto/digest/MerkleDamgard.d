@@ -9,7 +9,7 @@ public  import crypto.digest.Digest;
 
 /*******************************************************************************
 
-        Extending MerkleDamgard в_ создай a custom хэш function требует
+        Extending МерклеДамгард в_ создай a custom хэш function требует
         the implementation of a число of abstract methods. These include:
         ---
         public бцел размерДайджеста();
@@ -30,7 +30,7 @@ public  import crypto.digest.Digest;
         ---
 
         The метод падДлин() is требуется в_ implement the SHA series of
-        Хэш functions и also the Tiger algorithm. Метод расширь() is
+        Хэш functions и also the Тигр algorithm. Метод расширь() is
         требуется only в_ implement the MD2 дайджест.
 
         The basic sequence of internal события is as follows:
@@ -46,7 +46,7 @@ public  import crypto.digest.Digest;
 
 *******************************************************************************/
 
-package class MerkleDamgard : Дайджест
+extern(D) package class МерклеДамгард : Дайджест
 {
     private бцел    байты;
     private ббайт[] буфер;
@@ -197,7 +197,7 @@ package class MerkleDamgard : Дайджест
 
     ***********************************************************************/
 
-    MerkleDamgard обнови (проц[] ввод);
+    МерклеДамгард обнови (проц[] ввод);
 
     /***********************************************************************
 

@@ -3119,7 +3119,7 @@ unittest
  *	modifiers = a string of modifier characters
  * Modifiers:
 		<table border=1 cellspacing=0 cellpadding=5>
-		<tr> <th>Modifier <th>Description
+		<tr> <th>Modifier <th>Описание
 		<tr> <td><b>c</b> <td>Complement the list of characters in from[]
 		<tr> <td><b>d</b> <td>Removes matching characters with no corresponding replacement in to[]
 		<tr> <td><b>s</b> <td>Removes adjacent duplicates in the replaced characters
@@ -3317,16 +3317,16 @@ unittest
  * Floating-Point Number:
  * (for float, double, real, ifloat, idouble, and ireal)
  * ['+'|'-']digit(s)[.][digit(s)][[e-|e+]digit(s)][i|f|L|Li|fi]]
- *      or [nan|nani|inf|-inf]
+ *      or [нч|nani|inf|-inf]
  *
  * examples: +123., -123.01, 123.3e-10f, 123.3e-10fi, 123.3e-10L
  * 
  * (for cfloat, cdouble, and creal)
  * ['+'|'-']digit(s)[.][digit(s)][[e-|e+]digit(s)][+]
  *         [digit(s)[.][digit(s)][[e-|e+]digit(s)][i|f|L|Li|fi]]
- *      or [nan|nani|nan+nani|inf|-inf]
+ *      or [нч|nani|nan+nani|inf|-inf]
  *
- * examples: nan, -123e-1+456.9e-10Li, +123e+10+456i, 123+456
+ * examples: нч, -123e-1+456.9e-10Li, +123e+10+456i, 123+456
  *
  * [in] bool bAllowSep 
  * False by default, but when set to true it will accept the 
@@ -3413,10 +3413,10 @@ final bool числовой_ли(in char[] s, in bool bAllowSep = false)
                 // Ending in "E", return not a number
                 return false;        
         }  
-        // Allow only one decimal point per number to be used
+        // Allow only one десяток point per number to be used
         else if (c == '.' )
         {
-            // A 2nd decimal point found, return not a number
+            // A 2nd десяток point found, return not a number
             if (bDecimalPoint)
                 return false;
             
@@ -3776,7 +3776,7 @@ unittest
  * in one of a known set of strings, and the program will helpfully
  * autocomplete the string once sufficient characters have been
  * entered that uniquely identify it.
- * Example:
+ * Пример:
  * ---
  * import std.io;
  * import std.string;

@@ -14,7 +14,7 @@ module text.locale.Posix;
 
 version (Posix)
 {
-    alias text.locale.Posix nativeMethods;
+    alias text.locale.Posix нативныеМетоды;
 
     private import exception;
     private import text.locale.Data;
@@ -53,30 +53,30 @@ version (Posix)
         {
             s="en-US";
         }
-        foreach (Запись; ДанныеОКультуре.cultureDataTable)
+        foreach (Запись; ДанныеОКультуре.таблицаДанныхКультуры)
         {
             // todo: there is also a local сравниСтроку defined. Is it correct that here
             // we use text.locale.Data, which совпадает the сигнатура?
             if (text.locale.Data.сравниСтроку(Запись.имя, s) == 0)
-                return Запись.lcid;
+                return Запись.лкид;
         }
 
-        foreach (Запись; ДанныеОКультуре.cultureDataTable)
+        foreach (Запись; ДанныеОКультуре.таблицаДанныхКультуры)
         {
             // todo: there is also a local сравниСтроку defined. Is it correct that here
             // we use text.locale.Data, which совпадает the сигнатура?
             if (text.locale.Data.сравниСтроку(Запись.имя, "en-US") == 0)
-                return Запись.lcid;
+                return Запись.лкид;
         }
         return 0;
     }
 
-    проц установиКультуруПользователя(цел lcid)
+    проц установиКультуруПользователя(цел лкид)
     {
         ткст имя;
         try
         {
-            имя = ДанныеОКультуре.дайДанныеИзИДКультуры(lcid).имя ~ ".utf-8";
+            имя = ДанныеОКультуре.дайДанныеИзИДКультуры(лкид).имя ~ ".utf-8";
         }
         catch(Исключение e)
         {
@@ -109,7 +109,7 @@ version (Posix)
         setlocale(LC_IDENTIFICATION, имя.ptr);
     }
 
-    цел сравниСтроку(цел lcid, ткст stringA, бцел offsetA, бцел lengthA, ткст stringB, бцел offsetB, бцел lengthB, бул ignoreCase)
+    цел сравниСтроку(цел лкид, ткст ткстА, бцел смещениеА, бцел длинаА, ткст ткстБ, бцел смещениеБ, бцел длинаБ, бул ignoreCase)
     {
 
         проц strToLower(ткст ткст)
@@ -124,7 +124,7 @@ version (Posix)
         ткст локаль;
         try
         {
-            локаль = ДанныеОКультуре.дайДанныеИзИДКультуры(lcid).имя ~ ".utf-8";
+            локаль = ДанныеОКультуре.дайДанныеИзИДКультуры(лкид).имя ~ ".utf-8";
         }
         catch(Исключение e)
         {
@@ -134,15 +134,15 @@ version (Posix)
         setlocale(LC_COLLATE, локаль.ptr);
         setlocale(LC_CTYPE, локаль.ptr);
 
-        ткст s1 = stringA[offsetA..offsetA+lengthA].dup,
-                 s2 = stringB[offsetB..offsetB+lengthB].dup;
+        ткст s1 = ткстА[смещениеА..смещениеА+длинаА].dup,
+                 s2 = ткстБ[смещениеБ..смещениеБ+длинаБ].dup;
         if(ignoreCase)
         {
             strToLower(s1);
             strToLower(s2);
         }
 
-        цел возвр = strcoll(s1[offsetA..offsetA+lengthA].ptr, s2[offsetB..offsetB+lengthB].ptr);
+        цел возвр = strcoll(s1[смещениеА..смещениеА+длинаА].ptr, s2[смещениеБ..смещениеБ+длинаБ].ptr);
 
         setlocale(LC_COLLATE, tempCol);
         setlocale(LC_CTYPE, tempCType);

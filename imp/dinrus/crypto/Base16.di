@@ -51,7 +51,7 @@ extern(D):
     данные = что is в_ be кодирован
     buff = буфер large enough в_ hold кодирован данные
 
-    Example:
+    Пример:
     ---
     сим[512] encodebuf;
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?", encodebuf);
@@ -69,7 +69,7 @@ extern(D):
     Параметры:
     данные = что is в_ be кодирован
 
-    Example:
+    Пример:
     ---
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?");
     Стдвыв(myEncodedString).нс; // 48656C6C6F2C20686F772061726520796F7520746F6461793F
@@ -94,7 +94,7 @@ extern(D):
     Параметры:
     данные = что is в_ be decoded
 
-    Example:
+    Пример:
     ---
     ткст myDecodedString = cast(ткст)раскодируй("48656C6C6F2C20686F772061726520796F7520746F6461793F");
     Стдвыв(myDecodeString).нс; // Hello, как are you today?
@@ -118,7 +118,7 @@ extern(D):
     данные = что is в_ be decoded
     buff = a big enough Массив в_ hold the decoded данные
 
-    Example:
+    Пример:
     ---
     ббайт[512] decodebuf;
     ткст myDecodedString = cast(ткст)раскодируй("48656C6C6F2C20686F772061726520796F7520746F6461793F", decodebuf);

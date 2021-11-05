@@ -1,4 +1,4 @@
-﻿import cidrus, gc, runtime, stdrus, win, thread;
+﻿import cidrus, gc, runtime, stdrus, thread;
 
 pragma(lib,"dinrus.lib");
 

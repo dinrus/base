@@ -1,4 +1,4 @@
-﻿import sys.registry,win;
+﻿import sys.registry;
 void main()
 {
     Ключ HKCR    =   Реестр.кореньКлассов;

@@ -19,18 +19,18 @@ private import text.convert.Layout;
         Конструирует вывод в стиле sprintf. Является заменой
         семейству функций vsprintf(),вывод записывается в отдельный буфер:
         ---
-        // создать экземпляр Sprint
-        auto sprint = new Sprint!(сим);
+        // создать экземпляр Тпечать
+        auto sprint = new Тпечать!(сим);
 
         // записать форматированный вывод в логгер
         лог.инфо (sprint ("{} green bottles, sitting on a wall\n", 10));
         ---
 
-        Sprint удобен, когда требуется форматировать вывод для Логгера
+        Тпечать удобен, когда требуется форматировать вывод для Логгера
         или в подобной ситуации, т.к. при преобразовании используется
 		не куча, а буфер преобразования фиксированного размера.
 		Это важно при отладке, так как из-за использования кучи могут
-		изменяться поведенческие моменты. Экземпляр Sprint можно создать
+		изменяться поведенческие моменты. Экземпляр Тпечать можно создать
 		заблаговременно, и использовать его в связке с пакетом логгинга.
 
         Please note that the class itself is stateful, и therefore a
@@ -38,8 +38,8 @@ private import text.convert.Layout;
         returned контент is not .dup'd either, so do that yourself if
         you require a persistent копируй.
 
-        Note also that Sprint is templated, и can be instantiated for
-        wide симвы through a Sprint!(дим) or Sprint!(шим). The wide
+        Note also that Тпечать is templated, и can be instantiated for
+        wide симвы through a Тпечать!(дим) or Тпечать!(шим). The wide
         versions differ in that Всё the вывод и the форматируй-ткст
         are of the мишень тип. Variadic текст аргументы are transcoded
         appropriately.
@@ -48,7 +48,7 @@ private import text.convert.Layout;
 
 ******************************************************************************/
 
-class Sprint(T)
+class Тпечать(T)
 {
     protected T[]           буфер;
     Выкладка!(T)              выкладка;
@@ -57,7 +57,7 @@ class Sprint(T)
 
     /**********************************************************************
 
-            Созд new Sprint экземпляры with a буфер of the specified
+            Созд new Тпечать экземпляры with a буфер of the specified
             размер
 
             Deprecated - use Стдвыв.выкладка.sprint() instead
@@ -71,9 +71,9 @@ class Sprint(T)
 
     /**********************************************************************
 
-            Созд new Sprint экземпляры with a буфер of the specified
+            Созд new Тпечать экземпляры with a буфер of the specified
             размер, и the provопрed форматёр. The секунда аргумент can be
-            использован в_ apply cultural specifics (I18N) в_ Sprint
+            использован в_ apply cultural specifics (I18N) в_ Тпечать
 
     **********************************************************************/
 

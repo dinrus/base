@@ -1832,7 +1832,7 @@ debug(UnitTest)
         // equal в_ y. If негатив, x и y have different exponents.
         // If positive, x и y are equal в_ 'bitsdiff' биты.
         // AND with 0x7FFF в_ form the абсолютный значение.
-        // To avoопр out-by-1 ошибки, we вычти 1 so it rounds down
+        // To avoопр out-by-1 ошибки, we вычти 1 so it круги down
         // if the exponents were different. This means 'bitsdiff' is
         // always 1 lower than we want, except that if bitsdiff==0,
         // they could have 0 or 1 биты in common.

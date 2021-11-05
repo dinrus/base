@@ -71,7 +71,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.содержит
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
@@ -83,7 +83,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.экземпляры
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
@@ -95,7 +95,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.элементы
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
@@ -105,7 +105,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.View.Обзор.opApply
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.model.View.Обзор.opApply
         **/
         цел opApply (цел delegate (inout T значение) дг)
@@ -119,7 +119,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.голова.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.model.Seq.Сек.голова
         **/
         public final T голова()
@@ -129,7 +129,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.хвост.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.model.Seq.Сек.хвост
         **/
         public final T хвост()
@@ -139,7 +139,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.получи.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.model.Seq.Сек.получи
         **/
         public final T получи(цел индекс)
@@ -149,7 +149,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.первый.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.model.Seq.Сек.первый
         **/
         public final цел первый(T элемент, цел стартовыйИндекс = 0)
@@ -176,7 +176,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.последний.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.model.Seq.Сек.последний
         **/
         public final цел последний(T элемент, цел стартовыйИндекс = 0)
@@ -210,7 +210,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.model.Seq.Сек.subseq.
-         * Время complexity: O(length).
+         * Временная ёмкость: O(length).
          * See_Also: col.model.Seq.Сек.subseq
         **/
         public final ЦиркулярСек поднабор (цел из_, цел длина)
@@ -241,7 +241,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.очисть.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
@@ -252,7 +252,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.exclude.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе (T элемент)
@@ -262,7 +262,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.removeOneOf.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.removeOneOf
         **/
         public final проц удали (T элемент)
@@ -272,7 +272,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.replaceOneOf
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.replaceOneOf
         **/
         public final проц замени (T старЭлемент, T новЭлемент)
@@ -282,7 +282,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.replaceAllOf.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.replaceAllOf
         **/
         public final проц замениВсе (T старЭлемент, T новЭлемент)
@@ -293,7 +293,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.Collection.Коллекция.возьми.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * takes the последний элемент on the список.
          * See_Also: col.impl.Collection.Коллекция.возьми
         **/
@@ -310,7 +310,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(T элемент)
@@ -325,7 +325,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.замениГолову.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.замениГолову
         **/
         public final проц замениГолову(T элемент)
@@ -337,7 +337,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.удалиГолову.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиГолову
         **/
         public final проц удалиГолову()
@@ -355,7 +355,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(T элемент)
@@ -372,7 +372,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.замениХвост.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.замениХвост
         **/
         public final проц замениХвост(T элемент)
@@ -385,7 +385,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.удалиХвост.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиХвост
         **/
         public final проц удалиХвост()
@@ -400,7 +400,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, T элемент)
@@ -417,7 +417,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.замениПо.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.замениПо
         **/
         public final проц замениПо(цел индекс, T элемент)
@@ -429,7 +429,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.удалиПо.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиПо
         **/
         public final проц удалиПо(цел индекс)
@@ -445,7 +445,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
-         * Время complexity: O(число of элементы in e).
+         * Временная ёмкость: O(число of элементы in e).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(Обходчик!(T) e)
@@ -487,7 +487,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
-         * Время complexity: O(число of элементы in e).
+         * Временная ёмкость: O(число of элементы in e).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(Обходчик!(T) e)
@@ -510,7 +510,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
-         * Время complexity: O(размер() + число of элементы in e).
+         * Временная ёмкость: O(размер() + число of элементы in e).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, Обходчик!(T) e)
@@ -534,7 +534,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /**
          * Implements col.impl.SeqCollection.КоллекцияСек.removeFromTo.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.SeqCollection.КоллекцияСек.removeFromTo
         **/
         public final проц удалиДиапазон (цел отИндекса, цел доИндекса)

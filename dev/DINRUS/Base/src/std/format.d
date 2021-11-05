@@ -298,13 +298,13 @@ $(I FormatChar):
 	    <dt> For $(B 'x') ($(B 'X')):
 	    <dd> If non-zero, prefix результат with $(B 0x) ($(B 0X)).
 	    <dt> For floating point formatting:
-	    <dd> Always insert the decimal point.
+	    <dd> Always insert the десяток point.
 	    <dt> For $(B 'g') ($(B 'G')):
 	    <dd> Do not elide trailing zeros.
 	</dl>
 
 	<dt>$(B '0')
-	<dd> For integer and floating point formatting when not nan or
+	<dd> For integer and floating point formatting when not нч or
 	infinity, use leading zeros
 	to пад rather than spaces.
 	Ignore if there's a $(I Precision).
@@ -362,7 +362,7 @@ $(I FormatChar):
 	a signed string of characters, otherwise it is treated as
 	unsigned. An argument of type $(B bool) is formatted as '1'
 	or '0'. The base used is binary for $(B b), octal for $(B o),
-	decimal
+	десяток
 	for $(B d), and hexadecimal for $(B x) or $(B X).
 	$(B x) formats using lower case letters, $(B X) uppercase.
 	If there are fewer resulting digits than the $(I Precision),
@@ -372,18 +372,18 @@ $(I FormatChar):
 
 	<dt>$(B 'e','E')
 	<dd> A floating point number is formatted as one digit before
-	the decimal point, $(I Precision) digits после, the $(I FormatChar),
+	the десяток point, $(I Precision) digits после, the $(I FormatChar),
 	&plusmn;, followed by at least a two digit exponent: $(I d.dddddd)e$(I &plusmn;dd).
 	If there is no $(I Precision), six
-	digits are generated после the decimal point.
-	If the $(I Precision) is 0, no decimal point is generated.
+	digits are generated после the десяток point.
+	If the $(I Precision) is 0, no десяток point is generated.
 
 	<dt>$(B 'f','F')
-	<dd> A floating point number is formatted in decimal notation.
+	<dd> A floating point number is formatted in десяток notation.
 	The $(I Precision) specifies the number of digits generated
-	после the decimal point. It defaults to six. At least one digit
-	is generated before the decimal point. If the $(I Precision)
-	is zero, no decimal point is generated.
+	после the десяток point. It defaults to six. At least one digit
+	is generated before the десяток point. If the $(I Precision)
+	is zero, no десяток point is generated.
 
 	<dt>$(B 'g','G')
 	<dd> A floating point number is formatted in either $(B e) or
@@ -393,33 +393,33 @@ $(I FormatChar):
 	is greater than -5 and less than the $(I Precision).
 	The $(I Precision) specifies the number of significant
 	digits, and defaults to six.
-	Trailing zeros are elided после the decimal point, if the fractional
-	part is zero then no decimal point is generated.
+	Trailing zeros are elided после the десяток point, if the fractional
+	part is zero then no десяток point is generated.
 
 	<dt>$(B 'a','A')
 	<dd> A floating point number is formatted in hexadecimal
 	exponential notation 0x$(I h.hhhhhh)p$(I &plusmn;d).
-	There is one hexadecimal digit before the decimal point, and as
+	There is one hexadecimal digit before the десяток point, and as
 	many после as specified by the $(I Precision).
-	If the $(I Precision) is zero, no decimal point is generated.
+	If the $(I Precision) is zero, no десяток point is generated.
 	If there is no $(I Precision), as many hexadecimal digits as
 	necessary to exactly represent the mantissa are generated.
 	The exponent is written in as few digits as possible,
-	but at least one, is in decimal, and represents a power of 2 as in
+	but at least one, is in десяток, and represents a power of 2 as in
 	$(I h.hhhhhh)*2<sup>$(I &plusmn;d)</sup>.
 	The exponent for zero is zero.
 	The hexadecimal digits, x and p are in upper case if the
 	$(I FormatChar) is upper case.
     </dl>
 
-    Floating point NaN's are formatted as $(B nan) if the
+    Floating point NaN's are formatted as $(B нч) if the
     $(I FormatChar) is lower case, or $(B NAN) if upper.
     Floating point infinities are formatted as $(B inf) or
     $(B infinity) if the
     $(I FormatChar) is lower case, or $(B INF) or $(B INFINITY) if upper.
     </dl>
 
-Example:
+Пример:
 
 -------------------------
 import cidrus;
@@ -1131,9 +1131,9 @@ void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list argptr)
 	    {	dchar c = fmt[i++];
 
 		dchar getFmtChar()
-		{   // Valid format specifier characters will never be UTF
+		{   // Valid format определитель characters will never be UTF
 		    if (i == fmt.length)
-			throw new ОшФормата("invalid specifier");
+			throw new ОшФормата("invalid определитель");
 		    return fmt[i++];
 		}
 
@@ -1278,7 +1278,7 @@ unittest
 
     s = std.string.format(1.67, " %A ", -1.28, float.nan);
     /* The host C library is used to format floats.
-     * C99 doesn't specify what the hex digit before the decimal point
+     * C99 doesn't specify what the hex digit before the десяток point
      * is for %A.
      */
     version (Posix)

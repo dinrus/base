@@ -1,11 +1,7 @@
 ﻿/** 
  * Предоставляет рантаймные трэты, представляющие большую часть функционала Traits и
- * is-Выражениеs, а также некоторый функционал, доступный только в рантайм, использующий 
+ * is-Выражений, а также некоторый функционал, доступный только в рантайм, использующий 
  * рантаймную информацио о типах. 
- * 
- * Authors: Chris Wright (dhasenan) <dhasenan@gmail.com>
- * License: DinrusTango.lib license, apache 2.0
- * Copyright (c) 2009, CHRISTOPHER WRIGHT
  */
 module runtimetraits;
 
@@ -47,7 +43,7 @@ extern(D):
 /** Возвращает все the interfaces that this тип directly реализует, включая
  * inherited interfaces. This is an expensive operation.
  * 
- * Examples:
+ * Примеры:
  * ---
  * interface I1 {}
  * interface I2 : I1 {}
@@ -214,7 +210,7 @@ debug (UnitTest)
     }
 
     unittest {
-        // Struct-related stuff.
+        // Структура-related stuff.
         auto тип = typeid(S1);
         assert (структ_ли (тип));
         assert (типЗначение_ли (тип));

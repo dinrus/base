@@ -51,10 +51,8 @@
 
 module util.Demangler;
 
-import tpl.traits:
-ctfe_i2a;
-import cidrus:
-memmove,memcpy;
+import tpl.traits: ctfe_i2a;
+import cidrus: memmove,memcpy;
 
 debug(traceDemangler) import io.Stdout;
 

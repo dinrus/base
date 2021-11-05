@@ -1,18 +1,11 @@
-﻿/**
- * Copyright: Copyright (C) Thomas Dixon 2008. Все права защищены.
- * License:   BSD стиль: $(LICENSE)
- * Authors:   Thomas Dixon
- */
+﻿module crypto.cipher.Cipher;
 
-module crypto.cipher.Cipher;
-
-private import exception :
-ИсклНелегальногоАргумента;
+private import exception: ИсклНелегальногоАргумента;
 
 //alias ткст ткст;
 
 /** База symmetric cipher class */
-abstract class Шифр
+export abstract class Шифр
 {
     interface Параметры {}
 
@@ -46,13 +39,13 @@ abstract class Шифр
      * Параметры:
      *     сооб = сообщение в_ associate with the исключение
      */
-    static проц не_годится (ткст сооб)
+    export static проц не_годится (ткст сооб)
     {
         throw new ИсклНелегальногоАргумента (сооб);
     }
 
     /** Возвращает: Whether or not the cipher имеется been инициализован. */
-    final бул инициализован()
+    export бул инициализован()
     {
         return _инициализован;
     }
@@ -75,9 +68,9 @@ abstract class ШифрПоток : Шифр
      * Процесс one байт of ввод.
      *
      * Параметры:
-     *     ввод = Byte в_ XOR with keyПоток.
+     *     ввод = Byte в_ XOR with ключПоток.
      *
-     * Возвращает: One байт of ввод XORed with the keyПоток.
+     * Возвращает: One байт of ввод XORed with the ключПоток.
      */
     abstract ббайт верниБбайт(ббайт ввод);
 }
@@ -124,7 +117,7 @@ class СимметричныйКлюч : Шифр.Параметры
      * Параметры:
      *     ключ = Key в_ be held.
      */
-    this(проц[] ключ=пусто)
+   export this(проц[] ключ=пусто)
     {
         _ключ = cast(ббайт[]) ключ;
     }
@@ -132,14 +125,14 @@ class СимметричныйКлюч : Шифр.Параметры
     /** Play nice with D2's опрea of const. */
     version (D_Version2)
     {
-        this (ткст ключ)
+       export this (ткст ключ)
         {
             this(cast(ббайт[])ключ);
         }
     }
 
     /** Возвращает: Key  held by this объект. */
-    ббайт[] ключ()
+  export  ббайт[] ключ()
     {
         return _ключ;
     }
@@ -151,7 +144,7 @@ class СимметричныйКлюч : Шифр.Параметры
      *     новКлюч = Нов ключ в_ be held.
      * Возвращает: The new ключ.
      */
-    ббайт[] ключ(проц[] новКлюч)
+    export ббайт[] ключ(проц[] новКлюч)
     {
         return _ключ = cast(ббайт[]) новКлюч;
     }
@@ -169,14 +162,14 @@ class ПараметрыIV : Шифр.Параметры
      *     парамы = Параметры в_ wrap.
      *     iv     = IV в_ be held.
      */
-    this (Шифр.Параметры парамы=пусто, проц[] iv=пусто)
+   export this (Шифр.Параметры парамы=пусто, проц[] iv=пусто)
     {
         _парамы = парамы;
         _iv = cast(ббайт[]) iv;
     }
 
     /** Возвращает: The IV. */
-    ббайт[] iv()
+   export ббайт[] iv()
     {
         return _iv;
     }
@@ -188,13 +181,13 @@ class ПараметрыIV : Шифр.Параметры
      *     newIV = The new IV for this parameter объект.
      * Возвращает: The new IV.
      */
-    ббайт[] iv(проц[] newIV)
+   export ббайт[] iv(проц[] newIV)
     {
         return _iv = cast(ббайт[]) newIV;
     }
 
     /** Возвращает: The параметры for this объект. */
-    Шифр.Параметры параметры()
+   export Шифр.Параметры параметры()
     {
         return _парамы;
     }
@@ -206,45 +199,45 @@ class ПараметрыIV : Шифр.Параметры
      *     newParams = The new параметры в_ be held.
      * Возвращает: The new параметры.
      */
-    Шифр.Параметры параметры(Шифр.Параметры newParams)
+   export Шифр.Параметры параметры(Шифр.Параметры newParams)
     {
         return _парамы = newParams;
     }
 }
 
 
-struct Побитно
+export struct Побитно
 {
-    static бцел вращайВлево(бцел x, бцел y)
+   export static бцел вращайВлево(бцел x, бцел y)
     {
         return (x << y) | (x >> (32u-y));
     }
 
-    static бцел вращайВправо(бцел x, бцел y)
+   export static бцел вращайВправо(бцел x, бцел y)
     {
         return (x >> y) | (x << (32u-y));
     }
 
-    static бдол вращайВлево(бдол x, бцел y)
+    export static бдол вращайВлево(бдол x, бцел y)
     {
         return (x << y) | (x >> (64u-y));
     }
 
-    static бдол вращайВправо(бдол x, бцел y)
+   export static бдол вращайВправо(бдол x, бцел y)
     {
         return (x >> y) | (x << (64u-y));
     }
 }
 
 
-/** Converts between integral типы и unsigned байт массивы */
-struct БайтКонвертер
+/** Преобразует между интегральными типами и массивами беззначных байт */
+export struct БайтКонвертер
 {
-    private static ткст hexits = "0123456789abcdef";
-    private static ткст base32digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    private static ткст гекситы = "0123456789abcdef";
+    private static ткст цифрыБазы32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
     /** Conversions between little эндиан integrals и байты */
-    struct ЛитлЭндиан
+   struct ЛитлЭндиан
     {
         /**
          * Converts the supplied Массив в_ integral тип T
@@ -380,7 +373,7 @@ struct БайтКонвертер
         }
     }
 
-    static ткст кодируйГекс(проц[] ввод_)
+   export static ткст кодируйГекс(проц[] ввод_)
     {
         ббайт[] ввод = cast(ббайт[])ввод_;
         ткст вывод = new сим[ввод.length<<1];
@@ -388,14 +381,14 @@ struct БайтКонвертер
         цел i = 0;
         foreach (ббайт j; ввод)
         {
-            вывод[i++] = hexits[j>>4];
-            вывод[i++] = hexits[j&0xf];
+            вывод[i++] = гекситы[j>>4];
+            вывод[i++] = гекситы[j&0xf];
         }
 
         return cast(ткст)вывод;
     }
 
-    static ткст кодируйБаза32(проц[] ввод_, бул doPad=да)
+   export static ткст кодируйБаза32(проц[] ввод_, бул doPad=да)
     {
         if (!ввод_)
             return "";
@@ -417,12 +410,12 @@ struct БайтКонвертер
             остдлина += 8;
             while (остдлина > 5)
             {
-                вывод[i++] = base32digits[(остаток>>(остдлина-5))&0b11111];
+                вывод[i++] = цифрыБазы32[(остаток>>(остдлина-5))&0b11111];
                 остдлина -= 5;
             }
         }
         if (остдлина)
-            вывод[i++] = base32digits[(остаток<<(5-остдлина))&0b11111];
+            вывод[i++] = цифрыБазы32[(остаток<<(5-остдлина))&0b11111];
         while (doPad && (i < вывод.length))
         {
             вывод[i++] = '=';
@@ -431,14 +424,14 @@ struct БайтКонвертер
         return вывод[0..i];
     }
 
-    static ббайт[] раскодируйГекс(ткст ввод)
+   export static ббайт[] раскодируйГекс(ткст ввод)
     {
         ткст inputAsLower = ткстВНижний(ввод);
         ббайт[] вывод = new ббайт[ввод.length>>1];
 
         static ббайт[сим] hexitIndex;
-        for (цел i = 0; i < hexits.length; i++)
-            hexitIndex[hexits[i]] = cast(ббайт) i;
+        for (цел i = 0; i < гекситы.length; i++)
+            hexitIndex[гекситы[i]] = cast(ббайт) i;
 
         for (цел i = 0, j = 0; i < вывод.length; i++)
         {
@@ -449,11 +442,11 @@ struct БайтКонвертер
         return вывод;
     }
 
-    static ббайт[] раскодируйБаза32(ткст ввод)
+  export  static ббайт[] раскодируйБаза32(ткст ввод)
     {
         static ббайт[сим] b32Index;
-        for (цел i = 0; i < base32digits.length; i++)
-            b32Index[base32digits[i]] = cast(ббайт) i;
+        for (цел i = 0; i < цифрыБазы32.length; i++)
+            b32Index[цифрыБазы32[i]] = cast(ббайт) i;
 
         auto outlen = (ввод.length*5)/8;
         ббайт[] вывод = new ббайт[outlen];

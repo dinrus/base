@@ -183,7 +183,7 @@ public class SaxHandler(Ch = сим)
      * guaranteed.</p>
      *
      * <p>There should never be старт/endPrefixMapping события for the
-     * "xml" префикс, since it is predeclared и /*immutable*/.</p>
+     * "xml" префикс, since it is predeclared и immutable.</p>
      *
      * @param префикс the Namespace префикс being declared.
      * An пустой ткст is использован for the default элемент namespace,
@@ -1528,7 +1528,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
      *
      * <p>This фильтр will have no предок: you must присвой a предок
      * before you старт a разбор or do any configuration with
-     * setFeature or setProperty, unless you use this as a /*pure*/ событие
+     * setFeature or setProperty, unless you use this as a pure событие
      * consumer rather than as an {@link XMLЧитатель}.</p>
      *
      * @see org.xml.sax.XMLЧитатель#setFeature

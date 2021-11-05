@@ -402,7 +402,7 @@ body
         auto aa = paa.a;
         foreach (j, e; aa.b)
         {
-            /* Temporarily store contents of bucket in array[]
+            /* Temporarily store contents of бакет in array[]
              
             т_мера k = 0;
             проц addToArray(aaA* e)
@@ -416,7 +416,7 @@ body
                 }
             }
             addToArray(e);
-            /* The contents of the bucket are now sorted into array[].
+            /* The contents of the бакет are now sorted into array[].
              * Rebuild the tree.
              */
             проц buildTree(aaA** p, т_мера x1, т_мера x2)

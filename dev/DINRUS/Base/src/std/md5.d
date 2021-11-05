@@ -16,14 +16,14 @@
  * $(I RSA Data Security, Inc. MD5 Message-Digest Algorithm).
  *
  * References:
- *	$(LINK2 http://en.wikipedia.org/wiki/Md5, Wikipedia on MD5)
+ *	$(LINK2 http://en.wikipedia.org/wiki/Мд5, Wikipedia on MD5)
  *
  * Macros:
  *	WIKI = Phobos/StdMd5
  */
 
 /++++++++++++++++++++++++++++++++
- Example:
+ Пример:
 
 --------------------
 // This code is derived from the
@@ -186,7 +186,7 @@ struct MD5_CTX
 	}
     }
 
-    /* FF, GG, HH, and II transformations for rounds 1, 2, 3, and 4.
+    /* FF, GG, HH, and II transformations for круги 1, 2, 3, and 4.
      * Rotation is separate from addition to prevent recomputation.
      */
     static void FF(inout uint a, uint b, uint c, uint d, uint x, uint s, uint ac)

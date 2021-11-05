@@ -84,7 +84,7 @@ private struct Версия
 public static Версия   ВЕРСИЯ =
 {
         "base.openrj"
-    ,   "Record-JAR database reader"
+    ,   "Запись-JAR database reader"
     ,   1
     ,   0
     ,   7
@@ -433,9 +433,9 @@ export:
 
 /+
 public:
-    цел opCmp(Object rhs)
+    цел opCmp(Object правткт)
     {
-        Поле   f   =   cast(Поле)(rhs);
+        Поле   f   =   cast(Поле)(правткт);
 
         if(null is f)
         {
@@ -445,21 +445,21 @@ public:
         return opCmp(f);
     }
 public:
-    цел opCmp(Поле rhs)
+    цел opCmp(Поле правткт)
     {
         цел res;
 
-        if(this is rhs)
+        if(this is правткт)
         {
             res = 0;
         }
         else
         {
-            res = std.string.cmp(m_name, rhs.m_name);
+            res = std.string.cmp(m_name, правткт.m_name);
 
             if(0 == res)
             {
-                res = std.string.cmp(m_value, rhs.m_value);
+                res = std.string.cmp(m_value, правткт.m_value);
             }
         }
 

@@ -14,7 +14,7 @@ import tpl.traits;
 /// Marsaglia, Tsang, Journal of Statistical Software, 2000
 /// If имеется негатив is да the ни в каком дистрибутиве is assumed в_ be symmetric with respect в_ 0,
 /// иначе it is assumed в_ be из_ 0 в_ infinity.
-/// Struct based в_ avoопр extra indirection when wrapped in a class (и it should be wrapped
+/// Структура based в_ avoопр extra indirection when wrapped in a class (и it should be wrapped
 /// in a class и not использован directly).
 /// Вызов стиль initialization avoопрed on purpose (this is a big structure, you don't want в_ return it)
 struct Циггурат(СлучГ,T,alias плотностьВерФ,alias хвостГенератор,бул естьНегатив=да)

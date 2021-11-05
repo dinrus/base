@@ -1022,8 +1022,8 @@ enum
     SUBLANG_GERMAN_LIECHTENSTEIN =     0x05,    // German (Liechtenstein)
     SUBLANG_ITALIAN =                  0x01,    // Italian
     SUBLANG_ITALIAN_SWISS =            0x02,    // Italian (Swiss)
-    SUBLANG_KOREAN =                   0x01,    // Korean (Extended Wansung)
-    SUBLANG_KOREAN_JOHAB =             0x02,    // Korean (Johab)
+    SUBLANG_KOREAN =                   0x01,    // Корейский (Extended Wansung)
+    SUBLANG_KOREAN_JOHAB =             0x02,    // Корейский (Johab)
     SUBLANG_NORWEGIAN_BOKMAL =         0x01,    // Norwegian (Bokmal)
     SUBLANG_NORWEGIAN_NYNORSK =        0x02,    // Norwegian (Nynorsk)
     SUBLANG_PORTUGUESE =               0x02,    // Portuguese
@@ -1069,8 +1069,8 @@ enum
     SORT_CHINESE_UNICODE           = 0x1,    // Chinese Unicode order
     SORT_CHINESE_PRC               = 0x2,    // PRC Chinese Stroke Count order
 
-    SORT_KOREAN_KSC                = 0x0,    // Korean KSC order
-    SORT_KOREAN_UNICODE            = 0x1,    // Korean Unicode order
+    SORT_KOREAN_KSC                = 0x0,    // Корейский KSC order
+    SORT_KOREAN_UNICODE            = 0x1,    // Корейский Unicode order
 
     SORT_GERMAN_PHONE_BOOK         = 0x1,    // German Phone Book order
 }
@@ -2231,7 +2231,7 @@ enum : uint
 }
 
 /*
- * Class styles
+ * Класс styles
  */
 enum
 {
@@ -6239,7 +6239,7 @@ extern(Windows):
 		WORD wWeight;
 		SHORT sSpacing;
 		COLORREF crBackColor;
-		LCID lcid;
+		LCID лкид;
 		DWORD dwReserved;
 		SHORT sStyle;
 		WORD wKerning;

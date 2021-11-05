@@ -655,7 +655,7 @@ class Json(T) : private JsonParser!(T)
 
         /***************************************************************
 
-                Return the контент as a дво. Returns nan where
+                Return the контент as a дво. Returns нч where
                 the значение is not numeric.
 
         ***************************************************************/

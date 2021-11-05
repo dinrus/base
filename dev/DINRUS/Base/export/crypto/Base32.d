@@ -2,7 +2,7 @@
 
     This module is использован в_ раскодируй и кодируй base32 ткст массивы.
 
-    Example:
+    Пример:
     ---
     ткст blah = "Hello there, my имя is Jeff.";
 
@@ -51,7 +51,7 @@ extern(D):
     buff = буфер large enough в_ hold кодирован данные
     пад  = Whether в_ пад аски вывод with '='-симвы
 
-    Example:
+    Пример:
     ---
     сим[512] encodebuf;
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?", encodebuf);
@@ -70,7 +70,7 @@ extern(D):
     данные = что is в_ be кодирован
     пад = whether в_ пад вывод with '='-симвы
 
-    Example:
+    Пример:
     ---
     ткст myEncodedString = кодируй(cast(ббайт[])"Hello, как are you today?");
     Стдвыв(myEncodedString).нс; // JBSWY3DPFQQGQ33XEBQXEZJAPFXXKIDUN5SGC6J7
@@ -95,7 +95,7 @@ extern(D):
     Параметры:
     данные = что is в_ be decoded
 
-    Example:
+    Пример:
     ---
     ткст myDecodedString = cast(ткст)раскодируй("JBSWY3DPFQQGQ33XEBQXEZJAPFXXKIDUN5SGC6J7");
     Стдвыв(myDecodeString).нс; // Hello, как are you today?
@@ -119,7 +119,7 @@ extern(D):
     данные = что is в_ be decoded
     buff = a big enough Массив в_ hold the decoded данные
 
-    Example:
+    Пример:
     ---
     ббайт[512] decodebuf;
     ткст myDecodedString = cast(ткст)раскодируй("JBSWY3DPFQQGQ33XEBQXEZJAPFXXKIDUN5SGC6J7", decodebuf);

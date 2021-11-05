@@ -726,7 +726,7 @@ unittest
  * If time is invalid, i.e. is d_time_nan,
  * the string "Invalid дата" is returned.
  *
- * Example:
+ * Пример:
  * ------------------------------------
   d_time lNow;
   char[] lNowString;

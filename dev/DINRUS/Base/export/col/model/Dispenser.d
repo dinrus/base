@@ -77,7 +77,7 @@ public interface Расходчик(T) : Обзор!(T)
      * may strengthen the guarantee about the nature of this элемент.
      * but in general it is the most convenient or efficient элемент в_ удали.
      * <P>
-     * Example usage. One way в_ перемести все элементы из_
+     * Пример usage. One way в_ перемести все элементы из_
      * Расходчик a в_ MutableBag b is:
      * <PRE>
      * while (!a.пустой()) b.добавь(a.возьми());

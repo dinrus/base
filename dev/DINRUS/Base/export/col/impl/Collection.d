@@ -7,34 +7,32 @@ private import  col.model.View,
 
 /*******************************************************************************
 
-        Коллекция serves as a convenient основа class for most implementations
-        of изменяемый containers. It maintains a version число и элемент счёт.
-        It also provопрes default implementations of many collection operations.
-
-        Authors: Doug Lea
+        Коллекция служит удобным классом-основой для реализаций
+        изменяемых контейнеров. Он поддерживает номер версии и счёт элементов.
+        Также предоставляет дефолтные реализации многих операций с коллекциями.
 
 ********************************************************************************/
 
 public abstract class Коллекция(T) : Расходчик!(T)
 {
-    alias Обзор!(T)          ViewT;
+    alias Обзор!(T)          ОбзорТ;
 
     alias бул delegate(T)  Предикат;
 
 
-    // экземпляр variables
+    // переменные экземпляра
 
     /***********************************************************************
 
-            version represents the текущ version число
+            Представляет собой текущий номер версии.
 
     ************************************************************************/
 
-    protected бцел vershion;
+    protected бцел версия;
 
     /***********************************************************************
 
-            скринер hold the supplied элемент скринер
+           Переменная скринер hold the supplied элемент скринер
 
     ************************************************************************/
 
@@ -42,7 +40,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     /***********************************************************************
 
-            счёт holds the число of элементы.
+          Переменная  счёт содержит число элементов.
 
     ************************************************************************/
 
@@ -97,7 +95,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     /***********************************************************************
 
-            Время complexity: O(1).
+            Временная ёмкость: O(1).
             See_Also: col.impl.Collection.Коллекция.drained
 
     ************************************************************************/
@@ -109,7 +107,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     /***********************************************************************
 
-            Время complexity: O(1).
+            Временная ёмкость: O(1).
             Возвращает: the счёт of элементы currently in the collection
             See_Also: col.impl.Collection.Коллекция.размер
 
@@ -126,7 +124,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
             This will not throw an исключение, but any другой attemp в_ добавь an
             не_годится элемент will do.
 
-            Время complexity: O(1) + время of скринер, if present
+            Временная ёмкость: O(1) + время of скринер, if present
 
             See_Also: col.impl.Collection.Коллекция.допускается
 
@@ -141,7 +139,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     /***********************************************************************
 
-            Время complexity: O(n).
+            Временная ёмкость: O(n).
             Default implementation. Fairly sleazy approach.
             (Defensible only when you remember that it is just a default impl.)
             It tries в_ cast в_ one of the known collection interface типы
@@ -154,7 +152,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     ************************************************************************/
 
-    public бул совпадает(ViewT другой)
+    public бул совпадает(ОбзорТ другой)
     {
         /+
         if (другой is пусто)
@@ -166,21 +164,21 @@ public abstract class Коллекция(T) : Расходчик!(T)
             if (!(cast(Карта) другой))
                 return нет;
             else
-                return sameOrderedPairs(cast(Карта)this, cast(Карта)другой);
+                return одинаковыеУпорядоченныеПары(cast(Карта)this, cast(Карта)другой);
         }
         else if (cast(Карта) this)
         {
             if (!(cast(Карта) другой))
                 return нет;
             else
-                return samePairs(cast(Карта)(this), cast(Карта)(другой));
+                return одинаковыеПары(cast(Карта)(this), cast(Карта)(другой));
         }
         else if ((cast(Сек) this) || (cast(СортированныеЗначения) this))
-            return sameOrderedElements(this, другой);
+            return одинаковыеУпорядоченныеЭлементы(this, другой);
         else if (cast(Рюкзак) this)
-            return sameOccurrences(this, другой);
+            return одинаковыеСлучаи(this, другой);
         else if (cast(Набор) this)
-            return sameInclusions(this, cast(Обзор)(другой));
+            return одинаковыеВключения(this, cast(Обзор)(другой));
         else
             return нет;
         +/
@@ -191,14 +189,14 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     /***********************************************************************
 
-            Время complexity: O(1).
+            Временная ёмкость: O(1).
             See_Also: col.impl.Collection.Коллекция.version
 
     ************************************************************************/
 
-    public final бцел мутация()
+    public final бцел изменение()
     {
-        return vershion;
+        return версия;
     }
 
     // Объект methods
@@ -249,7 +247,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     protected final проц инкрВерсию()
     {
-        ++vershion;
+        ++версия;
     }
 
 
@@ -316,7 +314,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     ************************************************************************/
 
-    public final static бул sameInclusions(ViewT s, ViewT t)
+    public final static бул одинаковыеВключения(ОбзорТ s, ОбзорТ t)
     {
         if (s.размер !is t.размер)
             return нет;
@@ -343,7 +341,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     ************************************************************************/
 
-    public final static бул sameOccurrences(ViewT s, ViewT t)
+    public final static бул одинаковыеСлучаи(ОбзорТ s, ОбзорТ t)
     {
         if (s.размер !is t.размер)
             return нет;
@@ -378,7 +376,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
 
     ************************************************************************/
 
-    public final static бул sameOrderedElements(ViewT s, ViewT t)
+    public final static бул одинаковыеУпорядоченныеЭлементы(ОбзорТ s, ОбзорТ t)
     {
         if (s.размер !is t.размер)
             return нет;
@@ -420,11 +418,11 @@ public abstract class Коллекция(T) : Расходчик!(T)
             ткст сооб;
 
             if (счёт is 0)
-                сооб = "Элемент доступ on пустой collection";
+                сооб = "Доступ к элементу в пустой коллекции";
             else
             {
                 сим[16] индкс, cnt;
-                сооб = "Index " ~ itoa (индкс, индекс) ~ " out of range for collection of размер " ~ itoa (cnt, счёт);
+                сооб = "Индекс " ~ itoa (индкс, индекс) ~ " вне диапазона размера коллекции " ~ itoa (cnt, счёт);
             }
             throw new НетЭлементаИскл(сооб);
         }
@@ -441,7 +439,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
     {
         if (! допускается(элемент))
         {
-            throw new IllegalElementException("Attempt в_ include не_годится элемент _in Коллекция");
+            throw new IllegalElementException("Попытка включить непригодный элемент в Коллекцию");
         }
     }
 
@@ -592,7 +590,7 @@ public abstract class Коллекция(T) : Расходчик!(T)
             may strengthen the guarantee about the nature of this элемент.
             but in general it is the most convenient or efficient элемент в_ удали.
 
-            Examples:
+            Примеры:
             One way в_ перемести все элементы из_
             MutableCollection a в_ MutableBag b is:
             ---

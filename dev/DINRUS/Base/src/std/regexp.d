@@ -78,11 +78,11 @@
 	$(TR
 	$(TD $(B $(DOLLAR))$(I n)) $(TD The $(I n)th capture, where $(I n)
 			is a single digit 1-9
-			and $$(I n) is not followed by a decimal digit.)
+			and $$(I n) is not followed by a десяток digit.)
 	)
 	$(TR
 	$(TD $(B $(DOLLAR))$(I nn)) $(TD The $(I nn)th capture, where $(I nn)
-			is a two-digit decimal
+			is a two-digit десяток
 			number 01-99.
 			If $(I nn)th capture is undefined or more than the number
 			of parenthesized subexpressions, use the empty
@@ -189,7 +189,7 @@ alias char rchar;	// so we can make a wchar version
  *	attributes = Regular expression attributes.
  * Returns:
  *	the resulting string
- * Example:
+ * Пример:
  *	Replace the letters 'a' with the letters 'ZZ'.
  * ---
  * s = "Strap a rocket engine on a chicken."
@@ -230,7 +230,7 @@ unittest
  *	дг = Delegate
  *	attributes = Regular expression attributes.
  * Returns: the resulting string.
- * Example:
+ * Пример:
  * Capitalize the letters 'a' and 'r':
  * ---
  * s = "Strap a rocket engine on a chicken.";
@@ -323,7 +323,7 @@ unittest
  *	attributes = Regular expression attributes.
  * Returns:
  *	index into string[] of match if found, -1 if no match.
- * Example:
+ * Пример:
  * ---
  * auto s = "abcabcabab";
  * std.regexp.find(s, "b");    // match, returns 1
@@ -365,7 +365,7 @@ unittest
  *	attributes = Regular expression attributes.
  * Returns:
  *	index into string[] of match if found, -1 if no match.
- * Example:
+ * Пример:
  * ---
  * auto s = "abcabcabab";
  * std.regexp.find(s, "b");    // match, returns 9
@@ -418,7 +418,7 @@ unittest
  *	attributes = Regular expression attributes.
  * Returns:
  * 	array of slices into string[]
- * Example:
+ * Пример:
  * ---
  * foreach (s; split("abcabcabab", "C.", "i"))
  * {
@@ -467,7 +467,7 @@ unittest
  *	attributes = Regular expression attributes.
  * Returns:
  *	corresponding RegExp if found, null if not.
- * Example:
+ * Пример:
  * ---
  * import std.io;
  * import std.regexp;
@@ -558,7 +558,7 @@ alias replaceOld замениСтарый;
      *	pattern = regular expression
      *  attributes = _attributes
      * Throws: РегВырИскл if there are any compilation errors.
-     * Example:
+     * Пример:
      *  Declare two variables and assign to them a RegExp object:
      * ---
      * auto r = new RegExp("pattern");
@@ -577,7 +577,7 @@ alias replaceOld замениСтарый;
      *	pattern = regular expression
      *  attributes = _attributes
      * Throws: РегВырИскл if there are any compilation errors.
-     * Example:
+     * Пример:
      *  Declare two variables and assign to them a RegExp object:
      * ---
      * auto r = RegExp("pattern");
@@ -611,7 +611,7 @@ alias replaceOld замениСтарый;
      * Set up for start of foreach loop.
      * Returns:
      *	search() returns instance of RegExp set up to _search string[].
-     * Example:
+     * Пример:
      * ---
      * import std.io;
      * import std.regexp;
@@ -1162,7 +1162,7 @@ public rchar[][] exec()
 /************************************************
  * Search string[] for match.
  * Returns: 0 for no match, !=0 for match
- * Example:
+ * Пример:
 ---
 import std.io;
 import std.regexp;
@@ -3112,7 +3112,7 @@ public static rchar[] replace3(rchar[] format, rchar[] input, regmatch_t[] pmatc
  * Like replace(char[] format), but uses old style formatting:
 		<table border=1 cellspacing=0 cellpadding=5>
 		<th>Format
-		<th>Description
+		<th>Описание
 		<tr>
 		<td><b>&</b>
 		<td>replace with the match

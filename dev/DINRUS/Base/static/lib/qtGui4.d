@@ -8616,9 +8616,9 @@
 
 		//вяжи(функция_4301)("_?decideFormatFromContent@QImageReader@@QBE_NXZ", биб);
 
-		//вяжи(функция_4302)("_?decimals@QDoubleSpinBox@@QBEHXZ", биб);
+		//вяжи(функция_4302)("_?десятки@QDoubleSpinBox@@QBEHXZ", биб);
 
-		//вяжи(функция_4303)("_?decimals@QDoubleValidator@@QBEHXZ", биб);
+		//вяжи(функция_4303)("_?десятки@QDoubleValidator@@QBEHXZ", биб);
 
 		//вяжи(функция_4304)("_?declarationsForNode@StyleSelector@QCss@@QAE?AV?$QVector@UDeclaration@QCss@@@@TNodePtr@12@PBD@Z", биб);
 

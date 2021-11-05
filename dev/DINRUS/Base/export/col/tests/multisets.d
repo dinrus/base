@@ -2,7 +2,7 @@
  * Copyright (C) 2008 by Steven Schveighoffer
  * all rights reserved.
  *
- * Examples of how sets can be used.
+ * Примеры of how sets can be used.
  *
  * Currently only implemented for Tango.
  */

@@ -50,7 +50,7 @@ protected class DocTester(T)
 
     final проц оцени (Узел узел)
     {
-        switch (узел.опр)
+        switch (узел.ид)
         {
         case ПТипУзлаРЯР.Документ:
             foreach (n; узел.ветви)

@@ -80,7 +80,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.содержит.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
@@ -93,7 +93,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.экземпляры.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
@@ -106,7 +106,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.элементы.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
@@ -117,7 +117,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
         /***********************************************************************
 
                 Implements col.model.View.Обзор.opApply
-                Время complexity: O(n)
+                Временная ёмкость: O(n)
                 
                 See_Also: col.model.View.Обзор.opApply
         
@@ -133,7 +133,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
         /***********************************************************************
 
                 Implements col.ОбзорКарты.opApply
-                Время complexity: O(n)
+                Временная ёмкость: O(n)
                 
                 See_Also: col.ОбзорКарты.opApply
         
@@ -151,7 +151,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.Map.содержитКлюч.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.Map.содержитКлюч
         **/
         public final бул содержитКлюч(К ключ)
@@ -164,7 +164,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.Map.содержитПару
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.Map.содержитПару
         **/
         public final бул содержитПару(К ключ, T элемент)
@@ -176,7 +176,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.Map.ключи.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.Map.ключи
         **/
         public final ОбходчикПар!(К, T) ключи()
@@ -186,7 +186,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.Map.получи.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.Map.получи
         **/
         public final T получи(К ключ)
@@ -227,7 +227,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.Map.ключК.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.Map.ключК
         **/
         public final бул ключК(inout К ключ, T значение)
@@ -248,7 +248,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.очисть.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
@@ -259,7 +259,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.replaceOneOf
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.replaceOneOf
         **/
         public final проц замени (T старЭлемент, T новЭлемент)
@@ -269,7 +269,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.replaceAllOf.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.replaceAllOf
         **/
         public final проц замениВсе(T старЭлемент, T новЭлемент)
@@ -279,7 +279,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.удалиВсе.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.удалиВсе
         **/
         public final проц удалиВсе(T элемент)
@@ -289,7 +289,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.removeOneOf.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.removeOneOf
         **/
         public final проц удали(T элемент)
@@ -299,7 +299,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.Collection.Коллекция.возьми.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * takes the первый элемент on the список
          * See_Also: col.impl.Collection.Коллекция.возьми
         **/
@@ -321,7 +321,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.MapCollection.КоллекцияКарт.добавь.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.MapCollection.КоллекцияКарт.добавь
         **/
         public final проц добавь (К ключ, T элемент)
@@ -349,7 +349,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.MapCollection.КоллекцияКарт.удали.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.MapCollection.КоллекцияКарт.удали
         **/
         public final проц удалиКлюч (К ключ)
@@ -382,7 +382,7 @@ deprecated public class КартаСвязка(К, T) : КоллекцияКар
 
         /**
          * Implements col.impl.MapCollection.КоллекцияКарт.replaceElement.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.MapCollection.КоллекцияКарт.replaceElement
         **/
         public final проц замениПару (К ключ, T старЭлемент, T новЭлемент)

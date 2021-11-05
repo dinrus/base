@@ -85,7 +85,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
     public final T получи()
     {
         if (текущ_ is пусто)
-            throw new НетЭлементаИскл("exhausted обходчик");
+            throw new НетЭлементаИскл("обходчик завершён");
         else
         {
             // following строка may also throw ex, but there's nothing

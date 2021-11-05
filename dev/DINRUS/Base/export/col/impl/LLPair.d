@@ -4,15 +4,8 @@ private import col.impl.LLCell;
 private import col.model.IteratorX;
 
 /**
- *
- *
  * LLPairs are LLCells with ключи, и operations that deal with them.
  * As with LLCells, the are  implementation tools.
- *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 
 public class ПараСС(К, T) : ЯчейкаСС!(T)

@@ -108,7 +108,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         public final T получи()
         {
                 if (! естьСледщ_)
-                      throw new НетЭлементаИскл("exhausted enumeration");
+                      throw new НетЭлементаИскл("перечисление завершилось");
                 else
                    {
                    auto результат = добыча_;

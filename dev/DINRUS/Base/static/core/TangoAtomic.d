@@ -499,7 +499,7 @@ else version( D_InlineAsm_X86 )
         //       before the загрузи they depend on (except the Alpha), необр loads
         //       are actually a possible means of ordering specific sequences
         //       of loads in some instances.  The original atomic<>
-        //       implementation provопрes a 'ddhlb' ordering specifier for
+        //       implementation provопрes a 'ddhlb' ordering определитель for
         //       данные-dependent loads в_ укз this situation, but as there
         //       are no plans в_ support the Alpha there is no резон в_ добавь
         //       that опция here.

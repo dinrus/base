@@ -1,45 +1,34 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2006 James Pelcis. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: August 2006
-
-        author:         James Pelcis
-
-*******************************************************************************/
-
-module crypto.digest.Crc32;
+﻿module crypto.digest.Crc32;
 
 public import crypto.digest.Digest;
 
 
-/** This class реализует the CRC-32 проверьsum algorithm.
-    The дайджест returned is a little-эндиан 4 байт ткст. */
-final class Crc32 : Дайджест
+  /** Этот класс реализует алгоритм контрольной суммы CRC-32.
+    * Дайджест возвращает 4-байтный ткст литл-эндиан.
+	*/
+export final class Цпи32 : Дайджест
 {
         private бцел[256] таблица;
         private бцел результат = 0xffffffff;
 
         /**
-         * Созд a cloned CRC32
+         * Создаёт клонированный CRC32.
          */
-        this (Crc32 crc32)
+      export this (Цпи32 crc32)
         {
                 this.таблица[] = crc32.таблица[];
                 this.результат = crc32.результат;
         }
 
         /**
-         * Prepare Crc32 в_ проверьsum the данные with a given polynomial.
+         * Подготавливает контрольную сумму Цпи32 для данные с заданным полиномиалом.
          *
          * Параметры:
-         *      polynomial = The magic CRC число в_ основа calculations on.  The
-         *      default compatible with ZIP, PNG, ethernet и другие. Note: This
-         *      default значение имеется poor ошибка correcting свойства.
+         *      полиномиал = магическое число CRC, на котором основываются расчёты.
+         *      По умолчанию совместимо с ZIP, PNG, ethernet и другими. Примечание:
+         *      Это дефолтное значение имеет плохое свойство корректировки ошибки.
          */
-        this (бцел polynomial = 0xEDB88320U)
+       export this (бцел полиномиал = 0xEDB88320U)
         {
                 for (цел i = 0; i < 256; i++)
                 {
@@ -51,7 +40,7 @@ final class Crc32 : Дайджест
                                 if (значение & 1) 
                                    {
                                    значение >>>= 1;
-                                   значение ^= polynomial;
+                                   значение ^= полиномиал;
                                    }
                                 else
                                    значение >>>= 1;
@@ -62,7 +51,7 @@ final class Crc32 : Дайджест
                                         значение &= 0xFFFFFFFE;
                                         значение /= 2;
                                         значение &= 0x7FFFFFFF;
-                                        значение ^= polynomial;
+                                        значение ^= полиномиал;
                                 }
                                 else
                                 {
@@ -77,7 +66,7 @@ final class Crc32 : Дайджест
         }
 
         /** */
-        override Crc32 обнови (проц[] ввод)
+      export   override Цпи32 обнови (проц[] ввод)
         {
                 бцел r = результат; // DMD optimization
                 foreach (ббайт значение; cast(ббайт[]) ввод)
@@ -100,14 +89,16 @@ final class Crc32 : Дайджест
                 return this;
         }
 
-        /** The Crc32 размерДайджеста is 4 */
-        override бцел размерДайджеста ()
+        /** 
+		* размерДайджеста Цпи32  равен 4 
+		*/
+       export  override бцел размерДайджеста ()
         {
                 return 4;
         }
 
         /** */
-        override ббайт[] двоичныйДайджест(ббайт[] буф = пусто) {
+      export   override ббайт[] двоичныйДайджест(ббайт[] буф = пусто) {
                 if (буф.length < 4)
                         буф.length = 4;
                 бцел знач = ~результат;
@@ -119,8 +110,8 @@ final class Crc32 : Дайджест
                 return буф;
         }
 
-        /** Возвращает the Crc32 дайджест as a бцел */
-        бцел crc32Digest() {
+        /** Возвращает дайджест Цпи32  как бцел */
+      export   бцел дайджестЦпи32() {
                 бцел возвр = ~результат;
                 результат = 0xffffffff;
                 return возвр;
@@ -131,12 +122,12 @@ debug(UnitTest)
 {
         unittest 
         {
-        scope c = new Crc32();
+        scope c = new Цпи32();
         static ббайт[] данные = [1,2,3,4,5,6,7,8,9,10];
         c.обнови(данные);
         assert(c.двоичныйДайджест() == cast(ббайт[]) x"7b572025");
         c.обнови(данные);
-        assert(c.crc32Digest == 0x2520577b);
+        assert(c.дайджестЦпи32 == 0x2520577b);
         c.обнови(данные);
         assert(c.гексДайджест() == "7b572025");
         }

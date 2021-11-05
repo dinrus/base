@@ -1822,7 +1822,7 @@ struct lconv
 {
     char* decimal_point;
     char* thousands_sep;
-    char* grouping;
+    char* группирование;
     char* int_curr_symbol;
     char* currency_symbol;
     char* mon_decimal_point;

@@ -10,7 +10,7 @@
 
         This is the Dinrus I18N gateway, which extends the basic Выкладка
         module with support for cuture- и region-specific formatting
-        of numerics, дата, время, и currency.
+        of numerics, дата, время, и валюта.
 
         Use as a standalone форматёр in the same manner as Выкладка, or
         комбинируй with другой entities such as Стдвыв. To активируй a French
@@ -19,12 +19,12 @@
         Стдвыв.выкладка = new Локаль (Культура.дайКультуру ("fr-FR"));
         ---
 
-        Note that Стдвыв is a /*shared*/ сущность, so every usage of it will
+        Note that Стдвыв is a shared сущность, so every usage of it will
         be affected by the above example. For applications supporting
         multИПle regions создай multИПle Локаль экземпляры instead, и
         кэш them in an appropriate manner.
 
-        In добавьition в_ region-specific currency, дата и время, Локаль
+        In добавьition в_ region-specific валюта, дата и время, Локаль
         добавьs ещё sophisticated formatting опция than Выкладка provопрes:
         numeric цифра placement using '#' formatting, for example, is
         supported by Локаль - along with placement of '$', '-', и '.'
@@ -55,7 +55,7 @@ public  import text.locale.Core :
 
 public class Локаль : Выкладка!(сим)
 {
-    private ФорматДатыВремени  dateFormat;
+    private ФорматДатыВремени  форматДаты;
     private ФорматЧисла    форматЧисла;
 
     /**********************************************************************
@@ -65,7 +65,7 @@ public class Локаль : Выкладка!(сим)
     this (ИСлужбаФормата службаФормата = пусто)
     {
         форматЧисла = ФорматЧисла.дайЭкземпляр (службаФормата);
-        dateFormat = ФорматДатыВремени.дайЭкземпляр (службаФормата);
+        форматДаты = ФорматДатыВремени.дайЭкземпляр (службаФормата);
     }
 
     /***********************************************************************
@@ -79,7 +79,7 @@ public class Локаль : Выкладка!(сим)
         // Special case for Время.
         case КодТипа.STRUCT:
             if (тип is typeid(Время))
-                return форматируйДатуВремя (вывод, *cast(Время*) p, форматируй, dateFormat);
+                return форматируйДатуВремя (вывод, *cast(Время*) p, форматируй, форматДаты);
 
             return тип.вТкст;
 

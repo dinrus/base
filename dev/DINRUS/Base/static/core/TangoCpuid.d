@@ -877,7 +877,7 @@ public:
             probablyAMD = vendorID == "AuthenticAMD";
             имяПроизводителя=vendorID.dup;
             бцел a, b, c, d;
-            бцел apic = 0; // brand индекс, apic опр
+            бцел apic = 0; // brand индекс, apic ид
             asm
             {
                 mov EAX, 1; // model, stepping

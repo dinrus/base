@@ -232,7 +232,7 @@ public:
             pragma(msg,__FILE__~"(): Внимание0: в Вектор.opAssign присваиваемый тип, "
                    ~ВекТип.stringof~", не имеет свойства .length.");
         }
-        else { assert(_rhs.length == N, "Вектор.opAssign: rhs неправильной длины"); }
+        else { assert(_rhs.length == N, "Вектор.opAssign: правткт неправильной длины"); }
         const ткст выр = "значения_[i] = cast(Скаляр)_rhs[i];";
         mixin( откатец(выр) );
         //return *this

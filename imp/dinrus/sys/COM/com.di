@@ -774,7 +774,7 @@ class EventProvider(T) : Implements!(T) {
 
   extern(Windows):
 
-  override int Invoke(int dispIdMember, ref GUID riid, uint lcid, ushort wFlags, DISPPARAMS* pDispParams, ВАРИАНТ* pVarResult, EXCEPINFO* pExcepInfo, uint* puArgError) {
+  override int Invoke(int dispIdMember, ref GUID riid, uint лкид, ushort wFlags, DISPPARAMS* pDispParams, ВАРИАНТ* pVarResult, EXCEPINFO* pExcepInfo, uint* puArgError) {
     if (riid != GUID.empty)
       return DISP_E_UNKNOWNINTERFACE;
 

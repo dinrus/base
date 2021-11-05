@@ -12,7 +12,7 @@ private import crypto.digest.MerkleDamgard;
 
 *******************************************************************************/
 
-package abstract class Sha01 : MerkleDamgard
+extern(D) package abstract class Sha01 : МерклеДамгард
 {
         protected бцел[5]               контекст;
         private static const ббайт      padChar = 0x80;

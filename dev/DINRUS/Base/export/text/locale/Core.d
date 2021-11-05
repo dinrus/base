@@ -1,17 +1,7 @@
 ﻿module text.locale.Core;
 
 private import  text.locale.Data;
-
 private import  time.Time;
-
-private import  time.chrono.Hijri,
-        time.chrono.Korean,
-        time.chrono.Taiwan,
-        time.chrono.Hebrew,
-        time.chrono.Calendar,
-        time.chrono.Japanese,
-        time.chrono.Gregorian,
-        time.chrono.ThaiBuddhist;
 
 /**
  * Определяет типы культур, к-е м.б. получены от Культура.дайКультуры.
@@ -23,7 +13,6 @@ public enum ТипыКультур
     Все = Нейтральный | Особый
 }
 
-
 public interface ИСлужбаФормата
 {
 
@@ -33,43 +22,8 @@ public interface ИСлужбаФормата
 
 public class Культура : ИСлужбаФормата
 {
-    /*
-      private const цел LCID_INVARIANT = 0x007F;
-
-      private static Культура[ткст] namedCultures;
-      private static Культура[цел] idCultures;
-      private static Культура[ткст] ietfCultures;
-
-      private static Культура currentCulture_;
-      private static Культура userDefaultCulture_; // The пользователь's default культура (GetUserDefaultLCID).
-      private static Культура invariantCulture_; // The invariant культура is associated with the English language.
-      private Календарь calendar_;
-      private Культура parent_;
-      private ДанныеОКультуре* cultureData_;
-      private бул isReadOnly_;
-      private ФорматЧисла numberFormat_;
-      private ФорматДатыВремени dateTimeFormat_;
-
-      static this() {
-        invariantCulture_ = new Культура(LCID_INVARIANT);
-        invariantCulture_.isReadOnly_ = да;
-
-        userDefaultCulture_ = new Культура(nativeMethods.дайКультуруПользователя());
-        if (userDefaultCulture_ is пусто)
-          // Fallback
-          userDefaultCulture_ = инвариантнаяКультура;
-        else
-          userDefaultCulture_.isReadOnly_ = да;
-      }
-
-      static ~this() {
-        namedCultures = пусто;
-        idCultures = пусто;
-        ietfCultures = пусто;
-      }
-    */
-    public this(ткст названиеКультуры) ;
-    public this(цел идКультуры) ;
+    public this(ткст названиеКультуры);
+    public this(цел идКультуры = 0x0419) ;
     public Объект дайФормат(ИнфОТипе тип);
 
     version (Clone)
@@ -77,18 +31,16 @@ public class Культура : ИСлужбаФормата
         public Объект клонируй() ;
     }
 
-
     public static Культура дайКультуру(цел идКультуры) ;
     public static Культура дайКультуру(ткст названиеКультуры) ;
     public static Культура дайКультуруПоТегуЯзыкаИЕТФ(ткст имя) ;
-// private static Культура дайКультуруВнутр(цел идКультуры, ткст cname) ;
     public static Культура[] дайКультуры(ТипыКультур типы) ;
     public override ткст вТкст() ;
     public override цел opEquals(Объект об) ;
     public static Культура текущ() ;
     public static проц текущ(Культура значение);
     public static Культура инвариантнаяКультура() ;
-    public цел опр() ;
+    public цел ид() ;
     public ткст имя() ;
     public ткст англИмя() ;
     public ткст исконноеИмя() ;
@@ -105,23 +57,12 @@ public class Культура : ИСлужбаФормата
     public ФорматДатыВремени форматДатыВремени();
     public проц форматДатыВремени(ФорматДатыВремени значение) ;
 
-//  private static проц проверьНейтрал(Культура культура) ;
-//  private проц проверьТолькоЧтен();
-//  private static Календарь дайЭкземплярКалендаря(цел типКалендаря, бул readOnly=нет);
-
 }
-
 
 public class Регион
 {
-    /*
-      private ДанныеОКультуре* cultureData_;
-      private static Регион currentRegion_;
-      private ткст name_;
-    */
     public this(цел идКультуры) ;
     public this(ткст имя) ;
-// package this(ДанныеОКультуре* данныеОКультуре) ;
     public static Регион текущ() ;
     public цел геоИД() ;
     public ткст имя();
@@ -130,7 +71,7 @@ public class Регион
     public ткст имяРегионаИз2Букв() ;
     public ткст имяРегионаИз3Букв();
     public ткст символВалюты() ;
-    public ткст символВалютыИСО() ;
+    public ткст символВалютыИЗО() ;
     public ткст англИмяВалюты() ;
     public ткст исконноеИмяВалюты();
     public бул метрическ_ли() ;
@@ -138,35 +79,9 @@ public class Регион
 
 }
 
-
 public class ФорматЧисла : ИСлужбаФормата
 {
-    /*
-      package бул isReadOnly_;
-      private static ФорматЧисла invariantFormat_;
-
-      private цел numberDecimalDigits_;
-      private цел numberNegativePattern_;
-      private цел currencyDecimalDigits_;
-      private цел currencyNegativePattern_;
-      private цел currencyPositivePattern_;
-      private цел[] numberGroupSizes_;
-      private цел[] currencyGroupSizes_;
-      private ткст numberGroupSeparator_;
-      private ткст numberDecimalSeparator_;
-      private ткст currencyGroupSeparator_;
-      private ткст currencyDecimalSeparator_;
-      private ткст currencySymbol_;
-      private ткст negativeSign_;
-      private ткст positiveSign_;
-      private ткст nanSymbol_;
-      private ткст negativeInfinitySymbol_;
-      private ткст positiveInfinitySymbol_;
-      private ткст[] nativeDigits_;
-
-    */
     public this() ;
-// package this(ДанныеОКультуре* данныеОКультуре);
     public Объект дайФормат(ИнфОТипе тип);
 
     version (Clone)
@@ -214,56 +129,13 @@ public class ФорматЧисла : ИСлужбаФормата
     public final проц положитСимволБесконечности(ткст значение);
     public final ткст[] исконныеЦифры() ;
     public final проц исконныеЦифры(ткст[] значение) ;
-
-    //private проц проверьТолькоЧтен() ;
-
 }
 
 public class ФорматДатыВремени : ИСлужбаФормата
 {
-    /***
-      private const ткст rfc1123Pattern_ = "ddd, dd MMM yyyy HH':'mm':'ss 'GMT'";
-      private const ткст sortableDateTimePattern_ = "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
-      private const ткст universalSortableDateTimePattern_ = "yyyy'-'MM'-'dd' 'HH':'mm':'ss'Z'";
-      private const ткст allStandardFormats = [ 'd', 'D', 'f', 'F', 'g', 'G', 'm', 'M', 'r', 'R', 's', 't', 'T', 'u', 'U', 'y', 'Y' ];
-
-
-      package бул isReadOnly_;
-      private static ФорматДатыВремени invariantFormat_;
-      private ДанныеОКультуре* cultureData_;
-
-      private Календарь calendar_;
-      private цел[] optionalКалендарьs_;
-      private цел firstДеньНедели_ = -1;
-      private цел КалендарьWeekRule_ = -1;
-      private ткст dateSeparator_;
-      private ткст timeSeparator_;
-      private ткст amDesignator_;
-      private ткст pmDesignator_;
-      private ткст shortDatePattern_;
-      private ткст shortTimePattern_;
-      private ткст longDatePattern_;
-      private ткст longTimePattern_;
-      private ткст monthDayPattern_;
-      private ткст yearMonthPattern_;
-      private ткст[] abbreviatedDayNames_;
-      private ткст[] dayNames_;
-      private ткст[] abbreviatedMonthNames_;
-      private ткст[] monthNames_;
-
-      private ткст ПолнаяДатаTimePattern_;
-      private ткст generalShortTimePattern_;
-      private ткст generalLongTimePattern_;
-
-      private ткст[] shortTimePatterns_;
-      private ткст[] shortDatePatterns_;
-      private ткст[] longTimePatterns_;
-      private ткст[] longDatePatterns_;
-      private ткст[] yearMonthPatterns_;
-
-       */
-    package this() ;
-    package this(ДанныеОКультуре* данныеОКультуре, Календарь Календарь) ;
+   // package this() ;
+  //  package this(ДанныеОКультуре* данныеОКультуре, Календарь Календарь) ;
+  
     public Объект дайФормат(ИнфОТипе тип) ;
 
     version(Clone)
@@ -326,12 +198,6 @@ public class ФорматДатыВремени : ИСлужбаФормата
     public final ткст образецРФС1123() ;
     public final ткст сортируемыйОбразецДатыВремени() ;
     public final ткст универсальныйСортируемыйОбразецДатыВремени() ;
-
-    package ткст общКраткийОбразецВремени();
-    package ткст общДлинныйОбразецВремени();
-// private проц проверьТолькоЧтен();
-// private проц инициализуй();
-// private цел[] опциональныеКалендари() ;
 
 }
 

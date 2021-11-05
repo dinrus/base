@@ -648,7 +648,7 @@ struct КлассСимволов(т_сим)
         {l_:0x09,r_:0x13},{l_:0x20, r_:0x7e},{l_:0xa0, r_:0xff},
         {l_:0x0100, r_:0x017f},   // latin extended a
         {l_:0x0180, r_:0x024f},   // latin extended b
-        {l_:0x20a3, r_:0x20b5},   // currency symbols
+        {l_:0x20a3, r_:0x20b5},   // валюта symbols
                     ]
                    },
         alphanum_ = {части:
@@ -932,7 +932,7 @@ private struct Предикат(т_сим)
 
     ПРежимСверки   режим;
     // data_chr had в_ be pulled out of the union due в_
-    // http://d.puremagic.com/issues/show_bug.cgi?опр=2632 --- don't помести it back
+    // http://d.puremagic.com/issues/show_bug.cgi?ид=2632 --- don't помести it back
     // in until this is resolved!
     //
     // Keep in mind that data_str.length can't be изменён directly unless the
@@ -2294,7 +2294,7 @@ private:
         фраги ~= frag;
     }
 }
-import core.Array;
+import tpl.array;
 
 /* ************************************************************************************************
     Tagged DFA
@@ -3708,7 +3708,7 @@ class RegExpT(т_сим)
         Параметры:
             образец = Regular expression.
         Throws: ИсклРегВыр if there are any compilation ошибки.
-        Example:
+        Пример:
             Declare two variables и присвой в_ them a Regex объект:
             ---
             auto r = new Regex("образец");
@@ -3754,7 +3754,7 @@ class RegExpT(т_сим)
         Параметры:
             образец = Regular expression.
         Throws: ИсклРегВыр if there are any compilation ошибки.
-        Example:
+        Пример:
             Declare two variables и присвой в_ them a Regex объект:
             ---
             auto r = Regex("образец");
@@ -3769,7 +3769,7 @@ class RegExpT(т_сим)
     /**********************************************************************************************
         Набор up for старт of foreach loop.
         Возвращает:    Instance of RegExpT установи up в_ ищи ввод.
-        Example:
+        Пример:
             ---
             import io.Stdout;
             import text.Regex;
@@ -4068,7 +4068,7 @@ Laccept:
 
     /**********************************************************************************************
         Splits the ввод at the совпадает of this regular expression преобр_в an Массив of slices.
-        Example:
+        Пример:
             ---
             import io.Stdout;
             import text.Regex;

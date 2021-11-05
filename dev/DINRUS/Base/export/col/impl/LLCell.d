@@ -16,9 +16,6 @@ private import col.model.Comparator;
  * build другой kinds of собериions or whatever, not just the ones
  * currently supported.
  *
-        author: Doug Lea
- * @version 0.93
- *
  * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 

@@ -538,7 +538,7 @@ struct DirEntry
  * Return contents of directory pathname[].
  * The names in the contents do not include the pathname.
  * Throws: ФайлИскл on error
- * Example:
+ * Пример:
  *	This program lists all the files and subdirectories in its
  *	path argument.
  * ----
@@ -579,7 +579,7 @@ string[] listdir(string pathname)
  *		wildcard strings are described under fnmatch() in
  *		$(LINK2 std_path.html, std.path).
  *	r = Regular expression, for more powerful _pattern matching.
- * Example:
+ * Пример:
  *	This program lists all the files with a "d" extension in
  *	the path passed as the first argument.
  * ----
@@ -656,7 +656,7 @@ string[] listdir(string pathname, RegExp r)
  *	callback =	Delegate that processes each
  *			filename in turn. Returns true to
  *			continue, false to stop.
- * Example:
+ * Пример:
  *	This program lists all the files in its
  *	path argument, including the path.
  * ----
@@ -700,7 +700,7 @@ void listdir(string pathname, bool delegate(string filename) callback)
  *	callback =	Delegate that processes each
  *			DirEntry in turn. Returns true to
  *			continue, false to stop.
- * Example:
+ * Пример:
  *	This program lists all the files in its
  *	path argument and all subdirectories thereof.
  * ----

@@ -160,7 +160,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.содержит
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.Коллекция.содержит
     **/
     public final бул содержит(T элемент)
@@ -197,7 +197,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.экземпляры
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.экземпляры
     **/
     public final бцел экземпляры(T элемент)
@@ -235,7 +235,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.элементы
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.impl.Collection.Коллекция.элементы
     **/
     public final СтражОбходчик!(T) элементы()
@@ -245,7 +245,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.model.View.Обзор.opApply
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.model.View.Обзор.opApply
     **/
     цел opApply (цел delegate (inout T значение) дг)
@@ -258,7 +258,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.очисть.
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.impl.Collection.Коллекция.очисть
     **/
     public final проц очисть()
@@ -270,7 +270,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.удалиВсе.
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.Коллекция.удалиВсе
     **/
     public final проц удалиВсе (T элемент)
@@ -281,7 +281,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.removeOneOf.
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.Коллекция.removeOneOf
     **/
     public final проц удали(T элемент)
@@ -291,7 +291,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.replaceOneOf
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.Коллекция.replaceOneOf
     **/
     public final проц замени(T старЭлемент, T новЭлемент)
@@ -301,7 +301,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.replaceAllOf.
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.impl.Collection.Коллекция.replaceAllOf
     **/
     public final проц замениВсе(T старЭлемент, T новЭлемент)
@@ -311,7 +311,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.impl.Collection.Коллекция.возьми.
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * Takes the least элемент.
      * See_Also: col.impl.Collection.Коллекция.возьми
     **/
@@ -335,7 +335,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.MutableBag.добавьIfAbsent.
-     * Время complexity: O(n).
+     * Временная ёмкость: O(n).
      * See_Also: col.MutableBag.добавьIfAbsent
     **/
     public final проц добавьЕсли(T элемент)
@@ -347,7 +347,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
     /**
      * Implements col.MutableBag.добавь.
-     * Время complexity: O(1).
+     * Временная ёмкость: O(1).
      * See_Also: col.MutableBag.добавь
     **/
     public final проц добавь (T элемент)

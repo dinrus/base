@@ -136,7 +136,7 @@ alias expand развернуть;
 
     /**
      * Read Only: array indexed by the name of each member of the archive.
-     * Example:
+     * Пример:
      *  All the members of the archive can be accessed with a foreach loop:
      * --------------------
      * ZipArchive archive = new ZipArchive(data);

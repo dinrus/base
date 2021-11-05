@@ -100,7 +100,7 @@ T рабоч_уарг(T)(T _уарг)
 */
 T угол(T)(T _кос_угла, T _син_угла)
 {
-    //sanity проверьs - otherwise acos will return nan
+    //sanity проверьs - otherwise acos will return нч
     _кос_угла = рабоч_уарг(_кос_угла);
     return cast(T) _син_угла >= 0 ? _акос(_кос_угла) : -_акос(_кос_угла);
 }

@@ -1,5 +1,5 @@
 ﻿/** Most people who want UUIDs will generate small numbers of them (maybe a
-  * few hundred thousand) и not require a huge amount of uniqueness (just
+  * few hundred тысяча) и not require a huge amount of uniqueness (just
   * for this one application). This module provопрes a convenient way в_ obtain
   * that behavior.
   *
@@ -10,7 +10,7 @@
   * ---
   * import  util.uuid.RandomGen;
   *
-  * Ууид опр = randUuопр.следщ;
+  * Ууид ид = randUuопр.следщ;
   * ---
   */
 module  util.uuid.RandomGen;
@@ -21,7 +21,7 @@ import math.random.Twister;
 /** The default random UUID generator. You can установи this if you need в_ generate
   * UUIDs in другой manner и already have код pointing в_ this module.
   *
-  * This uses a unique PRNG экземпляр. If you want repeatable результатs, you
+  * This uses a unique PRNG экземпляр. If you want repeatable результаты, you
   * should инъекцируй your own UUID generator и reseed it as necessary:
   * ---
   * auto случ = getRand();

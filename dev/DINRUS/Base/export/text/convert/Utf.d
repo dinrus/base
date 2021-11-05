@@ -59,9 +59,9 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-ткст  вТкст (ткст ист, ткст приёмн, бцел* ate=пусто);
-шим[] вТкст (шим[] ист, шим[] приёмн, бцел* ate=пусто) ;
-дим[] вТкст (дим[] ист, дим[] приёмн, бцел* ate=пусто) ;
+ткст  вТкст (ткст ист, ткст приёмн, бцел* взято=пусто);
+шим[] вТкст (шим[] ист, шим[] приёмн, бцел* взято=пусто) ;
+дим[] вТкст (дим[] ист, дим[] приёмн, бцел* взято=пусто) ;
 
 /*******************************************************************************
 
@@ -87,16 +87,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
             вывод = результат;
         ---
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-ткст вТкст (шим[] ввод, ткст вывод=пусто, бцел* ate=пусто);
+ткст вТкст (шим[] ввод, ткст вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -110,16 +110,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-шим[] вТкст16 (ткст ввод, шим[] вывод=пусто, бцел* ate=пусто);
+шим[] вТкст16 (ткст ввод, шим[] вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -136,16 +136,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-ткст вТкст (дим[] ввод, ткст вывод=пусто, бцел* ate=пусто);
+ткст вТкст (дим[] ввод, ткст вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -160,16 +160,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-дим[] вТкст32 (ткст ввод, дим[] вывод=пусто, бцел* ate=пусто);
+дим[] вТкст32 (ткст ввод, дим[] вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -184,16 +184,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто, бцел* ate=пусто);
+шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто, бцел* взято=пусто);
 
 /*******************************************************************************
 
@@ -207,16 +207,16 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
-        Where 'ate' is provопрed, it will be установи в_ the число of
+        Where 'взято' is provопрed, it will be установи в_ the число of
         элементы consumed из_ the ввод, и the вывод буфер
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
-        in sequence rather than все at one время (should use 'ate'
+        in sequence rather than все at one время (should use 'взято'
         as an индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
-дим[] вТкст32 (шим[] ввод, дим[] вывод=пусто, бцел* ate=пусто);
+дим[] вТкст32 (шим[] ввод, дим[] вывод=пусто, бцел* взято=пусто);
 
 
 /*******************************************************************************
@@ -226,7 +226,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-дим раскодируй (ткст ист, ref бцел ate);
+дим раскодируй (ткст ист, ref бцел взято);
 
 /*******************************************************************************
 
@@ -235,7 +235,7 @@ public extern (C) проц onUnicodeError (ткст сооб, т_мера инд
 
 *******************************************************************************/
 
-дим раскодируй (шим[] ист, ref бцел ate);
+дим раскодируй (шим[] ист, ref бцел взято);
 
 /*******************************************************************************
 

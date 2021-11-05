@@ -1,4 +1,4 @@
-﻿import core.RuntimeTraits;
+﻿import runtimetraits;
 import stdrus: фм, скажинс, пауза;
 
     interface I1
@@ -42,7 +42,7 @@ import stdrus: фм, скажинс, пауза;
     }
 
     цел t1() {
-        // Struct-related stuff.
+        // Структура-related stuff.
         auto тип = cast(ИнфОТипе) typeid(S1);
         if(структ_ли (тип)) скажинс("структура"); else скажинс("не структура");
         if (типЗначение_ли (тип))скажинс("значение"); else скажинс("не значение");

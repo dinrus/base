@@ -116,14 +116,14 @@ class ЮникодМПБ(T) : BomSniffer
                 is thrown if there is no known сигнатура where the текущ
                 кодировка expects one в_ be present.
 
-                Where 'ate' is предоставленный, it will be установи в_ the число of 
+                Where 'взято' is предоставленный, it will be установи в_ the число of 
                 элементы consumed из_ the ввод и the decoder operates 
                 in Потокing-режим. That is: 'приёмн' should be supplied since 
                 it is not resized or allocated.
 
         ***********************************************************************/
 
-        final T[] раскодируй (проц[] контент, T[] приёмн=пусто, бцел* ate=пусто)
+        final T[] раскодируй (проц[] контент, T[] приёмн=пусто, бцел* взято=пусто)
         {
                 // look for a мпб
                 auto инфо = тест (контент);
@@ -140,8 +140,8 @@ class ЮникодМПБ(T) : BomSniffer
                        }
                     else
                        // can this кодировка be defaulted?
-                       if (settings.fallback)
-                           установи (settings.fallback, нет);
+                       if (настройки.откат)
+                           установи (настройки.откат, нет);
                        else
                           onUnicodeError ("ЮникодМПБ.раскодируй :: неизвестно или отсутствует мпб");
                 else
@@ -150,9 +150,9 @@ class ЮникодМПБ(T) : BomSniffer
                        onUnicodeError ("ЮникодМПБ.раскодируй :: явно кодировка не допускает мпб");   
                 
                 // преобразуй it в_ internal представление
-                auto возвр = преобр_в (обменяйБайты(контент), settings.тип, приёмн, ate);
-                if (ate && инфо)
-                    *ate += инфо.мпб.length;
+                auto возвр = преобр_в (обменяйБайты(контент), настройки.тип, приёмн, взято);
+                if (взято && инфо)
+                    *взято += инфо.мпб.length;
                 return возвр;
         }
 
@@ -165,11 +165,11 @@ class ЮникодМПБ(T) : BomSniffer
 
         final проц[] кодируй (T[] контент, проц[] приёмн=пусто)
         {
-                if (settings.тест)
+                if (настройки.тест)
                     onUnicodeError ("ЮникодМПБ.кодируй :: не удаётся запись в неспецифичной кодировке");
 
                 // преобразуй it в_ external представление, и пиши
-		return обменяйБайты (из_ (контент, settings.тип, приёмн));
+		return обменяйБайты (из_ (контент, настройки.тип, приёмн));
         }
 
         /***********************************************************************
@@ -180,15 +180,15 @@ class ЮникодМПБ(T) : BomSniffer
 
         private final проц[] обменяйБайты (проц[] контент)
         {
-                бул эндиан = settings.эндиан;
-                бул обменяй   = settings.bigEndian;
+                бул эндиан = настройки.эндиан;
+                бул обменяй   = настройки.bigEndian;
 
                 version (БигЭндиан)
                          обменяй = !обменяй;
 
                 if (эндиан && обменяй)
                    {
-                   if (settings.тип == Utf16)
+                   if (настройки.тип == Utf16)
                        ПерестановкаБайт.своп16 (контент.ptr, контент.length);
                    else
                        ПерестановкаБайт.своп32 (контент.ptr, контент.length);
@@ -200,14 +200,14 @@ class ЮникодМПБ(T) : BomSniffer
       
                 Convert из_ 'тип' преобр_в the given T.
 
-                Where 'ate' is предоставленный, it will be установи в_ the число of 
+                Where 'взято' is предоставленный, it will be установи в_ the число of 
                 элементы consumed из_ the ввод и the decoder operates 
                 in Потокing-режим. That is: 'приёмн' should be supplied since 
                 it is not resized or allocated.
 
         ***********************************************************************/
 
-        static T[] преобр_в (проц[] x, бцел тип, T[] приёмн=пусто, бцел* ate = пусто)
+        static T[] преобр_в (проц[] x, бцел тип, T[] приёмн=пусто, бцел* взято = пусто)
         {
                 T[] возвр;
                 
@@ -215,48 +215,48 @@ class ЮникодМПБ(T) : BomSniffer
                           {
                           if (тип == Utf8)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = cast(ткст) x;
                              }
                           else
                           if (тип == Utf16)
-                              возвр = Utf.вТкст (cast(шим[]) x, приёмн, ate);
+                              возвр = Utf.вТкст (cast(шим[]) x, приёмн, взято);
                           else
                           if (тип == Utf32)
-                              возвр = Utf.вТкст (cast(дим[]) x, приёмн, ate);
+                              возвр = Utf.вТкст (cast(дим[]) x, приёмн, взято);
                           }
 
                 static if (is (T == шим))
                           {
                           if (тип == Utf16)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = cast(шим[]) x;
                              }
                           else
                           if (тип == Utf8)
-                              возвр = Utf.вТкст16 (cast(ткст) x, приёмн, ate);
+                              возвр = Utf.вТкст16 (cast(ткст) x, приёмн, взято);
                           else
                           if (тип == Utf32)
-                              возвр = Utf.вТкст16 (cast(дим[]) x, приёмн, ate);
+                              возвр = Utf.вТкст16 (cast(дим[]) x, приёмн, взято);
                           }
 
                 static if (is (T == дим))
                           {
                           if (тип == Utf32)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = cast(дим[]) x;
                              }
                           else
                           if (тип == Utf8)
-                              возвр = Utf.вТкст32 (cast(ткст) x, приёмн, ate);
+                              возвр = Utf.вТкст32 (cast(ткст) x, приёмн, взято);
                           else
                           if (тип == Utf16)
-                              возвр = Utf.вТкст32 (cast(шим[]) x, приёмн, ate);
+                              возвр = Utf.вТкст32 (cast(шим[]) x, приёмн, взято);
                           }
                 return возвр;
         }
@@ -266,14 +266,14 @@ class ЮникодМПБ(T) : BomSniffer
       
                 Convert из_ T преобр_в the given 'тип'.
 
-                Where 'ate' is предоставленный, it will be установи в_ the число of 
+                Where 'взято' is предоставленный, it will be установи в_ the число of 
                 элементы consumed из_ the ввод и the decoder operates 
                 in Потокing-режим. That is: 'приёмн' should be supplied since 
                 it is not resized or allocated.
 
         ***********************************************************************/
 
-        static проц[] из_ (T[] x, бцел тип, проц[] приёмн=пусто, бцел* ate=пусто)
+        static проц[] из_ (T[] x, бцел тип, проц[] приёмн=пусто, бцел* взято=пусто)
         {
                 проц[] возвр;
 
@@ -281,48 +281,48 @@ class ЮникодМПБ(T) : BomSniffer
                           {
                           if (тип == Utf8)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = x;
                              }
                           else
                           if (тип == Utf16)
-                              возвр = Utf.вТкст16 (x, cast(шим[]) приёмн, ate);
+                              возвр = Utf.вТкст16 (x, cast(шим[]) приёмн, взято);
                           else
                           if (тип == Utf32)
-                              возвр = Utf.вТкст32 (x, cast(дим[]) приёмн, ate);
+                              возвр = Utf.вТкст32 (x, cast(дим[]) приёмн, взято);
                           }
 
                 static if (is (T == шим))
                           {
                           if (тип == Utf16)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = x;
                              }
                           else
                           if (тип == Utf8)
-                              возвр = Utf.вТкст (x, cast(ткст) приёмн, ate);
+                              возвр = Utf.вТкст (x, cast(ткст) приёмн, взято);
                           else
                           if (тип == Utf32)
-                              возвр = Utf.вТкст32 (x, cast(дим[]) приёмн, ate);
+                              возвр = Utf.вТкст32 (x, cast(дим[]) приёмн, взято);
                           }
 
                 static if (is (T == дим))
                           {
                           if (тип == Utf32)
                              {
-                             if (ate)
-                                 *ate = x.length;
+                             if (взято)
+                                 *взято = x.length;
                              возвр = x;
                              }
                           else
                           if (тип == Utf8)
-                              возвр = Utf.вТкст (x, cast(ткст) приёмн, ate);
+                              возвр = Utf.вТкст (x, cast(ткст) приёмн, взято);
                           else
                           if (тип == Utf16)
-                              возвр = Utf.вТкст16 (x, cast(шим[]) приёмн, ate);
+                              возвр = Utf.вТкст16 (x, cast(шим[]) приёмн, взято);
                           }
 
                 return возвр;
@@ -340,8 +340,8 @@ class ЮникодМПБ(T) : BomSniffer
 class BomSniffer 
 {
         private бул     найдено;        // was an кодировка discovered?
-        private Кодировка encoder;      // the текущ кодировка 
-        private Инфо*    settings;     // pointer в_ кодировка configuration
+        private Кодировка кодер;      // the текущ кодировка 
+        private Инфо*    настройки;     // pointer в_ кодировка configuration
 
         private struct  Инфо
                 {
@@ -351,7 +351,7 @@ class BomSniffer
                 бул     тест,          // should we тест for this кодировка?
                          эндиан,        // this кодировка have эндиан concerns?
                          bigEndian;     // is this a big-эндиан кодировка?
-                Кодировка fallback;      // can this кодировка be defaulted?
+                Кодировка откат;      // can this кодировка be defaulted?
                 };
 
         private enum {Utf8, Utf16, Utf32};
@@ -380,7 +380,7 @@ class BomSniffer
 
         final Кодировка кодировка ()
         {
-                return encoder;
+                return кодер;
         }
         
         /***********************************************************************
@@ -402,7 +402,7 @@ class BomSniffer
 
         final проц[] сигнатура ()
         {
-                return settings.мпб;
+                return настройки.мпб;
         }
 
         /***********************************************************************
@@ -413,8 +413,8 @@ class BomSniffer
 
         final проц установи (Кодировка кодировка, бул найдено = нет)
         {
-                this.settings = &отыщи[кодировка];
-                this.encoder = кодировка;
+                this.настройки = &отыщи[кодировка];
+                this.кодер = кодировка;
                 this.найдено = найдено;
         }
         
@@ -450,15 +450,15 @@ debug (UnitTest)
                 проц[] INPUT2 = "abc\xE3\x81\x82\xE3\x81\x84\xE3\x81\x86";
                 проц[] INPUT = x"efbbbf" ~ INPUT2;
                 auto мпб = new ЮникодМПБ!(сим)(Кодировка.Неизвестно);
-                бцел ate;
+                бцел взято;
                 сим[256] буф;
                 
-                auto temp = мпб.раскодируй (INPUT, буф, &ate);
-                assert (ate == INPUT.length);
+                auto temp = мпб.раскодируй (INPUT, буф, &взято);
+                assert (взято == INPUT.length);
                 assert (мпб.кодировка == Кодировка.UTF_8);
                 
-                temp = мпб.раскодируй (INPUT2, буф, &ate);
-                assert (ate == INPUT2.length);
+                temp = мпб.раскодируй (INPUT2, буф, &взято);
+                assert (взято == INPUT2.length);
                 assert (мпб.кодировка == Кодировка.UTF_8);
         }
 }
@@ -472,17 +472,17 @@ debug (ЮникодМПБ)
                 проц[] INPUT2 = "abc\xE3\x81\x82\xE3\x81\x84\xE3\x81\x86";
                 проц[] INPUT = x"efbbbf" ~ INPUT2;
                 auto мпб = new ЮникодМПБ!(сим)(Кодировка.Неизвестно);
-                бцел ate;
+                бцел взято;
                 сим[256] буф;
                 
-                auto temp = мпб.раскодируй (INPUT, буф, &ate);
+                auto temp = мпб.раскодируй (INPUT, буф, &взято);
                 assert (temp == INPUT2);
-                assert (ate == INPUT.length);
+                assert (взято == INPUT.length);
                 assert (мпб.кодировка == Кодировка.UTF_8);
                 
-                temp = мпб.раскодируй (INPUT2, буф, &ate);
+                temp = мпб.раскодируй (INPUT2, буф, &взято);
                 assert (temp == INPUT2);
-                assert (ate == INPUT2.length);
+                assert (взято == INPUT2.length);
                 assert (мпб.кодировка == Кодировка.UTF_8);
         }
 }

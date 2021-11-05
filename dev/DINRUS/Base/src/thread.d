@@ -494,7 +494,7 @@ export extern(D) class Нить
          * In:
          *  период must be less than (бцел.max - 1) milliseconds.
          *
-         * Example:
+         * Пример:
          * -------------------------------------------------------------------------
          *
          * Нить.спи( TimeSpan.milliseconds( 50 ) ); // спи for 50 milliseconds
@@ -556,7 +556,7 @@ export extern(D) class Нить
          * In:
          *  период must be less than (бцел.max - 1) milliseconds.
          *
-         * Example:
+         * Пример:
          * -------------------------------------------------------------------------
          *
          * Нить.спи( 0.05 ); // спи for 50 milliseconds
@@ -2159,7 +2159,7 @@ export extern (D)   class ГруппаНитей
      * executing.  Like threads, a new fiber thread may be created using either
      * derivation or composition, as in the following example.
      *
-     * Example:
+     * Пример:
      * ----------------------------------------------------------------------
      *
      * class DerivedFiber : Фибра

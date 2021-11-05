@@ -547,7 +547,7 @@ alias Error Ошибка;
 ///////////////////////////////////////////////////////////////////////
 /**
  * Информация об интерфейсе.
- * При доступе к объекту через интерфейс,  Interface* появляется в виде
+ * При доступе к объекту через интерфейс,  Интерфейс* появляется в виде
  * первой записи в его vtbl (виртуальной таблице).
  */
 export extern (C) struct Interface
@@ -888,11 +888,11 @@ export:
 	т_хэш дайХэш(ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+    override цел equals(ук p1, ук p2)
     {
         return cast(цел)(*cast(ук  *)p1 == *cast(ук  *)p2);
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
 	
     цел compare(ук p1, ук p2)
@@ -963,7 +963,7 @@ export:
 	override т_хэш дайХэш(ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+   override цел equals(ук p1, ук p2)
     {
 	проц[] a1 = *cast(проц[]*)p1;
 	проц[] a2 = *cast(проц[]*)p2;
@@ -977,7 +977,7 @@ export:
 		}
         return 1;
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
 
     цел compare(ук p1, ук p2)
@@ -1348,14 +1348,14 @@ export:
 	override т_хэш дайХэш(in ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+    override цел equals(ук p1, ук p2)
     {
 	Object o1 = *cast(Object*)p1;
 	Object o2 = *cast(Object*)p2;	
 
 	return (o1 is o2) || (o1 && o1.opEquals(o2));
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
 
     цел compare(ук p1, ук p2)
@@ -1430,7 +1430,7 @@ export:
 	т_хэш дайХэш(ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+    override цел equals(ук p1, ук p2)
     {
 	Interface* pi = **cast(Interface ***)*cast(ук*)p1;
 	Object o1 = cast(Object)(*cast(ук*)p1 - pi.offset);
@@ -1439,7 +1439,7 @@ export:
 
 	return o1 == o2 || (o1 && o1.opCmp(o2) == 0);
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
 
     цел compare(ук p1, ук p2)
@@ -1525,7 +1525,7 @@ export:
 	т_хэш дайХэш(ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+    override цел equals(ук p1, ук p2)
     {	цел c;
 
 	if (p1 == p2)
@@ -1539,7 +1539,7 @@ export:
 	    c = (сравбуф(p1, p2, init.length) == 0);
 	return c;
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 
     цел compare(ук p1, ук p2)
     {
@@ -1646,11 +1646,11 @@ export:
 	т_хэш дайХэш(ук п){return getHash(п);}
 	
 
-    цел equals(ук p1, ук p2)
+    override цел equals(ук p1, ук p2)
     {
         assert(0);
     }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
 
     цел compare(ук p1, ук p2)
@@ -1687,8 +1687,8 @@ export:
     hash_t getHash(ук p) { return getHash(p); }
 	т_хэш дайХэш(ук п){return getHash(п);}
 	
-    цел equals(ук p1, ук p2) { return equals(p1, p2); }
-	цел равны(ук п1, ук п2){return equals(п1, п2);}
+    override цел equals(ук p1, ук p2) { return equals(p1, p2); }
+	override цел равны(ук п1, ук п2){return equals(п1, п2);}
 	
     цел compare(ук p1, ук p2) { return compare(p1, p2); }
 	цел сравни(ук п1, ук п2){return compare(п1, п2);}

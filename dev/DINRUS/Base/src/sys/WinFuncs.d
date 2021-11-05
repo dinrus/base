@@ -2122,8 +2122,8 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 цел VarDecFromI8(long i64In, out ДЕСЯТОК pdecOut);
 цел VarDecFromR4(float dlbIn, out ДЕСЯТОК pdecOut);
 цел VarDecFromR8(double dlbIn, out ДЕСЯТОК pdecOut);
-цел VarDecFromStr(in шткст0 StrIn, бцел lcid, бцел dwFlags, out ДЕСЯТОК pdecOut);
-цел VarBstrFromDec(ref ДЕСЯТОК pdecIn, бцел lcid, бцел dwFlags, out шткст0 pbstrOut);
+цел VarDecFromStr(in шткст0 StrIn, бцел лкид, бцел dwFlags, out ДЕСЯТОК pdecOut);
+цел VarBstrFromDec(ref ДЕСЯТОК pdecIn, бцел лкид, бцел dwFlags, out шткст0 pbstrOut);
 цел VarUI4FromDec(ref ДЕСЯТОК pdecIn, out бцел pulOut);
 цел VarI4FromDec(ref ДЕСЯТОК pdecIn, out цел plOut);
 цел VarUI8FromDec(ref ДЕСЯТОК pdecIn, out ulong pui64Out);
@@ -2143,7 +2143,7 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 цел VarDecNeg(ref ДЕСЯТОК pdecIn, out ДЕСЯТОК pdecResult);
 цел VarDecCmp(ref ДЕСЯТОК pdecLeft, out ДЕСЯТОК pdecRight);
 
-цел VarBstrFromDec(ДЕСЯТОК* pdecIn, бцел lcid, бцел dwFlags, out шткст0 pbstrOut);
+цел VarBstrFromDec(ДЕСЯТОК* pdecIn, бцел лкид, бцел dwFlags, out шткст0 pbstrOut);
 цел VarR8FromDec(ДЕСЯТОК* pdecIn, out double pdblOut);
 цел VarDecNeg(ДЕСЯТОК* pdecIn, out ДЕСЯТОК pdecResult);
 
@@ -2160,10 +2160,10 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 цел VarOr(ref ВАРИАНТ pvarLeft, ref ВАРИАНТ pvarRight, out ВАРИАНТ pvarResult);
 цел VarSub(ref ВАРИАНТ pvarLeft, ref ВАРИАНТ pvarRight, out ВАРИАНТ pvarResult);
 цел VarXor(ref ВАРИАНТ pvarLeft, ref ВАРИАНТ pvarRight, out ВАРИАНТ pvarResult);
-цел VarCmp(ref ВАРИАНТ pvarLeft, ref ВАРИАНТ pvarRight, бцел lcid, бцел dwFlags);
+цел VarCmp(ref ВАРИАНТ pvarLeft, ref ВАРИАНТ pvarRight, бцел лкид, бцел dwFlags);
 
 цел VariantChangeType(ref ВАРИАНТ pvargDest, ref ВАРИАНТ pvarSrc, бкрат wFlags, бкрат вт);
-цел VariantChangeTypeEx(ref ВАРИАНТ pvargDest, ref ВАРИАНТ pvarSrc, бцел lcid, бкрат wFlags, бкрат вт);
+цел VariantChangeTypeEx(ref ВАРИАНТ pvargDest, ref ВАРИАНТ pvarSrc, бцел лкид, бкрат wFlags, бкрат вт);
 
 цел SetErrorInfo(бцел dwReserved, ИИнфОбОш perrinfo);
 цел GetErrorInfo(бцел dwReserved, out ИИнфОбОш pperrinfo);
@@ -2958,9 +2958,9 @@ alias СДЕЛАЙИДЪЯЗ MAKELANGID;
 бцел MAKELCID(бкрат lgid, бкрат srtid) { return (cast(бцел) srtid << 16) | cast(бцел) lgid; }
 // ???
 //бцел MAKESORTLCID(бкрат lgid, бкрат srtid, бкрат ver) { return (MAKELCID(lgid, srtid)) | ((cast(бцел)ver) << 20); }
-бкрат LANGIDFROMLCID(ЛКИД lcid) { return cast(бкрат) lcid; }
-бкрат SORTIDFROMLCID(ЛКИД lcid) { return cast(бкрат) ((lcid >>> 16) & 0x0F); }
-бкрат SORTVERSIONFROMLCID(ЛКИД lcid) { return cast(бкрат) ((lcid >>> 20) & 0x0F); }
+бкрат LANGIDFROMLCID(ЛКИД лкид) { return cast(бкрат) лкид; }
+бкрат SORTIDFROMLCID(ЛКИД лкид) { return cast(бкрат) ((лкид >>> 16) & 0x0F); }
+бкрат SORTVERSIONFROMLCID(ЛКИД лкид) { return cast(бкрат) ((лкид >>> 20) & 0x0F); }
 +/
 
 version(БигЭндиан)
@@ -4751,8 +4751,8 @@ enum
     SORT_CHINESE_UNICODE           = 0x1,    // Chinese Unicode order
     SORT_CHINESE_PRC               = 0x2,    // PRC Chinese Stroke Count order
 
-    SORT_KOREAN_KSC                = 0x0,    // Korean KSC order
-    SORT_KOREAN_UNICODE            = 0x1,    // Korean Unicode order
+    SORT_KOREAN_KSC                = 0x0,    // Корейский KSC order
+    SORT_KOREAN_UNICODE            = 0x1,    // Корейский Unicode order
 
     SORT_GERMAN_PHONE_BOOK         = 0x1,    // German Phone Book order
 }
@@ -5453,7 +5453,7 @@ enum : бцел
 }
 
 /*
- * Class styles
+ * Класс styles
  */
 enum
 {

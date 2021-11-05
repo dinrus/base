@@ -37,7 +37,7 @@ private union UuidData
  *              of UUIDs, not the MAC адрес/время based generation.
  *
  * When generating a random UUID, use a carefully seeded random число 
- * generator. A poorly chosen сей may произведи undesirably consistent результатs.
+ * generator. A poorly chosen сей may произведи undesirably consistent результаты.
  */
 struct Ууид
 {
@@ -390,7 +390,7 @@ version (TangoTest)
         {
                 auto namespace = Ууид.разбор("15288517-c402-4057-9fc5-05711726df41");
                 auto имя = "hello";
-                // This was generated with the ууид utility on linux/amd64. It might have different результатs on
+                // This was generated with the ууид utility on linux/amd64. It might have different результаты on
                 // a ppc процессор -- the spec says something about network байт order, but it's using an Массив
                 // of байты at that точка, so converting в_ NBO is a noop...
                 auto ожидалось = Ууид.разбор("2b1c6704-a43f-5d43-9abb-b13310b4458a");
@@ -404,7 +404,7 @@ version (TangoTest)
                 auto namespace = Ууид.разбор("15288517-c402-4057-9fc5-05711726df41");
                 auto имя = "hello";
                 auto ожидалось = Ууид.разбор("31a2b702-85a8-349a-9b0e-213b1bd753b8");
-                auto generated = Ууид.поИмени(namespace, имя, new Md5, 3);
+                auto generated = Ууид.поИмени(namespace, имя, new Мд5, 3);
                 assert (generated == ожидалось, "\nexpected: " ~ ожидалось.вТкст ~ "\nbut was:  " ~ generated.вТкст);
         }
         проц main(){}

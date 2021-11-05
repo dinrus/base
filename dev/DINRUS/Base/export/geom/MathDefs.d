@@ -71,7 +71,7 @@ T рабоч_уарг(T)(T _уарг)
     и отрицательный, если угол находится в [pi:2pi]
 */
 T угол(T)(T _кос_угла, T _син_угла)
-{//sanity checks - otherwise acos will return nan
+{//sanity checks - otherwise acos will return нч
   _кос_угла = рабоч_уарг(_кос_угла);
   return cast(T) _син_угла >= 0 ? _акос(_кос_угла) : -_акос(_кос_угла);
 }

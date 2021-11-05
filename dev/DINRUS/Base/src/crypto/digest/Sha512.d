@@ -25,7 +25,7 @@ public  import crypto.digest.Digest;
 
 *******************************************************************************/
 
-final class Sha512 : MerkleDamgard
+export  class Sha512 : МерклеДамгард
 {
         private бдол[8]        контекст;
         private const бцел      padChar = 0x80;
@@ -36,13 +36,13 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        this() { }
+       export  this() { }
 
         /***********************************************************************
 
         ***********************************************************************/
 
-        protected override проц создайДайджест(ббайт[] буф)
+        export  override проц создайДайджест(ббайт[] буф)
         {
                 version (ЛитлЭндиан)
                          ПерестановкаБайт.своп64(контекст.ptr, контекст.length * бдол.sizeof);
@@ -56,7 +56,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        override бцел размерДайджеста() {return 64;}
+        export override бцел размерДайджеста() {return 64;}
 
         /***********************************************************************
 
@@ -67,7 +67,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц сбрось()
+        export  override проц сбрось()
         {
                 super.сбрось();
                 контекст[] = начальное[];
@@ -86,7 +86,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override бцел размерБлока() { return 128; }
+        export  override бцел размерБлока() { return 128; }
 
         /***********************************************************************
 
@@ -102,7 +102,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override бцел добавьРазмер()   { return 16;  }
+        export  override бцел добавьРазмер()   { return 16;  }
 
         /***********************************************************************
 
@@ -118,7 +118,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц падСооб(ббайт[] данные)
+        export  override проц падСооб(ббайт[] данные)
         {
                 данные[0] = padChar;
                 данные[1..$] = 0;
@@ -139,7 +139,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц падДлин(ббайт[] данные, бдол length)
+        export  override проц падДлин(ббайт[] данные, бдол length)
         {
                 length <<= 3;
                 for(цел j = данные.length-1; j >= 0; j--) {
@@ -163,7 +163,7 @@ final class Sha512 : MerkleDamgard
 
         ***********************************************************************/
 
-        protected override проц трансформируй(ббайт[] ввод)
+        export  override проц трансформируй(ббайт[] ввод)
         {
                 бдол[80] W;
                 бдол a,b,c,d,e,f,g,h;
@@ -341,7 +341,7 @@ debug(UnitTest)
                 "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu"
         ];
 
-        static ткст[] результатs =
+        static ткст[] результаты =
         [
                 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e",
                 "ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f",
@@ -354,7 +354,7 @@ debug(UnitTest)
                 {
                 h.обнови(cast(ббайт[])s);
                 ткст d = h.гексДайджест();
-                assert(d == результатs[i],"DigestTransform:("~s~")("~d~")!=("~результатs[i]~")");
+                assert(d == результаты[i],"DigestTransform:("~s~")("~d~")!=("~результаты[i]~")");
                 }
         }
 }

@@ -32,7 +32,7 @@ private import exception;
         The ткст is inspected for a знак и an optional корень
         префикс. A корень may be provопрed as an аргумент instead,
         whereupon it must сверь the префикс (where present). When
-        корень is установи в_ zero, conversion will default в_ decimal.
+        корень is установи в_ zero, conversion will default в_ десяток.
 
         Throws: ИсклНелегальногоАргумента where the ввод текст is not parsable
         in its entirety.
@@ -61,7 +61,7 @@ private import exception;
         The ткст is inspected for a знак и an optional корень
         префикс. A корень may be provопрed as an аргумент instead,
         whereupon it must сверь the префикс (where present). When
-        корень is установи в_ zero, conversion will default в_ decimal.
+        корень is установи в_ zero, conversion will default в_ десяток.
 
         Throws: ИсклНелегальногоАргумента where the ввод текст is not parsable
         in its entirety.
@@ -145,7 +145,7 @@ private import exception;
         "x#"    => hexadecimal псеп_в_начале with "0x"
         "X#"    => hexadecimal псеп_в_начале with "0X"
 
-        "d8"    => decimal псеп_в_конце в_ 8 places as требуется
+        "d8"    => десяток псеп_в_конце в_ 8 places as требуется
         "b8"    => binary псеп_в_конце в_ 8 places as требуется
         "b8#"   => binary псеп_в_конце в_ 8 places и псеп_в_начале with "0b"
         ---
@@ -329,30 +329,30 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
         The ткст is inspected for a знак и an optional корень
         префикс. A корень may be provопрed as an аргумент instead,
         whereupon it must сверь the префикс (where present). When
-        корень is установи в_ zero, conversion will default в_ decimal.
+        корень is установи в_ zero, conversion will default в_ десяток.
 
-        A non-пусто 'ate' will return the число of characters использован
+        A non-пусто 'взято' will return the число of characters использован
         в_ construct the returned значение.
 
-        Throws: Неук. The 'ate' param should be проверьed for действителен ввод.
+        Throws: Неук. The 'взято' param should be проверьed for действителен ввод.
 
 ******************************************************************************/
 
-дол разбор(T, U=бцел) (T[] цифры, U корень=0, бцел* ate=пусто)
+дол разбор(T, U=бцел) (T[] цифры, U корень=0, бцел* взято=пусто)
 {
-    return разбор!(T)(цифры, корень, ate);
+    return разбор!(T)(цифры, корень, взято);
 }
 
-дол разбор(T) (T[] цифры, бцел корень=0, бцел* ate=пусто)
+дол разбор(T) (T[] цифры, бцел корень=0, бцел* взято=пусто)
 {
     бул знак;
 
     auto eaten = убери (цифры, знак, корень);
-    auto значение = преобразуй (цифры[eaten..$], корень, ate);
+    auto значение = преобразуй (цифры[eaten..$], корень, взято);
 
-    // проверь *ate > 0 в_ сделай sure we don't разбор "-" as 0.
-    if (ate && *ate > 0)
-        *ate += eaten;
+    // проверь *взято > 0 в_ сделай sure we don't разбор "-" as 0.
+    if (взято && *взято > 0)
+        *взято += eaten;
 
     return cast(дол) (знак ? -значение : значение);
 }
@@ -361,21 +361,21 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
 
         Convert the provопрed 'цифры' преобр_в an целое значение,
         without проверьing for a знак or корень. The корень дефолты
-        в_ decimal (10).
+        в_ десяток (10).
 
-        Returns the значение и updates 'ate' with the число of
+        Returns the значение и updates 'взято' with the число of
         characters consumed.
 
-        Throws: Неук. The 'ate' param should be проверьed for действителен ввод.
+        Throws: Неук. The 'взято' param should be проверьed for действителен ввод.
 
 ******************************************************************************/
 
-бдол преобразуй(T, U=бцел) (T[] цифры, U корень=10, бцел* ate=пусто)
+бдол преобразуй(T, U=бцел) (T[] цифры, U корень=10, бцел* взято=пусто)
 {
-    return преобразуй!(T)(цифры, корень, ate);
+    return преобразуй!(T)(цифры, корень, взято);
 }
 
-бдол преобразуй(T) (T[] цифры, бцел корень=10, бцел* ate=пусто)
+бдол преобразуй(T) (T[] цифры, бцел корень=10, бцел* взято=пусто)
 {
     бцел  eaten;
     бдол значение;
@@ -400,8 +400,8 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
             break;
     }
 
-    if (ate)
-        *ate = eaten;
+    if (взято)
+        *взято = eaten;
 
     return значение;
 }
@@ -444,7 +444,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
             else
                 break;
 
-        // откинь off a корень specifier also?
+        // откинь off a корень определитель also?
         auto r = корень;
         if (c is '0' && длин > 1)
             switch (*++p)

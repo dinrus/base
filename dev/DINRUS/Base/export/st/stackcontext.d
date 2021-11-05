@@ -81,7 +81,7 @@ public class ОшибкаКонтекста : Ошибка
  * a контекст имеется thrown an exception like this, it dies
  * и must be restarted before it may be пуск again.
  *
- * Example:
+ * Пример:
  * <код><pre>
  * // Here is a trivial example using contexts. 
  * // More sophisticated uses of contexts can produce

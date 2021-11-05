@@ -13,18 +13,12 @@ private import  col.model.MapX,
 
         КоллекцияКарт extends Коллекция в_ provопрe default implementations of
         some Карта operations. 
-                
-        author: Doug Lea
-                @version 0.93
-
-        <P> For an introduction в_ this package see <A HREF="индекс.html"
-        > Overview </A>.
 
  ********************************************************************************/
 
 public abstract class КоллекцияКарт(К, T) : Коллекция!(T), Карта!(К, T)
 {
-        alias ОбзорКарты!(К, T)            MapViewT;
+        alias ОбзорКарты!(К, T)            ОбзорКартыТ;
         alias Коллекция!(T).удали     удали;
         alias Коллекция!(T).удалиВсе  удалиВсе;
 
@@ -85,7 +79,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
         {
                 if (!действительныйКлюч(ключ))
                    {
-                   throw new IllegalElementException("Attempt в_ include не_годится ключ _in Коллекция");
+                   throw new IllegalElementException("Попытка включить в коллекцию непригодный ключ");
                    }
         }
 
@@ -106,7 +100,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
         /***********************************************************************
 
                 Implements col.impl.Collection.Коллекция.совпадает
-                Время complexity: O(n).
+                Временная ёмкость: O(n).
                 Default implementation. Fairly sleazy approach.
                 (Defensible only when you remember that it is just a default impl.)
                 It tries в_ cast в_ one of the known collection interface типы
@@ -128,18 +122,18 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
                        return да;
                    else
                       {
-                      auto врем = cast (MapViewT) другой;
+                      auto врем = cast (ОбзорКартыТ) другой;
                       if (врем)
                           if (cast(СортированныеКлючи!(К, T)) this)
-                              return sameOrderedPairs(this, врем);
+                              return одинаковыеУпорядоченныеПары(this, врем);
                           else
-                             return samePairs(this, врем);
+                             return одинаковыеПары(this, врем);
                       }
                 return нет;
         }
 
 
-        public final static бул samePairs(MapViewT s, MapViewT t)
+        public final static бул одинаковыеПары(ОбзорКартыТ s, ОбзорКартыТ t)
         {
                 if (s.размер !is t.размер)
                     return нет;
@@ -155,7 +149,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
                 return да;
         }
 
-        public final static бул sameOrderedPairs(MapViewT s, MapViewT t)
+        public final static бул одинаковыеУпорядоченныеПары(ОбзорКартыТ s, ОбзорКартыТ t)
         {
                 if (s.размер !is t.размер)
                     return нет;

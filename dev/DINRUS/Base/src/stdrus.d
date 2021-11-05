@@ -565,14 +565,6 @@ return cast(сим[]) rt.charset.fromMBSz(cast(char*) с, cast(int) кодСтр
 	return std.io.readln(чф, буф);
 	}
 
-	//проц скажи(ткст ткт){ win.скажи(ткт);}
-//	проц скажинс(ткст ткт){ win.скажинс(ткт);}
-	//проц скажи(бдол ткт){ win.скажи(ткт);}
-	//проц скажинс(бдол ткт){ win.скажинс(ткт);}
-
-	//проц нс(){win.нс();}
-	//проц таб(){win.таб();}	
-	
 	import std.ctype;
 
 	цел числобукв_ли(дим б){return std.ctype.isalnum(б);}
@@ -2115,7 +2107,7 @@ auto args = _arguments;
 	    {	дим c = fmt[i++];
 
 		дим getFmtChar()
-		{   // Valid format specifier символs will never be UTF
+		{   // Valid format определитель символs will never be UTF
 		    if (i == fmt.length)
 			throw new ФорматИскл("Неверный спецификатор");
 		    return fmt[i++];
@@ -8398,7 +8390,7 @@ scope class PerformanceCounterScope(T)
 	T   м_счётчик;
 
     private:
-	this(PerformanceCounterScope rhs);
+	this(PerformanceCounterScope правткт);
 }
 
 

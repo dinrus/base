@@ -433,7 +433,7 @@ interface IShellDispatch : ИДиспетчер {
 // Updated IShellDispatch
 interface IShellDispatch2 : IShellDispatch {
   mixin(ууид("a4c6892c-3ba9-11d2-9dea-00c04fb16162"));
-  // дай restriction settings
+  // дай restriction настройки
   /*[id(0x60030000)]*/ цел IsRestricted(шим* Group, шим* Restriction, out цел plRestrictValue);
   // Execute generic command
   /*[id(0x60030001)]*/ цел ShellExecute(шим* File, ВАРИАНТ vArgs, ВАРИАНТ vDir, ВАРИАНТ vOperation, ВАРИАНТ vShow);
@@ -582,13 +582,13 @@ abstract final class SearchCommand {
   mixin Интерфейсы!(ИДиспетчер);
 }
 
-// FileSearchBand Class
+// FileSearchBand Класс
 abstract final class FileSearchBand {
   mixin(ууид("c4ee31f3-4768-11d2-be5c-00a0c9a83da1"));
   mixin Интерфейсы!(IFileSearchBand);
 }
 
-// PassportClientServices Class
+// PassportClientServices Класс
 abstract final class PassportClientServices {
   mixin(ууид("2d2307c8-7db4-40d6-9100-d52af4f97a5b"));
   mixin Интерфейсы!(IPassportClientServices);

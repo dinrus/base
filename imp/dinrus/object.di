@@ -10,18 +10,18 @@ pragma(lib, "DinrusBaseDll.lib");
 version(Dinrus2)
 {
 
-	export extern(D)  bool opEquals(Object lhs, Object rhs)
+	export extern(D)  bool opEquals(Object lhs, Object правткт)
 	{
 		// If aliased to the same object or both null => equal
-		if (lhs is rhs) return true;
+		if (lhs is правткт) return true;
 
 		// If either is null => non-equal
-		if (lhs is null || rhs is null) return false;
+		if (lhs is null || правткт is null) return false;
 
-		if (!lhs.opEquals(rhs)) return false;
+		if (!lhs.opEquals(правткт)) return false;
 	/+
 		// If same exact type => one call to method opEquals
-		if (typeid(lhs) is typeid(rhs) && typeid(lhs).opEquals(typeid(rhs)))
+		if (typeid(lhs) is typeid(правткт) && typeid(lhs).opEquals(typeid(правткт)))
 				/* CTFE doesn't like typeid much. 'is' works, but opEquals doesn't
 				(issue 7147). But CTFE also guarantees that equal TypeInfos are
 				always identical. So, no opEquals needed during CTFE. */
@@ -30,7 +30,7 @@ version(Dinrus2)
 		}
 	+/
 		// General case => symmetric calls to method opEquals
-		return cast(bool) rhs.opEquals(lhs);
+		return cast(bool) правткт.opEquals(lhs);
 	}
 
 	export extern(D) bool _xopEquals(in ук, in ук)

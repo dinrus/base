@@ -3840,7 +3840,7 @@
 
 		//вяжи(функция_1913)("_?date@QDateTime@@QBE?AVQDate@@XZ", биб);
 
-		//вяжи(функция_1914)("_?dateFormat@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
+		//вяжи(функция_1914)("_?форматДаты@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
 
 		//вяжи(функция_1915)("_?dateTimeFormat@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
 
@@ -3866,7 +3866,7 @@
 
 		//вяжи(функция_1926)("_?dec@@YAAAVQTextStream@@AAV1@@Z", биб);
 
-		//вяжи(функция_1927)("_?decimal@QLocalePrivate@@QBE?AVQChar@@XZ", биб);
+		//вяжи(функция_1927)("_?десяток@QLocalePrivate@@QBE?AVQChar@@XZ", биб);
 
 		//вяжи(функция_1928)("_?decimalPoint@QLocale@@QBE?AVQChar@@XZ", биб);
 
@@ -4844,7 +4844,7 @@
 
 		//вяжи(функция_2415)("_?groupId@QFileInfo@@QBEIXZ", биб);
 
-		//вяжи(функция_2416)("_?groupSeparator@QLocale@@QBE?AVQChar@@XZ", биб);
+		//вяжи(функция_2416)("_?групповойРазделитель@QLocale@@QBE?AVQChar@@XZ", биб);
 
 		//вяжи(функция_2417)("_?grow@QString@@CAHH@Z", биб);
 
@@ -5210,7 +5210,7 @@
 
 		//вяжи(функция_2598)("_?is_app_running@QCoreApplicationPrivate@@2_NA", биб);
 
-		//вяжи(функция_2599)("_?isA@QObject@@QBE_NPBD@Z", биб);
+		//вяжи(функция_2599)("_?является@QObject@@QBE_NPBD@Z", биб);
 
 		//вяжи(функция_2600)("_?isAbsolute@QDir@@QBE_NXZ", биб);
 
@@ -14414,7 +14414,7 @@
 
 		//вяжи(функция_7200)("_?date@QDateTime@@QBE?AVQDate@@XZ", биб);
 
-		//вяжи(функция_7201)("_?dateFormat@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
+		//вяжи(функция_7201)("_?форматДаты@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
 
 		//вяжи(функция_7202)("_?dateTimeFormat@QLocale@@QBE?AVQString@@W4FormatType@1@@Z", биб);
 
@@ -14440,7 +14440,7 @@
 
 		//вяжи(функция_7213)("_?dec@@YAAAVQTextStream@@AAV1@@Z", биб);
 
-		//вяжи(функция_7214)("_?decimal@QLocalePrivate@@QBE?AVQChar@@XZ", биб);
+		//вяжи(функция_7214)("_?десяток@QLocalePrivate@@QBE?AVQChar@@XZ", биб);
 
 		//вяжи(функция_7215)("_?decimalPoint@QLocale@@QBE?AVQChar@@XZ", биб);
 
@@ -15418,7 +15418,7 @@
 
 		//вяжи(функция_7702)("_?groupId@QFileInfo@@QBEIXZ", биб);
 
-		//вяжи(функция_7703)("_?groupSeparator@QLocale@@QBE?AVQChar@@XZ", биб);
+		//вяжи(функция_7703)("_?групповойРазделитель@QLocale@@QBE?AVQChar@@XZ", биб);
 
 		//вяжи(функция_7704)("_?grow@QString@@CAHH@Z", биб);
 
@@ -15784,7 +15784,7 @@
 
 		//вяжи(функция_7885)("_?is_app_running@QCoreApplicationPrivate@@2_NA", биб);
 
-		//вяжи(функция_7886)("_?isA@QObject@@QBE_NPBD@Z", биб);
+		//вяжи(функция_7886)("_?является@QObject@@QBE_NPBD@Z", биб);
 
 		//вяжи(функция_7887)("_?isAbsolute@QDir@@QBE_NXZ", биб);
 

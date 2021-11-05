@@ -1,4 +1,4 @@
-﻿import thread, stdrus, win;
+﻿import thread, stdrus;
 pragma(lib, "dinrus.lib");
 
 проц созданиеКонтекста()

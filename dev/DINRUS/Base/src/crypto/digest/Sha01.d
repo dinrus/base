@@ -1,13 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2006 Dinrus. Все права защищены
-
-        license:        BSD стиль: see doc/license.txt for details
-
-        version:        Initial release: Feb 2006
-
-        author:         Regan Heath, Oskar Linde
-
         This module реализует common части of the SHA-0 и SHA-1 algoritms
 
 *******************************************************************************/
@@ -22,7 +14,7 @@ private import crypto.digest.MerkleDamgard;
 
 *******************************************************************************/
 
-package abstract class Sha01 : MerkleDamgard
+export  abstract class Sha01 : МерклеДамгард
 {
         protected бцел[5]               контекст;
         private static const ббайт      padChar = 0x80;
@@ -34,7 +26,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final бцел размерДайджеста() { return 20; }
+        export  бцел размерДайджеста() { return 20; }
 
         /***********************************************************************
 
@@ -45,7 +37,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override проц сбрось()
+        export  override проц сбрось()
         {
                 super.сбрось();
                 контекст[] = начальное[];
@@ -64,7 +56,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override проц создайДайджест(ббайт[] буф)
+        export  override проц создайДайджест(ббайт[] буф)
         {
                 version (ЛитлЭндиан)
                          ПерестановкаБайт.своп32 (контекст.ptr, контекст.length * бцел.sizeof);
@@ -85,7 +77,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override бцел размерБлока() { return 64; }
+        export  override бцел размерБлока() { return 64; }
 
         /***********************************************************************
 
@@ -101,7 +93,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override бцел добавьРазмер() {return 8;}
+        export  override бцел добавьРазмер() {return 8;}
 
         /***********************************************************************
 
@@ -117,7 +109,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override проц падСооб(ббайт[] данные)
+        export  override проц падСооб(ббайт[] данные)
         {
                 данные[0] = padChar;
                 данные[1..$] = 0;
@@ -138,7 +130,7 @@ package abstract class Sha01 : MerkleDamgard
 
         ***********************************************************************/
 
-        final protected override проц падДлин(ббайт[] данные, бдол length)
+        export  override проц падДлин(ббайт[] данные, бдол length)
         {
                 length <<= 3;
                 for(цел j = данные.length-1; j >= 0; j--)

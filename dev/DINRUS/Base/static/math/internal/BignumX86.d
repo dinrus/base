@@ -28,7 +28,7 @@
  * CPUs can only do one). Despite this, performance is superior on AMD.
  * Performance is dreadful on P4.
  *
- *  Timing результатs (cycles per цел)
+ *  Timing результаты (cycles per цел)
  *              --Intel Pentium--  --AMD--
  *              PM     P4   Core2   K7
  *  +,-         2.25  15.6   2.25   1.5
@@ -1347,7 +1347,7 @@ L_enter_odd:
 
         проц testPerformance()
         {
-            // The performance результатs at the top of this file were obtained using
+            // The performance результаты at the top of this file were obtained using
             // a Windows device driver to access the CPU performance counters.
             // The код below is less accurate but ещё wопрely usable.
             // The value for division is quite inconsistent.

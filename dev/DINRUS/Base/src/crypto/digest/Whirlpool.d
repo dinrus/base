@@ -1,17 +1,9 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2009 Dinrus. Все права защищены
-
-        license:        BSD стиль: see doc/license.txt for details
-
-        version:        Initial release: Jan 2010
-
-        author:         Kai Nacke
-
-        This module реализует the Whirlpool algorithm by Paulo S.L.M. Barreto
+        This module реализует the Вихрь algorithm by Paulo S.L.M. Barreto
         и Vincent Rijmen.
 
-        See https://www.cosic.esat.kuleuven.ac.be/nessie/workshop/submissions/whirlpool.zИП
+        See https://www.cosic.esat.kuleuven.ac.be/nessie/workshop/submissions/whirlpool.zip
         for ещё information.
 
 *******************************************************************************/
@@ -28,7 +20,7 @@ public  import crypto.digest.Digest;
 
 private static const цел INTERNAL_ROUNDS = 10;
 
-final class Whirlpool : MerkleDamgard
+export class Вихрь : МерклеДамгард
 {
     private бдол хэш[8];    /* the hashing состояние */
 
@@ -36,19 +28,19 @@ final class Whirlpool : MerkleDamgard
 
     /***********************************************************************
 
-    	Construct a Whirlpool
+    	Construct a Вихрь
 
      ***********************************************************************/
 
-    this() { }
+   export this() { }
 
     /***********************************************************************
 
-    	The размер of a Whirlpool дайджест is 64 байты
+    	The размер of a Вихрь дайджест is 64 байты
 
      ***********************************************************************/
 
-    override бцел размерДайджеста()
+    export override бцел размерДайджеста()
     {
         return 64;
     }
@@ -62,7 +54,7 @@ final class Whirlpool : MerkleDamgard
 
      ***********************************************************************/
 
-    override проц сбрось()
+    export override проц сбрось()
     {
         super.сбрось();
         хэш[] = 0L;
@@ -81,7 +73,7 @@ final class Whirlpool : MerkleDamgard
 
      ***********************************************************************/
 
-    override проц создайДайджест(ббайт[] буф)
+    export override проц создайДайджест(ббайт[] буф)
     {
         version (ЛитлЭндиан)
         ПерестановкаБайт.своп64 (хэш.ptr, хэш.length * бдол.sizeof);
@@ -98,11 +90,11 @@ final class Whirlpool : MerkleDamgard
 
     	Примечания:
     	Specifies the размер (in байты) of the блок of данные в_ пароль в_
-    	each вызов в_ трансформируй(). For Whirlpool the размерБлока is 64.
+    	each вызов в_ трансформируй(). For Вихрь the размерБлока is 64.
 
      ***********************************************************************/
 
-    protected override бцел размерБлока()
+    export  override бцел размерБлока()
     {
         return 64;
     }
@@ -117,11 +109,11 @@ final class Whirlpool : MerkleDamgard
     	Примечания:
     	Specifies the размер (in байты) of the паддинг which uses the
     	length of the данные which имеется been ciphered, this паддинг is
-    	carried out by the падДлин метод. For Whirlpool the добавьРазмер is 8.
+    	carried out by the падДлин метод. For Вихрь the добавьРазмер is 8.
 
      ***********************************************************************/
 
-    protected бцел добавьРазмер()
+    export  бцел добавьРазмер()
     {
         return 32;
     }
@@ -140,7 +132,7 @@ final class Whirlpool : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц падСооб(ббайт[] at)
+    export  override проц падСооб(ббайт[] at)
     {
         at[0] = padChar;
         at[1..at.length] = 0;
@@ -161,7 +153,7 @@ final class Whirlpool : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц падДлин(ббайт[] at, бдол length)
+    export  override проц падДлин(ббайт[] at, бдол length)
     {
         бдол буфер[4];
         буфер[0..2] = 0L;
@@ -184,7 +176,7 @@ final class Whirlpool : MerkleDamgard
 
      ***********************************************************************/
 
-    protected override проц трансформируй(ббайт[] ввод)
+    export  override проц трансформируй(ббайт[] ввод)
     {
         бдол блок[8];    /* мю(буфер) */
 
@@ -200,7 +192,7 @@ final class Whirlpool : MerkleDamgard
         бдол состояние[8] = блок[] ^ К[];	/* the cipher состояние */
 
         /*
-         * iterate over все rounds:
+         * iterate over все круги:
          */
         for (auto r = 1; r <= INTERNAL_ROUNDS; r++)
         {
@@ -981,7 +973,7 @@ debug(UnitTest)
     {
         проц testISOVectors()
         {
-            // The ISO тест vectors и результатs
+            // The ISO тест vectors и результаты
             static ткст[] strings =
             [
                 "",
@@ -995,7 +987,7 @@ debug(UnitTest)
                 "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq" // Not an ISO вектор, but из_ FИПS
             ];
 
-            static ткст[] результатs =
+            static ткст[] результаты =
             [
                 "19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3",
                 "8aca2602792aec6f11a67206531fb7d7f0dff59413145e6973c45001d0087b42d11bc645413aeff63a42391a39145a591a92200d560195e53b478584fdae231a",
@@ -1008,14 +1000,14 @@ debug(UnitTest)
                 "526b2394d85683e24b29acd0fd37f7d5027f61366a1407262dc2a6a345d9e240c017c1833db1e6db6a46bd444b0c69520c856e7c6e9c366d150a7da3aeb160d1",
             ];
 
-            Whirlpool h = new Whirlpool();
+            Вихрь h = new Вихрь();
 
             foreach (цел i, ткст s; strings)
             {
                 h.обнови(cast(ббайт[]) s);
                 ткст d = h.гексДайджест;
 
-                assert(d == результатs[i],":("~s~")("~d~")!=("~результатs[i]~")");
+                assert(d == результаты[i],":("~s~")("~d~")!=("~результаты[i]~")");
             }
 
             {
@@ -1031,9 +1023,9 @@ debug(UnitTest)
 
         проц testNESSIE0bitVectors()
         {
-            // Part of the NESSIE тест vectors и результатs: strings of 0 биты
+            // Part of the NESSIE тест vectors и результаты: strings of 0 биты
             ббайт[128] данные = 0;
-            static ткст[] результатs =
+            static ткст[] результаты =
                 [
                     "19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3",
                     "4d9444c212955963d425a410176fccfb74161e6839692b4c11fde2ed6eb559efe0560c39a7b61d5a8bcabd6817a3135af80f342a4942ccaae745abddfb6afed0",
@@ -1165,22 +1157,22 @@ debug(UnitTest)
                     "cf73ab693e86e45fc33f9dc174443e7ea4e8acb131257f5ceac4503d9c7a1138342e2b80e6c4fddb3b47b00c990283903039cb5622ac905b3b9c1ed7c9982194",
                 ];
 
-            Whirlpool h = new Whirlpool();
+            Вихрь h = new Вихрь();
             for (цел i = 0; i < данные.length; i++)
             {
                 h.обнови(данные[0..i]);
                 ткст d = h.гексДайджест;
 
-                assert(d == результатs[i],":( 0-байты)("~d~")!=("~результатs[i]~")");
+                assert(d == результаты[i],":( 0-байты)("~d~")!=("~результаты[i]~")");
             }
 
         }
 
         проц testNESSIE1bitVectors()
         {
-            // Part of the NESSIE тест vectors и результатs: 512-bit strings containing a single 1-bit
+            // Part of the NESSIE тест vectors и результаты: 512-bit strings containing a single 1-bit
             ббайт[64] данные = 0;
-            static ткст[] результатs =
+            static ткст[] результаты =
                 [
                     "103e0055a9b090e11c8fddebba06c05ace8b64b896128f6eed3071fcf3dc16946778e07223233fd180fc40ccdb8430a640e37634271e655ca1674ebff507f8cb",
                     "a892e8125f792ee5997d175257633bf889f947759ad6f19dd233f467a3261643f815ded3eed7892a315402cb341fe713c109c0c217a9f4c53bb9920af88136e7",
@@ -1696,7 +1688,7 @@ debug(UnitTest)
                     "f1748c6ec048cb59fd271fa933c1cad6d00d86d66fcca9188f1b4239d50e34bbdbb6dfccae9bf8e4291a0ad5e76d48770d36824b850cfcbb4012d97f2ce5650f",
                 ];
 
-            Whirlpool h = new Whirlpool();
+            Вихрь h = new Вихрь();
             for (цел i = 0; i < данные.length; i++)
             {
                 for (цел j = 0; j < 8; j++)
@@ -1706,7 +1698,7 @@ debug(UnitTest)
                     h.обнови(данные);
                     ткст d = h.гексДайджест;
 
-                    assert(d == результатs[i*8+j],":( 1-байты)("~d~")!=("~результатs[i*8+j]~")");
+                    assert(d == результаты[i*8+j],":( 1-байты)("~d~")!=("~результаты[i*8+j]~")");
                 }
                 данные[i] = 0;
             }

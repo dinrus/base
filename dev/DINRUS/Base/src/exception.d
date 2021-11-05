@@ -134,7 +134,7 @@ export:
 
     - ТекстИскл
       - RegexException
-      - LocaleException
+      - ИсклЛокали
       - ЮникодИскл
 
     - PayloadException

@@ -1,4 +1,4 @@
-import std.cpuid, win;
+import std.cpuid;
 
 pragma(lib, "DinrusStd.lib");
   void main()

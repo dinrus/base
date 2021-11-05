@@ -82,7 +82,7 @@ scope class PerformanceCounterScope(T)
 
     // Not to be implemented
     private:
-	this(PerformanceCounterScope rhs);
+	this(PerformanceCounterScope правткт);
 }
 
 version(Posix)
@@ -775,7 +775,7 @@ else version(Windows)
     /// \name Construction
     /// @{
     private:
-	/// \brief Class constructor
+	/// \brief Класс constructor
 	///
 	/// Detects availability of the high performance hardware counter, and if
 	/// not available adjusts 
@@ -987,7 +987,7 @@ else version(Windows)
     /// \name Constructors
     /// @{
     private:
-	/// \brief Class constructor
+	/// \brief Класс constructor
 	///
 	/// Detects availability of the high performance hardware counter, and if
 	/// not available adjusts 

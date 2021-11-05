@@ -99,7 +99,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.ХэшTableParams.корзины.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.ХэшTableParams.корзины.
         **/
 
@@ -110,7 +110,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.ХэшTableParams.корзины.
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.ХэшTableParams.корзины.
         **/
 
@@ -130,7 +130,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.ХэшTableParams.thresholdLoadfactor
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.ХэшTableParams.thresholdLoadfactor
         **/
 
@@ -141,7 +141,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.ХэшTableParams.thresholdLoadfactor
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.ХэшTableParams.thresholdLoadfactor
         **/
 
@@ -164,7 +164,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.содержит
-         * Время complexity: O(1) average; O(n) worst.
+         * Временная ёмкость: O(1) average; O(n) worst.
          * See_Also: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
@@ -181,7 +181,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.экземпляры
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
@@ -194,7 +194,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.элементы
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
@@ -204,7 +204,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.model.View.Обзор.opApply
-         * Время complexity: O(n).
+         * Временная ёмкость: O(n).
          * See_Also: col.model.View.Обзор.opApply
         **/
         цел opApply (цел delegate (inout T значение) дг)
@@ -217,7 +217,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.очисть.
-         * Время complexity: O(1).
+         * Временная ёмкость: O(1).
          * See_Also: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
@@ -228,7 +228,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.exclude.
-         * Время complexity: O(1) average; O(n) worst.
+         * Временная ёмкость: O(1) average; O(n) worst.
          * See_Also: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе(T элемент)
@@ -290,7 +290,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.Collection.Коллекция.возьми.
-         * Время complexity: O(число of корзины).
+         * Временная ёмкость: O(число of корзины).
          * See_Also: col.impl.Collection.Коллекция.возьми
         **/
         public final T возьми()
@@ -318,7 +318,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Implements col.impl.SetCollection.КоллекцияНаборов.добавь.
-         * Время complexity: O(1) average; O(n) worst.
+         * Временная ёмкость: O(1) average; O(n) worst.
          * See_Also: col.impl.SetCollection.КоллекцияНаборов.добавь
         **/
         public final проц добавь(T элемент)
@@ -572,7 +572,7 @@ debug (ХэшНабор)
         проц main()
         {
                 // установи for benchmark, with a установи of целыйs. We
-                // use a чанк разместитель, и presize the bucket[]
+                // use a чанк разместитель, и presize the бакет[]
                 auto тест = new ХэшНабор!(цел);
                 тест.корзины = 700_000;
                 const счёт = 500_000;

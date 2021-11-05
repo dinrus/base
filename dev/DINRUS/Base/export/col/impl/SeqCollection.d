@@ -10,12 +10,6 @@ private import  col.impl.Collection;
  *
  * КоллекцияСек extends MutableImpl в_ provопрe
  * default implementations of some Сек operations.
- *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
- *
 **/
 
 public abstract class КоллекцияСек(T) : Коллекция!(T), Сек!(T)

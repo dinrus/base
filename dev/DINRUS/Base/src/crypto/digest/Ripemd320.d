@@ -8,7 +8,7 @@
 
         author:         Kai Nacke
 
-        This module реализует the Ripemd160 algorithm by Hans Dobbertin,
+        This module реализует the Райпмд160 algorithm by Hans Dobbertin,
         Antoon Bosselaers и Bart Preneel.
 
         See http://homes.esat.kuleuven.be/~bosselae/rИПemd160.html for ещё
@@ -30,7 +30,7 @@ public  import crypto.digest.Digest;
 
 *******************************************************************************/
 
-final class Ripemd320 : MerkleDamgard
+final class Ripemd320 : МерклеДамгард
 {
     private бцел[10]        контекст;
     private const бцел     padChar = 0x80;
@@ -599,7 +599,7 @@ debug(UnitTest)
             "12345678901234567890123456789012345678901234567890123456789012345678901234567890"
         ];
 
-        static ткст[] результатs =
+        static ткст[] результаты =
         [
             "22d65d5661536cdc75c1fdf5c6de7b41b9f27325ebc61e8557177d705a0ec880151c3a32a00899b8",
             "ce78850638f92658a5a585097579926dda667a5716562cfcf6fbe77f63542f99b04705d6970dff5d",
@@ -618,7 +618,7 @@ debug(UnitTest)
             h.обнови(cast(ббайт[]) s);
             ткст d = h.гексДайджест;
 
-            assert(d == результатs[i],":("~s~")("~d~")!=("~результатs[i]~")");
+            assert(d == результаты[i],":("~s~")("~d~")!=("~результаты[i]~")");
         }
 
 

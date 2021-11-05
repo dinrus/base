@@ -26,38 +26,24 @@ TODO
 
 */
 
-import core.ByteSwap :
-ПерестановкаБайт;
-import io.device.Array :
-Массив;
-import io.device.File :
-Файл;
-import io.FilePath :
-ФПуть, ПросмотрПути;
-import io.device.FileMap :
-ФайлМэп;
-import util.compress.ZlibStream :
-ВводЗлиб, ВыводЗлиб;
-import crypto.digest.Crc32 :
-Crc32;
-import io.model :
-ИПровод, ИПотокВвода, ИПотокВывода;
-import io.stream.Digester :
-ДайджестВвод;
-import time.Time :
-Время, ИнтервалВремени;
-import time.WallClock :
-Куранты;
-import time.chrono.Gregorian :
-Грегориан;
+import stdrus :ПерестановкаБайт;
+import io.device.Array :Массив;
+import io.device.File :Файл;
+import io.FilePath :ФПуть, ПросмотрПути;
+import io.device.FileMap :ФайлМэп;
+import util.compress.ZlibStream :ВводЗлиб, ВыводЗлиб;
+import crypto.digest.Crc32 :Цпи32;
+import io.model :ИПровод, ИПотокВвода, ИПотокВывода;
+import io.stream.Digester :ДайджестВвод;
+import time.Time :Время, ИнтервалВремени;
+import time.WallClock :Куранты;
+import time.chrono.Gregorian :Грегориан;
 
 import Путь = io.Path;
 import PathUtil = util.PathUtil;
 import Целое = text.convert.Integer;
 
-
-debug(ZIP) import io.Stdout :
-Стдош;
+debug(ZIP) import io.Stdout : Стдош;
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -531,7 +517,7 @@ private
     }
 
     /* NOTE: This doesn't actually appear в_ work.  Using the default magic
-     * число with Dinrus's Crc32 дайджест works, however.
+     * число with Dinrus's Цпи32 дайджест works, however.
      */
     //const CRC_MAGIC = 0xdebb20e3u;
 }
@@ -1235,13 +1221,13 @@ private:
             scope(success) сжатый_размер = cast(бцел) out_counter.счёт;
 
             // Добавь crc
-            scope crc_d = new Crc32(/*CRC_MAGIC*/);
+            scope crc_d = new Цпи32(/*CRC_MAGIC*/);
             scope crc_s = new ДайджестВвод(in_chain, crc_d);
             in_chain = crc_s;
             scope(success)
             {
                 debug(ZIP) Стдош.форматнс(" . Success: storing CRC.");
-                crc = crc_d.crc32Digest;
+                crc = crc_d.дайджестЦпи32;
             }
 
             // Добавь compression
@@ -1883,7 +1869,7 @@ class СверщикЗаписиЗип : ИПотокВвода
     body
     {
         this.Запись = Запись;
-        this.дайджест = new Crc32;
+        this.дайджест = new Цпи32;
         this.исток = new ДайджестВвод(исток, дайджест);
     }
 
@@ -1932,7 +1918,7 @@ class СверщикЗаписиЗип : ИПотокВвода
     }
 
 private:
-    Crc32 дайджест;
+    Цпи32 дайджест;
     ИПотокВвода исток;
     ЗаписьЗип Запись;
 
@@ -1940,7 +1926,7 @@ private:
     {
         if( дайджест is пусто ) return;
 
-        auto crc = дайджест.crc32Digest;
+        auto crc = дайджест.дайджестЦпи32;
         delete дайджест;
 
         if( crc != Запись.заголовок.данные.crc_32 )

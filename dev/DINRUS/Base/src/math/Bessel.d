@@ -531,7 +531,7 @@ private
  * The function is defined as i0(x) = j0( ix ).
  *
  * The range is partitioned преобр_в the two intervals [0,8] и
- * (8, infinity).  Chebyshev polynomial expansions are employed
+ * (8, infinity).  Chebyshev полиномиал expansions are employed
  * in each интервал.
  */
 export дво cylBessel_i0(дво x)
@@ -584,7 +584,7 @@ export дво cylBessel_i0(дво x)
  * The function is defined as i1(x) = -i j1( ix ).
  *
  * The range is partitioned преобр_в the two intervals [0,8] и
- * (8, infinity).  Chebyshev polynomial expansions are employed
+ * (8, infinity).  Chebyshev полиномиал expansions are employed
  * in each интервал.
 */
 export дво cylBessel_i1(дво x)

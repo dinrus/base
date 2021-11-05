@@ -407,7 +407,7 @@ export:
 		  i++;
 		// check the typeсим and act accordingly
 		switch (fmt[i]) {
-		case 'd':	// decimal/hexadecimal/octal целeger
+		case 'd':	// десяток/hexadecimal/octal целeger
 		case 'D':
 		case 'u':
 		case 'U':
@@ -444,13 +444,13 @@ export:
 			  ifmt = 'o';
 			}
 			  }
-			  else	// decimal
+			  else	// десяток
 			ifmt = 'd';
 			}
 			дол n = 0;
 			switch (ifmt)
 			{
-			case 'd':	// decimal
+			case 'd':	// десяток
 			case 'u': {
 			  while (цифра(c) && ширина) {
 				n = n * 10 + (c - '0');

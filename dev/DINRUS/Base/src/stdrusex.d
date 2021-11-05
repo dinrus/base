@@ -395,7 +395,7 @@ export extern(D)
                * Params:
                *    имяФ = The путь и имя of the файл whose date-time
                *                you want to дай.
-               * Examples:
+               * Примеры:
                *  --------------------
                *   auto a = new ФайлДатаВремя("c:\\temp\\afile.txt");
                *  --------------------
@@ -413,7 +413,7 @@ export extern(D)
                * Params:
                *    имяФ = The путь и имя of the файл whose date-time
                *                you want to дай.
-               * Examples:
+               * Примеры:
                *  --------------------
                *   auto a = new ФайлДатаВремя("c:\\temp\\afile.txt");
                *  --------------------
@@ -434,7 +434,7 @@ export extern(D)
                *  другой = The ФайлДатаВремя to сравни this one to.
                *
                *
-               * Examples:
+               * Примеры:
                *  --------------------
                *   ФайлДатаВремя a = SomeFunc();
                *   if (a == ФайлДатаВремя("/usr2/bin/sample")) { . . . }
@@ -456,7 +456,7 @@ export extern(D)
                *  другой = The ФайлДатаВремя to сравни this one to.
                *
                *
-               * Examples:
+               * Примеры:
                *  --------------------
                *   ФайлДатаВремя a = SomeFunc();
                *   if (a < ФайлДатаВремя("/usr2/bin/sample")) { . . . }
@@ -502,7 +502,7 @@ export extern(D)
                * -----------------
                *
                *
-               * Examples:
+               * Примеры:
                *  --------------------
                *   ФайлДатаВремя a = SomeFunc();
                *   if (a.сравни(ФайлДатаВремя("/usr2/bin/sample"), true)) > 0)
@@ -576,7 +576,7 @@ export extern(D)
                *  точно = Display milliseconds or not. Default is to
                *           ignore milliseconds.
                *
-               * Examples:
+               * Примеры:
                *  --------------------
                *   ФайлДатаВремя a = SomeFunc();
                *   скажифнс("Time was %s", a);
@@ -782,7 +782,7 @@ static if (ЮНИКОД)
 ///b Note that if /i текст is a ббайт[] тип, the /i откуда и /i куда must
 //be either /b ббайт or /b сим datatypes.
 //
-//Example:
+//Пример:
 ///код
 //  ткст test;
 //  test = "abc,de,frgh,ijk,kmn";

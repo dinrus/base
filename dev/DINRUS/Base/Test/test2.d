@@ -1,5 +1,5 @@
 ﻿module test2;
-import dinrus, win, cidrus, runtime;
+import dinrus, cidrus, runtime;
 import com;
 
 

@@ -73,7 +73,7 @@ public enum ПТипТокенаРЯР {Готово, НачальныйЭлем
         formed. There are various compilation опции в_ активируй проверьs и
         balances, depending on как things should be handled. We'll settle
         on a common configuration over the следщ few weeks, but for сейчас все
-        settings are somewhat experimental. Partly because making some tiny
+        настройки are somewhat experimental. Partly because making some tiny
         unrelated change в_ the код can cause notable throughput changes,
         и we need в_ track that down.
 

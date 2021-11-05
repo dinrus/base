@@ -9,7 +9,7 @@
  * Version: 0.3
  *
  * History:
- *  v0.3 - Fixed some clean up bugs и added fallback код for other platforms.
+ *  v0.3 - Fixed some clean up bugs и added откат код for other platforms.
  *
  *  v0.2 - Merged with stackthreads.
  *

@@ -14,10 +14,8 @@ private import crypto.digest.MerkleDamgard;
 
 *******************************************************************************/
 
-final class Sha256 : MerkleDamgard
+extern(D) final class Sha256 : МерклеДамгард
 {
-        private бцел[8]         контекст;
-        private const бцел      padChar = 0x80;
 
         /***********************************************************************
 
@@ -141,31 +139,3 @@ final class Sha256 : MerkleDamgard
 
 
 }
-
-debug(UnitTest)
-{
-        unittest
-        {
-        static ткст[] strings =
-        [
-                "abc",
-                "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"
-        ];
-
-        static ткст[] результатs =
-        [
-                "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
-                "248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1"
-        ];
-
-        Sha256 h = new Sha256();
-
-        foreach (цел i, ткст s; strings)
-                {
-                h.обнови(s);
-                ткст d = h.гексДайджест();
-                assert(d == результатs[i],"Шифр:("~s~")("~d~")!=("~результатs[i]~")");
-                }
-        }
-}
-

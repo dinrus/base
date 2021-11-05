@@ -7,11 +7,6 @@ private import col.model.Comparator;
  *
  * RBPairs are RBCells with ключи.
  *
- * 
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 
 public class КЧПара(К, T) : КЧЯчейка!(T) 

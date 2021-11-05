@@ -606,7 +606,7 @@ version(Really_D_InlineAsm_X86)
         probablyIntel = vendorID == "GenuineIntel";
         probablyAMD = vendorID == "AuthenticAMD";
         бцел a, b, c, d;
-        бцел apic = 0; // brand индекс, apic опр
+        бцел apic = 0; // brand индекс, apic ид
         asm
         {
             mov EAX, 1; // model, stepping

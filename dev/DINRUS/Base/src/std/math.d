@@ -2239,7 +2239,7 @@ real fmin(real x, real y) { return x < y ? x : y; }
  * Returns (x * y) + z, rounding only once according to the
  * current rounding mode.
  *
- * BUGS: Not currently implemented - rounds twice.
+ * BUGS: Not currently implemented - круги twice.
  */
 real fma(real x, real y, real z) { return (x * y) + z; }
 
@@ -2507,7 +2507,7 @@ int feqrel(X)(X x, X y)
     // equal to y. If negative, x and y have different exponents.
     // If positive, x and y are equal to 'bitsdiff' bits.
     // AND with 0x7FFF to form the absolute value.
-    // To avoid out-by-1 errors, we subtract 1 so it rounds down
+    // To avoid out-by-1 errors, we subtract 1 so it круги down
     // if the exponents were different. This means 'bitsdiff' is
     // always 1 lower than we want, except that if bitsdiff==0,
     // they could have 0 or 1 bits in common.
@@ -2715,7 +2715,7 @@ public:
 
 
 /***********************************
- * Evaluate polynomial A(x) = $(SUB a, 0) + $(SUB a, 1)x + $(SUB a, 2)&sup2;
+ * Evaluate полиномиал A(x) = $(SUB a, 0) + $(SUB a, 1)x + $(SUB a, 2)&sup2;
  *                          + $(SUB a,3)x&sup3; ...
  *
  * Uses Horner's rule A(x) = $(SUB a, 0) + x($(SUB a, 1) + x($(SUB a, 2)

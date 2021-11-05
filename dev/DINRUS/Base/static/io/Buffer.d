@@ -1,7 +1,6 @@
 ﻿module io.Buffer;
 
-private import exception, cidrus:
-memcpy;
+private import exception, cidrus: memcpy;
 public  import io.model;
 
 //debug=Buffer;

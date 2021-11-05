@@ -197,7 +197,7 @@ T[] формат8601(T) (T[] вывод, Время t)
 
 ******************************************************************************/
 
-Время разбор(T) (T[] ист, бцел* ate = пусто)
+Время разбор(T) (T[] ист, бцел* взято = пусто)
 {
     т_мера длин;
     Время   значение;
@@ -208,8 +208,8 @@ T[] формат8601(T) (T[] вывод, Время t)
             (длин = досвремя  (ист, значение)) > 0 ||
             (длин = анзисивремя (ист, значение)) > 0)
     {
-        if (ate)
-            *ate = длин;
+        if (взято)
+            *взято = длин;
         return значение;
     }
     return Время.макс;
@@ -226,7 +226,7 @@ T[] формат8601(T) (T[] вывод, Время t)
 
 ******************************************************************************/
 
-бул разбор(T) (T[] ист, ref ВремяДня врдня, ref Дата дата, бцел* ate = пусто)
+бул разбор(T) (T[] ист, ref ВремяДня врдня, ref Дата дата, бцел* взято = пусто)
 {
     т_мера длин;
 
@@ -236,8 +236,8 @@ T[] формат8601(T) (T[] вывод, Время t)
             (длин = досвремя  (ист, врдня, дата)) > 0 ||
             (длин = анзисивремя (ист, врдня, дата)) > 0)
     {
-        if (ate)
-            *ate = длин;
+        if (взято)
+            *взято = длин;
         return да;
     }
     return нет;
@@ -494,7 +494,7 @@ T[] формат8601(T) (T[] вывод, Время t)
 
         Quote из_ http://en.wikИПedia.org/wiki/ISO_8601 (2009-09-01):
         "Decimal fractions may also be добавьed в_ any of the three время элементы.
-        A decimal точка, either a comma or a dot (without any preference as
+        A десяток точка, either a comma or a dot (without any preference as
         stated most recently in resolution 10 of the 22nd General Conference
         CGPM in 2003), is использован as a разделитель between the время элемент и
         its дво."
@@ -521,7 +521,7 @@ T[] формат8601(T) (T[] вывод, Время t)
 
         Quote из_ http://en.wikИПedia.org/wiki/ISO_8601 (2009-09-01):
         "Decimal fractions may also be добавьed в_ any of the three время элементы.
-        A decimal точка, either a comma or a dot (without any preference as
+        A десяток точка, either a comma or a dot (without any preference as
         stated most recently in resolution 10 of the 22nd General Conference
         CGPM in 2003), is использован as a разделитель between the время элемент и
         its дво."

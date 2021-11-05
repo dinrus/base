@@ -8,8 +8,7 @@ module util.Convert;
 
 private import exception;
 private import tpl.traits;
-private import tpl.tuple :
-Кортеж;
+private import tpl.tuple: Кортеж;
 
 private import math.Math;
 private import text.convert.Utf;
@@ -355,13 +354,13 @@ template бцелOfSize(бцел байты)
  * Safely performs a сравнение between two целое values, taking преобр_в
  * account different sizes and signages.
  */
-цел intCmp(T,U)(T lhs, U rhs)
+цел intCmp(T,U)(T lhs, U правткт)
 {
     static if( типЦел_ли!(T) && типЦел_ли!(U) )
     {
         alias sintSuperType!(T,U) S;
         auto l = cast(S) lhs;
-        auto r = cast(S) rhs;
+        auto r = cast(S) правткт;
         if( l < r ) return -1;
         else if( l > r ) return 1;
         else return 0;
@@ -370,7 +369,7 @@ template бцелOfSize(бцел байты)
     {
         alias бцелSuperType!(T,U) S;
         auto l = cast(S) lhs;
-        auto r = cast(S) rhs;
+        auto r = cast(S) правткт;
         if( l < r ) return -1;
         else if( l > r ) return 1;
         else return 0;
@@ -386,14 +385,14 @@ template бцелOfSize(бцел байты)
                 static if( U.sizeof >= T.sizeof )
                 {
                     auto l = cast(U) lhs;
-                    if( l < rhs ) return -1;
-                    else if( l > rhs ) return 1;
+                    if( l < правткт ) return -1;
+                    else if( l > правткт ) return 1;
                     else return 0;
                 }
                 else
                 {
                     auto l = cast(бдол) lhs;
-                    auto r = cast(бдол) rhs;
+                    auto r = cast(бдол) правткт;
                     if( l < r ) return -1;
                     else if( l > r ) return 1;
                     else return 0;
@@ -402,13 +401,13 @@ template бцелOfSize(бцел байты)
         }
         else static if( типЦел_ли!(U) )
         {
-            if( rhs < 0 )
+            if( правткт < 0 )
                         return 1;
             else
             {
                 static if( T.sizeof >= U.sizeof )
                 {
-                    auto r = cast(T) rhs;
+                    auto r = cast(T) правткт;
                     if( lhs < r ) return -1;
                     else if( lhs > r ) return 1;
                     else return 0;
@@ -416,7 +415,7 @@ template бцелOfSize(бцел байты)
                 else
                 {
                     auto l = cast(бдол) lhs;
-                    auto r = cast(бдол) rhs;
+                    auto r = cast(бдол) правткт;
                     if( l < r ) return -1;
                     else if( l > r ) return 1;
                     else return 0;

@@ -277,7 +277,7 @@ debug(UnitTest)
 // According в_ statsoft.com, studentsDistributionInv(10, 0.995)= 3.16927.
 
 // The остаток значения listed here are из_ Excel, и are unlikely в_ be accurate
-// in the последний decimal places. However, they are helpful as a sanity проверь.
+// in the последний десяток places. However, they are helpful as a sanity проверь.
 
 //  Microsoft Excel 2003 gives TINV(2*(1-0.995), 10) == 3.16927267160917
         assert(isfeqabs(studentsTDistributionInv(10, 0.995), 3.169_272_67L, 0.000_000_005L));

@@ -66,7 +66,7 @@ public interface Обзор(T)
          * Возвращает: the version число
         **/
 
-        public бцел мутация ();
+        public бцел изменение ();
         
         /**
          * Report whether the Обзор COULD contain элемент,
@@ -93,7 +93,7 @@ public interface Обзор(T)
         /**
          * Return an enumeration that may be использован в_ traverse through
          * the элементы in the Обзор. Standard usage, for some
-         * ViewT c, и some operation `use(T об)':
+         * ОбзорТ c, и some operation `use(T об)':
          * <PRE>
          * for (Обходчик e = c.элементы(); e.ещё(); )
          *   use(e.значение());
@@ -106,7 +106,7 @@ public interface Обзор(T)
          * элементы, и also выполни consistency проверьs so that
          * for MutableViews, элемент enumerations may become 
          * invalidated if the Обзор is изменён during such a traversal
-         * (which could in turn cause random effects on the ViewT.
+         * (which could in turn cause random effects on the ОбзорТ.
          * TO prevent this,  ViewIterators 
          * raise ИсклПовреждённыйОбходчик on попытки в_ доступ
          * gets of altered Views.)
