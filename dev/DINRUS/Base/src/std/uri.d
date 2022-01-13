@@ -29,7 +29,7 @@
  * Reserved URI characters are $(B ;/?:@&amp;=+$,)
  * Escape sequences consist of $(B %) followed by two hex digits.
  *
- * See_Also:
+ * См_Также:
  *	$(LINK2 http://www.ietf.org/rfc/rfc3986.txt, RFC 3986)<br>
  *	$(LINK2 http://en.wikipedia.org/wiki/Uniform_resource_identifier, Wikipedia)
  * Macros:
@@ -397,7 +397,7 @@ char[] encode(char[] uri)
 
 /********************************
  * Encodes the UTF-8 string uriComponent into a URI and returns that URI.
- * Any character not a letter, digit, or one of -_.!~*'() is escaped.
+ * Any character not a letter, digit, либо one of -_.!~*'() is escaped.
  */
 
 char[] encodeComponent(char[] uriComponent)

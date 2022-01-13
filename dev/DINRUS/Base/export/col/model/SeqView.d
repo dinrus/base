@@ -23,10 +23,10 @@ public interface ОбзорСека(T) : Обзор!(T)
         public override ОбзорСека!(T) дубликат();
         public alias дубликат dup;
         /**
-         * Return the элемент at the indicated индекс
+         * Возвращает the элемент at the indicated индекс
          * @param индекс 
          * Возвращает: the элемент at the индекс
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
 
         public T получи(цел индекс);
@@ -34,18 +34,18 @@ public interface ОбзорСека(T) : Обзор!(T)
 
 
         /**
-         * Return the первый элемент, if it есть_ли.
-         * Behaviorally equivalent в_ at(0)
-         * Throws: НетЭлементаИскл if пуст_ли
+         * Возвращает the первый элемент, if it есть_ли.
+         * По поведению равнозначно at(0)
+         * Выводит исключение: НетЭлементаИскл if пуст_ли
         **/
 
         public T голова();
 
 
         /**
-         * Return the последний элемент, if it есть_ли.
-         * Behaviorally equivalent в_ at(размер()-1)
-         * Throws: НетЭлементаИскл if пуст_ли
+         * Возвращает the последний элемент, if it есть_ли.
+         * По поведению равнозначно at(размер()-1)
+         * Выводит исключение: НетЭлементаИскл if пуст_ли
         **/
 
         public T хвост();
@@ -53,7 +53,7 @@ public interface ОбзорСека(T) : Обзор!(T)
 
         /**
          * Report the индекс of левейший occurrence of an элемент из_ a 
-         * given starting точка, or -1 if there is no such индекс.
+         * given starting точка, либо -1 if there is no such индекс.
          * @param элемент the элемент в_ look for
          * @param стартовыйИндекс the индекс в_ старт looking из_. The стартовыйИндекс
          * need not be a действителен индекс. If less than zero it is treated as 0.
@@ -73,7 +73,7 @@ public interface ОбзорСека(T) : Обзор!(T)
 
         /**
          * Report the индекс of righttmost occurrence of an элемент из_ a 
-         * given starting точка, or -1 if there is no such индекс.
+         * given starting точка, либо -1 if there is no such индекс.
          * @param элемент the элемент в_ look for
          * @param стартовыйИндекс the индекс в_ старт looking из_. The стартовыйИндекс
          * need not be a действителен индекс. If less than zero the результат
@@ -95,7 +95,7 @@ public interface ОбзорСека(T) : Обзор!(T)
 
         /**
          * Construct a new ОбзорСека that is a клонируй of сам except
-         * that it does not contain the элементы before индекс or
+         * that it does not contain the элементы перед индекс or
          * после индекс+length. If length is less than or equal в_ zero,
          * return an пустой ОбзорСека.
          * @param индекс of the элемент that will be the 0th индекс in new ОбзорСека
@@ -105,13 +105,13 @@ public interface ОбзорСека(T) : Обзор!(T)
          * s.размер() == max(0, length) &&
          * foreach (цел i in 0 .. s.размер()-1) s.at(i).равно(at(i+индекс)); 
          * </PRE>
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
         public ОбзорСека поднабор(цел индекс, цел length);
 
         /**
          * Construct a new ОбзорСека that is a клонируй of сам except
-         * that it does not contain the элементы before начало or
+         * that it does not contain the элементы перед начало or
          * после конец-1. If length is less than or equal в_ zero,
          * return an пустой ОбзорСека.
          * @param индекс of the элемент that will be the 0th индекс in new ОбзорСека
@@ -121,7 +121,7 @@ public interface ОбзорСека(T) : Обзор!(T)
          * s.размер() == max(0, length) &&
          * foreach (цел i in 0 .. s.размер()-1) s.at(i).равно(at(i+индекс)); 
          * </PRE>
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
         public ОбзорСека opSlice(цел начало, цел конец);
 
@@ -139,7 +139,7 @@ version (VERBOSE)
          *  s.at(индекс) == элемент &&
          *  foreach (цел i in 1 .. s.размер()-1) s.at(i).равно(at(i-1));
          * </PRE>
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
 
         public ОбзорСека вставкаПо(цел индекс, T элемент);
@@ -156,7 +156,7 @@ version (VERBOSE)
          *  foreach (цел i in 0 .. s.размер()-1) 
          *     (i != индекс) --&gt; s.at(i).равно(at(i));
          * </PRE>
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
 
         public ОбзорСека заменаПо(цел индекс, T элемент);
@@ -173,7 +173,7 @@ version (VERBOSE)
          *  foreach (цел i in 0.. индекс-1) s.at(i).равно(at(i)); &&
          *  foreach (цел i in индекс .. s.размер()-1) s.at(i).равно(at(i+1));
          * </PRE>
-         * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+         * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
         **/
         public ОбзорСека удалениеПо(цел индекс);
 } // version

@@ -1,4 +1,4 @@
-﻿/**
+﻿/***
 В модуле содержатся основные числовые процедуры, часто используемые
 в прочих модулях, либо применияемые в проектах, где используется линейная алгебра.
 
@@ -10,8 +10,8 @@ module math.linalg.basic;
 //import stdrus;
 import math.linalg.config;
 
-/**
-Функция приблизительного равенства. Фактически копия функциии feqrel,
+/***
+Функция приблизительного равенства. Фактически копия функции feqrel,
 но с видоизменениями, делающими её пригодной для сравнения почти нулевых чисел.
 
 Params:
@@ -42,7 +42,7 @@ template РавенствоПоНорм(Т)
 
 бул больше(реал a, реал b, цел отнпрец = дефотнпрец, цел абспрец = дефабспрец);
 
-/**
+/***
 Функция линейной интерполяции.
 Возвращает:
     Значение, интерполированное из a в b по значению t. Если t не входит в диапазон [0; 1],
@@ -58,13 +58,13 @@ template Лининтерп(Т)
     }
 }
 
-/**
+/***
 Содержит функции мин и макс для генерных типов, обеспечивающих
 opCmp.
 */
 template МинМакс(Т)
 {
-    /**
+    /***
     Возвращает:
         Наибольшее из a и b.
     */
@@ -73,7 +73,7 @@ template МинМакс(Т)
         return (a > b) ? a : b;
     }
 
-    /**
+    /***
     Возвращает:
         Наименьшее из a и b.
     */
@@ -110,13 +110,13 @@ alias МинМакс!(реал).мин     мин; /// описано
 alias МинМакс!(реал).макс     макс; /// описано
 
 
-/**
+/***
 Contains clamping functions for generic types to which мин and макс
 functions can be applied.
 */
 template Закрепи(Т)
 {
-    /**
+    /***
     Makes value of x to be not меньше than inf. Method can change value of x.
     Возвращает:
         Copy of x после clamping is applied.
@@ -126,7 +126,7 @@ template Закрепи(Т)
         return x = макс(x, inf);
     }
 
-    /**
+    /***
     Makes value of x to be not больше than sup. Method can change value of x.
     Возвращает:
         Copy of x после clamping is applied.
@@ -136,7 +136,7 @@ template Закрепи(Т)
         return x = мин(x, sup);
     }
 
-    /**
+    /***
     Makes value of x to be nor меньше than inf nor больше than sup.
     Method can change value of x.
     Возвращает:

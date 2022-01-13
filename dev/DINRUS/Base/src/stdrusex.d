@@ -480,7 +480,7 @@ export extern(D)
                *           milliseconds as well. The default is to ignore
                *           milliseconds.
                *
-               * Returns: An integer that shows the degree of accuracy и
+               * Возвращаетs: An integer that shows the degree of accuracy и
                *          the direction of the comparision.
                *
                * A negative value indicates that the текущ date-time is
@@ -605,7 +605,7 @@ export extern(D)
                     ФВремяВСистВремя(&локДВ, &локВремя);
                 }
 
-                // Return a standardized string form of the date-time.
+                // Возвращает standardized string form of the date-time.
                 //    CCYY/MM/DD hh:mm:ss
                 if (точно)
                     return stdrus.фм("%04d/%02d/%02d %02d:%02d:%02d.%04d"
@@ -1768,7 +1768,7 @@ export extern(D) ткст вАски(ткст pUTF8)
 
 /**************************************
  * Split s[] into an массив of строки,
- * using CR, LF, or CR-LF as the delimiter.
+ * using CR, LF, либо CR-LF as the delimiter.
  * The delimiter is not included in the line.
  */
 
@@ -1830,7 +1830,7 @@ export extern(D) юткст найдипбелрек(юткст текст)
 }
 
 /*****************************************
- * Strips leading or trailing whitespace, or both.
+ * Strips leading or trailing whitespace, либо both.
  */
 
 export extern(D) юткст уберил(юткст s)
@@ -2727,7 +2727,7 @@ export extern(D):
 
         This returns нет if the путь was not created. That
         could occur if the путь already exists or if you do not
-        permissions to create the путь on the device, or if
+        permissions to create the путь on the device, либо if
         device is read-only or doesn't exist.
 
         This returns true if the путь was created.

@@ -34,7 +34,7 @@ this(ткст s, т_мера i){индкс = i; super("Неудачная опе
  * as they are permitted for internal use by an application,
  * but they are not allowed for interchange by the Unicode standard.
  *
- * Returns: true if it is, false if not.
+ * Возвращаетs: true if it is, false if not.
  */
 
 bool isValidDchar(дим c)
@@ -91,7 +91,7 @@ ubyte[256] UTF8stride =
 /**
  * stride() returns the length of a UTF-32 sequence starting at index i
  * in string s.
- * Returns: The return value will always be 1.
+ * Возвращаетs: The return value will always be 1.
  */
 
 бцел stride(дим[] s, т_мера i)
@@ -196,13 +196,13 @@ ubyte[256] UTF8stride =
  * а инд остаётся неизменённым.
  */
  
-/// Возвращает: да if this is a trail байт of a UTF-8 sequence.
+/// Возвращает: да, если this is a trail байт of a UTF-8 sequence.
 бул ведомыйБайт_ли(ббайт b)
 {
   return (b & 0xC0) == 0x80; // 10xx_xxxx
 }
 
-/// Возвращает: да if this is a lead байт of a UTF-8 sequence.
+/// Возвращает: да, если this is a lead байт of a UTF-8 sequence.
 бул ведущийБайт_ли(ббайт b)
 {
   return (b & 0xC0) == 0xC0; // 11xx_xxxx
@@ -790,7 +790,7 @@ void encode(inout дим[] s, дим c)
 /* =================== Validation ======================= */
 
 /***********************************
- * Checks to see if string is well formed or not. Throws a ИсклКодировки if it is
+ * Checks to see if string is well formed or not. Выводит исключение a ИсклКодировки if it is
  * not. Use to check all untrusted input for correctness.
  */
 

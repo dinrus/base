@@ -307,7 +307,7 @@ struct Бокс
         }
     }
      static проц opCall(){}
-    /** Return whether this value could be unboxed as the given тип without throwing. */
+    /** Возвращает whether this value could be unboxed as the given тип without throwing. */
     бул разбоксОбъ(ИнфОТипе тест)
     {
         if (тип is тест)
@@ -345,7 +345,7 @@ struct Бокс
     }
     
     /**
-     * Property for the тип contained by the box.
+     * Свойство for the тип contained by the box.
      * This is initially пусто and cannot be assigned directly.
      * возвращает: the тип of the contained object.
      */
@@ -355,7 +355,7 @@ struct Бокс
     }
     
     /**
-     * Property for the data pointer to the value of the box.
+     * Свойство for the data pointer to the value of the box.
      * This is initially пусто and cannot be assigned directly.
      * возвращает: the data массив.
      */
@@ -499,7 +499,7 @@ struct Бокс
     }
 
     /**
-     * Return the value's hash.
+     * Возвращает the value's hash.
      */
     т_хэш вХэш()
     {

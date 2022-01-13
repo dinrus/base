@@ -1,13 +1,72 @@
-﻿module sys.Common;
+﻿module sys.common;
 
-version (Win32)
+public  import sys.WinConsts, sys.WinIfaces, sys.WinStructs, sys.WinFuncs;
+
+version (WinIO)
         {
-       // public import sys.win32.UserGdi;
-       // public import winapi;
-        public  import sys.WinConsts, sys.WinIfaces, sys.WinStructs, sys.WinFuncs;
-		//public import exception;
-		//pragma(lib,"DinrusTango.lib");
-        }
+        
+		//public  import io.Console;
+		
+        
+		public static
+		{
+		ук КОНСВВОД;
+		ук КОНСВЫВОД;
+		ук КОНСОШ;
+		бцел ИДПРОЦЕССА;
+		ук   УКНАПРОЦЕСС;
+		ук   УКНАНИТЬ;
+		}	
+
+		static ук _вызывающийПроцесс;
+		const бцел ДУБЛИРУЙ_ПРАВА_ДОСТУПА = 0x00000002;
+
+		//======================================================================
+		//УТИЛИТНЫЕ ФУНКЦИИ
+
+		export extern (C) проц укВызывающегоПроцесса(ук процесс){_вызывающийПроцесс = процесс;}
+
+		export extern (C) бцел идБазовогоПроцесса(){return GetCurrentProcessId();}
+
+		export extern(C) ук адаптВыхУкз(ук укз)
+		{
+						  ук    hndl;
+
+			if(_вызывающийПроцесс)  ДублируйДескр( УКНАПРОЦЕСС, укз, _вызывающийПроцесс, &hndl, ППраваДоступа.ГенерноеЧтение| ППраваДоступа.ГенернаяЗапись, да, ДУБЛИРУЙ_ПРАВА_ДОСТУПА );
+				  else return укз;
+						return hndl;
+		}
+
+		export extern(C) ук адаптВхоУкз(ук укз)
+		{
+						  ук   hndl;
+
+			if(_вызывающийПроцесс)  ДублируйДескр( _вызывающийПроцесс, укз, УКНАПРОЦЕСС, &hndl, ППраваДоступа.ГенерноеЧтение| ППраваДоступа.ГенернаяЗапись, да, ДУБЛИРУЙ_ПРАВА_ДОСТУПА );
+				  else return укз;
+						return hndl;
+		}
+
+		export extern (C) проц максПриоритетПроцессу()
+		 {
+				SetPriorityClass(УКНАПРОЦЕСС, 0x00000080);
+				SetThreadPriority(УКНАНИТЬ,15);
+		}
+//================================================
+		
+
+
+		static this()
+		{
+		ИДПРОЦЕССА =  GetCurrentProcessId();
+		УКНАПРОЦЕСС = cast(ук) OpenProcess(0x000F0000|0x00100000|0x0FFF,false,ИДПРОЦЕССА);
+		УКНАНИТЬ  = GetCurrentThread();
+					КОНСВВОД = ДайСтдДескр(ПСтд.Ввод);
+					//КОНСВЫВОД = ДайСтдДескр(cast(ПСтд) 0xfffffff5);
+					КОНСВЫВОД = ДайСтдДескр(ПСтд.Вывод);
+					КОНСОШ = ДайСтдДескр(ПСтд.Ошибка);
+		}		
+		
+}
 /+
 version (linux)
         {
@@ -30,32 +89,4 @@ version (solaris)
         public import sys.solaris.solaris;
         alias sys.solaris.solaris posix;
         }
-
-        +/
-
-/*******************************************************************************
-
-        Stuff for sysErrorMsg(), kindly provопрed by Regan Heath.
-
-*******************************************************************************/
-
-version (Win32)
-        {
-
-        }
-else
-version (Posix)
-        {
-        private import cidrus;
-        }
-else
-   {
-   pragma (msg, "Неподдерживаемая среда; не декларирован ни Win32, ни Posix");
-   static assert(0);
-   }
-
-   
-enum {
-	GetFileInfoLevelStandard,
-	GetFileInfoLevelMax
-}
+        +/  

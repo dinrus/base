@@ -98,7 +98,7 @@ class СокетПровод : Провод, ИВыбираемый
 
     /***********************************************************************
 
-            Return a preferred размер for buffering провод I/O
+            Возвращает preferred размер for buffering провод I/O
 
     ***********************************************************************/
 
@@ -192,7 +192,7 @@ class СокетПровод : Провод, ИВыбираемый
     /***********************************************************************
 
             Inform другой конец of a подключен сокет that we're no longer
-            available. In general, this should be invoked before закрой()
+            available. In general, this should be invoked перед закрой()
             is invoked
 
             The глуши function shuts down the connection of the сокет:
@@ -219,7 +219,7 @@ class СокетПровод : Провод, ИВыбираемый
 
             Note that one should always disconnect a СокетПровод
             under нормаль conditions, и generally invoke глуши
-            on все подключен СОКЕТs beforehand
+            on все подключен СОКЕТs передhand
 
     ***********************************************************************/
 
@@ -266,7 +266,7 @@ class СокетПровод : Провод, ИВыбираемый
             Callback routine в_ пиши the предоставленный контент в_ the
             сокет. This will stall until the сокет responds in
             some manner. Возвращает the число of байты sent в_ the
-            вывод, or ИПровод.Кф if the сокет cannot пиши.
+            вывод, либо ИПровод.Кф if the сокет cannot пиши.
 
     ***********************************************************************/
 
@@ -301,7 +301,7 @@ class СокетПровод : Провод, ИВыбираемый
             ss.сбрось ();
             ss.добавь (сокет_);
 
-            // жди until данные is available, or a таймаут occurs
+            // жди until данные is available, либо a таймаут occurs
             auto копируй = tv;
             version (linux)
             {

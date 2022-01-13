@@ -1,6 +1,6 @@
 module sys.com.com;
 
-import sys.Common, stdrus, tpl.com, tpl.args; 
+import sys.common, stdrus, tpl.com, tpl.args; 
 import cidrus;
 
 export extern(C)
@@ -96,13 +96,13 @@ export extern(C)
 	 *   контекст = Контекст, в котором будет выполняться управляющий объектом код.
 	 *   иид = Идентификатор интерфейса, который будет использован для коммуникации с объектом.
 	 * Возвращает: Затребованный объект.
-	 * See_Also: $(LINK2 http://msdn.microsoft.com/en-us/library/ms686615.aspx, СоздайЭкземплярКо).
+	 * См_Также: $(LINK2 http://msdn.microsoft.com/en-us/library/ms686615.aspx, СоздайЭкземплярКо).
 	 */
 	Инкогнито создайЭкземплярКо(ГУИД клсид,Инкогнито внешний, ПКонтекстВып контекст,ГУИД иид);
 
 	/**
 	 * Возвращает ссылку на выполняемый объект, зарегестрированный в OLE.
-	 * See_Also: $(LINK2 http://msdn2.microsoft.com/en-us/library/ms221467.aspx, ДайАктивныйОбъект).
+	 * См_Также: $(LINK2 http://msdn2.microsoft.com/en-us/library/ms221467.aspx, ДайАктивныйОбъект).
 	 */
 	Инкогнито дайАктивныйОбъект(ткст прогИд);
 
@@ -386,7 +386,7 @@ R дайСвойство(R = ВАРИАНТ)(ИДиспетчер цель, тк
  *   //   worksheet = excelApp.Worksheets[1]
  *   ИДиспетчер worksheet = дайСвойство!(ИДиспетчер)(excelApp, "Worksheets", 1);
  *
- *   // Get the Cells property and установи the Cell object at column 5, row 3 to a ткст
+ *   // Get the Cells property and Устанавливает Cell object at column 5, row 3 to a ткст
  *   //   worksheet.Cells[5, 3] = "data"
  *   установиСвойство(worksheet, "Cells", 5, 3, "data");
  * }
@@ -819,7 +819,7 @@ private struct ПроксиМетода {
 
 /**
  */
-class EventProvider(T) : Implements!(T) {
+class EventProvider(T) : Реализует!(T) {
 
   extern(D):
 

@@ -1014,7 +1014,7 @@ static assert(массив_ли!(проц[]));
 
 
 /**
- * Returns the corresponding unsigned type for Т. Т must be a numeric
+ * Возвращаетs the corresponding unsigned type for Т. Т must be a numeric
  * integral type, otherwise a compile-time error occurs.
  */
 
@@ -1049,7 +1049,7 @@ unittest
 }
 /+
 /******
- * Returns the mutable version of the type Т.
+ * Возвращает изменяемую версию типа Т.
  */
 
 template Mutable(Т)
@@ -1084,7 +1084,7 @@ unittest
 
 
 /**
- * Evaluates to да if Т is сим, wchar, or дим.
+ * Evaluates to да, если Т is сим, wchar, либо дим.
  */
 template типСим_ли( Т )
 {
@@ -1098,7 +1098,7 @@ template типСим_ли( Т )
 
 
 /**
- * Evaluates to да if Т is a signed integer type.
+ * Evaluates to да, если Т is a signed integer type.
  */
 template типЦел_ли( Т )
 {
@@ -1116,7 +1116,7 @@ template типЦел_ли( Т )
 
 
 /**
- * Evaluates to да if Т is an unsigned integer type.
+ * Evaluates to да, если Т is an unsigned integer type.
  */
 template типБЦел_ли( Т )
 {
@@ -1134,7 +1134,7 @@ template типБЦел_ли( Т )
 
 
 /**
- * Evaluates to да if Т is a signed or unsigned integer type.
+ * Evaluates to да, если Т is a signed or unsigned integer type.
  */
 template типЦелЧис_ли( Т )
 {
@@ -1144,7 +1144,7 @@ template типЦелЧис_ли( Т )
 
 
 /**
- * Evaluates to да if Т is a реал floating-point type.
+ * Evaluates to да, если Т is a реал floating-point type.
  */
 template типРеал_ли( Т )
 {
@@ -1158,7 +1158,7 @@ template типРеал_ли( Т )
 
 
 /**
- * Evaluates to да if Т is a complex floating-point type.
+ * Evaluates to да, если Т is a complex floating-point type.
  */
 template типКомплекс_ли( Т )
 {
@@ -1172,7 +1172,7 @@ template типКомплекс_ли( Т )
 
 
 /**
- * Evaluates to да if Т is an imaginary floating-point type.
+ * Evaluates to да, если Т is an imaginary floating-point type.
  */
 template типМнимое_ли( Т )
 {
@@ -1186,7 +1186,7 @@ template типМнимое_ли( Т )
 
 
 /**
- * Evaluates to да if Т is any floating-point type: реал, complex, or
+ * Evaluates to да, если Т is any floating-point type: реал, complex, or
  * imaginary.
  */
 template типДробь_ли( Т )
@@ -1196,7 +1196,7 @@ template типДробь_ли( Т )
                                      типМнимое_ли!(Т);
 }
 
-/// да if Т is an atomic type
+/// да, если Т is an atomic type
 template типАтом_ли(Т)
 {
     static if( is( Т == bool )
@@ -1292,7 +1292,7 @@ template МаксПрецТипИз(Т){
 
 
 /**
- * Evaluates to да if Т is a pointer type.
+ * Evaluates to да, если Т is a pointer type.
  */
 template типУк_ли(Т)
 {
@@ -1342,7 +1342,7 @@ debug( UnitTest )
 }
 
 /**
- * Evaluates to да if Т is a a pointer, class, interface, or delegate.
+ * Evaluates to да, если Т is a a pointer, class, interface, либо delegate.
  */
 template типСсылка_ли( Т )
 {
@@ -1355,7 +1355,7 @@ template типСсылка_ли( Т )
 
 
 /**
- * Evaulates to да if Т is a dynamic array type.
+ * Evaulates to да, если Т is a dynamic array type.
  */
 template типДинМас_ли( Т )
 {
@@ -1363,7 +1363,7 @@ template типДинМас_ли( Т )
 }
 
 /**
- * Evaluates to да if Т is a static array type.
+ * Evaluates to да, если Т is a static array type.
  */
 version( GNU )
 {
@@ -1430,7 +1430,7 @@ debug( UnitTest )
 }
 
 /**
- * Evaluates to да if Т is an associative array type.
+ * Evaluates to да, если Т is an associative array type.
  */
 template типАссоцМас_ли( Т )
 {
@@ -1439,7 +1439,7 @@ template типАссоцМас_ли( Т )
 
 
 /**
- * Evaluates to да if Т is a function, function pointer, delegate, or
+ * Evaluates to да, если Т is a function, function pointer, delegate, or
  * callable object.
  */
 template ВызываемыйТип_ли( Т )
@@ -1463,7 +1463,7 @@ template ВозвратныйТипИз( Fn )
 }
 
 /** 
- * Returns the type that a Т would evaluate to in an expression.
+ * Возвращаетs the type that a Т would evaluate to in an expression.
  * Expr is not required to be a callable type
  */ 
 template ТипВыражениеИз( Expr )

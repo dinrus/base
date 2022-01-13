@@ -5,7 +5,7 @@
   * generate it.
   *
   * To создай a version 5 UUID, you need a namespace UUID, generated in some
-  * reasonable fashion. This is hashed with a имя that you provопрe в_ generate
+  * reasonable fashion. This is hashed with a имя that you предоставляет в_ generate
   * the UUID. So while you can easily карта names в_ UUIDs, the реверс маппинг
   * will require a отыщи of some сортируй.
   *

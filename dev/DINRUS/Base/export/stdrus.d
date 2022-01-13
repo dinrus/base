@@ -8,6 +8,8 @@ public import exception;
 
 extern (D) struct Процессор
 {
+
+static:
 	ткст производитель();
 	ткст название()		;
 	бул поддержкаММЭкс()	;

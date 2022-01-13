@@ -16,7 +16,7 @@ public  import  time.Time;
 
 private import  time.Clock;
 
-private import  sys.Common;
+private import  sys.common;
 
 /******************************************************************************
 

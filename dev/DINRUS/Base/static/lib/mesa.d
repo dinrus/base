@@ -1674,13 +1674,13 @@ int glutGameModeGet(GLenum);
 /* GLUT window sub-API. */
  int  glutCreateWindow( char *title);
 
- int  glutCreateSubWindow(int sys.Common, int x, int y, int ширина, int высота);
- проц  glutDestroyWindow(int sys.Common);
+ int  glutCreateSubWindow(int win, int x, int y, int ширина, int высота);
+ проц  glutDestroyWindow(int win);
  проц  glutPostRedisplay();
 
  проц  glutSwapBuffers();
  int  glutGetWindow();
- проц  glutSetWindow(int sys.Common);
+ проц  glutSetWindow(int win);
  проц  glutSetWindowTitle( char *title);
  проц  glutSetIconTitle( char *title);
  проц  glutPositionWindow(int x, int y);
@@ -1728,7 +1728,7 @@ int glutGameModeGet(GLenum);
 /* GLUT цвет index sub-API. */
  проц  glutSetColor(int ndx, GLfloat red, GLfloat green, GLfloat blue);
  GLfloat  glutGetColor(int ndx, int component);
- проц  glutCopyColormap(int sys.Common);
+ проц  glutCopyColormap(int win);
 
 /* GLUT state retrieval sub-API. */
  int  glutGet(GLenum тип);
@@ -1764,10 +1764,10 @@ int glutGameModeGet(GLenum);
  
  проц glutInitDisplayString(GLchar* а);
  
- проц glutPostWindowRedisplay(int sys.Common);
+ проц glutPostWindowRedisplay(int win);
  проц  glutWarpPointer(int x, int y);
   проц  glutSetCursor(int cursor);
-  проц  glutPostWindowOverlayRedisplay(int sys.Common);
+  проц  glutPostWindowOverlayRedisplay(int win);
   проц glutShowOverlay();
 проц  glutHideOverlay();
 

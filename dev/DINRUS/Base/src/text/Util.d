@@ -309,7 +309,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the следщ экземпляр of 'свер' starting at
-        позиция 'старт', or исток.length where there is no свер.
+        позиция 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ 0
 
@@ -327,7 +327,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the приор экземпляр of 'свер' starting
-        just before 'старт', or исток.length where there is no свер.
+        just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
 
@@ -345,7 +345,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the следщ экземпляр of 'свер' starting at
-        позиция 'старт', or исток.length where there is no свер.
+        позиция 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ 0
 
@@ -365,7 +365,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the приор экземпляр of 'свер' starting
-        just before 'старт', or исток.length where there is no свер.
+        just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
 
@@ -388,7 +388,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the следщ экземпляр of 'свер' starting at
-        позиция 'старт', or исток.length where there is no свер. 
+        позиция 'старт', либо исток.length where there is no свер. 
 
         Parameter 'старт' дефолты в_ 0
 
@@ -422,7 +422,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 /******************************************************************************
 
         Return the индекс of the приор экземпляр of 'свер' starting
-        just before 'старт', or исток.length where there is no свер.
+        just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
 
@@ -960,7 +960,7 @@ T[] повтори(T) (T[] ист, т_мера счёт, T[] приёмн=пус
 
         Arranges текст strings in order, using индексы в_ specify where
         each particular аргумент should be positioned внутри the текст. 
-        This is handy for collating I18N components, or as a simplistic
+        This is handy for collating I18N components, либо as a simplistic
         и lightweight форматёр. Индексы range из_ zero through nine. 
         
         ---
@@ -1137,11 +1137,11 @@ T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
                     for (i=0, h=0; i<n; ++i) h = хэш( ключ[i], длин[i], h);
 
         By Bob Jenkins, 1996.  bob_jenkins@burtleburtle.net.  You may use 
-        this код any way you wish, private, educational, or commercial.  
+        this код any way you wish, private, educational, либо commercial.  
         It's free.
 
         See http://burtleburtle.net/bob/хэш/evahash.html
-        Use for хэш таблица отыщи, or anything where one collision in 2^32 
+        Use for хэш таблица отыщи, либо anything where one collision in 2^32 
         is acceptable. Do NOT use for cryptographic purposes.
 
 ******************************************************************************/

@@ -1,4 +1,4 @@
-﻿/**
+﻿/***
 Модуль содержит основные математические объекты, нацеленные для работы с 3D
 графикой.
 
@@ -59,7 +59,7 @@ enum Орт
     W  /// описано
 }
 
-/**
+/***
 Шаблон-обмотчик, предоставляющий возможность использования
 в реализуемых структурах и процедурах разных типов с
 плавающей запятой.
@@ -115,7 +115,7 @@ private template ЛинейнаяАлгебра(т_плав)
     static Вектор2 едИгрек = { 0, 1 };                   /// описано
 
 
-    /**
+    /***
     Метод для построения вектора в стиле синтаксиса Си.
 
     Пример:
@@ -1185,7 +1185,7 @@ private template ЛинейнаяАлгебра(т_плав)
         Sets quaternion, so that, it will represent same вращение as in мат matrix аргумент.
         Params:
             мат = Matrix to выкинь вращение from. Should be pure вращение matrix.
-        Throws:
+        Выводит исключение:
             AssertError if мат is not pure вращение matrix и module was compiled with
             contract проверьings are enabled.
         */
@@ -1782,7 +1782,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Constructs matrix that represents _rotation same as in passed in complex number q.
         Method works with assumption that q is unit.
-        Throws:
+        Выводит исключение:
             AssertError on non-unit quaternion call attempt if you compile with
             contract проверьs enabled.
         */
@@ -2413,7 +2413,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Constructs matrix that represents _rotation specified by ось и angle.
         Method works with assumption that ось is unit вектор.
-        Throws:
+        Выводит исключение:
             AssertError on non-unit ось call attempt if module was compiled with
             contract проверьs enabled.
         */
@@ -2454,7 +2454,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Constructs matrix that represents _rotation same as in passed quaternion q.
         Method works with assumption that q is unit.
-        Throws:
+        Выводит исключение:
             AssertError on non-unit quaternion call attempt if you compile with
             contract проверьs enabled.
         */
@@ -3168,7 +3168,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Constructs matrix that represents _rotation specified by ось и angle.
         Method works with assumption that ось is unit вектор.
-        Throws:
+        Выводит исключение:
             AssertError on non-unit ось call attempt if module was compiled with
             contract проверьs enabled.
         */
@@ -3209,7 +3209,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Constructs matrix that represents _rotation specified by quaternion.
         Method works with assumption that quaternion is unit.
-        Throws:
+        Выводит исключение:
             AssertError on non-unit quaternion call attempt if module was compiled with
             contract проверьs enabled.
         */

@@ -1,13 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: Nov 2007
-
-        author:         Kris
-
         UTF conversion Потокs, supporting cross-translation of сим, шим 
         and дим variants. For supporting эндиан variations, конфигурируй the
         appropriate EndianПоток upПоток of this one (closer в_ the исток)

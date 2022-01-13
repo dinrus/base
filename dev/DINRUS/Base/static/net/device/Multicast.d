@@ -22,7 +22,7 @@ public  import  net.device.Datagram;
         described by a class-D адрес. To шли данные, the реципиент группа
         should be handed в_ the пиши() метод. To принять, the сокет is
         bound в_ an available local адаптер/порт as a listener и must
-        объедини() the группа before it becomes eligible for ввод из_ there. 
+        объедини() the группа перед it becomes eligible for ввод из_ there. 
 
         While MulticastConduit is a flavour of datagram, it doesn't support
         being подключен в_ a specific endpoint.

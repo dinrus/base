@@ -45,7 +45,7 @@ alias math.Math.экспм1 экспм1;
 /***
 Cumulative ни в каком дистрибутиве function for the Нормальный ни в каком дистрибутиве, и its complement.
 
-The нормаль (or Gaussian, or bell-shaped) ни в каком дистрибутиве is
+The нормаль (or Gaussian, либо bell-shaped) ни в каком дистрибутиве is
 defined as:
 
 normalDist(x) = 1/$(SQRT) &pi; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt
@@ -267,7 +267,7 @@ debug(UnitTest)
         assert(studentsTDistribution(2, 0.9) == 0.5L * (1 + 0.9L/квкор(2.0L + 0.9*0.9)) );
         assert(studentsTDistribution(2, -5.4) == 0.5L * (1 - 5.4L/квкор(2.0L + 5.4*5.4)) );
 
-// return да if a==b в_ given число of places.
+// return да, если a==b в_ given число of places.
         бул isfeqabs(реал a, реал b, реал рознь)
         {
             return фабс(a-b) < рознь;

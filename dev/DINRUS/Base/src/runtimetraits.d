@@ -1,22 +1,18 @@
 ﻿/** 
  * Предоставляет рантаймные трэты, представляющие большую часть функционала Traits и
- * is-Выражениеs, а также некоторый функционал, доступный только в рантайм, использующий 
+ * is-Выражений, а также некоторый функционал, доступный только в рантайм, использующий 
  * рантаймную информацио о типах. 
- * 
- * Authors: Chris Wright (dhasenan) <dhasenan@gmail.com>
- * License: DinrusTango.lib license, apache 2.0
- * Copyright (c) 2009, CHRISTOPHER WRIGHT
  */
 module runtimetraits;
 
 export:
 
-/// If the given тип represents a typedef, return the actual тип.
+/// Если заданный тип представляет собой typedef, вернуть действительный тип.
 ИнфОТипе реальныйТип (ИнфОТипе тип)
 {
-    // TypeInfo_Typedef.следщ() doesn't return the actual тип.
-    // I think it returns TypeInfo_Typedef.основа.следщ().
-    // So, a slightly different метод.
+    // TypeInfo_Typedef.следщ() не возвращает актуальный тип.
+    // Думаю, он возвращает TypeInfo_Typedef.основа.следщ().
+    // Поэтому метод слегка иной.
     auto def = cast(ТипТипдеф) тип;
     if (def !is пусто)
     {
@@ -25,7 +21,7 @@ export:
     return тип;
 }
 
-/// If the given тип represents a class, return its ИнфОКлассе; else return пусто;
+/// Если данный тип представляет собой класс, возвращает его ИнфОКлассе; иначе - пусто;
 ИнфОКлассе какКласс (ИнфОТипе тип)
 {
     if (интерфейс_ли (тип))
@@ -41,8 +37,8 @@ export:
     return пусто;
 }
 
-/** Возвращает да iff one тип is an ancestor of the другой, or if the типы are the same.
- * If either is пусто, returns нет. */
+/** Возвращает да, если один тип является предком другого, либо если эти типы одинаковы.
+ * Если у какого-то из них пусто, возвращает нет. */
 бул производный_ли (ИнфОКлассе производный, ИнфОКлассе основа)
 {
     if (производный is пусто || основа is пусто)
@@ -54,7 +50,7 @@ export:
     return нет;
 }
 
-/** Возвращает да iff реализатор реализует the interface described
+/** Возвращает да, если реализатор реализует the interface described
  * by ифейс. This is an expensive operation (linear in the число of
  * interfaces and основа classes).
  */
@@ -68,7 +64,7 @@ export:
     return нет;
 }
 
-/** Возвращает да iff an экземпляр of class тест is implicitly castable в_ мишень. 
+/** Возвращает да, если какой-либо экземпляр класса тест косвенно преобразуем в мишень. 
  * This is an expensive operation (производный_ли + реализует). */
 бул непосредственно_ли (ИнфОКлассе тест, ИнфОКлассе мишень)
 {
@@ -77,7 +73,7 @@ export:
     return (производный_ли (тест, мишень) || реализует (тест, мишень));
 }
 
-/** Возвращает да iff an экземпляр of тип тест is implicitly castable в_ мишень. 
+/** Возвращает да, если какой-либо экземпляр типа тест косвенно преобразуем в мишень. 
  * If the типы describe classes or interfaces, this is an expensive operation. */
 бул непосредственно_ли (ИнфОТипе тест, ИнфОТипе мишень)
 {
@@ -288,7 +284,7 @@ export:
     return (cast(TypeInfo_StaticArray) тип) !is пусто;
 }
 
-/** Возвращает да iff the given тип is a dynamic or static Массив (нет for associative
+/** Возвращает да, еслиf the given тип is a dynamic or static Массив (нет for associative
  * массивы and non-массивы). */
 бул массив_ли (ИнфОТипе тип)
 {
@@ -359,7 +355,7 @@ export:
     return (массив_ли (тип) || ассоцМасс_ли (тип) || символ_ли (тип) || плав_ли (тип) || цел_ли (тип));
 }
 
-/// Возвращает да iff the given тип represents an interface.
+/// Возвращает да, еслиf the given тип represents an interface.
 бул интерфейс_ли (ИнфОТипе тип)
 {
     return (cast(ТипИнтерфейс) тип) !is пусто;
@@ -372,7 +368,7 @@ export:
     return (cast(TypeInfo_Pointer) тип) !is пусто;
 }
 
-/// Возвращает да iff the тип represents a class (нет for interfaces).
+/// Возвращает да, еслиf the тип represents a class (нет for interfaces).
 бул класс_ли (ИнфОТипе тип)
 {
     тип = реальныйТип (тип);
@@ -393,14 +389,14 @@ export:
     return ((cast(TypeInfo_Function) тип) !is пусто) || ((cast(TypeInfo_Delegate) тип) !is пусто);
 }
 
-/** Возвращает да iff the given тип is a reference тип. */
+/** Возвращает да, еслиf the given тип is a reference тип. */
 бул типСсылка_ли (ИнфОТипе тип)
 {
     return класс_ли (тип) || указатель_ли (тип) || динМасс_ли (тип);
 }
 
-/** Возвращает да iff the given тип represents a пользовательский тип. 
- * This does not include functions, delegates, aliases, or typedefs. */
+/** Возвращает да, еслиf the given тип represents a пользовательский тип. 
+ * This does not include functions, delegates, aliases, либо typedefs. */
 бул пользовательскТип_ли (ИнфОТипе тип)
 {
     return класс_ли (тип) || структ_ли (тип);

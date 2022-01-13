@@ -1,5 +1,5 @@
 ﻿module scConfig;
-import cidrus, win, stdrus, stdrusex, exception;
+import cidrus, stdrus, stdrusex, exception;
 
 version(UCRT)
 {
@@ -14,7 +14,7 @@ version(UCRT)
 alias пауза пз;
 alias stdrusex.раскройГлоб рг;
 
-extern(C) проц сбросьЦветКонсоли();
+//extern(C) проц сбросьЦветКонсоли();
 
 
 const ткст КОНФИГ_РЕБИЛДА;

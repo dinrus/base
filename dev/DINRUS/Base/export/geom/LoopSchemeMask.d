@@ -4,7 +4,7 @@ module geom.LoopSchemeMask;
 import tpl.singleton;
 
 
-/** implements cache for the weights of the original Loop scheme 
+/** Реализует cache for the weights of the original Loop scheme 
     supports:
     $(UL 
       $(LI vertex projection rule on the next level)

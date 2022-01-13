@@ -6,7 +6,7 @@
  *
  * Currently only implemented for Tango.
  */
-import col.КартаДерево;
+import col.TreeMap;
 import col.HashMap;
 import col.ArrayList;
 import io.Stdout;

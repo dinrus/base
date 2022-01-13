@@ -4,7 +4,7 @@ version (Windows)
 {
 
 extern (Windows)
-private import sys.Common;
+private import sys.common;
 
 цел дайКультуруПользователя() {
   return cast(цел) sys.WinFuncs.ДайДефЛКИДПользователя();

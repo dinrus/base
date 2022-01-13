@@ -63,7 +63,7 @@ private import Float = text.convert.Float;
               значение = объект (пара("a", значение(10)), пара("b", значение(да)));
         ---
 
-        Подставка массивы, or другой objects as значения where appropriate:
+        Подставка массивы, либо другой objects as значения where appropriate:
         ---
         // {"a" : [10, да, {"b" : пусто}]}
         with (json)
@@ -132,7 +132,7 @@ class Json(T) : private JsonParser!(T)
 
     /***********************************************************************
 
-            Return a текст representation of this document
+            Возвращает текст representation of this document
 
     ***********************************************************************/
 
@@ -498,7 +498,7 @@ class Json(T) : private JsonParser!(T)
 
         /***************************************************************
 
-                Return a corresponding значение for the given attribute
+                Возвращает corresponding значение for the given attribute
                 имя. Does a linear отыщи across the attribute установи
 
         ***************************************************************/
@@ -581,7 +581,7 @@ class Json(T) : private JsonParser!(T)
 
         /***************************************************************
 
-                return да if this узел is of the given тип
+                return да, если this узел is of the given тип
 
         ***************************************************************/
 
@@ -592,7 +592,7 @@ class Json(T) : private JsonParser!(T)
 
         /***************************************************************
 
-                Return да if this значение represent Да
+                Return да, если this значение represent Да
 
         ***************************************************************/
 
@@ -757,7 +757,7 @@ class Json(T) : private JsonParser!(T)
 
         /***************************************************************
 
-                Return a текст representation of this значение
+                Возвращает текст representation of this значение
 
         ***************************************************************/
 

@@ -112,7 +112,7 @@ alias т_мера т_слово;
         }
     }
 
-    invariant
+    invariant()
     {
        инвариант(); 
     }
@@ -430,7 +430,7 @@ export extern (D) проц иниц()
         }
     }
 	
-	 invariant
+	 invariant()
     {
 	инвариант();
     }
@@ -873,7 +873,7 @@ private проц инвариант()
      * представляет максимальный размер в байтах, в который вызовом realloc 
      * можно на месте изменить существующий блок.  If укз references memory not
      * originally allocated by this garbage collector, points to the interior
-     * of a memory block, or if укз is пусто, ноль will be returned.
+     * of a memory block, либо if укз is пусто, ноль will be returned.
      *
      * Параметры:
      *  укз = A pointer to the корень of a valid memory block or to пусто.
@@ -2038,7 +2038,7 @@ struct СМХ
     }
 
 
-    проц Invariant() { }
+   // проц Invariant() { }
 
 
 invariant()
@@ -2272,7 +2272,7 @@ if(готов)
 
     /**
      * Find Пул that pointer is in.
-     * Return null if not in a Пул.
+     * Возвращает null if not in a Пул.
      * Assume таблица_пулов[] is sorted.
      */
     Пул *найдиПул(ук укз)
@@ -2306,7 +2306,7 @@ if(готов)
 
     /**
      * Найти адрес основы блока, где находится указатель укз.
-     * Returns null if not a gc'd pointer
+     * Возвращаетs null if not a gc'd pointer
      */
     ук найдиОснову(ук укз)
     {
@@ -2343,7 +2343,7 @@ if(готов)
 
     /**
      * Найти размер указателя укз.
-     * Returns 0 if not a gc'd pointer
+     * Возвращаетs 0 if not a gc'd pointer
      */
     т_мера найдиРазмер(ук укз)
     {

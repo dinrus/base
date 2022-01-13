@@ -164,7 +164,7 @@ export ткст вТкст(ОРДЖ_ФЛАГ f)
 public enum ОРДЖК
 {
     УСПЕХ                      =   0,          /// Operation was successful
-    ДЖАРФАЙЛ_НЕ_ОТКРЫВАЕТСЯ,                        /// The given файл does not exist, or cannot be accessed
+    ДЖАРФАЙЛ_НЕ_ОТКРЫВАЕТСЯ,                        /// The given файл does not exist, либо cannot be accessed
     НЕТ_ЗАПИСЕЙ,                                  /// The бд файл contained no записи
     НЕТ_ПАМЯТИ,                               /// The API suffered память exhaustion
     ФАЙЛ_НЕ_ЧИТАЕТСЯ,                               /// A read operation failed

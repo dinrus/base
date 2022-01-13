@@ -1,5 +1,5 @@
 ﻿module mesh.Handles;
-import tpl.handles, sys.Common, stdrus:фм;
+import tpl.handles, sys.common, stdrus:фм;
 
 //-----------------------------------------------------------------------------
 

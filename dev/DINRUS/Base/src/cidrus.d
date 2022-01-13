@@ -1,6 +1,6 @@
 ﻿module cidrus;
 
-import /*rt.console*/ std.string: toStringz, toString;
+import std.string: toStringz, toString;
  import std.utf: toUTF16z;
  public import tpl.args;
  
@@ -589,7 +589,7 @@ struct lconv
 {
     сим* decimal_point;
     сим* thousands_sep;
-    сим* группирование;
+    сим* grouping;
     сим* int_curr_symbol;
     сим* currency_symbol;
     сим* mon_decimal_point;

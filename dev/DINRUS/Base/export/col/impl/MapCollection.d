@@ -11,7 +11,7 @@ private import  col.model.MapX,
 
 /*******************************************************************************
 
-        КоллекцияКарт extends Коллекция в_ provопрe default implementations of
+        КоллекцияКарт extends Коллекция в_ предоставляет default implementations of
         some Карта operations. 
 
  ********************************************************************************/
@@ -25,7 +25,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Initialize at version 0, an пустой счёт, и пусто скринер
+                Инициализует при версии 0, an пустой счёт, и пусто скринер
 
         ************************************************************************/
 
@@ -36,7 +36,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Initialize at version 0, an пустой счёт, и supplied скринер
+                Инициализует при версии 0, an пустой счёт, и supplied скринер
 
         ************************************************************************/
 
@@ -47,10 +47,10 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Implements col.Map.допускаетсяКлюч.
+                Реализует col.Map.допускаетсяКлюч.
                 Default ключ-screen. Just проверьs for пусто.
                 
-                See_Also: col.Map.допускаетсяКлюч
+                См_Также: col.Map.допускаетсяКлюч
 
         ************************************************************************/
 
@@ -85,10 +85,10 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Implements col.impl.MapCollection.КоллекцияКарт.opIndexAssign
+                Реализует col.impl.MapCollection.КоллекцияКарт.opIndexAssign
                 Just calls добавь(ключ, элемент).
 
-                See_Also: col.impl.MapCollection.КоллекцияКарт.добавь
+                См_Также: col.impl.MapCollection.КоллекцияКарт.добавь
 
         ************************************************************************/
 
@@ -99,7 +99,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Implements col.impl.Collection.Коллекция.совпадает
+                Реализует col.impl.Collection.Коллекция.совпадает
                 Временная ёмкость: O(n).
                 Default implementation. Fairly sleazy approach.
                 (Defensible only when you remember that it is just a default impl.)
@@ -109,7 +109,7 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
                 but must be overrопрden if you define new Коллекция subinterfaces
                 и/or implementations.
                 
-                See_Also: col.impl.Collection.Коллекция.совпадает
+                См_Также: col.impl.Collection.Коллекция.совпадает
 
         ************************************************************************/
 
@@ -175,8 +175,8 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Implements col.impl.Collection.Коллекция.удалиВсе
-                See_Also: col.impl.Collection.Коллекция.удалиВсе
+                Реализует col.impl.Collection.Коллекция.удалиВсе
+                См_Также: col.impl.Collection.Коллекция.удалиВсе
 
                 Has в_ be here rather than in the superclass в_ satisfy
                 D interface опрioms
@@ -191,8 +191,8 @@ public abstract class КоллекцияКарт(К, T) : Коллекция!(T)
 
         /***********************************************************************
 
-                Implements col.impl.Collection.Коллекция.removeElements
-                See_Also: col.impl.Collection.Коллекция.removeElements
+                Реализует col.impl.Collection.Коллекция.removeElements
+                См_Также: col.impl.Collection.Коллекция.removeElements
 
                 Has в_ be here rather than in the superclass в_ satisfy
                 D interface опрioms

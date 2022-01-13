@@ -33,7 +33,7 @@ export:
  * врм as a workspace and прм as a place to put the resulting сим*'s.
  * This is handy for efficiently converting multiple строки at once.
  *
- * Returns a populated slice of прм
+ * Возвращаетs a populated slice of прм
  *
  * Since: 0.99.7
  */

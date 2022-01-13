@@ -3854,7 +3854,7 @@
 
 		//вяжи(функция_1920)("_?dayOfWeek@QDate@@QBEHXZ", биб);
 
-		//вяжи(функция_1921)("_?dayOfYear@QDate@@QBEHXZ", биб);
+		//вяжи(функция_1921)("_?деньГода@QDate@@QBEHXZ", биб);
 
 		//вяжи(функция_1922)("_?daysInMonth@QDate@@QBEHXZ", биб);
 
@@ -14428,7 +14428,7 @@
 
 		//вяжи(функция_7207)("_?dayOfWeek@QDate@@QBEHXZ", биб);
 
-		//вяжи(функция_7208)("_?dayOfYear@QDate@@QBEHXZ", биб);
+		//вяжи(функция_7208)("_?деньГода@QDate@@QBEHXZ", биб);
 
 		//вяжи(функция_7209)("_?daysInMonth@QDate@@QBEHXZ", биб);
 

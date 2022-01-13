@@ -759,7 +759,7 @@ SDL_Surface *ротозумПоверхности (SDL_Surface * src, double ang
          сдлОсвободиПоверхность (rz_src);
       }
    
-   /* Return приёмник surface */
+   /* Возвращает приёмник surface */
    return (rz_dst);
 }
 
@@ -878,7 +878,7 @@ SDL_Surface *зумПоверхности (SDL_Surface * src, double zoomx, doub
          сдлОсвободиПоверхность (rz_src);
       }
    
-   /* Return приёмник surface */
+   /* Возвращает приёмник surface */
    return (rz_dst);
 }
 

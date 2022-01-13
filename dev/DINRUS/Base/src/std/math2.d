@@ -541,7 +541,7 @@ unittest
  * Secant
  */
 
-real сек(real x)
+real sec(real x)
 {
 	asm
 	{

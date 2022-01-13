@@ -419,7 +419,7 @@ alias укз ptr;
 
     static if(N==3) {
         /// кросс product: only defined for Vec3* as specialization
-        /// See_Also: auxd.OpenMesh.кросс
+        /// См_Также: auxd.OpenMesh.кросс
         Вектор кросс(  ref Вектор _rhs)  
         {
             Вектор M;
@@ -432,7 +432,7 @@ alias укз ptr;
 
     static if(N==2) {
         /// кросс product: only defined for Vec2* as specialization
-        /// See_Also: auxd.OpenMesh.кросс
+        /// См_Также: auxd.OpenMesh.кросс
         Скаляр кросс(  ref Вектор _rhs)  
         {
             return (значения_[0]*_rhs.значения_[1]-значения_[1]*_rhs.значения_[0]);
@@ -440,7 +440,7 @@ alias укз ptr;
     }
 
     /// compute скаляр product
-    /// See_Also: auxd.OpenMesh.точка
+    /// См_Также: auxd.OpenMesh.точка
     Скаляр точка(  ref т_вектор _rhs)   {
         Скаляр p = 0;
         const ткст выр = "p += значения_[i] * _rhs.значения_[i];";
@@ -495,7 +495,7 @@ alias укз ptr;
             return длин;
         }
   
-        /** Return нормализованный копируй of вектор
+        /** Возвращает нормализованный копируй of вектор
          */
         Вектор нормализованный()   
         {
@@ -514,7 +514,7 @@ alias укз ptr;
             }
             return n;
         }
-        /** Return нормализованный копируй of вектор avoiding div by ноль 
+        /** Возвращает нормализованный копируй of вектор avoiding div by ноль 
          *  returns original new вектор.
          */
         Вектор нормализованный_усл()  

@@ -152,7 +152,7 @@ template Цвет(т_плав)
             if (hue > hslMax)
                 hue -= hslMax;
 
-            // return к,з, or с value from this tridrant
+            // return к,з, либо с value from this tridrant
             if (hue < hslMax / 6)
                 return n1 + ((n2 - n1) * hue + hslMax / 12) / (hslMax / 6);
             if (hue < hslMax / 2)
@@ -359,7 +359,7 @@ template Цвет(т_плав)
             This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
-        Throws:
+        Выводит исключение:
             AssertError if any component is out of диапазон [0; 1] и module was
             compiled with asserts.
         */
@@ -826,7 +826,7 @@ template Цвет(т_плав)
             This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
-        Throws:
+        Выводит исключение:
             AssertError if any component is out of диапазон [0; 1] и
             module was compiled with asserts.
         */

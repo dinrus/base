@@ -9,7 +9,7 @@ private import time.chrono.GregorianBased;
 extern(D) class Тайваньский : ГрегорианВОснове 
 {
   /**
-   * $(I Property.) Переписано. Retrieves the определитель associated with the текущ Календарь.
+   * $(I Свойство.) Переписано. Retrieves the определитель associated with the текущ Календарь.
    * Возвращает: Целое, представляющее определитель of the текущ Календарь.
    */
    override бцел ид();

@@ -61,7 +61,7 @@ int isalnum(dchar б)
  }
 цел числобукв_ли(дим б){return isalnum(б);}
 /**
- * Returns !=0 if б is an ascii upper or lower case letter.
+ * Возвращаетs !=0 if б is an ascii upper or lower case letter.
  */
 int isalpha(dchar б)  {
 цел рез;
@@ -71,7 +71,7 @@ int isalpha(dchar б)  {
  }
 цел буква_ли(дим б){return  isalpha(б);}
 /**
- * Returns !=0 if б is a control character.
+ * Возвращаетs !=0 if б is a control character.
  */
 int iscntrl(dchar б)
   { 
@@ -82,7 +82,7 @@ int iscntrl(dchar б)
   }
 цел управ_ли(дим б){return iscntrl(б);}
 /**
- * Returns !=0 if б is a digit.
+ * Возвращаетs !=0 if б is a digit.
  */
 int isdigit(dchar б)  {
  цел рез;
@@ -92,7 +92,7 @@ int isdigit(dchar б)  {
  }
 цел цифра_ли(дим б){return isdigit(б);}
 /**
- * Returns !=0 if б is lower case ascii letter.
+ * Возвращаетs !=0 if б is lower case ascii letter.
  */
 int islower(dchar б)  { 
 цел рез;
@@ -102,7 +102,7 @@ if(рус_ли(б)) рез = проверьРус(б)& (_БНР);
   }
 цел проп_ли(дим б){return islower(б);}
 /**
- * Returns !=0 if б is a punctuation character.
+ * Возвращаетs !=0 if б is a punctuation character.
  */
 int ispunct(dchar б)  {
 цел рез;
@@ -112,8 +112,8 @@ int ispunct(dchar б)  {
  }
 цел пунктзнак_ли(дим б){return  ispunct(б);}
 /**
- * Returns !=0 if б is a space, tab, vertical tab, form feed,
- * carriage return, or linefeed.
+ * Возвращаетs !=0 if б is a space, tab, vertical tab, form feed,
+ * carriage return, либо linefeed.
  */
 int isspace(dchar б)  {
 цел рез;
@@ -123,7 +123,7 @@ int isspace(dchar б)  {
  }
 цел межбукв_ли(дим б){return isspace(б);}
 /**
- * Returns !=0 if б is an upper case ascii character.
+ * Возвращаетs !=0 if б is an upper case ascii character.
  */
 int isupper(dchar б)  {
 цел рез;
@@ -133,7 +133,7 @@ if(рус_ли(б)) рез = проверьРус(б)&(_БВР);
  }
 цел заг_ли(дим б){return isupper(б);}
 /**
- * Returns !=0 if б is a hex digit (0..9, a..f, A..F).
+ * Возвращаетs !=0 if б is a hex digit (0..9, a..f, A..F).
  */
 int isxdigit(dchar б) {
 цел рез;
@@ -143,7 +143,7 @@ int isxdigit(dchar б) {
  }
 цел цифраикс_ли(дим б){return isxdigit(б);}
 /**
- * Returns !=0 if б is a printing character except for the space character.
+ * Возвращаетs !=0 if б is a printing character except for the space character.
  */
 int isgraph(dchar б)  {
 цел рез;
@@ -153,7 +153,7 @@ int isgraph(dchar б)  {
  }
 цел граф_ли(дим б){return  isgraph(б);}
 /**
- * Returns !=0 if б is a printing character including the space character.
+ * Возвращаетs !=0 if б is a printing character including the space character.
  */
 int isprint(dchar б)
   {
@@ -164,14 +164,14 @@ int isprint(dchar б)
   }
 цел печат_ли(дим б) {return  isprint(б);}
 /**
- * Returns !=0 if б is in the ascii character set, i.e. in the range 0..0x7F.
+ * Возвращаетs !=0 if б is in the ascii character set, i.e. in the range 0..0x7F.
  */
 int isascii(dchar б)  { return б <= 0x7F; }
 цел аски_ли(дим б){return  isascii(б);}
 
 /**
  * If б is an upper case ascii character,
- * return the lower case equivalent, otherwise return б.
+ * Возвращает lower case equivalent, otherwise return б.
  */
 dchar tolower(dchar б)
     out (результат)
@@ -187,7 +187,7 @@ dchar tolower(dchar б)
 
 /**
  * If б is a lower case ascii character,
- * return the upper case equivalent, otherwise return б.
+ * Возвращает upper case equivalent, otherwise return б.
  */
 dchar toupper(dchar б)
     out (результат)

@@ -26,7 +26,7 @@ import stdrus: фм;
     Стдвыв.форматнс("проспал {} мс", (Часы.сейчас-старт).миллисек);
     -------------------
 
-    See_Also: thread, время.Clock
+    См_Также: thread, время.Clock
 
 ******************************************************************************/
 
@@ -562,7 +562,7 @@ export struct ИнтервалВремени
     }
     +/
     /**
-     * Compares two ИнтервалВремени values and returns an integer indicating whether the first is shorter than, equal to, or longer than the second.
+     * Compares two ИнтервалВремени values and returns an integer indicating whether the first is shorter than, equal to, либо longer than the second.
      * Возвращает: -1 if t1 is shorter than t2; 0 if t1 equals t2; 1 if t1 is longer than t2.
      */
    export static цел сравни(ИнтервалВремени t1, ИнтервалВремени t2)
@@ -575,7 +575,7 @@ export struct ИнтервалВремени
     }
 
     /**
-     * Compares this instance to a specified ИнтервалВремени and returns an integer indicating whether the first is shorter than, equal to, or longer than the second.
+     * Compares this instance to a specified ИнтервалВремени and returns an integer indicating whether the first is shorter than, equal to, либо longer than the second.
      * Возвращает: -1 if t1 is shorter than t2; 0 if t1 equals t2; 1 if t1 is longer than t2.
      */
    export цел сравниС(ИнтервалВремени другой)
@@ -696,7 +696,7 @@ export struct ИнтервалВремени
         mопрnight on January 1, 10000 BC и 11:59:59 PM on December 31,
         9999 AD.
 
-        Время значения are measured in 100-nanosecond intervals, or тики.
+        Время значения are measured in 100-nanosecond intervals, либо тики.
         A дата значение is the число of тики that have elapsed since
         12:00:00 mопрnight on January 1, 0001 AD in the Грегориан
         Календарь.
@@ -758,7 +758,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the число of тики for this Время.
+            $(I Свойство.) Retrieves the число of тики for this Время.
             This значение can be использован в_ construct другой Время struct by
             writing:
 
@@ -783,7 +783,7 @@ export struct Время
             Determines whether two Время значения are equal.
 
             Параметры:  значение = A Время _value.
-            Возвращает: да if Всё экземпляры are equal; иначе, нет
+            Возвращает: да, если Всё экземпляры are equal; иначе, нет
 
     **********************************************************************/
 
@@ -892,7 +892,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the дата component.
+            $(I Свойство.) Retrieves the дата component.
 
             Возвращает: A new Время экземпляр with the same дата as
                      this экземпляр, but with the время truncated.
@@ -906,7 +906,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the время of день.
+            $(I Свойство.) Retrieves the время of день.
 
             Возвращает: A ВремяДня representing the дво of the день
                      elapsed since mопрnight.
@@ -920,7 +920,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the equivalent ИнтервалВремени.
+            $(I Свойство.) Retrieves the equivalent ИнтервалВремени.
 
             Возвращает: A ИнтервалВремени representing this Время.
 
@@ -933,7 +933,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves a ИнтервалВремени that corresponds в_ Unix
+            $(I Свойство.) Retrieves a ИнтервалВремени that corresponds в_ Unix
             время (время since 1/1/1970).  Use the ИнтервалВремени accessors в_ получи
             the время in сек, milliseconds, etc.
 
@@ -1083,7 +1083,7 @@ struct ВремяДня
      *
      * Note: that fields are not проверьed against a действителен range, so
      * настройка 60 for минуты is allowed, и will just добавь 1 в_ the час
-     * component, и установи the минута component в_ 0.  The результат is
+     * component, и Устанавливает минута component в_ 0.  The результат is
      * normalized, so the часы wrap.  If you пароль in 25 часы, the
      * результатing ВремяДня will have a час component of 1.
      */

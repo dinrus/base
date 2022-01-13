@@ -11,7 +11,7 @@ private import Utf = text.convert.Utf;
         Convert 'escaped' симвы в_ нормаль ones. For example: \\ => \
 
         The предоставленный вывод буфер should be at least as дол as the
-        ввод ткст, or it will be allocated из_ the куча instead.
+        ввод ткст, либо it will be allocated из_ the куча instead.
 
         Возвращает срез of приёмн where the контент требуется conversion,
         or the предоставленный ист иначе
@@ -39,7 +39,7 @@ T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
 
         Convert reserved симвы в_ escaped ones. For example: \ => \\
 
-        Either a срез of the предоставленный вывод буфер is returned, or the
+        Either a срез of the предоставленный вывод буфер is returned, либо the
         original контент, depending on whether there were reserved симвы
         present or not. The вывод буфер will be expanded as necessary
 

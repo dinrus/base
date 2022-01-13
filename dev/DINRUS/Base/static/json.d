@@ -83,8 +83,8 @@ extern(D):
  * writef("Generated JSON ткст: ");writef(jstr);writef("\n");
  * writef("Regenerated JSON ткст: ");writef(читайДжейСОН(jstr).вТкст);writef("\n");
  * --------------------------------
- * Returns: A ОбъектДжейСОН with no имя that is the root of the document that was read.
- * Throws: ОшибкаДжейСОН on any parsing errors.
+ * Возвращаетs: A ОбъектДжейСОН with no имя that is the root of the document that was read.
+ * Выводит исключение: ОшибкаДжейСОН on any parsing errors.
  */
 ОбъектДжейСОН читайДжейСОН(ткст ист) {
 	ткст pointcpy = ист;
@@ -101,7 +101,7 @@ extern(D):
 /// An exception thrown on JSON parsing errors.
 class ОшибкаДжейСОН : Исключение {
 
-	// Throws an exception with an ошибка message.
+	// Выводит исключение an exception with an ошибка message.
 	this(ткст msg) {
 		super(msg);
 	}
@@ -131,29 +131,29 @@ const ткст конвфункции =
 // only non-arrays need this
 const ткст конвфункцииМ = 
 "
-/// Dummy function for types that don't implement integer indexing.  Throws an exception.
+/// Dummy function for types that don't implement integer indexing.  Выводит исключение an exception.
 ТипДжейСОН opIndex(цел ключ) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" не поддерживает целочисленного индексирования, проверьте свою структуру JSON.\");}
-/// Dummy function for types that don't implement integer indexing.  Throws an exception.
+/// Dummy function for types that don't implement integer indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(цел,ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" не поддерживает числового индекса foreach, проверьте свою структуру JSON.\");}
-/// Dummy function for types that don't implement integer indexing.  Throws an exception.
+/// Dummy function for types that don't implement integer indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(цел,ref ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" не поддерживает числового индекса foreach, проверьте свою структуру JSON.\");}
 ";
 // only non-AAs need this
 const ткст конвфункцииАМ = 
 "
-/// Dummy function for types that don't implement ткст indexing.  Throws an exception.
+/// Dummy function for types that don't implement ткст indexing.  Выводит исключение an exception.
 ТипДжейСОН opIndex(ткст ключ) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" does not support ткст indexing, проверь your JSON structure.\");}
-/// Dummy function for types that don't implement ткст indexing.  Throws an exception.
+/// Dummy function for types that don't implement ткст indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(ткст,ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" does not support ткст index foreach, проверь your JSON structure.\");}
-/// Dummy function for types that don't implement ткст indexing.  Throws an exception.
+/// Dummy function for types that don't implement ткст indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(ткст,ref ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" does not support ткст index foreach, проверь your JSON structure.\");}
 ";
 // neither arrays nor AAs need this
 const ткст конвфункцииМАМ = 
 "
-/// Dummy function for types that don't implement any тип of indexing.  Throws an exception.
+/// Dummy function for types that don't implement any тип of indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" does not support foreach, проверь your JSON structure.\");}
-/// Dummy function for types that don't implement any тип of indexing.  Throws an exception.
+/// Dummy function for types that don't implement any тип of indexing.  Выводит исключение an exception.
 цел opApply(цел delegate(ref ТипДжейСОН) дг) {throw new ОшибкаДжейСОН(typeof(this).stringof ~\" does not support foreach, проверь your JSON structure.\");}
 ";
 /**
@@ -256,17 +256,17 @@ class ОбъектДжейСОН:ТипДжейСОН {
 			auto jstr = new ТкстДжейСОН();
 			jstr.парсируй(исток);
 			исток = уберислева(исток);
-			if (исток[0] != ':') throw new ОшибкаДжейСОН("Missing ':' после keystring in object before: "~исток);
+			if (исток[0] != ':') throw new ОшибкаДжейСОН("Missing ':' после keystring in object перед: "~исток);
 			исток = уберислева(исток[1..$]);
 			_ветви[jstr.дай] = помПарсинга(исток);
 			исток = уберислева(исток);
 			// handle end cases
 			if (исток[0] == '}') continue;
-			if (исток[0] != ',') throw new ОшибкаДжейСОН("Missing continuation via ',' or end of JSON object via '}' before "~исток);
+			if (исток[0] != ',') throw new ОшибкаДжейСОН("Missing continuation via ',' or end of JSON object via '}' перед "~исток);
 			// rip the , in preparation for the next loop
 			исток = уберислева(исток[1..$]);
 			// make sure we don't have a ",}", since I'm assuming it's not allowed
-			if (исток[0] == '}') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by '}') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred before: "~исток);
+			if (исток[0] == '}') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by '}') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
 		}
 		// rip off the } и be done with it
 		исток = уберислева(исток[1..$]);
@@ -369,11 +369,11 @@ class МассивДжейСОН:ТипДжейСОН {
 			исток = уберислева(исток);
 			// handle end cases
 			if (исток[0] == ']') continue;
-			if (исток[0] != ',') throw new ОшибкаДжейСОН("Missing continuation via ',' or end of JSON массив via ']' before "~исток);
+			if (исток[0] != ',') throw new ОшибкаДжейСОН("Missing continuation via ',' or end of JSON массив via ']' перед "~исток);
 			// rip the , in preparation for the next loop
 			исток = уберислева(исток[1..$]);
 			// make sure we don't have a ",]", since I'm assuming it's not allowed
-			if (исток[0] == ']') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by ']') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred before: "~исток);
+			if (исток[0] == ']') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by ']') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
 		}
 		// rip off the ] и be done with it
 		исток = уберислева(исток[1..$]);

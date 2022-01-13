@@ -86,7 +86,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
 
 
     /**
-     * Return да if текущ ячейка is the only one on the список
+     * Возвращает да, если текущ ячейка является единственным on the список
     **/
 
     public final бул синглтон_ли()
@@ -106,7 +106,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * Make a ячейка holding знач и link it immediately после текущ ячейка
+     * Создаёт ячейка, содержащий знач и link it immediately после текущ ячейка
     **/
 
     public final проц добавьСледщ(T знач)
@@ -117,7 +117,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * сделай a узел holding знач, link it before the текущ ячейка, и return it
+     * Создаёт узел, содержащий знач, link it перед the текущ ячейка, и return it
     **/
 
     public final ЯчейкаЦС добавьПредш(T знач)
@@ -130,7 +130,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * link p before текущ ячейка
+     * Компонует p перед текущ ячейка
     **/
 
     public final проц вяжиПредш(ЯчейкаЦС p)
@@ -145,7 +145,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * return the число of cells in the список
+     * Возвращает число ячеек в этом списке
     **/
 
     public final цел длина()
@@ -162,8 +162,8 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * return the первый ячейка holding элемент найдено in a circular traversal starting
-     * at текущ ячейка, or пусто if no such
+     * Возвращает первый ячейка holding элемент найдено in a circular traversal starting
+     * at текущ ячейка, либо пусто if no such
     **/
 
     public final ЯчейкаЦС найди(T элемент)
@@ -180,7 +180,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * return the число of cells holding элемент найдено in a circular
+     * Возвращает число ячеек holding элемент найдено in a circular
      * traversal
     **/
 
@@ -199,7 +199,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * return the н_ый ячейка traversed из_ here. It may wrap around.
+     * Возвращает н_ый ячейка traversed из_ here. It may wrap around.
     **/
 
     public final ЯчейкаЦС н_ый(цел n)
@@ -213,7 +213,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
 
     /**
      * Unlink the следщ ячейка.
-     * This имеется no effect on the список if синглтон_ли()
+     * Это не влияет на данный список if синглтон_ли()
     **/
 
     public final проц отвяжиСледщ()
@@ -225,7 +225,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
 
     /**
      * Unlink the previous ячейка.
-     * This имеется no effect on the список if синглтон_ли()
+     * Это не влияет на данный список if синглтон_ли()
     **/
 
     public final проц отвяжиПредш()
@@ -252,7 +252,7 @@ public class ЯчейкаЦС(T) : Ячейка!(T)
     }
 
     /**
-     * Make a копируй of the список и return new голова.
+     * Создаёт копию этого списка и return new голова.
     **/
 
     public final ЯчейкаЦС копируйСписок()

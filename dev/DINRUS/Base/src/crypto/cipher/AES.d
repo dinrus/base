@@ -7,7 +7,7 @@ import crypto.cipher.Cipher;
  * Vincent Rijmen и Joan Daemen.
  * 
  * Conforms: FИПS-197
- * References: http://csrc.nist.gov/publications/fИПs/fИПs197/fИПs-197.pdf
+ * References: http://csrc.nist.gov/publications/fids/fids197/fids-197.pdf
  */
 export class АЭС : ШифрБлок
 {

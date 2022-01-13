@@ -2,33 +2,11 @@
 // Написано на языке программирования Динрус. Разработчик Виталий Кулич.
 
 /**
- * This module implements the workhorse functionality for string and
+ * This module Реализует the workhorse functionality for string and
  * I/O formatting.  It's comparable to C99's vsprintf().
  *
  * Macros:
  *	WIKI = Phobos/StdFormat
- */
-
-/*
- *  Copyright (C) 2004-2009 by Digital Mars, www.digitalmars.com
- *  Written by Walter Bright
- *
- *  This software is provided 'as-is', without any express or implied
- *  warranty. In no событие will the authors be held liable for any damages
- *  arising from the use of this software.
- *
- *  Permission is granted to anyone to use this software for any purpose,
- *  including commercial applications, and to alter it and redistribute it
- *  freely, subject to the following restrictions:
- *
- *  o  The origin of this software must not be misrepresented; you must not
- *     claim that you wrote the original software. If you use this software
- *     in a product, an acknowledgment in the product documentation would be
- *     appreciated but is not required.
- *  o  Altered source versions must be plainly marked as such, and must not
- *     be misrepresented as being the original software.
- *  o  This notice may not be removed or altered from any source
- *     distribution.
  */
 
 module std.format;
@@ -194,7 +172,7 @@ private TypeInfo primitiveTypeInfo(Mangle m)
  * Each is formatted into a sequence of chars, using the default format
  * specification for its type, and the
  * characters are sequentially passed to putc.
- * If a char[], wchar[], or dchar[]
+ * If a char[], wchar[], либо dchar[]
  * argument is encountered, it is interpreted as a format string. As many
  * arguments as specified in the format string are consumed and formatted
  * according to the format specifications in that string and passed to putc. If
@@ -207,7 +185,7 @@ private TypeInfo primitiveTypeInfo(Mangle m)
  *	arguments = Array of TypeInfo's, one for each argument to be formatted.
  *	argptr = Points to variadic argument list.
  *
- * Throws:
+ * Выводит исключение:
  *	Mismatched arguments and formats результат in a ОшФормата being thrown.
  *
  * Format_String:
@@ -371,7 +349,7 @@ $(I FormatChar):
 	результат.
 
 	<dt>$(B 'e','E')
-	<dd> A floating point number is formatted as one digit before
+	<dd> A floating point number is formatted as one digit перед
 	the десяток point, $(I Precision) digits после, the $(I FormatChar),
 	&plusmn;, followed by at least a two digit exponent: $(I d.dddddd)e$(I &plusmn;dd).
 	If there is no $(I Precision), six
@@ -382,7 +360,7 @@ $(I FormatChar):
 	<dd> A floating point number is formatted in десяток notation.
 	The $(I Precision) specifies the number of digits generated
 	после the десяток point. It defaults to six. At least one digit
-	is generated before the десяток point. If the $(I Precision)
+	is generated перед the десяток point. If the $(I Precision)
 	is zero, no десяток point is generated.
 
 	<dt>$(B 'g','G')
@@ -399,7 +377,7 @@ $(I FormatChar):
 	<dt>$(B 'a','A')
 	<dd> A floating point number is formatted in hexadecimal
 	exponential notation 0x$(I h.hhhhhh)p$(I &plusmn;d).
-	There is one hexadecimal digit before the десяток point, and as
+	There is one hexadecimal digit перед the десяток point, and as
 	many после as specified by the $(I Precision).
 	If the $(I Precision) is zero, no десяток point is generated.
 	If there is no $(I Precision), as many hexadecimal digits as
@@ -413,10 +391,10 @@ $(I FormatChar):
     </dl>
 
     Floating point NaN's are formatted as $(B нч) if the
-    $(I FormatChar) is lower case, or $(B NAN) if upper.
+    $(I FormatChar) is lower case, либо $(B NAN) if upper.
     Floating point infinities are formatted as $(B inf) or
     $(B infinity) if the
-    $(I FormatChar) is lower case, or $(B INF) or $(B INFINITY) if upper.
+    $(I FormatChar) is lower case, либо $(B INF) or $(B INFINITY) if upper.
     </dl>
 
 Пример:
@@ -662,7 +640,7 @@ void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list argptr)
 	  {
 	    if (comma) putc(',');
 	    comma = true;
-	    // the key comes before the value
+	    // the key comes перед the value
 	    ubyte* key = &fakevalue - long.sizeof;
 
 	    //doFormat(putc, (&keyti)[0..1], key);
@@ -1278,7 +1256,7 @@ unittest
 
     s = std.string.format(1.67, " %A ", -1.28, float.nan);
     /* The host C library is used to format floats.
-     * C99 doesn't specify what the hex digit before the десяток point
+     * C99 doesn't specify what the hex digit перед the десяток point
      * is for %A.
      */
     version (Posix)

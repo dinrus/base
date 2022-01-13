@@ -5,7 +5,7 @@
         those devices is so small. Beware of subtle changes which might
         расширь the execution-период by as much as 200%. Because of this,
         three of the six transcoders might читай past the конец of ввод by
-        one, two, or three байты before arresting themselves. Note that
+        one, two, либо three байты перед arresting themselves. Note that
         support for Потокing добавьs a 15% overhead в_ the дим => сим
         conversion, but имеется little effect on the другие.
 
@@ -117,7 +117,7 @@ extern(D) шим[] вТкст16 (ткст ввод, шим[] вывод=пуст
 /*******************************************************************************
 
         Encode Utf8 up в_ a maximum of 4 байты дол (five & six
-        байт variations are not supported). Throws an исключение
+        байт variations are not supported). Выводит исключение an исключение
         where the ввод дим is greater than 0x10ffff.
 
         If the вывод is предоставленный off the стэк, it should be large
@@ -165,7 +165,7 @@ extern(D) дим[] вТкст32 (ткст ввод, дим[] вывод=пуст
 
 /*******************************************************************************
 
-        Encode Utf16 up в_ a maximum of 2 байты дол. Throws an исключение
+        Encode Utf16 up в_ a maximum of 2 байты дол. Выводит исключение an исключение
         where the ввод дим is greater than 0x10ffff.
 
         If the вывод is предоставленный off the стэк, it should be large
@@ -260,7 +260,7 @@ extern(D) бул действителен (дим c);
         Convert из_ a ткст преобр_в the тип of the приёмн предоставленный.
 
         Возвращает срез of the given приёмн, where it is sufficiently large
-        в_ house the результат, or a куча-allocated Массив иначе. Возвращает
+        в_ house the результат, либо a куча-allocated Массив иначе. Возвращает
         the original ввод where no conversion is требуется.
 
 *******************************************************************************/
@@ -282,7 +282,7 @@ T[] изТкст8(T) (ткст s, T[] приёмн)
         Convert из_ a шим[] преобр_в the тип of the приёмн предоставленный.
 
         Возвращает срез of the given приёмн, where it is sufficiently large
-        в_ house the результат, or a куча-allocated Массив иначе. Возвращает
+        в_ house the результат, либо a куча-allocated Массив иначе. Возвращает
         the original ввод where no conversion is требуется.
 
 *******************************************************************************/
@@ -304,7 +304,7 @@ T[] изТкст16(T) (шим[] s, T[] приёмн)
         Convert из_ a дим[] преобр_в the тип of the приёмн предоставленный.
 
         Возвращает срез of the given приёмн, where it is sufficiently large
-        в_ house the результат, or a куча-allocated Массив иначе. Возвращает
+        в_ house the результат, либо a куча-allocated Массив иначе. Возвращает
         the original ввод where no conversion is требуется.
 
 *******************************************************************************/

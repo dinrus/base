@@ -41,44 +41,52 @@
 :::Making dirs for di files in \imp\dinrus\
 ::: and copying imports from .\export folder to them
 
-mkdir %R%
+if not exist %R% mkdir %R%
 copy %this%\export\*.d  %R%\*.di 
 
+rm -R %R%\std
 mkdir %R%\std
 copy %this%\export\std\*.d  %R%\std\*.di 
 
+rm -R %R%\tpl
 mkdir %R%\tpl
 copy %this%\export\tpl\*.d  %R%\tpl\*.di
 
+rm -R %R%\st
 mkdir %R%\st
 copy %this%\export\st\*.d  %R%\st\*.di
 
+rm -R %R%\mesh
 mkdir %R%\mesh
 copy %this%\export\mesh\*.d  %R%\mesh\*.di
 
+rm -R %R%\win32
 mkdir %R%\win32
 mkdir %R%\win32\directx
-copy %this%\..\win32\*.d  %R%\win32\*.di
-copy %this%\..\win32\directx\*.d   %R%\win32\directx\*.di
+copy %this%\export\win32\*.di  %R%\win32\*.di
+copy %this%\export\win32\directx\*.di  %R%\win32\directx\*.di
 
-mkdir %R%\def
-copy %this%\..\win32\directx\*.def  %R%\def\*.def
+::mkdir %R%\def
+::copy %this%\..\win32\directx\*.def  %R%\def\*.def
 
+rm -R %R%\sys
 mkdir %R%\sys
-::mkdir %R%\sys\inc
-mkdir %R%\sys\COM
+mkdir %R%\sys\com
 copy %this%\export\sys\*.d  %R%\sys\*.di
 ::copy %this%\export\sys\inc\*.d  %R%\sys\inc\*.di
-copy %this%\export\sys\COM\*.d  %R%\sys\COM\*.di
+copy %this%\export\sys\com\*.d  %R%\sys\com\*.di
 
+rm -R %R%\lib
 mkdir %R%\lib
 copy %this%\export\lib\*.d  %R%\lib\*.di
 
+rm -R %R%\time
 mkdir %R%\time
 mkdir %R%\time\chrono
 copy %this%\export\time\*.d  %R%\time\*.di
 copy %this%\export\time\chrono\*.d  %R%\time\chrono\*.di
 
+rm -R %R%\col
 mkdir %R%\col
 mkdir %R%\col\model
 mkdir %R%\col\impl
@@ -88,9 +96,11 @@ copy %this%\export\col\model\*.d  %R%\col\model\*.di
 copy %this%\export\col\impl\*.d %R%\col\impl\*.d
 copy %this%\export\col\iterator\*.d %R%\col\iterator\*.d
 
+rm -R %R%\geom
 mkdir %R%\geom
 copy %this%\export\geom\*.d  %R%\geom\*.di
 
+rm -R %R%\math
 mkdir %R%\math
 copy %this%\export\math\*.d  %R%\math\*.di
 mkdir %R%\math\internal
@@ -102,9 +112,11 @@ copy %this%\export\math\random\engines\*.d  %R%\math\random\engines\*.di
 mkdir %R%\math\linalg
 copy %this%\export\math\linalg\*.d  %R%\math\linalg\*.di
 
+rm -R %R%\util
 mkdir %R%\util
 copy %this%\export\util\*.d  %R%\util\*.di
 
+rm -R %R%\crypto
 mkdir %R%\crypto
 mkdir %R%\crypto\cipher
 mkdir %R%\crypto\digest
@@ -112,6 +124,7 @@ copy %this%\export\crypto\*.d %R%\crypto\*.di
 copy %this%\export\crypto\cipher\*.d %R%\crypto\cipher\*.di
 copy %this%\export\crypto\digest\*.d %R%\crypto\digest\*.di
 
+rm -R %R%\text
 mkdir %R%\text
 mkdir %R%\text\convert
 mkdir %R%\text\json
@@ -122,19 +135,21 @@ copy %this%\static\text\json\*.d %R%\text\json\*.di
 copy %this%\static\text\digest\*.d %R%\text\digest\*.di
 copy %this%\static\text\locale\*.d %R%\text\locale\*.di
 copy %this%\static\text\xml\*.d %R%\text\xml\*.di
+copy %this%\static\text\convert\*.d %R%\text\convert\*.di
 
+rm -R  %R%\io
 mkdir %R%\io
 mkdir %R%\io\device
 mkdir %R%\io\stream
 mkdir %R%\io\protocol
-mkdir %R%\io\selector
-mkdir %R%\io\vfs
+::mkdir %R%\io\selector
+::mkdir %R%\io\vfs
 copy %this%\export\io\*.d  %R%\io\*.di
 copy %this%\export\io\device\*.d  %R%\io\device\*.di
 copy %this%\export\io\stream\*.d  %R%\io\stream\*.di
 copy %this%\export\io\protocol\*.d  %R%\io\protocol\*.di
-copy %this%\export\io\selector\*.d  %R%\io\selector\*.di
-copy %this%\export\io\vfs\*.d  %R%\io\vfs\*.di
+::copy %this%\export\io\selector\*.d  %R%\io\selector\*.di
+::copy %this%\export\io\vfs\*.d  %R%\io\vfs\*.di
 
 :::Compiling C code
 
@@ -148,8 +163,7 @@ copy %this%\export\io\vfs\*.d  %R%\io\vfs\*.di
 
 :Base
 :::Creating respond file
-:::%this%\src\io\*d %this%\src\io\device\*.d %this%\src\io\stream\*.d
-%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d>>%this%\objs.rsp
+%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d>>%this%\objs.rsp
 
 :::Make DinrusBase.dll
 
@@ -279,8 +293,9 @@ cls
 :Lib
 
 %LS% -d %this%\export\lib\*.d >>%this%\lib.rsp
-%DMD% -lib -of%this%\dlib.lib @%this%\lib.rsp
+%DMD% -lib -of%this%\dlib.lib @%this%\lib.rsp 
 @if exist %this%\dlib.lib del %this%\lib.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
 @if exist %this%\dlib.lib goto Col
 @if not exist %this%\dlib.lib pause
 @del %this%\col.rsp
@@ -290,8 +305,9 @@ pause
 
 :Col
 %LS% -d %this%\export\col\*.d  %this%\export\col\model\*.d %this%\export\col\impl\*.d %this%\export\col\iterator\*.d>>%this%\col.rsp
-%DMD% -lib -of%this%\col.lib @%this%\col.rsp
+%DMD% -lib -of%this%\col.lib @%this%\col.rsp 
 @if exist %this%\col.lib del %this%\col.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\col.lib
 @if exist %this%\col.lib goto Util
 @if not exist %this%\col.lib pause
 @del %this%\col.rsp
@@ -300,8 +316,9 @@ cls
 
 :Util
 %LS% -d %this%\static\util\*.d %this%\static\util\uuid\*.d>>%this%\ut.rsp
-%DMD% -lib -of%this%\util.lib @%this%\ut.rsp
+%DMD% -lib -of%this%\util.lib @%this%\ut.rsp 
 @if exist %this%\util.lib del %this%\ut.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\util.lib
 @if exist %this%\util.lib goto Mesh
 @if not exist %this%\util.lib pause
 @del %this%\ut.rsp
@@ -310,8 +327,9 @@ cls
 
 :Mesh
 %LS% -d %this%\static\mesh\*.d>>%this%\mesh.rsp
-%DMD% -lib -of%this%\mesh.lib @%this%\mesh.rsp
+%DMD% -lib -of%this%\mesh.lib @%this%\mesh.rsp 
 @if exist %this%\mesh.lib del %this%\mesh.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
 @if exist %this%\mesh.lib goto St
 @if not exist %this%\mesh.lib pause
 @del %this%\mesh.rsp
@@ -320,8 +338,9 @@ cls
 
 :St
 %LS% -d %this%\static\st\*.d>>%this%\st.rsp
-%DMD% -lib -of%this%\st.lib @%this%\st.rsp
+%DMD% -lib -of%this%\st.lib @%this%\st.rsp 
 @if exist %this%\st.lib del %this%\st.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\st.lib
 @if exist %this%\st.lib goto Geom
 @if not exist %this%\st.lib pause
 @del %this%\st.rsp
@@ -330,8 +349,9 @@ cls
 
 :Geom
 %LS% -d %this%\static\geom\*.d>>%this%\geom.rsp
-%DMD% -lib -of%this%\geom.lib @%this%\geom.rsp
+%DMD% -lib -of%this%\geom.lib @%this%\geom.rsp 
 @if exist %this%\geom.lib del %this%\geom.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
 @if exist %this%\geom.lib goto Math
 @if not exist %this%\geom.lib pause
 @del %this%\geom.rsp
@@ -340,8 +360,9 @@ cls
 
 :Math
 %LS% -d %this%\static\math\*.d %this%\static\math\linalg\*.d %this%\static\math\internal\*.d %this%\static\math\random\*.d %this%\static\math\random\engines\*.d>>%this%\math.rsp
-%DMD% -lib -of%this%\math.lib @%this%\math.rsp
+%DMD% -lib -of%this%\math.lib @%this%\math.rsp 
 @if exist %this%\math.lib del %this%\math.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
 @if exist %this%\math.lib goto Crypto
 @if not exist %this%\math.lib pause
 @del %this%\math.rsp
@@ -351,8 +372,9 @@ cls
 :Crypto
 
 %LS% -d %this%\export\crypto\*.d %this%\export\crypto\cipher\*.d %this%\export\crypto\digest\*.d>>%this%\crypto.rsp
-%DMD% -lib -of%this%\crypto.lib @%this%\crypto.rsp
+%DMD% -lib -of%this%\crypto.lib @%this%\crypto.rsp 
 @if exist %this%\crypto.lib del %this%\crypto.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\crypto.lib
 @if exist %this%\crypto.lib goto Text
 @if not exist %this%\crypto.lib pause
 @del %this%\crypto.rsp
@@ -361,9 +383,10 @@ cls
 
 
 :Text
-%LS% -d %this%\static\text\*.d %this%\static\text\json\*.d %this%\static\text\digest\*.d %this%\static\text\locale\*.d %this%\static\text\xml\*.d>>%this%\text.rsp
-%DMD% -lib -of%this%\text.lib @%this%\text.rsp
+%LS% -d %this%\static\text\*.d %this%\static\text\convert\*.d %this%\static\text\json\*.d %this%\static\text\digest\*.d %this%\static\text\locale\*.d %this%\static\text\xml\*.d>>%this%\text.rsp
+%DMD% -lib -of%this%\text.lib @%this%\text.rsp 
 @if exist %this%\text.lib del %this%\text.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\text.lib
 @if exist %this%\text.lib goto Time
 @if not exist %this%\text.lib pause
 @del %this%\text.rsp
@@ -372,8 +395,9 @@ cls
 
 :Time
 %LS% -d %this%\export\time\*.d  %this%\export\time\chrono\*.d>>%this%\time.rsp
-%DMD% -lib -of%this%\time.lib @%this%\time.rsp
+%DMD% -lib -of%this%\time.lib @%this%\time.rsp 
 @if exist %this%\time.lib del %this%\time.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\time.lib
 @if exist %this%\time.lib goto IO
 @if not exist %this%\time.lib pause
 @del %this%\time.rsp
@@ -382,9 +406,11 @@ cls
 
 :IO
 
-%LS% -d %this%\static\io\*.d %this%\static\io\device\*.d %this%\static\io\stream\*.d %this%\static\io\protocol\*.d %this%\static\io\selector\*.d %this%\static\io\vfs\*.d>>%this%\io.rsp
-%DMD% -lib -of%this%\io.lib @%this%\io.rsp
+::%this%\static\io\selector\*.d %this%\static\io\vfs\*.d
+%LS% -d %this%\static\io\*.d %this%\static\io\device\*.d %this%\static\io\stream\*.d %this%\static\io\protocol\*.d>>%this%\io.rsp
+%DMD% -lib -of%this%\io.lib @%this%\io.rsp 
 @if exist %this%\io.lib del %this%\io.rsp
+%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
 @if exist %this%\io.lib goto finish
 @if not exist %this%\io.lib pause
 @del %this%\io.rsp
@@ -428,16 +454,16 @@ cd %this%
 
 :finish
 
-%LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\col.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\util.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\st.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\crypto.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\time.lib
-%LIB% -p256  %this%\Dinrus.lib %this%\text.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\col.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\util.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\st.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\crypto.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\time.lib
+::%LIB% -p256  %this%\Dinrus.lib %this%\text.lib
 ::%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
 ::%LIB% -p256  %this%\Dinrus.lib %ARCDIR%\arc2.lib
 ::%LIB% -p256  %this%\Dinrus.lib %MINIDDIR%\rminid.lib

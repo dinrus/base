@@ -29,15 +29,15 @@ private проц грузи(Биб биб)
     вяжи(TTF_SizeText)("TTF_SizeText", биб);
     вяжи(TTF_SizeUTF8)("TTF_SizeUTF8", биб);
     вяжи(TTF_SizeUNICODE)("TTF_SizeUNICODE", биб);
-    вяжи(TTF_RenderText_Solid)("TTF_RenderText_Solid", биб);
+    вяжи(TTF_RenderTрасш_Solid)("TTF_RenderTрасш_Solid", биб);
     вяжи(TTF_RenderUTF8_Solid)("TTF_RenderUTF8_Solid", биб);
     вяжи(TTF_RenderUNICODE_Solid)("TTF_RenderUNICODE_Solid", биб);
     вяжи(TTF_RenderGlyph_Solid)("TTF_RenderGlyph_Solid", биб);
-    вяжи(TTF_RenderText_Shaded)("TTF_RenderText_Shaded", биб);
+    вяжи(TTF_RenderTрасш_Shaded)("TTF_RenderTрасш_Shaded", биб);
     вяжи(TTF_RenderUTF8_Shaded)("TTF_RenderUTF8_Shaded", биб);
     вяжи(TTF_RenderUNICODE_Shaded)("TTF_RenderUNICODE_Shaded", биб);
     вяжи(TTF_RenderGlyph_Shaded)("TTF_RenderGlyph_Shaded", биб);
-    вяжи(TTF_RenderText_Blended)("TTF_RenderText_Blended", биб);
+    вяжи(TTF_RenderTрасш_Blended)("TTF_RenderTрасш_Blended", биб);
     вяжи(TTF_RenderUTF8_Blended)("TTF_RenderUTF8_Blended", биб);
     вяжи(TTF_RenderUNICODE_Blended)("TTF_RenderUNICODE_Blended", биб);
     вяжи(TTF_RenderGlyph_Blended)("TTF_RenderGlyph_Blended", биб);
@@ -111,15 +111,15 @@ extern (C)
     int function (TTF_Font*, char*, int*, int*) TTF_SizeText;
     int function (TTF_Font*, char*, int*, int*) TTF_SizeUTF8;
     int function (TTF_Font*, Uint16*, int*, int*) TTF_SizeUNICODE;
-    SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderText_Solid;
+    SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderTрасш_Solid;
     SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderUTF8_Solid;
     SDL_Surface* function (TTF_Font*, Uint16*, SDL_Color) TTF_RenderUNICODE_Solid;
     SDL_Surface* function (TTF_Font*, Uint16, SDL_Color) TTF_RenderGlyph_Solid;
-    SDL_Surface* function (TTF_Font*, char*, SDL_Color, SDL_Color) TTF_RenderText_Shaded;
+    SDL_Surface* function (TTF_Font*, char*, SDL_Color, SDL_Color) TTF_RenderTрасш_Shaded;
     SDL_Surface* function (TTF_Font*, char*, SDL_Color, SDL_Color) TTF_RenderUTF8_Shaded;
     SDL_Surface* function (TTF_Font*, Uint16*, SDL_Color, SDL_Color) TTF_RenderUNICODE_Shaded;
     SDL_Surface* function (TTF_Font*, Uint16, SDL_Color, SDL_Color) TTF_RenderGlyph_Shaded;
-    SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderText_Blended;
+    SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderTрасш_Blended;
     SDL_Surface* function (TTF_Font*, char*, SDL_Color) TTF_RenderUTF8_Blended;
     SDL_Surface* function (TTF_Font*, Uint16*, SDL_Color) TTF_RenderUNICODE_Blended;
     SDL_Surface* function (TTF_Font*, Uint16, SDL_Color) TTF_RenderGlyph_Blended;
@@ -128,6 +128,6 @@ extern (C)
     int function () TTF_WasInit;
 }
 
-alias TTF_RenderText_Shaded TTF_RenderText;
+alias TTF_RenderTрасш_Shaded TTF_RenderText;
 alias TTF_RenderUTF8_Shaded TTF_RenderUTF8;
 alias TTF_RenderUNICODE_Shaded TTF_RenderUNICODE;

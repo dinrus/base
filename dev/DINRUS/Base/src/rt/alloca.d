@@ -23,7 +23,7 @@ extern size_t _pastdata;
  *      ECX     address of variable with # of bytes in locals
  *              This is adjusted upon return to reflect the additional
  *              size of the stack frame.
- * Returns:
+ * Возвращаетs:
  *      EAX     allocated data, null if stack overflows
  */
 

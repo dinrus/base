@@ -12,19 +12,19 @@ private import col.model.IteratorX;
 public interface СтражОбходчик(З) : Обходчик!(З)
 {
         /**
-         * Return да if the collection that constructed this enumeration
+         * Возвращает да, если the collection that constructed this enumeration
          * имеется been detectably изменён since construction of this enumeration.
          * Ability и точность of detection of this condition can vary
          * across collection class implementations.
          * ещё() is нет whenever повреждён is да.
          *
-         * Возвращает: да if detectably повреждён.
+         * Возвращает: да, если detectably повреждён.
         **/
 
         public бул повреждён();
 
         /**
-         * Return the число of элементы in the enumeration that have
+         * Возвращает the число of элементы in the enumeration that have
          * not yet been traversed. When повреждён() is да, this 
          * число may (or may not) be greater than zero even if ещё() 
          * is нет. Исключение recovery mechanics may be able в_
@@ -39,7 +39,7 @@ public interface СтражОбходчик(З) : Обходчик!(З)
          * </PRE>
          * <P>
          * For the converse case, 
-         * See_Also: col.iterator.ArrayIterator.ОбходчикМассива
+         * См_Также: col.iterator.ArrayIterator.ОбходчикМассива
          * Возвращает: the число of untraversed элементы
         **/
 

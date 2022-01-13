@@ -293,36 +293,6 @@ void fwritefln(фук fp, ...)
 }
 
 /**********************************
- * Read line from stream fp.
- * Возвращает:
- *	null for end of file,
- *	ткст for line read from fp, including terminating '\n'
- * Параметры:
- *	fp = input stream
- * Выводит исключение:
- *	$(B ИсклСтдВВ) on error
- * Пример:
- *	Reads $(B stdin) and writes it to $(B stdout).
----
-import std.io;
-
-int main()
-{
-    ткст buf;
-    while ((buf = readln()) != null)
-	writef("%s", buf);
-    return 0;
-}
----
- */
-string readln(фук fp = cast(фук) cidrus.стдвхо)
-{
-    ткст buf;
-    readln(fp, buf);
-    return buf;
-}
-
-/**********************************
  * Read line from stream fp and write it to buf[],
  * including terminating '\n'.
  *
@@ -406,7 +376,7 @@ size_t readln(фук fp, inout ткст buf)
 	if (fp._flag & ВВНБФ)
 	{
 	    /* Use this for unbuffered I/O, when running
-	     * across buffer boundaries, or for any but the common
+	     * across buffer boundaries, либо for any but the common
 	     * cases.
 	     */
 	 L1:
@@ -665,6 +635,36 @@ size_t readln(фук fp, inout ткст buf)
     {
 	static assert(0);
     }
+}
+
+/**********************************
+ * Read line from stream fp.
+ * Возвращает:
+ *	null for end of file,
+ *	ткст for line read from fp, including terminating '\n'
+ * Параметры:
+ *	fp = input stream
+ * Выводит исключение:
+ *	$(B ИсклСтдВВ) on error
+ * Пример:
+ *	Reads $(B stdin) and writes it to $(B stdout).
+---
+import std.io;
+
+int main()
+{
+    ткст buf;
+    while ((buf = readln()) != null)
+	writef("%s", buf);
+    return 0;
+}
+---
+ */
+string readln( фук fp = cast(фук) cidrus.стдвхо)
+{
+    ткст buf;
+    readln(cast(фук) fp, buf);
+    return buf;
 }
 
 /** описано ранее */

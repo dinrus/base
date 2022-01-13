@@ -206,7 +206,7 @@ class JsonParser(T)
             if (*p == '}')
                 ожидалось ("an attribute-имя after (a potentially trailing) ','", p);
             else
-                ожидалось ("'\"' before attribute-имя", p);
+                ожидалось ("'\"' перед attribute-имя", p);
 
         curLoc = p+1;
         текТип = Токен.Имя;
@@ -233,7 +233,7 @@ class JsonParser(T)
         auto p = стр.ptr;
 
         if(*p != ':')
-            ожидалось ("':' before attribute-значение", p);
+            ожидалось ("':' перед attribute-значение", p);
 
         auto e = стр.конец;
         while (++p < e && *p <= 32) {}

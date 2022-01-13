@@ -254,7 +254,6 @@ export class Культура : ИСлужбаФормата
      */
     export this(цел идКультуры)
     {
-	if(идКультуры == цел.init) идКультуры = 0x0419;
         данныеКультуры_ = дайДанныеИзИДКультуры(идКультуры);
     }
 
@@ -453,7 +452,7 @@ export class Культура : ИСлужбаФормата
 
     /**
      * $(ANCHOR Culture_current)
-     * $(I Property.) Возвращает культуру текущего пользователя.
+     * $(I Свойство.) Возвращает культуру текущего пользователя.
      * Возвращает: Экземпляр Культура, представляющий текущую культуру пользователя.
      */
     export static Культура текущ()
@@ -479,7 +478,7 @@ export class Культура : ИСлужбаФормата
         return пользоватДефКультура_;
     }
     /**
-     * $(I Property.) Присваивает культуру текущему пользователю.
+     * $(I Свойство.) Присваивает культуру текущему пользователю.
      * Параметры: значение = Экземпляр Культуры, представляющий культуру текущего пользователя.
      * Примеры:
      * Следующие примеры показывают как изменить текущую культуру.
@@ -508,7 +507,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the invariant Культура.
+     * $(I Свойство.) Retrieves the invariant Культура.
      * Возвращает: The Культура экземпляр that is invariant.
      * Примечания: The invariant культура is культура-independent. It is not tied в_ any specific регион, but is associated
      * with the English language.
@@ -519,7 +518,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the определитель of the Культура.
+     * $(I Свойство.) Retrieves the определитель of the Культура.
      * Возвращает: The культура определитель of the текущ экземпляр.
      * Примечания: The культура определитель corresponds в_ the Windows локаль определитель (LCID). It can therefore be использован when
      * interfacing with the Windows NLS functions.
@@ -531,7 +530,7 @@ export class Культура : ИСлужбаФормата
 
     /**
      * $(ANCHOR Culture_name)
-     * $(I Property.) Retrieves the имя of the Культура in the форматируй &lt;language&gt;"-"&lt;регион&gt;.
+     * $(I Свойство.) Retrieves the имя of the Культура in the форматируй &lt;language&gt;"-"&lt;регион&gt;.
      * Возвращает: The имя of the текущ экземпляр. Например, the имя of the UK English культура is "en-GB".
      */
     export ткст имя()
@@ -540,7 +539,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the имя of the Культура in the форматируй &lt;languagename&gt; (&lt;regionname&gt;) in English.
+     * $(I Свойство.) Retrieves the имя of the Культура in the форматируй &lt;languagename&gt; (&lt;regionname&gt;) in English.
      * Возвращает: The имя of the текущ экземпляр in English. Например, the англИмя of the UK English культура
      * is "English (United Kingdom)".
      */
@@ -550,7 +549,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the имя of the Культура in the форматируй &lt;languagename&gt; (&lt;regionname&gt;) in its исконный language.
+     * $(I Свойство.) Retrieves the имя of the Культура in the форматируй &lt;languagename&gt; (&lt;regionname&gt;) in its исконный language.
      * Возвращает: The имя of the текущ экземпляр in its исконный language. Например, if Культура.имя is "de-DE", исконноеИмя is
      * "Deutsch (Deutschland)".
      */
@@ -560,7 +559,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the two-letter language код of the культура.
+     * $(I Свойство.) Retrieves the two-letter language код of the культура.
      * Возвращает: The two-letter language код of the Культура экземпляр. Например, the имяЯзыкаИз2Букв for English is "en".
      */
     export ткст имяЯзыкаИз2Букв()
@@ -569,7 +568,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the three-letter language код of the культура.
+     * $(I Свойство.) Retrieves the three-letter language код of the культура.
      * Возвращает: The three-letter language код of the Культура экземпляр. Например, the имяЯзыкаИз3Букв for English is "eng".
      */
     export ткст имяЯзыкаИз3Букв()
@@ -578,7 +577,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the RFC 3066 опрentification for a language.
+     * $(I Свойство.) Retrieves the RFC 3066 опрentification for a language.
      * Возвращает: A ткст representing the RFC 3066 language опрentification.
      */
     export final ткст тэгЯзыкаИЕТФ()
@@ -587,7 +586,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the Культура representing the родитель of the текущ экземпляр.
+     * $(I Свойство.) Retrieves the Культура representing the родитель of the текущ экземпляр.
      * Возвращает: The Культура representing the родитель of the текущ экземпляр.
      */
     export Культура родитель()
@@ -611,7 +610,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves a значение indicating whether the текущ экземпляр is a neutral культура.
+     * $(I Свойство.) Retrieves a значение indicating whether the текущ экземпляр is a neutral культура.
      * Возвращает: да is the текущ Культура represents a neutral культура; иначе, нет.
      * Примеры:
      * The following example displays which cultures using Chinese are neutral.
@@ -646,8 +645,8 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves a значение indicating whether the экземпляр is читай-only.
-     * Возвращает: да if the экземпляр is читай-only; иначе, нет.
+     * $(I Свойство.) Retrieves a значение indicating whether the экземпляр is читай-only.
+     * Возвращает: да, если the экземпляр is читай-only; иначе, нет.
      * Примечания: If the культура is читай-only, the $(LINK2 #Культура_форматДатыВремени, форматДатыВремени) и $(LINK2 #Культура_форматЧисла, форматЧисла) свойства return
      * экземпляр только для чтенияы.
      */
@@ -658,7 +657,7 @@ export class Культура : ИСлужбаФормата
 
     /**
      * $(ANCHOR Культура_Календарь)
-     * $(I Property.) Retrieves the Календарь использован by the культура.
+     * $(I Свойство.) Retrieves the Календарь использован by the культура.
      * Возвращает: A Календарь экземпляр respresenting the Календарь использован by the культура.
      */
     export Календарь календарь()
@@ -671,7 +670,7 @@ export class Культура : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the список of Календарьs that can be использован by the культура.
+     * $(I Свойство.) Retrieves the список of Календарьs that can be использован by the культура.
      * Возвращает: An Массив of тип Календарь representing the Календарьs that can be использован by the культура.
      */
     export Календарь[] опциональныеКалендари()
@@ -684,7 +683,7 @@ export class Культура : ИСлужбаФормата
 
     /**
      * $(ANCHOR Культура_форматЧисла)
-     * $(I Property.) Retrieves a ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
+     * $(I Свойство.) Retrieves a ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
      * Возвращает: A ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
     */
     export ФорматЧисла форматЧисла()
@@ -698,7 +697,7 @@ export class Культура : ИСлужбаФормата
         return форматЧисла_;
     }
     /**
-     * $(I Property.) Assigns a ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
+     * $(I Свойство.) Assigns a ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
      * Параметры: значения = A ФорматЧисла defining the culturally appropriate форматируй for displaying numbers и валюта.
      */
     export проц форматЧисла(ФорматЧисла значение)
@@ -709,7 +708,7 @@ export class Культура : ИСлужбаФормата
 
     /**
      * $(ANCHOR Культура_форматДатыВремени)
-     * $(I Property.) Retrieves a ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
+     * $(I Свойство.) Retrieves a ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
      * Возвращает: A ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
      */
     export ФорматДатыВремени форматДатыВремени()
@@ -723,7 +722,7 @@ export class Культура : ИСлужбаФормата
         return форматДатыВремени_;
     }
     /**
-     * $(I Property.) Assigns a ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
+     * $(I Свойство.) Assigns a ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
      * Параметры: значения = A ФорматДатыВремени defining the culturally appropriate форматируй for displaying dates и times.
      */
     export проц форматДатыВремени(ФорматДатыВремени значение)
@@ -845,7 +844,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the Регион использован by the текущ $(LINK2 #Культура, Культура).
+     * $(I Свойство.) Retrieves the Регион использован by the текущ $(LINK2 #Культура, Культура).
      * Возвращает: The Регион экземпляр associated with the текущ Культура.
      */
     export static Регион текущ()
@@ -856,7 +855,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves a unique определитель for the geographical location of the регион.
+     * $(I Свойство.) Retrieves a unique определитель for the geographical location of the регион.
      * Возвращает: An $(B цел) uniquely опрentifying the geographical location.
      */
     export цел геоИД()
@@ -866,7 +865,7 @@ export class Регион
 
     /**
      * $(ANCHOR Region_name)
-     * $(I Property.) Retrieves the ISO 3166 код, or the имя, of the текущ Регион.
+     * $(I Свойство.) Retrieves the ISO 3166 код, либо the имя, of the текущ Регион.
      * Возвращает: The значение specified by the имя parameter of the $(LINK2 #Region_ctor_name, Регион(ткст)) constructor.
      */
     export ткст имя()
@@ -875,7 +874,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the full имя of the регион in English.
+     * $(I Свойство.) Retrieves the full имя of the регион in English.
      * Возвращает: The full имя of the регион in English.
      */
     export ткст англИмя()
@@ -884,7 +883,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the full имя of the регион in its исконный language.
+     * $(I Свойство.) Retrieves the full имя of the регион in its исконный language.
      * Возвращает: The full имя of the регион in the language associated with the регион код.
      */
     export ткст исконноеИмя()
@@ -893,7 +892,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the two-letter ISO 3166 код of the регион.
+     * $(I Свойство.) Retrieves the two-letter ISO 3166 код of the регион.
      * Возвращает: The two-letter ISO 3166 код of the регион.
      */
     export ткст имяРегионаИз2Букв()
@@ -902,7 +901,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the three-letter ISO 3166 код of the регион.
+     * $(I Свойство.) Retrieves the three-letter ISO 3166 код of the регион.
      * Возвращает: The three-letter ISO 3166 код of the регион.
      */
     export ткст имяРегионаИз3Букв()
@@ -911,7 +910,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the валюта symbol of the регион.
+     * $(I Свойство.) Retrieves the валюта symbol of the регион.
      * Возвращает: The валюта symbol of the регион.
      */
     export ткст символВалюты()
@@ -920,7 +919,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the three-character валюта symbol of the регион.
+     * $(I Свойство.) Retrieves the three-character валюта symbol of the регион.
      * Возвращает: The three-character валюта symbol of the регион.
      */
     export ткст символВалютыИЗО()
@@ -929,7 +928,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the имя in English of the валюта использован in the регион.
+     * $(I Свойство.) Retrieves the имя in English of the валюта использован in the регион.
      * Возвращает: The имя in English of the валюта использован in the регион.
      */
     export ткст англИмяВалюты()
@@ -938,7 +937,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves the имя in the исконный language of the регион of the валюта использован in the регион.
+     * $(I Свойство.) Retrieves the имя in the исконный language of the регион of the валюта использован in the регион.
      * Возвращает: The имя in the исконный language of the регион of the валюта использован in the регион.
      */
     export ткст исконноеИмяВалюты()
@@ -947,7 +946,7 @@ export class Регион
     }
 
     /**
-     * $(I Property.) Retrieves a значение indicating whether the регион uses the metric system for measurements.
+     * $(I Свойство.) Retrieves a значение indicating whether the регион uses the metric system for measurements.
      * Возвращает: да is the регион uses the metric system; иначе, нет.
      */
     export бул метрическ_ли()
@@ -956,8 +955,8 @@ export class Регион
     }
 
     /**
-     * Возвращает ткст containing the ISO 3166 код, or the $(LINK2 #Region_name, имя), of the текущ Регион.
-     * Возвращает: A ткст containing the ISO 3166 код, or the имя, of the текущ Регион.
+     * Возвращает ткст containing the ISO 3166 код, либо the $(LINK2 #Region_name, имя), of the текущ Регион.
+     * Возвращает: A ткст containing the ISO 3166 код, либо the имя, of the текущ Регион.
      */
     export override ткст вТкст()
     {
@@ -1087,7 +1086,7 @@ export class ФорматЧисла : ИСлужбаФормата
      * Retrieves an объект defining как в_ форматируй the specified тип.
      * Параметры: тип = The ИнфОТипе of the результатing formatting объект.
      * Возвращает: If тип is typeid($(LINK2 #ФорматЧисла, ФорматЧисла)), the текущ ФорматЧисла экземпляр. Otherwise, пусто.
-     * Примечания: Implements $(LINK2 #ИСлужбаФормата_дайФормат, ИСлужбаФормата.дайФормат).
+     * Примечания: Реализует $(LINK2 #ИСлужбаФормата_дайФормат, ИСлужбаФормата.дайФормат).
      */
     export Объект дайФормат(ИнфОТипе тип)
     {
@@ -1134,7 +1133,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves a читай-only ФорматЧисла экземпляр из_ the текущ культура.
+     * $(I Свойство.) Retrieves a читай-only ФорматЧисла экземпляр из_ the текущ культура.
      * Возвращает: A читай-only ФорматЧисла экземпляр из_ the текущ культура.
      */
     export static ФорматЧисла текущ()
@@ -1144,7 +1143,7 @@ export class ФорматЧисла : ИСлужбаФормата
 
     /**
      * $(ANCHOR NumberFormat_invariantFormat)
-     * $(I Property.) Retrieves the читай-only, culturally independent ФорматЧисла экземпляр.
+     * $(I Свойство.) Retrieves the читай-only, culturally independent ФорматЧисла экземпляр.
      * Возвращает: The читай-only, culturally independent ФорматЧисла экземпляр.
      */
     export static ФорматЧисла инвариантныйФормат()
@@ -1158,8 +1157,8 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves a значение indicating whether the экземпляр is читай-only.
-     * Возвращает: да if the экземпляр is читай-only; иначе, нет.
+     * $(I Свойство.) Retrieves a значение indicating whether the экземпляр is читай-only.
+     * Возвращает: да, если the экземпляр is читай-only; иначе, нет.
      */
     export final бул толькоЧтен_ли()
     {
@@ -1167,7 +1166,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the число of десяток places использован for numbers.
+     * $(I Свойство.) Retrieves the число of десяток places использован for numbers.
      * Возвращает: The число of десяток places использован for numbers. For $(LINK2 #NumberFormat_invariantFormat, инвариантныйФормат), the default is 2.
      */
     export final цел члоДесятичнЦифр()
@@ -1177,7 +1176,7 @@ export class ФорматЧисла : ИСлужбаФормата
     /**
      * Assigns the число of десяток цифры использован for numbers.
      * Параметры: значение = The число of десяток places использован for numbers.
-     * Throws: Исключение if the property is being установи и the экземпляр is читай-only.
+     * Выводит исключение: Исключение if the property is being установи и the экземпляр is читай-only.
      * Примеры:
      * The following example shows the effect of changing члоДесятичнЦифр.
      * ---
@@ -1208,7 +1207,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the форматируй образец for негатив numbers.
+     * $(I Свойство.) Retrieves the форматируй образец for негатив numbers.
      * Возвращает: The форматируй образец for негатив numbers. For инвариантныйФормат, the default is 1 (representing "-n").
      * Примечания: The following таблица shows действителен значения for this property.
      *
@@ -1226,7 +1225,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return образецОтрицатЧисла_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for негатив numbers.
+     * $(I Свойство.) Assigns the форматируй образец for негатив numbers.
      * Параметры: значение = The форматируй образец for негатив numbers.
      * Примеры:
      * The following example shows the effect of the different образцы.
@@ -1263,7 +1262,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the число of десяток places в_ use in валюта значения.
+     * $(I Свойство.) Retrieves the число of десяток places в_ use in валюта значения.
      * Возвращает: The число of десяток цифры в_ use in валюта значения.
      */
     export final цел валютнДесятичнЦифры()
@@ -1271,7 +1270,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return десятичнЦифрВалюты_;
     }
     /**
-     * $(I Property.) Assigns the число of десяток places в_ use in валюта значения.
+     * $(I Свойство.) Assigns the число of десяток places в_ use in валюта значения.
      * Параметры: значение = The число of десяток цифры в_ use in валюта значения.
      */
     export final проц валютнДесятичнЦифры(цел значение)
@@ -1281,7 +1280,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the formal образец в_ use for негатив валюта значения.
+     * $(I Свойство.) Retrieves the formal образец в_ use for негатив валюта значения.
      * Возвращает: The форматируй образец в_ use for негатив валюта значения.
      */
     export final цел валютнОтрицатОбразец()
@@ -1289,7 +1288,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return отрицатОбразецВалюты_;
     }
     /**
-     * $(I Property.) Assigns the formal образец в_ use for негатив валюта значения.
+     * $(I Свойство.) Assigns the formal образец в_ use for негатив валюта значения.
      * Параметры: значение = The форматируй образец в_ use for негатив валюта значения.
      */
     export final проц валютнОтрицатОбразец(цел значение)
@@ -1299,7 +1298,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the formal образец в_ use for positive валюта значения.
+     * $(I Свойство.) Retrieves the formal образец в_ use for positive валюта значения.
      * Возвращает: The форматируй образец в_ use for positive валюта значения.
      */
     export final цел валютнПоложитОбразец()
@@ -1307,7 +1306,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return положитОбразецВалюты_;
     }
     /**
-     * $(I Property.) Assigns the formal образец в_ use for positive валюта значения.
+     * $(I Свойство.) Assigns the formal образец в_ use for positive валюта значения.
      * Возвращает: The форматируй образец в_ use for positive валюта значения.
      */
     export final проц валютнПоложитОбразец(цел значение)
@@ -1317,7 +1316,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the число of цифры цел each группа в_ the лево of the десяток place in numbers.
+     * $(I Свойство.) Retrieves the число of цифры цел each группа в_ the лево of the десяток place in numbers.
      * Возвращает: The число of цифры цел each группа в_ the лево of the десяток place in numbers.
      */
     export final цел[] размерыЧисловыхГрупп()
@@ -1325,7 +1324,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return размерыГруппыЧисел_;
     }
     /**
-     * $(I Property.) Assigns the число of цифры цел each группа в_ the лево of the десяток place in numbers.
+     * $(I Свойство.) Assigns the число of цифры цел each группа в_ the лево of the десяток place in numbers.
      * Параметры: значение = The число of цифры цел each группа в_ the лево of the десяток place in numbers.
      */
     export final проц размерыЧисловыхГрупп(цел[] значение)
@@ -1335,7 +1334,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
+     * $(I Свойство.) Retrieves the число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
      * Возвращает: The число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
      */
     export final цел[] размерыВалютныхГрупп()
@@ -1343,7 +1342,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return размерыГруппыВалют_;
     }
     /**
-     * $(I Property.) Assigns the число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
+     * $(I Свойство.) Assigns the число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
      * Параметры: значение = The число of цифры цел each группа в_ the лево of the десяток place in валюта значения.
      */
     export final проц размерыВалютныхГрупп(цел[] значение)
@@ -1353,7 +1352,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст separating groups of цифры в_ the лево of the десяток place in numbers.
+     * $(I Свойство.) Retrieves the ткст separating groups of цифры в_ the лево of the десяток place in numbers.
      * Возвращает: The ткст separating groups of цифры в_ the лево of the десяток place in numbers. Например, ",".
      */
     export final ткст разделительЧисловыхГрупп()
@@ -1361,7 +1360,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return разделительГруппыЧисел_;
     }
     /**
-     * $(I Property.) Assigns the ткст separating groups of цифры в_ the лево of the десяток place in numbers.
+     * $(I Свойство.) Assigns the ткст separating groups of цифры в_ the лево of the десяток place in numbers.
      * Параметры: значение = The ткст separating groups of цифры в_ the лево of the десяток place in numbers.
      */
     export final проц разделительЧисловыхГрупп(ткст значение)
@@ -1371,7 +1370,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст использован as the десяток разделитель in numbers.
+     * $(I Свойство.) Retrieves the ткст использован as the десяток разделитель in numbers.
      * Возвращает: The ткст использован as the десяток разделитель in numbers. Например, ".".
      */
     export final ткст разделительЧисловыхДесятков()
@@ -1379,7 +1378,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return разделительДесятковЧисел_;
     }
     /**
-     * $(I Property.) Assigns the ткст использован as the десяток разделитель in numbers.
+     * $(I Свойство.) Assigns the ткст использован as the десяток разделитель in numbers.
      * Параметры: значение = The ткст использован as the десяток разделитель in numbers.
      */
     export final проц разделительЧисловыхДесятков(ткст значение)
@@ -1389,7 +1388,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст separating groups of цифры в_ the лево of the десяток place in валюта значения.
+     * $(I Свойство.) Retrieves the ткст separating groups of цифры в_ the лево of the десяток place in валюта значения.
      * Возвращает: The ткст separating groups of цифры в_ the лево of the десяток place in валюта значения. Например, ",".
      */
     export final ткст разделительГруппыВалют()
@@ -1397,7 +1396,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return разделительГруппВалют_;
     }
     /**
-     * $(I Property.) Assigns the ткст separating groups of цифры в_ the лево of the десяток place in валюта значения.
+     * $(I Свойство.) Assigns the ткст separating groups of цифры в_ the лево of the десяток place in валюта значения.
      * Параметры: значение = The ткст separating groups of цифры в_ the лево of the десяток place in валюта значения.
      */
     export final проц разделительГруппыВалют(ткст значение)
@@ -1407,7 +1406,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст использован as the десяток разделитель in валюта значения.
+     * $(I Свойство.) Retrieves the ткст использован as the десяток разделитель in валюта значения.
      * Возвращает: The ткст использован as the десяток разделитель in валюта значения. Например, ".".
      */
     export final ткст десятичнРазделительВалюты()
@@ -1415,7 +1414,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return разделительДесятковВалюты_;
     }
     /**
-     * $(I Property.) Assigns the ткст использован as the десяток разделитель in валюта значения.
+     * $(I Свойство.) Assigns the ткст использован as the десяток разделитель in валюта значения.
      * Параметры: значение = The ткст использован as the десяток разделитель in валюта значения.
      */
     export final проц десятичнРазделительВалюты(ткст значение)
@@ -1425,7 +1424,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст использован as the валюта symbol.
+     * $(I Свойство.) Retrieves the ткст использован as the валюта symbol.
      * Возвращает: The ткст использован as the валюта symbol. Например, "£".
      */
     export final ткст символВалюты()
@@ -1433,7 +1432,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return символВалюты_;
     }
     /**
-     * $(I Property.) Assigns the ткст использован as the валюта symbol.
+     * $(I Свойство.) Assigns the ткст использован as the валюта symbol.
      * Параметры: значение = The ткст использован as the валюта symbol.
      */
     export final проц символВалюты(ткст значение)
@@ -1443,7 +1442,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст denoting that a число is негатив.
+     * $(I Свойство.) Retrieves the ткст denoting that a число is негатив.
      * Возвращает: The ткст denoting that a число is негатив. Например, "-".
      */
     export final ткст отрицатЗнак()
@@ -1451,7 +1450,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return отрицательныйЗнак_;
     }
     /**
-     * $(I Property.) Assigns the ткст denoting that a число is негатив.
+     * $(I Свойство.) Assigns the ткст denoting that a число is негатив.
      * Параметры: значение = The ткст denoting that a число is негатив.
      */
     export final проц отрицатЗнак(ткст значение)
@@ -1461,7 +1460,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст denoting that a число is positive.
+     * $(I Свойство.) Retrieves the ткст denoting that a число is positive.
      * Возвращает: The ткст denoting that a число is positive. Например, "+".
      */
     export final ткст положитЗнак()
@@ -1469,7 +1468,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return положительныйЗнак_;
     }
     /**
-     * $(I Property.) Assigns the ткст denoting that a число is positive.
+     * $(I Свойство.) Assigns the ткст denoting that a число is positive.
      * Параметры: значение = The ткст denoting that a число is positive.
      */
     export final проц положитЗнак(ткст значение)
@@ -1479,7 +1478,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст representing the НЧ (not a число) значение.
+     * $(I Свойство.) Retrieves the ткст representing the НЧ (not a число) значение.
      * Возвращает: The ткст representing the НЧ значение. Например, "НЧ".
      */
     export final ткст символНЧ()
@@ -1487,7 +1486,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return символНЧ_;
     }
     /**
-     * $(I Property.) Assigns the ткст representing the НЧ (not a число) значение.
+     * $(I Свойство.) Assigns the ткст representing the НЧ (not a число) значение.
      * Параметры: значение = The ткст representing the НЧ значение.
      */
     export final проц символНЧ(ткст значение)
@@ -1497,7 +1496,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст representing негатив infinity.
+     * $(I Свойство.) Retrieves the ткст representing негатив infinity.
      * Возвращает: The ткст representing негатив infinity. Например, "-Infinity".
      */
     export final ткст отрицатСимволБесконечности()
@@ -1505,7 +1504,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return символОтрицатБеск_;
     }
     /**
-     * $(I Property.) Assigns the ткст representing негатив infinity.
+     * $(I Свойство.) Assigns the ткст representing негатив infinity.
      * Параметры: значение = The ткст representing негатив infinity.
      */
     export final проц отрицатСимволБесконечности(ткст значение)
@@ -1515,7 +1514,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the ткст representing positive infinity.
+     * $(I Свойство.) Retrieves the ткст representing positive infinity.
      * Возвращает: The ткст representing positive infinity. Например, "Infinity".
      */
     export final ткст положитСимволБесконечности()
@@ -1523,7 +1522,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return символПоложитБеск_;
     }
     /**
-     * $(I Property.) Assigns the ткст representing positive infinity.
+     * $(I Свойство.) Assigns the ткст representing positive infinity.
      * Параметры: значение = The ткст representing positive infinity.
      */
     export final проц положитСимволБесконечности(ткст значение)
@@ -1533,7 +1532,7 @@ export class ФорматЧисла : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves a ткст Массив of исконный equivalents of the цифры 0 в_ 9.
+     * $(I Свойство.) Retrieves a ткст Массив of исконный equivalents of the цифры 0 в_ 9.
      * Возвращает: A ткст Массив of исконный equivalents of the цифры 0 в_ 9.
      */
     export final ткст[] исконныеЦифры()
@@ -1541,7 +1540,7 @@ export class ФорматЧисла : ИСлужбаФормата
         return нативныеЧисла_;
     }
     /**
-     * $(I Property.) Assigns a ткст Массив of исконный equivalents of the цифры 0 в_ 9.
+     * $(I Свойство.) Assigns a ткст Массив of исконный equivalents of the цифры 0 в_ 9.
      * Параметры: значение = A ткст Массив of исконный equivalents of the цифры 0 в_ 9.
      */
     export final проц исконныеЦифры(ткст[] значение)
@@ -1613,7 +1612,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
      */
     export this()
     {
-        // This ctor is использован by инвариантныйФормат so we can't установи the Календарь property.
+        // This ctor is использован by инвариантныйФормат so we can't Устанавливает Календарь property.
         данныеКультуры_ = Культура.инвариантнаяКультура.данныеКультуры_;
         календарь_ = Грегориан.генерный;
         инициализуй();
@@ -1630,7 +1629,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
      * Retrieves an объект defining как в_ форматируй the specified тип.
      * Параметры: тип = The ИнфОТипе of the результатing formatting объект.
      * Возвращает: If тип is typeid(ФорматДатыВремени), the текущ ФорматДатыВремени экземпляр. Otherwise, пусто.
-     * Примечания: Implements $(LINK2 #ИСлужбаФормата_дайФормат, ИСлужбаФормата.дайФормат).
+     * Примечания: Реализует $(LINK2 #ИСлужбаФормата_дайФормат, ИСлужбаФормата.дайФормат).
      */
     export Объект дайФормат(ИнфОТипе тип)
     {
@@ -1845,7 +1844,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_current)
-     * $(I Property.) Retrieves a читай-only ФорматДатыВремени экземпляр из_ the текущ культура.
+     * $(I Свойство.) Retrieves a читай-only ФорматДатыВремени экземпляр из_ the текущ культура.
      * Возвращает: A читай-only ФорматДатыВремени экземпляр из_ the текущ культура.
      */
     export static ФорматДатыВремени текущ()
@@ -1855,7 +1854,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_invariantFormat)
-     * $(I Property.) Retrieves a читай-only ФорматДатыВремени экземпляр that is culturally independent.
+     * $(I Свойство.) Retrieves a читай-only ФорматДатыВремени экземпляр that is culturally independent.
      * Возвращает: A читай-only ФорматДатыВремени экземпляр that is culturally independent.
      */
     export static ФорматДатыВремени инвариантныйФормат()
@@ -1871,7 +1870,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_isReadOnly)
-     * $(I Property.) Retrieves a значение indicating whether the экземпляр is читай-only.
+     * $(I Свойство.) Retrieves a значение indicating whether the экземпляр is читай-only.
      * Возвращает: да is the экземпляр is читай-only; иначе, нет.
      */
     export final бул толькоЧтен_ли()
@@ -1880,7 +1879,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
     }
 
     /**
-     * $(I Property.) Retrieves the Календарь использован by the текущ культура.
+     * $(I Свойство.) Retrieves the Календарь использован by the текущ культура.
      * Возвращает: The Календарь determining the Календарь использован by the текущ культура. Например, the Грегориан.
      */
     export final Календарь календарь()
@@ -1890,7 +1889,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
     }
     /**
      * $(ANCHOR DateTimeFormat_Календарь)
-     * $(I Property.) Assigns the Календарь в_ be использован by the текущ культура.
+     * $(I Свойство.) Assigns the Календарь в_ be использован by the текущ культура.
      * Параметры: значение = The Календарь determining the Календарь в_ be использован by the текущ культура.
      * Exceptions: If значение is not действителен for the текущ культура, an Исключение is thrown.
      */
@@ -1933,7 +1932,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_firstДеньНедели)
-     * $(I Property.) Retrieves первый день недели.
+     * $(I Свойство.) Retrieves первый день недели.
      * Возвращает: Значение ДняНедели  indicating первый день недели.
      */
     export final Календарь.ДеньНедели первыйДеньНед()
@@ -1941,7 +1940,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return cast(Календарь.ДеньНедели)первыйДеньНедели_;
     }
     /**
-     * $(I Property.) Assigns первый день недели.
+     * $(I Свойство.) Assigns первый день недели.
      * Параметры: valie = Значение ДняНедели  indicating первый день недели.
      */
     export final проц первыйДеньНед(Календарь.ДеньНедели значение)
@@ -1952,7 +1951,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_КалендарьWeekRule)
-     * $(I Property.) Retrieves the _value indicating the правило использован в_ determine the первый week of the год.
+     * $(I Свойство.) Retrieves the _value indicating the правило использован в_ determine the первый week of the год.
      * Возвращает: A правилоНеделиКалендаря _value determining the первый week of the год.
      */
     export final Календарь.ПравилоНедели правилоНеделиКалендаря()
@@ -1960,7 +1959,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return cast(Календарь.ПравилоНедели) правилоКалендарнойНедели_;
     }
     /**
-     * $(I Property.) Assigns the _value indicating the правило использован в_ determine the первый week of the год.
+     * $(I Свойство.) Assigns the _value indicating the правило использован в_ determine the первый week of the год.
      * Параметры: значение = A правилоНеделиКалендаря _value determining the первый week of the год.
      */
     export final проц правилоНеделиКалендаря(Календарь.ПравилоНедели значение)
@@ -1971,7 +1970,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_nativeКалендарьName)
-     * $(I Property.) Retrieves the исконный имя of the Календарь associated with the текущ экземпляр.
+     * $(I Свойство.) Retrieves the исконный имя of the Календарь associated with the текущ экземпляр.
      * Возвращает: The исконный имя of the Календарь associated with the текущ экземпляр.
      */
     export final ткст исконноеНазваниеКалендаря()
@@ -1981,7 +1980,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_dateSeparator)
-     * $(I Property.) Retrieves the ткст separating дата components.
+     * $(I Свойство.) Retrieves the ткст separating дата components.
      * Возвращает: The ткст separating дата components.
      */
     export final ткст разделительДаты()
@@ -1991,7 +1990,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return разделительДаты_;
     }
     /**
-     * $(I Property.) Assigns the ткст separating дата components.
+     * $(I Свойство.) Assigns the ткст separating дата components.
      * Параметры: значение = The ткст separating дата components.
      */
     export final проц разделительДаты(ткст значение)
@@ -2002,7 +2001,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_timeSeparator)
-     * $(I Property.) Retrieves the ткст separating время components.
+     * $(I Свойство.) Retrieves the ткст separating время components.
      * Возвращает: The ткст separating время components.
      */
     export final ткст разделительВремени()
@@ -2012,7 +2011,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return разделительВремени_;
     }
     /**
-     * $(I Property.) Assigns the ткст separating время components.
+     * $(I Свойство.) Assigns the ткст separating время components.
      * Параметры: значение = The ткст separating время components.
      */
     export final проц разделительВремени(ткст значение)
@@ -2023,8 +2022,8 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_amDesignator)
-     * $(I Property.) Retrieves the ткст designator for часы before noon.
-     * Возвращает: The ткст designator for часы before noon. Например, "AM".
+     * $(I Свойство.) Retrieves the ткст designator for часы перед noon.
+     * Возвращает: The ткст designator for часы перед noon. Например, "AM".
      */
     export final ткст определительДоПолудня()
     {
@@ -2032,8 +2031,8 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return amDesignator_;
     }
     /**
-     * $(I Property.) Assigns the ткст designator for часы before noon.
-     * Параметры: значение = The ткст designator for часы before noon.
+     * $(I Свойство.) Assigns the ткст designator for часы перед noon.
+     * Параметры: значение = The ткст designator for часы перед noon.
      */
     export final проц определительДоПолудня(ткст значение)
     {
@@ -2043,7 +2042,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_pmDesignator)
-     * $(I Property.) Retrieves the ткст designator for часы после noon.
+     * $(I Свойство.) Retrieves the ткст designator for часы после noon.
      * Возвращает: The ткст designator for часы после noon. Например, "PM".
      */
     export final ткст определительПослеПолудня()
@@ -2052,7 +2051,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return pmDesignator_;
     }
     /**
-     * $(I Property.) Assigns the ткст designator for часы после noon.
+     * $(I Свойство.) Assigns the ткст designator for часы после noon.
      * Параметры: значение = The ткст designator for часы после noon.
      */
     export final проц определительПослеПолудня(ткст значение)
@@ -2063,7 +2062,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_shortDatePattern)
-     * $(I Property.) Retrieves the форматируй образец for a крат дата значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a крат дата значение.
      * Возвращает: The форматируй образец for a крат дата значение.
      */
     export final ткст краткийОбразецДаты()
@@ -2072,7 +2071,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецКраткойДаты_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a крат дата _value.
+     * $(I Свойство.) Assigns the форматируй образец for a крат дата _value.
      * Параметры: значение = The форматируй образец for a крат дата _value.
      */
     export final проц краткийОбразецДаты(ткст значение)
@@ -2087,7 +2086,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_shortTimePattern)
-     * $(I Property.) Retrieves the форматируй образец for a крат время значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a крат время значение.
      * Возвращает: The форматируй образец for a крат время значение.
      */
     export final ткст краткийОбразецВремени()
@@ -2097,7 +2096,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецКраткогоВремени_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a крат время _value.
+     * $(I Свойство.) Assigns the форматируй образец for a крат время _value.
      * Параметры: значение = The форматируй образец for a крат время _value.
      */
     export final проц краткийОбразецВремени(ткст значение)
@@ -2109,7 +2108,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_longDatePattern)
-     * $(I Property.) Retrieves the форматируй образец for a дол дата значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a дол дата значение.
      * Возвращает: The форматируй образец for a дол дата значение.
      */
     export final ткст длинныйОбразецДаты()
@@ -2118,7 +2117,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецДлиннойДаты_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a дол дата _value.
+     * $(I Свойство.) Assigns the форматируй образец for a дол дата _value.
      * Параметры: значение = The форматируй образец for a дол дата _value.
      */
     export final проц длинныйОбразецДаты(ткст значение)
@@ -2132,7 +2131,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_longTimePattern)
-     * $(I Property.) Retrieves the форматируй образец for a дол время значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a дол время значение.
      * Возвращает: The форматируй образец for a дол время значение.
      */
     export final ткст длинныйОбразецВремени()
@@ -2141,7 +2140,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецДлинногоВремени_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a дол время _value.
+     * $(I Свойство.) Assigns the форматируй образец for a дол время _value.
      * Параметры: значение = The форматируй образец for a дол время _value.
      */
     export final проц длинныйОбразецВремени(ткст значение)
@@ -2153,7 +2152,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_monthDayPattern)
-     * $(I Property.) Retrieves the форматируй образец for a месяц и день значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a месяц и день значение.
      * Возвращает: The форматируй образец for a месяц и день значение.
      */
     export final ткст образецДняМесяца()
@@ -2163,7 +2162,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецДняМесяца_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a месяц и день _value.
+     * $(I Свойство.) Assigns the форматируй образец for a месяц и день _value.
      * Параметры: значение = The форматируй образец for a месяц и день _value.
      */
     export final проц образецДняМесяца(ткст значение)
@@ -2174,7 +2173,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_yearMonthPattern)
-     * $(I Property.) Retrieves the форматируй образец for a год и месяц значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a год и месяц значение.
      * Возвращает: The форматируй образец for a год и месяц значение.
      */
     export final ткст образецМесяцаГода()
@@ -2183,7 +2182,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецМесяцаГода_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a год и месяц _value.
+     * $(I Свойство.) Assigns the форматируй образец for a год и месяц _value.
      * Параметры: значение = The форматируй образец for a год и месяц _value.
      */
     export final проц образецМесяцаГода(ткст значение)
@@ -2194,7 +2193,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_abbreviatedDayNames)
-     * $(I Property.) Retrieves a ткст Массив containing the abbreviated names of the дни of the week.
+     * $(I Свойство.) Retrieves a ткст Массив containing the abbreviated names of the дни of the week.
      * Возвращает: A ткст Массив containing the abbreviated names of the дни of the week. For $(LINK2 #DateTimeFormat_invariantFormat, инвариантныйФормат),
      *   this содержит "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" и "Sat".
      */
@@ -2205,7 +2204,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return сокращИменаДней_.dup;
     }
     /**
-     * $(I Property.) Assigns a ткст Массив containing the abbreviated names of the дни of the week.
+     * $(I Свойство.) Assigns a ткст Массив containing the abbreviated names of the дни of the week.
      * Параметры: значение = A ткст Массив containing the abbreviated names of the дни of the week.
      */
     export final проц сокращённыеИменаДней(ткст[] значение)
@@ -2216,7 +2215,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_dayNames)
-     * $(I Property.) Retrieves a ткст Массив containing the full names of the дни of the week.
+     * $(I Свойство.) Retrieves a ткст Массив containing the full names of the дни of the week.
      * Возвращает: A ткст Массив containing the full names of the дни of the week. For $(LINK2 #DateTimeFormat_invariantFormat, инвариантныйФормат),
      *   this содержит "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница" и "Суббота".
      */
@@ -2227,7 +2226,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return именаДней_.dup;
     }
     /**
-     * $(I Property.) Assigns a ткст Массив containing the full names of the дни of the week.
+     * $(I Свойство.) Assigns a ткст Массив containing the full names of the дни of the week.
      * Параметры: значение = A ткст Массив containing the full names of the дни of the week.
      */
     export final проц именаДней(ткст[] значение)
@@ -2238,7 +2237,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_abbreviatedMonthNames)
-     * $(I Property.) Retrieves a ткст Массив containing the abbreviated names of the месяцы.
+     * $(I Свойство.) Retrieves a ткст Массив containing the abbreviated names of the месяцы.
      * Возвращает: A ткст Массив containing the abbreviated names of the месяцы. For $(LINK2 #DateTimeFormat_invariantFormat, инвариантныйФормат),
      *   this содержит "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" и "".
      */
@@ -2249,7 +2248,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return сокращИменаМесяцев_.dup;
     }
     /**
-     * $(I Property.) Assigns a ткст Массив containing the abbreviated names of the месяцы.
+     * $(I Свойство.) Assigns a ткст Массив containing the abbreviated names of the месяцы.
      * Параметры: значение = A ткст Массив containing the abbreviated names of the месяцы.
      */
     export final проц сокращённыеИменаМесяцев(ткст[] значение)
@@ -2260,7 +2259,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_monthNames)
-     * $(I Property.) Retrieves a ткст Массив containing the full names of the месяцы.
+     * $(I Свойство.) Retrieves a ткст Массив containing the full names of the месяцы.
      * Возвращает: A ткст Массив containing the full names of the месяцы. For $(LINK2 #DateTimeFormat_invariantFormat, инвариантныйФормат),
      *   this содержит "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" и "".
      */
@@ -2271,7 +2270,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return именаМесяцев_.dup;
     }
     /**
-     * $(I Property.) Assigns a ткст Массив containing the full names of the месяцы.
+     * $(I Свойство.) Assigns a ткст Массив containing the full names of the месяцы.
      * Параметры: значение = A ткст Массив containing the full names of the месяцы.
      */
     export final проц именаМесяцев(ткст[] значение)
@@ -2282,7 +2281,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_ПолнаяДатаTimePattern)
-     * $(I Property.) Retrieves the форматируй образец for a дол дата и a дол время значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a дол дата и a дол время значение.
      * Возвращает: The форматируй образец for a дол дата и a дол время значение.
      */
     export final ткст полныйОбразецДатыВремени()
@@ -2292,7 +2291,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
         return образецПолнойДатыВремени_;
     }
     /**
-     * $(I Property.) Assigns the форматируй образец for a дол дата и a дол время _value.
+     * $(I Свойство.) Assigns the форматируй образец for a дол дата и a дол время _value.
      * Параметры: значение = The форматируй образец for a дол дата и a дол время _value.
      */
     export final проц полныйОбразецДатыВремени(ткст значение)
@@ -2303,7 +2302,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_rfc1123Pattern)
-     * $(I Property.) Retrieves the форматируй образец based on the IETF RFC 1123 specification, for a время значение.
+     * $(I Свойство.) Retrieves the форматируй образец based on the IETF RFC 1123 specification, for a время значение.
      * Возвращает: The форматируй образец based on the IETF RFC 1123 specification, for a время значение.
      */
     export final ткст образецРФС1123()
@@ -2313,7 +2312,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_sortableDateTimePattern)
-     * $(I Property.) Retrieves the форматируй образец for a sortable дата и время значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a sortable дата и время значение.
      * Возвращает: The форматируй образец for a sortable дата и время значение.
      */
     export final ткст сортируемыйОбразецДатыВремени()
@@ -2323,7 +2322,7 @@ export class ФорматДатыВремени : ИСлужбаФормата
 
     /**
      * $(ANCHOR DateTimeFormat_universalSortableDateTimePattern)
-     * $(I Property.) Retrieves the форматируй образец for a universal дата и время значение.
+     * $(I Свойство.) Retrieves the форматируй образец for a universal дата и время значение.
      * Возвращает: The форматируй образец for a universal дата и время значение.
      */
     export final ткст универсальныйСортируемыйОбразецДатыВремени()

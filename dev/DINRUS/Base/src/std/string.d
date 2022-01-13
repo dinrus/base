@@ -1,9 +1,5 @@
-﻿
-// Written in the D programming language.
+﻿module std.string;
 
-
-module std.string;
-//public import rt.core.string;
 
 //debug=string;		// uncomment to turn on debugging printf's
 
@@ -15,58 +11,25 @@ private import std.format;
 private import std.ctype;
 private import tpl.args;
 
-	/+alias iswhite пробел_ли;
-	 alias atoi алфнац;
-	 alias atof алфнапз;
-	 alias cmp сравни;
-	 alias icmp сравнлюб;
-	 alias toCharz вСим0;
-	 alias toStringz вТкст0;
-	 alias find найди;
-	 alias ifind найдлюб;
-	 alias rfind найдрек;
-	 alias irfind найдлюбрек;
-	 alias toupper взаг;+/
-	 alias capitalize озаг;
-	 alias capwords озагслова;
-	 alias repeat повтори;
-	 alias join объедени;
-	 alias split разбей;
-	 alias splitlines разбейнастр;
-	 alias stripl уберислев;
-	 alias stripr уберисправ;
-	 alias strip убери;
-	 alias chomp убериразгр;
-	 alias chop уберигран;
-	 alias ljustify полев;
-	 alias rjustify поправ;
-	 alias center вцентр;
-	 alias zfill занули;
-	 alias replace замени;
-	 alias replaceSlice заменисрез;
-	 alias insert вставь;
-	 alias count счесть;
-	 alias expandtabs заменитабнапбел;
-	 alias entab заменипбелнатаб;
-	 alias maketrans постройтранстаб;
-	 alias translate транслируй;
-	 alias toString вТкст;
-	 alias format форматируй;
-	 alias форматируй фм;
-	 alias sformat форматируйс;
-	 alias inPattern вОбразце;
-	 alias countchars посчитайсимв;
-	 alias removechars удалисимв;
-	 alias squeeze сквиз;
-	 alias succ следщ;
-	 alias числовой_ли число_ли;
-	 alias column колном;
-	 alias wrap параграф;
-	 alias isEmail эладр_ли;
-	 alias isURL урл_ли;
-	 alias intToUtf8 целВУтф8;
-	 alias ulongToUtf8 бдолВУтф8;
 
+// function to compare two strings
+
+
+int stringCompare (char[] s1, char[] s2)
+{
+    auto len = s1.length;
+
+    if (s2.length < len)
+        len = s2.length;
+
+    int результат = memcmp(s1.ptr, s2.ptr, len);
+
+    if (результат == 0)
+        результат = (s1.length<s2.length)?-1:((s1.length==s2.length)?0:1);
+
+    return результат;
+}
+alias  stringCompare cmp;
 
 
 /* ************* Exceptions *************** */
@@ -102,7 +65,7 @@ else version (Posix)
     const char[1] newline = "\n";
 
 /**********************************
- * Returns true if c is whitespace
+ * Возвращаетs true if c is whitespace
  */
 
 bool iswhite(dchar c)
@@ -134,7 +97,7 @@ real atof(char[] s)
 
 /**********************************
  * Compare two strings. cmp is case sensitive, icmp is case insensitive.
- * Returns:
+ * Возвращаетs:
  *	<table border=1 cellpadding=4 cellspacing=0>
  *	$(TR $(TD &lt; 0)	$(TD s1 &lt; s2))
  *	$(TR $(TD = 0)	$(TD s1 == s2))
@@ -314,7 +277,7 @@ unittest
  * rfind, irfind _find last occurrence of c in string s.
  *
  * find, rfind are case sensitive; ifind, irfind are case insensitive.
- * Returns:
+ * Возвращаетs:
  *	Index in s where c is found, -1 if not found.
  */
 
@@ -530,7 +493,7 @@ unittest
  * rfind, irfind _find last occurrence of sub[] in string s[].
  *
  * find, rfind are case sensitive; ifind, irfind are case insensitive.
- * Returns:
+ * Возвращаетs:
  *	Index in s where c is found, -1 if not found.
  */
 
@@ -710,7 +673,7 @@ unittest
 
     // Thanks to Carlos Santander B. and zwang
     i = ifind("sus mejores cortesanos. Se embarcaron en el puerto de Dubai y",
-	"page-break-before");
+	"page-break-перед");
     assert(i == -1);
 }
 
@@ -1464,7 +1427,7 @@ unittest
 
 /**************************************
  * Split s[] into an array of lines,
- * using CR, LF, or CR-LF as the delimiter.
+ * using CR, LF, либо CR-LF as the delimiter.
  * The delimiter is not included in the line.
  */
 
@@ -1553,7 +1516,7 @@ unittest
 
 
 /*****************************************
- * Strips leading or trailing whitespace, or both.
+ * Strips leading or trailing whitespace, либо both.
  */
 
 char[] stripl(char[] s)
@@ -1597,8 +1560,8 @@ unittest
 }
 
 /*******************************************
- * Returns s[] sans trailing delimiter[], if any.
- * If delimiter[] is null, removes trailing CR, LF, or CRLF, if any.
+ * Возвращаетs s[] sans trailing delimiter[], if any.
+ * If delimiter[] is null, removes trailing CR, LF, либо CRLF, if any.
  */
 
 char[] chomp(char[] s, char[] delimiter = null)
@@ -1666,7 +1629,7 @@ unittest
 
 
 /***********************************************
- * Returns s[] sans trailing character, if there is one.
+ * Возвращаетs s[] sans trailing character, if there is one.
  * If last two characters are CR-LF, then both are removed.
  */
 
@@ -1709,7 +1672,7 @@ unittest
 
 
 /*******************************************
- * Left justify, right justify, or center string s[]
+ * Left justify, right justify, либо center string s[]
  * in field ширина chars wide.
  */
 
@@ -1836,7 +1799,7 @@ unittest
 }
 
 /*****************************
- * Return a _string that is string[] with slice[] replaced by replacement[].
+ * Возвращает _string that is string[] with slice[] replaced by replacement[].
  */
 
 char[] replaceSlice(char[] string, char[] slice, char[] replacement)
@@ -2704,8 +2667,8 @@ char[] format(...)
 extern  (C) void onArrayBoundsError( char[] file, ulong line );
 /*****************************************************
  * Format arguments into string <i>s</i> which must be large
- * enough to hold the результат. Throws ArrayBoundsError if it is not.
- * Returns: s
+ * enough to hold the результат. Выводит исключение ArrayBoundsError if it is not.
+ * Возвращаетs: s
  */
 char[] sformat(char[] s, ...)
 {   size_t i;
@@ -2924,7 +2887,7 @@ unittest
 
 
 /********************************************
- * Return string that is s with all characters removed that match pattern.
+ * Возвращает string that is s with all characters removed that match pattern.
  */
 
 char[] removechars(char[] s, char[] pattern)
@@ -2971,7 +2934,7 @@ unittest
 
 
 /***************************************************
- * Return string where sequences of a character in s[] from pattern[]
+ * Возвращает string where sequences of a character in s[] from pattern[]
  * are replaced with a single instance of that character.
  * If pattern is null, it defaults to all characters.
  */
@@ -3041,7 +3004,7 @@ unittest
 
 
 /**********************************************
- * Return string that is the 'потомок' to s[].
+ * Возвращает string that is the 'потомок' to s[].
  * If the правейший character is a-zA-Z0-9, it is incremented внутри
  * its case or digits. If it generates a перенос, the process is
  * repeated with the one to its immediate left.
@@ -3331,14 +3294,14 @@ unittest
  * [in] bool bAllowSep 
  * False by default, but when set to true it will accept the 
  * separator characters "," and "_" внутри the string, but these  
- * characters should be stripped from the string before using any 
+ * characters should be stripped from the string перед using any 
  * of the conversion functions like toInt(), toFloat(), and etc 
  * else an error will occur.
  *
  * Also please note, that no spaces are allowed внутри the string  
- * anywhere whether it's a leading, trailing, or embedded space(s), 
- * thus they too must be stripped from the string before using this
- * function, or any of the conversion functions.
+ * anywhere whether it's a leading, trailing, либо embedded space(s), 
+ * thus they too must be stripped from the string перед using this
+ * function, либо any of the conversion functions.
  */
 
 final bool числовой_ли(in char[] s, in bool bAllowSep = false)
@@ -3642,11 +3605,11 @@ unittest
  *	buffer = Optional 4 char array to put the resulting Soundex
  *		characters into. If null, the return value
  *		buffer will be allocated on the heap.
- * Returns:
+ * Возвращаетs:
  *	The four character array with the Soundex результат in it.
  *	Returns null if there is no Soundex representation for the string.
  *
- * See_Also:
+ * См_Также:
  *	$(LINK2 http://en.wikipedia.org/wiki/Soundex, Wikipedia),
  *	$(LINK2 http://www.archives.gov/publications/general-info-leaflets/55.html, The Soundex Indexing System)
  *
@@ -3926,7 +3889,7 @@ unittest
  *	firstindent = string used to _indent first line of the paragraph
  *	indent = string to use to _indent following lines of the paragraph
  *	tabsize = column spacing of tabs
- * Returns:
+ * Возвращаетs:
  *	The resulting paragraph.
  */
 
@@ -4014,7 +3977,7 @@ unittest
 
 /***************************
  * Does string s[] start with an email address?
- * Returns:
+ * Возвращаетs:
  *	null	it does not
  *	char[]	it does, and this is the slice of s[] that is that email address
  * References:
@@ -4071,7 +4034,7 @@ Lno:
 
 /***************************
  * Does string s[] start with a URL?
- * Returns:
+ * Возвращаетs:
  *	null	it does not
  *	char[]	it does, and this is the slice of s[] that is that URL
  */
@@ -4162,9 +4125,6 @@ body
     return tmp [cast(size_t)(p - tmp.ptr) .. $];
 }
 
-
-// function to compare two strings
-alias  object.stringCompare cmp;
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *		RUSSIFICATION SUIT										*

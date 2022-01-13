@@ -1,5 +1,5 @@
 module drbuild;
-import scConfig, cidrus, win, dinrus, util.worktools;
+import scConfig, cidrus, dinrus, util.worktools;
 
 alias пауза пз;
 

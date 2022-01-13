@@ -1523,7 +1523,7 @@ private bool feq(in real rx, in real ry, in real precision)
  * (Note: Copied here from std.math's mfeq() function for unittesting)
  * Simple function to compare two floating point values
  * to a specified precision.
- * Returns:
+ * Возвращаетs:
  *  1   match
  *  0   nomatch
  */

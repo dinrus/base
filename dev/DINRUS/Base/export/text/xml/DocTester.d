@@ -22,7 +22,7 @@ private import text.convert.Format;
 
         Valопрate a document
 
-        TODO: добавь various tests here, or in subclasses, as требуется
+        TODO: добавь various tests here, либо in subclasses, as требуется
 
 *******************************************************************************/
 

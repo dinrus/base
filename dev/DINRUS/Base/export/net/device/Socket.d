@@ -15,7 +15,7 @@
 
 module net.device.Socket;
 
-private import sys.Common;
+private import sys.common;
 
 private import io.device.Conduit;
 
@@ -27,7 +27,7 @@ package import net.device.Berkeley;
 
 version (Windows)
 {
-         private import sys.Common;
+         private import sys.common;
 }
 
 /*******************************************************************************
@@ -103,7 +103,7 @@ class Сокет : Провод, ИВыбираемый
 
         /***********************************************************************
 
-                Return a preferred размер for buffering провод I/O
+                Возвращает preferred размер for buffering провод I/O
 
         ***********************************************************************/
 
@@ -140,7 +140,7 @@ class Сокет : Провод, ИВыбираемый
         /***********************************************************************
 
                 Inform другой конец of a подключен сокет that we're no longer
-                available. In general, this should be invoked before закрой()
+                available. In general, this should be invoked перед закрой()
         
                 The глуши function shuts down the connection of the сокет: 
 
@@ -162,7 +162,7 @@ class Сокет : Провод, ИВыбираемый
 
                 Note that one should always disconnect a Сокет under 
                 нормаль conditions, и generally invoke глуши on все 
-                подключен СОКЕТs beforehand
+                подключен СОКЕТs передhand
 
         ***********************************************************************/
 
@@ -190,7 +190,7 @@ class Сокет : Провод, ИВыбираемый
         /***********************************************************************
 
                 Transfer the контент of другой провод в_ this one. Returns
-                the приёмн ИПотокВывода, or throws ВВИскл on failure.
+                the приёмн ИПотокВывода, либо throws ВВИскл on failure.
 
                 Does optimized transfers 
 
@@ -239,7 +239,7 @@ class Сокет : Провод, ИВыбираемый
                 /***************************************************************
 
                         Чит a чанк of байты из_ the файл преобр_в the provопрed
-                        Массив. Returns the число of байты читай, or Кф where 
+                        Массив. Returns the число of байты читай, либо Кф where 
                         there is no further данные.
 
                         Operates asynchronously where the hosting нить is
@@ -252,7 +252,7 @@ class Сокет : Провод, ИВыбираемый
                 /***************************************************************
 
                         Зап a чанк of байты в_ the файл из_ the provопрed
-                        Массив. Returns the число of байты записано, or Кф if 
+                        Массив. Returns the число of байты записано, либо Кф if 
                         the вывод is no longer available.
 
                         Operates asynchronously where the hosting нить is
@@ -299,7 +299,7 @@ class Сокет : Провод, ИВыбираемый
                 /***************************************************************
 
                         Чит a чанк of байты из_ the файл преобр_в the provопрed
-                        Массив. Returns the число of байты читай, or Кф where 
+                        Массив. Returns the число of байты читай, либо Кф where 
                         there is no further данные.
 
                         Operates asynchronously where the hosting нить is
@@ -312,7 +312,7 @@ class Сокет : Провод, ИВыбираемый
                 /***************************************************************
 
                         Зап a чанк of байты в_ the файл из_ the provопрed
-                        Массив. Returns the число of байты записано, or Кф if 
+                        Массив. Returns the число of байты записано, либо Кф if 
                         the вывод is no longer available.
 
                         Operates asynchronously where the hosting нить is

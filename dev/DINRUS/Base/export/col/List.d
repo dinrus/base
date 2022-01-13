@@ -128,7 +128,7 @@ struct ОбходСписка(Т, бул резерв_ли = нет) {
     /// Return the value referred to by the обходчик
     Т знач() { assert(укз_ !is пусто); return укз_.данные; }
 
-    /// Return a указатель to the value referred to by the обходчик
+    /// Возвращает указатель to the value referred to by the обходчик
     Т* укз() { assert(укз_ !is пусто); return &укз_.данные; }
     
     цел opEquals(ref ОбходСписка other) {
@@ -283,7 +283,7 @@ public:
         debug {
             // make sure this node is actually in our список??
         }
-        обходчик next_iter = обход; ++next_iter;
+        обходчик nрасш_iter = обход; ++nрасш_iter;
 
         curr.следщ.предш = curr.предш;
         curr.предш.следщ = curr.следщ;
@@ -292,14 +292,14 @@ public:
       
         размерСписка_--;
 
-        return next_iter;
+        return nрасш_iter;
     }
 
 
-    /// Returns the длина of the список
+    /// Returns the длина этого списка
     цел длина() { return размерСписка_; }
 
-    /// Returns the размер of the список, same as длина()
+    /// Returns the размер этого списка, same as длина()
     цел размер() { return размерСписка_; }
    
     /// Simple function to tell if список is пуст or not
@@ -391,14 +391,14 @@ public:
         return ОбходСписка!(Т,да)(&якорь_);
     }
 
-	/// return the first element in the список
+	/// return the first element в этом списке
     Т первый()
     {
         assert(!пуст(), "первый: список пуст!"); 
         return голова.данные;
     }
 
-	/// return the last element in the список 
+	/// return the last element в этом списке 
     Т последний()
     {
         assert(!пуст(), "последний: список пуст!"); 

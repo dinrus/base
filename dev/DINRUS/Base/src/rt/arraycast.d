@@ -33,7 +33,7 @@ module rt.arraycast;
  * Runtime helper to convert dynamic array of one
  * type to dynamic array of another.
  * Adjusts the length of the array.
- * Throws exception if new length is not aligned.
+ * Выводит исключение exception if new length is not aligned.
  */
 
 export extern (C)
@@ -72,7 +72,7 @@ unittest
  * Runtime helper to convert dynamic array of bits
  * dynamic array of another.
  * Adjusts the length of the array.
- * Throws exception if new length is not aligned.
+ * Выводит исключение exception if new length is not aligned.
  */
 
 version (none)

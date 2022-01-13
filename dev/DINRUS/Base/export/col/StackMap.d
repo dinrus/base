@@ -114,7 +114,7 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
                 any particular ключ. If two записи are добавьed with the 
                 same ключ, the секунда effectively overwrites the первый.
 
-                Возвращает да if we добавьed a new Запись; нет if we just
+                Возвращает да, если we добавьed a new Запись; нет if we just
                 replaced an existing one. A замена does not change
                 the order of the ключи, и thus does not change стэк
                 ordering.
@@ -189,7 +189,7 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
                 any particular ключ. If two записи are добавьed with the 
                 same ключ, the секунда effectively overwrites the первый.
 
-                Возвращает да if we добавьed a new Запись; нет if we just
+                Возвращает да, если we добавьed a new Запись; нет if we just
                 replaced an existing one. A замена does not change
                 the order of the ключи, и thus does not change стэк
                 ordering.
@@ -200,7 +200,7 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
         {
                 Реф Запись = пусто;
 
-                // already in the список? -- замени Запись
+                // already в этом списке? -- замени Запись
                 if (хэш.получи (ключ, Запись))
                    {
                    Запись.установи (ключ, значение);
@@ -356,19 +356,19 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
         
                 **************************************************************/
         
-                Реф приставь (Реф before)
+                Реф приставь (Реф перед)
                 {
-                        if (before)
+                        if (перед)
                            {
-                           предш = before.предш;
+                           предш = перед.предш;
         
                            // патч 'предш' в_ точка at me
                            if (предш)
                                предш.следщ = this;
         
-                           //патч 'before' в_ точка at me
-                           следщ = before;
-                           before.предш = this;
+                           //патч 'перед' в_ точка at me
+                           следщ = перед;
+                           перед.предш = this;
                            }
                         return this;
                 }

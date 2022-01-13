@@ -51,14 +51,14 @@ alias spread простели;
 
     ubyte data[];
     uint offset;
-
+/+
     invariant
     {
 	//эхо("this = %p, offset = %x, data.length = %u\n", this, offset, data.length);
 	assert(offset <= data.length);
 	assert(data.length <= runtime.capacity(data.ptr));
     }
-
++/
     this()
     {
 	//эхо("in OutBuffer constructor\n");

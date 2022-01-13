@@ -1,5 +1,5 @@
 ﻿module libprocessor;
-import stdrus, cidrus, win;
+import stdrus, cidrus, sys.common;
 
 бул создайБибИзДлл(ткст имяБ, ткст имяД = null, ткст путь = null, ткст расшД = "dll")
 {

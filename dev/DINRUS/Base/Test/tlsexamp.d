@@ -41,7 +41,7 @@ extern(Windows) бцел ФункцНити(ук данные)
  
    ОбщаяФункцияНлх(); 
  
-// Release the dynamic memory before the thread returns. 
+// Release the dynamic memory перед the thread returns. 
  
    данные = ДайЗначениеНлх(индНлх); 
    if (данные != cast(ук) 0) 

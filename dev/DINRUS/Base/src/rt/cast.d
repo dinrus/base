@@ -35,7 +35,7 @@ Object _d_toObject(void* p)
 
 /*************************************
  * Attempts to cast Object o to class c.
- * Returns o if successful, null if not.
+ * Возвращаетs o if successful, null if not.
  */
 
 Object _d_interface_cast(void* p, ClassInfo c)

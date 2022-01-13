@@ -27,8 +27,8 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
     }
 
     /**
-     * Implements col.impl.Collection.CollectionIterator.остаток
-     * See_Also: col.impl.Collection.CollectionIterator.остаток
+     * Реализует col.impl.Collection.CollectionIterator.остаток
+     * См_Также: col.impl.Collection.CollectionIterator.остаток
     **/
     public бцел остаток()
     {
@@ -36,8 +36,8 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
     }
 
     /**
-     * Implements col.model.IteratorX.ещё.
-     * See_Also: col.model.IteratorX.ещё
+     * Реализует col.model.IteratorX.ещё.
+     * См_Также: col.model.IteratorX.ещё
     **/
     public бул ещё()
     {
@@ -45,10 +45,10 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
     }
 
     /**
-     * Implements col.impl.Collection.CollectionIterator.повреждён.
+     * Реализует col.impl.Collection.CollectionIterator.повреждён.
      * Always нет. Inconsistency cannot be reliably detected for массивы
      * Возвращает: нет
-     * See_Also: col.impl.Collection.CollectionIterator.повреждён
+     * См_Также: col.impl.Collection.CollectionIterator.повреждён
     **/
 
     public бул повреждён()
@@ -57,8 +57,8 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
     }
 
     /**
-     * Implements col.model.IteratorX.получи().
-     * See_Also: col.model.IteratorX.получи()
+     * Реализует col.model.IteratorX.получи().
+     * См_Также: col.model.IteratorX.получи()
     **/
     public T получи()
     {

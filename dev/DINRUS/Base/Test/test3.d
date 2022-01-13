@@ -593,10 +593,10 @@ the quick brown fox jumps over the lazy dog\r
     ПотокПамяти m2;
     m.позиция = 3;
     m2 = new ПотокПамяти ();
-    m2.пишиТкст("before");
+    m2.пишиТкст("перед");
     m2.копируй_из(m,10);
     стр = m2.вТкст;
-    assert (стр[0..16] == "before 345 hello");
+    assert (стр[0..16] == "перед 345 hello");
     m2.позиция = 3;
     m2.копируй_из(m);
     auto str2 = m.вТкст;
@@ -699,7 +699,7 @@ the quick brown fox jumps over the lazy dog\r
 
     т = форматируй(1.67, " %A ", -1.28, плав.nan);
     /* The host C library is used to format floats.
-     * C99 doesn't specify what the hex digit before the десяток point
+     * C99 doesn't specify what the hex digit перед the десяток point
      * is for %A.
      */
     version (Posix)

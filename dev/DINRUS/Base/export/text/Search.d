@@ -65,7 +65,7 @@ private struct НайдиПлод(T)
             Поиск вперёд in the given контент, starting at the
             optional индекс.
 
-            Returns the индекс of a сверь, or контент.length where
+            Returns the индекс of a сверь, либо контент.length where
             no сверь was located.
 
     ***********************************************************************/
@@ -80,7 +80,7 @@ private struct НайдиПлод(T)
             Поиск backward in the given контент, starting at the
             optional индекс.
 
-            Returns the индекс of a сверь, or контент.length where
+            Returns the индекс of a сверь, либо контент.length where
             no сверь was located.
 
     ***********************************************************************/
@@ -114,7 +114,7 @@ private struct НайдиПлод(T)
 
     /***********************************************************************
 
-            Returns да if there is a сверь внутри the given контент
+            Returns да, если there is a сверь внутри the given контент
 
     ***********************************************************************/
 
@@ -317,7 +317,7 @@ private struct ИщиПлод(T)
             Поиск вперёд in the given контент, starting at the
             optional индекс.
 
-            Returns the индекс of a сверь, or контент.length where
+            Returns the индекс of a сверь, либо контент.length where
             no сверь was located.
 
     ***********************************************************************/
@@ -340,7 +340,7 @@ private struct ИщиПлод(T)
             Поиск backward in the given контент, starting at the
             optional индекс.
 
-            Returns the индекс of a сверь, or контент.length where
+            Returns the индекс of a сверь, либо контент.length where
             no сверь was located.
 
     ***********************************************************************/
@@ -360,7 +360,7 @@ private struct ИщиПлод(T)
 
     /***********************************************************************
 
-            Returns да if there is a сверь внутри the given контент
+            Returns да, если there is a сверь внутри the given контент
 
     ***********************************************************************/
 

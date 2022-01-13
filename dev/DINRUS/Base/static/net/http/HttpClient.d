@@ -577,7 +577,7 @@ class КлиентППГТ
                 maximum length, и пароль контент в_ the given сток delegate
                 as it arrives.
 
-                Exits when length байты have been processed, or an Кф is
+                Exits when length байты have been processed, либо an Кф is
                 seen on the поток.
 
         ***********************************************************************/

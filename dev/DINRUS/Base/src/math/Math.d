@@ -373,7 +373,7 @@ private enum : цел { MANTDIG_2 = реал.mant_dig/2 } // Compiler workaround
 
 /** Floating точка "approximate equality".
  *
- * Return да if x is equal в_ y, в_ внутри the specified точность
+ * Возвращает да, если x is equal в_ y, в_ внутри the specified точность
  * If roundoffbits is not specified, a reasonable default is использован.
  */
 бул равп(цел точность = MANTDIG_2, XReal=реал, YReal=реал)(XReal x, YReal y)

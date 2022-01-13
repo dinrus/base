@@ -19,7 +19,7 @@ private import lib.OpenSSL;
 /*******************************************************************************
     
     СокетССЛ is a подст-class of Сокет. It's purpose is в_
-    provопрe SSL encryption at the сокет уровень as well as easily fit преобр_в
+    предоставляет SSL encryption at the сокет уровень as well as easily fit преобр_в
     existing Dinrus network applications that may already be using Сокет.
 
     СокетССЛ требует the OpenSSL library, и uses a dynamic binding
@@ -161,7 +161,7 @@ class СокетССЛ : Сокет
     /*******************************************************************************
 
          Reads из_ the underlying сокет поток. If needed, установиТаймаут will 
-        установи the max length of время the читай will возьми before returning.
+        Устанавливает max length of время the читай will возьми перед returning.
 
         As per Сокет.читай
 
@@ -206,7 +206,7 @@ class СокетССЛ : Сокет
 
 /*******************************************************************************
 
-    СерверСокетССЛ is a подст-class of СерверСокет. It's purpose is в_ provопрe
+    СерверСокетССЛ is a подст-class of СерверСокет. It's purpose is в_ предоставляет
     SSL encryption at the сокет уровень as well as easily tie преобр_в existing 
     Dinrus applications that may already be using СерверСокет.
 
@@ -249,7 +249,7 @@ class СерверСокетССЛ : СерверСокет
         Параметры:
             адр = the адрес в_ вяжи и слушай on.
             ctx = the provопрed КонтекстССЛ
-            backlog = the число of connections в_ backlog before refusing connection
+            backlog = the число of connections в_ backlog перед refusing connection
             reuse = if включен, allow rebinding of existing ИП/порт
 
     *******************************************************************************/

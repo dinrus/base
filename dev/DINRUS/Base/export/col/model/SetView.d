@@ -3,7 +3,7 @@
 private import col.model.View;
 
 /**
- * Sets provопрe an include operations for добавим
+ * Sets предоставляет an include operations for добавим
  * an элемент only if it is not already present.
  * They also добавь a guarantee:
  * With sets,
@@ -33,7 +33,7 @@ version (VERBOSE)
          * @param элемент the элемент в_ include in the new collection
          * Возвращает: a new collection c, with the совпадает as this, except that
          * c.имеется(элемент)
-         * Throws: IllegalElementException if !canInclude(элемент)
+         * Выводит исключение: IllegalElementException if !canInclude(элемент)
         **/
 
         public Набор включая (T элемент);

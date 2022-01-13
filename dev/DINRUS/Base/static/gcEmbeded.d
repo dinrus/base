@@ -873,7 +873,7 @@ private проц инвариант()
      * представляет максимальный размер в байтах, в который вызовом realloc 
      * можно на месте изменить существующий блок.  If p references memory not
      * originally allocated by this garbage collector, points to the interior
-     * of a memory block, or if p is пусто, ноль will be returned.
+     * of a memory block, либо if p is пусто, ноль will be returned.
      *
      * Параметры:
      *  p = A pointer to the корень of a valid memory block or to пусто.
@@ -1157,7 +1157,7 @@ private проц инвариант()
 
     /**
      * Query a weak pointer and return either the Объект passed to
-     * weakpointerCreate, or пусто if it was cidrus.освободи'd in the meantime.
+     * weakpointerCreate, либо пусто if it was cidrus.освободи'd in the meantime.
      * If пусто is passed, пусто is returned.
      */
      Объект дайСлабУк( ук p )
@@ -2272,7 +2272,7 @@ if(готов)
 
     /**
      * Find Пул that pointer is in.
-     * Return null if not in a Пул.
+     * Возвращает null if not in a Пул.
      * Assume таблица_пулов[] is sorted.
      */
     Пул *найдиПул(ук p)
@@ -2306,7 +2306,7 @@ if(готов)
 
     /**
      * Найти адрес основы блока, где находится указатель p.
-     * Returns null if not a gc'd pointer
+     * Возвращаетs null if not a gc'd pointer
      */
     ук найдиОснову(ук p)
     {
@@ -2343,7 +2343,7 @@ if(готов)
 
     /**
      * Найти размер указателя p.
-     * Returns 0 if not a gc'd pointer
+     * Возвращаетs 0 if not a gc'd pointer
      */
     т_мера найдиРазмер(ук p)
     {
@@ -4125,7 +4125,7 @@ char [] ctfe_i2a(ulong i){
 ///////////////////////////////////////////////////////
 version (Win32)
 {
-    private import sys.WinFuncs, thread, sys.Common;
+    private import sys.WinFuncs, thread, sys.common;
 
     alias цел т_нук;
 

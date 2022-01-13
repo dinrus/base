@@ -4,7 +4,7 @@ public import io.model, time.Time;
 public import io.selector.SelectorException;
 
 private import io.selector.model;
-private import sys.Common;
+private import sys.common;
 private import cidrus;
 private import exception;
 
@@ -35,7 +35,7 @@ private import exception;
  * Когда селектор больше не используется требуется вызвать метод закрой(), чтобы
  * селектор смог освободить ресурсы, размещённые им в памяти при вызове открой().
  *
- * See_Also: ИСелектор
+ * См_Также: ИСелектор
  *
  * Примеры:
  * ---

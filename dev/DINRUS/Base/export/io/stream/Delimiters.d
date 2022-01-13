@@ -1,15 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: January 2006
-
-        author:         Kris
-
-*******************************************************************************/
-
+﻿
 module io.stream.Delimiters;
 
 private import io.stream.Iterator;
@@ -24,7 +13,7 @@ private import io.stream.Iterator;
 
         Контент, представленный через обходчик, всецело только для чтения.
         Все текущие обходчики придерживаются этого правила, но допускается
-        возможность изменения пользователем контента через получи() срез.
+        возможность изменения пользователем контента через срез получи() .
         To enforce the desired читай-only aspect, the код would have в_
         introduce redundant copying or the compiler would have в_ support
         читай-only массивы.

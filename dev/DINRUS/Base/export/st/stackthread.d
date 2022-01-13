@@ -148,7 +148,7 @@ class СтэкНить
     
     /**
      * Waits to объедини with this thread.  If the given amount
-     * of milliseconds expires before the thread is мёртв,
+     * of milliseconds expires перед the thread is мёртв,
      * then we return automatically.
      *
      * Параметры:
@@ -266,7 +266,7 @@ class СтэкНить
      * Used to change the состояние of a выполняется thread
      * gracefully
      */
-    private final проц transition(ПСостояниеНити next_state);
+    private final проц transition(ПСостояниеНити nрасш_state);
 }
 
 
@@ -429,7 +429,7 @@ private проц сн_отмени(СтэкНить st);
 проц сн_жни();
 
 /**
- * Throws an object и жниs the threaauxd.  The exception
+ * Выводит исключение an object и жниs the threaauxd.  The exception
  * is propagated out of the сн_запустиСрез methoauxd.
  */
 проц сн_бросайЖни(Объект t);

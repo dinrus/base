@@ -21,21 +21,21 @@ public interface ОбзорКарты(К, З) : Обзор!(З)
 
         /**
          * Report whether there есть_ли any элемент with Key ключ.
-         * Возвращает: да if there is such an элемент
+         * Возвращает: да, если there is such an элемент
         **/
 
         public бул содержитКлюч(К ключ);
 
         /**
          * Report whether there есть_ли a (ключ, значение) пара
-         * Возвращает: да if there is such an элемент
+         * Возвращает: да, если there is such an элемент
         **/
 
         public бул содержитПару(К ключ, З значение);
 
 
         /**
-         * Return an enumeration that may be использован в_ traverse through
+         * Возвращает an enumeration that may be использован в_ traverse through
          * the ключи (not элементы) of the collection. The corresponding
          * элементы can be looked at by using at(ключ) for each ключ ключ. For example:
          * <PRE>
@@ -59,17 +59,17 @@ public interface ОбзорКарты(К, З) : Обзор!(З)
         цел opApply (цел delegate (inout К ключ, inout З значение) дг);
         
         /**
-         * Return the элемент associated with Key ключ. 
+         * Возвращает the элемент associated with Key ключ. 
          * @param ключ a ключ
          * Возвращает: элемент such that содержит(ключ, элемент)
-         * Throws: НетЭлементаИскл if !содержитКлюч(ключ)
+         * Выводит исключение: НетЭлементаИскл if !содержитКлюч(ключ)
         **/
 
         public З получи(К ключ);
         public alias получи opIndex;
 
         /**
-         * Return the элемент associated with Key ключ. 
+         * Возвращает the элемент associated with Key ключ. 
          * @param ключ a ключ
          * Возвращает: whether the ключ is contained or not
         **/
@@ -78,9 +78,9 @@ public interface ОбзорКарты(К, З) : Обзор!(З)
 
 
         /**
-         * Return a ключ associated with элемент. There may be any
+         * Возвращает ключ associated with элемент. There may be any
          * число of ключи associated with any элемент, but this returns only
-         * one of them (any arbitrary one), or нет if no such ключ есть_ли.
+         * one of them (any arbitrary one), либо нет if no such ключ есть_ли.
          * @param ключ, a place в_ return a located ключ
          * @param элемент, a значение в_ try в_ найди a ключ for.
          * Возвращает: да where значение is найдено; нет иначе

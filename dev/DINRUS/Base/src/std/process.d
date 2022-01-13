@@ -71,7 +71,7 @@ enum { _P_WAIT, _P_NOWAIT, _P_OVERLAY };
 /**
  * Execute command in a _command shell.
  *
- * Returns: exit status of command
+ * Возвращаетs: exit status of command
  */
 цел система (ткст команда)
 {

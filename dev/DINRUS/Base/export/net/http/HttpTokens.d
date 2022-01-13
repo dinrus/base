@@ -130,7 +130,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the значение of the provопрed заголовок, or пусто if the
+                Return the значение of the provопрed заголовок, либо пусто if the
                 заголовок does not exist
 
         **********************************************************************/
@@ -139,7 +139,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the целое значение of the provопрed заголовок, or the
+                Return the целое значение of the provопрed заголовок, либо the
                 provопрed default-vaule if the заголовок does not exist
 
         **********************************************************************/
@@ -148,7 +148,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the дата значение of the provопрed заголовок, or the
+                Return the дата значение of the provопрed заголовок, либо the
                 provопрed default-значение if the заголовок does not exist
 
         **********************************************************************/
@@ -200,7 +200,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Implements a фильтр for iterating over токены совпадают
+                Реализует a фильтр for iterating over токены совпадают
                 a particular имя. We do it like this because there's no
                 means of passing добавьitional information в_ an opApply()
                 метод.
@@ -215,7 +215,7 @@ class ТокеныППГТ
                 /**************************************************************
 
                         Construct this фильтр upon the given токены, и
-                        установи the образец в_ сверь against.
+                        Устанавливает образец в_ сверь against.
 
                 **************************************************************/
 
@@ -256,10 +256,10 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return a ткст representing the вывод. An пустой Массив
+                Возвращает ткст representing the вывод. An пустой Массив
                 is returned if вывод was not configured. This perhaps
                 could just return our 'вывод' буфер контент, but that
-                would not reflect deletes, or seperators. Better в_ do
+                would not reflect deletes, либо seperators. Better в_ do
                 it like this instead, for a small cost.
 
         **********************************************************************/

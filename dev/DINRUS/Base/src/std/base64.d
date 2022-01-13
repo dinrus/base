@@ -21,7 +21,7 @@ const char[] rarray = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬ�
 const char[] array = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюя0123456789+/";
 
 /**
- * Returns the number of bytes needed to encode a string of length slen.
+ * Возвращаетs the number of bytes needed to encode a string of length slen.
  */
 
 uint encodeLength(uint slen)
@@ -38,7 +38,7 @@ uint encodeLength(uint slen)
  * Параметры:
  *	str = string to encode
  * 	buf = destination buffer, must be large enough for the результат.
- * Returns:
+ * Возвращаетs:
  *	slice into buf[] representing encoded результат
  */
 
@@ -121,7 +121,7 @@ unittest
 +/
 
 /**
- * Returns the number of bytes needed to decode an encoded string of this
+ * Возвращаетs the number of bytes needed to decode an encoded string of this
  * length.
  */
 uint decodeLength(uint elen)
@@ -135,11 +135,11 @@ uint decodeLength(uint elen)
  * Параметры:
  *	str = string to encode
  * 	buf = destination buffer, must be large enough for the результат.
- * Returns:
+ * Возвращаетs:
  *	slice into buf[] representing encoded результат
  * Errors:
- *	Throws ИсклОсновы64 on invalid base64 encoding in estr[].
- *	Throws ИсклСимвОсновы64 on invalid base64 character in estr[].
+ *	Выводит исключение ИсклОсновы64 on invalid base64 encoding in estr[].
+ *	Выводит исключение ИсклСимвОсновы64 on invalid base64 character in estr[].
  */
 char[] decode(char[] estr, char[] buf)
 in
@@ -225,8 +225,8 @@ body
 /**
  * Decodes estr[] and returns the результат.
  * Errors:
- *	Throws ИсклОсновы64 on invalid base64 encoding in estr[].
- *	Throws ИсклСимвОсновы64 on invalid base64 character in estr[].
+ *	Выводит исключение ИсклОсновы64 on invalid base64 encoding in estr[].
+ *	Выводит исключение ИсклСимвОсновы64 on invalid base64 character in estr[].
  */
 
 char[] decode(char[] estr)

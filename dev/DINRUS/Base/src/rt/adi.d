@@ -344,7 +344,7 @@ extern (C) wchar[] _adSortWchar(wchar[] a)
 
 /***************************************
  * Support for array equality test.
- * Returns:
+ * Возвращаетs:
  *      1       equal
  *      0       not equal
  */

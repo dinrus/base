@@ -114,7 +114,7 @@ unittest
  * The default value
  * for level is 6, legal values are 1..9, with 1 being the least compression
  * and 9 being the most.
- * Returns the compressed data.
+ * Возвращаетs the compressed data.
  */
 
 void[] compress(void[] srcbuf, int level)
@@ -154,7 +154,7 @@ void[] compress(void[] buf)
  * Параметры: destlen = size of the uncompressed data.
  * It need not be accurate, but the decompression will be faster if the exact
  * size is supplied.
- * Returns: the decompressed data.
+ * Возвращаетs: the decompressed data.
  */
 
 void[] uncompress(void[] srcbuf, uint destlen = 0u, int winbits = 15)

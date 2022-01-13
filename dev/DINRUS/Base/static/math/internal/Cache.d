@@ -736,7 +736,7 @@ version(Really_D_InlineAsm_X86)
             else if (probablyAMD)
             {
                 // According в_ AMDProcRecognitionAppNote, this means CPU
-                // K5 model 0, or Am5x86 (model 4), or Am4x86DX4 (model 4)
+                // K5 model 0, либо Am5x86 (model 4), либо Am4x86DX4 (model 4)
                 // Am5x86 имеется 16Kb 4-way unified данные & код кэш.
                 кэш_данных[0].размер = 8;
                 кэш_данных[0].ассоциативность = 4;
@@ -761,7 +761,7 @@ version(Really_D_InlineAsm_X86)
         }
         if (кэш_данных[0].размер == 0)
         {
-            // Pentium, PMMX, late model 486, or an obscure CPU
+            // Pentium, PMMX, late model 486, либо an obscure CPU
             if (mmx)   // Pentium MMX. Also имеется 8kB код кэш.
             {
                 кэш_данных[0].размер = 16;
@@ -781,7 +781,7 @@ version(Really_D_InlineAsm_X86)
         else maxThreads = maxCores;
     }
 
-// Return да if the cpuid instruction is supported.
+// Return да, если the cpuid instruction is supported.
 // BUG(WONTFIX): Doesn't work for Cyrix 6x86 и 6x86L.
     бул hasCPUID()
     {
@@ -866,7 +866,7 @@ static this()
     }
     else
     {
-        // it's a 386 or 486, or a Cyrix 6x86.
+        // it's a 386 or 486, либо a Cyrix 6x86.
         //Probably still имеется an external кэш.
     }
     if (кэш_данных[0].размер==0)

@@ -755,7 +755,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
     }
 
     /* Algorithm: Visit each key/value pair in e1. If that key doesn't exist
-     * in e2, or if the value in e1 doesn't match the one in e2, the arrays
+     * in e2, либо if the value in e1 doesn't match the one in e2, the arrays
      * are not equal, and exit early.
      * After all pairs are checked, the arrays must be equal.
      */

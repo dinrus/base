@@ -9,7 +9,7 @@ alias  КлассТипа.Целое Integer;
 alias  КлассТипа.Плав Float;
 alias  КлассТипа.Комплекс Complex;
 alias  КлассТипа.Мнимое Imaginary;
-alias  КлассТипа.Класс  Class;
+alias  КлассТипа.Класс  Класс;
 alias  КлассТипа.Указатель  Pointer;
 alias  КлассТипа.Массив  Array;
 alias  КлассТипа.Другой  Other;

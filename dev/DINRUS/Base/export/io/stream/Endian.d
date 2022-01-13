@@ -1,13 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: Nov 2007
-
-        author:         Kris
-
         Потокs for свопping эндиан-order. The поток is treated as a установи
         of same-sized elements. Note that partial elements are not mutated
 

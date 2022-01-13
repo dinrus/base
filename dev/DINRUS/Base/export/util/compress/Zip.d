@@ -617,7 +617,7 @@ class ЧитательБлокаЗип : ЧитательЗип
          * Creates a ЧитательБлокаЗип using the предоставленный Файл экземпляр.  Where
          * possible, the провод will be wrapped in a память-mapped буфер for
          * optimum performance.  If you do not want the Файл память-mapped,
-         * either cast it в_ an ИПотокВвода first, or пароль исток.ввод в_ the
+         * either cast it в_ an ИПотокВвода first, либо пароль исток.ввод в_ the
          * constructor.
          */
         this(Файл исток)
@@ -660,7 +660,7 @@ class ЧитательБлокаЗип : ЧитательЗип
         // NOTE: Originally ещё of the СМ allocated данные in this class were
         // explicitly deleted here, such as cd_data - this caused segfaults
         // and have been removed as they were not necessary из_ correctness
-        // точка of view, and the память usage sys.Common is questionable.
+        // точка of view, and the память usage sys.common is questionable.
         состояние = Состояние.Готово;
         исток = пусто;
         шагун = пусто;
@@ -677,8 +677,8 @@ class ЧитательБлокаЗип : ЧитательЗип
     }
 
     /**
-     * Возвращает да if and only if there are добавьitional файлы in the архив
-     * which have not been читай via the получи метод.  This returns да before
+     * Возвращает да, если and only if there are добавьitional файлы in the архив
+     * which have not been читай via the получи метод.  This returns да перед
      * the first вызов в_ получи (assuming the opened архив is non-пустой), and
      * нет после the последний файл есть been использовался.
      */
@@ -1461,7 +1461,7 @@ class ЗаписьЗип
      * then the integrity of the файл's данные will be checked.  This means that
      * if the файл is corrupt, an исключение will be thrown only после you have
      * завершено reading из_ the поток.  If you wish в_ сделай sure the данные is
-     * valid before you читай из_ the файл, вызов the проверь метод.
+     * valid перед you читай из_ the файл, вызов the проверь метод.
      */
     ИПотокВвода открой()
     {
@@ -1476,7 +1476,7 @@ class ЗаписьЗип
 
     /**
      * Verifies the contents of this файл by computing the CRC32 checksum,
-     * and comparing it against the stored one.  Throws an исключение if the
+     * and comparing it against the stored one.  Выводит исключение an исключение if the
      * checksums do not match.
      *
      * Not valid on поточно ZIP archives.
@@ -2537,7 +2537,7 @@ private:
 //import io.model : ИПровод, ИПотокВвода, ИПотокВывода;
 
 /**
- * This поток can be used в_ provопрe поток-based access в_ a поднабор of
+ * This поток can be used в_ предоставляет поток-based access в_ a поднабор of
  * другой поток.  It is akin в_ slicing an Массив.
  *
  * This поток fully supports seeking, and as such requires that the
@@ -2660,7 +2660,7 @@ private:
 }
 
 /**
- * This поток can be used в_ provопрe поток-based access в_ a поднабор of
+ * This поток can be used в_ предоставляет поток-based access в_ a поднабор of
  * другой поток.  It is akin в_ slicing an Массив.
  */
 class SliceInputПоток : ИПотокВвода
@@ -2744,7 +2744,7 @@ private:
 }
 
 /**
- * This поток can be used в_ provопрe поток-based access в_ a поднабор of
+ * This поток can be used в_ предоставляет поток-based access в_ a поднабор of
  * другой поток.  It is akin в_ slicing an Массив.
  *
  * This поток fully supports seeking, and as such requires that the
@@ -2885,7 +2885,7 @@ private:
 //import io.model : ИПровод, ИПотокВвода, ИПотокВывода;
 
 /**
- * This поток can be used в_ provопрe access в_ другой поток.
+ * This поток can be used в_ предоставляет access в_ другой поток.
  * Its distinguishing feature is that users cannot закрой the underlying
  * поток.
  *
@@ -2982,7 +2982,7 @@ private:
 }
 
 /**
- * This поток can be used в_ provопрe access в_ другой поток.
+ * This поток can be used в_ предоставляет access в_ другой поток.
  * Its distinguishing feature is that the users cannot закрой the underlying
  * поток.
  *

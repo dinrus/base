@@ -1,7 +1,7 @@
 ﻿module mesh.Status;
 
 /** Статус биты использован by the Статус class. 
- *  See_Also: auxd.OpenMesh.Атрибуты.ИнфОСтатусе
+ *  См_Также: auxd.OpenMesh.Атрибуты.ИнфОСтатусе
  */
 enum Атрибуты : бцел {
 
@@ -21,7 +21,7 @@ alias Атрибуты БитыСтатуса ;
  *
  *   Add status information to a base class.
  *
- *   See_Also: БитыСтатуса
+ *   См_Также: БитыСтатуса
  */
 struct ИнфОСтатусе
 {

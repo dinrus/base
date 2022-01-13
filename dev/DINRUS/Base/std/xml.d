@@ -15,7 +15,7 @@ Document, but that is not their primary purpose. The handling capabilities of
 DocumentParser and ElementParser are sufficiently customizable that you can
 make them do pretty much whatever you want.
 
-Example: This example creates a DOM (Document Object Model) tree
+Пример: This example creates a DOM (Document Object Model) tree
     from an XML file.
 ------------------------------------------------------------------------------
 import std.xml;
@@ -43,7 +43,7 @@ void main()
 }
 ------------------------------------------------------------------------------
 
-Example: This example does much the same thing, except that the file is
+Пример: This example does much the same thing, except that the file is
     deconstructed and reconstructed by hand. This is more work, but the
     techniques involved offer vastly more power.
 ------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ import std.encoding;
 enum cdata = "<![CDATA[";
 
 /**
- * Returns true if the character is a character according to the XML standard
+ * Возвращаетs true if the character is a character according to the XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -201,7 +201,7 @@ unittest
 }
 
 /**
- * Returns true if the character is whitespace according to the XML standard
+ * Возвращаетs true if the character is whitespace according to the XML standard
  *
  * Only the following characters are considered whitespace in XML - space, tab,
  * carriage return and linefeed
@@ -217,7 +217,7 @@ bool isSpace(dchar c)
 }
 
 /**
- * Returns true if the character is a digit according to the XML standard
+ * Возвращаетs true if the character is a digit according to the XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -242,7 +242,7 @@ unittest
 }
 
 /**
- * Returns true if the character is a letter according to the XML standard
+ * Возвращаетs true if the character is a letter according to the XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -255,7 +255,7 @@ bool isLetter(dchar c) // rule 84
 }
 
 /**
- * Returns true if the character is an ideographic character according to the
+ * Возвращаетs true if the character is an ideographic character according to the
  * XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
@@ -290,7 +290,7 @@ unittest
 }
 
 /**
- * Returns true if the character is a base character according to the XML
+ * Возвращаетs true if the character is a base character according to the XML
  * standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
@@ -304,7 +304,7 @@ bool isBaseChar(dchar c)
 }
 
 /**
- * Returns true if the character is a combining character according to the
+ * Возвращаетs true if the character is a combining character according to the
  * XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
@@ -318,7 +318,7 @@ bool isCombiningChar(dchar c)
 }
 
 /**
- * Returns true if the character is an extender according to the XML standard
+ * Возвращаетs true if the character is an extender according to the XML standard
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -347,9 +347,9 @@ bool isExtender(dchar c)
  * Params:
  *      s = The string to be encoded
  *
- * Returns: The encoded string
+ * Возвращаетs: The encoded string
  *
- * Examples:
+ * Примеры:
  * --------------
  * writefln(encode("a > b")); // writes "a &gt; b"
  * --------------
@@ -416,12 +416,12 @@ enum DecodeMode
  *
  * This function decodes the entities &amp;amp;, &amp;quot;, &amp;apos;,
  * &amp;lt; and &amp;gt,
- * as well as decimal and hexadecimal entities such as &amp;#x20AC;
+ * as well as десяток and hexadecimal entities such as &amp;#x20AC;
  *
  * If the string does not contain an ampersand, the original will be returned.
  *
  * Note that the "mode" parameter can be one of DecodeMode.NONE (do not
- * decode), DecodeMode.LOOSE (decode, but ignore errors), or DecodeMode.STRICT
+ * decode), DecodeMode.LOOSE (decode, but ignore errors), либо DecodeMode.STRICT
  * (decode, and throw a DecodeException in the event of an error).
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
@@ -430,11 +430,11 @@ enum DecodeMode
  *      s = The string to be decoded
  *      mode = (optional) Mode to use for decoding. (Defaults to LOOSE).
  *
- * Throws: DecodeException if mode == DecodeMode.STRICT and decode fails
+ * Выводит исключение: DecodeException if mode == DecodeMode.STRICT and decode fails
  *
- * Returns: The decoded string
+ * Возвращаетs: The decoded string
  *
- * Examples:
+ * Примеры:
  * --------------
  * writefln(decode("a &gt; b")); // writes "a > b"
  * --------------
@@ -530,7 +530,7 @@ unittest
 }
 
 /**
- * Class representing an XML document.
+ * Класс representing an XML document.
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -538,7 +538,7 @@ unittest
 class Document : Element
 {
     /**
-     * Contains all text which occurs before the root element.
+     * Contains all text which occurs перед the root element.
      * Defaults to &lt;?xml version="1.0"?&gt;
      */
     string prolog = "<?xml version=\"1.0\"?>";
@@ -591,7 +591,7 @@ class Document : Element
         /**
          * Compares two Documents for equality
          *
-         * Examples:
+         * Примеры:
          * --------------
          * Document d1,d2;
          * if (d1 == d2) { }
@@ -613,7 +613,7 @@ class Document : Element
          * You should rarely need to call this function. It exists so that
          * Documents can be used as associative array keys.
          *
-         * Examples:
+         * Примеры:
          * --------------
          * Document d1,d2;
          * if (d1 < d2) { }
@@ -633,7 +633,7 @@ class Document : Element
         }
 
         /**
-         * Returns the hash of a Document
+         * Возвращаетs the hash of a Document
          *
          * You should rarely need to call this function. It exists so that
          * Documents can be used as associative array keys.
@@ -644,7 +644,7 @@ class Document : Element
         }
 
         /**
-         * Returns the string representation of a Document. (That is, the
+         * Возвращаетs the string representation of a Document. (That is, the
          * complete XML of a document).
          */
         override string toString()
@@ -655,7 +655,7 @@ class Document : Element
 }
 
 /**
- * Class representing an XML element.
+ * Класс representing an XML element.
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  */
@@ -677,7 +677,7 @@ class Element : Item
      *      name = the name of the element.
      *      interior = (optional) the string interior.
      *
-     * Examples:
+     * Примеры:
      * -------------------------------------------------------
      * auto element = new Element("title","Serenity")
      *     // constructs the element <title>Serenity</title>
@@ -709,7 +709,7 @@ class Element : Item
      * Params:
      *      item = the item you wish to append.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element element;
      * element ~= new Text("hello");
@@ -727,7 +727,7 @@ class Element : Item
      * Params:
      *      item = the item you wish to append.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element element;
      * element ~= new CData("hello");
@@ -745,7 +745,7 @@ class Element : Item
      * Params:
      *      item = the item you wish to append.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element element;
      * element ~= new Comment("hello");
@@ -763,7 +763,7 @@ class Element : Item
      * Params:
      *      item = the item you wish to append.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element element;
      * element ~= new ProcessingInstruction("hello");
@@ -781,7 +781,7 @@ class Element : Item
      * Params:
      *      item = the item you wish to append.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element element;
      * Element other = new Element("br");
@@ -822,7 +822,7 @@ class Element : Item
     /**
      * Compares two Elements for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element e1,e2;
      * if (e1 == e2) { }
@@ -846,7 +846,7 @@ class Element : Item
      * You should rarely need to call this function. It exists so that Elements
      * can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Element e1,e2;
      * if (e1 < e2) { }
@@ -866,7 +866,7 @@ class Element : Item
     }
 
     /**
-     * Returns the hash of an Element
+     * Возвращаетs the hash of an Element
      *
      * You should rarely need to call this function. It exists so that Elements
      * can be used as associative array keys.
@@ -881,7 +881,7 @@ class Element : Item
     const
     {
         /**
-         * Returns the decoded interior of an element.
+         * Возвращаетs the decoded interior of an element.
          *
          * The element is assumed to contain text <i>only</i>. So, for
          * example, given XML such as "&lt;title&gt;Good &amp;amp;
@@ -890,7 +890,7 @@ class Element : Item
          * Params:
          *      mode = (optional) Mode to use for decoding. (Defaults to LOOSE).
          *
-         * Throws: DecodeException if decode fails
+         * Выводит исключение: DecodeException if decode fails
          */
         string text(DecodeMode mode=DecodeMode.LOOSE)
         {
@@ -905,7 +905,7 @@ class Element : Item
         }
 
         /**
-         * Returns an indented string representation of this item
+         * Возвращаетs an indented string representation of this item
          *
          * Params:
          *      indent = (optional) number of spaces by which to indent this
@@ -939,9 +939,9 @@ class Element : Item
         }
 
         /**
-         * Returns the string representation of an Element
+         * Возвращаетs the string representation of an Element
          *
-         * Examples:
+         * Примеры:
          * --------------
          * auto element = new Element("br");
          * writefln(element.toString()); // writes "<br />"
@@ -972,7 +972,7 @@ class Element : Item
 enum TagType { START, END, EMPTY }
 
 /**
- * Class representing an XML tag.
+ * Класс representing an XML tag.
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -1023,7 +1023,7 @@ class Tag
      *      type = (optional) the Tag's type. If omitted, defaults to
      *          TagType.START.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto tag = new Tag("img",Tag.EMPTY);
      * tag.attr["src"] = "http://example.com/example.jpg";
@@ -1089,7 +1089,7 @@ class Tag
          * You should rarely need to call this function. It exists so that Tags
          * can be used as associative array keys.
          *
-         * Examples:
+         * Примеры:
          * --------------
          * Tag tag1,tag2
          * if (tag1 == tag2) { }
@@ -1108,7 +1108,7 @@ class Tag
         /**
          * Compares two Tags
          *
-         * Examples:
+         * Примеры:
          * --------------
          * Tag tag1,tag2
          * if (tag1 < tag2) { }
@@ -1126,7 +1126,7 @@ class Tag
         }
 
         /**
-         * Returns the hash of a Tag
+         * Возвращаетs the hash of a Tag
          *
          * You should rarely need to call this function. It exists so that Tags
          * can be used as associative array keys.
@@ -1137,9 +1137,9 @@ class Tag
         }
 
         /**
-         * Returns the string representation of a Tag
+         * Возвращаетs the string representation of a Tag
          *
-         * Examples:
+         * Примеры:
          * --------------
          * auto tag = new Tag("book",TagType.START);
          * writefln(tag.toString()); // writes "<book>"
@@ -1169,9 +1169,9 @@ class Tag
         }
 
         /**
-         * Returns true if the Tag is a start tag
+         * Возвращаетs true if the Tag is a start tag
          *
-         * Examples:
+         * Примеры:
          * --------------
          * if (tag.isStart) { }
          * --------------
@@ -1179,9 +1179,9 @@ class Tag
         @property bool isStart() { return type == TagType.START; }
 
         /**
-         * Returns true if the Tag is an end tag
+         * Возвращаетs true if the Tag is an end tag
          *
-         * Examples:
+         * Примеры:
          * --------------
          * if (tag.isEnd) { }
          * --------------
@@ -1189,9 +1189,9 @@ class Tag
         @property bool isEnd()   { return type == TagType.END;   }
 
         /**
-         * Returns true if the Tag is an empty tag
+         * Возвращаетs true if the Tag is an empty tag
          *
-         * Examples:
+         * Примеры:
          * --------------
          * if (tag.isEmpty) { }
          * --------------
@@ -1201,7 +1201,7 @@ class Tag
 }
 
 /**
- * Class representing a comment
+ * Класс representing a comment
  */
 class Comment : Item
 {
@@ -1213,10 +1213,10 @@ class Comment : Item
      * Params:
      *      content = the body of the comment
      *
-     * Throws: CommentException if the comment body is illegal (contains "--"
+     * Выводит исключение: CommentException if the comment body is illegal (contains "--"
      * or exactly equals "-")
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto item = new Comment("This is a comment");
      *    // constructs <!--This is a comment-->
@@ -1232,7 +1232,7 @@ class Comment : Item
     /**
      * Compares two comments for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Comment item1,item2;
      * if (item1 == item2) { }
@@ -1251,7 +1251,7 @@ class Comment : Item
      * You should rarely need to call this function. It exists so that Comments
      * can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Comment item1,item2;
      * if (item1 < item2) { }
@@ -1266,7 +1266,7 @@ class Comment : Item
     }
 
     /**
-     * Returns the hash of a Comment
+     * Возвращаетs the hash of a Comment
      *
      * You should rarely need to call this function. It exists so that Comments
      * can be used as associative array keys.
@@ -1274,7 +1274,7 @@ class Comment : Item
     override size_t toHash() const { return hash(content); }
 
     /**
-     * Returns a string representation of this comment
+     * Возвращаетs a string representation of this comment
      */
     override string toString() const { return "<!--" ~ content ~ "-->"; }
 
@@ -1282,7 +1282,7 @@ class Comment : Item
 }
 
 /**
- * Class representing a Character Data section
+ * Класс representing a Character Data section
  */
 class CData : Item
 {
@@ -1294,9 +1294,9 @@ class CData : Item
      * Params:
      *      content = the body of the character data segment
      *
-     * Throws: CDataException if the segment body is illegal (contains "]]>")
+     * Выводит исключение: CDataException if the segment body is illegal (contains "]]>")
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto item = new CData("<b>hello</b>");
      *    // constructs <![CDATA[<b>hello</b>]]>
@@ -1311,7 +1311,7 @@ class CData : Item
     /**
      * Compares two CDatas for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * CData item1,item2;
      * if (item1 == item2) { }
@@ -1330,7 +1330,7 @@ class CData : Item
      * You should rarely need to call this function. It exists so that CDatas
      * can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * CData item1,item2;
      * if (item1 < item2) { }
@@ -1345,7 +1345,7 @@ class CData : Item
     }
 
     /**
-     * Returns the hash of a CData
+     * Возвращаетs the hash of a CData
      *
      * You should rarely need to call this function. It exists so that CDatas
      * can be used as associative array keys.
@@ -1353,7 +1353,7 @@ class CData : Item
     override size_t toHash() const { return hash(content); }
 
     /**
-     * Returns a string representation of this CData section
+     * Возвращаетs a string representation of this CData section
      */
     override string toString() const { return cdata ~ content ~ "]]>"; }
 
@@ -1361,7 +1361,7 @@ class CData : Item
 }
 
 /**
- * Class representing a text (aka Parsed Character Data) section
+ * Класс representing a text (aka Parsed Character Data) section
  */
 class Text : Item
 {
@@ -1371,10 +1371,10 @@ class Text : Item
      * Construct a text (aka PCData) section
      *
      * Params:
-     *      content = the text. This function encodes the text before
+     *      content = the text. This function encodes the text перед
      *      insertion, so it is safe to insert any text
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto Text = new CData("a < b");
      *    // constructs a &lt; b
@@ -1388,7 +1388,7 @@ class Text : Item
     /**
      * Compares two text sections for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Text item1,item2;
      * if (item1 == item2) { }
@@ -1407,7 +1407,7 @@ class Text : Item
      * You should rarely need to call this function. It exists so that Texts
      * can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * Text item1,item2;
      * if (item1 < item2) { }
@@ -1422,7 +1422,7 @@ class Text : Item
     }
 
     /**
-     * Returns the hash of a text section
+     * Возвращаетs the hash of a text section
      *
      * You should rarely need to call this function. It exists so that Texts
      * can be used as associative array keys.
@@ -1430,18 +1430,18 @@ class Text : Item
     override size_t toHash() const { return hash(content); }
 
     /**
-     * Returns a string representation of this Text section
+     * Возвращаетs a string representation of this Text section
      */
     override string toString() const { return content; }
 
     /**
-     * Returns true if the content is the empty string
+     * Возвращаетs true if the content is the empty string
      */
     override @property bool isEmptyXML() const { return content.length == 0; }
 }
 
 /**
- * Class representing an XML Instruction section
+ * Класс representing an XML Instruction section
  */
 class XMLInstruction : Item
 {
@@ -1453,9 +1453,9 @@ class XMLInstruction : Item
      * Params:
      *      content = the body of the instruction segment
      *
-     * Throws: XIException if the segment body is illegal (contains ">")
+     * Выводит исключение: XIException if the segment body is illegal (contains ">")
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto item = new XMLInstruction("ATTLIST");
      *    // constructs <!ATTLIST>
@@ -1470,7 +1470,7 @@ class XMLInstruction : Item
     /**
      * Compares two XML instructions for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * XMLInstruction item1,item2;
      * if (item1 == item2) { }
@@ -1489,7 +1489,7 @@ class XMLInstruction : Item
      * You should rarely need to call this function. It exists so that
      * XmlInstructions can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * XMLInstruction item1,item2;
      * if (item1 < item2) { }
@@ -1504,7 +1504,7 @@ class XMLInstruction : Item
     }
 
     /**
-     * Returns the hash of an XMLInstruction
+     * Возвращаетs the hash of an XMLInstruction
      *
      * You should rarely need to call this function. It exists so that
      * XmlInstructions can be used as associative array keys.
@@ -1512,7 +1512,7 @@ class XMLInstruction : Item
     override size_t toHash() const { return hash(content); }
 
     /**
-     * Returns a string representation of this XmlInstruction
+     * Возвращаетs a string representation of this XmlInstruction
      */
     override string toString() const { return "<!" ~ content ~ ">"; }
 
@@ -1520,7 +1520,7 @@ class XMLInstruction : Item
 }
 
 /**
- * Class representing a Processing Instruction section
+ * Класс representing a Processing Instruction section
  */
 class ProcessingInstruction : Item
 {
@@ -1532,9 +1532,9 @@ class ProcessingInstruction : Item
      * Params:
      *      content = the body of the instruction segment
      *
-     * Throws: PIException if the segment body is illegal (contains "?>")
+     * Выводит исключение: PIException if the segment body is illegal (contains "?>")
      *
-     * Examples:
+     * Примеры:
      * --------------
      * auto item = new ProcessingInstruction("php");
      *    // constructs <?php?>
@@ -1549,7 +1549,7 @@ class ProcessingInstruction : Item
     /**
      * Compares two processing instructions for equality
      *
-     * Examples:
+     * Примеры:
      * --------------
      * ProcessingInstruction item1,item2;
      * if (item1 == item2) { }
@@ -1568,7 +1568,7 @@ class ProcessingInstruction : Item
      * You should rarely need to call this function. It exists so that
      * ProcessingInstructions can be used as associative array keys.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * ProcessingInstruction item1,item2;
      * if (item1 < item2) { }
@@ -1583,7 +1583,7 @@ class ProcessingInstruction : Item
     }
 
     /**
-     * Returns the hash of a ProcessingInstruction
+     * Возвращаетs the hash of a ProcessingInstruction
      *
      * You should rarely need to call this function. It exists so that
      * ProcessingInstructions can be used as associative array keys.
@@ -1591,7 +1591,7 @@ class ProcessingInstruction : Item
     override size_t toHash() const { return hash(content); }
 
     /**
-     * Returns a string representation of this ProcessingInstruction
+     * Возвращаетs a string representation of this ProcessingInstruction
      */
     override string toString() const { return "<?" ~ content ~ "?>"; }
 
@@ -1616,7 +1616,7 @@ abstract class Item
     abstract override string toString() const;
 
     /**
-     * Returns an indented string representation of this item
+     * Возвращаетs an indented string representation of this item
      *
      * Params:
      *      indent = number of spaces by which to indent child elements
@@ -1632,7 +1632,7 @@ abstract class Item
 }
 
 /**
- * Class for parsing an XML Document.
+ * Класс for parsing an XML Document.
  *
  * This is a subclass of ElementParser. Most of the useful functions are
  * documented there.
@@ -1656,17 +1656,17 @@ class DocumentParser : ElementParser
      * This is enforced by the function's in contract.
      *
      * Params:
-     *      xmlText_ = the entire XML document as text
+     *      xmlTрасш_ = the entire XML document as text
      *
      */
-    this(string xmlText_)
+    this(string xmlTрасш_)
     in
     {
-        assert(xmlText_.length != 0);
+        assert(xmlTрасш_.length != 0);
         try
         {
             // Confirm that the input is valid XML
-            check(xmlText_);
+            check(xmlTрасш_);
         }
         catch (CheckException e)
         {
@@ -1676,7 +1676,7 @@ class DocumentParser : ElementParser
     }
     body
     {
-        xmlText = xmlText_;
+        xmlText = xmlTрасш_;
         s = &xmlText;
         super();    // Initialize everything
         parse();    // Parse through the root tag (but not beyond)
@@ -1684,7 +1684,7 @@ class DocumentParser : ElementParser
 }
 
 /**
- * Class for parsing an XML element.
+ * Класс for parsing an XML element.
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -1742,7 +1742,7 @@ class ElementParser
      * the name, in which case the handler will be called for any unmatched
      * start tag.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever a <podcast> start tag is encountered
      * onStartTag["podcast"] = (ElementParser xml)
@@ -1763,7 +1763,7 @@ class ElementParser
      *
      * This library will supply your function with a new instance of
      * ElementHandler, which may be used to parse inside the element whose
-     * start tag was just found, or to identify the tag attributes of the
+     * start tag was just found, либо to identify the tag attributes of the
      * element, etc.
      *
      * Note that your function will be called for both start tags and empty
@@ -1778,7 +1778,7 @@ class ElementParser
      * the name, in which case the handler will be called for any unmatched
      * end tag.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever a </podcast> end tag is encountered
      * onEndTag["podcast"] = (in Element e)
@@ -1811,7 +1811,7 @@ class ElementParser
     /**
      * Register a handler which will be called whenever text is encountered.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever text is encountered
      * onText = (string s)
@@ -1838,7 +1838,7 @@ class ElementParser
      * probably want to use onTextRaw only in circumstances where you
      * know that decoding is unnecessary.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever text is encountered
      * onText = (string s)
@@ -1858,7 +1858,7 @@ class ElementParser
      * Register a handler which will be called whenever a character data
      * segment is encountered.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever a CData section is encountered
      * onCData = (string s)
@@ -1879,7 +1879,7 @@ class ElementParser
      * Register a handler which will be called whenever a comment is
      * encountered.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever a comment is encountered
      * onComment = (string s)
@@ -1900,7 +1900,7 @@ class ElementParser
      * Register a handler which will be called whenever a processing
      * instruction is encountered.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever a processing instruction is encountered
      * onPI = (string s)
@@ -1921,7 +1921,7 @@ class ElementParser
      * Register a handler which will be called whenever an XML instruction is
      * encountered.
      *
-     * Examples:
+     * Примеры:
      * --------------
      * // Call this function whenever an XML instruction is encountered
      * // (Note: XML instructions may only occur preceding the root tag of a
@@ -1947,7 +1947,7 @@ class ElementParser
      * encountered for which a handler has been registered will invoke that
      * handler.
      *
-     * Throws: various kinds of XMLException
+     * Выводит исключение: various kinds of XMLException
      */
     void parse()
     {
@@ -2073,7 +2073,7 @@ class ElementParser
     }
 
     /**
-     * Returns that part of the element which has already been parsed
+     * Возвращаетs that part of the element which has already been parsed
      */
     override string toString() const
     {
@@ -2622,7 +2622,7 @@ private
  * Params:
  *      s = the document to be checked, passed as a string
  *
- * Throws: CheckException if the document is not well formed
+ * Выводит исключение: CheckException if the document is not well formed
  *
  * CheckException's toString() method will yield the complete hierarchy of
  * parse failure (the XML equivalent of a stack trace), giving the line and

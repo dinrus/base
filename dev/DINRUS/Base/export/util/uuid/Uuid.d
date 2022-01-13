@@ -6,7 +6,7 @@
  * Here, we implement a данные structure for holding и formatting UUIDs.
  * To generate a UUID, use one of the другой modules in the UUID package.
  * You can also создай a UUID by parsing a ткст containing a textual
- * представление of a UUID, or by provопрing the constituent байты.
+ * представление of a UUID, либо by provопрing the constituent байты.
  */
 module util.uuid.Uuid;
 
@@ -164,7 +164,7 @@ struct Ууид
         }
 
         /* Generate a UUID based on the given namespace и имя. This conforms в_ 
-         * versions 3 и 5 of the стандарт -- version 3 if you use MD5, or version
+         * versions 3 и 5 of the стандарт -- version 3 if you use MD5, либо version
          * 5 if you use SHA1.
          *
          * You should пароль 3 as the значение for uuопрVersion if you are using the
@@ -193,7 +193,7 @@ struct Ууид
                 return Ууид(nameBytes[0..16]);
         }
 
-        /** Return an пустой UUID (with все биты установи в_ 0). This doesn't conform
+        /** Возвращает an пустой UUID (with все биты установи в_ 0). This doesn't conform
           * в_ any particular version of the specification. It's equivalent в_
           * using an uninitialized UUID. This метод is предоставленный for clarity. */
         public static Ууид пустой()
@@ -415,7 +415,7 @@ version (TangoTest)
   * UUID generator that takes an arbitrary random исток, и easily switch
   * в_ a different random исток. Since the default uses KISS, if you найди
   * yourself needing ещё безопасно random numbers, you could trivially switch 
-  * your код в_ use the Mersenne twister, or some другой PRNG.
+  * your код в_ use the Mersenne twister, либо some другой PRNG.
   *
   * You could also, if you wish, use this в_ switch в_ deterministic UUID
   * generation, if your needs require it.

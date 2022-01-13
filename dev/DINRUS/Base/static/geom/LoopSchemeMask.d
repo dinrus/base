@@ -4,7 +4,7 @@ module geom.LoopSchemeMask;
 import tpl.singleton;
 import base, Мт = geom.MathDefs;
 
-/** implements кэш for the weights of the original Loop схема
+/** Реализует кэш for the weights of the original Loop схема
     supports:
     $(UL
       $(LI vertex projection rule on the next level)

@@ -46,7 +46,7 @@ extern(D) package abstract class Sha01 : МерклеДамгард
 
                 Примечания:
                 Возвращает дайджест of the текущ cipher состояние, this may be the
-                final дайджест, or a дайджест of the состояние between calls в_ обнови()
+                final дайджест, либо a дайджест of the состояние between calls в_ обнови()
 
         ***********************************************************************/
 

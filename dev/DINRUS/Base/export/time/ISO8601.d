@@ -689,7 +689,7 @@ private:
         if (!парсируйЦел(p, мин(cast(т_мера)(развёрнуто + 4), длин), год))
             return нет;
 
-        // it's Y{развёрнуто}YY, Y{развёрнуто}YYYY, or unacceptable
+        // it's Y{развёрнуто}YY, Y{развёрнуто}YYYY, либо unacceptable
 
         if (p - p2 - развёрнуто == 2)
             год *= 100;

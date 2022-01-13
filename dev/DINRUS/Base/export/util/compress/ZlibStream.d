@@ -186,7 +186,7 @@ class ВводЗлиб : ФильтрВвода
             zfree = пусто;
             opaque = пусто;
             avail_in = 0;
-            next_in = пусто;
+            nрасш_in = пусто;
         }
 
         auto возвр = inflateInit2(&zs, окноБиты);
@@ -240,12 +240,12 @@ class ВводЗлиб : ФильтрВвода
                 return ИПровод.Кф;
 
             zs.avail_in = длин;
-            zs.next_in = in_chunk.ptr;
+            zs.nрасш_in = in_chunk.ptr;
         }
 
         // We'll tell zlib в_ inflate straight преобр_в the мишень Массив.
         zs.avail_out = приёмн.length;
-        zs.next_out = cast(ббайт*)приёмн.ptr;
+        zs.nрасш_out = cast(ббайт*)приёмн.ptr;
         auto возвр = inflate(&zs, Z_NO_FLUSH);
 
         switch( возвр )
@@ -498,19 +498,19 @@ class ВыводЗлиб : ФильтрВывода
         scope(failure) туши_зп();
 
         zs.avail_in = ист.length;
-        zs.next_in = cast(ббайт*)ист.ptr;
+        zs.nрасш_in = cast(ббайт*)ист.ptr;
 
         do
         {
             zs.avail_out = out_chunk.length;
-            zs.next_out = out_chunk.ptr;
+            zs.nрасш_out = out_chunk.ptr;
 
             auto возвр = deflate(&zs, Z_NO_FLUSH);
             if( возвр == Z_STREAM_ERROR )
                 throw new ИсклЗлиб(возвр);
 
             // Push the compressed байты out в_ the поток, until it's either
-            // записано them все, or choked.
+            // записано them все, либо choked.
             auto have = out_chunk.length-zs.avail_out;
             auto out_buffer = out_chunk[0..have];
             do
@@ -575,14 +575,14 @@ class ВыводЗлиб : ФильтрВывода
         scope(failure) туши_зп();
 
         zs.avail_in = 0;
-        zs.next_in = пусто;
+        zs.nрасш_in = пусто;
 
         бул завершено = нет;
 
         do
         {
             zs.avail_out = out_chunk.length;
-            zs.next_out = out_chunk.ptr;
+            zs.nрасш_out = out_chunk.ptr;
 
             auto возвр = deflate(&zs, Z_FINISH);
             switch( возвр )
@@ -644,7 +644,7 @@ class ВыводЗлиб : ФильтрВывода
   
     This исключение is thrown if you attempt в_ выполни a читай, пиши or слей
     operation on a закрыт zlib фильтр поток.  This can occur if the ввод
-    поток есть завершено, or an вывод поток was flushed.
+    поток есть завершено, либо an вывод поток was flushed.
 
 *******************************************************************************/
 

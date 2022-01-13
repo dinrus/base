@@ -1,15 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: Oct 2007
-
-        author:         Kris
-
-*******************************************************************************/
-
+﻿
 module io.stream.Format;
 
 private import io.device.Conduit;
@@ -18,13 +7,13 @@ private import text.convert.Layout;
 
 /*******************************************************************************
 
-        Мост между экземпляром Выкладка экземпляр и потоком. This is used for
-        the Стдвыв & Стдош globals, but can be used for general purpose
-        буфер-formatting as desired. The Template тип 'T' dictates the
-        текст arrangement внутри the мишень буфер ~ one of сим, шим or
-        дим (utf8, utf16, or utf32).
+        Мост между экземпляром Выкладка и потоком. Используется для глобальных
+        Стдвыв & Стдош, но может использоваться при желании для общецелевого
+        буферного форматирования. Шаблонный тип 'T' диктует размещение
+        текста внутри целевого буфера ~ либо сим, либо шим или
+        дим (utf8, utf16, либо utf32).
 
-        ФормВывод exposes this стиль of usage:
+        ФормВывод используется в следующем стиле:
         ---
         auto выведи = new ФормВывод!(сим) (...);
 
@@ -43,13 +32,13 @@ private import text.convert.Layout;
         выведи.форматируй ("abc ", 1);               => abc
         ---
 
-        Note that the последний example does not throw an исключение. There
-        are several use-cases where dropping an аргумент is legitimate,
-        so we're currently not enforcing any particular trap mechanism.
+        Заметьте, что последний пример не выводит исключений. Есть
+        нечсколько случаев использования, в которых можно опустить аргумент,
+        в таком случае мы не активируем никаких механизмов захвата.
 
-        Flushing the вывод is achieved through the слей() метод, or
-        via an пустой pair of parens:
-        ---
+        Слив вывода достигается методом слей(), либо посредством
+        пустой пары скобок :
+         ---
         выведи ("hello world") ();
         выведи ("hello world").слей;
 
@@ -57,9 +46,9 @@ private import text.convert.Layout;
         выведи.форматируй ("hello {}", "world").слей;
         ---
 
-        Special character sequences, such as "\n", are записано directly в_
-        the вывод without any translation (though an вывод-фильтр could
-        be inserted в_ выполни translation as требуется). Platform-specific
+        Особые символьные последовательности, такие как "\n", записываются прямо в
+        вывод без како-либо трансляции (хотя можно ввести фильтр вывода
+        для выполнения этого, при необходимости).Платформо-специфичные
         newlines are generated instead via the нс() метод, which also
         flushes the вывод when configured в_ do so:
         ---
@@ -86,6 +75,7 @@ private import text.convert.Layout;
 class ФормВывод(T) : ФильтрВывода
 {
     public  alias ФильтрВывода.слей слей;
+	//public  alias ФильтрВывода.вывод сток;
 
     private T[]             кс;
     private Выкладка!(T)      преобразуй;

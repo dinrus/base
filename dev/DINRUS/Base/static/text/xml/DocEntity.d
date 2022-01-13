@@ -160,10 +160,10 @@ T[] изСущности (T) (T[] ист, T[] приёмн = пусто)
 
         Convert reserved симвы в_ entities. For example: " => &quot; 
 
-        Either a срез of the предоставленный вывод буфер is returned, or the 
+        Either a срез of the предоставленный вывод буфер is returned, либо the 
         original контент, depending on whether there were reserved симвы
         present or not. The вывод буфер should be sufficiently large в_  
-        accomodate the преобразованый вывод, or it will be allocated из_ the 
+        accomodate the преобразованый вывод, либо it will be allocated из_ the 
         куча instead 
         
 ******************************************************************************/

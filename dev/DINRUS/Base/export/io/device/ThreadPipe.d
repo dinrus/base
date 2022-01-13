@@ -2,7 +2,8 @@
 
 private import io.device.Conduit;
 
-class ПайпНить : Провод
+extern(D)
+ class ПайпНить : Провод
 {
     /**
      * Создаёт новый ПайпНить с заданным размером буфера.
@@ -37,12 +38,12 @@ class ПайпНить : Провод
     override бул жив_ли();
 
     /**
-     * Return the число of байты остаток to be читай in the circular buffer.
+     * Возвращает the число of байты остаток to be читай in the circular buffer.
      */
     т_мера остаток();
 
     /**
-     * Return the число of байты that can be written to the circular buffer.
+     * Возвращает the число of байты that can be written to the circular buffer.
      */
     т_мера записываемо();
 

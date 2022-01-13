@@ -1287,7 +1287,7 @@ private final class TNFA(т_сим)
     **********************************************************************************************/
     this(т_ткст regex)
     {
-        next_tag        = 1;
+        nрасш_tag        = 1;
         transitions     = new Список!(trans_t);
 
         образец = regex;
@@ -1319,7 +1319,7 @@ private final class TNFA(т_сим)
 
     бцел tagCount()
     {
-        return next_tag-1;
+        return nрасш_tag-1;
     }
 
     /* ********************************************************************************************
@@ -1338,23 +1338,23 @@ private final class TNFA(т_сим)
         /* ****************************************************************************************
             Perform action on operator стэк
         ******************************************************************************************/
-        бул выполни(Оператор next_op, бул explicit_operator=да)
+        бул выполни(Оператор nрасш_op, бул explicit_operator=да)
         {
             // calculate индекс in action matrix
             цел индекс = cast(цел)opСтэк.верх*(Оператор.max+1);
-            индекс += cast(цел)next_op;
+            индекс += cast(цел)nрасш_op;
 
             debug(tnfa) Стдвыв.форматнс("\t{}:{} -> {}  {} frag(s)",
-                    operator_names[opСтэк.верх], operator_names[next_op], action_names[action_lookup[индекс]], фраги.length
+                    operator_names[opСтэк.верх], operator_names[nрасш_op], action_names[action_lookup[индекс]], фраги.length
                                                      );
             switch ( action_lookup[индекс] )
             {
             case Act.pua:
-                opСтэк ~= next_op;
-                if ( next_op == Оператор.open_par )
+                opСтэк ~= nрасш_op;
+                if ( nрасш_op == Оператор.open_par )
                 {
-                    тэгСтэк ~= next_tag;
-                    next_tag += 2;
+                    тэгСтэк ~= nрасш_tag;
+                    nрасш_tag += 2;
                 }
                 break;
             case Act.poc:
@@ -1406,7 +1406,7 @@ private final class TNFA(т_сим)
                 }
                 opСтэк.вынь;
 
-                выполни(next_op, нет);
+                выполни(nрасш_op, нет);
                 break;
             case Act.poa:
                 opСтэк.вынь;
@@ -1735,9 +1735,9 @@ private final class TNFA(т_сим)
     }
 
 private:
-    бцел            next_tag;
+    бцел            nрасш_tag;
     т_мера          cursor,
-    next_cursor;
+    nрасш_cursor;
     Список!(trans_t)  transitions;
 
     state_t[state_t]    clonedStates;
@@ -1786,7 +1786,7 @@ private:
 
     final дим ПросмотрPattern()
     {
-        auto врем = next_cursor;
+        auto врем = nрасш_cursor;
         if ( врем < образец.length )
             return раскодируй(образец, врем);
         return 0;
@@ -1794,15 +1794,15 @@ private:
 
     final дим readPattern()
     {
-        cursor = next_cursor;
-        if ( next_cursor < образец.length )
-            return раскодируй(образец, next_cursor);
+        cursor = nрасш_cursor;
+        if ( nрасш_cursor < образец.length )
+            return раскодируй(образец, nрасш_cursor);
         return 0;
     }
 
     final бул endOfPattern()
     {
-        return next_cursor >= образец.length;
+        return nрасш_cursor >= образец.length;
     }
 
     state_t добавьСостояние()
@@ -2395,12 +2395,12 @@ private class TDFA(т_сим)
             {
                 Transition[] врем;
                 врем.length = transitions.length - remove_indeces.length;
-                т_мера next_remove, следщ;
+                т_мера nрасш_remove, следщ;
                 foreach ( i, t; transitions )
                 {
-                    if ( next_remove < remove_indeces.length && remove_indeces[next_remove] == i )
+                    if ( nрасш_remove < remove_indeces.length && remove_indeces[nрасш_remove] == i )
                     {
-                        ++next_remove;
+                        ++nрасш_remove;
                         continue;
                     }
                     врем[следщ++] = t;
@@ -2508,11 +2508,11 @@ Louter:
     бцел        num_tags;
 
     бцел[TagIndex]  registers;
-    бцел            next_register;
+    бцел            nрасш_register;
 
     бцел num_regs()
     {
-        return next_register;
+        return nрасш_register;
     }
 
     /* ********************************************************************************************
@@ -2522,7 +2522,7 @@ Louter:
     {
         num_tags        = tnfa.tagCount;
 
-        next_register   = num_tags;
+        nрасш_register   = num_tags;
         for ( цел i = 1; i <= num_tags; ++i )
         {
             TagIndex иот;
@@ -2674,15 +2674,15 @@ Louter:
         // renumber registers continuously
         бцел[бцел]  regNums;
 
-        for ( next_register = 0; next_register < num_tags; ++next_register )
-            regNums[next_register] = next_register;
+        for ( nрасш_register = 0; nрасш_register < num_tags; ++nрасш_register )
+            regNums[nрасш_register] = nрасш_register;
 
         проц renumberCommand(ref Command cmd)
         {
             if ( cmd.ист != CURRENT_POSITION_REGISTER && (cmd.ист in regNums) is пусто )
-                regNums[cmd.ист] = next_register++;
+                regNums[cmd.ист] = nрасш_register++;
             if ( (cmd.приёмн in regNums) is пусто )
-                regNums[cmd.приёмн] = next_register++;
+                regNums[cmd.приёмн] = nрасш_register++;
             if ( cmd.ист != CURRENT_POSITION_REGISTER )
                 cmd.ист = regNums[cmd.ист];
             cmd.приёмн = regNums[cmd.приёмн];
@@ -2922,7 +2922,7 @@ private:
             бцел* i = иот in registers;
             if ( i !is пусто )
                 return *i;
-            return registers[иот] = next_register++;
+            return registers[иот] = nрасш_register++;
         }
         else
             return тэг-1;
@@ -3012,7 +3012,7 @@ private:
                     continue;
                 конец = m.c;
                 // the следщ range cannot старт at the same поз
-                // because начинается are sorted before endings
+                // because начинается are sorted перед endings
                 if ( активное > 0 )
                     ++m.c;
             }
@@ -3399,7 +3399,7 @@ sluiLoop:
                     в_ =        existing SubsetState that we want в_ re-use
                     previous =  SubsetState we're coming из_
                     trans =     Transition we went along
-        Возвращает:    да if "из_" is тэг-wise опрentical в_ "в_" и the necessary commands have
+        Возвращает:    да, если "из_" is тэг-wise опрentical в_ "в_" и the necessary commands have
                     been добавьed в_ "trans"
     **********************************************************************************************/
     бул reorderTagIndeces(SubsetState из_, SubsetState в_, SubsetState previous, Transition trans)
@@ -3501,7 +3501,7 @@ Louter:
     проц generateFinishers(SubsetState r)
     {
         // if at least one of the TNFA states accepts,
-        // установи the finishers из_ активное tags in increasing priority
+        // Устанавливает finishers из_ активное tags in increasing priority
         StateElement[]  sorted_elms = r.elms.dup.sort;
         бул reluctant = нет;
         foreach ( se; sorted_elms )
@@ -3707,7 +3707,7 @@ class RegExpT(т_сим)
         Construct a RegExpT объект.
         Параметры:
             образец = Regular expression.
-        Throws: ИсклРегВыр if there are any compilation ошибки.
+        Выводит исключение: ИсклРегВыр if there are any compilation ошибки.
         Пример:
             Declare two variables и присвой в_ them a Regex объект:
             ---
@@ -3753,7 +3753,7 @@ class RegExpT(т_сим)
         Generate экземпляр of Regex.
         Параметры:
             образец = Regular expression.
-        Throws: ИсклРегВыр if there are any compilation ошибки.
+        Выводит исключение: ИсклРегВыр if there are any compilation ошибки.
         Пример:
             Declare two variables и присвой в_ them a Regex объект:
             ---
@@ -3789,7 +3789,7 @@ class RegExpT(т_сим)
     public RegExpT!(т_сим) ищи(т_сим[] ввод)
     {
         input_ = ввод;
-        next_start_ = 0;
+        nрасш_start_ = 0;
         last_start_ = 0;
         return this;
     }
@@ -3810,7 +3810,7 @@ class RegExpT(т_сим)
     бул тест(т_сим[] ввод)
     {
         this.input_ = ввод;
-        next_start_ = 0;
+        nрасш_start_ = 0;
         last_start_ = 0;
         return тест();
     }
@@ -3831,19 +3831,19 @@ class RegExpT(т_сим)
         }
 
         // DFA execution
-        auto inp = input_[next_start_ .. $];
+        auto inp = input_[nрасш_start_ .. $];
         auto s = tdfa_.старт;
 
         debug(TangoRegex) Стдвыв.форматнс("{}{}: {}", s.прими?"*":" ", s.индекс, inp);
 LmainLoop:
-        for ( т_мера p, next_p; p < inp.length; )
+        for ( т_мера p, nрасш_p; p < inp.length; )
         {
 Lread_char:
             дим c = cast(дим)inp[p];
             if ( c & 0x80 )
-                c = раскодируй(inp, next_p);
+                c = раскодируй(inp, nрасш_p);
             else
-                next_p = p+1;
+                nрасш_p = p+1;
 
 Lprocess_char:
             debug(TangoRegex) Стдвыв.форматнс("{} (0x{:x})", c, cast(цел)c);
@@ -3966,7 +3966,7 @@ Ltrans_loop:
                 }
 
 Lconsume:
-                p = next_p;
+                p = nрасш_p;
 Lno_consume:
 
                 s = t.мишень;
@@ -4010,8 +4010,8 @@ Laccept:
             }
             if ( registers_.length > 1 && registers_[1] >= 0 )
             {
-                last_start_ = next_start_;
-                next_start_ += registers_[1];
+                last_start_ = nрасш_start_;
+                nрасш_start_ += registers_[1];
             }
             return да;
         }
@@ -4024,7 +4024,7 @@ Laccept:
         Параметры:
             индекс   индекс = 0 returns whole сверь, индекс > 0 returns submatch of bracket #индекс
         Возвращает:
-            Slice of ввод for the requested submatch, or пусто if no such submatch есть_ли.
+            Slice of ввод for the requested submatch, либо пусто if no such submatch есть_ли.
     **********************************************************************************************/
     т_сим[] сверь(бцел индекс)
     {
@@ -4062,7 +4062,7 @@ Laccept:
     т_сим[] post()
     {
         if ( registers_[1] >= 0 )
-            return input_[next_start_ .. $];
+            return input_[nрасш_start_ .. $];
         return input_[last_start_ .. $];
     }
 
@@ -4265,9 +4265,9 @@ Laccept:
             код ~= ";";
         }
 
-        код ~= "\n\n    for ( т_мера p, next_p; p < ввод.length; )\n    {";
-        код ~= "\n        дим c = cast(дим)ввод[p];\n        if ( c & 0x80 )\n            раскодируй(ввод, next_p);";
-        код ~= "\n        else\n            next_p = p+1;\n        switch ( s )\n        {";
+        код ~= "\n\n    for ( т_мера p, nрасш_p; p < ввод.length; )\n    {";
+        код ~= "\n        дим c = cast(дим)ввод[p];\n        if ( c & 0x80 )\n            раскодируй(ввод, nрасш_p);";
+        код ~= "\n        else\n            nрасш_p = p+1;\n        switch ( s )\n        {";
 
         бцел[] finish_states;
         foreach ( s; tdfa_.states )
@@ -4327,7 +4327,7 @@ Laccept:
                 код ~= Формат.преобразуй(" ) {{\n                    s = {};", t.мишень.индекс);
 
                 if ( t.predicate.тип == typeof(t.predicate.тип).используй )
-                    код ~= "\n                    p = next_p;";
+                    код ~= "\n                    p = nрасш_p;";
                 foreach ( cmd; t.commands )
                 код ~= compileCommand(cmd, "                    ");
                 /*
@@ -4438,7 +4438,7 @@ Laccept:
     }
 
     цел[]       registers_;
-    т_мера      next_start_,
+    т_мера      nрасш_start_,
     last_start_;
 
     debug(TangoRegex) tnfa_t tnfa_;

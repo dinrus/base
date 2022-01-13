@@ -1,6 +1,6 @@
 ﻿module tstrandom;
 
-private import runtime,math.linalg.random, sys.Common, stdrus: пз;
+private import runtime,math.linalg.random, sys.common, stdrus: пз;
 
 extern(C) проц выход(цел);
 

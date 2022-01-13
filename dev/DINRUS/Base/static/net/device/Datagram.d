@@ -17,7 +17,7 @@ package import net.device.Socket, net.device.Berkeley;
 
 /*******************************************************************************
         
-        Datagrams provопрe a low-overhead, non-reliable данные transmission
+        Datagrams предоставляет a low-overhead, non-reliable данные transmission
         mechanism.
 
         Datagrams are not 'подключен' in the same manner as a ПУТ сокет; you
@@ -53,10 +53,10 @@ class Датаграмма : Сокет
         /***********************************************************************
 
                 Populate the предоставленный Массив из_ the сокет. This will stall
-                until some данные is available, or a таймаут occurs. We assume 
+                until some данные is available, либо a таймаут occurs. We assume 
                 the datagram имеется been подключен.
 
-                Возвращает the число of байты читай в_ the вывод, or Кф if
+                Возвращает the число of байты читай в_ the вывод, либо Кф if
                 the сокет cannot читай
 
         ***********************************************************************/
@@ -73,7 +73,7 @@ class Датаграмма : Сокет
                 origin of the incoming данные. Note that we employ the таймаут
                 mechanics exposed via our Сокет superclass. 
 
-                Возвращает the число of байты читай из_ the ввод, or Кф if
+                Возвращает the число of байты читай из_ the ввод, либо Кф if
                 the сокет cannot читай
 
         ***********************************************************************/
@@ -98,7 +98,7 @@ class Датаграмма : Сокет
                 until the сокет responds in some manner. We assume the 
                 datagram имеется been подключен.
 
-                Возвращает the число of байты sent в_ the вывод, or Кф if
+                Возвращает the число of байты sent в_ the вывод, либо Кф if
                 the сокет cannot пиши
 
         ***********************************************************************/
@@ -113,7 +113,7 @@ class Датаграмма : Сокет
                 Зап an Массив в_ the specified адрес. If адрес 'в_' is
                 пусто, it is assumed the сокет имеется been подключен instead.
 
-                Возвращает the число of байты sent в_ the вывод, or Кф if
+                Возвращает the число of байты sent в_ the вывод, либо Кф if
                 the сокет cannot пиши
 
         ***********************************************************************/

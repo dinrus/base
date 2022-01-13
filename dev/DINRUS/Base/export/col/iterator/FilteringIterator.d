@@ -6,7 +6,7 @@ private import col.model.IteratorX;
 /**
  *
  * FilteringIterators allow you в_ фильтр out элементы из_
- * другой enumerations before they are seen by their `consumers'
+ * другой enumerations перед they are seen by their `consumers'
  * (i.e., the callers of `получи').
  *
  * FilteringIterators work as wrappers around другой Iterators.
@@ -28,7 +28,7 @@ private import col.model.IteratorX;
  *  бул predicate(Объект знач) { return cast(Panel) знач !is пусто; }
  * }
  * ---
- * See_Also: col.Предикат.predicate
+ * См_Также: col.Предикат.predicate
  * author: Doug Lea
  *
 **/
@@ -37,7 +37,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
 {
         alias бул delegate(T) Предикат;
         
-        // экземпляр variables
+        // переменные экземпляра
 
         /**
          * The enumeration we are wrapping
@@ -70,7 +70,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         private бул естьСледщ_;
 
         /**
-         * Make a Фильтр using ист for the элементы, и p as the скринер,
+         * Создаёт Фильтр using ист for the элементы, и p as the скринер,
          * selecting only those элементы of ист for which p is да
         **/
 
@@ -80,7 +80,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         }
 
         /**
-         * Make a Фильтр using ист for the элементы, и p as the скринер,
+         * Создаёт Фильтр using ист for the элементы, и p as the скринер,
          * selecting only those элементы of ист for which p.predicate(знач) == sense.
          * A значение of да for sense selects only значения for which p.predicate
          * is да. A значение of нет selects only those for which it is нет.
@@ -94,7 +94,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         }
 
         /**
-         * Implements col.model.IteratorX.ещё
+         * Реализует col.model.IteratorX.ещё
         **/
 
         public final бул ещё()
@@ -103,7 +103,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         }
 
         /**
-         * Implements col.model.IteratorX.получи.
+         * Реализует col.model.IteratorX.получи.
         **/
         public final T получи()
         {

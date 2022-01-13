@@ -1,6 +1,6 @@
 module converter;
 
-import win, stdrus, cidrus;
+import stdrus, cidrus;
 import io.Stdout;
 import text.Util;
 

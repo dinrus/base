@@ -280,7 +280,7 @@ struct MD5_CTX
       padLen = (index < 56) ? (56 - index) : (120 - index);
       update (PADDING[0 .. padLen]);
 
-      /* Append length (before padding) */
+      /* Append length (перед padding) */
       update (bits);
 
       /* Store state in digest */

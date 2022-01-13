@@ -2,7 +2,7 @@
 
 // ------- CTFE -------
 
-/// compile time integer to string
+/// преобразование целого в текст при компиляции
 char [] ctfe_i2a(int i){
     char[] digit="0123456789";
     char[] res="";
@@ -96,7 +96,7 @@ else static if (is(typeof(valloc)))
     version = GC_Use_Alloc_Valloc;
 else static if (is(typeof(cidrus.malloc)))
     version = GC_Use_Alloc_Malloc;
-else static assert(false, "No supported allocation methods available.");
+else static assert(false, "Нет доступных методов аллокации.");
 
 
 static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
@@ -240,7 +240,7 @@ else static if (is(typeof(malloc))) // else version (GC_Use_Alloc_Malloc)
 }
 else
 {
-    static assert(false, "No supported allocation methods available.");
+    static assert(false, "Нет доступных методов аллокации.");
 }
 
 
@@ -314,7 +314,7 @@ export extern (C)	ук ртВерхСтэка()
 
 
 /**
-Функция, по-видимому, находит по укзателю
+Функция, по-видимому, находит по указателю
 на функцию есть ли такой указатель и в записи
 статических данных программы.
 */	

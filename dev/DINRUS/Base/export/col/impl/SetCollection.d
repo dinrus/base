@@ -6,7 +6,7 @@ private import  col.impl.Collection;
 
 /**
  *
- * КоллекцияНаборов extends MutableImpl в_ provопрe
+ * КоллекцияНаборов extends MutableImpl в_ предоставляет
  * default implementations of some Набор operations. 
  * 
 **/
@@ -19,7 +19,7 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
 
 
         /**
-         * Initialize at version 0, an пустой счёт, и пусто скринер
+         * Инициализует при версии 0, an пустой счёт, и пусто скринер
         **/
 
         protected this ()
@@ -28,7 +28,7 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
         }
 
         /**
-         * Initialize at version 0, an пустой счёт, и supplied скринер
+         * Инициализует при версии 0, an пустой счёт, и supplied скринер
         **/
         protected this (Предикат скринер)
         {
@@ -36,8 +36,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
         }
 
         /**
-         * Implements col.impl.SetCollection.КоллекцияНаборов.includeElements
-         * See_Also: col.impl.SetCollection.КоллекцияНаборов.includeElements
+         * Реализует col.impl.SetCollection.КоллекцияНаборов.includeElements
+         * См_Также: col.impl.SetCollection.КоллекцияНаборов.includeElements
         **/
 
         public проц добавь (Обходчик!(T) e)
@@ -52,8 +52,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
         // Default implementations of Набор methods
 
         /**
-         * Implements col.Набор.включая
-         * See_Also: col.Набор.включая
+         * Реализует col.Набор.включая
+         * См_Также: col.Набор.включая
         **/
         public final Набор включая (T элемент)
         {
@@ -65,8 +65,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
 
         /***********************************************************************
 
-                Implements col.impl.Collection.Коллекция.удалиВсе
-                See_Also: col.impl.Collection.Коллекция.удалиВсе
+                Реализует col.impl.Collection.Коллекция.удалиВсе
+                См_Также: col.impl.Collection.Коллекция.удалиВсе
 
                 Has в_ be here rather than in the superclass в_ satisfy
                 D interface опрioms
@@ -81,8 +81,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
 
         /***********************************************************************
 
-                Implements col.impl.Collection.Коллекция.removeElements
-                See_Also: col.impl.Collection.Коллекция.removeElements
+                Реализует col.impl.Collection.Коллекция.removeElements
+                См_Также: col.impl.Collection.Коллекция.removeElements
 
                 Has в_ be here rather than in the superclass в_ satisfy
                 D interface опрioms

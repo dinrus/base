@@ -4,7 +4,7 @@
         значения. Internally, время is represented as UTC with an эпоха
         fixed at Jan 1st 1970. The текст представление is formatted in
         accordance with RFC 1123, и the парсер will прими one of
-        RFC 1123, RFC 850, or анзисивремя форматы.
+        RFC 1123, RFC 850, либо анзисивремя форматы.
 
         See http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html for
         further detail.
@@ -105,7 +105,7 @@ export дим[] вТкст32 (Время время)
         RFC1123 форматируй is always in абсолютный GMT время, и a thirty-
         элемент буфер is sufficient for the produced вывод
 
-        Throws an исключение where the supplied время is не_годится
+        Выводит исключение an исключение where the supplied время is не_годится
 
 ******************************************************************************/
 
@@ -151,7 +151,7 @@ T[] форматируй(T) (T[] вывод, Время t)
 
         ISO-8601 форматируй :: "2006-01-31T14:49:30Z"
 
-        Throws an исключение where the supplied время is не_годится
+        Выводит исключение an исключение where the supplied время is не_годится
 
 ******************************************************************************/
 

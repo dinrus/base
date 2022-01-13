@@ -20,7 +20,7 @@
             the тип can often be avoопрed if the параметры сделай it очисть.
             ОтКого it single numbers can be generated with .дайСлучайный(), и variables
             инициализован either with вызов стиль (var) or with .рандомируй(var).
-            Utility functions в_ generate numbers directly are also available.
+            Вспомогательные функции в_ generate numbers directly are also available.
             The choice в_ помести все the ни в каком дистрибутиве in a single объект that caches them
             имеется made (for example) the гамма ни в каком дистрибутиве very easy в_ implement.
       )
@@ -303,7 +303,7 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
     {
         return случ;
     }
-    //-------- Utility functions в_ quickly получи a uniformly distributed random число -----------
+    //-------- Вспомогательные функции в_ quickly получи a uniformly distributed random число -----------
 
     /// униформа ни в каком дистрибутиве on the whole range of целое типы, и on
     /// the (0;1) range for floating точка типы. Floating точка guarantees the initialization
@@ -1472,7 +1472,7 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
         return УниформнаяР2Дистрибуция!(T,нет).создай(this,из_,в_);
     }
 
-    // -------- Utility functions for другой distributions -------
+    // -------- Вспомогательные функции for другой distributions -------
     // добавь also the corresponding рандомируй functions?
 
     /// returns a нормаль distribued число

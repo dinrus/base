@@ -79,7 +79,7 @@ public enum ПТипТокенаРЯР {Готово, НачальныйЭлем
 
         We're not yet очисть why these swings are so pronounced (for changes
         outsопрe the код путь) but they seem в_ be related в_ the alignment
-        of codegen. It could be a кэш-строка issue, or something else. We'll
+        of codegen. It could be a кэш-строка issue, либо something else. We'll
         figure it out, yet it's interesting that some hardware buttons are
         clearly being pushed
 

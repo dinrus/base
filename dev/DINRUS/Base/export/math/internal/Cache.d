@@ -1,4 +1,4 @@
-﻿/**
+﻿/***
  Определение характеристик процессора хоста, предоставление информации
  о размерах кэша и подсказок по оптимизации ассемблера.
 
@@ -298,7 +298,7 @@ version(Really_D_InlineAsm_X86)
 
     проц cpuidX86();
 
-// Return да if the cpuid instruction is supported.
+// Return да, если the cpuid instruction is supported.
 // BUG(WONTFIX): Doesn't work for Cyrix 6x86 и 6x86L.
     бул hasCPUID();
 }
@@ -324,7 +324,7 @@ static this()
     }
     else
     {
-        // it's a 386 or 486, or a Cyrix 6x86.
+        // it's a 386 or 486, либо a Cyrix 6x86.
         //Probably still имеется an external кэш.
     }
     if (кэш_данных[0].размер==0)

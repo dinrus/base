@@ -1,4 +1,4 @@
-﻿import sys.Common, col.List, stdrus;
+﻿import sys.common, col.List, stdrus;
 
 void main()
 {

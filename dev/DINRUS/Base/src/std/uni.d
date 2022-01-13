@@ -24,7 +24,7 @@
 module std.uni;
 
 /**
- * Returns !=0 if c is a Unicode lower case character.
+ * Возвращаетs !=0 if c is a Unicode lower case character.
  */
 int isUniLower(dchar c)
 {
@@ -35,7 +35,7 @@ int isUniLower(dchar c)
 }
 
 /**
- * Returns !=0 if c is a Unicode upper case character.
+ * Возвращаетs !=0 if c is a Unicode upper case character.
  */
 int isUniUpper(dchar c)
 {
@@ -179,7 +179,7 @@ dchar toUniUpper(dchar c)
 
 
 /*******************************
- * Return !=0 if u is a Unicode alpha character.
+ * Возвращает !=0 if u is a Unicode alpha character.
  * (general Unicode category: Lu, Ll, Lt, Lm and Lo)
  *
  * Standards: Unicode 5.0.0

@@ -34,7 +34,7 @@
 
 		//вяжи(функция_10)("_archive_entry_acl_reset", биб);
 
-		//вяжи(функция_11)("_archive_entry_acl_text_w", биб);
+		//вяжи(функция_11)("_archive_entry_acl_tрасш_w", биб);
 
 		//вяжи(функция_12)("_archive_entry_atime", биб);
 
@@ -44,7 +44,7 @@
 
 		//вяжи(функция_15)("_archive_entry_clone", биб);
 
-		//вяжи(функция_16)("_archive_entry_copy_fflags_text_w", биб);
+		//вяжи(функция_16)("_archive_entry_copy_fflags_tрасш_w", биб);
 
 		//вяжи(функция_17)("_archive_entry_copy_gname_w", биб);
 
@@ -184,7 +184,7 @@
 
 		//вяжи(функция_85)("_archive_read_new", биб);
 
-		//вяжи(функция_86)("_archive_read_next_header", биб);
+		//вяжи(функция_86)("_archive_read_nрасш_header", биб);
 
 		//вяжи(функция_87)("_archive_read_open", биб);
 
@@ -280,7 +280,7 @@
 
 		//вяжи(функция_133)("_archive_entry_acl_reset", биб);
 
-		//вяжи(функция_134)("_archive_entry_acl_text_w", биб);
+		//вяжи(функция_134)("_archive_entry_acl_tрасш_w", биб);
 
 		//вяжи(функция_135)("_archive_entry_atime", биб);
 
@@ -290,7 +290,7 @@
 
 		//вяжи(функция_138)("_archive_entry_clone", биб);
 
-		//вяжи(функция_139)("_archive_entry_copy_fflags_text_w", биб);
+		//вяжи(функция_139)("_archive_entry_copy_fflags_tрасш_w", биб);
 
 		//вяжи(функция_140)("_archive_entry_copy_gname_w", биб);
 
@@ -430,7 +430,7 @@
 
 		//вяжи(функция_208)("_archive_read_new", биб);
 
-		//вяжи(функция_209)("_archive_read_next_header", биб);
+		//вяжи(функция_209)("_archive_read_nрасш_header", биб);
 
 		//вяжи(функция_210)("_archive_read_open", биб);
 

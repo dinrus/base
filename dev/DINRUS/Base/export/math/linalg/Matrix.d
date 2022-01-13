@@ -106,10 +106,10 @@ struct Матрица(Т, цел M, цел N)
     /// The форма (rows and columns) of the matrix
     static бцел[2] форма = [M,N];
 
-    // Return a pointer to the elements
+    // Возвращает pointer to the elements
     Скаляр* укз() { return значения_.ptr; }
 
-    // Return a pointer to the i,j-th element
+    // Возвращает pointer to the i,j-th element
     Скаляр* укз(цел i, цел j) { return значения_.ptr + j*члорядов+i; }
 
     Скаляр opIndex(бцел ряд, бцел столб) {
@@ -198,7 +198,7 @@ struct Матрица(Т, цел M, цел N)
     }
 
     template Матрица_ли(ТАрг) {
-        // Check if it implements a suitable concept of
+        // Check if it Реализует a suitable concept of
         // .члостолбцов, .члорядов and indexing with two values
         static if (is(typeof(ТАрг.члорядов)) && is(typeof(ТАрг.члостолбцов)) 
                    && is(typeof(ТАрг.init[0,0])))
@@ -210,7 +210,7 @@ struct Матрица(Т, цел M, цел N)
         }
     }
     template Вектор_ли(ТАрг) {
-        // Check if it implements a suitable concept of
+        // Check if it Реализует a suitable concept of
         // .length and indexing with one value
         static if (is(typeof(ТАрг.init[0])) && is(typeof(ТАрг.init.length))) {
             const бул Вектор_ли = true;
@@ -324,7 +324,7 @@ struct Матрица(Т, цел M, цел N)
         }
     }
     
-    /// Return a транспонированный copy of the matrix.
+    /// Возвращает транспонированный copy of the matrix.
     /// For non-sqyare matrices use 'транспонированный'.
     Матрица!(Т, N,M) транспонированный() {
         Матрица!(Т, N,M) возвр = void;
@@ -339,11 +339,11 @@ struct Матрица(Т, цел M, цел N)
 
     static if(M==N) {
         static if(M==2) {
-            /** Returns the детерминанта of the matrix */
+            /** Возвращаетs the детерминанта of the matrix */
             реал детерминанта() {
                 return m00 * m11 - m10 * m01;
             }
-            /** Returns the инверсия of the matrix */
+            /** Возвращаетs the инверсия of the matrix */
             Матрица инверсия() {
                 Матрица возвр;
                 возвр.m00 =  m11;
@@ -365,7 +365,7 @@ struct Матрица(Т, цел M, цел N)
             }
         }
         else static if(M==3) {
-            /** Returns the детерминанта of the matrix */
+            /** Возвращаетs the детерминанта of the matrix */
             реал детерминанта()
             {
                 реал cofactor00 = m11 * m22 - m12 * m21;
@@ -374,7 +374,7 @@ struct Матрица(Т, цел M, цел N)
             
                 return m00 * cofactor00 + m01 * cofactor10 + m02 * cofactor20;;
             }
-            /** Returns the инверсия of the matrix */
+            /** Возвращаетs the инверсия of the matrix */
             Матрица инверсия()
             {
                 Матрица возвр;
@@ -396,7 +396,7 @@ struct Матрица(Т, цел M, цел N)
         }            
         else static if (M==4)
         {
-            /* Returns the детерминанта of the matrix */
+            /* Возвращаетs the детерминанта of the matrix */
             реал детерминанта()
             {
                 return
@@ -407,7 +407,7 @@ struct Матрица(Т, цел M, цел N)
                     - (m01 * m13 - m03 * m11) * (m20 * m32 - m22 * m30)
                     + (m02 * m13 - m03 * m12) * (m20 * m31 - m21 * m30);
             }
-            /** Returns the инверсия of the matrix */
+            /** Возвращаетs the инверсия of the matrix */
             Матрица инверсия() {
                 Матрица R=Матрица(
                     m11*(m22*m33 - m23*m32) + m12*(m23*m31 - m21*m33) + m13*(m21*m32 - m22*m31),

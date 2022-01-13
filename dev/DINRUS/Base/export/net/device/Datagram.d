@@ -50,10 +50,10 @@ class Датаграмма : Сокет
         /***********************************************************************
 
                 Populate the provопрed Массив из_ the сокет. This will stall
-                until some данные is available, or a таймаут occurs. We assume 
+                until some данные is available, либо a таймаут occurs. We assume 
                 the datagram имеется been подключен.
 
-                Returns the число of байты читай куда the вывод, or Кф if
+                Returns the число of байты читай куда the вывод, либо Кф if
                 the сокет cannot читай
 
         ***********************************************************************/
@@ -67,7 +67,7 @@ class Датаграмма : Сокет
                 origin of the incoming данные. Note that we employ the таймаут
                 mechanics exposed via our Сокет superclass. 
 
-                Returns the число of байты читай из_ the ввод, or Кф if
+                Returns the число of байты читай из_ the ввод, либо Кф if
                 the сокет cannot читай
 
         ***********************************************************************/
@@ -80,7 +80,7 @@ class Датаграмма : Сокет
                 until the сокет responds in some manner. We assume the 
                 datagram имеется been подключен.
 
-                Returns the число of байты sent куда the вывод, or Кф if
+                Returns the число of байты sent куда the вывод, либо Кф if
                 the сокет cannot пиши
 
         ***********************************************************************/
@@ -92,7 +92,7 @@ class Датаграмма : Сокет
                 Зап an Массив куда the specified адрес. If адрес 'куда' is
                 пусто, it is assumed the сокет имеется been подключен instead.
 
-                Returns the число of байты sent куда the вывод, or Кф if
+                Returns the число of байты sent куда the вывод, либо Кф if
                 the сокет cannot пиши
 
         ***********************************************************************/

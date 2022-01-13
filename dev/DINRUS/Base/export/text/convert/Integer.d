@@ -34,7 +34,7 @@ private import exception;
         whereupon it must сверь the префикс (where present). When
         корень is установи в_ zero, conversion will default в_ десяток.
 
-        Throws: ИсклНелегальногоАргумента where the ввод текст is not parsable
+        Выводит исключение: ИсклНелегальногоАргумента where the ввод текст is not parsable
         in its entirety.
 
         See_also: the low уровень functions разбор() и преобразуй()
@@ -63,7 +63,7 @@ private import exception;
         whereupon it must сверь the префикс (where present). When
         корень is установи в_ zero, conversion will default в_ десяток.
 
-        Throws: ИсклНелегальногоАргумента where the ввод текст is not parsable
+        Выводит исключение: ИсклНелегальногоАргумента where the ввод текст is not parsable
         in its entirety.
 
         See_also: the low уровень functions разбор() и преобразуй()
@@ -334,7 +334,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
         A non-пусто 'взято' will return the число of characters использован
         в_ construct the returned значение.
 
-        Throws: Неук. The 'взято' param should be проверьed for действителен ввод.
+        Выводит исключение: Неук. The 'взято' param should be проверьed for действителен ввод.
 
 ******************************************************************************/
 
@@ -366,7 +366,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
         Returns the значение и updates 'взято' with the число of
         characters consumed.
 
-        Throws: Неук. The 'взято' param should be проверьed for действителен ввод.
+        Выводит исключение: Неук. The 'взято' param should be проверьed for действителен ввод.
 
 ******************************************************************************/
 
@@ -411,7 +411,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
 
         StrИП leading пробел, выкинь an optional +/- знак,
         и an optional корень префикс. If the корень значение совпадает
-        an optional префикс, or the корень is zero, the префикс will
+        an optional префикс, либо the корень is zero, the префикс will
         be consumed и назначено. Where the корень is non zero и
         does not сверь an явный префикс, the latter will remain
         unconsumed. Otherwise, корень will default в_ 10.
@@ -492,7 +492,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
 /******************************************************************************
 
         быстро & dirty текст-в_-unsigned цел converter. Use only when you
-        know что the контент is, or use разбор() or преобразуй() instead.
+        know что the контент is, либо use разбор() or преобразуй() instead.
 
         Return the разобрано бцел
 

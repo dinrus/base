@@ -312,7 +312,7 @@ interface ИСелектор
      * amount времени.
      *
      * Note: This представление of таймаут is not always accurate, so it is
-     * possible that the function will return with a таймаут before the
+     * possible that the function will return with a таймаут перед the
      * specified период.  For ещё accuracy, use the ИнтервалВремени version.
      *
      * Note: Implementers should define this метод as:
@@ -334,7 +334,7 @@ interface ИСелектор
     public abstract цел выбери(дво таймаут);
 
     /**
-     * Return the выделение установи результатing из_ the вызов в_ any of the выбери()
+     * Возвращает the выделение установи результатing из_ the вызов в_ any of the выбери()
      * methods.
      *
      * Примечания:
@@ -344,7 +344,7 @@ interface ИСелектор
     public abstract ИНаборВыделений наборВыд();
 
     /**
-     * Return the выделение ключ результатing из_ the registration of a провод
+     * Возвращает the выделение ключ результатing из_ the registration of a провод
      * в_ the selector.
      *
      * Примечания:

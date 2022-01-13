@@ -13,7 +13,7 @@ version (Posix)
 
     private import io.selector.AbstractSelector;
     private import io.selector.SelectorException;
-    private import sys.Common;
+    private import sys.common;
     private import cidrus;
 
     version (linux)
@@ -132,8 +132,8 @@ version (Posix)
          *                will be available when an событие is triggered for the
          *                провод
          *
-         * Throws:
-         * ИсклРегистрируемогоПровода if the провод had already been
+         * Выводит исключение:
+         * ИсклРегистрируемогоПровода, если the провод had already been
          * registered в_ the selector.
          *
          * Примеры:
@@ -190,8 +190,8 @@ version (Posix)
          * Unregistering a пусто провод is allowed и no исключение is thrown
          * if this happens.
          *
-         * Throws:
-         * ИсклОтменённогоПровода if the провод had not been previously
+         * Выводит исключение:
+         * ИсклОтменённогоПровода, если the провод had not been previously
          * registered в_ the selector.
          */
         public проц отмениРег(ИВыбираемый провод)
@@ -257,7 +257,7 @@ version (Posix)
          * have Приёмd события внутри the specified таймаут; и -1 if the
          * wakeup() метод имеется been called из_ другой нить.
          *
-         * Throws:
+         * Выводит исключение:
          * ИсклПрерванногоСистВызова if the underlying system вызов was
          * interrupted by a signal и the 'перезапускПрерванногоСистВызова'
          * property was установи в_ нет; ИсклСелектора if there were no
@@ -296,7 +296,7 @@ version (Posix)
         }
 
         /**
-         * Return the выделение установи результатing из_ the вызов в_ any of the
+         * Возвращает the выделение установи результатing из_ the вызов в_ any of the
          * выбери() methods.
          *
          * Примечания:
@@ -309,7 +309,7 @@ version (Posix)
         }
 
         /**
-         * Return the выделение ключ результатing из_ the registration of a
+         * Возвращает the выделение ключ результатing из_ the registration of a
          * провод в_ the selector.
          *
          * Примечания:
@@ -330,7 +330,7 @@ version (Posix)
         }
 
         /**
-         * Return the число of ключи результатing из_ the registration of a провод
+         * Возвращает the число of ключи результатing из_ the registration of a провод
          * в_ the selector.
          */
         public т_мера счёт()

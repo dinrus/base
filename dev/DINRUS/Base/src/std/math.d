@@ -68,7 +68,7 @@ template floatTraits(T) {
     } else {
       const EXPPOS_SHORT = 0;
     }
- } else static if (T.mant_dig == 53) { // double, or real==double
+ } else static if (T.mant_dig == 53) { // double, либо real==double
     const ushort EXPMASK = 0x7FF0;
     const ushort EXPBIAS = 0x3FE0;
     const uint EXPMASK_INT = 0x7FF0_0000;
@@ -281,7 +281,7 @@ unittest
 }
 
 /***********************************
- * Returns cosine of x. x is in radians.
+ * Возвращаетs cosine of x. x is in radians.
  *
  *      $(TABLE_SV
  *      $(TR $(TH x)                 $(TH cos(x)) $(TH invalid?))
@@ -295,7 +295,7 @@ unittest
 real cos(real x);       /* intrinsic */
 
 /***********************************
- * Returns sine of x. x is in radians.
+ * Возвращаетs sine of x. x is in radians.
  *
  *      $(TABLE_SV
  *      $(TR $(TH x)               $(TH sin(x))      $(TH invalid?))
@@ -360,7 +360,7 @@ unittest{
 }
 
 /****************************************************************************
- * Returns tangent of x. x is in radians.
+ * Возвращаетs tangent of x. x is in radians.
  *
  *      $(TABLE_SV
  *      $(TR $(TH x)             $(TH tan(x))       $(TH invalid?))
@@ -379,7 +379,7 @@ real tan(real x)
         fxam                            ; // test for oddball values
         fstsw   AX                      ;
         sahf                            ;
-        jc      trigerr                 ; // x is NAN, infinity, or empty
+        jc      trigerr                 ; // x is NAN, infinity, либо empty
                                           // 387's can handle denormals
 SC18:   fptan                           ;
         fstp    ST(0)                   ; // dump X, which is always 1
@@ -680,7 +680,7 @@ unittest
 }
 
 /*****************************************
- * Returns x rounded to a long value using the current rounding mode.
+ * Возвращаетs x rounded to a long value using the current rounding mode.
  * If the integer value of x is
  * greater than long.max, the результат is
  * indeterminate.
@@ -689,7 +689,7 @@ long rndtol(real x);    /* intrinsic */
 
 
 /*****************************************
- * Returns x rounded to a long value using the FE_TONEAREST rounding mode.
+ * Возвращаетs x rounded to a long value using the FE_TONEAREST rounding mode.
  * If the integer value of x is
  * greater than long.max, the результат is
  * indeterminate.
@@ -835,7 +835,7 @@ real expm1(real x)
         ret PARAMSIZE;
         
 L_extreme: // Extreme exponent. X is very large positive, very
-        // large negative, infinity, or NaN.
+        // large negative, infinity, либо NaN.
         fxam;
         fstsw AX;
         test AX, 0x0400; // NaN_or_zero, but we already know x!=0 
@@ -936,7 +936,7 @@ L_subnormal:
         jmp L_normal;
         
 L_extreme: // Extreme exponent. X is very large positive, very
-        // large negative, infinity, or NaN.
+        // large negative, infinity, либо NaN.
         fxam;
         fstsw AX;
         test AX, 0x0400; // NaN_or_zero, but we already know x!=0 
@@ -996,7 +996,7 @@ unittest
 /*********************************************************************
  * Separate floating point value into significand and exponent.
  *
- * Returns:
+ * Возвращаетs:
  *      Calculate and return $(I x) and $(I exp) such that
  *      value =$(I x)*2$(SUP exp) and
  *      .5 $(LT)= |$(I x)| $(LT) 1.0
@@ -1300,7 +1300,7 @@ real logb(real x)               { return cidrus.логбд(x); }
 
 /************************************
  * Calculates the остаток from the calculation x/y.
- * Returns:
+ * Возвращаетs:
  * The value of x - i * y, where i is the number of times that y can
  * be completely subtracted from x. The результат has the same sign as x.
  *
@@ -1362,7 +1362,7 @@ real cbrt(real x)               { return cidrus.кубкорд(x); }
 
 
 /*******************************
- * Returns |x|
+ * Возвращаетs |x|
  *
  *      $(TABLE_SV
  *      $(TR $(TH x)                 $(TH fabs(x)))
@@ -1487,14 +1487,14 @@ unittest
 }
 
 /**********************************
- * Returns the error function of x.
+ * Возвращаетs the error function of x.
  *
  * <img src="erf.gif" alt="error function">
  */
 real erf(real x)                { return cidrus.фцошд(x); }
 
 /**********************************
- * Returns the complementary error function of x, which is 1 - erf(x).
+ * Возвращаетs the complementary error function of x, which is 1 - erf(x).
  *
  * <img src="erfc.gif" alt="complementary error function">
  */
@@ -1503,7 +1503,7 @@ real erfc(real x)               { return cidrus.фцошкд(x); }
 /***********************************
  * Natural logarithm of gamma function.
  *
- * Returns the base e (2.718...) logarithm of the absolute
+ * Возвращаетs the base e (2.718...) logarithm of the absolute
  * value of the gamma function of the argument.
  *
  * For reals, lgamma is equivalent to log(fabs(gamma(x))).
@@ -1555,13 +1555,13 @@ real tgamma(real x)
 }
 
 /**************************************
- * Returns the value of x rounded upward to the next integer
+ * Возвращаетs the value of x rounded upward to the next integer
  * (toward positive infinity).
  */
 real ceil(real x)               { return cidrus.вокруглид(x); }
 
 /**************************************
- * Returns the value of x rounded downward to the next integer
+ * Возвращаетs the value of x rounded downward to the next integer
  * (toward negative infinity).
  */
 real floor(real x)              { return cidrus.нокруглид(x); }
@@ -1614,14 +1614,14 @@ long lrint(real x)
 }
 
 /*******************************************
- * Return the value of x rounded to the nearest integer.
+ * Возвращает the value of x rounded to the nearest integer.
  * If the fractional part of x is exactly 0.5, the return value is rounded to
  * the even integer.
  */
 real round(real x) { return cidrus.округлид(x); }
 
 /**********************************************
- * Return the value of x rounded to the nearest integer.
+ * Возвращает the value of x rounded to the nearest integer.
  *
  * If the fractional part of x is exactly 0.5, the return value is rounded
  * away from zero.
@@ -1644,7 +1644,7 @@ long lround(real x)
 }
 
 /****************************************************
- * Returns the integer portion of x, dropping the fractional portion.
+ * Возвращаетs the integer portion of x, dropping the fractional portion.
  *
  * This is also known as "chop" rounding.
  */
@@ -1672,7 +1672,7 @@ real trunc(real x) { return truncl(x); }
  *
  * Note: remquo not supported on windows
  */
-real остаток(real x, real y) { return cidrus.остатокд(x, y); }
+real remainder(real x, real y) { return cidrus.остатокд(x, y); }
 
 real remquo(real x, real y, out int n)  /// описано ранее
 {
@@ -1683,7 +1683,7 @@ real remquo(real x, real y, out int n)  /// описано ранее
 }
 
 /*********************************
- * Returns !=0 if e is a NaN.
+ * Возвращаетs !=0 if e is a NaN.
  */
 
 int isnan(real x)
@@ -1721,7 +1721,7 @@ unittest
 }
 
 /*********************************
- * Returns !=0 if e is finite (not infinite or $(NAN)).
+ * Возвращаетs !=0 if e is finite (not infinite or $(NAN)).
  */
 
 int isfinite(real e)
@@ -1740,7 +1740,7 @@ unittest
 
 
 /*********************************
- * Returns !=0 if x is normalized (not zero, subnormal, infinite, or $(NAN)).
+ * Возвращаетs !=0 if x is normalized (not zero, subnormal, infinite, либо $(NAN)).
  */
 
 /* Need one for each format because subnormal floats might
@@ -1852,7 +1852,7 @@ unittest
 }
 
 /*********************************
- * Return !=0 if e is $(PLUSMN)$(INFIN).
+ * Возвращает !=0 if e is $(PLUSMN)$(INFIN).
  */
 
 int isinf(real x)
@@ -1911,7 +1911,7 @@ bool isIdentical(real x, real y)
 }
 
 /*********************************
- * Return 1 if sign bit of e is set, 0 if not.
+ * Возвращает 1 if sign bit of e is set, 0 if not.
  */
 
 int signbit(real x)
@@ -1931,7 +1931,7 @@ unittest
 }
 
 /*********************************
- * Return a value composed of to with from's sign bit.
+ * Возвращает value composed of to with from's sign bit.
  */
 
 real copysign(real to, real from)
@@ -1977,7 +1977,7 @@ real nan(char[] tagp) { return cidrus.нечислод(tagp); }
 /**
  * Calculate the next largest floating point value после x.
  *
- * Return the least number greater than x that is representable as a real;
+ * Возвращает the least number greater than x that is representable as a real;
  * thus, it gives the next point on the IEEE number line.
  *
  *  $(TABLE_SV
@@ -2109,9 +2109,9 @@ float nextUp(float x)
 }
 
 /**
- * Calculate the next smallest floating point value before x.
+ * Calculate the next smallest floating point value перед x.
  *
- * Return the greatest number less than x that is representable as a real;
+ * Возвращает the greatest number less than x that is representable as a real;
  * thus, it gives the previous point on the IEEE number line.
  *
  *  $(TABLE_SV
@@ -2215,8 +2215,8 @@ unittest
 //real nexttoward(real x, real y) { return cidrus.nexttowardl(x, y); }
 
 /*******************************************
- * Returns the positive difference between x and y.
- * Returns:
+ * Возвращаетs the positive difference between x and y.
+ * Возвращаетs:
  *      $(TABLE_SV
  *      $(TR $(TH x, y)       $(TH fdim(x, y)))
  *      $(TR $(TD x $(GT) y)  $(TD x - y))
@@ -2226,17 +2226,17 @@ unittest
 real fdim(real x, real y) { return (x > y) ? x - y : +0.0; }
 
 /****************************************
- * Returns the larger of x and y.
+ * Возвращаетs the larger of x and y.
  */
 real fmax(real x, real y) { return x > y ? x : y; }
 
 /****************************************
- * Returns the smaller of x and y.
+ * Возвращаетs the smaller of x and y.
  */
 real fmin(real x, real y) { return x < y ? x : y; }
 
 /**************************************
- * Returns (x * y) + z, rounding only once according to the
+ * Возвращаетs (x * y) + z, rounding only once according to the
  * current rounding mode.
  *
  * BUGS: Not currently implemented - круги twice.
@@ -2443,7 +2443,7 @@ unittest
 /****************************************
  * Simple function to compare two floating point values
  * to a specified precision.
- * Returns:
+ * Возвращаетs:
  *      1       match
  *      0       nomatch
  */
@@ -2462,7 +2462,7 @@ private int mfeq(real x, real y, real precision)
 /**************************************
  * To what precision is x equal to y?
  *
- * Returns: the number of mantissa bits which are equal in x and y.
+ * Возвращаетs: the number of mantissa bits which are equal in x and y.
  * eg, 0x1.F8p+60 and 0x1.F1p+60 are equal to 5 bits of precision.
  *
  *      $(TABLE_SV
@@ -2531,7 +2531,7 @@ int feqrel(X)(X x, X y)
     }
 
     if (bitsdiff > 0)
-        return bitsdiff + 1; // add the 1 we subtracted before
+        return bitsdiff + 1; // add the 1 we subtracted перед
 
     // Avoid out-by-1 errors when фактор is almost 2.
      static if (X.mant_dig==64 || X.mant_dig==113) { // real80 or quadruple
@@ -2592,7 +2592,7 @@ unittest
 }
 
 package: // Not public yet
-/* Return the value that lies halfway between x and y on the IEEE number line.
+/* Возвращает the value that lies halfway between x and y on the IEEE number line.
  *
  * Formally, the результат is the arithmetic mean of the binary significands of x
  * and y, multiplied by the geometric mean of the binary exponents of x and y.
@@ -2615,7 +2615,7 @@ in {
 }
 body {
     // Runtime behaviour for contract violation:
-    // If signs are opposite, or one is a NaN, return 0.
+    // If signs are opposite, либо one is a NaN, return 0.
     if (!((x>=0 && y>=0) || (x<=0 && y<=0))) return 0.0;
 
     // The implementation is simple: cast x and y to integers,

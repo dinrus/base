@@ -13,21 +13,21 @@ extern(D):
 /// If the given тип represents a class, return its ИнфОКлассе; else return пусто;
 ИнфОКлассе какКласс (ИнфОТипе тип);
 
-/** Возвращает да iff one тип is an ancestor of the другой, or if the типы are the same.
+/** Возвращает да, еслиf one тип is an ancestor of the другой, либо if the типы are the same.
  * If either is пусто, returns нет. */
 бул производный_ли (ИнфОКлассе производный, ИнфОКлассе основа);
 
-/** Возвращает да iff реализатор реализует the interface described
+/** Возвращает да, еслиf реализатор реализует the interface described
  * by ифейс. This is an expensive operation (linear in the число of
  * interfaces and основа classes).
  */
 бул реализует (ИнфОКлассе реализатор, ИнфОКлассе ифейс);
 
-/** Возвращает да iff an экземпляр of class тест is implicitly castable в_ мишень. 
+/** Возвращает да, еслиf an экземпляр of class тест is implicitly castable в_ мишень. 
  * This is an expensive operation (производный_ли + реализует). */
 бул непосредственно_ли (ИнфОКлассе тест, ИнфОКлассе мишень);
 
-/** Возвращает да iff an экземпляр of тип тест is implicitly castable в_ мишень. 
+/** Возвращает да, еслиf an экземпляр of тип тест is implicitly castable в_ мишень. 
  * If the типы describe classes or interfaces, this is an expensive operation. */
 бул непосредственно_ли (ИнфОТипе тест, ИнфОТипе мишень);
 
@@ -97,7 +97,7 @@ struct примениИнтерфейсы
 ///
 бул статМасс_ли (ИнфОТипе тип);
 
-/** Возвращает да iff the given тип is a dynamic or static Массив (нет for associative
+/** Возвращает да, еслиf the given тип is a dynamic or static Массив (нет for associative
  * массивы and non-массивы). */
 бул массив_ли (ИнфОТипе тип);
 
@@ -128,13 +128,13 @@ struct примениИнтерфейсы
 ///
 бул примитив_ли (ИнфОТипе тип);
 
-/// Возвращает да iff the given тип represents an interface.
+/// Возвращает да, еслиf the given тип represents an interface.
 бул интерфейс_ли (ИнфОТипе тип);
 
 ///
 бул указатель_ли (ИнфОТипе тип);
 
-/// Возвращает да iff the тип represents a class (нет for interfaces).
+/// Возвращает да, еслиf the тип represents a class (нет for interfaces).
 бул класс_ли (ИнфОТипе тип);
 
 ///
@@ -143,11 +143,11 @@ struct примениИнтерфейсы
 ///
 бул функция_ли (ИнфОТипе тип);
 
-/** Возвращает да iff the given тип is a reference тип. */
+/** Возвращает да, еслиf the given тип is a reference тип. */
 бул типСсылка_ли (ИнфОТипе тип);
 
-/** Возвращает да iff the given тип represents a пользовательский тип. 
- * This does not include functions, delegates, aliases, or typedefs. */
+/** Возвращает да, еслиf the given тип represents a пользовательский тип. 
+ * This does not include functions, delegates, aliases, либо typedefs. */
 бул пользовательскТип_ли (ИнфОТипе тип);
 
 /** Возвращает да for все значение типы, нет for все reference типы.

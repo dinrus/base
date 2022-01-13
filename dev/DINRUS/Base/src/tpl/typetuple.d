@@ -57,7 +57,7 @@ template Индекс_у(T, ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with the first occurrence,
+ * Возвращаетs a typetuple created from ТСписок with the first occurrence,
  * if any, of T removed.
  * Пример:
  * ---
@@ -77,7 +77,7 @@ template Вырезать(T, ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with the all occurrences,
+ * Возвращаетs a typetuple created from ТСписок with the all occurrences,
  * if any, of T removed.
  * Пример:
  * ---
@@ -99,7 +99,7 @@ template ВырезатьВсе(T, ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with the all duplicate
+ * Возвращаетs a typetuple created from ТСписок with the all duplicate
  * типы removed.
  * Пример:
  * ---
@@ -119,7 +119,7 @@ template БезДубликатов(ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with the first occurrence
+ * Возвращаетs a typetuple created from ТСписок with the first occurrence
  * of тип T, if found, replaced with тип U.
  * Пример:
  * ---
@@ -141,7 +141,7 @@ template Заменить(T, U, ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with all occurrences
+ * Возвращаетs a typetuple created from ТСписок with all occurrences
  * of тип T, if found, replaced with тип U.
  * Пример:
  * ---
@@ -163,7 +163,7 @@ template ЗаменитьВсе(T, U, ТСписок...)
 }
 
 /**
- * Returns a typetuple created from ТСписок with the order reversed.
+ * Возвращаетs a typetuple created from ТСписок with the order reversed.
  * Пример:
  * ---
  * alias КортежТипа!(цел, дол, дол, цел, float) TL;
@@ -182,7 +182,7 @@ template Реверсировать(ТСписок...)
 }
 
 /**
- * Returns the тип from ТСписок that is the most derived from тип T.
+ * Возвращаетs the тип from ТСписок that is the most derived from тип T.
  * If none are found, T is returned.
  * Пример:
  * ---
@@ -205,7 +205,7 @@ template ПоследнийПроизводный(T, ТСписок...)
 }
 
 /**
- * Returns the typetuple ТСписок with the типы sorted so that the most
+ * Возвращаетs the typetuple ТСписок with the типы sorted so that the most
  * derived типы come first.
  * Пример:
  * ---

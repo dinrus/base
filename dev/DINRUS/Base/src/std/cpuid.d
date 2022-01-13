@@ -163,13 +163,13 @@ version(D_InlineAsm_X86)
         ];
 
          /**
-          * Returns !=0 if c is a space, tab, vertical tab, form feed,
-          * carriage return, or linefeed.
+          * Возвращаетs !=0 if c is a space, tab, vertical tab, form feed,
+          * carriage return, либо linefeed.
           */
          int isspace(dchar c)  { return (c <= 0x7F) ? _ctype[c] & (_SPC) : 0; }
 
         /*****************************************
-         * Strips leading or trailing whitespace, or both.
+         * Strips leading or trailing whitespace, либо both.
          */
         char[] stripl(char[] s)
         {

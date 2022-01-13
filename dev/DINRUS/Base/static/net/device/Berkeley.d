@@ -1,6 +1,6 @@
 ﻿module net.device.Berkeley;
 
-public import sys.Common;
+public import sys.common;
 private import exception;
 private import stringz;
 
@@ -244,7 +244,7 @@ version (Windows)
 
         /***********************************************************************
 
-                calling экстрзак() before this is recommended for connection-
+                calling экстрзак() перед this is recommended for connection-
                 oriented СОКЕТs
 
         ***********************************************************************/
@@ -565,10 +565,10 @@ version (Windows)
         /***********************************************************************
 
                 Отправка данные on the connection. Возвращает the число of байты 
-                actually sent, or ОШИБКА on failure. If the сокет is блокируется 
+                actually sent, либо ОШИБКА on failure. If the сокет is блокируется 
                 и there is no буфер пространство лево, шли waits.
 
-                Возвращает число of байты actually sent, or -1 on ошибка
+                Возвращает число of байты actually sent, либо -1 on ошибка
 
         ***********************************************************************/
 
@@ -656,11 +656,11 @@ version (Windows)
         /***********************************************************************
                 принять данные on the connection. Возвращает the число of 
                 байты actually Приёмd, 0 if the remote sопрe имеется закрыт 
-                the connection, or ОШИБКА on failure. If the сокет is блокируется, 
+                the connection, либо ОШИБКА on failure. If the сокет is блокируется, 
                 принять waits until there is данные куда be Приёмd.
                 
                 Возвращает число of байты actually Приёмd, 0 on connection 
-                closure, or -1 on ошибка
+                closure, либо -1 on ошибка
 
         ***********************************************************************/
 
@@ -676,7 +676,7 @@ version (Windows)
 
                 принять данные и получи the remote endpoint адрес. Возвращает 
                 the число of байты actually Приёмd, 0 if the remote sопрe 
-                имеется закрыт the connection, or ОШИБКА on failure. If the сокет 
+                имеется закрыт the connection, либо ОШИБКА on failure. If the сокет 
                 is блокируется, принять_от waits until there is данные куда be 
                 Приёмd.
 
@@ -2093,7 +2093,7 @@ public class НаборСокетов
                 НаборСокетов's are updated куда include only those СОКЕТs which an
                 событие occured.
 
-                Возвращает the число of события, 0 on таймаут, or -1 on ошибка
+                Возвращает the число of события, 0 on таймаут, либо -1 on ошибка
 
                 for a подключись()ing сокет, writeability means подключен
                 for a слушай()ing сокет, readability means listening

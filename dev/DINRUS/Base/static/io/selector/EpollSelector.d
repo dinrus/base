@@ -13,7 +13,7 @@ version (linux)
     public import io.selector.model;
 
     private import io.selector.AbstractSelector;
-    private import sys.Common;
+    private import sys.common;
     private import sys.linux.linux;
     private import cidrus;
 
@@ -29,7 +29,7 @@ version (linux)
      * опции (PollSelector, СелекторВыбора). For small amounts of conduits
      * (n < 20) the PollSelector will probably be ещё performant.
      *
-     * See_Also: ИСелектор, АбстрактныйСелектор
+     * См_Также: ИСелектор, АбстрактныйСелектор
      *
      * Примеры:
      * ---
@@ -160,7 +160,7 @@ version (linux)
          *                returned in the выделение установи per вызов в_ выбери();
          *                this предел is enforced by this selector.
          *
-         * Throws:
+         * Выводит исключение:
          * ИсклСелектора if there are not enough resources в_ открой the
          * selector (e.g. not enough файл handles or память available).
          */
@@ -200,7 +200,7 @@ version (linux)
             _eventCount = 0;
         }
 		/**
-		 * Return the число of ключи результатing из_ the registration of a провод 
+		 * Возвращает the число of ключи результатing из_ the registration of a провод 
 		 * в_ the selector. 
 		 */ 
 		public т_мера счёт()
@@ -223,8 +223,8 @@ version (linux)
          *                will be available when an событие is triggered for the
          *                провод
          *
-         * Throws:
-         * ИсклРегистрируемогоПровода if the провод had already been
+         * Выводит исключение:
+         * ИсклРегистрируемогоПровода, если the провод had already been
          * registered в_ the selector; ИсклСелектора if there are not
          * enough resources в_ добавь the провод в_ the selector.
          *
@@ -296,8 +296,8 @@ version (linux)
          * Unregistering a пусто провод is allowed и no исключение is thrown
          * if this happens.
          *
-         * Throws:
-         * ИсклОтменённогоПровода if the провод had not been previously
+         * Выводит исключение:
+         * ИсклОтменённогоПровода, если the провод had not been previously
          * registered в_ the selector; ИсклСелектора if there are not
          * enough resources в_ удали the провод registration.
          */
@@ -332,7 +332,7 @@ version (linux)
          * have Приёмd события внутри the specified таймаут; и -1 if the
          * wakeup() метод имеется been called из_ другой нить.
          *
-         * Throws:
+         * Выводит исключение:
          * ИсклПрерванногоСистВызова if the underlying system вызов was
          * interrupted by a signal и the 'перезапускПрерванногоСистВызова'
          * property was установи в_ нет; ИсклСелектора if there were no
@@ -365,7 +365,7 @@ version (linux)
 
         /**
         * Класс использован в_ hold the список of Conduits that have Приёмd события.
-        * See_Also: ИНаборВыделений
+        * См_Также: ИНаборВыделений
         */
         protected class EpollSelectionSet: ИНаборВыделений
         {
@@ -409,7 +409,7 @@ version (linux)
         }
 
         /**
-         * Return the выделение установи результатing из_ the вызов в_ any of the
+         * Возвращает the выделение установи результатing из_ the вызов в_ any of the
          * выбери() methods.
          *
          * Примечания:
@@ -422,7 +422,7 @@ version (linux)
         }
 
         /**
-         * Return the выделение ключ результатing из_ the registration of a провод
+         * Возвращает the выделение ключ результатing из_ the registration of a провод
          * в_ the selector.
          *
          * Примечания:

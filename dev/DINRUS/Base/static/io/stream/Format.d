@@ -22,7 +22,7 @@ private import text.convert.Layout;
         the Стдвыв & Стдош globals, but can be used for general purpose
         буфер-formatting as desired. The Template тип 'T' dictates the
         текст arrangement внутри the мишень буфер ~ one of сим, шим or
-        дим (utf8, utf16, or utf32).
+        дим (utf8, utf16, либо utf32).
 
         ФормВывод exposes this стиль of usage:
         ---
@@ -86,6 +86,7 @@ private import text.convert.Layout;
 class ФормВывод(T) : ФильтрВывода
 {
     public  alias ФильтрВывода.слей слей;
+	//public  alias ФильтрВывода.вывод сток;
 
     private T[]             кс;
     private Выкладка!(T)      преобразуй;

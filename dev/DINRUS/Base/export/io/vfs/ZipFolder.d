@@ -802,7 +802,7 @@ else
 
     /**
      * Closes this папка объект.  If подай is да, then the папка is
-     * синх'ed before being закрыт.
+     * синх'ed перед being закрыт.
      */
     ПапкаВфс закрой(бул подай = да)
     in { assert( действителен ); }
@@ -1712,7 +1712,7 @@ import io.device.Conduit : Провод;
 //import io.model : ИПровод, ИПотокВвода, ИПотокВывода;
 
 /**
- * The dummy поток classes are использован в_ provопрe simple, пустой поток objects
+ * The dummy поток classes are использован в_ предоставляет simple, пустой поток objects
  * where one is требуется, but Неук is available.
  *
  * Note that, currently, these classes return 'пусто' for the underlying
@@ -1773,7 +1773,7 @@ private deprecated class DummyOutputПоток : ИПотокВывода //, И
 /**
  * The событие поток classes are designed в_ allow you в_ принять feedback on
  * как a поток chain is being использован.  This is готово through the use of
- * delegate обрвызовы which are invoked just before the associated метод is
+ * delegate обрвызовы which are invoked just перед the associated метод is
  * complete.
  */
 class EventSeekInputПоток : ИПотокВвода //, ИПровод.ИШаг
@@ -1960,7 +1960,7 @@ private:
 //import io.model : ИПровод, ИПотокВвода, ИПотокВывода;
 
 /**
- * This поток can be использован в_ provопрe доступ в_ другой поток.
+ * This поток can be использован в_ предоставляет доступ в_ другой поток.
  * Its distinguishing feature is that users cannot закрой the underlying
  * поток.
  *
@@ -2057,7 +2057,7 @@ private:
 }
 
 /**
- * This поток can be использован в_ provопрe доступ в_ другой поток.
+ * This поток can be использован в_ предоставляет доступ в_ другой поток.
  * Its distinguishing feature is that the users cannot закрой the underlying
  * поток.
  *

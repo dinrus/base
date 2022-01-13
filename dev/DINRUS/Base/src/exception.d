@@ -750,7 +750,7 @@ export:
 alias ИсклЛокали LocaleException;
 /**
  * RegistryException is thrown when the NetworkRegistry encounters a
- * problem during proxy registration, or when it sees an unregistered
+ * problem during proxy registration, либо when it sees an unregistered
  * guid.
  */
 export extern (D) class ИсклРеестра  : ОтслежИскл
@@ -1174,7 +1174,7 @@ export extern (C)
 	 * otherwise no trace will be generated.
 	 *
 	 * Параметры:
-	 *  ptr = A pointer to the location from which to generate the trace, or null
+	 *  ptr = A pointer to the location from which to generate the trace, либо null
 	 *        if the trace should be generated from within the trace handler
 	 *        itself.
 	 *

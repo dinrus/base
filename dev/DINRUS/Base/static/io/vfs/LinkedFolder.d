@@ -83,7 +83,7 @@ class LinkedFolder : ВиртуальнаяПапка
 
         final ХостВфс прикрепи (ПапкаВфс папка, ткст имя=пусто)
         {
-                // traverse в_ the конец of the список
+                // traverse в_ the конец этого списка
                 auto link = &голова;
                 while (*link)
                         link = &(*link).следщ;
@@ -108,14 +108,14 @@ class LinkedFolder : ВиртуальнаяПапка
 
         /***********************************************************************
 
-                Return a файл представление of the given путь. If the
+                Возвращает файл представление of the given путь. If the
                 путь-голова does not refer в_ an immediate ветвь папка, 
                 и does not сверь a symbolic link, it is consопрered в_
                 be неизвестное.
 
                 We скан the установи of mounted папки, in the order mounted,
                 looking for a сверь. Where one is найдено, we тест в_ see
-                that it really есть_ли before returning the reference
+                that it really есть_ли перед returning the reference
 
         ***********************************************************************/
 

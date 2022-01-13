@@ -115,7 +115,7 @@ public class НитеЛок(T)
      *  nv upon success
      *
      * Выводит исключение:
-     *  НитеЛокИскл if the system could not установи the НитеЛокStorage.
+     *  НитеЛокИскл if the system could not Устанавливает НитеЛокStorage.
      */
     public T знач(T nv)
     {

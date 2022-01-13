@@ -32,7 +32,7 @@ enum ПСостояниеКонтекста
 /******************************************************
  * A ИсклКонтекста is generated whenever there is a
  * problem in the КонтекстСтэка system.  ContextExceptions
- * can be triggered by выполняется out of memory, or errors
+ * can be triggered by выполняется out of memory, либо errors
  * relating to doubly starting threads.
  ******************************************************/
 public class ИсклКонтекста : Исключение
@@ -79,7 +79,7 @@ public class ОшибкаКонтекста : Ошибка
  * methoauxd.  A program calling 'пуск' must be prepared 
  * to deal with any exceptions that might be thrown.  Once
  * a контекст имеется thrown an exception like this, it dies
- * и must be restarted before it may be пуск again.
+ * и must be restarted перед it may be пуск again.
  *
  * Пример:
  * <код><pre>
@@ -125,7 +125,7 @@ public class ОшибкаКонтекста : Ошибка
  * try
  * {
  *      ctx3.пуск();     // Prints "Going to throw"
- *      ctx3.пуск();     // Throws an exception
+ *      ctx3.пуск();     // Выводит исключение an exception
  *      скажифнс("Bla");// Never gets here
  * }
  * catch(Исключение e)
@@ -232,7 +232,7 @@ public final class КонтекстСтэка
      */
     public final проц пуск();
     /**
-     * Returns control of the application to the routine
+     * Возвращаетs control of the application to the routine
      * which invoked the КонтекстСтэка.  At which point,
      * the application runs.
      *
@@ -243,7 +243,7 @@ public final class КонтекстСтэка
     public final static проц жни();
 	
     /**
-     * Throws an exception и жниs.  The exception
+     * Выводит исключение an exception и жниs.  The exception
      * will propagate out of the пуск method, while the
      * контекст will remain жив и functioning.
      * The контекст may be resumed после the exception имеется

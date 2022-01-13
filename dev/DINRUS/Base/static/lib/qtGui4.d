@@ -5672,9 +5672,9 @@
 
 		//вяжи(функция_2829)("_?beep@QApplication@@SAXXZ", биб);
 
-		//вяжи(функция_2830)("_?before@QActionEvent@@QBEPAVQAction@@XZ", биб);
+		//вяжи(функция_2830)("_?перед@QActionEvent@@QBEPAVQAction@@XZ", биб);
 
-		//вяжи(функция_2831)("_?beforeAnimationStep@QGraphicsItemAnimation@@MAEXN@Z", биб);
+		//вяжи(функция_2831)("_?передAnimationStep@QGraphicsItemAnimation@@MAEXN@Z", биб);
 
 		//вяжи(функция_2832)("_?начало@?$QList@VQItemSelectionRange@@@@QAE?AViterator@1@XZ", биб);
 
@@ -9548,7 +9548,7 @@
 
 		//вяжи(функция_4767)("_?drawText@QWidget@@QAEXHHABVQString@@@Z", биб);
 
-		//вяжи(функция_4768)("_?drawText_helper@QWidget@@AAEXHHABVQString@@@Z", биб);
+		//вяжи(функция_4768)("_?drawTрасш_helper@QWidget@@AAEXHHABVQString@@@Z", биб);
 
 		//вяжи(функция_4769)("_?drawTextItem@QPaintEngine@@UAEXABVQPointF@@ABVQTextItem@@@Z", биб);
 

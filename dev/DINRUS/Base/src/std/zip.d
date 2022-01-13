@@ -190,7 +190,7 @@ alias expand развернуть;
      * For each ArchiveMember, fills in properties std.crc32, compressedSize,
      * compressedData[].
      *
-     * Returns: array representing the entire archive.
+     * Возвращаетs: array representing the entire archive.
      */
     void[] build()
     {	uint i;

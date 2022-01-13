@@ -372,7 +372,7 @@ class BomSniffer
         /***********************************************************************
 
                 Return the текущ кодировка. This is either the originally
-                specified кодировка, or a производный one obtained by inspecting
+                specified кодировка, либо a производный one obtained by inspecting
                 the контент for a мпб. The latter is performed as часть of 
                 the раскодируй() метод
 

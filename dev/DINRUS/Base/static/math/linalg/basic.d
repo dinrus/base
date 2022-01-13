@@ -101,7 +101,7 @@ However the cost of such possibility is little calculation overhead.
     }
 
     if (bitsdiff > 0)
-        return bitsdiff + 1 >= отнпрец; // add the 1 we subtracted before
+        return bitsdiff + 1 >= отнпрец; // add the 1 we subtracted перед
 
     // Avoid out-by-1 errors when фактор is almost 2.
     return (bitsdiff == 0) ? (отнпрец <= 1) : false;

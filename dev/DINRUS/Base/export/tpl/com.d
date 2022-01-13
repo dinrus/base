@@ -1,9 +1,8 @@
 module tpl.com;
 import tpl.all, sys.uuid;
-import stdrus, cidrus, gc, sys.Common;
+import stdrus, cidrus, gc, sys.common;
 
 extern(C) проц ошибкаНехваткиПамяти();
-extern(Windows) цел CLSIDFromProgID(in шткст0 lpszProgID, КЛСИД* lpclsid);
 
 ук* возврзнач(T)(out T ppv)
 in {
@@ -319,7 +318,7 @@ template создайКо(T, ППолитикаИсключений полити
         гуид = ГУИД(клсид);
       }
       catch (Исключение) {
-        цел хрез = CLSIDFromProgID(вЮ16н(клсид), &гуид);
+        цел хрез = КЛСИДИзПрогИД(вЮ16н(клсид), &гуид);
         if (НЕУД(хрез)) {
           static if (политика == ППолитикаИсключений.Выводить)
             throw new ИсклКОМ(хрез);
@@ -357,7 +356,7 @@ template создайКоДоп(T, ППолитикаИсключений пол
         гуид = ГУИД(клсид);
       }
       catch (Исключение) {
-        цел хрез = CLSIDFromProgID(stdrus.вЮ16н(клсид), &гуид);
+        цел хрез = КЛСИДИзПрогИД(stdrus.вЮ16н(клсид), &гуид);
         if (НЕУД(хрез)) {
           static if (политика == ППолитикаИсключений.Выводить)
             throw new ИсклКОМ(хрез);

@@ -25,7 +25,7 @@ module std.intrinsic;
 /**
  * Scans the bits in v starting with bit 0, looking
  * for the first set bit.
- * Returns:
+ * Возвращаетs:
  *	The bit number of the first bit set.
  *	The return value is undefined if v is zero.
  */
@@ -35,7 +35,7 @@ int bsf(uint v);
  * Scans the bits in v from the most significant bit
  * to the least significant bit, looking
  * for the first set bit.
- * Returns:
+ * Возвращаетs:
  *	The bit number of the first bit set.
  *	The return value is undefined if v is zero.
  * Пример:
@@ -86,7 +86,7 @@ int btr(uint *p, uint bitnum);
 ---
 p[index / (uint.sizeof*8)] & (1 << (index & ((uint.sizeof*8) - 1)))
 ---
- * Returns:
+ * Возвращаетs:
  * 	A non-zero value if the bit was set, and a zero
  *	if it was clear.
  *

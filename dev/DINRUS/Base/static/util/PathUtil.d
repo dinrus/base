@@ -38,9 +38,9 @@ private enum
     Note that any число of .. segments at the front is ignored,
     unless it is an абсолютный путь, in which case they are removed.
 
-    The ввод путь is copied преобр_в either the предоставленный буфер, or a куча
+    The ввод путь is copied преобр_в either the предоставленный буфер, либо a куча
     allocated Массив if no буфер was предоставленный. Normalization modifies
-    this копируй before returning the relevant срез.
+    this копируй перед returning the relevant срез.
 
     Примеры:
     -----
@@ -284,11 +284,11 @@ debug (UnitTest)
             разделители and dots don't stop a meta-character из_ совпадают
             further portions of the имяф.
 
-            Возвращает: да if образец matches имяф, нет иначе.
+            Возвращает: да, если образец matches имяф, нет иначе.
 
-            See_Also: charMatch().
+            См_Также: charMatch().
 
-            Throws: Nothing.
+            Выводит исключение: Nothing.
 
             Примеры:
             -----
@@ -454,9 +454,9 @@ debug (UnitTest)
             Under Windows, the сравнение is готово ignoring case. Under Linux
             an exact match is performed.
 
-            Возвращает: да if c1 matches c2, нет иначе.
+            Возвращает: да, если c1 matches c2, нет иначе.
 
-            Throws: Nothing.
+            Выводит исключение: Nothing.
 
             Примеры:
             -----

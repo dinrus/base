@@ -91,7 +91,7 @@ package
     /*
     Computes the нормаль ни в каком дистрибутиве function.
 
-    The нормаль (or Gaussian, or bell-shaped) ни в каком дистрибутиве is
+    The нормаль (or Gaussian, либо bell-shaped) ни в каком дистрибутиве is
     defined as:
 
     normalDist(x) = 1/$(SQRT) &pi; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt

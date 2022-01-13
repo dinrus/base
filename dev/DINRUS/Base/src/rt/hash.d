@@ -439,11 +439,11 @@ If you are hashing n strings (ub1 **)k, do it like this:
   for (i=0, h=0; i<n; ++i) h = hash( k[i], len[i], h);
 
 By Bob Jenkins, Jan 4 1997.  bob_jenkins@burtleburtle.net.  You may
-use this code any way you wish, private, educational, or commercial,
+use this code any way you wish, private, educational, либо commercial,
 but I would appreciate if you give me credit.
 
 See http://burtleburtle.net/bob/hash/evahash.html
-Use for hash table lookup, or anything where one collision in 2^^64
+Use for hash table lookup, либо anything where one collision in 2^^64
 is acceptable.  Do NOT use for cryptographic purposes.
 --------------------------------------------------------------------
 */

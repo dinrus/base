@@ -1,5 +1,5 @@
 ﻿// Dinrus Dll Intro
-import win, cidrus: устбуф;
+import sys.common, cidrus: устбуф;
 import stdrus: дайтекпап;
 
 	extern(C)

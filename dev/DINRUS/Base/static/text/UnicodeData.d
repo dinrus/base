@@ -181,7 +181,7 @@ FoldingCaseData* getFoldingCaseData(дим код)
 
 СпецДанныеРегистра *спецДанныеРегистра[дим];//when compiling
 
-FoldingCaseData *foldingCaseData[дим];//codes using Dinrus library which were written before...
+FoldingCaseData *foldingCaseData[дим];//codes using Dinrus library which were written перед...
 
 //shortcuts, make source file smaller
 private const

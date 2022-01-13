@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Jan 2007: начальное release
-        
-        author:         Kris 
-
-*******************************************************************************/
-
-module io.protocol.model;
+﻿module io.protocol.model;
 
 private import io.model;
 
@@ -122,7 +110,7 @@ abstract class ИРазместитель
 
         все readers support the full установи of исконный данные типы, plus a full
         выделение of Массив типы. The latter can be configured в_ произведи
-        either a копируй (.dup) of the буфер контент, or a срез. See classes
+        either a копируй (.dup) of the буфер контент, либо a срез. See classes
         КопияКучи, СрезБуфера и СрезКучи for ещё on this topic. Applications
         can disable память management by configuring a Читатель with one of the
         binary oriented protocols, и ensuring the optional протокол 'префикс'
@@ -171,7 +159,7 @@ abstract class ИРазместитель
         expect в_ retrieve the число of Массив элементы из_ the исток. For
         example: when reading an Массив из_ a файл, the число of элементы 
         is читай из_ the файл also, и the configurable память-manager is
-        invoked в_ provопрe the Массив пространство. If контент is not arranged in
+        invoked в_ предоставляет the Массив пространство. If контент is not arranged in
         such a manner you may читай Массив контент directly either by creating
         a Читатель with a протокол configured в_ sопрestep Массив-prefixing, or
         by accessing буфер контент directly (via the methods exposed there)
@@ -298,7 +286,7 @@ interface ИЧитаемое
 
 /*******************************************************************************
 
-        ИПисатель interface. Writers provопрe the means в_ добавь formatted 
+        ИПисатель interface. Writers предоставляет the means в_ добавь formatted 
         данные в_ an ИБуфер, и expose a convenient метод of handling a
         variety of данные типы. In добавьition в_ writing исконный типы such
         as целое и ткст, writers also process any class which имеется
@@ -416,7 +404,7 @@ abstract class ИПисатель  // could be an interface, but that causes poo
         
         /***********************************************************************
         
-                Flush the вывод of this писатель. Throws an ВВИскл 
+                Flush the вывод of this писатель. Выводит исключение an ВВИскл 
                 if the operation fails. These are алиасы for each другой
 
         ***********************************************************************/

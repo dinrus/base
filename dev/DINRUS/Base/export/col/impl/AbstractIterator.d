@@ -42,8 +42,8 @@ public abstract class АбстрактныйОбходчик(T) : СтражОб
 
     /**
      * Реализует col.impl.Collection.CollectionIterator.повреждён.
-     * Claim corruption if version numbers differ
-     * See_Also: col.impl.Collection.CollectionIterator.повреждён
+     * Заявляет о повреждении, если номер версии отличается.
+     * См_Также: col.impl.Collection.CollectionIterator.повреждён
     **/
 
     public final бул повреждён()
@@ -53,7 +53,7 @@ public abstract class АбстрактныйОбходчик(T) : СтражОб
 
     /**
      * Реализует col.impl.Collection.CollectionIterator.numberOfRemaingingElements.
-     * See_Also: col.impl.Collection.CollectionIterator.остаток
+     * См_Также: col.impl.Collection.CollectionIterator.остаток
     **/
     public final бцел остаток()
     {
@@ -62,8 +62,8 @@ public abstract class АбстрактныйОбходчик(T) : СтражОб
 
     /**
      * Реализует col.model.IteratorX.ещё.
-     * Return да if остаток > 0 и not повреждён
-     * See_Also: col.model.IteratorX.ещё
+     * Возвращает да, если остаток > 0 и not повреждён
+     * См_Также: col.model.IteratorX.ещё
     **/
     public final бул ещё()
     {

@@ -209,7 +209,7 @@ extern (C) void _d_delclass(Object* p)
 
 /**
  * Allocate a new array of length elements.
- * ti is the type of the resulting array, or pointer to element.
+ * ti is the type of the resulting array, либо pointer to element.
  * (For when the array is initialized to 0)
  */
 extern (C) ulong _d_newarrayT(TypeInfo ti, size_t length)

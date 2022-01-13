@@ -56,7 +56,7 @@ static this()
 
 /********************************************
  * Read file name[], return array of bytes read.
- * Throws:
+ * Выводит исключение:
  *	ФайлИскл on error.
  */
 
@@ -110,7 +110,7 @@ err1:
 
 /*********************************************
  * Write buffer[] to file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void write(char[] name, void[] buffer)
@@ -152,7 +152,7 @@ err:
 
 /*********************************************
  * Append buffer[] to file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void append(char[] name, void[] buffer)
@@ -196,7 +196,7 @@ err:
 
 /***************************************************
  * Rename file from[] to to[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void rename(char[] from, char[] to)
@@ -214,7 +214,7 @@ void rename(char[] from, char[] to)
 
 /***************************************************
  * Delete file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void remove(char[] name)
@@ -232,7 +232,7 @@ void remove(char[] name)
 
 /***************************************************
  * Get size of file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 ulong getSize(char[] name)
@@ -268,7 +268,7 @@ ulong getSize(char[] name)
 
 /*************************
  * Get creation/access/modified times of file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void getTimes(char[] name, out d_time ftc, out d_time fta, out d_time ftm)
@@ -304,7 +304,7 @@ void getTimes(char[] name, out d_time ftc, out d_time fta, out d_time ftm)
 
 /***************************************************
  * Does file name[] (or directory) exist?
- * Return 1 if it does, 0 if not.
+ * Возвращает 1 if it does, 0 if not.
  */
 
 int exists(char[] name)
@@ -322,7 +322,7 @@ int exists(char[] name)
 
 /***************************************************
  * Get file name[] attributes.
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 uint getAttributes(string name)
@@ -342,7 +342,7 @@ uint getAttributes(string name)
 
 /****************************************************
  * Is name[] a file?
- * Throws: ФайлИскл if name[] doesn't exist.
+ * Выводит исключение: ФайлИскл if name[] doesn't exist.
  */
 
 int isfile(char[] name)
@@ -352,7 +352,7 @@ int isfile(char[] name)
 
 /****************************************************
  * Is name[] a directory?
- * Throws: ФайлИскл if name[] doesn't exist.
+ * Выводит исключение: ФайлИскл if name[] doesn't exist.
  */
 
 int isdir(char[] name)
@@ -362,7 +362,7 @@ int isdir(char[] name)
 
 /****************************************************
  * Change directory to pathname[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void chdir(char[] pathname)
@@ -381,7 +381,7 @@ void chdir(char[] pathname)
 
 /****************************************************
  * Make directory pathname[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void mkdir(char[] pathname)
@@ -400,7 +400,7 @@ void mkdir(char[] pathname)
 
 /****************************************************
  * Remove directory pathname[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void rmdir(char[] pathname)
@@ -419,7 +419,7 @@ void rmdir(char[] pathname)
 
 /****************************************************
  * Get current directory.
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 char[] getcwd()
@@ -517,7 +517,7 @@ struct DirEntry
     }
 
     /****
-     * Return !=0 if DirEntry is a directory.
+     * Возвращает !=0 if DirEntry is a directory.
      */
     uint isdir()
     {
@@ -525,7 +525,7 @@ struct DirEntry
     }
 
     /****
-     * Return !=0 if DirEntry is a file.
+     * Возвращает !=0 if DirEntry is a file.
      */
     uint isfile()
     {
@@ -535,9 +535,9 @@ struct DirEntry
 
 
 /***************************************************
- * Return contents of directory pathname[].
+ * Возвращает contents of directory pathname[].
  * The names in the contents do not include the pathname.
- * Throws: ФайлИскл on error
+ * Выводит исключение: ФайлИскл on error
  * Пример:
  *	This program lists all the files and subdirectories in its
  *	path argument.
@@ -571,7 +571,7 @@ string[] listdir(string pathname)
 
 
 /*****************************************************
- * Return all the files in the directory and its subdirectories
+ * Возвращает all the files in the directory and its subdirectories
  * that match pattern or regular expression r.
  * Параметры:
  *	pathname = Directory name
@@ -838,7 +838,7 @@ class ФайлИскл : Exception
 
 /********************************************
  * Read a file.
- * Returns:
+ * Возвращаетs:
  *	array of bytes read
  */
 
@@ -1085,7 +1085,7 @@ uint getAttributes(string name)
 
 /*************************
  * Get creation/access/modified times of file name[].
- * Throws: ФайлИскл on error.
+ * Выводит исключение: ФайлИскл on error.
  */
 
 void getTimes(string name, out d_time ftc, out d_time fta, out d_time ftm)
@@ -1355,7 +1355,7 @@ alias name имя;
 
 
 /***************************************************
- * Return contents of directory.
+ * Возвращает contents of directory.
  */
 
 string[] listdir(string pathname)

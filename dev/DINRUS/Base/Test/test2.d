@@ -38,7 +38,7 @@ class БраузерИЭ
  БраузерИЭ объБраузерИЭ(){return new БраузерИЭ;}
  
 проц тестКом() {
- /+  // Create an instance of the Excel application object and установи the Visible property to true.
+ /+  // Create an instance of the Excel application object and Устанавливает Visible property to true.
    scope excel = new Обдис("Excel.Application");
    excel.установи("Visible", true);
 
@@ -46,7 +46,7 @@ class БраузерИЭ
    scope workbooks = excel.дай("Workbooks");
    scope workbook = workbooks.вызови("Add");
 
-   // Get the Worksheet at index 1, then установи the Cells at column 5, row 3 to a string.
+   // Get the Worksheet at index 1, then Устанавливает Cells at column 5, row 3 to a string.
    scope worksheet = excel.дай("Worksheets", 1);
    worksheet.установи("Cells", 5, 3, "Письмецо от папочки!");
    +/

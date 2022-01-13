@@ -56,7 +56,7 @@ Differences with Windows' profile (INI) functions:
 /// Переносной модуль для чтения и записи файлов _INI. _ини.d version 0.6
 module ini;
 
-import sys.Common, stdrus, tpl.stream;
+import sys.common, stdrus, tpl.stream;
 
 
 debug = INI; //show файл being parsed
@@ -241,7 +241,7 @@ public:
 	}
 
 
-	/// Возвращает: значение of the existing ключ имяКлюча, or дефЗначение if not present.
+	/// Возвращает: значение of the existing ключ имяКлюча, либо дефЗначение if not present.
 	ткст дайЗнач(ткст имяКлюча, ткст дефЗначение = пусто)
 	{
 		foreach(КлючИни иключ; this)
@@ -253,7 +253,7 @@ public:
 	}
 	
 	
-	// /// Возвращает: _значение of the existing ключ имяКлюча, or пусто if not present.
+	// /// Возвращает: _значение of the existing ключ имяКлюча, либо пусто if not present.
 	/// То же, что дайЗнач(имяКлюча, пусто).
 	ткст значение(ткст имяКлюча)
 	{
@@ -664,7 +664,7 @@ public:
 	}
 
 
-	/// Property: дай whether or not the INI файл was _изменён since it was loaded or saveauxd.
+	/// Свойство: дай whether or not the INI файл was _изменён since it was loaded or saveauxd.
 	бул изменён()
 	{
 		return _изменён;
@@ -777,7 +777,7 @@ public:
 	}
 
 
-	/// Property: дай all _sections.
+	/// Свойство: дай all _sections.
 	РазделИни[] разделы()
 	{
 		return исекции;

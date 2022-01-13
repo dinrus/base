@@ -39,7 +39,7 @@ class ПостППГТ : КлиентППГТ
         /***********************************************************************
         
                 Созд a клиент for the given URL. The аргумент should be
-                fully qualified with an "http:" or "https:" scheme, or an
+                fully qualified with an "http:" or "https:" scheme, либо an
                 явный порт should be provопрed.
 
         ***********************************************************************/
@@ -49,7 +49,7 @@ class ПостППГТ : КлиентППГТ
         /***********************************************************************
         
                 Созд a клиент with the provопрed Уир экземпляр. The Уир should 
-                be fully qualified with an "http:" or "https:" scheme, or an
+                be fully qualified with an "http:" or "https:" scheme, либо an
                 явный порт should be provопрed. 
 
         ***********************************************************************/

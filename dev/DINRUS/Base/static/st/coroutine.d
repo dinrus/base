@@ -60,7 +60,7 @@ enum
     Неловкий,
 
     /**
-     * Ловкий coroutines will evaluate the next value in the sequence before
+     * Ловкий coroutines will evaluate the next value in the sequence перед
      * being askeauxd.  This is требуется for обходчик support.
      */
     Ловкий
@@ -165,7 +165,7 @@ CoroutinePublicT(Твхо, Твых, ПТипСопроц TCoroType)
     static if( is( Твхо == void ) )
     {
         /**
-         * Returns a delegate that can be использован to возобнови the coroutine.
+         * Возвращаетs a delegate that can be использован to возобнови the coroutine.
          *
          * Возвращает:
          *  A delegate that is equivalent to calling the coroutine directly.
@@ -565,7 +565,7 @@ private:
 
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -579,7 +579,7 @@ template
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -593,7 +593,7 @@ template
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -607,7 +607,7 @@ template
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -621,7 +621,7 @@ template
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -635,7 +635,7 @@ template
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */

@@ -15,12 +15,12 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     alias ЯчейкаСС!(T).элемент элемент;
 
 
-    // экземпляр variables
+    // переменные экземпляра
 
     private К ключ_;
 
     /**
-     * Make a ячейка with given ключ, elment, и следщ link
+     * Создаёт ячейка with given ключ, elment, и следщ link
     **/
 
     public this (К ключ, T знач, ПараСС n)
@@ -30,7 +30,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Make a пара with given ключ и элемент, и пусто следщ link
+     * Создаёт пара with given ключ и элемент, и пусто следщ link
     **/
 
     public this (К ключ, T знач)
@@ -40,7 +40,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Make a пара with пусто ключ, elment, и следщ link
+     * Создаёт пара with пусто ключ, elment, и следщ link
     **/
 
     public this ()
@@ -50,7 +50,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * return the ключ
+     * Возвращает ключ
     **/
 
     public final К ключ()
@@ -59,7 +59,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * установи the ключ
+     * Устанавливает ключ
     **/
 
     public final проц ключ(К ключ)
@@ -69,7 +69,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
 
 
     /**
-     * установи the ключ
+     * Устанавливает ключ
     **/
 
     public final цел хэшКлюча()
@@ -103,7 +103,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Return the число of cells traversed в_ найди a ячейка with ключ() ключ,
+     * Возвращает the число ячеек traversed в_ найди a ячейка with ключ() ключ,
      * or -1 if not present
     **/
 
@@ -121,7 +121,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Return the число of cells traversed в_ найди a ячейка with indicated пара
+     * Возвращает the число ячеек traversed в_ найди a ячейка with indicated пара
      * or -1 if not present
     **/
     public final цел индекс(К ключ, T элемент)
@@ -138,7 +138,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Return the число of cells with ключ() ключ.
+     * Возвращает the число ячеек with ключ() ключ.
     **/
     public final цел учтиКлюч(К ключ)
     {
@@ -150,7 +150,7 @@ public class ПараСС(К, T) : ЯчейкаСС!(T)
     }
 
     /**
-     * Return the число of cells with indicated пара
+     * Возвращает the число ячеек with indicated пара
     **/
     public final цел счёт(К ключ, T элемент)
     {

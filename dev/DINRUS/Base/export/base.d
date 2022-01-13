@@ -43,9 +43,8 @@ public struct Версия
 	}
 
 	+/	
-version(Win32)
-	{
-		version(SHARED)
+
+version(SHARED)
 		{
 		pragma(lib, "DinrusDllMain.lib");
 		extern (Windows) BOOL DllMain(экз экземп, бдол резон, ук резерв);
@@ -55,19 +54,19 @@ version(Win32)
 		version = EXE_BUILD;
 		}
 
-		version(EXE_BUILD)
+version(EXE_BUILD)
 		{
 		pragma(lib, "DinrusExeMain.lib");
 		extern (C) цел main(цел аргчло, ткст0 *аргткст);
 		}
 	}
 	
-		version = ЛитлЭндиан;
+version = ЛитлЭндиан;
 
 		int useWfuncs = 1;
 		alias useWfuncs __ЮНИКОД__;
 
-}
+
 
 /* ************* КОНСТАНТЫ *************** */
 const бул нет = false;

@@ -70,9 +70,9 @@ template VertexTraits(defs... )
         Base class for all traits.  All user traits should be derived from
         this class. You may enrich all basic items by additional
         properties or define one or more of the types \c Точка, \c Нормаль,
-        \c ТексКоорд, or \c Цвет.
+        \c ТексКоорд, либо \c Цвет.
 
-        See_Also: The Mesh doc section on \ref mesh_type,
+        См_Также: The Mesh doc section on \ref mesh_type,
                   Traits.d for a list of macros for traits classes.
     */
     class ДефолтныеТрэты
@@ -122,7 +122,7 @@ template VertexTraits(defs... )
  *  For your convenience use the provided defines \c OM_Merge_Traits
  *  и \c OM_Merge_Traits_In_Template instead.
  *
- *  See_Also: OM_Merge_Traits, OM_Merge_Traits_In_Template
+ *  См_Также: OM_Merge_Traits, OM_Merge_Traits_In_Template
  */
 struct MergeTraits(_Traits1,_Traits2)
 {

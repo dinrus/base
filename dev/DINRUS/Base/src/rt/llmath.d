@@ -245,7 +245,7 @@ L12:	jmp	__ULDIV__	;
 /***************************************
  * Compare [EDX,EAX] with [ECX,EBX]
  * Signed
- * Returns результат in flags
+ * Возвращаетs результат in flags
  */
 
 void __LCMP__()

@@ -93,14 +93,14 @@ abstract class ПаддингБлокаШифра
     abstract ббайт[] пад(бцел длин);
 
     /**
-    * Return the число of пад байты in the блок.
+    * Возвращает the число of пад байты in the блок.
     *
     * Параметры:
     *     ввод_ = Pдобавьed блок of which в_ счёт the пад байты.
     *
     * Возвращает: The число of пад байты in the блок.
     *
-    * Throws: dcrypt.crypto.ошибки.InvalКСЕРдобавимError if
+    * Выводит исключение: dcrypt.crypto.ошибки.InvalКСЕРдобавимError if
     *         пад length cannot be discerned.
     */
     abstract бцел отпад(проц[] ввод_);

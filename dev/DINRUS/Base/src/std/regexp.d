@@ -187,7 +187,7 @@ alias char rchar;	// so we can make a wchar version
  *	pattern = Regular expression pattern.
  *	format = Replacement string format.
  *	attributes = Regular expression attributes.
- * Returns:
+ * Возвращаетs:
  *	the resulting string
  * Пример:
  *	Replace the letters 'a' with the letters 'ZZ'.
@@ -229,7 +229,7 @@ unittest
  *	pattern = Regular expression pattern.
  *	дг = Delegate
  *	attributes = Regular expression attributes.
- * Returns: the resulting string.
+ * Возвращаетs: the resulting string.
  * Пример:
  * Capitalize the letters 'a' and 'r':
  * ---
@@ -321,7 +321,7 @@ unittest
  *	string = String to search.
  *	pattern = Regular expression pattern.
  *	attributes = Regular expression attributes.
- * Returns:
+ * Возвращаетs:
  *	index into string[] of match if found, -1 if no match.
  * Пример:
  * ---
@@ -363,7 +363,7 @@ unittest
  *	string = String to search.
  *	pattern = Regular expression pattern.
  *	attributes = Regular expression attributes.
- * Returns:
+ * Возвращаетs:
  *	index into string[] of match if found, -1 if no match.
  * Пример:
  * ---
@@ -416,7 +416,7 @@ unittest
  *	string = String to search.
  *	pattern = Regular expression pattern.
  *	attributes = Regular expression attributes.
- * Returns:
+ * Возвращаетs:
  * 	array of slices into string[]
  * Пример:
  * ---
@@ -465,7 +465,7 @@ unittest
  *	string = String to search.
  *	pattern = Regular expression pattern.
  *	attributes = Regular expression attributes.
- * Returns:
+ * Возвращаетs:
  *	corresponding RegExp if found, null if not.
  * Пример:
  * ---
@@ -557,7 +557,7 @@ alias replaceOld замениСтарый;
      * Параметры:
      *	pattern = regular expression
      *  attributes = _attributes
-     * Throws: РегВырИскл if there are any compilation errors.
+     * Выводит исключение: РегВырИскл if there are any compilation errors.
      * Пример:
      *  Declare two variables and assign to them a RegExp object:
      * ---
@@ -576,7 +576,7 @@ alias replaceOld замениСтарый;
      * Параметры:
      *	pattern = regular expression
      *  attributes = _attributes
-     * Throws: РегВырИскл if there are any compilation errors.
+     * Выводит исключение: РегВырИскл if there are any compilation errors.
      * Пример:
      *  Declare two variables and assign to them a RegExp object:
      * ---
@@ -609,7 +609,7 @@ alias replaceOld замениСтарый;
 
     /************************************
      * Set up for start of foreach loop.
-     * Returns:
+     * Возвращаетs:
      *	search() returns instance of RegExp set up to _search string[].
      * Пример:
      * ---
@@ -694,7 +694,7 @@ alias replaceOld замениСтарый;
     }
 
     /*******************
-     * Return the slice of the input that precedes the matched substring.
+     * Возвращает the slice of the input that precedes the matched substring.
      */
     public char[] pre()
     {
@@ -702,7 +702,7 @@ alias replaceOld замениСтарый;
     }
 
     /*******************
-     * Return the slice of the input that follows the matched substring.
+     * Возвращает the slice of the input that follows the matched substring.
      */
     public char[] post()
     {
@@ -729,7 +729,7 @@ alias replaceOld замениСтарый;
 	global		= 1,	// has the g атрибут
 	ignoreCase	= 2,	// has the i атрибут
 	multiline	= 4,	// if treat as multiple lines separated
-				// by newlines, or as a single line
+				// by newlines, либо as a single line
 	dotmatchlf	= 8,	// if . matches \n
     }
 
@@ -795,7 +795,7 @@ private int isword(dchar c) { return cidrus.isalnum(c) || c == '_'; }
 private uint inf = ~0u;
 
 /* ********************************
- * Throws РегВырИскл on error
+ * Выводит исключение РегВырИскл on error
  */
 
 public void compile(rchar[] pattern, rchar[] attributes)
@@ -856,7 +856,7 @@ public void compile(rchar[] pattern, rchar[] attributes)
 /********************************************
  * Split string[] into an array of strings, using the regular
  * expression as the separator.
- * Returns:
+ * Возвращаетs:
  * 	array of slices into string[]
  */
 
@@ -955,7 +955,7 @@ unittest
 
 /*************************************************
  * Search string[] for match with regular expression.
- * Returns:
+ * Возвращаетs:
  *	index of match if successful, -1 if not found
  */
 
@@ -988,7 +988,7 @@ unittest
 
 /*************************************************
  * Search string[] for match.
- * Returns:
+ * Возвращаетs:
  *	If global атрибут, return same value as exec(string).
  *	If not global атрибут, return array of all matches.
  */
@@ -1046,7 +1046,7 @@ unittest
  * with a new _string composed of format[] merged with the результат of the
  * matches.
  * If global, replace all matches. Otherwise, replace first match.
- * Returns: the new _string
+ * Возвращаетs: the new _string
  */
 
 public rchar[] replace(rchar[] string, rchar[] format)
@@ -1122,7 +1122,7 @@ unittest
 
 /*************************************************
  * Search string[] for match.
- * Returns:
+ * Возвращаетs:
  *	array of slices into string[] representing matches
  */
 
@@ -1138,7 +1138,7 @@ public rchar[][] exec(rchar[] string)
 /*************************************************
  * Pick up where last exec(string) or exec() left off,
  * searching string[] for следщ match.
- * Returns:
+ * Возвращаетs:
  *	array of slices into string[] representing matches
  */
 
@@ -1161,7 +1161,7 @@ public rchar[][] exec()
 
 /************************************************
  * Search string[] for match.
- * Returns: 0 for no match, !=0 for match
+ * Возвращаетs: 0 for no match, !=0 for match
  * Пример:
 ---
 import std.io;
@@ -1195,7 +1195,7 @@ public int test(rchar[] string)
 
 /************************************************
  * Pick up where last test(string) or test() left off, and search again.
- * Returns: 0 for no match, !=0 for match
+ * Возвращаетs: 0 for no match, !=0 for match
  */
 
 public int test()
@@ -1205,7 +1205,7 @@ public int test()
 
 /************************************************
  * Test string[] starting at startindex against regular expression.
- * Returns: 0 for no match, !=0 for match
+ * Возвращаетs: 0 for no match, !=0 for match
  */
 
 public int test(char[] string, int startindex)
@@ -1492,7 +1492,7 @@ void printProgram(ubyte[] prog)
 
 /**************************************************
  * Match input against a section of the program[].
- * Returns:
+ * Возвращаетs:
  *	1 if successful match
  *	0 no match
  */
@@ -1784,7 +1784,7 @@ int trymatch(int pc, int pcend)
 		    s2 = src;
 
 		    // If no match после consumption, but it
-		    // did match before, then no match
+		    // did match перед, then no match
 		    if (!trymatch(pc, program.length))
 		    {
 			src = s1;
@@ -1870,7 +1870,7 @@ int trymatch(int pc, int pcend)
 			}
 
 			// If no match после consumption, but it
-			// did match before, then no match
+			// did match перед, then no match
 			if (!trymatch(pop + len, program.length))
 			{
 			    src = s1;

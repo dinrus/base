@@ -423,7 +423,7 @@ int YearFromTime(d_time t)
  * A leap year is every 4 years except years ending in 00 that are not
  * divsible by 400.
  *
- * Returns: !=0 if it is a leap year.
+ * Возвращаетs: !=0 if it is a leap year.
  *
  * References:
  *	$(LINK2 http://en.wikipedia.org/wiki/Leap_year, Wikipedia)
@@ -437,7 +437,7 @@ int inLeapYear(d_time t)
 /*****************************
  * Calculates the month from the d_time t.
  *
- * Returns: Integer in the range 0..11, where
+ * Возвращаетs: Integer in the range 0..11, where
  *	0 represents January and 11 represents December.
  */
 
@@ -498,7 +498,7 @@ int MonthFromTime(d_time t)
 
 /*******************************
  * Compute which day in a month a d_time t is.
- * Returns:
+ * Возвращаетs:
  *	Integer in the range 1..31
  */
 int DateFromTime(d_time t)
@@ -535,7 +535,7 @@ int DateFromTime(d_time t)
 
 /*******************************
  * Compute which day of the week a d_time t is.
- * Returns:
+ * Возвращаетs:
  *	Integer in the range 0..6, where 0 represents Sunday
  *	and 6 represents Saturday.
  */
@@ -586,7 +586,7 @@ d_time MakeTime(d_time hour, d_time min, d_time сек, d_time ms)
  * Параметры:
  *	month = 0..11
  *	дата = day of month, 1..31
- * Returns:
+ * Возвращаетs:
  *	number of days since start of epoch
  */
 
@@ -638,7 +638,7 @@ d_time TimeClip(d_time time)
  *	weekday = day of week 0..6 representing Sunday..Saturday
  *	n = nth occurrence of that weekday in the month, 1..5, where
  *	    5 also means "the last occurrence in the month"
- * Returns:
+ * Возвращаетs:
  *	the дата in the month, 1..31, of the nth weekday
  */
 
@@ -748,7 +748,7 @@ string toString(d_time time)
     d_time offset;
     d_time dst;
 
-    // Years are supposed to be -285616 .. 285616, or 7 digits
+    // Years are supposed to be -285616 .. 285616, либо 7 digits
     // "Tue Apr 02 02:04:57 GMT-0800 1996"
     char[] buffer = new char[29 + 7 + 1];
 
@@ -793,7 +793,7 @@ string toString(d_time time)
 
 string toUTCString(d_time t)
 {
-    // Years are supposed to be -285616 .. 285616, or 7 digits
+    // Years are supposed to be -285616 .. 285616, либо 7 digits
     // "Tue, 02 Apr 1996 02:04:57 GMT"
     char[] buffer = new char[25 + 7 + 1];
     int len;
@@ -826,7 +826,7 @@ string toDateString(d_time time)
     d_time dst;
     int len;
 
-    // Years are supposed to be -285616 .. 285616, or 7 digits
+    // Years are supposed to be -285616 .. 285616, либо 7 digits
     // "Tue Apr 02 1996"
     char[] buffer = new char[29 + 7 + 1];
 

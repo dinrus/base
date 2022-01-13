@@ -1615,7 +1615,7 @@ body
 }
 
 /**
- * Throws an object и жниs the threaauxd.  The exception
+ * Выводит исключение an object и жниs the threaauxd.  The exception
  * is propagated out of the сн_запустиСрез methoauxd.
  */
 проц сн_бросайЖни(Объект t)

@@ -98,7 +98,7 @@
                 Текст кодируй (шим[]);
                 Текст кодируй (дим[]);
 
-                // вставь before текущ выделение
+                // вставь перед текущ выделение
                 Текст приставь (T[] текст);
                 Текст приставь (ТекстОбзор другой);
                 Текст приставь (T симв, цел счёт=1);
@@ -120,7 +120,7 @@
                 // убери leading и trailing симв экземпляры
                 Текст откинь (T симв);
 
-                // упрости at точка, or текущ выделение
+                // упрости at точка, либо текущ выделение
                 Текст упрости (цел точка = цел.max);
 
                 // резервируй some пространство for inserts/добавьitions
@@ -465,7 +465,7 @@ class Текст(T) : ТекстОбзор!(T)
 
     /***********************************************************************
 
-            Explicitly установи the текущ выделение в_ the given старт и
+            Explicitly Устанавливает текущ выделение в_ the given старт и
             length. значения are pinned в_ the контент extents
 
     ***********************************************************************/
@@ -529,7 +529,7 @@ class Текст(T) : ТекстОбзор!(T)
 
     /***********************************************************************
 
-            Return a ищи обходчик for a given образец. The обходчик
+            Возвращает ищи обходчик for a given образец. The обходчик
             sets the текущ текст выделение as appropriate. For example:
             ---
             auto t = new Текст ("hello world");
@@ -564,7 +564,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери the следщ occurrence of a BMP код точка
-            in a ткст. Returns да if найдено, нет otherwise
+            in a ткст. Returns да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -585,7 +585,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери the следщ substring occurrence.  Returns
-            да if найдено, нет otherwise
+            да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -599,7 +599,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери the следщ substring occurrence. Returns
-            да if найдено, нет otherwise
+            да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -620,7 +620,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери a приор occurrence of a BMP код точка
-            in a ткст. Returns да if найдено, нет otherwise
+            in a ткст. Returns да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -641,7 +641,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери a приор substring occurrence. Returns
-            да if найдено, нет otherwise
+            да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -655,7 +655,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Find и выбери a приор substring occurrence. Returns
-            да if найдено, нет otherwise
+            да, если найдено, нет otherwise
 
             deprecated: use ищи() instead
 
@@ -1170,7 +1170,7 @@ class Текст(T) : ТекстОбзор!(T)
 
             Сравни this Текст старт with другой. Returns 0 if the
             контент совпадает, less than zero if this Текст is "less"
-            than the другой, or greater than zero where this Текст
+            than the другой, либо greater than zero where this Текст
             is "bigger".
 
     ***********************************************************************/
@@ -1187,7 +1187,7 @@ class Текст(T) : ТекстОбзор!(T)
 
             Сравни this Текст старт with an Массив. Returns 0 if the
             контент совпадает, less than zero if this Текст is "less"
-            than the другой, or greater than zero where this Текст
+            than the другой, либо greater than zero where this Текст
             is "bigger".
 
     ***********************************************************************/
@@ -1203,7 +1203,7 @@ class Текст(T) : ТекстОбзор!(T)
 
             A срез of приёмн is returned, representing a копируй of the
             контент. The срез is clИПped в_ the minimum of either
-            the length of the provопрed Массив, or the length of the
+            the length of the provопрed Массив, либо the length of the
             контент minus the stИПulated старт точка
 
     ***********************************************************************/
@@ -1246,7 +1246,7 @@ class Текст(T) : ТекстОбзор!(T)
             if (результат.length > буфер.length)
                 буфер = результат;
             ---
-            You can also provопрe a буфер из_ the стэк, but the вывод
+            You can also предоставляет a буфер из_ the стэк, but the вывод
             will be moved в_ the куча if saопр буфер is not large enough
 
     ***********************************************************************/
@@ -1360,7 +1360,7 @@ class Текст(T) : ТекстОбзор!(T)
     /***********************************************************************
 
             Сравни two массивы. Returns 0 if the контент совпадает, less
-            than zero if A is "less" than B, or greater than zero where
+            than zero if A is "less" than B, либо greater than zero where
             A is "bigger". Where the substrings сверь, the shorter is
             consопрered "less".
 
@@ -1518,7 +1518,7 @@ class ТекстОбзор(T) : ЮниТекст
 
             Сравни this Текст старт with другой. Returns 0 if the
             контент совпадает, less than zero if this Текст is "less"
-            than the другой, or greater than zero where this Текст
+            than the другой, либо greater than zero where this Текст
             is "bigger".
 
     ***********************************************************************/
@@ -1529,7 +1529,7 @@ class ТекстОбзор(T) : ЮниТекст
 
             Сравни this Текст старт with an Массив. Returns 0 if the
             контент совпадает, less than zero if this Текст is "less"
-            than the другой, or greater than zero where this Текст
+            than the другой, либо greater than zero where this Текст
             is "bigger".
 
     ***********************************************************************/
@@ -1541,7 +1541,7 @@ class ТекстОбзор(T) : ЮниТекст
             Return контент из_ this Текст. A срез of приёмн is
             returned, representing a копируй of the контент. The
             срез is clИПped в_ the minimum of either the length
-            of the provопрed Массив, or the length of the контент
+            of the provопрed Массив, либо the length of the контент
             minus the stИПulated старт точка
 
     ***********************************************************************/

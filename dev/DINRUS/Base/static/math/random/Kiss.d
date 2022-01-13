@@ -49,7 +49,7 @@ version (Posix)
         ---
 
         Note that this should be passed by reference, unless you really
-        intend в_ provопрe a local копируй в_ a callee
+        intend в_ предоставляет a local копируй в_ a callee
 
 ******************************************************************************/
 

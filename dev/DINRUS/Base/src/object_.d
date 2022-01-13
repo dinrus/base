@@ -7,6 +7,7 @@ private import  runtime;
 private  import std.string, std.utf;
 alias std.string.format фм;
 import sys.memory;
+
 //debug = НА_КОНСОЛЬ;
 
 alias Исключение.ИнфОСледе function( ук укз = пусто ) Следопыт, TraceHandler;
@@ -117,7 +118,7 @@ export extern (D) class Object
     }
 	
 	 /**
-     * Returns !=0 if this object does have the same contents as obj.
+     * Возвращаетs !=0 if this object does have the same contents as obj.
      */
    export  цел opEquals(Object o) //цел in Phobos
     {
@@ -416,7 +417,7 @@ if(!выведено)
 		this.выведи();
 		ткст soob = фм("Класс Исключения: "~this.classinfo.name~"\nСообщение: "~msg~"\nФайл: "~file~"\nСтрока:"~std.string.toString(line)~"\nСообщение Системы: "~СистОШ.последнСооб);
         ОкноСооб(null, soob, "Исключение Динрус", ПСооб.Ошибка|ПСооб.Поверх);
-		сбросьЦветКонсоли();	
+	сбросьЦветКонсоли();	
 		выведено = да;
 } 
 		
@@ -1939,7 +1940,7 @@ export:
         return ret;
     }
     /******************
-     * Return collection of all modules in the program.
+     * Возвращает collection of all modules in the program.
      */
     static ИнфОМодуле[] модули()
     {
@@ -1961,7 +1962,7 @@ export:
 export extern (C):
 
 /********************************
- * Compiler helper for operator == for class objects.
+ * Compiler Ассистент-метод для operator == for class objects.
  */
 
 int _d_obj_eq(Object o1, Object o2)
@@ -1971,7 +1972,7 @@ int _d_obj_eq(Object o1, Object o2)
 
 
 /********************************
- * Compiler helper for operator <, <=, >, >= for class objects.
+ * Compiler Ассистент-метод для operator <, <=, >, >= for class objects.
  */
 
 int _d_obj_cmp(Object o1, Object o2)
@@ -3780,7 +3781,7 @@ export:
         ткст s1 = *cast(char[]*)p1;
         ткст s2 = *cast(char[]*)p2;
 
-        return stringCompare(s1, s2);
+        return std.string.stringCompare(s1, s2);
     }
 	override цел сравни(in ук п1, in ук п2){return compare(п1, п2);}
 

@@ -138,7 +138,7 @@ export extern(C):
     цел рез;
     слейфл(cidrus.стдвых); слейфл(cidrus.стдош);
     рез = cidrus.система(кмнд);
-    if (рез)  // CyberShadow 2007.02.22: Display a message before exiting
+    if (рез)  // CyberShadow 2007.02.22: Display a message перед exiting
     {
         цел p = кмнд.найди(' ');
         if(p!=-1) кмнд=кмнд[0..p];
@@ -185,7 +185,7 @@ export extern(C):
 {
     цел рез;
     рез = сисРеспонс(кмнд, рфлаг, рфайл, удалитьРФайл);
-    if (рез)  // CyberShadow 2007.02.22: Display a message before exiting
+    if (рез)  // CyberShadow 2007.02.22: Display a message перед exiting
     {
         цел p = кмнд.найди(' ');
         if(p!=-1) кмнд=кмнд[0..p];

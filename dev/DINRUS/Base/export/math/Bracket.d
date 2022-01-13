@@ -14,7 +14,7 @@ alias math.Math.копируйзнак копируйзнак;
 alias math.Math.фабс фабс;
 private:
 
-// return да if a и b have opposite знак
+// return да, если a и b have opposite знак
 бул противоположныеЗнаки(T)(T a, T b)
 {
     return (битзнака(a) ^ битзнака(b))!=0;
@@ -115,7 +115,7 @@ body
         }
     }
 
-    /* Perform a secant interpolation. If the результат would lie on a or b, or if
+    /* Perform a secant interpolation. If the результат would lie on a or b, либо if
       a и b differ so wildly in magnitude that the результат would be meaningless,
       выполни a bisection instead.
      */
@@ -388,7 +388,7 @@ body
             denom = фабс(denom);
             // is the parabolic fit good enough?
             // it must be a step that is less than half the movement
-            // of the step before последний, AND it must fall
+            // of the step перед последний, AND it must fall
             // преобр_в the bounding интервал [xlo,xhi].
             if (фабс(numerator) >= фабс(0.5 * denom * stepBeforeLast)
                     || numerator <= denom*(xlo-bestx)

@@ -37,7 +37,7 @@ TypeidExpression:
 
 ***************************/
 
-extern(D) struct СтруктураТипов
+struct СтруктураТипов
 {
 Объект объ;//Object
 Исключение искл;//Exception

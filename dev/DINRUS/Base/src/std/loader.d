@@ -607,7 +607,7 @@ public:
 
     /** Retrieves the named symbol.
      *
-     * \return A pointer to the symbol, or null if it does not exist
+     * \return A pointer to the symbol, либо null if it does not exist
      */
     void *findSymbol(in string symbolName)
     {

@@ -124,7 +124,7 @@ export class АктивОбъ
 
   export  this(ткст имяПриложения)
     {
-        КЛСИД клсид = КЛСИДИзПрогИД(имяПриложения);
+        КЛСИД клсид = КЛСИДИзПрогИД_(имяПриложения);
         HRESULT hr = CoCreateInstance( cast(REFCLSID) &клсид, cast(LPUNKNOWN) пусто, cast(DWORD) ПКлассКонтекста.СерверКонтекстаКласса, cast(REFIID) &IID_IDispatch,cast(PVOID*) &укДиспетчер);
         загрузиСостав();
     }

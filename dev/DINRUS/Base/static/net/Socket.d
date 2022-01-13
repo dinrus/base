@@ -1,6 +1,6 @@
 ﻿module net.Socket;
 
-private import  time.Time, sys.Common, exception;
+private import  time.Time, sys.common, exception;
 
 version=Dinrus;
 version (Dinrus)
@@ -423,7 +423,7 @@ class Сокет
 
         /**
          * Акцепт an incoming connection. If the сокет is блокируется, прими
-         * waits for a connection request. Throws СокетПриёмИскл if unable
+         * waits for a connection request. Выводит исключение СокетПриёмИскл if unable
          * куда прими. See accepting for use with производный classes.
          */
         Сокет прими ()
@@ -547,7 +547,7 @@ class Сокет
 
         /***********************************************************************
 
-                calling глуши() before this is recommended for connection-
+                calling глуши() перед this is recommended for connection-
                 oriented СОКЕТs
 
         ***********************************************************************/
@@ -663,10 +663,10 @@ class Сокет
 
         /**
          * Отправка данные on the connection. Возвращает the число of байты actually
-         * sent, or ERROR on failure. If the сокет is блокируется и there is no
+         * sent, либо ERROR on failure. If the сокет is блокируется и there is no
          * буфер пространство лево, шли waits.
          */
-        //returns число of байты actually sent, or -1 on ошибка
+        //returns число of байты actually sent, либо -1 on ошибка
         цел шли(проц[] буф, ПФлагиСокета флаги=ПФлагиСокета.Неук)
         {
                 return .шли(cast(СОКЕТ) сок, буф.ptr, буф.length, cast(ПФлагиСокета)флаги);
@@ -697,11 +697,11 @@ class Сокет
 
         /**
          * принять данные on the connection. Возвращает the число of байты actually
-         * Приёмd, 0 if the remote sопрe имеется закрыт the connection, or ERROR on
+         * Приёмd, 0 if the remote sопрe имеется закрыт the connection, либо ERROR on
          * failure. If the сокет is блокируется, принять waits until there is данные
          * куда be Приёмd.
          */
-        //returns число of байты actually Приёмd, 0 on connection closure, or -1 on ошибка
+        //returns число of байты actually Приёмd, 0 on connection closure, либо -1 on ошибка
         цел принять(проц[] буф, ПФлагиСокета флаги=ПФлагиСокета.Неук)
         {
                 if (!буф.length)
@@ -711,7 +711,7 @@ class Сокет
         }
 
         /**
-         * принять данные и получи the remote endpoint адрес. Возвращает the число of байты actually Приёмd, 0 if the remote sопрe имеется закрыт the connection, or ERROR on failure. If the сокет is блокируется, принять_от waits until there is данные куда be Приёмd.
+         * принять данные и получи the remote endpoint адрес. Возвращает the число of байты actually Приёмd, 0 if the remote sопрe имеется закрыт the connection, либо ERROR on failure. If the сокет is блокируется, принять_от waits until there is данные куда be Приёмd.
          */
         цел принять_от(проц[] буф, ПФлагиСокета флаги, Адрес из_)
         {
@@ -800,7 +800,7 @@ class Сокет
                 НаборСокетов's are updated куда include only those СОКЕТs which an
                 событие occured.
 
-                Возвращает the число of события, 0 on таймаут, or -1 on ошибка
+                Возвращает the число of события, 0 on таймаут, либо -1 on ошибка
 
                 for a подключись()ing сокет, writeability means подключен
                 for a слушай()ing сокет, readability means listening

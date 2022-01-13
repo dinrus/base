@@ -145,7 +145,7 @@ public:
 // return нет if не_годится character найдено
     бул изГексТкст(сим [] s);
 
-// return да if ОК; нет if erroneous characters найдено
+// return да, если ОК; нет if erroneous characters найдено
     бул изДесятичнТкст(сим [] s);
 ////////////////////////
 //
@@ -186,7 +186,7 @@ public:
     static БольшБцел mod(БольшБцел x, БольшБцел y);
 
     /**
-     * Return a БольшБцел which is x raised в_ the power of y.
+     * Возвращает БольшБцел which is x raised в_ the power of y.
      * Метод: Powers of 2 are removed из_ x, then left-в_-right binary
      * exponentiation is использован.
      * Memory allocation is minimized: at most one temporary БольшБцел is использован.

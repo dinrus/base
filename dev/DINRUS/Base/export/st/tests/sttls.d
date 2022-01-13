@@ -1,5 +1,5 @@
 module sttls;
-import st.tls, stdrus, sys.Common;
+import st.tls, stdrus, sys.common;
 
 extern(Windows) бцел ФункцНити(ук данные) 
 { 
@@ -17,7 +17,7 @@ extern(Windows) бцел ФункцНити(ук данные)
  
    ОбщаяФункцияНлх(); 
  
-// Release the dynamic memory before the thread returns. 
+// Release the dynamic memory перед the thread returns. 
  
    данные = ДайЗначениеНлх(индНлх); 
    if (данные != cast(ук) 0) 

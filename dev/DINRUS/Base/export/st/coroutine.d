@@ -122,7 +122,7 @@ CoroutinePublicT(Tin, Tout, ПТипСопроц TCoroType)
     static if( is( Tin == void ) )
     {
         /**
-         * Returns a delegate that can be использован to возобнови the coroutine.
+         * Возвращаетs a delegate that can be использован to возобнови the coroutine.
          *
          * Возвращает:
          *  A delegate that is equivalent to calling the coroutine directly.
@@ -513,7 +513,7 @@ private:
 
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -527,7 +527,7 @@ CoroutineMixin(Tin, Tout)
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -541,7 +541,7 @@ CoroutineMixin(Tin, Tout, Ta1)
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -555,7 +555,7 @@ CoroutineMixin(Tin, Tout, Ta1, Ta2)
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -569,7 +569,7 @@ CoroutineMixin(Tin, Tout, Ta1, Ta2, Ta3)
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */
@@ -583,7 +583,7 @@ CoroutineMixin(Tin, Tout, Ta1, Ta2, Ta3, Ta4)
 }
 
 /**
- * This mixin implements the constructor, и static opCall method for your
+ * This mixin Реализует the constructor, и static opCall method for your
  * coroutine.  It is a good idea to mix this into your coroutine subclasses,
  * so that you need only override the пуск methoauxd.
  */

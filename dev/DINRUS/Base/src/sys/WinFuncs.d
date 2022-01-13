@@ -294,39 +294,39 @@ else
 бул ReadConsoleInputW(ук hConsoleInput, ЗАПИСЬ_ВВОДА* буф, бцел длина, бцел* lpNumberOfEventsRead);
 бул WriteConsoleInputA(ук hConsoleInput, in ЗАПИСЬ_ВВОДА *буф, бцел длина, бцел* lpNumberOfEventsWritten);
 бул WriteConsoleInputW(ук hConsoleInput, in ЗАПИСЬ_ВВОДА *буф, бцел длина, бцел* lpNumberOfEventsWritten);
-бул ReadConsoleOutputA(ук КОНСВЫВОД, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен);
-бул ReadConsoleOutputW(ук КОНСВЫВОД, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен);
-бул WriteConsoleOutputA(ук КОНСВЫВОД, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЗап);
-бул WriteConsoleOutputW(ук КОНСВЫВОД, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЗап);
-бул ReadConsoleOutputCharacterA(ук КОНСВЫВОД, ткст0  симв, бцел длина, КООРД коордЧтен, бцел* члоСчитСим);
-бул ReadConsoleOutputCharacterW(ук КОНСВЫВОД, шткст0 симв, бцел длина, КООРД коордЧтен, бцел* члоСчитСим);
+бул ReadConsoleOutputA(ук консВывод, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен);
+бул ReadConsoleOutputW(ук консВывод, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен);
+бул WriteConsoleOutputA(ук консВывод, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЗап);
+бул WriteConsoleOutputW(ук консВывод, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЗап);
+бул ReadConsoleOutputCharacterA(ук консВывод, ткст0  симв, бцел длина, КООРД коордЧтен, бцел* члоСчитСим);
+бул ReadConsoleOutputCharacterW(ук консВывод, шткст0 симв, бцел длина, КООРД коордЧтен, бцел* члоСчитСим);
 бул ReadConsoleOutputAttributecast(ук  hConsoleOutput,  бкрат*  lpAttribute, бцел nLength, КООРД dwReadCoord, бцел* lpNumberOfAttrsRead);
 бул WriteConsoleOutputCharacterAcast(ук hConsoleOutput, ткст0 lpCharacter, бцел nLength, КООРД dwWriteCoord, бцел* члоЗаписанАтров);
-бул ReadConsoleOutputAttribute(ук КОНСВЫВОД, бкрат* атр, бцел длина, КООРД коордЧтен, бцел* члоСчитАтров);
-бул WriteConsoleOutputCharacterA(ук КОНСВЫВОД, ткст0 симв, бцел длина, КООРД коордЗап, бцел* члоЗаписанАтров);
-бул WriteConsoleOutputCharacterW(ук КОНСВЫВОД, шткст0 симв, бцел длина, КООРД коордЗап, бцел* члоЗаписанАтров);
-бул WriteConsoleOutputAttribute(ук КОНСВЫВОД, in бкрат *атр, бцел длина, КООРД коордЗап, бцел* lpNumberOfAttrsWritten);
-бул FillConsoleOutputCharacterA(ук КОНСВЫВОД, CHAR cCharacter, бцел  длина, КООРД  коордЗап, бцел* члоЗаписанАтров);
-бул FillConsoleOutputCharacterW(ук КОНСВЫВОД, WCHAR cCharacter, бцел  длина, КООРД  коордЗап, бцел* члоЗаписанАтров);
-бул FillConsoleOutputAttribute(ук КОНСВЫВОД, бкрат   wAttribute, бцел  длина, КООРД  коордЗап, бцел* lpNumberOfAttrsWritten);
+бул ReadConsoleOutputAttribute(ук консВывод, бкрат* атр, бцел длина, КООРД коордЧтен, бцел* члоСчитАтров);
+бул WriteConsoleOutputCharacterA(ук консВывод, ткст0 симв, бцел длина, КООРД коордЗап, бцел* члоЗаписанАтров);
+бул WriteConsoleOutputCharacterW(ук консВывод, шткст0 симв, бцел длина, КООРД коордЗап, бцел* члоЗаписанАтров);
+бул WriteConsoleOutputAttribute(ук консВывод, in бкрат *атр, бцел длина, КООРД коордЗап, бцел* lpNumberOfAttrsWritten);
+бул FillConsoleOutputCharacterA(ук консВывод, CHAR cCharacter, бцел  длина, КООРД  коордЗап, бцел* члоЗаписанАтров);
+бул FillConsoleOutputCharacterW(ук консВывод, WCHAR cCharacter, бцел  длина, КООРД  коордЗап, бцел* члоЗаписанАтров);
+бул FillConsoleOutputAttribute(ук консВывод, бкрат   wAttribute, бцел  длина, КООРД  коордЗап, бцел* lpNumberOfAttrsWritten);
 бул GetConsoleMode(ук hConsoleHandle, бцел* lpMode);
 бул GetNumberOfConsoleInputEvents(ук hConsoleInput, бцел* lpNumberOfEvents);
-бул GetConsoleScreenBufferInfo(ук КОНСВЫВОД, ИНФОКОНСЭКРБУФ* lpConsoleScreenBufferInfo);
-КООРД GetLargestConsoleWindowSize( ук КОНСВЫВОД);
-бул GetConsoleCursorInfo(ук КОНСВЫВОД, ИНФОКОНСКУРСОР* lpConsoleCursorInfo);
+бул GetConsoleScreenBufferInfo(ук консВывод, ИНФОКОНСЭКРБУФ* lpConsoleScreenBufferInfo);
+КООРД GetLargestConsoleWindowSize( ук консВывод);
+бул GetConsoleCursorInfo(ук консВывод, ИНФОКОНСКУРСОР* lpConsoleCursorInfo);
 бул GetNumberOfConsoleMouseButtons( бцел* lpNumberOfMouseButtons);
 бул SetConsoleMode(ук hConsoleHandle, бцел dwMode);
-бул SetConsoleActiveScreenBuffer(ук КОНСВЫВОД);
+бул SetConsoleActiveScreenBuffer(ук консВывод);
 бул FlushConsoleInputBuffer(ук hConsoleInput);
-бул SetConsoleScreenBufferSize(ук КОНСВЫВОД, КООРД dwSize);
+бул SetConsoleScreenBufferSize(ук консВывод, КООРД dwSize);
 бул WriteConsoleOutputAcast(ук  hConsoleOutput, in ИНФОСИМ* lpBuffer, КООРД  dwBufferSize, КООРД  dwBufferCoord, МПРЯМ*  lpWriteRegion);
 бул WriteConsoleOutputWcast(ук hConsoleOutput, in ИНФОСИМ* lpBuffer, КООРД dwBufferSize, КООРД  dwBufferCoord, МПРЯМ* lpWriteRegion);
-бул SetConsoleCursorPosition(ук КОНСВЫВОД, КООРД dwCursorPosition);
-бул SetConsoleCursorInfo(ук КОНСВЫВОД, in ИНФОКОНСКУРСОР *lpConsoleCursorInfo);
-бул ScrollConsoleScreenBufferA(ук КОНСВЫВОД, in МПРЯМ *lpScrollRectangle, in МПРЯМ *lpClipRectangle, КООРД dwDestinationOrigin, in ИНФОСИМ *lpFill);
-бул ScrollConsoleScreenBufferW(ук КОНСВЫВОД, in МПРЯМ *lpScrollRectangle, in МПРЯМ *lpClipRectangle, КООРД dwDestinationOrigin, in ИНФОСИМ *lpFill);
-бул SetConsoleWindowInfo(ук КОНСВЫВОД, бул bAbsolute, in МПРЯМ *lpConsoleWindow);
-бул SetConsoleTextAttribute(ук КОНСВЫВОД, бкрат wAttributes);
+бул SetConsoleCursorPosition(ук консВывод, КООРД dwCursorPosition);
+бул SetConsoleCursorInfo(ук консВывод, in ИНФОКОНСКУРСОР *lpConsoleCursorInfo);
+бул ScrollConsoleScreenBufferA(ук консВывод, in МПРЯМ *lpScrollRectangle, in МПРЯМ *lpClipRectangle, КООРД dwDestinationOrigin, in ИНФОСИМ *lpFill);
+бул ScrollConsoleScreenBufferW(ук консВывод, in МПРЯМ *lpScrollRectangle, in МПРЯМ *lpClipRectangle, КООРД dwDestinationOrigin, in ИНФОСИМ *lpFill);
+бул SetConsoleWindowInfo(ук консВывод, бул bAbsolute, in МПРЯМ *lpConsoleWindow);
+бул SetConsoleTextAttribute(ук консВывод, бкрат wAttributes);
 alias бул function(бцел CtrlType) PHANDLER_ROUTINE;
 бул SetConsoleCtrlHandler(PHANDLER_ROUTINE HandlerRoutine, бул Add);
 бул GenerateConsoleCtrlEvent( бцел dwCtrlEvent, бцел dwProcessGroupId);
@@ -337,8 +337,8 @@ alias бул function(бцел CtrlType) PHANDLER_ROUTINE;
 бул SetConsoleTitleW(шткст0 консТитул);
 бул ReadConsoleA(ук hConsoleInput, ук буф, бцел nNumberOfCharsToRead, бцел* члоСчитСим, ук резерв);
 бул ReadConsoleW(ук hConsoleInput, ук буф, бцел nNumberOfCharsToRead, бцел* члоСчитСим, ук резерв);
-бул WriteConsoleA(ук КОНСВЫВОД, in  проц *буф, бцел nNumberOfCharsToWrite, бцел* члоЗаписанАтров, ук резерв);
-бул WriteConsoleW(ук КОНСВЫВОД, in  проц *буф, бцел nNumberOfCharsToWrite, бцел* члоЗаписанАтров, ук резерв);
+бул WriteConsoleA(ук консВывод, in  проц *буф, бцел nNumberOfCharsToWrite, бцел* члоЗаписанАтров, ук резерв);
+бул WriteConsoleW(ук консВывод, in  проц *буф, бцел nNumberOfCharsToWrite, бцел* члоЗаписанАтров, ук резерв);
 бцел GetConsoleCP();
 бул SetConsoleCP( бцел wCodePageID);
 бцел GetConsoleOutputCP();
@@ -2000,7 +2000,7 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 бул HeapUnlock(ук);//
 бул HeapWalk(ук, ЗАППРОЦКУЧ*);//
 бул HeapQueryInformation(  ук HeapHandle,  бцел HeapInformationClass,  ук HeapInformation,
-  т_мера HeapInformationLength,  т_мера* ReturnLength);//
+  т_мера HeapInformationLength,  т_мера* ВозвращаетLength);//
 бул HeapSetInformation(  ук HeapHandle,  бцел HeapInformationClass,  ук HeapInformation,  т_мера HeapInformationLength);//
 ук GetProcessHeap();//
 бцел GetProcessHeaps(бцел, ук*);//
@@ -2206,7 +2206,7 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 //бул CreateProcessWithLogonW( шткст0 lpUsername, шткст0 lpDomain, шткст0 lpPassword, бцел dwLogonFlags,  шткст0 lpApplicationName,  шткст0 lpCommandLine,  бцел dwCreationFlags,  ук lpEnvironment,  шткст0 lpCurrentDirectory,  LPSTARTUPINFOW lpStartupInfo, ИНФОПРОЦ* lpProcessInfo);
 
 /+
-// TODO: MinGW implements these in assembly.  How to translate?
+// TODO: MinGW Реализует these in assembly.  How to translate?
 ук GetCurrentFiber();
 ук GetFiberData();
 
@@ -4129,13 +4129,18 @@ return cast(ук) MapViewOfFile(cast(ук) объектФМап, cast(бцел) 
         return toUTF8(stringz.изТкст16н(прогИд_ш));		
 	}
 	
-    КЛСИД КЛСИДИзПрогИД(in ткст прогИд)
+    КЛСИД КЛСИДИзПрогИД_(in ткст прогИд)
     {
         шим *прогИд_ш = toUTF16z(прогИд);
         КЛСИД клсид;
         if(УД(CLSIDFromProgID(прогИд_ш, &клсид)))
 		return клсид;// ГУИД(клсид.Data1, клсид.Data2, клсид.Data3, клсид.Data4);
         throw new Exception("КЛСИДИзПрогИД - неудачно");
+	}
+	
+	цел КЛСИДИзПрогИД (in шткст0 прогИд, КЛСИД* клсид)
+	{
+	return CLSIDFromProgID(прогИд, клсид);
 	}
 	
     КЛСИД КЛСИДИзПрогИДДоп(in ткст прогИд)
@@ -4618,47 +4623,47 @@ return cast(ук) MapViewOfFile(cast(ук) объектФМап, cast(бцел) 
 бул УстановиИнфОбОкнеКонсоли(ук вывод, бул абс, in МПРЯМ *разм)
 {return cast(бул) SetConsoleWindowInfo(cast(ук)  вывод, cast(бул) абс, cast(МПРЯМ *) разм);}
 /////////////////////\\\\\\\\\\\\\\\\\\\\=
-бул  ЧитайКонсольныйВыводА(ук КОНСВЫВОД, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен)
-{return cast(бул) ReadConsoleOutputA(cast(ук)  КОНСВЫВОД, cast(ИНФОСИМ*)  буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЧтен);}
+бул  ЧитайКонсольныйВыводА(ук консВывод, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен)
+{return cast(бул) ReadConsoleOutputA(cast(ук)  консВывод, cast(ИНФОСИМ*)  буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЧтен);}
 
-бул  ЧитайКонсольныйВывод(ук КОНСВЫВОД, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен)
-{return cast(бул) ReadConsoleOutputW(cast(ук)  КОНСВЫВОД, cast(ИНФОСИМ*)  буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЧтен);}
+бул  ЧитайКонсольныйВывод(ук консВывод, ИНФОСИМ* буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ* регЧтен)
+{return cast(бул) ReadConsoleOutputW(cast(ук)  консВывод, cast(ИНФОСИМ*)  буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЧтен);}
 
-бул ПишиНаВыводКонсолиА(ук КОНСВЫВОД, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ *регЗап)
-{return cast(бул) WriteConsoleOutputA(cast(ук)  КОНСВЫВОД, cast(ИНФОСИМ*) буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЗап);}
+бул ПишиНаВыводКонсолиА(ук консВывод, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ *регЗап)
+{return cast(бул) WriteConsoleOutputA(cast(ук)  консВывод, cast(ИНФОСИМ*) буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЗап);}
 
-бул ПишиНаВыводКонсоли(ук КОНСВЫВОД, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ *регЗап)
-{return cast(бул) WriteConsoleOutputW(cast(ук)  КОНСВЫВОД, cast(ИНФОСИМ*) буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЗап);}
+бул ПишиНаВыводКонсоли(ук консВывод, in ИНФОСИМ *буф, КООРД буфРазм, КООРД буфКоорд, МПРЯМ *регЗап)
+{return cast(бул) WriteConsoleOutputW(cast(ук)  консВывод, cast(ИНФОСИМ*) буф,   буфРазм,   буфКоорд, cast(МПРЯМ*)  регЗап);}
 
-бул ЧитайСимИзВыводаКонсолиА(ук КОНСВЫВОД, сим *симв, бцел длина, КООРД коордЧтен, бцел *члоСчитСим)
-{return cast(бул) ReadConsoleOutputCharacterA(cast(ук)  КОНСВЫВОД, cast(ткст0 )  симв, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитСим);}
+бул ЧитайСимИзВыводаКонсолиА(ук консВывод, сим *симв, бцел длина, КООРД коордЧтен, бцел *члоСчитСим)
+{return cast(бул) ReadConsoleOutputCharacterA(cast(ук)  консВывод, cast(ткст0 )  симв, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитСим);}
 
-бул ЧитайСимИзВыводаКонсоли(ук КОНСВЫВОД, шим *симв, бцел длина, КООРД коордЧтен, бцел *члоСчитСим)
-{return cast(бул) ReadConsoleOutputCharacterW(cast(ук)  КОНСВЫВОД,cast( шткст0)  симв, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитСим);}
+бул ЧитайСимИзВыводаКонсоли(ук консВывод, шим *симв, бцел длина, КООРД коордЧтен, бцел *члоСчитСим)
+{return cast(бул) ReadConsoleOutputCharacterW(cast(ук)  консВывод,cast( шткст0)  симв, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитСим);}
 
-бул ЧитайАтрибутВыводаКонсоли(ук КОНСВЫВОД, бкрат *атр, бцел длина, КООРД коордЧтен, бцел *члоСчитАтров){return cast(бул) ReadConsoleOutputAttribute(cast(ук)  КОНСВЫВОД, cast( бкрат*)  атр, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитАтров);}
+бул ЧитайАтрибутВыводаКонсоли(ук консВывод, бкрат *атр, бцел длина, КООРД коордЧтен, бцел *члоСчитАтров){return cast(бул) ReadConsoleOutputAttribute(cast(ук)  консВывод, cast( бкрат*)  атр, cast(бцел) длина,   коордЧтен, cast(бцел*) члоСчитАтров);}
 /+
-бул ПишиАтрибутВыводаКонсоли(ук КОНСВЫВОД, сим *симв, бцел длина, КООРД коордЗап, бцел *члоЗаписанАтров){return cast(бул) WriteConsoleOutputAttribute( КОНСВЫВОД,симв, длина,  коордЗап, члоЗаписанАтров);}
+бул ПишиАтрибутВыводаКонсоли(ук консВывод, сим *симв, бцел длина, КООРД коордЗап, бцел *члоЗаписанАтров){return cast(бул) WriteConsoleOutputAttribute( консВывод,симв, длина,  коордЗап, члоЗаписанАтров);}
 
 бул АтрибутЗаливкиВыводаКонсоли(ук конс, ПТекстКонсоли атр, бцел длин, КООРД коорд, бцел* члоЗапАтров){return cast(бул) FillConsoleOutputAttribute(cast(ук) конс, cast(бкрат) атр, cast(бцел) длин,  коорд, cast(бцел*) члоЗапАтров);}
 +/
 /*
-{return cast(бул) WriteConsoleOutputCharacterW cast(ук)  КОНСВЫВОД, шткст0 симв, cast(бцел) длина,   коордЗап, cast(бцел*) члоЗаписанАтров);}
+{return cast(бул) WriteConsoleOutputCharacterW cast(ук)  консВывод, шткст0 симв, cast(бцел) длина,   коордЗап, cast(бцел*) члоЗаписанАтров);}
 
-{return cast(бул) WriteConsoleOutputAttribute cast(ук)  КОНСВЫВОД, in бкрат *атр, cast(бцел) длина,   коордЗап, cast(бцел*) lpNumberOfAttrsWritten);}
+{return cast(бул) WriteConsoleOutputAttribute cast(ук)  консВывод, in бкрат *атр, cast(бцел) длина,   коордЗап, cast(бцел*) lpNumberOfAttrsWritten);}
 
-{return cast(бул) FillConsoleOutputCharacterA cast(ук)  КОНСВЫВОД, CHAR cCharacter, cast(бцел)  длина,    коордЗап, cast(бцел*) члоЗаписанАтров);}
+{return cast(бул) FillConsoleOutputCharacterA cast(ук)  консВывод, CHAR cCharacter, cast(бцел)  длина,    коордЗап, cast(бцел*) члоЗаписанАтров);}
 
-{return cast(бул) FillConsoleOutputCharacterW cast(ук)  КОНСВЫВОД, WCHAR cCharacter, cast(бцел)  длина,    коордЗап, cast(бцел*) члоЗаписанАтров);}
+{return cast(бул) FillConsoleOutputCharacterW cast(ук)  консВывод, WCHAR cCharacter, cast(бцел)  длина,    коордЗап, cast(бцел*) члоЗаписанАтров);}
 {return cast(бул) GetConsoleMode(cast(ук)  hConsoleHandle, cast(бцел*) lpMode);}
 {return cast(бул) GetNumberOfConsoleInputEvents(cast(ук)  hConsoleInput, cast(бцел*) lpNumberOfEvents);}
-{return cast(бул) GetConsoleScreenBufferInfocast(ук)  КОНСВЫВОД, cast( ИНФОКОНСЭКРБУФ*)  lpConsoleScreenBufferInfo);}
-  GetLargestConsoleWindowSize( ук КОНСВЫВОД);}
-{return cast(бул) GetConsoleCursorInfocast(ук)  КОНСВЫВОД, cast( ИНФОКОНСКУРСОР*)  lpConsoleCursorInfo);}
+{return cast(бул) GetConsoleScreenBufferInfocast(ук)  консВывод, cast( ИНФОКОНСЭКРБУФ*)  lpConsoleScreenBufferInfo);}
+  GetLargestConsoleWindowSize( ук консВывод);}
+{return cast(бул) GetConsoleCursorInfocast(ук)  консВывод, cast( ИНФОКОНСКУРСОР*)  lpConsoleCursorInfo);}
 {return cast(бул) GetNumberOfConsoleMouseButtons( cast(бцел*) lpNumberOfMouseButtons);}
 
 
-{return cast(бул) SetConsoleTextAttribute(cast(ук)  КОНСВЫВОД, бкрат wAttributes);}
+{return cast(бул) SetConsoleTextAttribute(cast(ук)  консВывод, бкрат wAttributes);}
 alias {return cast(бул) function(cast(бцел) CtrlType) PHANDLER_ROUTINE;}
 {return cast(бул) SetConsoleCtrlHandler(PHANDLER_ROUTINE HandlerRoutine, {return cast(бул) Add);}
 {return cast(бул) GenerateConsoleCtrlEvent( cast(бцел) dwCtrlEvent, cast(бцел) dwProcessGroupId);}
@@ -6279,7 +6284,7 @@ const бцел INET6_ADDRSTRLEN = 46;
 
 
 
-/************************************** os.win.com *********************************************************/
+/************************************** os.io.Console.com *********************************************************/
 
 alias WCHAR OLECHAR;
 alias OLECHAR *LPOLESTR;
@@ -6390,7 +6395,7 @@ extern (System):
 */
 }
 
-/****************************************** os.win.stat ************************************************/
+/****************************************** os.io.Console.stat ************************************************/
 
 extern (C):
 

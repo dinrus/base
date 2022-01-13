@@ -307,7 +307,7 @@ public:
     return да;
 }
 
-// return да if ОК; нет if erroneous characters найдено
+// return да, если ОК; нет if erroneous characters найдено
 бул изДесятичнТкст(сим [] s)
 {
     //StrИП leading zeros
@@ -510,7 +510,7 @@ static БольшБцел mod(БольшБцел x, БольшБцел y)
 }
 
 /**
- * Return a БольшБцел which is x raised в_ the power of y.
+ * Возвращает БольшБцел which is x raised в_ the power of y.
  * Метод: Powers of 2 are removed из_ x, then лево-в_-право binary
  * exponentiation is использован.
  * Memory allocation is minimized: at most one temporary БольшБцел is использован.
@@ -898,7 +898,7 @@ unittest {
     } else return результат[0..$-1];
 }
 
-/** Return x - y.
+/** Возвращает x - y.
  *  x must be greater than y.
  */  
 БольшЦифра [] subInt(БольшЦифра[] x, бдол y)
@@ -981,7 +981,7 @@ unittest {
             чанкиize += extra / cast(дво)чисчанки;
             extra = x.length - чанкиize*чисчанки;
             // there will probably be a few лево over.
-            // Every чанк will either have размер чанкиize, or чанкиize+1.
+            // Every чанк will either have размер чанкиize, либо чанкиize+1.
             maxchunk = чанкиize + 1;
             pдобавимY = да;
             assert(чанкиize + extra + чанкиize *(чисчанки-1) == x.length );
@@ -1167,7 +1167,7 @@ private:
  * Параметры:
  *  данные    The bigбцел в_ be принять the результат. Must be large enough в_ 
  *          сохрани the результат.
- *  s       The десяток ткст. May contain 0..9, or _. Will be preserved.
+ *  s       The десяток ткст. May contain 0..9, либо _. Will be preserved.
  *
  * The требуется length for the приёмник буфер is slightly less than
  *  1 + s.length/лог2(10) = 1 + s.length/3.3219.
@@ -1351,7 +1351,7 @@ body {
 }
 
 
-// return да if x<y, consопрering leading zeros
+// return да, если x<y, consопрering leading zeros
 бул less(БольшЦифра[] x, БольшЦифра[] y)
 {
     assert(x.length >= y.length);
@@ -1362,7 +1362,7 @@ body {
     return x[ключ] < y[ключ];
 }
 
-// Набор результат = абс(x-y), return да if результат is негатив(x<y), нет if x<=y.
+// Набор результат = абс(x-y), return да, если результат is негатив(x<y), нет if x<=y.
 бул inplaceSub(БольшЦифра[] результат, БольшЦифра[] x, БольшЦифра[] y)
 {
     assert(результат.length == (x.length >= y.length) ? x.length : y.length);
@@ -1403,7 +1403,7 @@ body {
 *    квкор(2)*y.length > x.length > y.length.
 * Karatsuba multИПlication is O(n^1.59), whereas schoolbook is O(n^2)
 * The maximum allowable length of x и y is бцел.max; but better algorithms
-* should be использован far before that length is reached.
+* should be использован far перед that length is reached.
 * Параметры:
 * scratchbuff      An Массив дол enough в_ сохрани все the temporaries. Will be destroyed.
 */

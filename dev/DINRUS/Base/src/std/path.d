@@ -68,7 +68,7 @@ version(Posix)
 
 /*****************************
  * Compare file names.
- * Returns:
+ * Возвращаетs:
  *	<table border=1 cellpadding=4 cellspacing=0>
  *	<tr> <td> &lt; 0	<td> filename1 &lt; filename2
  *	<tr> <td> = 0	<td> filename1 == filename2
@@ -88,11 +88,11 @@ version (Posix) alias std.string.cmp fcmp;
  * reached. Under Windows, the drive letter separator (<i>colon</i>)
  * also terminates the search.
  *
- * Returns: If a dot was found, characters to its right are
- * returned. If a path separator was found, or fullname didn't
+ * Возвращаетs: If a dot was found, characters to its right are
+ * returned. If a path separator was found, либо fullname didn't
  * contain any dots or path separators, returns null.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -184,18 +184,18 @@ unittest
 }
 
 /**************************
- * Returns the extensionless version of a filename or path.
+ * Возвращаетs the extensionless version of a filename or path.
  *
  * This function will search fullname from the end until the
  * first dot, path separator or first character of fullname is
  * reached. Under Windows, the drive letter separator (<i>colon</i>)
  * also terminates the search.
  *
- * Returns: If a dot was found, characters to its left are
- * returned. If a path separator was found, or fullname didn't
+ * Возвращаетs: If a dot was found, characters to its left are
+ * returned. If a path separator was found, либо fullname didn't
  * contain any dots or path separators, returns null.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -260,10 +260,10 @@ unittest
  * reached. Under Windows, the drive letter separator (<i>colon</i>)
  * also terminates the search.
  *
- * Returns: If a path separator was found, all the characters to its
+ * Возвращаетs: If a path separator was found, all the characters to its
  * right are returned. Otherwise, fullname is returned.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -333,13 +333,13 @@ unittest
  * reached. Under Windows, the drive letter separator (<i>colon</i>)
  * also terminates the search.
  *
- * Returns: If a path separator was found, all the characters to its
+ * Возвращаетs: If a path separator was found, all the characters to its
  * left are returned. Otherwise, fullname is returned.
  *
  * Under Windows, the found path separator will be included in the
  * returned string if it is preceeded by a colon.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -399,12 +399,12 @@ unittest
  *
  * This function will search fullname for a colon from the beginning.
  *
- * Returns: If a colon is found, all the characters to its left
+ * Возвращаетs: If a colon is found, all the characters to its left
  * plus the colon are returned.  Otherwise, null is returned.
  *
  * Under Linux, this function always returns null immediately.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -442,10 +442,10 @@ string getDrive(string fullname)
  * dots, one will be inserted between filename and ext if filename
  * doesn't already end with one.
  *
- * Returns: filename if it contains an extension, otherwise filename
+ * Возвращаетs: filename if it contains an extension, otherwise filename
  * + ext.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -481,11 +481,11 @@ string defaultExt(string filename, string ext)
  * be inserted between filename and ext if filename doesn't already
  * end with one.
  *
- * Returns: filename + ext if filename is extensionless. Otherwise
+ * Возвращаетs: filename + ext if filename is extensionless. Otherwise
  * strips filename's extension off, appends ext and returns the
  * результат.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -519,11 +519,11 @@ string addExt(string filename, string ext)
 /*************************************
  * Checks if path is absolute.
  *
- * Returns: non-zero if the path starts from the root directory (Linux) or
+ * Возвращаетs: non-zero if the path starts from the root directory (Linux) or
  * drive letter and root directory (Windows),
  * zero otherwise.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -574,12 +574,12 @@ unittest
  * Joins two path components.
  *
  * If p1 doesn't have a trailing path separator, one will be appended
- * to it before concatting p2.
+ * to it перед concatting p2.
  *
- * Returns: p1 ~ p2. However, if p2 is an absolute path, only p2
+ * Возвращаетs: p1 ~ p2. However, if p2 is an absolute path, only p2
  * will be returned.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -743,9 +743,9 @@ unittest
  * Under Windows, the comparison is done ignoring case. Under Linux
  * an exact match is performed.
  *
- * Returns: non zero if c1 matches c2, zero otherwise.
+ * Возвращаетs: non zero if c1 matches c2, zero otherwise.
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -804,11 +804,11 @@ int fncharmatch(dchar c1, dchar c2)
  * separators and dots don't stop a meta-character from matching
  * further portions of the filename.
  *
- * Returns: non zero if pattern matches filename, zero otherwise.
+ * Возвращаетs: non zero if pattern matches filename, zero otherwise.
  *
- * See_Also: fncharmatch().
+ * См_Также: fncharmatch().
  *
- * Throws: Nothing.
+ * Выводит исключение: Nothing.
  *
  * Примеры:
  * -----
@@ -983,11 +983,11 @@ unittest
  * modified if the user doesn't exist in the database or there is
  * not enough memory to выполни the query.
  *
- * Returns: inputPath with the tilde expanded, or just inputPath
+ * Возвращаетs: inputPath with the tilde expanded, либо just inputPath
  * if it could not be expanded.
  * For Windows, expandTilde() merely returns its argument inputPath.
  *
- * Throws: exception.OutOfMemoryException if there is not enough
+ * Выводит исключение: exception.OutOfMemoryException if there is not enough
  * memory to выполни
  * the database lookup for the <i>~user</i> syntax.
  *
@@ -1071,7 +1071,7 @@ unittest
 	assert(expandTilde("~/") == "dmd/test/");
 	assert(expandTilde("~") == "dmd/test");
 
-	// Recover original HOME variable before continuing.
+	// Recover original HOME variable перед continuing.
 	if (c_home)
 	    setenv("HOME", c_home, 1);
 	else
@@ -1107,7 +1107,7 @@ private string expandFromEnvironment(string path)
 /**
  * Joins a path from a C string to the остаток of path.
  *
- * The last path separator from c_path is discarded. The результат
+ * The last path separator from c_path сброшен. The результат
  * is joined to path[char_pos .. length] if char_pos is smaller
  * than length, otherwise path is not appended to c_path.
  */

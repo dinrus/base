@@ -548,10 +548,10 @@ try{
 
     т = фм(1.67, " %A ", -1.28, плав.nan);
     /* The host C library is used to format floats.
-     * C99 doesn't specify what the hex digit before the десяток point
+     * C99 doesn't specify what the hex digit before the decimal point
      * is for %A.
      */
-  	assert(т == "1.67 -0X1.47AE147AE147BP+0 нч"); скажи("Ок3 ");
+  //	assert(т == "1.67 -0X1.47AE147AE147BP+0 nan"); скажи("Ок3 ");
 
     т = фм("%x %X", 0x1234AF, 0xAFAFAFAF);
     assert(т == "1234af AFAFAFAF"); скажи("Ок4 ");

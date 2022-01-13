@@ -1,6 +1,6 @@
 ﻿module net.device.Berkeley;
 
-private import sys.Common;
+private import sys.common;
 private import exception;
 private import stringz;
 
@@ -683,7 +683,7 @@ public class НаборСокетов
                 НаборСокетов's are updated куда include only those СОКЕТs which an
                 событие occured.
 
-                Returns the число of события, 0 on таймаут, or -1 on ошибка
+                Returns the число of события, 0 on таймаут, либо -1 on ошибка
 
                 for a подключись()ing сокет, writeability means подключен
                 for a слушай()ing сокет, readability means listening

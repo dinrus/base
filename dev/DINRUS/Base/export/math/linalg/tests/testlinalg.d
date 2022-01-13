@@ -1,5 +1,5 @@
 ﻿module testlinalg;
-import sys.Common, math.Linalgebra, stdrus;
+import sys.common, math.Linalgebra, stdrus;
 
 проц тест1()
 {

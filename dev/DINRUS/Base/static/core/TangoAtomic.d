@@ -183,7 +183,7 @@ version( TangoDoc )
          *  равноС = The сравнение значение.
          *
          * Возвращает:
-         *  да if the сохрани occurred, нет if not.
+         *  да, если the сохрани occurred, нет if not.
          */
         бул атомноеСохранениеЕсли( ref T знач, T новзнач, T равноС )
         {
@@ -496,7 +496,7 @@ else version( D_InlineAsm_X86 )
         //       requirement в_ acquire ops (though hoist-сохрани should not need
         //       one if support is добавьed for this later).  However, since no
         //       modern architectures will reorder dependent loads в_ occur
-        //       before the загрузи they depend on (except the Alpha), необр loads
+        //       перед the загрузи they depend on (except the Alpha), необр loads
         //       are actually a possible means of ordering specific sequences
         //       of loads in some instances.  The original atomic<>
         //       implementation provопрes a 'ddhlb' ordering определитель for
@@ -657,7 +657,7 @@ else version( D_InlineAsm_X86 )
             else
             {
                 ////////////////////////////////////////////////////////////////
-                // Not a 1, 2, 4, or 8 Byte Тип
+                // Not a 1, 2, 4, либо 8 Byte Тип
                 ////////////////////////////////////////////////////////////////
 
 
@@ -811,7 +811,7 @@ else version( D_InlineAsm_X86 )
             else
             {
                 ////////////////////////////////////////////////////////////////
-                // Not a 1, 2, 4, or 8 Byte Тип
+                // Not a 1, 2, 4, либо 8 Byte Тип
                 ////////////////////////////////////////////////////////////////
 
 
@@ -951,7 +951,7 @@ else version( D_InlineAsm_X86 )
             else
             {
                 ////////////////////////////////////////////////////////////////
-                // Not a 1, 2, 4, or 8 Byte Тип
+                // Not a 1, 2, 4, либо 8 Byte Тип
                 ////////////////////////////////////////////////////////////////
 
 
@@ -1063,7 +1063,7 @@ else version( D_InlineAsm_X86 )
             else
             {
                 ////////////////////////////////////////////////////////////////
-                // Not a 1, 2, 4, or 8 Byte Тип
+                // Not a 1, 2, 4, либо 8 Byte Тип
                 ////////////////////////////////////////////////////////////////
 
 
@@ -1175,7 +1175,7 @@ else version( D_InlineAsm_X86 )
             else
             {
                 ////////////////////////////////////////////////////////////////
-                // Not a 1, 2, 4, or 8 Byte Тип
+                // Not a 1, 2, 4, либо 8 Byte Тип
                 ////////////////////////////////////////////////////////////////
 
 
@@ -1554,7 +1554,7 @@ struct Атомный( T )
          *  равноС = The сравнение значение.
          *
          * Возвращает:
-         *  да if the сохрани occurred, нет if not.
+         *  да, если the сохрани occurred, нет if not.
          */
         бул сохраниЕсли( T новзнач, T равноС )
         {

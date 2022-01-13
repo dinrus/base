@@ -160,7 +160,7 @@ template плавТрэтсИ3Е(T)
             const БКРАТ_ПОЗ_ЭКСП = 0;
         }
     }
-    else static if (T.mant_dig==53)     // дво, or реал==дво
+    else static if (T.mant_dig==53)     // дво, либо реал==дво
     {
         enum : бкрат
         {
@@ -259,7 +259,7 @@ version(NOSTDRUS)
 
 
 /*********************************
- * Return 1 if знак bit of e is установи, 0 if not.
+ * Возвращает 1 if знак bit of e is установи, 0 if not.
  */
 
 цел битзнака(реал x)
@@ -282,7 +282,7 @@ debug(UnitTest)
 
 
 /*********************************
- * Return a значение composed of в_ with из_'s знак bit.
+ * Возвращает значение composed of в_ with из_'s знак bit.
  */
 
 реал копируйзнак(реал в_, реал из_)
@@ -402,7 +402,7 @@ debug(UnitTest)
 			крат e = cast(крат)((cast(крат *)&x)[F.БКРАТ_ПОЗ_ЭКСП] & F.МАСКА_ЭКСП);
 			if (e == F.МАСКА_ЭКСП)
 			{
-				// BUG: should also установи the не_годится исключение
+				// BUG: should also Устанавливает не_годится исключение
 				бдол s = *cast(бдол *)&x;
 				if (s == 0x8000_0000_0000_0000)
 				{
@@ -415,7 +415,7 @@ debug(UnitTest)
 				бдол s = *cast(бдол *)&x;
 				if (s == 0x0000_0000_0000_0000)
 				{
-					// BUG: should also установи the не_годится исключение
+					// BUG: should also Устанавливает не_годится исключение
 					return FP_ILOGB0;
 				}
 				// Denormals
@@ -801,7 +801,7 @@ debug(UnitTest)
 
 
 /*********************************
- * Return !=0 if e is $(PLUSMNINF);.
+ * Возвращает !=0 if e is $(PLUSMNINF);.
  */
 
 цел беск_ли(реал x)
@@ -1058,7 +1058,7 @@ export ПРежимОкругления установиИ3еОкруглени�
 {
     version(D_InlineAsm_X86)
     {
-        // TODO: For SSE/SSE2, do we also need в_ установи the SSE rounding режим?
+        // TODO: For SSE/SSE2, do we also need в_ Устанавливает SSE rounding режим?
         крат cont;
         asm
         {
@@ -1426,7 +1426,7 @@ export реал фма(плав x, плав y, плав z)
 
 
 /*********************************
- * Return !=0 if x is $(PLUSMN)0.
+ * Возвращает !=0 if x is $(PLUSMN)0.
  *
  * Does not affect any floating-точка флаги
  */
@@ -1468,7 +1468,7 @@ debug(UnitTest)
 /**
  * Calculate the следщ largest floating точка значение после x.
  *
- * Return the least число greater than x that is representable as a реал;
+ * Возвращает the least число greater than x that is representable as a реал;
  * thus, it gives the следщ точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -1550,7 +1550,7 @@ export реал следщВыше(реал x)
                 {
                     return x; // it's become a subnormal, implied bit stays low.
                 }
-                *ps = 0xFFFF_FFFF_FFFF_FFFF; // установи the implied bit
+                *ps = 0xFFFF_FFFF_FFFF_FFFF; // Устанавливает implied bit
                 return x;
             }
             return x;
@@ -1564,7 +1564,7 @@ export реал следщВыше(реал x)
             {
                 // change in exponent
                 ++pe[F.БКРАТ_ПОЗ_ЭКСП];
-                *ps = 0x8000_0000_0000_0000; // установи the high bit
+                *ps = 0x8000_0000_0000_0000; // Устанавливает high bit
             }
         }
         return x;
@@ -1739,9 +1739,9 @@ package
 }
 
 /**
- * Calculate the следщ smallest floating точка значение before x.
+ * Calculate the следщ smallest floating точка значение перед x.
  *
- * Return the greatest число less than x that is representable as a реал;
+ * Возвращает the greatest число less than x that is representable as a реал;
  * thus, it gives the previous точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -1869,7 +1869,7 @@ debug(UnitTest)
         }
 
         if (bitsdiff > 0)
-            return bitsdiff + 1; // добавь the 1 we subtracted before
+            return bitsdiff + 1; // добавь the 1 we subtracted перед
 
         // Avoопр out-by-1 ошибки when фактор is almost 2.
         static if (X.mant_dig==64 || X.mant_dig==113)   // real80 or квадрупл
@@ -1939,7 +1939,7 @@ debug(UnitTest)
     }
 }
 
-/** Return the значение that lies halfway between x и y on the IEEE число строка.
+/** Возвращает the значение that lies halfway between x и y on the IEEE число строка.
  *
  * Formally, the результат is the arithmetic mean of the binary significands of x
  * и y, multИПlied by the geometric mean of the binary exponents of x и y.
@@ -1964,7 +1964,7 @@ in
 body
 {
     // Runtime behaviour for contract violation:
-    // If signs are opposite, or one is a НЧ, return 0.
+    // If signs are opposite, либо one is a НЧ, return 0.
     if (!((x>=0 && y>=0) || (x<=0 && y<=0))) return 0.0;
 
     // The implementation is simple: cast x и y в_ целыйs,
