@@ -444,8 +444,7 @@ version( Windows )//errno
     const ОШФУНКНЕРЕАЛИЗ             = 40;       // Функция не реализована
     const ОШПАПНЕПУСТ          = 41;       // Папка не пуста
     const ОШБАЙТПОСЛ             = 42;       // Недопустимая байтовая 
-	
-	
+	/+
 	const EPERM             = 1;        // Operation not permitted
     const ENOENT            = 2;        // No such файл or directory
     const ESRCH             = 3;        // No such process
@@ -486,7 +485,7 @@ version( Windows )//errno
     const EILSEQ            = 42;       // Illegal байт sequence
     const EDEADLOCK         = EDEADLK;
 
-    
+    +/
 }
 
 private alias проц function(цел) т_сигфн, sigfn_t;

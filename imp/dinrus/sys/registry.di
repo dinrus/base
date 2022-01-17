@@ -132,14 +132,14 @@ extern(D) class Ключ
 
     /// Sets the named значение with the given 32-bit unsigned integer значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The 32-bit unsigned значение to set
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, бцел значение);
 
     /// Sets the named значение with the given 32-bit unsigned integer значение, according to the desired байт-ordering
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The 32-bit unsigned значение to set
     /// \param эндиан Can be Эндиан.Биг or Эндиан.Литтл
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
@@ -147,21 +147,21 @@ extern(D) class Ключ
 
     /// Sets the named значение with the given 64-bit unsigned integer значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The 64-bit unsigned значение to set
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, бдол значение);
 
     /// Sets the named значение with the given ткст значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The ткст значение to set
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, ткст значение);
 
     /// Sets the named значение with the given ткст значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The ткст значение to set
     /// \param asEXPAND_SZ If true, the значение will be stored as an expandable environment ткст, otherwise as a normal ткст
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
@@ -169,14 +169,14 @@ extern(D) class Ключ
 
     /// Sets the named значение with the given multiple-strings значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The multiple-strings значение to set
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, ткст[] значение);
 	
     /// Sets the named значение with the given binary значение
     ///
-    /// \param имя The имя of the значение to set. If null, or the empty ткст, sets the default значение
+    /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The binary значение to set
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, байт[] значение);
@@ -216,7 +216,7 @@ extern(D) class Значение
     ///
     /// \return The contents of the значение
     /// \note If the значение's тип is Ткст0Развёрт the returned значение is <b>not</b> expanded; Value_EXPAND_SZ() should be called
-    /// \note Throws a ИсклРеестра if the тип of the значение is not Ткст0, Ткст0Развёрт, Бцел(_*) or Бцел64(_*):
+    /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Ткст0, Ткст0Развёрт, Бцел(_*) or Бцел64(_*):
     ткст значение_Ткст0();
 
     /// Obtains the current значение as a ткст, within which any environment
@@ -229,7 +229,7 @@ extern(D) class Значение
     /// Obtains the current значение as an array of strings
     ///
     /// \return The contents of the значение
-    /// \note Throws a ИсклРеестра if the тип of the значение is not МногоТкст0
+    /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not МногоТкст0
     ткст[] многострочноеТкст0Значение();
 	
     /// Obtains the current значение as a 32-bit unsigned integer, ordered correctly according to the current architecture
@@ -241,14 +241,14 @@ extern(D) class Значение
     /// Obtains the значение as a 64-bit unsigned integer, ordered correctly according to the current architecture
     ///
     /// \return The contents of the значение
-    /// \note Throws a ИсклРеестра if the тип of the значение is not Бцел64
+    /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бцел64
     бдол значениеБдол();
 	
 
     /// Obtains the значение as a binary blob
     ///
     /// \return The contents of the значение
-    /// \note Throws a ИсклРеестра if the тип of the значение is not Бинарный
+    /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бинарный
     байт[]  бинарноеЗначение();
 	
 }
@@ -321,7 +321,7 @@ extern(D) class РядИмёнКлючей
     ///
     /// \param индекс The 0-based индекс of the ключ to retrieve
     /// \return The имя of the ключ corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding ключ is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding ключ is retrieved
     ткст дайИмяКлюча(бцел индекс);
 	
 
@@ -329,7 +329,7 @@ extern(D) class РядИмёнКлючей
     ///
     /// \param индекс The 0-based индекс of the ключ to retrieve
     /// \return The имя of the ключ corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding ключ is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding ключ is retrieved
     ткст opIndex(бцел индекс);
 	
     цел opApply(цел delegate(inout ткст имя) dg);
@@ -371,14 +371,14 @@ extern(D) class РядКлючей
     ///
     /// \param индекс The 0-based индекс of the ключ to retrieve
     /// \return The ключ corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding ключ is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding ключ is retrieved
     Ключ дайКлюч(бцел индекс);
 	
     /// The ключ at the given индекс
     ///
     /// \param индекс The 0-based индекс of the ключ to retrieve
     /// \return The ключ corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding ключ is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding ключ is retrieved
     Ключ opIndex(бцел индекс);
 	
     цел opApply(цел delegate(inout Ключ ключ) dg);
@@ -419,14 +419,14 @@ extern(D) class РядИмёнЗначений
     ///
     /// \param индекс The 0-based индекс of the значение to retrieve
     /// \return The имя of the значение corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding значение is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding значение is retrieved
     ткст дайИмяЗначения(бцел индекс);
 	
     /// The имя of the значение at the given индекс
     ///
     /// \param индекс The 0-based индекс of the значение to retrieve
     /// \return The имя of the значение corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding значение is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding значение is retrieved
     ткст opIndex(бцел индекс);
 
     цел opApply(цел delegate(inout ткст имя) dg);
@@ -467,14 +467,14 @@ this(Ключ ключ);
     ///
     /// \param индекс The 0-based индекс of the значение to retrieve
     /// \return The значение corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding значение is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding значение is retrieved
     Значение дайЗначение(бцел индекс);
 
     /// The значение at the given индекс
     ///
     /// \param индекс The 0-based индекс of the значение to retrieve
     /// \return The значение corresponding to the given индекс
-    /// \note Throws a ИсклРеестра if no corresponding значение is retrieved
+    /// \note Выводит исключение a ИсклРеестра if no corresponding значение is retrieved
     Значение opIndex(бцел индекс);
 
     цел opApply(цел delegate(inout Значение значение) dg);

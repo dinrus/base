@@ -31,7 +31,7 @@ public interface Набор(T) : ОбзорНабора!(T), Расходчик!
      * no spurious effects &&
      * Версия change iff !PREV(this).имеется(элемент)
      * </PRE>
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
 
     public проц добавь (T элемент);
@@ -39,13 +39,13 @@ public interface Набор(T) : ОбзорНабора!(T), Расходчик!
 
     /**
      * Include все элементы of the enumeration in the collection.
-     * Behaviorally equivalent в_
+     * По поведению равнозначно
      * <PRE>
      * while (e.ещё()) include(e.получи());
      * </PRE>
      * @param e the элементы в_ include
-     * Throws: IllegalElementException if !canInclude(элемент)
-     * Throws: ИсклПовреждённыйОбходчик propagated if thrown
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: ИсклПовреждённыйОбходчик propagated if thrown
     **/
 
     public проц добавь (Обходчик!(T) e);

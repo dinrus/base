@@ -26,7 +26,7 @@ public interface ОбзорРюкзака(З) : Обзор!(З)
          * @param the элемент в_ добавь в_ the new Рюкзак
          * Возвращает: the new Рюкзак c, with the совпадает as this except that
          * c.occurrencesOf(элемент) == occurrencesOf(элемент)+1
-         * Throws: IllegalElementException if !canInclude(элемент)
+         * Выводит исключение: IllegalElementException if !canInclude(элемент)
         **/
 
         public Рюкзак добавим(З элемент);
@@ -40,7 +40,7 @@ public interface ОбзорРюкзака(З) : Обзор!(З)
          * @param элемент the элемент в_ include in the new collection
          * Возвращает: a new collection c, with the совпадает as this, except that
          * c.occurrencesOf(элемент) = min(1, occurrencesOfElement)
-         * Throws: IllegalElementException if !canInclude(элемент)
+         * Выводит исключение: IllegalElementException if !canInclude(элемент)
         **/
 
         public Рюкзак добавимЕслиНет(З элемент);

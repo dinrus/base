@@ -12,13 +12,7 @@ private import  col.impl.LLCell,
 
 
 /**
- *
  * Хэш таблица implementation of установи
- * 
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 
 deprecated public class ХэшНабор(T) : КоллекцияНаборов!(T), ПараметрыХэш
@@ -29,14 +23,14 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         alias КоллекцияНаборов!(T).удалиВсе  удалиВсе;
 
 
-        // экземпляр variables
+        // переменные экземпляра
 
         /**
          * The таблица. Each Запись is a список. Пусто if no таблица allocated
         **/
         private ЯчейкаССТ таблица[];
         /**
-         * The порог загрузи фактор
+         * The порог фактор загрузки
         **/
         private плав факторЗагрузки;
 
@@ -44,7 +38,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // constructors
 
         /**
-         * Make an пустой ХэшedSet.
+         * Создаётn пустой ХэшedSet.
         **/
 
         public this ()
@@ -53,7 +47,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Make an пустой ХэшedSet using given элемент скринер
+         * Создаётn пустой ХэшedSet using given элемент скринер
         **/
 
         public this (Предикат скринер)
@@ -73,7 +67,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Make an independent копируй of the таблица. Does not клонируй элементы.
+         * Создаётn independent копируй of the таблица. Does not клонируй элементы.
         **/
 
         public final ХэшНабор!(T) дубликат()
@@ -98,9 +92,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // ХэшTableParams methods
 
         /**
-         * Implements col.ХэшTableParams.корзины.
+         * Реализует col.ХэшTableParams.корзины.
          * Временная ёмкость: O(1).
-         * See_Also: col.ХэшTableParams.корзины.
+         * См_Также: col.ХэшTableParams.корзины.
         **/
 
         public final цел корзины()
@@ -109,9 +103,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.ХэшTableParams.корзины.
+         * Реализует col.ХэшTableParams.корзины.
          * Временная ёмкость: O(n).
-         * See_Also: col.ХэшTableParams.корзины.
+         * См_Также: col.ХэшTableParams.корзины.
         **/
 
         public final проц корзины(цел newCap)
@@ -129,9 +123,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.ХэшTableParams.thresholdLoadfactor
+         * Реализует col.ХэшTableParams.thresholdLoadfactor
          * Временная ёмкость: O(1).
-         * See_Also: col.ХэшTableParams.thresholdLoadfactor
+         * См_Также: col.ХэшTableParams.thresholdLoadfactor
         **/
 
         public final плав пороговыйФакторЗагрузки()
@@ -140,9 +134,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.ХэшTableParams.thresholdLoadfactor
+         * Реализует col.ХэшTableParams.thresholdLoadfactor
          * Временная ёмкость: O(n).
-         * See_Also: col.ХэшTableParams.thresholdLoadfactor
+         * См_Также: col.ХэшTableParams.thresholdLoadfactor
         **/
 
         public final проц пороговыйФакторЗагрузки(плав desired)
@@ -160,12 +154,12 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
 
 
-        // Коллекция methods
+        // Методы коллекции
 
         /**
-         * Implements col.impl.Collection.Коллекция.содержит
+         * Реализует col.impl.Collection.Коллекция.содержит
          * Временная ёмкость: O(1) average; O(n) worst.
-         * See_Also: col.impl.Collection.Коллекция.содержит
+         * См_Также: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
         {
@@ -180,9 +174,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.экземпляры
+         * Реализует col.impl.Collection.Коллекция.экземпляры
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.экземпляры
+         * См_Также: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
         {
@@ -193,9 +187,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.элементы
+         * Реализует col.impl.Collection.Коллекция.элементы
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.элементы
+         * См_Также: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
         {
@@ -203,9 +197,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.model.View.Обзор.opApply
+         * Реализует col.model.View.Обзор.opApply
          * Временная ёмкость: O(n).
-         * See_Also: col.model.View.Обзор.opApply
+         * См_Также: col.model.View.Обзор.opApply
         **/
         цел opApply (цел delegate (inout T значение) дг)
         {
@@ -216,9 +210,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // MutableCollection methods
 
         /**
-         * Implements col.impl.Collection.Коллекция.очисть.
+         * Реализует col.impl.Collection.Коллекция.очисть.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.очисть
+         * См_Также: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
         {
@@ -227,9 +221,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.exclude.
+         * Реализует col.impl.Collection.Коллекция.exclude.
          * Временная ёмкость: O(1) average; O(n) worst.
-         * See_Also: col.impl.Collection.Коллекция.exclude
+         * См_Также: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе(T элемент)
         {
@@ -289,9 +283,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.возьми.
-         * Временная ёмкость: O(число of корзины).
-         * See_Also: col.impl.Collection.Коллекция.возьми
+         * Реализует col.impl.Collection.Коллекция.возьми.
+         * Временная ёмкость: O(число корзин).
+         * См_Также: col.impl.Collection.Коллекция.возьми
         **/
         public final T возьми()
         {
@@ -317,9 +311,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // MutableSet methods
 
         /**
-         * Implements col.impl.SetCollection.КоллекцияНаборов.добавь.
+         * Реализует col.impl.SetCollection.КоллекцияНаборов.добавь.
          * Временная ёмкость: O(1) average; O(n) worst.
-         * See_Also: col.impl.SetCollection.КоллекцияНаборов.добавь
+         * См_Также: col.impl.SetCollection.КоллекцияНаборов.добавь
         **/
         public final проц добавь(T элемент)
         {
@@ -346,7 +340,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // Helper methods
 
         /**
-         * Check в_ see if we are past загрузи фактор порог. If so, перемерь
+         * Check в_ see if we are past фактор загрузки порог. If so, перемерь
          * so that we are at half of the desired порог.
          * Also while at it, проверь в_ see if we are пустой so can just
          * отвяжи таблица.
@@ -458,8 +452,8 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         // ImplementationCheckable methods
 
         /**
-         * Implements col.model.View.Обзор.проверьРеализацию.
-         * See_Also: col.model.View.Обзор.проверьРеализацию
+         * Реализует col.model.View.Обзор.проверьРеализацию.
+         * См_Также: col.model.View.Обзор.проверьРеализацию
         **/
         public override проц проверьРеализацию()
         {

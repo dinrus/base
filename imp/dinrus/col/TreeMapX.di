@@ -35,7 +35,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         alias КоллекцияКарт!(К, T).удалиВсе  удалиВсе;
 
 
-        // экземпляр variables
+        // переменные экземпляра
 
         /**
          * The корень of the дерево. Пусто if пустой.
@@ -51,7 +51,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         protected Сравнитель!(T)        cmpElem;
 
         /**
-         * Make an пустой дерево, using DefaultComparator for ordering
+         * Создаётn пустой дерево, using DefaultComparator for ordering
         **/
 
         public this ()
@@ -61,7 +61,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Make an пустой дерево, using given скринер for screening элементы (not ключи)
+         * Создаётn пустой дерево, using given скринер for screening элементы (not ключи)
         **/
         public this (Предикат скринер)
         {
@@ -69,7 +69,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Make an пустой дерево, using given Сравнитель for ordering
+         * Создаётn пустой дерево, using given Сравнитель for ordering
         **/
         public this (КомпараторТ c)
         {
@@ -77,7 +77,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Make an пустой дерево, using given скринер и Сравнитель.
+         * Создаётn пустой дерево, using given скринер и Сравнитель.
         **/
         public this (Предикат s, КомпараторТ c)
         {
@@ -146,12 +146,12 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
 
-        // Коллекция methods
+        // Методы коллекции
 
         /**
-         * Implements col.impl.Collection.Коллекция.содержит
+         * Реализует col.impl.Collection.Коллекция.содержит
          * Временная ёмкость: O(лог n).
-         * See_Also: col.impl.Collection.Коллекция.содержит
+         * См_Также: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
         {
@@ -161,9 +161,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.экземпляры
+         * Реализует col.impl.Collection.Коллекция.экземпляры
          * Временная ёмкость: O(лог n).
-         * See_Also: col.impl.Collection.Коллекция.экземпляры
+         * См_Также: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
         {
@@ -173,9 +173,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.элементы
+         * Реализует col.impl.Collection.Коллекция.элементы
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.элементы
+         * См_Также: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
         {
@@ -184,10 +184,10 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
         /***********************************************************************
 
-                Implements col.model.View.Обзор.opApply
+                Реализует col.model.View.Обзор.opApply
                 Временная ёмкость: O(n)
 
-                See_Also: col.model.View.Обзор.opApply
+                См_Также: col.model.View.Обзор.opApply
 
         ************************************************************************/
 
@@ -200,10 +200,10 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
         /***********************************************************************
 
-                Implements col.ОбзорКарты.opApply
+                Реализует col.ОбзорКарты.opApply
                 Временная ёмкость: O(n)
 
-                See_Also: col.ОбзорКарты.opApply
+                См_Также: col.ОбзорКарты.opApply
 
         ************************************************************************/
 
@@ -216,9 +216,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         // KeySortedCollection methods
 
         /**
-         * Implements col.KeySortedCollection.сравнитель
+         * Реализует col.KeySortedCollection.сравнитель
          * Временная ёмкость: O(1).
-         * See_Also: col.KeySortedCollection.сравнитель
+         * См_Также: col.KeySortedCollection.сравнитель
         **/
         public final КомпараторТ сравнитель()
         {
@@ -255,9 +255,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         // Карта methods
 
         /**
-         * Implements col.Map.содержитКлюч.
+         * Реализует col.Map.содержитКлюч.
          * Временная ёмкость: O(лог n).
-         * See_Also: col.Map.содержитКлюч
+         * См_Также: col.Map.содержитКлюч
         **/
         public final бул содержитКлюч(К ключ)
         {
@@ -267,9 +267,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.Map.содержитПару.
+         * Реализует col.Map.содержитПару.
          * Временная ёмкость: O(n).
-         * See_Also: col.Map.содержитПару
+         * См_Также: col.Map.содержитПару
         **/
         public final бул содержитПару(К ключ, T элемент)
         {
@@ -279,9 +279,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.Map.ключи.
+         * Реализует col.Map.ключи.
          * Временная ёмкость: O(1).
-         * See_Also: col.Map.ключи
+         * См_Также: col.Map.ключи
         **/
         public final ОбходчикПар!(К, T) ключи()
         {
@@ -289,9 +289,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.Map.получи.
+         * Реализует col.Map.получи.
          * Временная ёмкость: O(лог n).
-         * See_Also: col.Map.получи
+         * См_Также: col.Map.получи
         **/
         public final T получи(К ключ)
         {
@@ -305,7 +305,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Return the элемент associated with Key ключ.
+         * Возвращает the элемент associated with Key ключ.
          * @param ключ a ключ
          * Возвращает: whether the ключ is contained or not
         **/
@@ -327,9 +327,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Implements col.Map.ключК.
+         * Реализует col.Map.ключК.
          * Временная ёмкость: O(n).
-         * See_Also: col.Map.ключК
+         * См_Также: col.Map.ключК
         **/
         public final бул ключК(inout К ключ, T значение)
         {
@@ -348,9 +348,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         // MutableCollection methods
 
         /**
-         * Implements col.impl.Collection.Коллекция.очисть.
+         * Реализует col.impl.Collection.Коллекция.очисть.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.очисть
+         * См_Также: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
         {
@@ -360,9 +360,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Implements col.impl.Collection.Коллекция.удалиВсе.
+         * Реализует col.impl.Collection.Коллекция.удалиВсе.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.удалиВсе
+         * См_Также: col.impl.Collection.Коллекция.удалиВсе
         **/
         public final проц удалиВсе(T элемент)
         {
@@ -381,9 +381,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.removeOneOf.
+         * Реализует col.impl.Collection.Коллекция.removeOneOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.removeOneOf
+         * См_Также: col.impl.Collection.Коллекция.removeOneOf
         **/
         public final проц удали (T элемент)
         {
@@ -400,9 +400,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceOneOf.
+         * Реализует col.impl.Collection.Коллекция.replaceOneOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.replaceOneOf
+         * См_Также: col.impl.Collection.Коллекция.replaceOneOf
         **/
         public final проц замени(T старЭлемент, T новЭлемент)
         {
@@ -419,9 +419,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceAllOf.
+         * Реализует col.impl.Collection.Коллекция.replaceAllOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.replaceAllOf
+         * См_Также: col.impl.Collection.Коллекция.replaceAllOf
         **/
         public final проц замениВсе(T старЭлемент, T новЭлемент)
         {
@@ -436,10 +436,10 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.возьми.
+         * Реализует col.impl.Collection.Коллекция.возьми.
          * Временная ёмкость: O(лог n).
          * Takes the элемент associated with the least ключ.
-         * See_Also: col.impl.Collection.Коллекция.возьми
+         * См_Также: col.impl.Collection.Коллекция.возьми
         **/
         public final T возьми()
         {
@@ -460,9 +460,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         // MutableMap methods
 
         /**
-         * Implements col.impl.MapCollection.КоллекцияКарт.добавь.
+         * Реализует col.impl.MapCollection.КоллекцияКарт.добавь.
          * Временная ёмкость: O(лог n).
-         * See_Also: col.impl.MapCollection.КоллекцияКарт.добавь
+         * См_Также: col.impl.MapCollection.КоллекцияКарт.добавь
         **/
         public final проц добавь(К ключ, T элемент)
         {
@@ -471,9 +471,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Implements col.impl.MapCollection.КоллекцияКарт.удали.
+         * Реализует col.impl.MapCollection.КоллекцияКарт.удали.
          * Временная ёмкость: O(лог n).
-         * See_Also: col.impl.MapCollection.КоллекцияКарт.удали
+         * См_Также: col.impl.MapCollection.КоллекцияКарт.удали
         **/
         public final проц удалиКлюч (К ключ)
         {
@@ -490,9 +490,9 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
 
 
         /**
-         * Implements col.impl.MapCollection.КоллекцияКарт.replaceElement.
+         * Реализует col.impl.MapCollection.КоллекцияКарт.replaceElement.
          * Временная ёмкость: O(лог n).
-         * See_Also: col.impl.MapCollection.КоллекцияКарт.replaceElement
+         * См_Также: col.impl.MapCollection.КоллекцияКарт.replaceElement
         **/
         public final проц замениПару (К ключ, T старЭлемент,
                                               T новЭлемент)
@@ -510,7 +510,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         }
 
 
-        // helper methods
+        // Вспомогательные методы
 
 
         private final проц добавь_(К ключ, T элемент, бул проверьOccurrence)
@@ -568,8 +568,8 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
         // ImplementationCheckable methods
 
         /**
-         * Implements col.model.View.Обзор.проверьРеализацию.
-         * See_Also: col.model.View.Обзор.проверьРеализацию
+         * Реализует col.model.View.Обзор.проверьРеализацию.
+         * См_Также: col.model.View.Обзор.проверьРеализацию
         **/
         public override проц проверьРеализацию()
         {

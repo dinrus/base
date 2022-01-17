@@ -71,10 +71,8 @@ extern (D) class Object
 
     interface Monitor
     {
-        проц lock();
-        alias lock блокируй;
-        проц unlock();
-        alias unlock разблокируй;
+        проц lock();        alias lock блокируй;
+        проц unlock();        alias unlock разблокируй;
     }
     alias Monitor Монитор;
 
@@ -108,44 +106,28 @@ extern (D) class Exception : Object
 {
 
 
-    ткст      msg;
-    alias msg сооб;
-    ткст      file;
-    alias file файл;
-    size_t  line;
-    alias line строка;
-    TraceInfo   info;
-    alias info инфо;
-    Exception   next;
-    alias next следщ;
+    ткст      msg;    alias msg сооб;
+    ткст      file;    alias file файл;
+    size_t  line;    alias line строка;
+    TraceInfo   info;    alias info инфо;
+    Exception   next;    alias next следщ;
 
     struct FrameInfo
     {
 
-        long  line;
-        alias line строка;
-        size_t iframe;
-        alias iframe икадр;
-        ptrdiff_t offsetSymb;
-        alias offsetSymb симвСмещ;
-        size_t baseSymb;
-        alias baseSymb симвОвы;
-        ptrdiff_t offsetImg;
-        alias offsetImg обрСмещ;
-        size_t baseImg;
-        alias baseImg обрОвы;
-        size_t address;
-        alias address адрес;
-        ткст file;
-        alias file файл;
-        ткст func;
-        alias func функц;
-        ткст extra;
-        alias extra экстра;
-        bool exactAddress;
-        alias exactAddress точныйАдрес;
-        bool internalFunction;
-        alias internalFunction внутрФункция;
+        long  line;        alias line строка;
+        size_t iframe;        alias iframe икадр;
+        ptrdiff_t offsetSymb;        alias offsetSymb симвСмещ;
+        size_t baseSymb;        alias baseSymb симвОвы;
+        ptrdiff_t offsetImg;        alias offsetImg обрСмещ;
+        size_t baseImg;        alias baseImg обрОвы;
+        size_t address;        alias address адрес;
+        ткст file;        alias file файл;
+        ткст func;        alias func функц;
+        ткст extra;        alias extra экстра;
+        bool exactAddress;        alias exactAddress точныйАдрес;
+        bool internalFunction;        alias internalFunction внутрФункция;
+		
         alias проц function(FrameInfo*,проц delegate(char[])) FramePrintHandler, ОбработчикПечатиКадра;
 
         static FramePrintHandler defaultFramePrintingFunction;

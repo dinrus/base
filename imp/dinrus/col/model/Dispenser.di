@@ -44,7 +44,7 @@ public interface Расходчик(T) : Обзор!(T)
      *  no другой элемент changes &&
      *  Версия change iff delta != 0
      * </PRE>
-     * Throws: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
+     * Выводит исключение: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
     **/
 
     public проц замени (T старЭлемент, T новЭлемент);
@@ -67,7 +67,7 @@ public interface Расходчик(T) : Обзор!(T)
      *  no другой элемент changes &&
      *  Версия change iff delta != 0
      * </PRE>
-     * Throws: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
+     * Выводит исключение: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
     **/
 
     public проц замениВсе(T старЭлемент, T новЭлемент);
@@ -84,7 +84,7 @@ public interface Расходчик(T) : Обзор!(T)
      * </PRE>
      * Возвращает: an элемент знач such that PREV(this).имеется(знач)
      * и the postconditions of removeOneOf(знач) hold.
-     * Throws: НетЭлементаИскл iff пуст_ли.
+     * Выводит исключение: НетЭлементаИскл iff пуст_ли.
     **/
 
     public T возьми ();
@@ -92,22 +92,22 @@ public interface Расходчик(T) : Обзор!(T)
 
     /**
      * Exclude все occurrences of each элемент of the Обходчик.
-     * Behaviorally equivalent в_
+     * По поведению равнозначно
      * <PRE>
      * while (e.ещё()) удалиВсе(e.значение());
      * @param e the enumeration of элементы в_ exclude.
-     * Throws: ИсклПовреждённыйОбходчик is propagated if thrown
+     * Выводит исключение: ИсклПовреждённыйОбходчик is propagated if thrown
     **/
 
     public проц удалиВсе (Обходчик!(T) e);
 
     /**
      * Удали an occurrence of each элемент of the Обходчик.
-     * Behaviorally equivalent в_
+     * По поведению равнозначно
      * <PRE>
      * while (e.ещё()) удали (e.значение());
      * @param e the enumeration of элементы в_ удали.
-     * Throws: ИсклПовреждённыйОбходчик is propagated if thrown
+     * Выводит исключение: ИсклПовреждённыйОбходчик is propagated if thrown
     **/
 
     public проц удали (Обходчик!(T) e);

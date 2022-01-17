@@ -10,7 +10,7 @@ import mesh.Status;
  *
  *  \include traits5.cc
  *
- *  See_Also: \ref mesh_type
+ *  См_Также: \ref mesh_type
  */
 enum АтрибутныеБиты : бцел
 { 

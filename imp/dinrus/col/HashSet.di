@@ -1,4 +1,4 @@
-﻿module col.ХэшНабор;
+﻿module col.HashSet;
 
 public import col.model.Set;
 public import col.Functions;

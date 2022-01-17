@@ -89,11 +89,11 @@ public:
     /** Multi-byte addition or subtraction
      *    приёмник[#] = src1[#] + src2[#] + carry (0 or 1).
      * or приёмник[#] = src1[#] - src2[#] - carry (0 or 1).
-     * Returns carry or borrow (0 or 1).
+     * Возвращаетs carry or borrow (0 or 1).
      * Набор op == '+' for addition, '-' for subtraction.
      */
     бцел многобайтПрибавОтним(сим op)(бцел[] приёмник, бцел [] src1, бцел [] src2, бцел carry);
-    /** приёмник[#] += carry, or приёмник[#] -= carry.
+    /** приёмник[#] += carry, либо приёмник[#] -= carry.
      *  op must be '+' or '-'
      *  Returns final carry or borrow (0 or 1)
      */
@@ -119,7 +119,7 @@ public:
     проц многобайтСдвигПБезММХ(бцел [] приёмник, бцел [] src, бцел numbits);
 
     /** приёмник[#] = src[#] * множитель + carry.
-     * Returns carry.
+     * Возвращаетs carry.
      */
     бцел многобайтУмнож(бцел[] приёмник, бцел[] src, бцел множитель, бцел carry);
 
@@ -135,11 +135,11 @@ public:
     /**
      * приёмник[#] += src[#] * множитель OP carry(0..FFFF_FFFF).
      * where op == '+' or '-'
-     * Returns carry out of MSB (0..FFFF_FFFF).
+     * Возвращаетs carry out of MSB (0..FFFF_FFFF).
      */
     бцел многобайтУмножПрибавь(сим op)(бцел [] приёмник, бцел[] src, бцел множитель, бцел carry);
 
-    /**
+    /***
        Sets result[#] = result[0..left.length] + left[#] * right[#]
 
        It is defined in this way to allow cache-efficient multИПlication.
@@ -157,7 +157,7 @@ public:
      * overflow is the начальное остаток, and must be in the range 0..divisor-1.
      * divisor must not be a power of 2 (use right shift for that case;
      * A division by zero will occur if divisor is a power of 2).
-     * Returns the final остаток
+     * Возвращаетs the final остаток
      *
      * Based on public домен код by Eric Bainville.
      * (http://www.bealto.com/) Used with permission.

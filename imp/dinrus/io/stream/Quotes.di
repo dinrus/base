@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2006 Dinrus. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Jan 2006: начальное release
-
-        author:         Kris, Nthalk
-
-*******************************************************************************/
-
-module io.stream.Quotes;
+﻿module io.stream.Quotes;
 
 private import io.stream.Iterator;
 

@@ -1,13 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: Nov 2007
-
-        author:         Kris
-
         Потокs в_ expose simple исконный типы as discrete elements. I/O
         is buffered and should yield fair performance.
 

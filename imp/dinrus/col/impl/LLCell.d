@@ -5,18 +5,15 @@ private import col.model.Comparator;
 
 /**
  *
- *
- * LLCells расширь Cells with стандарт linkedlist следщ-fields,
- * и provопрe a стандарт operations on them.
+ * ЯчейкиСС расширяют Ячейки стандартными следующими полями линкованного списка,
+ * и предоставляют стандартные операции над ними.
  * <P>
- * LLCells are  implementation tools. They выполни
- * no аргумент проверьing, no результат screening, и no synchronization.
- * They rely on пользователь-уровень classes (see for example СвязныйСписок) в_ do such things.
- * Still, the class is made `public' so that you can use them в_
- * build другой kinds of собериions or whatever, not just the ones
- * currently supported.
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
+ * ЯчейкиСС - это инструменты реализации. Они выполняют проверку
+ * no аргументу, без скрининга результата и синхронизации.
+ * Они полагаются на классы пользовательского уровня (см., напр., СвязныйСписок).
+ * Этот класс объявлен `public', чтобы его можно было применить для
+ * построения иного рода коллекций или ещё чего-либо, помимо тех, которые
+ * поддерживаются на данный момент.
 **/
 
 public class ЯчейкаСС(T) : Ячейка!(T)
@@ -27,7 +24,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         protected ЯчейкаСС следщ_;
 
         /**
-         * Return the следщ ячейка (or пусто if Неук)
+         * Возвращает следующую ячейку (или пусто, если Неук).
         **/
 
         public ЯчейкаСС следщ()
@@ -36,8 +33,8 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         }
 
         /**
-         * установи в_ точка в_ n as следщ ячейка
-         * @param n, the new следщ ячейка
+         * Устанавливает на точку в n как следщ ячейку.
+         * @param n, эта новая следщ ячейка.
         **/
 
         public проц следщ(ЯчейкаСС n)
@@ -89,7 +86,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         /**
          * Linear ищи down the список looking for элемент (using T.равно)
          * @param элемент в_ look for
-         * Возвращает: the ячейка containing элемент, or пусто if no such
+         * Возвращает: the ячейка containing элемент, либо пусто if no such
         **/
 
         public final ЯчейкаСС найди(T элемент)
@@ -101,8 +98,8 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         }
 
         /**
-         * return the число of cells traversed в_ найди первый occurrence
-         * of a ячейка with элемент() элемент, or -1 if not present
+         * Возвращает число ячеек traversed в_ найди первый occurrence
+         * of a ячейка with элемент() элемент, либо -1 if not present
         **/
 
         public final цел индекс(T элемент)
@@ -132,7 +129,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         }
 
         /**
-         * return the число of cells in the список
+         * Возвращает число ячеек в этом списке
         **/
 
         public final цел длина()
@@ -144,7 +141,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         }
 
         /**
-         * return the ячейка representing the последний элемент of the список
+         * Возвращает ячейка representing the последний элемент этого списка
          * (i.e., the one whose следщ() is пусто
         **/
 
@@ -157,7 +154,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         }
 
         /**
-         * return the н_ый ячейка of the список, or пусто if no such
+         * Возвращает н_ый ячейка этого списка, либо пусто if no such
         **/
 
         public final ЯчейкаСС н_ый(цел n)
@@ -170,7 +167,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
 
 
         /**
-         * сделай a копируй of the список; i.e., a new список containing new cells
+         * Создаёт копируй этого списка; i.e., a new список containing new cells
          * but включая the same элементы in the same order
         **/
 
@@ -259,7 +256,7 @@ public class ЯчейкаСС(T) : Ячейка!(T)
         /**
          * Standard список splitter, использован by сортируй.
          * Splits the список in half. Возвращает the голова of the секунда half
-         * @param s the голова of the список
+         * @param s the голова этого списка
          * Возвращает: the голова of the секунда half
         **/
 

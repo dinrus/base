@@ -9,7 +9,7 @@ version=discrete;
 
 /*******************************************************************************
 
-        Implements a DOM atop the XML парсер, supporting document
+        Реализует a DOM atop the XML парсер, supporting document
         parsing, дерево traversal и ad-hoc дерево manИПulation.
 
         The DOM API is non-conformant, yet simple и functional in
@@ -117,7 +117,7 @@ version=discrete;
         ---
 
         Typical usage tends в_ follow the following образец, Where each запрос
-        результат is processed before другой is initiated
+        результат is processed перед другой is initiated
         ---
         foreach (узел; doc.запрос.ветвь("элемент"))
                 {
@@ -364,7 +364,7 @@ class Документ(T) : package PullParser!(T)
 
     /***********************************************************************
 
-            размести a узел из_ the freelist
+            Размещает узел из_ the freelist
 
     ***********************************************************************/
 
@@ -395,7 +395,7 @@ class Документ(T) : package PullParser!(T)
 
     /***********************************************************************
 
-            размести a узел из_ the freelist
+            Размещает узел из_ the freelist
 
     ***********************************************************************/
 
@@ -543,7 +543,7 @@ class Документ(T) : package PullParser!(T)
         /***************************************************************
 
                 Sweep the узелs looking for a значение сверь. Возвращает
-                да if найдено. See значение(x,y,z) or имя(x,y,z) for
+                да, если найдено. See значение(x,y,z) or имя(x,y,z) for
                 добавьitional filtering.
 
                 Временная ёмкость: O(n)
@@ -781,7 +781,7 @@ class Документ(T) : package PullParser!(T)
 
         /***************************************************************
 
-                Return the индекс of this узел, or как many
+                Return the индекс of this узел, либо как many
                 приор siblings it имеется.
 
                 Временная ёмкость: O(n)
@@ -823,7 +823,7 @@ class Документ(T) : package PullParser!(T)
 
         /***************************************************************
 
-                Return a foreach обходчик for узел ветви
+                Возвращает foreach обходчик for узел ветви
 
         ***************************************************************/
 
@@ -835,7 +835,7 @@ class Документ(T) : package PullParser!(T)
 
         /***************************************************************
 
-                Return a foreach обходчик for узел атрибуты
+                Возвращает foreach обходчик for узел атрибуты
 
         ***************************************************************/
 
@@ -1395,7 +1395,7 @@ class Документ(T) : package PullParser!(T)
         ---
 
         Typical usage tends в_ exhibit the following образец, Where each запрос
-        результат is processed before другой is initiated
+        результат is processed перед другой is initiated
         ---
         foreach (узел; doc.запрос.ветвь("элемент"))
                 {
@@ -1423,14 +1423,14 @@ class Документ(T) : package PullParser!(T)
         have variants which прими a delegate instead.
 
         In general, you traverse an axis и operate upon the результаты. The
-        operation applied may be другой axis traversal, or a filtering
+        operation applied may be другой axis traversal, либо a filtering
         step. все steps can be, и generally should be chained together.
         Filters are implemented via a delegate mechanism
         ---
         .фильтр (бул delegate(Узел))
         ---
 
-        Where the delegate returns да if the узел проходки the фильтр. An
+        Where the delegate returns да, если the узел проходки the фильтр. An
         example might be selecting все узелs with a specific атрибут
         ---
         auto установи = doc.запрос.descendant.фильтр (
@@ -1524,7 +1524,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a дубликат NodeSet
+                Возвращает дубликат NodeSet
 
         ***************************************************************/
 
@@ -1548,7 +1548,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing just the первый узел of
+                Возвращает установи containing just the первый узел of
                 the текущ установи
 
         ***************************************************************/
@@ -1560,7 +1560,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing just the последний узел of
+                Возвращает установи containing just the последний узел of
                 the текущ установи
 
         ***************************************************************/
@@ -1575,7 +1575,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing just the н_ый узел of
+                Возвращает установи containing just the н_ый узел of
                 the текущ установи
 
         ***************************************************************/
@@ -1587,7 +1587,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing just the н_ый узел of
+                Возвращает установи containing just the н_ый узел of
                 the текущ установи
 
         ***************************************************************/
@@ -1603,7 +1603,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ветвь элементы of the
+                Возвращает установи containing все ветвь элементы of the
                 узелs внутри this установи
 
         ***************************************************************/
@@ -1615,7 +1615,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ветвь элементы of the
+                Возвращает установи containing все ветвь элементы of the
                 узелs внутри this установи, which сверь the given имя
 
         ***************************************************************/
@@ -1627,7 +1627,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все родитель элементы of the
+                Возвращает установи containing все родитель элементы of the
                 узелs внутри this установи, which сверь the optional имя
 
         ***************************************************************/
@@ -1644,7 +1644,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все данные узелs of the
+                Возвращает установи containing все данные узелs of the
                 узелs внутри this установи, which сверь the optional
                 значение
 
@@ -1663,7 +1663,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все cdata узелs of the
+                Возвращает установи containing все cdata узелs of the
                 узелs внутри this установи, which сверь the optional
                 значение
 
@@ -1682,7 +1682,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все атрибуты of the
+                Возвращает установи containing все атрибуты of the
                 узелs внутри this установи, which сверь the optional
                 имя
 
@@ -1700,7 +1700,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все descendant элементы of
+                Возвращает установи containing все descendant элементы of
                 the узелs внутри this установи, which сверь the given имя
 
         ***************************************************************/
@@ -1717,7 +1717,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ветвь элементы of the
+                Возвращает установи containing все ветвь элементы of the
                 узелs внутри this установи, which сверь the optional имя
 
         ***************************************************************/
@@ -1734,7 +1734,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ancestor элементы of
+                Возвращает установи containing все ancestor элементы of
                 the узелs внутри this установи, which сверь the optional
                 имя
 
@@ -1752,7 +1752,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все приор sibling элементы of
+                Возвращает установи containing все приор sibling элементы of
                 the узелs внутри this установи, which сверь the optional
                 имя
 
@@ -1770,7 +1770,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все subsequent sibling
+                Возвращает установи containing все subsequent sibling
                 элементы of the узелs внутри this установи, which
                 сверь the optional имя
 
@@ -1788,7 +1788,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все узелs внутри this установи
+                Возвращает установи containing все узелs внутри this установи
                 which пароль the filtering тест
 
         ***************************************************************/
@@ -1805,7 +1805,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ветвь узелs of
+                Возвращает установи containing все ветвь узелs of
                 the узелs внутри this установи which пароль the
                 filtering тест
 
@@ -1826,7 +1826,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все атрибут узелs of
+                Возвращает установи containing все атрибут узелs of
                 the узелs внутри this установи which пароль the given
                 filtering тест
 
@@ -1845,7 +1845,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все descendant узелs of
+                Возвращает установи containing все descendant узелs of
                 the узелs внутри this установи, which пароль the given
                 filtering тест
 
@@ -1875,7 +1875,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все родитель узелs of
+                Возвращает установи containing все родитель узелs of
                 the узелs внутри this установи which пароль the given
                 filtering тест
 
@@ -1905,7 +1905,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все ancestor узелs of
+                Возвращает установи containing все ancestor узелs of
                 the узелs внутри this установи, which пароль the given
                 filtering тест
 
@@ -1939,7 +1939,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все following siblings
+                Возвращает установи containing все following siblings
                 of the ones внутри this установи, which пароль the given
                 filtering тест
 
@@ -1966,7 +1966,7 @@ private class ПутьРЯР(T)
 
         /***************************************************************
 
-                Return a установи containing все приор sibling узелs
+                Возвращает установи containing все приор sibling узелs
                 of the ones внутри this установи, which пароль the given
                 filtering тест
 
@@ -2101,7 +2101,7 @@ private class ПутьРЯР(T)
 
     /***********************************************************************
 
-            Return a срез of the freelist
+            Возвращает срез of the freelist
 
     ***********************************************************************/
 

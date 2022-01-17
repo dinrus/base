@@ -140,7 +140,7 @@ class ФайлЮ(T)
         /***********************************************************************
 
                 Return the current кодировка. This is either the originally
-                specified кодировка, or a производный one obtained by inspecting
+                specified кодировка, либо a производный one obtained by inspecting
                 the файл контент for a мпб. The latter is performed as часть
                 of the читай() метод.
 

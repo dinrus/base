@@ -1044,7 +1044,7 @@ unittest
 }
 /+
 /******
- * Returns the mutable version of the type Т.
+ * Возвращаетs the mutable version of the type Т.
  */
 
 template Mutable(Т)

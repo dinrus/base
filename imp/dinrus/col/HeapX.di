@@ -77,7 +77,7 @@ struct Куча (T, alias Сравни = minHeapCompare!(T), alias Move = defaul
         }
 
         /** Удали the первый экземпляр that совпадает the given item. 
-          * Возвращает: да iff the item was найдено, иначе нет. */
+          * Возвращает: да, еслиf the item was найдено, иначе нет. */
         бул удали (T t)
         {
                 foreach (i, a; куча)
@@ -165,7 +165,7 @@ struct Куча (T, alias Сравни = minHeapCompare!(T), alias Move = defaul
                 return значение;
         }
 
-        /** Return a shallow копируй of this куча. */
+        /** Возвращает shallow копируй of this куча. */
         Куча клонируй ()
         {
                 куча другой;

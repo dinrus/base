@@ -1,11 +1,6 @@
 ﻿/**
  * Этот модуль содержит реализацию упакованного Массива бит в стиле
  * встроенных в Ди динамических массивов.
- *
- * Copyright: Copyright (C) 2005-2006 Digital Mars, www.digitalmars.com.
- *            Все права защищены.
- * License:   BSD стиль: $(LICENSE)
- * Authors:   Walter Bright, Sean Kelly
  */
 module col.BitArray;
 
@@ -300,7 +295,7 @@ export struct МассивБит
 
 
     /**
-     * Sorts this Массив in place, with zero записи sorting before one.  This
+     * Sorts this Массив in place, with zero записи sorting перед one.  This
      * is equivalent в_ the сортируй property for built-in массивы.
      *
      * Возвращает:
@@ -508,7 +503,7 @@ Ldone:
      *  правткт = The Массив в_ compare against.
      *
      * Возвращает:
-     *  A значение less than zero if this Массив sorts before the supplied Массив,
+     *  A значение less than zero if this Массив sorts перед the supplied Массив,
      *  zero if the массивы are equavalent, and a значение greater than zero if
      *  this Массив sorts после the supplied Массив.
      */

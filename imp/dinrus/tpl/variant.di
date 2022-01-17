@@ -931,7 +931,7 @@ private:
              * (four 32-bit целыйs).
              *
              * It's possible that the память being pointed в_ is on the
-             * stack, so we need в_ копируй it before storing it.  тип.tsize
+             * stack, so we need в_ копируй it перед storing it.  тип.tsize
              * tells us exactly как many байты we need в_ копируй.
              *
              * Sadly, we can't directly construct the dynamic Массив version

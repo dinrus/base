@@ -123,7 +123,7 @@ private
                         }
             }
 
-            // Make sure we разблокируй before we старт doing the calculations
+            // Make sure we разблокируй перед we старт doing the calculations
             m.разблокируй();
 
             // Do the actual дело
@@ -204,7 +204,7 @@ private
 
     /**
       Assign the given дело в_ a нить immediately or return нет if Неук is
-      available. (Возвращает да if one was available)
+      available. (Возвращает да, если one was available)
      */
     бул пробуйПрисвоить(ДДела дело, Арги арги)
     {

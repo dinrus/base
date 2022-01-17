@@ -10,7 +10,7 @@ private import  col.model.Dispenser,
  * supporting a сортируй метод that accepts
  * a пользователь-supplied Сравнитель with a сравни метод that
  * accepts any two Objects и returns -1/0/+1 depending on whether
- * the первый is less than, equal в_, or greater than the секунда.
+ * the первый is less than, equal в_, либо greater than the секунда.
  * <P>
  * After sorting, but in the absence of другой mutative operations,
  * Сортируемый Collections guarantee that enumerations

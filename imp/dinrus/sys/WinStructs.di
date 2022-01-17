@@ -533,7 +533,7 @@ extern(D)
 
         /**
          * Стирает значение данного экземпляра и высвобождает связанную с ним память.
-         * See_Also: $(LINK2 http://msdn2.microsoft.com/en-us/library/ms221165.aspx, VariantClear).
+         * См_Также: $(LINK2 http://msdn2.microsoft.com/en-us/library/ms221165.aspx, VariantClear).
          */
         проц сотри() ;
 

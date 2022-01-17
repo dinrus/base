@@ -1,5 +1,5 @@
 module sys.com.activex;
-import sys.Common, tpl.args, stdrus;
+import sys.common, tpl.args, stdrus;
 
 alias sys.WinStructs.ВАРИАНТ АРГВАРИАНТА;
 alias sys.WinIfaces.ITypeInfo ИИнфОТипе;

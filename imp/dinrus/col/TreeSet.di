@@ -90,7 +90,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
  *   З значение -> the значение which is pointed to by this позиция (cannot be a
  *                property)
  *   Узел следщ -> the следщ Узел in the tree as defined by the compare
- *                function, or конец if no other nodes exist.
+ *                function, либо конец if no other nodes exist.
  *   Узел предш -> the previous Узел in the tree as defined by the compare
  *                function.
  *
@@ -99,13 +99,13 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
  * tree, the 
  *
  * Узел начало -> must be a Узел that points to the very первый valid
- * элемент in the tree, or конец if no elements exist.
+ * элемент in the tree, либо конец if no elements exist.
  *
  * Узел конец -> must be a Узел that points to just past the very последн
  * valid элемент.
  *
  * Узел найди(З з) -> returns a Узел that points to the элемент that
- * содержит з, or конец if the элемент doesn'т exist.
+ * содержит з, либо конец if the элемент doesn'т exist.
  *
  * Узел удали(Узел p) -> removes the given элемент from the tree,
  * returns the следщ valid элемент or конец if p was последн in the tree.
@@ -335,7 +335,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
     }
 
     /**
-     * Returns true if the given значение exists in the collection.
+     * Возвращаетs true if the given значение exists in the collection.
      *
      * Runs in O(lg(n)) time.
      */
@@ -381,7 +381,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
 
     /**
      * Adds a значение to the collection.
-     * Returns true.
+     * Возвращаетs true.
      *
      * Runs in O(lg(n)) time.
      */
@@ -393,7 +393,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
 
     /**
      * Adds a значение to the collection.
-     * Returns true.
+     * Возвращаетs true.
      *
      * Runs in O(lg(n)) time.
      */
@@ -459,7 +459,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
     }
 
     /**
-     * Return a duplicate treeset containing all the elements in this tree
+     * Возвращает duplicate treeset containing all the elements in this tree
      * установи.
      */
     ДеревоНабор dup()

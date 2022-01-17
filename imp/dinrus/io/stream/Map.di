@@ -1,13 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: Oct 2007
-
-        author:         Kris
-
         Simple serialization for текст-based имя/значение pairs
 
 *******************************************************************************/

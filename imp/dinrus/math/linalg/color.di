@@ -1,4 +1,4 @@
-﻿/**
+﻿/**********
 Модуль из классов и функций для работы со значениями цвета.
 
 В нём есть структуры для представления Красно-Зелёно-Синего цвета (Цвет3),
@@ -18,14 +18,14 @@ has several methods to convert native плав representation to integer and
 
 Authors:
     Victor Nakoryakov, nail-mail[at]mail.ru
-*/
+****/
 
 module math.linalg.color;
 
  import math.linalg.basic,
                math.linalg.config;
 
-/** Defines bytes orders for плав to бцел conversions. */
+/*** Defines bytes orders for плав to бцел conversions. */
 enum ПорядокБайтов
 {
     АКЗС,        ///
@@ -34,7 +34,7 @@ enum ПорядокБайтов
     СЗКА
 }
 
-/**
+/******
 Wrapper template to provide possibility to use different плав types
 in implemented structs and routines.
 */
@@ -60,7 +60,7 @@ in implemented structs and routines.
      static const т_плав кзсК = 255;
      static const т_плав хслК = 240;
 
-    /************************************************************************************
+    /*************************************************************************************
     Hue, Saturation, Luminance triple.
     *************************************************************************************/
     struct ХСЛ
@@ -69,7 +69,7 @@ in implemented structs and routines.
         т_плав с; /// Saturation.
         т_плав л; /// Luminance.
 
-        /**
+        /*******
         Method to construct struct in C-like syntax.
 
         Примеры:
@@ -79,38 +79,38 @@ in implemented structs and routines.
         */
         static ХСЛ opCall(т_плав х, т_плав с, т_плав л);
 
-        /** Sets components to values of passed arguments. */
+        /*** Sets components to values of passed arguments. */
         проц установи(т_плав х, т_плав с, т_плав л);
 
-        /** Возвращает: Integer value of corresponding component in диапазон [0; 240]. */
+        /*** Возвращает: Integer value of corresponding component in диапазон [0; 240]. */
         бцел хц();
 
-        /** описано */
+        /*** описано */
         бцел сц();
 
-        /** описано */
+        /*** описано */
         бцел лц();
 
-        /**
+        /*****
         Set components to values of passed arguments. It is assumed that values of
         arguments are in диапазон [0; 240].
         */
         проц хц(бцел х);
 
-        /** описано */
+        /*** описано */
         проц сц(бцел с);
 
-        /** описано */
+        /*** описано */
         проц лц(бцел л);
 
-        /** Component-wise equality operator. */
+        /*** Component-wise equality operator. */
         бул opEquals(ХСЛ hsl);
 
-        /** Возвращает: Цвет3 representing the same цвет as this triple. */
+        /*** Возвращает: Цвет3 representing the same цвет as this triple. */
         Цвет3 вЦвет3();
 }
 
-    /**
+    /******
     Approximate equality function.
     Params:
         отнпрец, абспрец = Parameters passed to равны function while calculations.
@@ -118,7 +118,7 @@ in implemented structs and routines.
     */
     бул равны(ХСЛ а, ХСЛ с, цел отнпрец = дефотнпрец, цел абспрец = дефабспрец);
 
-    /************************************************************************************
+    /*************************************************************************************
     Red, Green, Blue triple.
     *************************************************************************************/
     struct Цвет3
@@ -133,7 +133,7 @@ in implemented structs and routines.
         /// Цвет3 with all components seted to NaN.
         static Цвет3 нч = { т_плав.nan, т_плав.nan, т_плав.nan };
 
-        /**
+        /******
         Method to construct цвет in C-like syntax.
 
         Примеры:
@@ -143,7 +143,7 @@ in implemented structs and routines.
         */
         static Цвет3 opCall(т_плав к, т_плав з, т_плав с);
 
-        /**
+        /*****
         Method to construct цвет in C-like syntax from value specified
         in бцел parameter.
 
@@ -158,10 +158,10 @@ in implemented structs and routines.
         */
         static Цвет3 opCall(бцел ист, ПорядокБайтов порядок);
 
-        /** Sets components to values of passed arguments. */
+        /*** Sets components to values of passed arguments. */
         проц установи(т_плав к, т_плав з, т_плав с);
 
-        /**
+        /*****
         Sets components according to цвет packed in ист бцел argument.
 
         Params:
@@ -170,10 +170,10 @@ in implemented structs and routines.
         */
         проц установи(бцел ист, ПорядокБайтов порядок = ПорядокБайтов.АКЗС);
 		
-        /** Возвращает: Whether all components are нормализованный numbers. */
+        /*** Возвращает: Whether all components are нормализованный numbers. */
         бул нормален_ли();
 
-        /**
+        /*****
         Возвращает: Integer value of corresponding component.
 
         Float value 0 is mapped to integer 0. Float value 1 is mapped to
@@ -181,13 +181,13 @@ in implemented structs and routines.
         */
         цел кц();
 
-        /** описано */
+        /*** описано */
         цел зц();
 
-        /** описано */
+        /*** описано */
         цел сц();
 
-        /**
+        /*****
         Sets corresponding component value to mapped value of passed argument.
 
         Integer value 0 is mapped to плав 0. Integer value 255 is mapped to
@@ -195,33 +195,33 @@ in implemented structs and routines.
         */
         проц кц(цел к);
 
-        /** описано */
+        /*** описано */
         проц зц(цел з);
 
-        /** описано */
+        /*** описано */
         проц сц(цел с);
 
-        /**
+        /*****
         Возвращает:
             This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
-        Throws:
+        Выводит исключение:
             AssertError if any component is out of диапазон [0; 1] and module was
             compiled with asserts.
         */
         бцел вБцел(ПорядокБайтов порядок);
 
-        /**
+        /*****
         Возвращает:
             ХСЛ triple representing same цвет as this.
         */
         ХСЛ вХСЛ();
 		
-        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
+        /*** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз();
 
-        /**
+        /*****
         Standard operators that have meaning exactly the same as for Вектор3, i.e. do
         component-wise operations.
 
@@ -231,22 +231,22 @@ in implemented structs and routines.
         */
         бул opEquals(Цвет3 v);
 
-        /** описано */
+        /*** описано */
         Цвет3 opNeg();
 
-        /** описано */
+        /*** описано */
         Цвет3 opAdd(Цвет3 v);
 
-        /** описано */
+        /*** описано */
         проц opAddAssign(Цвет3 v);
 
-        /** описано */
+        /*** описано */
         Цвет3 opSub(Цвет3 v);
 
-        /** описано */
+        /*** описано */
         проц opSubAssign(Цвет3 v);
 
-        /** описано */
+        /*** описано */
         Цвет3 opMul(реал k);
 
         /** описано */
@@ -273,13 +273,13 @@ in implemented structs and routines.
         /** Возвращает:Копию этого цвета с типом компонентов all components больше than sup seted to sup. */
         Цвет3 закреплённыйНад(т_плав sup = 1);
 
-        /**
+        /****
         Sets all components меньше than беск to беск and
         all components больше than sup to sup.
         */
         проц закрепи(т_плав беск = 0, т_плав sup = 1);
 
-        /**
+        /****
         Возвращает:
            Копию этого цвета с типом компонентов all components меньше than беск seted to беск
             and all components больше than sup seted to sup.
@@ -295,7 +295,7 @@ in implemented structs and routines.
         /** Возвращает:Копию этого цвета с типом компонентов реал . */
         Цвет3р вЦвет3р();
 
-        /**
+        /****
         Routines known as swizzling.
         Возвращает:
             New цвет constructed from this one and having component values
@@ -305,7 +305,7 @@ in implemented structs and routines.
         Цвет4 кзс1();
     }
 
-    /**
+    /***
     Approximate equality function.
     Params:
         отнпрец, абспрец = Parameters passed to равны function while calculations.
@@ -332,7 +332,7 @@ in implemented structs and routines.
         /// Цвет4 with all components seted to NaN.
         static Цвет4 нч = { т_плав.nan, т_плав.nan, т_плав.nan, т_плав.nan };
 
-        /**
+        /***
         Methods to construct цвет in C-like syntax.
 
         Примеры:
@@ -344,11 +344,11 @@ in implemented structs and routines.
         */
         static Цвет4 opCall(т_плав к, т_плав з, т_плав с, т_плав а);
 
-        /** описано */
+        /*** описано */
         static Цвет4 opCall(Цвет3 кзс, т_плав а = 1);
 
 
-        /**
+        /***
         Method to construct цвет in C-like syntax from value specified
         in бцел parameter.
 
@@ -363,13 +363,13 @@ in implemented structs and routines.
         */
         static Цвет4 opCall(бцел ист, ПорядокБайтов порядок);
 
-        /** Set components to values of passed arguments. */
+        /*** Set components to values of passed arguments. */
         проц установи(т_плав к, т_плав з, т_плав с, т_плав а);
 		
-        /** описано */
+        /*** описано */
         проц установи(Цвет3 кзс, т_плав а);
 
-        /**
+        /***
         Sets components according to цвет packed in ист бцел argument.
 
         Params:
@@ -378,9 +378,9 @@ in implemented structs and routines.
         */
         проц установи(бцел ист, ПорядокБайтов порядок = ПорядокБайтов.АКЗС);
 		
-        /** Возвращает: Whether all components are нормализованный numbers. */
+        /*** Возвращает: Whether all components are нормализованный numbers. */
         бул нормален_ли();
-        /**
+        /***
         Возвращает: Integer value of corresponding component.
 
         Float value 0 is mapped to integer 0. Float value 1 is mapped to
@@ -388,16 +388,16 @@ in implemented structs and routines.
         */
         цел кц();
 		
-        /** описано */
+        /*** описано */
         цел зц();
 
-        /** описано */
+        /*** описано */
         цел сц();
 
-        /** описано */
+        /*** описано */
         цел ац();
 
-        /**
+        /***
         Sets corresponding component value to mapped value of passed argument.
 
         Integer value 0 is mapped to плав 0. Integer value 255 is mapped to
@@ -405,27 +405,27 @@ in implemented structs and routines.
         */
         проц кц(цел к);
 
-        /** описано */
+        /*** описано */
         проц зц(цел з);
 
-        /** описано */
+        /*** описано */
         проц сц(цел с);
 
-        /** описано */
+        /*** описано */
         проц ац(цел а);
 
-        /**
+        /***
         Возвращает:
             This цвет packed to бцел.
         Params:
             порядок = specifies байт-wise component layout in ист.
-        Throws:
+        Выводит исключение:
             AssertError if any component is out of диапазон [0; 1] and
             module was compiled with asserts.
         */
         бцел вБцел(ПорядокБайтов порядок);
 
-        /**
+        /***
         Возвращает:
             ХСЛ triple representing same цвет as this.
 
@@ -433,11 +433,11 @@ in implemented structs and routines.
         */
         ХСЛ вХСЛ();
 
-        /** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
+        /*** Возвращает: т_плав pointer to к component of this цвет. It'с like а _ptr method for arrays. */
         т_плав* укз();
 
 
-        /**
+        /***
         Standard operators that have meaning exactly the same as for Вектор4, i.e. do
         component-wise operations. So alpha component equaly in rights takes place in all
         operations, to affect just RGB part use swizzling operations.
@@ -448,84 +448,84 @@ in implemented structs and routines.
         */
         бул opEquals(Цвет4 v);
 
-        /** описано */
+        /*** описано */
         Цвет4 opNeg();
 
-        /** описано */
+        /*** описано */
         Цвет4 opAdd(Цвет4 v);
 
-        /** описано */
+        /*** описано */
         проц opAddAssign(Цвет4 v);
 
-        /** описано */
+        /*** описано */
         Цвет4 opSub(Цвет4 v);
 
-        /** описано */
+        /*** описано */
         проц opSubAssign(Цвет4 v);
 
-        /** описано */
+        /*** описано */
         Цвет4 opMul(реал k);
 
-        /** описано */
+        /*** описано */
         проц opMulAssign(реал k);
 
-        /** описано */
+        /*** описано */
         Цвет4 opMulr(реал k);
 
-        /** описано */
+        /*** описано */
         Цвет4 opDiv(реал k);
 		
-        /** описано */
+        /*** описано */
         проц opDivAssign(реал k);
 
-        /** Sets all components меньше than беск to беск. */
+        /*** Sets all components меньше than беск to беск. */
         проц закрепиПод(т_плав беск = 0);
 
-        /** Возвращает:Копию этого цвета с типом компонентов all components меньше than беск seted to беск. */
+        /*** Возвращает:Копию этого цвета с типом компонентов all components меньше than беск seted to беск. */
         Цвет4 закреплённыйПод(т_плав беск = 0);
 
-        /** Sets all components больше than sup to sup. */
+        /*** Sets all components больше than sup to sup. */
         проц закрепиНад(т_плав sup = 1);
 
-        /** Возвращает:Копию этого цвета с типом компонентов all components больше than sup seted to sup. */
+        /*** Возвращает:Копию этого цвета с типом компонентов all components больше than sup seted to sup. */
         Цвет4 закреплённыйНад(т_плав sup = 1);
 
-        /**
+        /***
         Sets all components меньше than беск to беск and
         all components больше than sup to sup.
         */
         проц закрепи(т_плав беск = 0, т_плав sup = 1);
 
-        /**
+        /***
         Возвращает:
            Копию этого цвета с типом компонентов all components меньше than беск seted to беск
             and all components больше than sup seted to sup.
         */
         Цвет4 закреплённый(т_плав беск = 0, т_плав sup = 1);
 
-        /** Возвращает:Копию этого цвета с типом компонентов плав . */
+        /*** Возвращает:Копию этого цвета с типом компонентов плав . */
         Цвет4п вЦвет4п();
 
-        /** Возвращает:Копию этого цвета с типом компонентов дво . */
+        /*** Возвращает:Копию этого цвета с типом компонентов дво . */
         Цвет4д вЦвет4д();
 
-        /** Возвращает:Копию этого цвета с типом компонентов реал . */
+        /*** Возвращает:Копию этого цвета с типом компонентов реал . */
         Цвет4р вЦвет4р();
 
-        /**
+        /***
         Routine known as swizzling.
         Возвращает:
             Цвет3 representing RGB part of this цвет.
         */
         Цвет3 кзс();
 
-        /**
+        /***
         Routine known as swizzling.
         Sets RGB part components to values of passed _кзс argument'с components.
         */
         проц кзс(Цвет3 кзс);
 }
-    /**
+    /***
     Approximate equality function.
     Params:
         отнпрец, абспрец = Parameters passed to равны function while calculations.
@@ -590,13 +590,13 @@ alias Век3п   Color3f;
 alias Век3д   Color3d;
 
 
-/** convert hsv цвет to rgb цвет 
+/*** convert hsv цвет to rgb цвет 
    From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html
    HSV and RGB components all on [0,1] interval.
 */
 проц HSV_to_RGB(ref Color3f hsv,  Color3f* rgb);
 
-/** convert rgb цвет to hsv цвет 
+/*** convert rgb цвет to hsv цвет 
  *   From: http://www.cs.rit.edu/~ncs/цвет/t_convert.html 
  *   х = [0,1], с = [0,1], v = [0,1]
  *		if с == 0, then х = -1 (undefined)

@@ -71,7 +71,7 @@ public class SaxHandler(Ch = сим)
      *
      * <p>SAX parsers are strongly encouraged (though not absolutely
      * требуется) в_ supply a locator: if it does so, it must supply
-     * the locator в_ the application by invoking this метод before
+     * the locator в_ the application by invoking this метод перед
      * invoking any of the другой methods in the ContentHandler
      * interface.</p>
      *
@@ -85,7 +85,7 @@ public class SaxHandler(Ch = сим)
      *
      * <p>Note that the locator will return correct information only
      * during the invocation SAX событие обрвызовы после
-     * {@link #startDocument startDocument} returns и before
+     * {@link #startDocument startDocument} returns и перед
      * {@link #endDocument endDocument} is called.  The
      * application should not attempt в_ use it at any другой время.</p>
      *
@@ -101,7 +101,7 @@ public class SaxHandler(Ch = сим)
     /*******************************************************************************
      * принять notification of the beginning of a document.
      *
-     * <p>The SAX парсер will invoke this метод only once, before any
+     * <p>The SAX парсер will invoke this метод only once, перед any
      * другой событие обрвызовы (except for {@link #setDocumentLocator
      * setDocumentLocator}).</p>
      *
@@ -158,7 +158,7 @@ public class SaxHandler(Ch = сим)
      *
      * <p>Note that старт/endPrefixMapping события are not
      * guaranteed в_ be properly nested relative в_ each другой:
-     * все startPrefixMapping события will occur immediately before the
+     * все startPrefixMapping события will occur immediately перед the
      * corresponding {@link #startElement startElement} событие,
      * и все {@link #endPrefixMapping endPrefixMapping}
      * события will occur immediately после the corresponding
@@ -211,7 +211,7 @@ public class SaxHandler(Ch = сим)
      * элемент in the XML document; there will be a corresponding
      * {@link #endElement endElement} событие for every startElement событие
      * (even when the элемент is пустой). все of the элемент's контент will be
-     * reported, in order, before the corresponding endElement
+     * reported, in order, перед the corresponding endElement
      * событие.</p>
      *
      * <p>This событие допускается up в_ three имя components for each
@@ -250,13 +250,13 @@ public class SaxHandler(Ch = сим)
      * <p>Like {@link #characters characters()}, атрибут значения may have
      * characters that need ещё than one <код>сим</код> значение.  </p>
      *
-     * @param уир the Namespace URI, or the пустой ткст if the
+     * @param уир the Namespace URI, либо the пустой ткст if the
      *        элемент имеется no Namespace URI or if Namespace
      *        processing is not being performed
-     * @param localName the local имя (without префикс), or the
+     * @param localName the local имя (without префикс), либо the
      *        пустой ткст if Namespace processing is not being
      *        performed
-     * @param qName the qualified имя (with префикс), or the
+     * @param qName the qualified имя (with префикс), либо the
      *        пустой ткст if qualified names are not available
      * @param atts the атрибуты attached в_ the элемент.  If
      *        there are no атрибуты, it shall be an пустой
@@ -283,13 +283,13 @@ public class SaxHandler(Ch = сим)
      *
      * <p>For information on the names, see startElement.</p>
      *
-     * @param уир the Namespace URI, or the пустой ткст if the
+     * @param уир the Namespace URI, либо the пустой ткст if the
      *        элемент имеется no Namespace URI or if Namespace
      *        processing is not being performed
-     * @param localName the local имя (without префикс), or the
+     * @param localName the local имя (without префикс), либо the
      *        пустой ткст if Namespace processing is not being
      *        performed
-     * @param qName the qualified XML имя (with префикс), or the
+     * @param qName the qualified XML имя (with префикс), либо the
      *        пустой ткст if qualified names are not available
      * @throws org.xml.sax.SAXException any SAX исключение, possibly
      *            wrapping другой исключение
@@ -304,7 +304,7 @@ public class SaxHandler(Ch = сим)
      *
      * <p>The Parser will вызов this метод в_ report each чанк of
      * character данные.  SAX parsers may return все contiguous character
-     * данные in a single чанк, or they may разбей it преобр_в several
+     * данные in a single чанк, либо they may разбей it преобр_в several
      * чанки; however, все of the characters in any single событие
      * must come из_ the same external сущность so that the Locator
      * provопрes useful information.</p>
@@ -357,7 +357,7 @@ public class SaxHandler(Ch = сим)
      * контент models.</p>
      *
      * <p>SAX parsers may return все contiguous пробел in a single
-     * чанк, or they may разбей it преобр_в several чанки; however, все of
+     * чанк, либо they may разбей it преобр_в several чанки; however, все of
      * the characters in any single событие must come из_ the same
      * external сущность, so that the Locator provопрes useful
      * information.</p>
@@ -382,7 +382,7 @@ public class SaxHandler(Ch = сим)
      *
      * <p>The Parser will invoke this метод once for each processing
      * instruction найдено: note that processing instructions may occur
-     * before or после the main document элемент.</p>
+     * перед or после the main document элемент.</p>
      *
      * <p>A SAX парсер must never report an XML declaration (XML 1.0,
      * section 2.8) or a текст declaration (XML 1.0, section 4.3.1)
@@ -393,7 +393,7 @@ public class SaxHandler(Ch = сим)
      * значение. </p>
      *
      * @param мишень the processing instruction мишень
-     * @param данные the processing instruction данные, or пусто if
+     * @param данные the processing instruction данные, либо пусто if
      *        Неук was supplied.  The данные does not include any
      *        пробел separating it из_ the мишень
      * @throws org.xml.sax.SAXException any SAX исключение, possibly
@@ -447,14 +447,14 @@ public class SaxHandler(Ch = сим)
  *
  * <p>The XML читатель will then allow the application в_ intercept any
  * external entities (включая the external DTD поднабор и external
- * parameter entities, if any) before включая them.</p>
+ * parameter entities, if any) перед включая them.</p>
  *
  * <p>Many SAX applications will not need в_ implement this interface,
  * but it will be especially useful for applications that build
  * XML documents из_ databases or другой specialised ввод sources,
  * or for applications that use URI типы другой than URLs.</p>
  *
- * <p>The following resolver would provопрe the application
+ * <p>The following resolver would предоставляет the application
  * with a special character поток for the сущность with the system
  * определитель "http://www.myhost.com/today":</p>
  *
@@ -493,20 +493,20 @@ public interface EntityResolver(Ch = сим)
     /*******************************************************************************
      * Разрешить the application в_ разреши external entities.
      *
-     * <p>The парсер will вызов this метод before opening any external
+     * <p>The парсер will вызов this метод перед opening any external
      * сущность except the верх-уровень document сущность.  Such entities include
      * the external DTD поднабор и external parameter entities referenced
      * внутри the DTD (in either case, only if the парсер reads external
      * parameter entities), и external general entities referenced
      * внутри the document элемент (if the парсер reads external general
      * entities).  The application may request that the парсер местоположение
-     * the сущность itself, that it use an alternative URI, or that it
+     * the сущность itself, that it use an alternative URI, либо that it
      * use данные предоставленный by the application (as a character or байт
      * ввод поток).</p>
      *
      * <p>Application writers can use this метод в_ перенаправ external
      * system определители в_ безопасно и/or local URIs, в_ look up
-     * public определители in a catalogue, or в_ читай an сущность из_ a
+     * public определители in a catalogue, либо в_ читай an сущность из_ a
      * database or другой ввод исток (включая, for example, a dialog
      * box).  Neither XML nor SAX specifies a preferred policy for using
      * public or system IDs в_ разреши resources.  However, SAX specifies
@@ -515,10 +515,10 @@ public interface EntityResolver(Ch = сим)
      * a URL.  </p>
      *
      * <p>If the system определитель is a URL, the SAX парсер must
-     * разреши it fully before reporting it в_ the application.</p>
+     * разреши it fully перед reporting it в_ the application.</p>
      *
      * @param publicId The public определитель of the external сущность
-     *        being referenced, or пусто if Неук was supplied.
+     *        being referenced, либо пусто if Неук was supplied.
      * @param systemId The system определитель of the external сущность
      *        being referenced.
      * @return An InputSource объект describing the new ввод исток,
@@ -580,7 +580,7 @@ public interface ErrorHandler(Ch = сим)
      * recommendation.  The default behaviour is в_ возьми no
      * action.</p>
      *
-     * <p>The SAX парсер must continue в_ provопрe нормаль parsing события
+     * <p>The SAX парсер must continue в_ предоставляет нормаль parsing события
      * после invoking this метод: it should still be possible for the
      * application в_ process the document through в_ the конец.</p>
      *
@@ -604,7 +604,7 @@ public interface ErrorHandler(Ch = сим)
      * validity constraint.  The default behaviour is в_ возьми no
      * action.</p>
      *
-     * <p>The SAX парсер must continue в_ provопрe нормаль parsing
+     * <p>The SAX парсер must continue в_ предоставляет нормаль parsing
      * события после invoking this метод: it should still be possible
      * for the application в_ process the document through в_ the конец.
      * If the application cannot do so, then the парсер should report
@@ -668,11 +668,11 @@ public interface ErrorHandler(Ch = сим)
  * <p>Note that the результаты returned by the объект will be действителен only
  * during the scope of each обрвызов метод: the application
  * will принять unpredictable результаты if it попытки в_ use the
- * locator at any другой время, or после parsing completes.</p>
+ * locator at any другой время, либо после parsing completes.</p>
  *
  * <p>SAX parsers are not требуется в_ supply a locator, but they are
  * very strongly encouraged в_ do so.  If the парсер supplies a
- * locator, it must do so before reporting any другой document события.
+ * locator, it must do so перед reporting any другой document события.
  * If no locator имеется been установи by the время the application Приёмs
  * the {@link org.xml.sax.ContentHandler#startDocument startDocument}
  * событие, the application should assume that a locator is not
@@ -687,7 +687,7 @@ public interface Locator(Ch = сим)
 {
 
     /*******************************************************************************
-     * Return the public определитель for the текущ document событие.
+     * Возвращает the public определитель for the текущ document событие.
      *
      * <p>The return значение is the public определитель of the document
      * сущность or of the external разобрано сущность in which the markup
@@ -700,31 +700,31 @@ public interface Locator(Ch = сим)
     public Ch[] getPublicId();
 
     /*******************************************************************************
-     * Return the system определитель for the текущ document событие.
+     * Возвращает the system определитель for the текущ document событие.
      *
      * <p>The return значение is the system определитель of the document
      * сущность or of the external разобрано сущность in which the markup
      * triggering the событие appears.</p>
      *
      * <p>If the system определитель is a URL, the парсер must разреши it
-     * fully before passing it в_ the application.  Например, a файл
+     * fully перед passing it в_ the application.  Например, a файл
      * имя must always be предоставленный as a <em>файл:...</em> URL, и другой
      * kinds of relative URI are also resolved against their bases.</p>
      *
-     * @return A ткст containing the system определитель, or пусто
+     * @return A ткст containing the system определитель, либо пусто
      *         if Неук is available.
      * @see #getPublicId
      *******************************************************************************/
     public Ch[] getSystemId();
 
     /*******************************************************************************
-     * Return the строка число where the текущ document событие заканчивается.
+     * Возвращает the строка число where the текущ document событие заканчивается.
      * Строки are delimited by строка заканчивается, which are defined in
      * the XML specification.
      *
      * <p><strong>Предупреждение:</strong> The return значение из_ the метод
      * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended в_ provопрe sufficient information
+     * it is not intended в_ предоставляет sufficient information
      * в_ edit the character контент of the original XML document.
      * In some cases, these "строка" numbers сверь что would be displayed
      * as columns, и in другие they may not сверь the исток текст
@@ -734,37 +734,37 @@ public interface Locator(Ch = сим)
      * in the document сущность or external разобрано сущность where the
      * markup triggering the событие appears.</p>
      *
-     * <p>If possible, the SAX driver should provопрe the строка позиция
+     * <p>If possible, the SAX driver should предоставляет the строка позиция
      * of the первый character после the текст associated with the document
      * событие.  The первый строка is строка 1.</p>
      *
-     * @return The строка число, or -1 if Неук is available.
+     * @return The строка число, либо -1 if Неук is available.
      * @see #getColumnNumber
      *******************************************************************************/
     public цел getLineNumber();
 
     /*******************************************************************************
-     * Return the column число where the текущ document событие заканчивается.
+     * Возвращает the column число where the текущ document событие заканчивается.
      * This is one-based число of Java <код>сим</код> значения since
      * the последний строка конец.
      *
      * <p><strong>Предупреждение:</strong> The return значение из_ the метод
      * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended в_ provопрe sufficient information
+     * it is not intended в_ предоставляет sufficient information
      * в_ edit the character контент of the original XML document.
      * Например, when строки contain combining character sequences, wide
-     * characters, surrogate pairs, or bi-directional текст, the значение may
+     * characters, surrogate pairs, либо bi-directional текст, the значение may
      * not correspond в_ the column in a текст editor's display. </p>
      *
      * <p>The return значение is an approximation of the column число
      * in the document сущность or external разобрано сущность where the
      * markup triggering the событие appears.</p>
      *
-     * <p>If possible, the SAX driver should provопрe the строка позиция
+     * <p>If possible, the SAX driver should предоставляет the строка позиция
      * of the первый character после the текст associated with the document
      * событие.  The первый column in each строка is column 1.</p>
      *
-     * @return The column число, or -1 if Неук is available.
+     * @return The column число, либо -1 if Неук is available.
      * @see #getLineNumber
      *******************************************************************************/
     public цел getColumnNumber();
@@ -777,7 +777,7 @@ public interface Locator(Ch = сим)
  *
  * <p>This class can contain basic ошибка or warning information из_
  * either the XML парсер or the application: a парсер писатель or
- * application писатель can subclass it в_ provопрe добавьitional
+ * application писатель can subclass it в_ предоставляет добавьitional
  * functionality.  SAX handlers may throw this исключение or
  * any исключение subclassed из_ it.</p>
  *
@@ -844,7 +844,7 @@ public class SAXException : Исключение
     }
 
     /*******************************************************************************
-     * Return a detail сообщение for this исключение.
+     * Возвращает detail сообщение for this исключение.
      *
      * <p>If there is an embedded исключение, и if the SAXException
      * имеется no detail сообщение of its own, this метод will return
@@ -898,7 +898,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * possible for an XMLЧитатель в_ recognize a feature имя but
      * temporarily be unable в_ return its значение.
      * Some feature значения may be available only in specific
-     * contexts, such as before, during, or после a разбор.
+     * contexts, such as перед, during, либо после a разбор.
      * Also, some feature значения may not be programmatically accessible.
      * (In the case of an адаптер for SAX1 {@link Parser}, there is no
      * implementation-independent way в_ expose whether the underlying
@@ -959,7 +959,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * possible for an XMLЧитатель в_ expose a feature значение but
      * в_ be unable в_ change the текущ значение.
      * Some feature значения may be неменяемый or изменяемый only
-     * in specific contexts, such as before, during, or после
+     * in specific contexts, such as перед, during, либо после
      * a разбор.</p>
      *
      * <p>все XMLЧитательs are требуется в_ support настройка
@@ -972,7 +972,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      *            значение can't be назначено or retrieved.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            XMLЧитатель recognizes the feature имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      * @see #getFeature
      *******************************************************************************/
     public проц setFeature(Ch[] имя, бул значение)
@@ -987,7 +987,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * possible for an XMLЧитатель в_ recognize a property имя but
      * temporarily be unable в_ return its значение.
      * Some property значения may be available only in specific
-     * contexts, such as before, during, or после a разбор.</p>
+     * contexts, such as перед, during, либо после a разбор.</p>
      *
      * <p>XMLЧитательs are not требуется в_ recognize any specific
      * property names, though an начальное core установи is documented for
@@ -1017,7 +1017,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * possible for an XMLЧитатель в_ recognize a property имя but
      * в_ be unable в_ change the текущ значение.
      * Some property значения may be неменяемый or изменяемый only
-     * in specific contexts, such as before, during, or после
+     * in specific contexts, such as перед, during, либо после
      * a разбор.</p>
      *
      * <p>XMLЧитательs are not требуется в_ recognize настройка
@@ -1033,7 +1033,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      *            значение can't be назначено or retrieved.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            XMLЧитатель recognizes the property имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      *******************************************************************************/
     public проц setProperty(Ch[] имя, Объект значение)
     {
@@ -1062,9 +1062,9 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
     }
 
     /*******************************************************************************
-     * Return the текущ сущность resolver.
+     * Возвращает the текущ сущность resolver.
      *
-     * @return The текущ сущность resolver, or пусто if Неук
+     * @return The текущ сущность resolver, либо пусто if Неук
      *         имеется been registered.
      * @see #setEntityResolver
      *******************************************************************************/
@@ -1093,9 +1093,9 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
     }
 
     /*******************************************************************************
-     * Return the текущ контент handler.
+     * Возвращает the текущ контент handler.
      *
-     * @return The текущ контент handler, or пусто if Неук
+     * @return The текущ контент handler, либо пусто if Неук
      *         имеется been registered.
      * @see #setContentHandler
      *******************************************************************************/
@@ -1126,9 +1126,9 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
     }
 
     /*******************************************************************************
-     * Return the текущ ошибка handler.
+     * Возвращает the текущ ошибка handler.
      *
-     * @return The текущ ошибка handler, or пусто if Неук
+     * @return The текущ ошибка handler, либо пусто if Неук
      *         имеется been registered.
      * @see #setErrorHandler
      *******************************************************************************/
@@ -1145,7 +1145,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      *
      * <p>The application can use this метод в_ instruct the XML
      * читатель в_ начало parsing an XML document из_ any действителен ввод
-     * исток (a character поток, a байт поток, or a URI).</p>
+     * исток (a character поток, a байт поток, либо a URI).</p>
      *
      * <p>Applications may not invoke this метод while a разбор is in
      * ход (they should создай a new XMLЧитатель instead for each
@@ -1160,7 +1160,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * characteristics of the document being разобрано.)
      * </p>
      *
-     * <p>During the разбор, the XMLЧитатель will provопрe information
+     * <p>During the разбор, the XMLЧитатель will предоставляет information
      * about the XML document through the registered событие
      * handlers.</p>
      *
@@ -1199,7 +1199,7 @@ class SaxParser(Ch = сим) : XMLЧитатель!(Ch), Locator!(Ch)
      * </pre>
      *
      * <p>If the system определитель is a URL, it must be fully resolved
-     * by the application before it is passed в_ the парсер.</p>
+     * by the application перед it is passed в_ the парсер.</p>
      *
      * @param systemId The system определитель (URI).
      * @исключение org.xml.sax.SAXException Any SAX исключение, possibly
@@ -1331,7 +1331,7 @@ foo:
     }
 
     /*******************************************************************************
-     * Return the public определитель for the текущ document событие.
+     * Возвращает the public определитель for the текущ document событие.
      *
      * <p>The return значение is the public определитель of the document
      * сущность or of the external разобрано сущность in which the markup
@@ -1347,18 +1347,18 @@ foo:
     }
 
     /*******************************************************************************
-     * Return the system определитель for the текущ document событие.
+     * Возвращает the system определитель for the текущ document событие.
      *
      * <p>The return значение is the system определитель of the document
      * сущность or of the external разобрано сущность in which the markup
      * triggering the событие appears.</p>
      *
      * <p>If the system определитель is a URL, the парсер must разреши it
-     * fully before passing it в_ the application.  Например, a файл
+     * fully перед passing it в_ the application.  Например, a файл
      * имя must always be предоставленный as a <em>файл:...</em> URL, и другой
      * kinds of relative URI are also resolved against their bases.</p>
      *
-     * @return A ткст containing the system определитель, or пусто
+     * @return A ткст containing the system определитель, либо пусто
      *         if Неук is available.
      * @see #getPublicId
      *******************************************************************************/
@@ -1368,13 +1368,13 @@ foo:
     }
 
     /*******************************************************************************
-     * Return the строка число where the текущ document событие заканчивается.
+     * Возвращает the строка число where the текущ document событие заканчивается.
      * Строки are delimited by строка заканчивается, which are defined in
      * the XML specification.
      *
      * <p><strong>Предупреждение:</strong> The return значение из_ the метод
      * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended в_ provопрe sufficient information
+     * it is not intended в_ предоставляет sufficient information
      * в_ edit the character контент of the original XML document.
      * In some cases, these "строка" numbers сверь что would be displayed
      * as columns, и in другие they may not сверь the исток текст
@@ -1384,11 +1384,11 @@ foo:
      * in the document сущность or external разобрано сущность where the
      * markup triggering the событие appears.</p>
      *
-     * <p>If possible, the SAX driver should provопрe the строка позиция
+     * <p>If possible, the SAX driver should предоставляет the строка позиция
      * of the первый character после the текст associated with the document
      * событие.  The первый строка is строка 1.</p>
      *
-     * @return The строка число, or -1 if Неук is available.
+     * @return The строка число, либо -1 if Неук is available.
      * @see #getColumnNumber
      *******************************************************************************/
     public цел getLineNumber()
@@ -1397,27 +1397,27 @@ foo:
     }
 
     /*******************************************************************************
-     * Return the column число where the текущ document событие заканчивается.
+     * Возвращает the column число where the текущ document событие заканчивается.
      * This is one-based число of Java <код>сим</код> значения since
      * the последний строка конец.
      *
      * <p><strong>Предупреждение:</strong> The return значение из_ the метод
      * is intended only as an approximation for the sake of diagnostics;
-     * it is not intended в_ provопрe sufficient information
+     * it is not intended в_ предоставляет sufficient information
      * в_ edit the character контент of the original XML document.
      * Например, when строки contain combining character sequences, wide
-     * characters, surrogate pairs, or bi-directional текст, the значение may
+     * characters, surrogate pairs, либо bi-directional текст, the значение may
      * not correspond в_ the column in a текст editor's display. </p>
      *
      * <p>The return значение is an approximation of the column число
      * in the document сущность or external разобрано сущность where the
      * markup triggering the событие appears.</p>
      *
-     * <p>If possible, the SAX driver should provопрe the строка позиция
+     * <p>If possible, the SAX driver should предоставляет the строка позиция
      * of the первый character после the текст associated with the document
      * событие.  The первый column in each строка is column 1.</p>
      *
-     * @return The column число, or -1 if Неук is available.
+     * @return The column число, либо -1 if Неук is available.
      * @see #getLineNumber
      *******************************************************************************/
     public цел getColumnNumber()
@@ -1473,7 +1473,7 @@ public abstract class XMLFilter(Ch = сим) : XMLЧитатель
      * bad опрea в_ выполни any operations on the родитель читатель
      * directly: they should все пароль through this фильтр.</p>
      *
-     * @return The родитель фильтр, or пусто if Неук имеется been установи.
+     * @return The родитель фильтр, либо пусто if Неук имеется been установи.
      *******************************************************************************/
     public XMLЧитатель getParent()
     {
@@ -1511,7 +1511,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
      * Конструирует пустой XML фильтр, with no родитель.
      *
      * <p>This фильтр will have no родитель: you must присвой a родитель
-     * before you старт a разбор or do any configuration with
+     * перед you старт a разбор or do any configuration with
      * setFeature or setProperty, unless you use this as a  событие
      * consumer rather than as an {@link XMLЧитатель}.</p>
      *
@@ -1559,7 +1559,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Get the родитель читатель.
      *
-     * @return The родитель XML читатель, or пусто if Неук is установи.
+     * @return The родитель XML читатель, либо пусто if Неук is установи.
      * @see #setParent
      *******************************************************************************/
     public XMLЧитатель getParent()
@@ -1581,7 +1581,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
      *            значение can't be назначено or retrieved из_ the родитель.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            родитель recognizes the feature имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      *******************************************************************************/
     public проц setFeature(Ch[] имя, бул значение)
     {
@@ -1633,7 +1633,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
      *            значение can't be назначено or retrieved из_ the родитель.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            родитель recognizes the property имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      *******************************************************************************/
     public проц setProperty(Ch[] имя, Объект значение)
     {
@@ -1643,7 +1643,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
         }
         else
         {
-            throw new SAXException("Property not recognized: " ~ имя);
+            throw new SAXException("Свойство not recognized: " ~ имя);
         }
 
     }
@@ -1667,7 +1667,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
         }
         else
         {
-            throw new SAXException("Property not recognized: " ~ имя);
+            throw new SAXException("Свойство not recognized: " ~ имя);
         }
 
     }
@@ -1685,7 +1685,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /**
      * Get the текущ сущность resolver.
      *
-     * @return The текущ сущность resolver, or пусто if Неук was установи.
+     * @return The текущ сущность resolver, либо пусто if Неук was установи.
      *******************************************************************************/
     public EntityResolver getEntityResolver()
     {
@@ -1705,7 +1705,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Get the контент событие handler.
      *
-     * @return The текущ контент handler, or пусто if Неук was установи.
+     * @return The текущ контент handler, либо пусто if Неук was установи.
      *******************************************************************************/
     public SaxHandler getSaxHandler()
     {
@@ -1725,7 +1725,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Get the текущ ошибка событие handler.
      *
-     * @return The текущ ошибка handler, or пусто if Неук was установи.
+     * @return The текущ ошибка handler, либо пусто if Неук was установи.
      *******************************************************************************/
     public ErrorHandler getErrorHandler()
     {
@@ -1791,7 +1791,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Фильтр an external сущность resolution.
      *
-     * @param publicId The сущность's public определитель, or пусто.
+     * @param publicId The сущность's public определитель, либо пусто.
      * @param systemId The сущность's system определитель.
      * @return A new InputSource or пусто for the default.
      * @исключение org.xml.sax.SAXException The клиент may throw
@@ -1897,9 +1897,9 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Фильтр a старт элемент событие.
      *
-     * @param уир The элемент's Namespace URI, or the пустой ткст.
-     * @param localName The элемент's local имя, or the пустой ткст.
-     * @param qName The элемент's qualified (псеп_в_начале) имя, or the пустой
+     * @param уир The элемент's Namespace URI, либо the пустой ткст.
+     * @param localName The элемент's local имя, либо the пустой ткст.
+     * @param qName The элемент's qualified (псеп_в_начале) имя, либо the пустой
      *        ткст.
      * @param atts The элемент's атрибуты.
      * @исключение org.xml.sax.SAXException The клиент may throw
@@ -1917,9 +1917,9 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     /*******************************************************************************
      * Фильтр an конец элемент событие.
      *
-     * @param уир The элемент's Namespace URI, or the пустой ткст.
-     * @param localName The элемент's local имя, or the пустой ткст.
-     * @param qName The элемент's qualified (псеп_в_начале) имя, or the пустой
+     * @param уир The элемент's Namespace URI, либо the пустой ткст.
+     * @param localName The элемент's local имя, либо the пустой ткст.
+     * @param qName The элемент's qualified (псеп_в_начале) имя, либо the пустой
      *        ткст.
      * @исключение org.xml.sax.SAXException The клиент may throw
      *            an исключение during processing.
@@ -2055,7 +2055,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
     // Internal methods.
     ////////////////////////////////////////////////////////////////////
     /*******************************************************************************
-     * Набор up before a разбор.
+     * Набор up перед a разбор.
      *
      * <p>Before every разбор, проверь whether the родитель is
      * non-пусто, и re-регистрируй the фильтр for все of the
@@ -2101,7 +2101,7 @@ public class XMLFilterImpl(Ch = сим) : SaxHandler, XMLFilter, EntityResolver,
  * <p>все SAX interfaces are assumed в_ be синхронно: the
  * {@link #разбор разбор} methods must not return until parsing
  * is complete, и readers must жди for an событие-handler обрвызов
- * в_ return before reporting the следщ событие.</p>
+ * в_ return перед reporting the следщ событие.</p>
  *
  * <p>This interface replaces the (сейчас deprecated) SAX 1.0 {@link
  * org.xml.sax.Parser Parser} interface.  The XMLЧитатель interface
@@ -2138,7 +2138,7 @@ public interface XMLЧитатель(Ch = сим)
      * possible for an XMLЧитатель в_ recognize a feature имя but
      * temporarily be unable в_ return its значение.
      * Some feature значения may be available only in specific
-     * contexts, such as before, during, or после a разбор.
+     * contexts, such as перед, during, либо после a разбор.
      * Also, some feature значения may not be programmatically accessible.
      * (In the case of an адаптер for SAX1 {@link Parser}, there is no
      * implementation-independent way в_ expose whether the underlying
@@ -2196,7 +2196,7 @@ public interface XMLЧитатель(Ch = сим)
      * possible for an XMLЧитатель в_ expose a feature значение but
      * в_ be unable в_ change the текущ значение.
      * Some feature значения may be неменяемый or изменяемый only
-     * in specific contexts, such as before, during, or после
+     * in specific contexts, such as перед, during, либо после
      * a разбор.</p>
      *
      * <p>все XMLЧитательs are требуется в_ support настройка
@@ -2209,7 +2209,7 @@ public interface XMLЧитатель(Ch = сим)
      *            значение can't be назначено or retrieved.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            XMLЧитатель recognizes the feature имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      * @see #getFeature
      *******************************************************************************/
     public проц setFeature(Ch[] имя, бул значение);
@@ -2221,7 +2221,7 @@ public interface XMLЧитатель(Ch = сим)
      * possible for an XMLЧитатель в_ recognize a property имя but
      * temporarily be unable в_ return its значение.
      * Some property значения may be available only in specific
-     * contexts, such as before, during, or после a разбор.</p>
+     * contexts, such as перед, during, либо после a разбор.</p>
      *
      * <p>XMLЧитательs are not требуется в_ recognize any specific
      * property names, though an начальное core установи is documented for
@@ -2248,7 +2248,7 @@ public interface XMLЧитатель(Ch = сим)
      * possible for an XMLЧитатель в_ recognize a property имя but
      * в_ be unable в_ change the текущ значение.
      * Some property значения may be неменяемый or изменяемый only
-     * in specific contexts, such as before, during, or после
+     * in specific contexts, such as перед, during, либо после
      * a разбор.</p>
      *
      * <p>XMLЧитательs are not требуется в_ recognize настройка
@@ -2264,7 +2264,7 @@ public interface XMLЧитатель(Ch = сим)
      *            значение can't be назначено or retrieved.
      * @исключение org.xml.sax.SAXNotSupportedException When the
      *            XMLЧитатель recognizes the property имя but
-     *            cannot установи the requested значение.
+     *            cannot Устанавливает requested значение.
      *******************************************************************************/
     public проц setProperty(Ch[] имя, Объект значение);
 
@@ -2287,9 +2287,9 @@ public interface XMLЧитатель(Ch = сим)
     public проц setEntityResolver(EntityResolver!(Ch) resolver);
 
     /*******************************************************************************
-     * Return the текущ сущность resolver.
+     * Возвращает the текущ сущность resolver.
      *
-     * @return The текущ сущность resolver, or пусто if Неук
+     * @return The текущ сущность resolver, либо пусто if Неук
      *         имеется been registered.
      * @see #setEntityResolver
      *******************************************************************************/
@@ -2312,9 +2312,9 @@ public interface XMLЧитатель(Ch = сим)
     public проц setSaxHandler(SaxHandler!(Ch) handler);
 
     /*******************************************************************************
-     * Return the текущ контент handler.
+     * Возвращает the текущ контент handler.
      *
-     * @return The текущ контент handler, or пусто if Неук
+     * @return The текущ контент handler, либо пусто if Неук
      *         имеется been registered.
      * @see #setContentHandler
      *******************************************************************************/
@@ -2339,9 +2339,9 @@ public interface XMLЧитатель(Ch = сим)
     public проц setErrorHandler(ErrorHandler!(Ch) handler);
 
     /*******************************************************************************
-     * Return the текущ ошибка handler.
+     * Возвращает the текущ ошибка handler.
      *
-     * @return The текущ ошибка handler, or пусто if Неук
+     * @return The текущ ошибка handler, либо пусто if Неук
      *         имеется been registered.
      * @see #setErrorHandler
      *******************************************************************************/
@@ -2355,7 +2355,7 @@ public interface XMLЧитатель(Ch = сим)
      *
      * <p>The application can use this метод в_ instruct the XML
      * читатель в_ начало parsing an XML document из_ any действителен ввод
-     * исток (a character поток, a байт поток, or a URI).</p>
+     * исток (a character поток, a байт поток, либо a URI).</p>
      *
      * <p>Applications may not invoke this метод while a разбор is in
      * ход (they should создай a new XMLЧитатель instead for each
@@ -2370,7 +2370,7 @@ public interface XMLЧитатель(Ch = сим)
      * characteristics of the document being разобрано.)
      * </p>
      *
-     * <p>During the разбор, the XMLЧитатель will provопрe information
+     * <p>During the разбор, the XMLЧитатель will предоставляет information
      * about the XML document through the registered событие
      * handlers.</p>
      *
@@ -2405,7 +2405,7 @@ public interface XMLЧитатель(Ch = сим)
      * </pre>
      *
      * <p>If the system определитель is a URL, it must be fully resolved
-     * by the application before it is passed в_ the парсер.</p>
+     * by the application перед it is passed в_ the парсер.</p>
      *
      * @param systemId The system определитель (URI).
      * @исключение org.xml.sax.SAXException Any SAX исключение, possibly

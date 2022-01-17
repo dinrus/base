@@ -1,6 +1,6 @@
 ﻿module runtime;
 pragma(lib,"dinrus.lib");
-private import  gc, global, sys.Common;
+private import  gc, global, sys.common;
 
 /////////////////////////////
 //Структура для инициализации рантайма Динрус

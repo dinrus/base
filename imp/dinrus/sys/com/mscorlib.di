@@ -7134,19 +7134,19 @@ abstract final class X509Certificate {
 version (build) {
     debug {
         version (GNU) {
-            pragma(link, "DG-sys.Common");
+            pragma(link, "DG-win");
         } else version (DigitalMars) {
             pragma(link, "rulada");
         } else {
-            pragma(link, "DO-sys.Common");
+            pragma(link, "DO-win");
         }
     } else {
         version (GNU) {
-            pragma(link, "DG-sys.Common");
+            pragma(link, "DG-win");
         } else version (DigitalMars) {
             pragma(link, "rulada");
         } else {
-            pragma(link, "DO-sys.Common");
+            pragma(link, "DO-win");
         }
     }
 }

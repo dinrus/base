@@ -48,8 +48,8 @@ extern (D) class Барьер
 {
     enum Политика
     {
-        ПОЧЁТ_ЧИТАТЕЛЮ, /// Readers get preference.  This may starve writers.
-        ПОЧЁТ_ПИСАТЕЛЮ  /// Writers get preference.  This may starve readers.
+        ПОЧЁТ_ЧИТАТЕЛЮ, /// Читатели получают предпочтение. от этого могут пострадать писатели.
+        ПОЧЁТ_ПИСАТЕЛЮ  /// Писатели получают предпочтение. от этого могут пострадать читатели.
     }
 
 
@@ -106,24 +106,23 @@ private
 
     template указательИлиКласс_ли(T : T*)
     {
-            const указательИлиКласс_ли = true;
+            const указательИлиКласс_ли = да;
     }
   
     template целыйЗначныйТип_ли( T )
     {
-        const бул целыйЗначныйТип_ли = is( T == byte )  ||
-                                         is( T == short ) ||
-                                         is( T == int )   ||
-                                         is( T == long )/+||
+        const бул целыйЗначныйТип_ли = is( T == байт )  ||
+                                         is( T == крат ) ||
+цел                                         is( T == дол )/+||
                                          is( T == cent  )+/;
     }
 
     template целыйБеззначныйТип_ли( T )
     {
         const бул целыйБеззначныйТип_ли = is( T == ббайт )  ||
-                                           is( T == ushort ) ||
+                                           is( T == бкрат ) ||
                                            is( T == бцел )   ||
-                                           is( T == ulong )/+||
+                                           is( T == бдол )/+||
                                            is( T == ucent  )+/;
     }
     
@@ -146,8 +145,8 @@ template атомныеЗначенияПравильноРазмещены( T )
 }
 
 version(D_InlineAsm_X86){
-    проц барьерПамяти(bool ll, bool ls, bool sl,bool ss,bool device=false)(){
-        static if (device) {
+    проц барьерПамяти(бул ll, бул ls, бул sl, бул ss, бул устройство=нет)(){
+        static if (устройство) {
             if (ls || sl || ll || ss){
                 // cpid should sequence even more than mfence
                 volatile asm {
@@ -176,8 +175,8 @@ version(D_InlineAsm_X86){
         }
     }
 } else version(D_InlineAsm_X86_64){
-    проц барьерПамяти(bool ll, bool ls, bool sl,bool ss,bool device=false)(){
-        static if (device) {
+    проц барьерПамяти(бул ll, бул ls, бул sl, бул ss, бул устройство=нет)(){
+        static if (устройство) {
             if (ls || sl || ll || ss){
                 // cpid should sequence even more than mfence
                 volatile asm {
@@ -206,22 +205,22 @@ version(D_InlineAsm_X86){
         }
     }
 } else {
-    pragma(msg,"WARNING: no atomic operations on this architecture");
-    pragma(msg,"WARNING: this is *медленно* you probably want to change this!");
+    pragma(msg,"ВНИМАНИЕ: на этой архитектуре нет атомных операций");
+    pragma(msg,"ВНИМАНИЕ: это *медленно*, возможно, вам хотелось бы это изменить!");
     цел dummy;
     // acquires a блокируй... probably you will want to skip this
-    synchronized проц барьерПамяти(bool ll, bool ls, bool sl,bool ss,bool device=false)(){
+    synchronized проц барьерПамяти(бул ll, бул ls, бул sl, бул ss, бул устройство=нет)(){
         dummy =1;
     }
-    enum{LockVersion = true}
+    enum{LockVersion = да}
 }
 
 static if (!is(typeof(LockVersion))) {
-    enum{LockVersion= false}
+    enum{LockVersion= нет}
 }
 
 // use stricter fences
-enum{strictFences=false}
+enum{строгиеЗаборы = нет}
 
 /// utility function for a пиши barrier (disallow store and store reorderig)
 проц барьерЗаписи();
@@ -232,129 +231,129 @@ enum{strictFences=false}
 
 
  version(D_InlineAsm_X86) {
-    T атомнаяПерестановка( T )( inout T val, T newval )
+    T атомнаяПерестановка( T )( inout T знач, T новЗнач )
     in {
         // NOTE: 32 bit x86 systems support 8 byte CAS, which only requires
         //       4 byte alignment, so use т_мера as the align type here.
         static if( T.sizeof > т_мера.sizeof )
-            assert( атомныеЗначенияПравильноРазмещены!(т_мера)( cast(т_мера) &val ) );
+            assert( атомныеЗначенияПравильноРазмещены!(т_мера)( cast(т_мера) &знач ) );
         else
-            assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+            assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     } body {
-        T*posVal=&val;
+        T*значПоз=&знач;
         static if( T.sizeof == byte.sizeof ) {
             volatile asm {
-                mov AL, newval;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov AL, новЗнач;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [ECX], AL;
             }
         }
         else static if( T.sizeof == short.sizeof ) {
             volatile asm {
-                mov AX, newval;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov AX, новЗнач;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [ECX], AX;
             }
         }
         else static if( T.sizeof == цел.sizeof ) {
             volatile asm {
-                mov EAX, newval;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov EAX, новЗнач;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [ECX], EAX;
             }
         }
         else static if( T.sizeof == дол.sizeof ) {
             // 8 Byte swap on 32-Bit Processor, use CAS?
-            static assert( false, "Указан неверный шаблонный тип, 8 байт в 32-битном режиме: "~T.stringof );
+            static assert( нет, "Указан неверный шаблонный тип, 8 байт в 32-битном режиме: "~T.stringof );
         }
         else
         {
-            static assert( false, "Указан неверный шаблонный тип: "~T.stringof );
+            static assert( нет, "Указан неверный шаблонный тип: "~T.stringof );
         }
     }
 } else version (D_InlineAsm_X86_64){
-    T атомнаяПерестановка( T )( inout T val, T newval )
+    T атомнаяПерестановка( T )( inout T знач, T новЗнач )
     in {
-        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     } body {
-        T*posVal=&val;
+        T*значПоз=&знач;
         static if( T.sizeof == byte.sizeof ) {
             volatile asm {
-                mov AL, newval;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov AL, новЗнач;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [RCX], AL;
             }
         }
         else static if( T.sizeof == short.sizeof ) {
             volatile asm {
-                mov AX, newval;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov AX, новЗнач;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [RCX], AX;
             }
         }
         else static if( T.sizeof == цел.sizeof ) {
             volatile asm {
-                mov EAX, newval;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov EAX, новЗнач;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [RCX], EAX;
             }
         }
         else static if( T.sizeof == дол.sizeof ) {
             volatile asm {
-                mov RAX, newval;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov RAX, новЗнач;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 xchg [RCX], RAX;
             }
         }
         else
         {
-            static assert( false, "Указан неверный шаблонный тип: "~T.stringof );
+            static assert( нет, "Указан неверный шаблонный тип: "~T.stringof );
         }
     }
 } else {
-    T атомнаяПерестановка( T )( inout T val, T newval )
+    T атомнаяПерестановка( T )( inout T знач, T новЗнач )
     in {
-        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     } body {
         T oldVal;
         synchronized(typeid(T)){
-            oldVal=val;
-            val=newval;
+            oldVal=знач;
+            знач=новЗнач;
         }
         return oldVal;
     }
 }
 
 //---------------------
-// internal conversion template
-private T aCasT(T,V)(ref   T val, T newval, T equalTo){
+// шаблон внутреннего преобразования
+private T aCasT(T,V)(ref   T знач, T новЗнач, T оцениваетсяВ){
     union UVConv{V v; T t;}
     union UVPtrConv{V *v; T *t;}
     UVConv vNew,vOld,vAtt;
     UVPtrConv valPtr;
-    vNew.t=newval;
-    vOld.t=equalTo;
-    valPtr.t=&val;
+    vNew.t=новЗнач;
+    vOld.t=оцениваетсяВ;
+    valPtr.t=&знач;
     vAtt.v=atomicCAS(*valPtr.v,vNew.v,vOld.v);
     return vAtt.t;
 }
-/// internal reduction 
-private T aCas(T)(ref   T val, T newval, T equalTo){
+/// внутренняя редукция 
+private T aCas(T)(ref   T знач, T новЗнач, T оцениваетсяВ){
     static if (T.sizeof==1){
-        return aCasT!(T,ббайт)(val,newval,equalTo);
+        return aCasT!(T,ббайт)(знач,новЗнач,оцениваетсяВ);
     } else static if (T.sizeof==2){
-        return aCasT!(T,ushort)(val,newval,equalTo);
+        return aCasT!(T,ushort)(знач,новЗнач,оцениваетсяВ);
     } else static if (T.sizeof==4){
-        return aCasT!(T,бцел)(val,newval,equalTo);
+        return aCasT!(T,бцел)(знач,новЗнач,оцениваетсяВ);
     } else static if (T.sizeof==8){ // unclear if it is always supported...
-        return aCasT!(T,ulong)(val,newval,equalTo);
+        return aCasT!(T,ulong)(знач,новЗнач,оцениваетсяВ);
     } else {
         static assert(0,"неверный тип "~T.stringof);
     }
@@ -365,40 +364,40 @@ version(D_InlineAsm_X86) {
         extern(C) ббайт OSAtomicCompareAndSwap64(дол oldValue, дол newValue,
                  дол *theValue); // assumes that in C sizeof(_Bool)==1 (as given in osx IA-32 ABI)
     }
-    T atomicCAS( T )( ref   T val, T newval, T equalTo )
+    T atomicCAS( T )( ref   T знач, T новЗнач, T оцениваетсяВ )
     in {
         // NOTE: 32 bit x86 systems support 8 byte CAS, which only requires
         //       4 byte alignment, so use т_мера as the align type here.
         static if( УкНаКласс!(T).sizeof > т_мера.sizeof )
-            assert( атомныеЗначенияПравильноРазмещены!(т_мера)( cast(т_мера) &val ) );
+            assert( атомныеЗначенияПравильноРазмещены!(т_мера)( cast(т_мера) &знач ) );
         else
-            assert( атомныеЗначенияПравильноРазмещены!(УкНаКласс!(T))( cast(т_мера) &val ) );
+            assert( атомныеЗначенияПравильноРазмещены!(УкНаКласс!(T))( cast(т_мера) &знач ) );
     } body {
-        T*posVal=&val;
+        T*значПоз=&знач;
         static if( T.sizeof == byte.sizeof ) {
             volatile asm {
-                mov DL, newval;
-                mov AL, equalTo;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov DL, новЗнач;
+                mov AL, оцениваетсяВ;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [ECX], DL;
             }
         }
         else static if( T.sizeof == short.sizeof ) {
             volatile asm {
-                mov DX, newval;
-                mov AX, equalTo;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov DX, новЗнач;
+                mov AX, оцениваетсяВ;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [ECX], DX;
             }
         }
         else static if( УкНаКласс!(T).sizeof == цел.sizeof ) {
             volatile asm {
-                mov EDX, newval;
-                mov EAX, equalTo;
-                mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov EDX, новЗнач;
+                mov EAX, оцениваетсяВ;
+                mov ECX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [ECX], EDX;
             }
         }
@@ -409,299 +408,299 @@ version(D_InlineAsm_X86) {
                 union UVPtrConv{дол *v; T *t;}
                 UVConv vEqual,vNew;
                 UVPtrConv valPtr;
-                vEqual.t=equalTo;
-                vNew.t=newval;
-                valPtr.t=&val;
+                vEqual.t=оцениваетсяВ;
+                vNew.t=новЗнач;
+                valPtr.t=&знач;
                 while(1){
                     if(OSAtomicCompareAndSwap64(vEqual.v, vNew.v, valPtr.v)!=0)
                     {
-                        return equalTo;
+                        return оцениваетсяВ;
                     } else {
                         volatile {
-                            T res=val;
-                            if (res!is equalTo) return res;
+                            T рез=знач;
+                            if (рез!is оцениваетсяВ) return рез;
                         }
                     }
                 }
             } else {
-                T res;
+                T рез;
                 volatile asm
                 {
                     push EDI;
                     push EBX;
-                    lea EDI, newval;
+                    lea EDI, новЗнач;
                     mov EBX, [EDI];
                     mov ECX, 4[EDI];
-                    lea EDI, equalTo;
+                    lea EDI, оцениваетсяВ;
                     mov EAX, [EDI];
                     mov EDX, 4[EDI];
-                    mov EDI, val;
-                    lock; // блокируй always needed to make this op atomic
+                    mov EDI, знач;
+                    lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                     cmpxch8b [EDI];
-                    lea EDI, res;
+                    lea EDI, рез;
                     mov [EDI], EAX;
                     mov 4[EDI], EDX;
                     pop EBX;
                     pop EDI;
                 }
-                return res;
+                return рез;
             }
         }
         else
         {
-            static assert( false, "Указан неверный шаблонный тип: "~T.stringof );
+            static assert( нет, "Указан неверный шаблонный тип: "~T.stringof );
         }
     }
 } else version (D_InlineAsm_X86_64){
-    T atomicCAS( T )( ref   T val, T newval, T equalTo )
+    T atomicCAS( T )( ref   T знач, T новЗнач, T оцениваетсяВ )
     in {
-        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     } body {
-        T*posVal=&val;
+        T*значПоз=&знач;
         static if( T.sizeof == byte.sizeof ) {
             volatile asm {
-                mov DL, newval;
-                mov AL, equalTo;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov DL, новЗнач;
+                mov AL, оцениваетсяВ;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [RCX], DL;
             }
         }
         else static if( T.sizeof == short.sizeof ) {
             volatile asm {
-                mov DX, newval;
-                mov AX, equalTo;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov DX, новЗнач;
+                mov AX, оцениваетсяВ;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [RCX], DX;
             }
         }
         else static if( УкНаКласс!(T).sizeof == цел.sizeof ) {
             volatile asm {
-                mov EDX, newval;
-                mov EAX, equalTo;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov EDX, новЗнач;
+                mov EAX, оцениваетсяВ;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [RCX], EDX;
             }
         }
         else static if( УкНаКласс!(T).sizeof == дол.sizeof ) {
             volatile asm {
-                mov RDX, newval;
-                mov RAX, equalTo;
-                mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                mov RDX, новЗнач;
+                mov RAX, оцениваетсяВ;
+                mov RCX, значПоз;
+                lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                 cmpxchg [RCX], RDX;
             }
         }
         else
         {
-            static assert( false, "Задан неправильный шаблонный тип: "~T.stringof );
+            static assert( нет, "Задан неправильный шаблонный тип: "~T.stringof );
         }
     }
 } else {
-    T atomicCAS( T )( ref   T val, T newval, T equalTo )
+    T atomicCAS( T )( ref   T знач, T новЗнач, T оцениваетсяВ )
     in {
-        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     } body {
         T oldval;
         synchronized(typeid(T)){
-            oldval=val;
-            if(oldval==equalTo) {
-                val=newval;
+            oldval=знач;
+            if(oldval==оцениваетсяВ) {
+                знач=новЗнач;
             }
         }
         return oldval;
     }
 }
 
-бул atomicCASB(T)( ref   T val, T newval, T equalTo ){
-    return (equalTo is atomicCAS(val,newval,equalTo));
+бул atomicCASB(T)( ref   T знач, T новЗнач, T оцениваетсяВ ){
+    return (оцениваетсяВ is atomicCAS(знач,новЗнач,оцениваетсяВ));
 }
 
 
-T атомнаяЗагрузка(T)(ref   T val)
+T атомнаяЗагрузка(T)(ref   T знач)
 in {
-    assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ) );
+    assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ) );
     static assert(УкНаКласс!(T).sizeof<=т_мера.sizeof,"неверный размер для "~T.stringof);
 } body {
-    volatile T res=val;
-    return res;
+    volatile T рез=знач;
+    return рез;
 }
 
 
-проц атомноеСохранение(T)(ref   T val, T newVal)
+проц атомноеСохранение(T)(ref   T знач, T newVal)
 in {
-        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &val ), "неверная раскладка" );
+        assert( атомныеЗначенияПравильноРазмещены!(T)( cast(т_мера) &знач ), "неверная раскладка" );
         static assert(УкНаКласс!(T).sizeof<=т_мера.sizeof,"наверный размер для "~T.stringof);
 } body {
-    volatile val=newVal;
+    volatile знач=newVal;
 }
 
 
 version (D_InlineAsm_X86){
-    T атомнаяПрибавка(T,U=T)(ref   T val, U incV_){
-        T incV=cast(T)incV_;
+    T атомнаяПрибавка(T,U=T)(ref   T знач, U инкЗ_){
+        T инкЗ=cast(T)инкЗ_;
         static if (целыйТип_ли!(T)||указательИлиКласс_ли!(T)){
-            T* posVal=&val;
-            T res;
+            T* значПоз=&знач;
+            T рез;
             static if (T.sizeof==1){
                 volatile asm {
-                    mov DL, incV;
-                    mov ECX, posVal;
+                    mov DL, инкЗ;
+                    mov ECX, значПоз;
                     lock;
                     xadd byte ptr [ECX],DL;
-                    mov byte ptr res[EBP],DL;
+                    mov byte ptr рез[EBP],DL;
                 }
             } else static if (T.sizeof==2){
                 volatile asm {
-                    mov DX, incV;
-                    mov ECX, posVal;
+                    mov DX, инкЗ;
+                    mov ECX, значПоз;
                     lock;
                     xadd short ptr [ECX],DX;
-                    mov short ptr res[EBP],DX;
+                    mov short ptr рез[EBP],DX;
                 }
             } else static if (T.sizeof==4){
                 volatile asm
                 {
-                    mov EDX, incV;
-                    mov ECX, posVal;
+                    mov EDX, инкЗ;
+                    mov ECX, значПоз;
                     lock;
                     xadd int ptr [ECX],EDX;
-                    mov int ptr res[EBP],EDX;
+                    mov int ptr рез[EBP],EDX;
                 }
             } else static if (T.sizeof==8){
-                return атомнаяОп(val,delegate (T x){ return x+incV; });
+                return атомнаяОп(знач,delegate (T x){ return x+инкЗ; });
             } else {
                 static assert(0,"Неподдерживаемый размер типа");
             }
-            return res;
+            return рез;
         } else {
-            return атомнаяОп(val,delegate T(T a){ return a+incV; });
+            return атомнаяОп(знач,delegate T(T a){ return a+инкЗ; });
         }
     }
 } else version (D_InlineAsm_X86_64){
-    T атомнаяПрибавка(T,U=T)(ref   T val, U incV_){
-        T incV=cast(T)incV_;
+    T атомнаяПрибавка(T,U=T)(ref   T знач, U инкЗ_){
+        T инкЗ=cast(T)инкЗ_;
         static if (целыйТип_ли!(T)||указательИлиКласс_ли!(T)){
-            T* posVal=&val;
-            T res;
+            T* значПоз=&знач;
+            T рез;
             static if (T.sizeof==1){
                 volatile asm {
-                    mov DL, incV;
-                    mov RCX, posVal;
+                    mov DL, инкЗ;
+                    mov RCX, значПоз;
                     lock;
                     xadd byte ptr [RCX],DL;
-                    mov byte ptr res[EBP],DL;
+                    mov byte ptr рез[EBP],DL;
                 }
             } else static if (T.sizeof==2){
                 volatile asm {
-                    mov DX, incV;
-                    mov RCX, posVal;
+                    mov DX, инкЗ;
+                    mov RCX, значПоз;
                     lock;
                     xadd short ptr [RCX],DX;
-                    mov short ptr res[EBP],DX;
+                    mov short ptr рез[EBP],DX;
                 }
             } else static if (T.sizeof==4){
                 volatile asm
                 {
-                    mov EDX, incV;
-                    mov RCX, posVal;
+                    mov EDX, инкЗ;
+                    mov RCX, значПоз;
                     lock;
                     xadd int ptr [RCX],EDX;
-                    mov int ptr res[EBP],EDX;
+                    mov int ptr рез[EBP],EDX;
                 }
             } else static if (T.sizeof==8){
                 volatile asm
                 {
-                    mov RAX, val;
-                    mov RDX, incV;
-                    lock; // блокируй always needed to make this op atomic
+                    mov RAX, знач;
+                    mov RDX, инкЗ;
+                    lock; // блокировка нужна всегда, чтобы эта операция стала атомной
                     xadd qword ptr [RAX],RDX;
-                    mov res[EBP],RDX;
+                    mov рез[EBP],RDX;
                 }
             } else {
                 static assert(0,"Неподдерживаемый размер для типа:"~T.stringof);
             }
-            return res;
+            return рез;
         } else {
-            return атомнаяОп(val,delegate T(T a){ return a+incV; });
+            return атомнаяОп(знач,delegate T(T a){ return a+инкЗ; });
         }
     }
 } else {
     static if (LockVersion){
-        T атомнаяПрибавка(T,U=T)(ref   T val, U incV_){
-            T incV=cast(T)incV_;
+        T атомнаяПрибавка(T,U=T)(ref   T знач, U инкЗ_){
+            T инкЗ = cast(T)инкЗ_;
             static assert( целыйТип_ли!(T)||указательИлиКласс_ли!(T),"неверный тип: "~T.stringof );
             synchronized(typeid(T)){
-                T oldV=val;
-                val+=incV;
-                return oldV;
+                T старЗ=знач;
+                знач+=инкЗ;
+                return старЗ;
             }
         }
     } else {
-        T атомнаяПрибавка(T,U=T)(ref   T val, U incV_){
-            T incV=cast(T)incV_;
+        T атомнаяПрибавка(T,U=T)(ref   T знач, U инкЗ_){
+            T инкЗ = cast(T)инкЗ_;
             static assert( целыйТип_ли!(T)||указательИлиКласс_ли!(T),"неверный тип: "~T.stringof );
             synchronized(typeid(T)){
-                T oldV,newVal,nextVal;
-                volatile nextVal=val;
+                T старЗ, новЗ, следщЗнач;
+                volatile следщЗнач=знач;
                 do{
-                    oldV=nextVal;
-                    newV=oldV+incV;
-                    auto nextVal=atomicCAS!(T)(val,newV,oldV);
-                } while(nextVal!=oldV)
-                return oldV;
+                    старЗ=следщЗнач;
+                    новЗ=старЗ+инкЗ;
+                    auto следщЗнач=atomicCAS!(T)(знач,новЗ,старЗ);
+                } while(следщЗнач!=старЗ)
+                return старЗ;
             }
         }
     }
 }
 
 
-T атомнаяОп(T)(ref   T val, T delegate(T) f){
-    T oldV,newV,nextV;
+T атомнаяОп(T)(ref   T знач, T delegate(T) f){
+    T старЗ, новЗ, следщЗ;
     цел i=0;
-    nextV=val;
+    следщЗ = знач;
     do {
-        oldV=nextV;
-        newV=f(oldV);
-        nextV=aCas!(T)(val,newV,oldV);
-        if (nextV is oldV || newV is oldV) return oldV;
+        старЗ = следщЗ;
+        новЗ = f(старЗ);
+        следщЗ = aCas!(T)(знач,новЗ,старЗ);
+        if (следщЗ is старЗ || новЗ is старЗ) return старЗ;
     } while(++i<200)
-    while (true){
+    while (да){
         нить_жни();
-        volatile oldV=val;
-        newV=f(oldV);
-        nextV=aCas!(T)(val,newV,oldV);
-        if (nextV is oldV || newV is oldV) return oldV;
+        volatile старЗ = знач;
+        новЗ=f(старЗ);
+        следщЗ = aCas!(T)(знач,новЗ,старЗ);
+        if (следщЗ is старЗ || новЗ is старЗ) return старЗ;
     }
 }
 
 
 T флагДай(T)(ref   T флаг){
-    T res;
-    volatile res=флаг;
-    барьерПамяти!(true,false,strictFences,false)();
-    return res;
+    T рез;
+    volatile рез=флаг;
+    барьерПамяти!(да, нет, строгиеЗаборы, нет)();
+    return рез;
 }
 
 T флагУст(T)(ref   T флаг,T newVal){
-    барьерПамяти!(false,strictFences,false,true)();
+    барьерПамяти!(нет, строгиеЗаборы, нет, да)();
     return атомнаяПерестановка(флаг,newVal);
 }
 
 T флагОп(T)(ref   T флаг,T delegate(T) op){
-    барьерПамяти!(false,strictFences,false,true)();
+    барьерПамяти!(нет, строгиеЗаборы, нет, да)();
     return атомнаяОп(флаг,op);
 }
 
-T флагДоб(T)(ref   T флаг,T incV=cast(T)1){
+T флагДоб(T)(ref   T флаг,T инкЗ=cast(T)1){
     static if (!LockVersion)
-        барьерПамяти!(false,strictFences,false,true)();
-    return атомнаяПрибавка(флаг,incV);
+        барьерПамяти!(нет, строгиеЗаборы, нет, да)();
+    return атомнаяПрибавка(флаг,инкЗ);
 }
 
-T следщЗнач(T)(ref   T val){
-    return атомнаяПрибавка(val,cast(T)1);
+T следщЗнач(T)(ref   T знач){
+    return атомнаяПрибавка(знач,cast(T)1);
 }
 

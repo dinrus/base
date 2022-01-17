@@ -72,7 +72,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Make a new Cell with given значение, пусто линки, и ЧЁРНЫЙ цвет.
+     * Создаёт new Cell with given значение, пусто линки, и ЧЁРНЫЙ цвет.
      * Normally only called в_ establish a new корень.
     **/
 
@@ -87,7 +87,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return a new Реф with same значение и цвет as сам,
+     * Возвращает new Реф with same значение и цвет as сам,
      * but with пусто линки. (Since it is never ОК в_ have
      * multИПle опрentical линки in a RB дерево.)
     **/
@@ -105,7 +105,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * See_Also: col.model.View.Обзор.проверьРеализацию.
+     * См_Также: col.model.View.Обзор.проверьРеализацию.
     **/
     public проц проверьРеализацию ()
     {
@@ -134,7 +134,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return the minimum значение of the текущ (подст)дерево
+     * Возвращает the minimum значение of the текущ (подст)дерево
     **/
 
     Реф левейший ()
@@ -145,7 +145,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return the maximum значение of the текущ (подст)дерево
+     * Возвращает the maximum значение of the текущ (подст)дерево
     **/
     Реф правейший ()
     {
@@ -155,7 +155,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return the корень (parentless узел) of the дерево
+     * Возвращает the корень (parentless узел) of the дерево
     **/
     Реф корень ()
     {
@@ -165,7 +165,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return да if узел is a корень (i.e., имеется a пусто родитель)
+     * Возвращает да, если узел is a корень (i.e., имеется a пусто родитель)
     **/
 
     бул корень_ли ()
@@ -175,7 +175,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * Return the inorder потомок, or пусто if no such
+     * Возвращает the inorder потомок, либо пусто if no such
     **/
 
     Реф потомок ()
@@ -194,7 +194,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return the inorder предок, or пусто if no such
+     * Возвращает the inorder предок, либо пусто if no such
     **/
 
     Реф предок ()
@@ -213,7 +213,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return the число of узелs in the subtree
+     * Возвращает the число of узелs in the subtree
     **/
     цел размер ()
     {
@@ -227,7 +227,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * Return узел of текущ subtree containing значение as значение(),
+     * Возвращает узел of текущ subtree containing значение as значение(),
      * if it есть_ли, else пусто.
      * Uses Сравнитель cmp в_ найди и в_ проверь equality.
     **/
@@ -252,8 +252,8 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * Return узел of subtree совпадают "значение"
-     * or, if Неук найдено, the one just после or before
+     * Возвращает узел of subtree совпадают "значение"
+     * or, if Неук найдено, the one just после or перед
      * if it doesn't exist, return пусто
      * Uses Сравнитель cmp в_ найди и в_ проверь equality.
     **/
@@ -299,7 +299,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Return число of узелs of текущ subtree containing значение.
+     * Возвращает число of узелs of текущ subtree containing значение.
      * Uses Сравнитель cmp в_ найди и в_ проверь equality.
     **/
     цел счёт (З значение, Сравни!(З) cmp)
@@ -381,7 +381,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
         }
 
         /**
-         * найди и return a ячейка holding (ключ, элемент), or пусто if no such
+         * найди и return a ячейка holding (ключ, элемент), либо пусто if no such
         **/
         Реф найди (З значение, A атрибут, Сравни!(З) cmp)
         {
@@ -408,7 +408,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * Return a new subtree containing each значение of текущ subtree
+     * Возвращает new subtree containing each значение of текущ subtree
     **/
 
     Реф копируйДерево (Реф delegate() размести)
@@ -502,7 +502,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
             if (цвет is ЧЁРНЫЙ)
                 корень = this.исправьПослеУдаления (корень);
 
-            // Unlink  (Couldn't before since исправьПослеУдаления needs родитель ptr)
+            // Unlink  (Couldn't перед since исправьПослеУдаления needs родитель ptr)
             if (родитель)
             {
                 if (this is родитель.лево)
@@ -541,7 +541,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
     /**
      * Swap the linkages of two узелs in a дерево.
-     * Return new корень, in case it изменён.
+     * Возвращает new корень, in case it изменён.
     **/
 
     static Реф поменяйПозиции (Реф x, Реф y, Реф корень)
@@ -671,7 +671,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
 
 
     /**
-     * Return цвет of узел p, or ЧЁРНЫЙ if p is пусто
+     * Возвращает цвет of узел p, либо ЧЁРНЫЙ if p is пусто
      * (In the CLR version, they use
      * a special dummy `nil' узел for such purposes, but that doesn't
      * work well here, since it could lead в_ creating one such special
@@ -685,7 +685,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * return родитель of узел p, or пусто if p is пусто
+     * return родитель of узел p, либо пусто if p is пусто
     **/
     static Реф родительУ (Реф p)
     {
@@ -693,7 +693,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * Набор the цвет of узел p, or do nothing if p is пусто
+     * Набор the цвет of узел p, либо do nothing if p is пусто
     **/
 
     static проц установиЦвет (Реф p, бул c)
@@ -703,7 +703,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * return лево ветвь of узел p, or пусто if p is пусто
+     * return лево ветвь of узел p, либо пусто if p is пусто
     **/
 
     static Реф левыйУ (Реф p)
@@ -712,7 +712,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     }
 
     /**
-     * return право ветвь of узел p, or пусто if p is пусто
+     * return право ветвь of узел p, либо пусто if p is пусто
     **/
 
     static Реф правыйУ (Реф p)

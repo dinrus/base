@@ -18,9 +18,9 @@ public interface Обзор(T)
 
         /**
          * Report whether the Обзор содержит элемент.
-         * Behaviorally equivalent в_ <CODE>экземпляры(элемент) &gt;= 0</CODE>.
+         * По поведению равнозначно <CODE>экземпляры(элемент) &gt;= 0</CODE>.
          * @param элемент the элемент в_ look for
-         * Возвращает: да iff содержит at least one member that is equal в_ элемент.
+         * Возвращает: да, еслиf содержит at least one member that is equal в_ элемент.
         **/
         public бул содержит (T элемент);
         public alias содержит opIn;
@@ -35,8 +35,8 @@ public interface Обзор(T)
 
         /**
          * Report whether this Обзор имеется no элементы.
-         * Behaviorally equivalent в_ <CODE>размер() == 0</CODE>.
-         * Возвращает: да if размер() == 0
+         * По поведению равнозначно <CODE>размер() == 0</CODE>.
+         * Возвращает: да, если размер() == 0
         **/
 
         public бул опустошён ();
@@ -76,7 +76,7 @@ public interface Обзор(T)
          * A constant function: if позволяет(знач) is ever да it is always да.
          * (This property is not in any way enforced however.)
          * No другой spurious effects.
-         * Возвращает: да if non-пусто и проходки элемент скринер проверь
+         * Возвращает: да, если non-пусто и проходки элемент скринер проверь
         **/
         public бул позволяет (T элемент);
 
@@ -91,7 +91,7 @@ public interface Обзор(T)
         public бцел экземпляры (T элемент);
 
         /**
-         * Return an enumeration that may be использован в_ traverse through
+         * Возвращает an enumeration that may be использован в_ traverse through
          * the элементы in the Обзор. Standard usage, for some
          * ОбзорТ c, и some operation `use(T об)':
          * <PRE>
@@ -125,7 +125,7 @@ public interface Обзор(T)
          * allow traversal of все of the элементы. So, for example, two successive
          * calls в_ элемент() may произведи enumerations with the same
          * элементы but different получи() orderings.
-         * Again, подст-interfaces may provопрe stronger guarantees. In
+         * Again, подст-interfaces may предоставляет stronger guarantees. In
          * particular, Seqs произведи enumerations with gets in
          * индекс order, ElementSortedViews enumerations are in ascending 
          * sorted order, и KeySortedViews are in ascending order of ключи.
@@ -171,7 +171,7 @@ public interface Обзор(T)
          *       this.ключи().
          *</UL>
          * @param другой, a Обзор
-         * Возвращает: да if consопрered в_ have the same размер и элементы.
+         * Возвращает: да, если consопрered в_ have the same размер и элементы.
         **/
 
         public бул совпадает (Обзор другой);
@@ -187,10 +187,10 @@ public interface Обзор(T)
          * The most common kinds of проверьs are кэш проверьs. Например,
          * A linked список that also maintains a separate record of the
          * число of items on the список should проверь that the recorded
-         * счёт совпадает the число of элементы in the список.
+         * счёт совпадает the число of элементы в этом списке.
          * <P>
          * This метод should either return normally or throw:
-         * Throws: ImplementationError if проверь fails
+         * Выводит исключение: ImplementationError if проверь fails
         **/
 
         public проц проверьРеализацию();

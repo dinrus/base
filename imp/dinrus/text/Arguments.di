@@ -482,7 +482,7 @@ class Аргументы
             return арг;
         }
 
-        // if not in арги, or in алиасы, then создай new арг
+        // if not in арги, либо in алиасы, then создай new арг
         auto a = элем in арги;
         if (a is пусто)
             if ((a = элем in алиасы) is пусто)
@@ -563,7 +563,7 @@ class Аргументы
 
         /***************************************************************
 
-                return the назначено параметры, or the дефолты if
+                return the назначено параметры, либо the дефолты if
                 no параметры were назначено
 
         ***************************************************************/
@@ -718,7 +718,7 @@ class Аргументы
 
                 Набор an инспектор for this аргумент, fired when a
                 parameter is appended в_ an аргумент. Return пусто
-                из_ the delegate when the значение is ok, or a текст
+                из_ the delegate when the значение is ok, либо a текст
                 ткст describing the issue в_ trigger an ошибка
 
         ***************************************************************/

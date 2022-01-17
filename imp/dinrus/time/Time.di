@@ -25,7 +25,7 @@ module time.Time;
     Стдвыв.форматнс("проспал {} мс", (Часы.сейчас-старт).миллисек);
     -------------------
 
-    See_Also: thread, time.Clock
+    См_Также: thread, time.Clock
 
 ******************************************************************************/
 
@@ -453,7 +453,7 @@ extern(D) struct Время
 	static Время opCall(бдол тики);	
     /**********************************************************************
 
-            $(I Property.) Выдаёт число тиков для этого Время.
+            $(I Свойство.) Выдаёт число тиков для этого Время.
             Это значение может использоваться для построения другой структуры Время,
             путём написания:
 
@@ -555,7 +555,7 @@ extern(D) struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the дата component.
+            $(I Свойство.) Retrieves the дата component.
 
             Возвращает: A new Время экземпляр with the same дата as
                      this экземпляр, but with the время truncated.
@@ -566,7 +566,7 @@ extern(D) struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the время of день.
+            $(I Свойство.) Retrieves the время of день.
 
             Возвращает: A ВремяДня representing the дво of the день
                      elapsed since mопрnight.
@@ -577,7 +577,7 @@ extern(D) struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves the equivalent ИнтервалВремени.
+            $(I Свойство.) Retrieves the equivalent ИнтервалВремени.
 
             Возвращает: A ИнтервалВремени representing this Время.
 
@@ -587,7 +587,7 @@ extern(D) struct Время
 
     /**********************************************************************
 
-            $(I Property.) Retrieves a ИнтервалВремени that corresponds в_ Unix
+            $(I Свойство.) Retrieves a ИнтервалВремени that corresponds в_ Unix
             время (время since 1/1/1970).  Use the ИнтервалВремени accessors в_ получи
             the время in сек, milliseconds, etc.
 
@@ -695,7 +695,7 @@ extern(D) struct ВремяДня
      *
      * Note: that fields are not проверьed against a действителен range, so
      * настройка 60 for минуты is allowed, и will just добавь 1 в_ the час
-     * component, и установи the минута component в_ 0.  The результат is
+     * component, и Устанавливает минута component в_ 0.  The результат is
      * normalized, so the часы wrap.  If you пароль in 25 часы, the
      * результатing ВремяДня will have a час component of 1.
      */

@@ -7,7 +7,7 @@ private import  col.model.IteratorX;
  *
  * InterleavingIterators allow you в_ комбинируй the элементы
  * of two different enumerations as if they were one enumeration
- * before they are seen by their `consumers'.
+ * перед they are seen by their `consumers'.
  * This sometimes допускается you в_ avoопр having в_ use a
  * Коллекция объект в_ temporarily комбинируй two sets of Коллекция элементы()
  * that need в_ be собериed together for common processing.
@@ -60,7 +60,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
 
 
     /**
-     * Make an enumeration interleaving элементы из_ перв и втор
+     * Создаётn enumeration interleaving элементы из_ перв и втор
     **/
 
     public this (Обходчик!(T) перв, Обходчик!(T) втор)
@@ -72,7 +72,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
     }
 
     /**
-     * Implements col.model.IteratorX.ещё
+     * Реализует col.model.IteratorX.ещё
     **/
     public final бул ещё()
     {
@@ -80,7 +80,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
     }
 
     /**
-     * Implements col.model.IteratorX.получи.
+     * Реализует col.model.IteratorX.получи.
     **/
     public final T получи()
     {

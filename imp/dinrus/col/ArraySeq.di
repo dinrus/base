@@ -21,7 +21,7 @@ private import  col.impl.SeqCollection,
  * ArraySeqs are generally like java.util.Vectors. But unlike them,
  * ArraySeqs do not actually размести массивы when they are constructed.
  * Among другой consequences, you can исправь the ёмкость `for free'
- * после construction but before добавим элементы. You can исправь
+ * после construction but перед добавим элементы. You can исправь
  * it at другой times as well, but this may lead в_ ещё expensive
  * resizing. Also, unlike Vectors, they release their internal массивы
  * whenever they are пустой.
@@ -40,10 +40,10 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         public static цел минЁмкость = 16;
 
 
-        // экземпляр variables
+        // переменные экземпляра
 
         /**
-         * The элементы, or пусто if no буфер yet allocated.
+         * The элементы, либо пусто if no буфер yet allocated.
         **/
 
         package T Массив[];
@@ -52,7 +52,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // constructors
 
         /**
-         * Make a new пустой СекМассив. 
+         * Создаёт new пустой СекМассив. 
         **/
 
         public this ()
@@ -61,7 +61,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Make an пустой СекМассив with given элемент скринер
+         * Создаётn пустой СекМассив with given элемент скринер
         **/
 
         public this (Предикат скринер)
@@ -80,7 +80,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Make an independent копируй. The элементы themselves are not cloned
+         * Создаётn independent копируй. The элементы themselves are not cloned
         **/
 
         public final СекМассив!(T) дубликат()
@@ -104,7 +104,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // methods introduced _in СекМассив
 
         /**
-         * return the текущ internal буфер ёмкость (zero if no буфер allocated).
+         * Возвращает текущ internal буфер ёмкость (zero if no буфер allocated).
          * Возвращает: ёмкость (always greater than or equal в_ размер())
         **/
 
@@ -155,12 +155,12 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
 
-        // Коллекция methods
+        // Методы коллекции
 
         /**
-         * Implements col.impl.Collection.Коллекция.содержит
+         * Реализует col.impl.Collection.Коллекция.содержит
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.содержит
+         * См_Также: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
         {
@@ -174,9 +174,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.экземпляры
+         * Реализует col.impl.Collection.Коллекция.экземпляры
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.экземпляры
+         * См_Также: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
         {
@@ -191,9 +191,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.элементы
+         * Реализует col.impl.Collection.Коллекция.элементы
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.элементы
+         * См_Также: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
         {
@@ -201,9 +201,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.View.Обзор.opApply
+         * Реализует col.model.View.Обзор.opApply
          * Временная ёмкость: O(n).
-         * See_Also: col.model.View.Обзор.opApply
+         * См_Также: col.model.View.Обзор.opApply
         **/
         цел opApply (цел delegate (inout T значение) дг)
         {
@@ -215,9 +215,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // Сек methods:
 
         /**
-         * Implements col.model.Seq.Сек.голова.
+         * Реализует col.model.Seq.Сек.голова.
          * Временная ёмкость: O(1).
-         * See_Also: col.model.Seq.Сек.голова
+         * См_Также: col.model.Seq.Сек.голова
         **/
         public final T голова()
         {
@@ -226,9 +226,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.Seq.Сек.хвост.
+         * Реализует col.model.Seq.Сек.хвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.model.Seq.Сек.хвост
+         * См_Также: col.model.Seq.Сек.хвост
         **/
         public final T хвост()
         {
@@ -237,9 +237,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.Seq.Сек.получи.
+         * Реализует col.model.Seq.Сек.получи.
          * Временная ёмкость: O(1).
-         * See_Also: col.model.Seq.Сек.получи
+         * См_Также: col.model.Seq.Сек.получи
         **/
         public final T получи(цел индекс)
         in {
@@ -251,9 +251,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.Seq.Сек.первый.
+         * Реализует col.model.Seq.Сек.первый.
          * Временная ёмкость: O(n).
-         * See_Also: col.model.Seq.Сек.первый
+         * См_Также: col.model.Seq.Сек.первый
         **/
         public final цел первый(T элемент, цел стартовыйИндекс = 0)
         {
@@ -267,9 +267,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.Seq.Сек.последний.
+         * Реализует col.model.Seq.Сек.последний.
          * Временная ёмкость: O(n).
-         * See_Also: col.model.Seq.Сек.последний
+         * См_Также: col.model.Seq.Сек.последний
         **/
         public final цел последний(T элемент, цел стартовыйИндекс = 0)
         {
@@ -284,9 +284,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
 
         /**
-         * Implements col.model.Seq.Сек.subseq.
+         * Реализует col.model.Seq.Сек.subseq.
          * Временная ёмкость: O(length).
-         * See_Also: col.model.Seq.Сек.subseq
+         * См_Также: col.model.Seq.Сек.subseq
         **/
         public final СекМассив поднабор (цел из_, цел длина)
         {
@@ -309,9 +309,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // MutableCollection methods
 
         /**
-         * Implements col.impl.Collection.Коллекция.очисть.
+         * Реализует col.impl.Collection.Коллекция.очисть.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.очисть
+         * См_Также: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
         {
@@ -320,9 +320,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.removeOneOf.
+         * Реализует col.impl.Collection.Коллекция.removeOneOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.removeOneOf
+         * См_Также: col.impl.Collection.Коллекция.removeOneOf
         **/
         public final проц удали(T элемент)
         {
@@ -331,9 +331,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceOneOf
+         * Реализует col.impl.Collection.Коллекция.replaceOneOf
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.replaceOneOf
+         * См_Также: col.impl.Collection.Коллекция.replaceOneOf
         **/
         public final проц замени(T старЭлемент, T новЭлемент)
         {
@@ -341,9 +341,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceAllOf.
+         * Реализует col.impl.Collection.Коллекция.replaceAllOf.
          * Временная ёмкость: O(n * число of replacements).
-         * See_Also: col.impl.Collection.Коллекция.replaceAllOf
+         * См_Также: col.impl.Collection.Коллекция.replaceAllOf
         **/
         public final проц замениВсе(T старЭлемент, T новЭлемент)
         {
@@ -351,9 +351,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.exclude.
+         * Реализует col.impl.Collection.Коллекция.exclude.
          * Временная ёмкость: O(n * экземпляры(элемент)).
-         * See_Also: col.impl.Collection.Коллекция.exclude
+         * См_Также: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе(T элемент)
         {
@@ -361,10 +361,10 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.возьми.
+         * Реализует col.impl.Collection.Коллекция.возьми.
          * Временная ёмкость: O(1).
          * Takes the правейший элемент of the Массив.
-         * See_Also: col.impl.Collection.Коллекция.возьми
+         * См_Также: col.impl.Collection.Коллекция.возьми
         **/
         public final T возьми()
         {
@@ -378,10 +378,10 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
 
         /**
-         * Implements col.SortableCollection.сортируй.
+         * Реализует col.SortableCollection.сортируй.
          * Временная ёмкость: O(n лог n).
          * Uses a быстросорт-based algorithm.
-         * See_Also: col.SortableCollection.сортируй
+         * См_Также: col.SortableCollection.сортируй
         **/
         public проц сортируй(Сравнитель!(T) cmp)
         {
@@ -396,9 +396,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // MutableSeq methods
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
          * Временная ёмкость: O(n)
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(T элемент)
         {
@@ -410,9 +410,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениГолову.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениГолову.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениГолову
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениГолову
         **/
         public final проц замениГолову(T элемент)
         {
@@ -422,9 +422,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удалиГолову.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удалиГолову.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиГолову
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиГолову
         **/
         public final проц удалиГолову()
         {
@@ -432,9 +432,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
          * Временная ёмкость: normally O(1), but O(n) if размер() == ёмкость().
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(T элемент)
         in {
@@ -448,9 +448,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениХвост.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениХвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениХвост
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениХвост
         **/
         public final проц замениХвост(T элемент)
         {
@@ -460,9 +460,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удалиХвост.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удалиХвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиХвост
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиХвост
         **/
         public final проц удалиХвост()
         {
@@ -472,9 +472,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, T элемент)
         {
@@ -489,9 +489,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удали.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удали.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиПо
         **/
         public final проц удалиПо(цел индекс)
         {
@@ -504,9 +504,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениПо.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениПо
         **/
         public final проц замениПо(цел индекс, T элемент)
         {
@@ -517,10 +517,10 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
          * Временная ёмкость: O(n + число of элементы in e) if (e 
          * instanceof CollectionIterator) else O(n * число of элементы in e)
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(Обходчик!(T) e)
         {
@@ -528,9 +528,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
          * Временная ёмкость: O(число of элементы in e) 
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(Обходчик!(T) e)
         {
@@ -538,10 +538,10 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
          * Временная ёмкость: O(n + число of элементы in e) if (e 
          * instanceof CollectionIterator) else O(n * число of элементы in e)
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, Обходчик!(T) e)
         {
@@ -552,9 +552,9 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.removeFromTo.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.removeFromTo.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.removeFromTo
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.removeFromTo
         **/
         public final проц удалиДиапазон (цел отИндекса, цел доИндекса)
         {
@@ -658,7 +658,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
                 return Массив[0..счёт].dup;
         }
         
-        // helper methods
+        // Вспомогательные методы
 
         /**
          * Main метод в_ control буфер sizing.
@@ -816,8 +816,8 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Implements col.model.View.Обзор.проверьРеализацию.
-         * See_Also: col.model.View.Обзор.проверьРеализацию
+         * Реализует col.model.View.Обзор.проверьРеализацию.
+         * См_Также: col.model.View.Обзор.проверьРеализацию
         **/
         public override проц проверьРеализацию()
         {

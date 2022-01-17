@@ -1,15 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: January 2006      
-        
-        author:         Kris
-
-*******************************************************************************/
-
+﻿
 module io.stream.Patterns;
 
 private import text.Regex;

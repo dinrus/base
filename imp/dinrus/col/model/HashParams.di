@@ -20,46 +20,46 @@ public interface ПараметрыХэш
 {
 
     /**
-     * The default начальное число of корзины of a non-пустой HT
+     * The default начальное число корзин of a non-пустой HT
     **/
 
     public static цел дефНачКорзины = 31;
 
     /**
-     * The default загрузи фактор for a non-пустой HT. When the proportion
+     * The default фактор загрузки for a non-пустой HT. When the proportion
      * of элементы per корзины exceeds this, the таблица is resized.
     **/
 
     public static плав дефФакторЗагрузки = 0.75f;
 
     /**
-     * return the текущ число of хэш таблица корзины
+     * Возвращает текущ число of хэш таблица корзины
     **/
 
     public цел корзины();
 
     /**
-     * Набор the desired число of корзины in the хэш таблица.
+     * Набор the desired число корзин in the хэш таблица.
      * Any значение greater than or equal в_ one is ОК.
      * if different than текущ корзины, causes a version change
-     * Throws: ИсклНелегальногоАргумента if newCap less than 1
+     * Выводит исключение: ИсклНелегальногоАргумента if newCap less than 1
     **/
 
     public проц корзины(цел newCap);
 
 
     /**
-     * Return the текущ загрузи фактор порог
-     * The Хэш таблица occasionally проверьa against the загрузи фактор
+     * Возвращает the текущ фактор загрузки порог
+     * The Хэш таблица occasionally проверьa against the фактор загрузки
      * resizes itself if it имеется gone past it.
     **/
 
     public плав пороговыйФакторЗагрузки();
 
     /**
-     * Набор the текущ desired загрузи фактор. Any значение greater than 0 is ОК.
+     * Набор the текущ desired фактор загрузки. Any значение greater than 0 is ОК.
      * The текущ загрузи is проверьed against it, possibly causing перемерь.
-     * Throws: ИсклНелегальногоАргумента if desired is 0 or less
+     * Выводит исключение: ИсклНелегальногоАргумента if desired is 0 or less
     **/
 
     public проц пороговыйФакторЗагрузки(плав desired);

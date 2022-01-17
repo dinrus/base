@@ -16,7 +16,7 @@ private import  col.model.IteratorX,
  * don't обменяй Ячейка contents or use special dummy nilузелs.
  * <P>
  * It is a  implementation class. For harnesses, see:
- * See_Also: RBTree
+ * См_Также: RBTree
  * Authors: Doug Lea
 **/
 
@@ -50,7 +50,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     private КЧЯчейка родитель_;
 
     /**
-     * Make a new Ячейка with given элемент, пусто линки, и ЧЁРНЫЙ цвет.
+     * Создаёт new Ячейка with given элемент, пусто линки, и ЧЁРНЫЙ цвет.
      * Normally only called в_ establish a new корень.
     **/
 
@@ -64,7 +64,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return a new КЧЯчейка with same элемент и цвет as сам,
+     * Возвращает new КЧЯчейка with same элемент и цвет as сам,
      * but with пусто линки. (Since it is never ОК в_ have
      * multИПle опрentical линки in a RB дерево.)
     **/
@@ -78,7 +78,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return лево ветвь (or пусто)
+     * Возвращает лево ветвь (or пусто)
     **/
 
     public final КЧЯчейка лево()
@@ -87,7 +87,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return право ветвь (or пусто)
+     * Возвращает право ветвь (or пусто)
     **/
 
     public final КЧЯчейка право()
@@ -96,7 +96,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return родитель (or пусто)
+     * Возвращает родитель (or пусто)
     **/
     public final КЧЯчейка родитель()
     {
@@ -105,7 +105,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * See_Also: col.model.View.Обзор.проверьРеализацию.
+     * См_Также: col.model.View.Обзор.проверьРеализацию.
     **/
     public проц проверьРеализацию()
     {
@@ -141,7 +141,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     +/
 
     /**
-     * Return the minimum элемент of the текущ (подст)дерево
+     * Возвращает the minimum элемент of the текущ (подст)дерево
     **/
 
     public final КЧЯчейка левейший()
@@ -153,7 +153,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return the maximum элемент of the текущ (подст)дерево
+     * Возвращает the maximum элемент of the текущ (подст)дерево
     **/
     public final КЧЯчейка правейший()
     {
@@ -164,7 +164,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return the корень (parentless узел) of the дерево
+     * Возвращает the корень (parentless узел) of the дерево
     **/
     public final КЧЯчейка корень()
     {
@@ -175,7 +175,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return да if узел is a корень (i.e., имеется a пусто родитель)
+     * Возвращает да, если узел is a корень (i.e., имеется a пусто родитель)
     **/
 
     public final бул корень_ли()
@@ -185,7 +185,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return the inorder потомок, or пусто if no such
+     * Возвращает the inorder потомок, либо пусто if no such
     **/
 
     public final КЧЯчейка потомок()
@@ -206,7 +206,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return the inorder предок, or пусто if no such
+     * Возвращает the inorder предок, либо пусто if no such
     **/
 
     public final КЧЯчейка предок()
@@ -227,7 +227,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Return the число of узелs in the subtree
+     * Возвращает the число of узелs in the subtree
     **/
     public final цел размер()
     {
@@ -241,7 +241,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return узел of текущ subtree containing элемент as элемент(),
+     * Возвращает узел of текущ subtree containing элемент as элемент(),
      * if it есть_ли, else пусто.
      * Uses Сравнитель cmp в_ найди и в_ проверь equality.
     **/
@@ -266,7 +266,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return число of узелs of текущ subtree containing элемент.
+     * Возвращает число of узелs of текущ subtree containing элемент.
      * Uses Сравнитель cmp в_ найди и в_ проверь equality.
     **/
     public цел счёт(T элемент, Сравнитель!(T) cmp)
@@ -301,7 +301,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return a new subtree containing each элемент of текущ subtree
+     * Возвращает new subtree containing each элемент of текущ subtree
     **/
 
     public final КЧЯчейка копируйДерево()
@@ -394,7 +394,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
             if (цвет_ is ЧЁРНЫЙ)
                 корень = this.исправьПослеУдаления(корень);
 
-            // Unlink  (Couldn't before since исправьПослеУдаления needs родитель ptr)
+            // Unlink  (Couldn't перед since исправьПослеУдаления needs родитель ptr)
 
             if (родитель_ !is пусто)
             {
@@ -437,7 +437,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
     /**
      * Swap the linkages of two узелs in a дерево.
-     * Return new корень, in case it изменён.
+     * Возвращает new корень, in case it изменён.
     **/
 
     static final КЧЯчейка поменяйПозиции(КЧЯчейка x, КЧЯчейка y, КЧЯчейка корень)
@@ -558,7 +558,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
 
 
     /**
-     * Return цвет of узел p, or ЧЁРНЫЙ if p is пусто
+     * Возвращает цвет of узел p, либо ЧЁРНЫЙ if p is пусто
      * (In the CLR version, they use
      * a special dummy `nil' узел for such purposes, but that doesn't
      * work well here, since it could lead в_ creating one such special
@@ -572,7 +572,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * return родитель of узел p, or пусто if p is пусто
+     * return родитель of узел p, либо пусто if p is пусто
     **/
     static final КЧЯчейка родительУ(КЧЯчейка p)
     {
@@ -580,7 +580,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * Набор the цвет of узел p, or do nothing if p is пусто
+     * Набор the цвет of узел p, либо do nothing if p is пусто
     **/
 
     static final проц установиЦвет(КЧЯчейка p, бул c)
@@ -590,7 +590,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * return лево ветвь of узел p, or пусто if p is пусто
+     * return лево ветвь of узел p, либо пусто if p is пусто
     **/
 
     static final КЧЯчейка левыйУ(КЧЯчейка p)
@@ -599,7 +599,7 @@ public class КЧЯчейка(T) : Ячейка!(T)
     }
 
     /**
-     * return право ветвь of узел p, or пусто if p is пусто
+     * return право ветвь of узел p, либо пусто if p is пусто
     **/
 
     static final КЧЯчейка правыйУ(КЧЯчейка p)

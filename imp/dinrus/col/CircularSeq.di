@@ -9,9 +9,9 @@ private import  col.impl.CLCell,
 
 
 /**
- * Circular linked списки. Publically Implement only those
- * methods defined in interfaces.
- * author: Doug Lea
+ * Циркулярно связанные списки (ЦСТ). Реализуют
+ * методы, определённые в интерфейсах.
+ * Автор: Doug Lea
 **/
 deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 {
@@ -20,17 +20,17 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         alias КоллекцияСек!(T).удали     удали;
         alias КоллекцияСек!(T).удалиВсе  удалиВсе;
 
-        // экземпляр variables
+        // Переменные экземпляра
 
         /**
-         * The голова of the список. Пусто if пустой
+         * Голова списка. Пустоifон пустой.
         **/
         package ЯчейкаЦСТ список;
 
         // constructors
 
         /**
-         * Make an пустой список with no элемент скринер
+         * Создаёт пустой список без скринера элементов.
         **/
         public this ()
         {
@@ -38,7 +38,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Make an пустой список with supplied элемент скринер
+         * Создаёт пустой список с поставляемым скринером элементов.
         **/
         public this (Предикат скринер)
         {
@@ -46,7 +46,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Special version of constructor needed by клонируй()
+         * Особая версия конструктора, необходимая для метода клонируй().
         **/
         protected this (Предикат s, ЯчейкаЦСТ h, цел c)
         {
@@ -56,47 +56,47 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Make an independent копируй of the список. Elements themselves are not cloned
+         * Создаёт независимую копию этого списка. Сами элементы не клонируются.
         **/
         public final ЦиркулярСек!(T) дубликат()
         {
-                if (список is пусто)
+               if(список is пусто)
                     return new ЦиркулярСек!(T) (скринер, пусто, 0);
                 else
                    return new ЦиркулярСек!(T) (скринер, список.копируйСписок(), счёт);
         }
 
 
-        // Коллекция methods
+        // Методы коллекции
 
         /**
-         * Implements col.impl.Collection.Коллекция.содержит
+         * Реализует col.impl.Collection.Коллекция.содержит
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.содержит
+         * См_Также: col.impl.Collection.Коллекция.содержит
         **/
         public final бул содержит(T элемент)
         {
-                if (!действительныйАргумент(элемент) || список is пусто)
+               if(!действительныйАргумент(элемент) || список is пусто)
                     return нет;
                 return список.найди(элемент) !is пусто;
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.экземпляры
+         * Реализует col.impl.Collection.Коллекция.экземпляры
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.экземпляры
+         * См_Также: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
         {
-                if (!действительныйАргумент(элемент) || список is пусто)
+               if(!действительныйАргумент(элемент) || список is пусто)
                     return 0;
                 return список.счёт(элемент);
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.элементы
+         * Реализует col.impl.Collection.Коллекция.элементы
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.элементы
+         * См_Также: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
         {
@@ -104,9 +104,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.model.View.Обзор.opApply
+         * Реализует col.model.View.Обзор.opApply
          * Временная ёмкость: O(n).
-         * See_Also: col.model.View.Обзор.opApply
+         * См_Также: col.model.View.Обзор.opApply
         **/
         цел opApply (цел delegate (inout T значение) дг)
         {
@@ -115,12 +115,12 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
 
-        // Сек methods
+        // Методы Сек
 
         /**
-         * Implements col.model.Seq.Сек.голова.
+         * Реализует col.model.Seq.Сек.голова.
          * Временная ёмкость: O(1).
-         * See_Also: col.model.Seq.Сек.голова
+         * См_Также: col.model.Seq.Сек.голова
         **/
         public final T голова()
         {
@@ -128,9 +128,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.model.Seq.Сек.хвост.
+         * Реализует col.model.Seq.Сек.хвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.model.Seq.Сек.хвост
+         * См_Также: col.model.Seq.Сек.хвост
         **/
         public final T хвост()
         {
@@ -138,9 +138,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.model.Seq.Сек.получи.
+         * Реализует col.model.Seq.Сек.получи.
          * Временная ёмкость: O(n).
-         * See_Also: col.model.Seq.Сек.получи
+         * См_Также: col.model.Seq.Сек.получи
         **/
         public final T получи(цел индекс)
         {
@@ -148,26 +148,26 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.model.Seq.Сек.первый.
+         * Реализует col.model.Seq.Сек.первый.
          * Временная ёмкость: O(n).
-         * See_Also: col.model.Seq.Сек.первый
+         * См_Также: col.model.Seq.Сек.первый
         **/
         public final цел первый(T элемент, цел стартовыйИндекс = 0)
         {
-                if (стартовыйИндекс < 0)
+               if(стартовыйИндекс < 0)
                     стартовыйИндекс = 0;
 
                 ЯчейкаЦСТ p = список;
-                if (p is пусто || !действительныйАргумент(элемент))
+               if(p is пусто || !действительныйАргумент(элемент))
                     return -1;
 
                 for (цел i = 0; да; ++i)
                     {
-                    if (i >= стартовыйИндекс && p.элемент() == (элемент))
+                   if(i >= стартовыйИндекс && p.элемент() == (элемент))
                         return i;
 
                     p = p.следщ();
-                    if (p is список)
+                   if(p is список)
                         break;
                     }
                 return -1;
@@ -175,29 +175,29 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
         /**
-         * Implements col.model.Seq.Сек.последний.
+         * Реализует col.model.Seq.Сек.последний.
          * Временная ёмкость: O(n).
-         * See_Also: col.model.Seq.Сек.последний
+         * См_Также: col.model.Seq.Сек.последний
         **/
         public final цел последний(T элемент, цел стартовыйИндекс = 0)
         {
-                if (!действительныйАргумент(элемент) || счёт is 0)
+               if(!действительныйАргумент(элемент) || счёт is 0)
                     return -1;
 
-                if (стартовыйИндекс >= размер())
+               if(стартовыйИндекс >= размер())
                     стартовыйИндекс = размер() - 1;
 
-                if (стартовыйИндекс < 0)
+               if(стартовыйИндекс < 0)
                     стартовыйИндекс = 0;
 
                 ЯчейкаЦСТ p = ячейкаПо(стартовыйИндекс);
                 цел i = стартовыйИндекс;
                 for (;;)
                     {
-                    if (p.элемент() == (элемент))
+                   if(p.элемент() == (элемент))
                         return i;
                     else
-                       if (p is список)
+                      if(p is список)
                            break;
                        else
                           {
@@ -209,13 +209,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.model.Seq.Сек.subseq.
+         * Реализует col.model.Seq.Сек.subseq.
          * Временная ёмкость: O(length).
-         * See_Also: col.model.Seq.Сек.subseq
+         * См_Также: col.model.Seq.Сек.subseq
         **/
         public final ЦиркулярСек поднабор (цел из_, цел длина)
         {
-                if (длина > 0)
+               if(длина > 0)
                    {
                    проверьИндекс(из_);
                    ЯчейкаЦСТ p = ячейкаПо(из_);
@@ -225,7 +225,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                    for (цел i = 1; i < длина; ++i)
                        {
                        p = p.следщ();
-                       if (p is пусто)
+                      if(p is пусто)
                            проверьИндекс(из_ + i); // force исключение
 
                        текущ.добавьСледщ(p.элемент());
@@ -237,12 +237,12 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                    return new ЦиркулярСек ();
         }
 
-        // MutableCollection methods
+        // Методы MutableCollection
 
         /**
-         * Implements col.impl.Collection.Коллекция.очисть.
+         * Реализует col.impl.Collection.Коллекция.очисть.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.Collection.Коллекция.очисть
+         * См_Также: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
         {
@@ -251,9 +251,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.exclude.
+         * Реализует col.impl.Collection.Коллекция.exclude.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.exclude
+         * См_Также: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе (T элемент)
         {
@@ -261,9 +261,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.removeOneOf.
+         * Реализует col.impl.Collection.Коллекция.removeOneOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.removeOneOf
+         * См_Также: col.impl.Collection.Коллекция.removeOneOf
         **/
         public final проц удали (T элемент)
         {
@@ -271,9 +271,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceOneOf
+         * Реализует col.impl.Collection.Коллекция.replaceOneOf
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.replaceOneOf
+         * См_Также: col.impl.Collection.Коллекция.replaceOneOf
         **/
         public final проц замени (T старЭлемент, T новЭлемент)
         {
@@ -281,9 +281,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.Collection.Коллекция.replaceAllOf.
+         * Реализует col.impl.Collection.Коллекция.replaceAllOf.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.Collection.Коллекция.replaceAllOf
+         * См_Также: col.impl.Collection.Коллекция.replaceAllOf
         **/
         public final проц замениВсе (T старЭлемент, T новЭлемент)
         {
@@ -292,10 +292,10 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
         /**
-         * Implements col.impl.Collection.Коллекция.возьми.
+         * Реализует col.impl.Collection.Коллекция.возьми.
          * Временная ёмкость: O(1).
          * takes the последний элемент on the список.
-         * See_Also: col.impl.Collection.Коллекция.возьми
+         * См_Также: col.impl.Collection.Коллекция.возьми
         **/
         public final T возьми()
         {
@@ -306,17 +306,17 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
 
-        // MutableSeq methods
+        // Методы MutableSeq
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(T элемент)
         {
                 проверьЭлемент(элемент);
-                if (список is пусто)
+               if(список is пусто)
                     список = new ЯчейкаЦСТ(элемент);
                 else
                    список = список.добавьПредш(элемент);
@@ -324,9 +324,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениГолову.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениГолову.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениГолову
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениГолову
         **/
         public final проц замениГолову(T элемент)
         {
@@ -336,13 +336,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удалиГолову.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удалиГолову.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиГолову
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиГолову
         **/
         public final проц удалиГолову()
         {
-                if (перваяЯчейка().синглтон_ли())
+               if(перваяЯчейка().синглтон_ли())
                    список = пусто;
                 else
                    {
@@ -354,13 +354,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(T элемент)
         {
-                if (список is пусто)
+               if(список is пусто)
                     приставь(элемент);
                 else
                    {
@@ -371,9 +371,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениХвост.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениХвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениХвост
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениХвост
         **/
         public final проц замениХвост(T элемент)
         {
@@ -384,14 +384,14 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удалиХвост.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удалиХвост.
          * Временная ёмкость: O(1).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиХвост
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиХвост
         **/
         public final проц удалиХвост()
         {
                 auto l = последняяЯчейка();
-                if (l is список)
+               if(l is список)
                     список = пусто;
                 else
                    l.отвяжи();
@@ -399,13 +399,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, T элемент)
         {
-                if (индекс is 0)
+               if(индекс is 0)
                     приставь(элемент);
                 else
                    {
@@ -416,9 +416,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.замениПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.замениПо.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.замениПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.замениПо
         **/
         public final проц замениПо(цел индекс, T элемент)
         {
@@ -428,13 +428,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.удалиПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.удалиПо.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.удалиПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.удалиПо
         **/
         public final проц удалиПо(цел индекс)
         {
-                if (индекс is 0)
+               if(индекс is 0)
                     удалиГолову();
                 else
                    {
@@ -444,9 +444,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.приставь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
          * Временная ёмкость: O(число of элементы in e).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.приставь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(Обходчик!(T) e)
         {
@@ -459,7 +459,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                       проверьЭлемент(элемент);
                       incCount();
 
-                      if (hd is пусто)
+                     if(hd is пусто)
                          {
                          hd = new ЯчейкаЦСТ(элемент);
                          текущ = hd;
@@ -471,10 +471,10 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                          }
                       }
 
-                if (список is пусто)
+               if(список is пусто)
                     список = hd;
                 else
-                   if (hd !is пусто)
+                  if(hd !is пусто)
                       {
                       auto tl = список.предш();
                       текущ.следщ(список);
@@ -486,13 +486,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавь.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
          * Временная ёмкость: O(число of элементы in e).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавь
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(Обходчик!(T) e)
         {
-                if (список is пусто)
+               if(список is пусто)
                     приставь(e);
                 else
                    {
@@ -509,13 +509,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.добавьПо.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
          * Временная ёмкость: O(размер() + число of элементы in e).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.добавьПо
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, Обходчик!(T) e)
         {
-                if (список is пусто || индекс is 0)
+               if(список is пусто || индекс is 0)
                     приставь(e);
                 else
                    {
@@ -533,9 +533,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
         /**
-         * Implements col.impl.SeqCollection.КоллекцияСек.removeFromTo.
+         * Реализует col.impl.SeqCollection.КоллекцияСек.removeFromTo.
          * Временная ёмкость: O(n).
-         * See_Also: col.impl.SeqCollection.КоллекцияСек.removeFromTo
+         * См_Также: col.impl.SeqCollection.КоллекцияСек.removeFromTo
         **/
         public final проц удалиДиапазон (цел отИндекса, цел доИндекса)
         {
@@ -547,9 +547,9 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                     декрСчёт();
                     ЯчейкаЦСТ n = p.следщ();
                     p.отвяжи();
-                    if (p is список)
+                   if(p is список)
                        {
-                       if (p is последний)
+                      if(p is последний)
                           {
                           список = пусто;
                           return ;
@@ -562,14 +562,14 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
 
-        // helper methods
+        // Вспомогательные методы
 
         /**
-         * return the первый ячейка, or throw исключение if пустой
+         * Возвращает первую ячейку, или выводит исключениеifпустой.
         **/
         private final ЯчейкаЦСТ перваяЯчейка()
         {
-                if (список !is пусто)
+               if(список !is пусто)
                     return список;
 
                 проверьИндекс(0);
@@ -577,11 +577,11 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * return the последний ячейка, or throw исключение if пустой
+         * Возвращает последнюю ячейку, или выводит исключениеifпустой.
         **/
         private final ЯчейкаЦСТ последняяЯчейка()
         {
-                if (список !is пусто)
+               if(список !is пусто)
                     return список.предш();
 
                 проверьИндекс(0);
@@ -589,7 +589,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * return the индекс'th ячейка, or throw исключение if bad индекс
+         * Возвращает ячейку индекса, или выводит исключениеifплохой индекс.
         **/
         private final ЯчейкаЦСТ ячейкаПо(цел индекс)
         {
@@ -598,24 +598,24 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
         }
 
         /**
-         * helper for удали/exclude
+         * Ассистент-метод для удали/исключи.
         **/
         private final проц удали_(T элемент, бул всеСлучаи)
         {
-                if (!действительныйАргумент(элемент) || список is пусто)
+               if(!действительныйАргумент(элемент) || список is пусто)
                     return;
 
                 ЯчейкаЦСТ p = список;
                 for (;;)
                     {
                     ЯчейкаЦСТ n = p.следщ();
-                    if (p.элемент() == (элемент))
+                   if(p.элемент() == (элемент))
                        {
                        декрСчёт();
                        p.отвяжи();
-                       if (p is список)
+                      if(p is список)
                           {
-                          if (p is n)
+                         if(p is n)
                              {
                              список = пусто;
                              break;
@@ -624,13 +624,13 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                              список = n;
                           }
 
-                       if (! всеСлучаи)
+                      if(! всеСлучаи)
                              break;
                        else
                           p = n;
                        }
                     else
-                       if (n is список)
+                      if(n is список)
                            break;
                        else
                           p = n;
@@ -639,32 +639,32 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
 
         /**
-         * helper for замени *
+         * Ассистент-метод для замени *
         **/
         private final проц замени_(T старЭлемент, T новЭлемент, бул всеСлучаи)
         {
-                if (!действительныйАргумент(старЭлемент) || список is пусто)
+               if(!действительныйАргумент(старЭлемент) || список is пусто)
                     return;
 
                 ЯчейкаЦСТ p = список;
                 do {
-                   if (p.элемент() == (старЭлемент))
+                  if(p.элемент() == (старЭлемент))
                       {
                       проверьЭлемент(новЭлемент);
                       инкрВерсию();
                       p.элемент(новЭлемент);
-                      if (! всеСлучаи)
+                     if(! всеСлучаи)
                             return;
                       }
                    p = p.следщ();
                 } while (p !is список);
         }
 
-        // ImplementationCheckable methods
+        // Методы ImplementationCheckable
 
         /**
-         * Implements col.model.View.Обзор.проверьРеализацию.
-         * See_Also: col.model.View.Обзор.проверьРеализацию
+         * Реализует col.model.View.Обзор.проверьРеализацию.
+         * См_Также: col.model.View.Обзор.проверьРеализацию
         **/
 
         public override проц проверьРеализацию()
@@ -674,7 +674,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                 assert(((счёт is 0) is (список is пусто)));
                 assert((список is пусто || список.длина() is счёт));
 
-                if (список is пусто)
+               if(список is пусто)
                     return;
 
                 цел c = 0;
@@ -695,8 +695,8 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
 
         /***********************************************************************
 
-                opApply() имеется migrated here в_ mitigate the virtual вызов
-                on метод получи()
+                opApply() мигрировал сюда, чтобы мигрировать виртуальный вызов
+                метода получи().
                 
         ************************************************************************/
 
@@ -725,7 +725,7 @@ deprecated public class ЦиркулярСек(T) : КоллекцияСек!(T)
                         for (auto i=остаток(); i--;)
                             {
                             auto значение = получи();
-                            if ((результат = дг(значение)) != 0)
+                           if((результат = дг(значение)) != 0)
                                  break;
                             }
                         return результат;

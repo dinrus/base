@@ -571,7 +571,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  * Determines if a character is a титул case letter.
  * In case of combined letters, only the первый is upper и the секунда is lower.
  * Some of these special characters can be найдено in the croatian и greek language.
- * See_Also: http://en.wikИПedia.org/wiki/Capitalization
+ * См_Также: http://en.wikИПedia.org/wiki/Capitalization
  * Параметры:
  *     ch = the character в_ be inspected
  */

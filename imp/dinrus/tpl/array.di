@@ -940,13 +940,13 @@ version( TangoDoc )
 {
     /**
      * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), returning
-     * да if an element совпадают обрзц is найдено.  Comparisons will be performed
+     * да, если an element совпадают обрзц is найдено.  Comparisons will be performed
      * using the supplied predicate or '<' if Неук is supplied.
      *
      * Параметры:
      *  буф  = The Массив в_ search.
      *  обрзц  = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1030,7 +1030,7 @@ version( TangoDoc )
      * Параметры:
      *  bufA = The Массив в_ evaluate.
      *  bufB = The Массив в_ match against.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1119,7 +1119,7 @@ version( TangoDoc )
      * Параметры:
      *  буф  = The Массив в_ скан.
      *  обрзц  = The образец в_ match.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1195,7 +1195,7 @@ version( TangoDoc )
      *
      * Параметры:
      *  буф  = The Массив в_ скан.
-     *  пред = The evaluation predicate, which should return да if the
+     *  пред = The evaluation predicate, which should return да, если the
      *         element is a valid match and нет if not.  This predicate
      *         may be any callable тип.
      *
@@ -1280,7 +1280,7 @@ version( TangoDoc )
      *  буф  = The Массив в_ скан.
      *  обрзц  = The образец в_ match.
      *  знач  = The значение в_ подставь.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1360,7 +1360,7 @@ version( TangoDoc )
      * Параметры:
      *  буф  = The Массив в_ скан.
      *  знач  = The значение в_ подставь.
-     *  пред = The evaluation predicate, which should return да if the
+     *  пред = The evaluation predicate, which should return да, если the
      *         element is a valid match and нет if not.  This predicate
      *         may be any callable тип.
      *
@@ -1452,7 +1452,7 @@ version( TangoDoc )
      *         результат of this operation, even though it may be viewed as a
      *         sопрe-effect.
      *  обрзц  = The образец в_ match against.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1552,7 +1552,7 @@ version( TangoDoc )
      *         in any way, omitting the 'ref' qualifier есть no effect on the
      *         результат of this operation, even though it may be viewed as a
      *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if the
+     *  пред = The evaluation predicate, which should return да, если the
      *         element satisfies the condition and нет if not.  This
      *         predicate may be any callable тип.
      *
@@ -1660,7 +1660,7 @@ version( TangoDoc )
      *         in any way, omitting the 'ref' qualifier есть no effect on the
      *         результат of this operation, even though it may be viewed as a
      *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -1829,7 +1829,7 @@ version( TangoDoc )
 {
     /**
      * Partitions буф such that все elements that satisfy пред will be placed
-     * before the elements that do not satisfy пред.  The algorithm is not
+     * перед the elements that do not satisfy пред.  The algorithm is not
      * required в_ be stable.
      *
      * Параметры:
@@ -1838,7 +1838,7 @@ version( TangoDoc )
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
      *         as a sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if the
+     *  пред = The evaluation predicate, which should return да, если the
      *         element satisfies the condition and нет if not.  This
      *         predicate may be any callable тип.
      *
@@ -1969,7 +1969,7 @@ version( TangoDoc )
      *         median значение, with the elements in the first half of the Массив
      *         evaluating as less than or equal в_ the elements in the сукунда
      *         half.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2087,7 +2087,7 @@ version( TangoDoc )
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
      *         as a sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      */
@@ -2330,7 +2330,7 @@ version( TangoDoc )
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2414,7 +2414,7 @@ version( TangoDoc )
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2488,14 +2488,14 @@ else
 version( TangoDoc )
 {
     /**
-     * Performs a binary search of буф, returning да if an element equivalent
+     * Performs a binary search of буф, returning да, если an element equivalent
      * в_ обрзц is найдено.  Comparisons will be performed using the supplied
      * predicate or '<' if Неук is supplied.
      *
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2563,7 +2563,7 @@ version( TangoDoc )
 {
     /**
      * Performs a parallel linear скан of setA and setB из_ $(LB)0 .. N$(RP)
-     * where N = min$(LP)setA.length, setB.length$(RP), returning да if setA
+     * where N = min$(LP)setA.length, setB.length$(RP), returning да, если setA
      * включает все elements in setB and нет if not.  Всё setA and setB are
      * required в_ be sorted, and duplicates in setB require an equal число of
      * duplicates in setA.  Comparisons will be performed using the supplied
@@ -2572,12 +2572,12 @@ version( TangoDoc )
      * Параметры:
      *  setA = The sorted Массив в_ evaluate.
      *  setB = The sorted Массив в_ match against.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
      * Возвращает:
-     *  да if setA включает все elements in setB, нет if not.
+     *  да, если setA включает все elements in setB, нет if not.
      */
     бул включает( Элем[] setA, Элем[] setB, Пред2Э пред = Пред2Э.init );
 }
@@ -2661,7 +2661,7 @@ version( TangoDoc )
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2747,7 +2747,7 @@ version( TangoDoc )
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2829,7 +2829,7 @@ version( TangoDoc )
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      *
@@ -2917,7 +2917,7 @@ version( TangoDoc )
       * Параметры:
       *  setA = The first sorted Массив в_ evaluate.
       *  setB = The сукунда sorted Массив в_ evaluate.
-      *  пред = The evaluation predicate, which should return да if e1 is
+      *  пред = The evaluation predicate, which should return да, если e1 is
       *         less than e2 and нет if not.  This predicate may be any
       *         callable тип.
       *
@@ -3007,7 +3007,7 @@ version( TangoDoc )
      *         any way, omitting the 'ref' qualifier есть no effect on the
      *         результат of this operation, even though it may be viewed as a
      *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      */
@@ -3137,7 +3137,7 @@ version( TangoDoc )
      *  буф  = The куча в_ modify.  This parameter is marked 'ref' because
      *         буф.length will be altered.
      *  знач  = The element в_ push onto буф.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      */
@@ -3258,7 +3258,7 @@ version( TangoDoc )
      * Параметры:
      *  буф  = The куча в_ modify.  This parameter is marked 'ref' because
      *         буф.length will be altered.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      */
@@ -3383,7 +3383,7 @@ version( TangoDoc )
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
      *         as a sопрe-effect.
-     *  пред = The evaluation predicate, which should return да if e1 is
+     *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
      */

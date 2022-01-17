@@ -8,28 +8,21 @@ private import  col.impl.CLCell,
 
 /**
  *
- * Linked Буфер implementation of Bags. The Рюкзак consists of
- * any число of buffers holding элементы, arranged in a список.
- * Each буфер holds an Массив of элементы. The размер of each
- * буфер is the значение of размЧанка that was текущ during the
- * operation that caused the Рюкзак в_ grow. The размЧанка() may
- * be adjusted at any время. (It is not consопрered a version change.)
+ * Реализация Рюкзаков, буферная, линкованная. Рюкзак состоит из
+ * любого числа буферов, хранящих элементы, организованных в список.
+ * Каждый буфер содержит массив элементов. Размер каждого
+ * буфера равен значению размЧанка, который был текущим при операции,
+ * заставившей Рюкзак увеличиться в размере. размЧанка() можно
+ * настроить в любое время. (Это не считается изменением версии.)
  *
  * <P>
- * все but the final буфер is always kept full.
- * When a буфер имеется no элементы, it is released (so is
- * available for garbage collection).
+ * Все, кроме последнего буфера, всегда остаются полными.
+ * Когда в каком-то буфере нет элементов, он освобождается (
+ * становится доступен для сборки мусора).
  * <P>
- * ArrayBags are good choices for собериions in which
- * you merely помести a lot of things in, и then look at
- * them via enumerations, but don't often look for
- * particular элементы.
- *
- *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
+ * РюкзакМассивы - хороший выбор для коллекций, в которых
+ * нужно поместить много вещей, и затем искать их по перечислениям,
+ * но не столь часто искать отдельные элементы.
 **/
 
 deprecated public class РюкзакМассив(T) : КоллекцияРюкзак!(T)
@@ -40,15 +33,15 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     alias КоллекцияРюкзак!(T).удалиВсе  удалиВсе;
 
     /**
-     * The default чанк размер в_ use for buffers
+     * Дефолтный размер чанка, используемый для буферов.
     **/
 
     public static цел дефРазмЧанка = 32;
 
-    // экземпляр variables
+    // переменные экземпляра
 
     /**
-     * The последний узел of the circular список of чанки. Пусто if пустой.
+     * Последний узел циркуляроного списка чанков. Пусто, если он пустой.
     **/
 
     package ЯчейкаЦСТ хвост;
@@ -60,7 +53,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     protected цел последнСчёт;
 
     /**
-     * The чанк размер в_ use for making следщ буфер
+     * The размер чанка в_ use for making следщ буфер
     **/
 
     protected цел размерЧанка_;
@@ -68,7 +61,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     // constructors
 
     /**
-     * Make an пустой буфер.
+     * Создаётn пустой буфер.
     **/
     public this ()
     {
@@ -76,7 +69,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Make an пустой буфер, using the supplied элемент скринер.
+     * Создаёт пустой буфер, using the supplied элемент скринер.
     **/
 
     public this (Предикат s)
@@ -97,7 +90,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Make an independent копируй. Does not клонируй элементы.
+     * Создаёт independent копируй. Does not клонируй элементы.
     **/
 
     public final РюкзакМассив!(T) дубликат ()
@@ -128,7 +121,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
 
     /**
-     * Report the чанк размер использован when добавим new buffers в_ the список
+     * Report the размер чанка использован when добавим new buffers в_ the список
     **/
 
     public final цел размЧанка()
@@ -137,7 +130,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Набор the чанк размер в_ be использован when добавим new buffers в_ the
+     * Набор the размер чанка в_ be использован when добавим new buffers в_ the
      * список during future добавь() operations.
      * Any значение greater than 0 is ОК. (A значение of 1 makes this a
      * преобр_в very медленно simulation of a linked список!)
@@ -151,7 +144,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
             throw new ИсклНелегальногоАргумента("Попытка установки отрицательного размера чанка");
     }
 
-    // Коллекция methods
+    // Методы коллекции
 
     /*
       This код is pretty repetitive, but I don't know a nice way в_
@@ -159,9 +152,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     */
 
     /**
-     * Implements col.impl.Collection.Коллекция.содержит
+     * Реализует col.impl.Collection.Коллекция.содержит
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.Коллекция.содержит
+     * См_Также: col.impl.Collection.Коллекция.содержит
     **/
     public final бул содержит(T элемент)
     {
@@ -196,9 +189,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.экземпляры
+     * Реализует col.impl.Collection.Коллекция.экземпляры
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.экземпляры
+     * См_Также: col.impl.Collection.экземпляры
     **/
     public final бцел экземпляры(T элемент)
     {
@@ -234,9 +227,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.элементы
+     * Реализует col.impl.Collection.Коллекция.элементы
      * Временная ёмкость: O(1).
-     * See_Also: col.impl.Collection.Коллекция.элементы
+     * См_Также: col.impl.Collection.Коллекция.элементы
     **/
     public final СтражОбходчик!(T) элементы()
     {
@@ -244,9 +237,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.model.View.Обзор.opApply
+     * Реализует col.model.View.Обзор.opApply
      * Временная ёмкость: O(n).
-     * See_Also: col.model.View.Обзор.opApply
+     * См_Также: col.model.View.Обзор.opApply
     **/
     цел opApply (цел delegate (inout T значение) дг)
     {
@@ -257,9 +250,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     // MutableCollection methods
 
     /**
-     * Implements col.impl.Collection.Коллекция.очисть.
+     * Реализует col.impl.Collection.Коллекция.очисть.
      * Временная ёмкость: O(1).
-     * See_Also: col.impl.Collection.Коллекция.очисть
+     * См_Также: col.impl.Collection.Коллекция.очисть
     **/
     public final проц очисть()
     {
@@ -269,9 +262,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.удалиВсе.
+     * Реализует col.impl.Collection.Коллекция.удалиВсе.
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.Коллекция.удалиВсе
+     * См_Также: col.impl.Collection.Коллекция.удалиВсе
     **/
     public final проц удалиВсе (T элемент)
     {
@@ -280,9 +273,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
 
     /**
-     * Implements col.impl.Collection.Коллекция.removeOneOf.
+     * Реализует col.impl.Collection.Коллекция.removeOneOf.
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.Коллекция.removeOneOf
+     * См_Также: col.impl.Collection.Коллекция.removeOneOf
     **/
     public final проц удали(T элемент)
     {
@@ -290,9 +283,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.replaceOneOf
+     * Реализует col.impl.Collection.Коллекция.replaceOneOf
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.Коллекция.replaceOneOf
+     * См_Также: col.impl.Collection.Коллекция.replaceOneOf
     **/
     public final проц замени(T старЭлемент, T новЭлемент)
     {
@@ -300,9 +293,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.replaceAllOf.
+     * Реализует col.impl.Collection.Коллекция.replaceAllOf.
      * Временная ёмкость: O(n).
-     * See_Also: col.impl.Collection.Коллекция.replaceAllOf
+     * См_Также: col.impl.Collection.Коллекция.replaceAllOf
     **/
     public final проц замениВсе(T старЭлемент, T новЭлемент)
     {
@@ -310,10 +303,10 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Implements col.impl.Collection.Коллекция.возьми.
+     * Реализует col.impl.Collection.Коллекция.возьми.
      * Временная ёмкость: O(1).
      * Takes the least элемент.
-     * See_Also: col.impl.Collection.Коллекция.возьми
+     * См_Также: col.impl.Collection.Коллекция.возьми
     **/
     public final T возьми()
     {
@@ -334,9 +327,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     // MutableBag methods
 
     /**
-     * Implements col.MutableBag.добавьIfAbsent.
+     * Реализует col.MutableBag.добавьIfAbsent.
      * Временная ёмкость: O(n).
-     * See_Also: col.MutableBag.добавьIfAbsent
+     * См_Также: col.MutableBag.добавьIfAbsent
     **/
     public final проц добавьЕсли(T элемент)
     {
@@ -346,9 +339,9 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
 
 
     /**
-     * Implements col.MutableBag.добавь.
+     * Реализует col.MutableBag.добавь.
      * Временная ёмкость: O(1).
-     * See_Also: col.MutableBag.добавь
+     * См_Также: col.MutableBag.добавь
     **/
     public final проц добавь (T элемент)
     {
@@ -374,7 +367,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * helper for удали/exclude
+     * Ассистент-метод для удали/exclude
     **/
 
     private final проц удали_(T элемент, бул всеСлучаи)
@@ -474,8 +467,8 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     // ImplementationCheckable methods
 
     /**
-     * Implements col.model.View.Обзор.проверьРеализацию.
-     * See_Also: col.model.View.Обзор.проверьРеализацию
+     * Реализует col.model.View.Обзор.проверьРеализацию.
+     * См_Также: col.model.View.Обзор.проверьРеализацию
     **/
     public override проц проверьРеализацию()
     {

@@ -91,7 +91,7 @@ template плавТрэтсИ3Е(T)
             const БКРАТ_ПОЗ_ЭКСП = 0;
         }
     }
-    else static if (T.mant_dig==53)     // дво, or реал==дво
+    else static if (T.mant_dig==53)     // дво, либо реал==дво
     {
         enum : бкрат
         {
@@ -329,7 +329,7 @@ X разбейЗначимое(X)(ref X x)
         }
 
         if (bitsdiff > 0)
-            return bitsdiff + 1; // добавь the 1 we subtracted before
+            return bitsdiff + 1; // добавь the 1 we subtracted перед
 
         // Avoопр out-by-1 ошибки when фактор is almost 2.
         static if (X.mant_dig==64 || X.mant_dig==113)   // real80 or квадрупл
@@ -347,7 +347,7 @@ X разбейЗначимое(X)(ref X x)
     }
 }
 
-/** Return the значение that lies halfway between x и y on the IEEE число строка.
+/** Возвращает the значение that lies halfway between x и y on the IEEE число строка.
  *
  * Formally, the результат is the arithmetic mean of the binary significands of x
  * и y, multИПlied by the geometric mean of the binary exponents of x и y.
@@ -372,7 +372,7 @@ in
 body
 {
     // Runtime behaviour for contract violation:
-    // If signs are opposite, or one is a НЧ, return 0.
+    // If signs are opposite, либо one is a НЧ, return 0.
     if (!((x>=0 && y>=0) || (x<=0 && y<=0))) return 0.0;
 
     // The implementation is simple: cast x и y в_ целыйs,
@@ -594,7 +594,7 @@ enum ПКонтрольТочности : крат
 реал фма(плав x, плав y, плав z);
 
 /*********************************
- * Return !=0 if x is $(PLUSMN)0.
+ * Возвращает !=0 if x is $(PLUSMN)0.
  *
  * Does not affect any floating-точка флаги
  */
@@ -604,7 +604,7 @@ enum ПКонтрольТочности : крат
 /**
  * Calculate the следщ largest floating точка значение после x.
  *
- * Return the least число greater than x that is representable as a реал;
+ * Возвращает the least число greater than x that is representable as a реал;
  * thus, it gives the следщ точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -631,9 +631,9 @@ enum ПКонтрольТочности : крат
 плав следщПлавВыше(плав x);
 
 /**
- * Calculate the следщ smallest floating точка значение before x.
+ * Calculate the следщ smallest floating точка значение перед x.
  *
- * Return the greatest число less than x that is representable as a реал;
+ * Возвращает the greatest число less than x that is representable as a реал;
  * thus, it gives the previous точка on the IEEE число строка.
  *
  *  $(TABLE_SV

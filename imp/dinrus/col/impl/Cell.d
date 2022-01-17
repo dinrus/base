@@ -3,16 +3,16 @@
 /**
  * Ячейка is the основа of a bunch of implementation classes
  * for списки и the like.
- * The основа version just holds an Объект as its элемент значение
+ * The основа version just holds an Объект as its значение элемента
 **/
 
 public class Ячейка (T)
 {
-        // экземпляр variables
+        // переменные экземпляра
         private T элемент_;
 
         /**
-         * Make a ячейка with элемент значение знач
+         * Создаёт ячейку со значением элемента знач.
         **/
 
         public this (T знач)
@@ -21,7 +21,7 @@ public class Ячейка (T)
         }
 
         /**
-         * Make A ячейка with пусто элемент значение
+         * Создаёт ячейку со значением элемента пусто.
         **/
 
         public this ()
@@ -30,7 +30,7 @@ public class Ячейка (T)
         }
 
         /**
-         * return the элемент значение
+         * /Возвращает значение элемента.
         **/
 
         public final T элемент()
@@ -39,7 +39,7 @@ public class Ячейка (T)
         }
 
         /**
-         * установи the элемент значение
+         * Устанавливает значение элемента.
         **/
 
         public final проц элемент (T знач)

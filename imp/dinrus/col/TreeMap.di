@@ -5,7 +5,7 @@
    License: $(LICENSE)
 
 **********************************************************/
-module col.КартаДерево;
+module col.TreeMap;
 
 public import col.model.Map;
 public import col.Functions;
@@ -128,7 +128,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
  *   З значение -> the значение which is pointed to by this позиция (cannot be a
  *                property)
  *   Узел следщ -> the следщ Узел in the tree as defined by the compare
- *                function, or конец if no other nodes exist.
+ *                function, либо конец if no other nodes exist.
  *   Узел предш -> the previous Узел in the tree as defined by the compare
  *                function.
  *
@@ -138,13 +138,13 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
  * false.
  *
  * Узел начало -> must be a Узел that points to the very первый valid
- * элемент in the tree, or конец if no elements exist.
+ * элемент in the tree, либо конец if no elements exist.
  *
  * Узел конец -> must be a Узел that points to just past the very последн
  * valid элемент.
  *
  * Узел найди(З з) -> returns a Узел that points to the элемент that
- * содержит з, or конец if the элемент doesn'т exist.
+ * содержит з, либо конец if the элемент doesn'т exist.
  *
  * Узел удали(Узел p) -> removes the given элемент from the tree,
  * returns the следщ valid элемент or конец if p was последн in the tree.
@@ -213,7 +213,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
         }
 
         /**
-         * установи the значение in this элемент
+         * Устанавливает значение in this элемент
          */
         З значение(З з)
         {
@@ -489,7 +489,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Returns true if the given значение exists in the collection.
+     * Возвращаетs true if the given значение exists in the collection.
      *
      * Runs in O(n) time.
      */
@@ -630,8 +630,8 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Returns the значение that is stored at the элемент which has the given
-     * ключ.  Throws an exception if the ключ is not in the collection.
+     * Возвращаетs the значение that is stored at the элемент which has the given
+     * ключ.  Выводит исключение an exception if the ключ is not in the collection.
      *
      * Runs in O(lg(n)) time.
      */
@@ -685,7 +685,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * установи all the elements from the given keyed iterator in the map.  Any ключ
      * that already exists will be overridden.
      *
-     * Returns this.
+     * Возвращаетs this.
      */
     ДеревоКарта установи(Ключник!(К, З) исток)
     {
@@ -699,7 +699,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * that already exists will be overridden.  члоДобавленных is установи to the number
      * of ключ/значение pairs that were добавленный.
      *
-     * Returns this.
+     * Возвращаетs this.
      */
     ДеревоКарта установи(Ключник!(К, З) исток, ref бцел члоДобавленных)
     {
@@ -710,7 +710,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Returns true if the given ключ is in the collection.
+     * Возвращаетs true if the given ключ is in the collection.
      *
      * Runs in O(lg(n)) time.
      */
@@ -720,7 +720,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Returns the number of elements that contain the значение з
+     * Возвращаетs the number of elements that contain the значение з
      *
      * Runs in O(n) time.
      */
@@ -769,9 +769,9 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     /**
      * Compare this ДеревоКарта with another Карта
      *
-     * Returns 0 if o is not a Карта object, is null, or the ДеревоКарта does not
+     * Возвращаетs 0 if o is not a Карта object, is null, либо the ДеревоКарта does not
      * contain the same ключ/значение pairs as the given map.
-     * Returns 1 if exactly the ключ/значение pairs contained in the given map are
+     * Возвращаетs 1 if exactly the ключ/значение pairs contained in the given map are
      * in this ДеревоКарта.
      */
     цел opEquals(Объект o)

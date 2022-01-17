@@ -32,10 +32,10 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      * !(e.ещё()) &&
      * (version() != PREV(this).version()) == PREV(e).ещё()
      * </PRE>
-     * Throws: IllegalElementException if !canInclude some элемент of e;
+     * Выводит исключение: IllegalElementException if !canInclude some элемент of e;
      * this may or may not nullify the effect of insertions of другой элементы.
-     * Throws: НетЭлементаИскл if индекс is not in range 0..размер()
-     * Throws: ИсклПовреждённыйОбходчик is propagated if raised; this
+     * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()
+     * Выводит исключение: ИсклПовреждённыйОбходчик is propagated if raised; this
      * may or may not nullify the effects of insertions of другой элементы.
     **/
 
@@ -56,8 +56,8 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      * foreach (цел i in индекс+1..размер()-1) получи(i).равно(PREV(this).получи(i-1))
      * Версия change: always
      * </PRE>
-     * Throws: НетЭлементаИскл if индекс is not in range 0..размер()
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
 
     public проц добавьПо (цел индекс, T элемент);
@@ -74,8 +74,8 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      * Версия change <-- !элемент.равно(PREV(this).получи(индекс)
      *                    (but MAY change even if equal).
      * </PRE>
-     * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
 
     public проц замениПо (цел индекс, T элемент);
@@ -92,8 +92,8 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      * Версия change <-- !элемент.равно(PREV(this).получи(индекс)
      *                    (but MAY change even if equal).
      * </PRE>
-     * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
     public проц opIndexAssign (T элемент, цел индекс);
 
@@ -109,16 +109,16 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      * foreach (цел i in индекс..размер()-1) получи(i).равно(PREV(this).получи(i+1));
      * Версия change: always
      * </PRE>
-     * Throws: НетЭлементаИскл if индекс is not in range 0..размер()-1
+     * Выводит исключение: НетЭлементаИскл if индекс is not in range 0..размер()-1
     **/
     public проц удалиПо (цел индекс);
 
 
     /**
      * Insert элемент at front of the sequence.
-     * Behaviorally equivalent в_ вставь(0, элемент)
+     * По поведению равнозначно вставь(0, элемент)
      * @param элемент the элемент в_ добавь
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
 
     public проц приставь(T элемент);
@@ -126,13 +126,13 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
     /**
      * замени элемент at front of the sequence with new значение.
-     * Behaviorally equivalent в_ замени(0, элемент);
+     * По поведению равнозначно замени(0, элемент);
     **/
     public проц замениГолову(T элемент);
 
     /**
      * Удали the левейший элемент.
-     * Behaviorally equivalent в_ удали(0);
+     * По поведению равнозначно удали(0);
     **/
 
     public проц удалиГолову();
@@ -140,9 +140,9 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
     /**
      * вставь элемент at конец of the sequence
-     * Behaviorally equivalent в_ вставь(размер(), элемент)
+     * По поведению равнозначно вставь(размер(), элемент)
      * @param элемент the элемент в_ добавь
-     * Throws: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: IllegalElementException if !canInclude(элемент)
     **/
 
     public проц добавь(T элемент);
@@ -150,7 +150,7 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
     /**
      * замени элемент at конец of the sequence with new значение
-     * Behaviorally equivalent в_ замени(размер()-1, элемент);
+     * По поведению равнозначно замени(размер()-1, элемент);
     **/
 
     public проц замениХвост(T элемент);
@@ -158,9 +158,9 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
 
     /**
-     * Удали the правейший элемент.
-     * Behaviorally equivalent в_ удали(размер()-1);
-     * Throws: НетЭлементаИскл if пуст_ли
+     * Удалить правейший элемент.
+     * По поведению равнозначно удали(размер()-1);
+     * Выводит исключение: НетЭлементаИскл,если пуст_ли
     **/
     public проц удалиХвост();
 
@@ -168,7 +168,7 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
     /**
      * Удали the элементы из_ отИндекса в_ доИндекса, включительно.
      * No effect if отИндекса > доИндекса.
-     * Behaviorally equivalent в_
+     * По поведению равнозначно
      * <PRE>
      * for (цел i = отИндекса; i &lt;= доИндекса; ++i) удали(отИндекса);
      * </PRE>
@@ -182,7 +182,7 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
      *  for (цел i in отИндекса .. размер()- 1) получи(i).равно(PREV(this).получи(i+n)
      *  Версия change iff n > 0
      * </PRE>
-     * Throws: НетЭлементаИскл if отИндекса or доИндекса is not in
+     * Выводит исключение: НетЭлементаИскл if отИндекса or доИндекса is not in
      * range 0..размер()-1
     **/
 
@@ -191,7 +191,7 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
     /**
      * Prepend все элементы of enumeration e, preserving their order.
-     * Behaviorally equivalent в_ добавьElementsAt(0, e)
+     * По поведению равнозначно добавьЭлтыПо(0, e)
      * @param e the элементы в_ добавь
     **/
 
@@ -200,7 +200,7 @@ public interface Сек(T) : ОбзорСека!(T), Расходчик!(T)
 
     /**
      * Доб все элементы of enumeration e, preserving their order.
-     * Behaviorally equivalent в_ добавьElementsAt(размер(), e)
+     * По поведению равнозначно добавьЭлтыПо(размер(), e)
      * @param e the элементы в_ добавь
     **/
     public проц добавь(Обходчик!(T) e);

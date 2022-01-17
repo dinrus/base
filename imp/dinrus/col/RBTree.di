@@ -579,7 +579,7 @@ struct КЧУзел(З)
     }
 
     /**
-     * Returns the следщ valued Узел in the tree.
+     * Возвращаетs the следщ valued Узел in the tree.
      *
      * You should never call this on the marker Узел, as обх is assumed that
      * there is a valid следщ Узел.
@@ -598,7 +598,7 @@ struct КЧУзел(З)
     }
 
     /**
-     * Returns the previous valued Узел in the tree.
+     * Возвращаетs the previous valued Узел in the tree.
      *
      * You should never call this on the наилевейший Узел of the tree as обх is
      * assumed that there is a valid previous Узел.
@@ -690,7 +690,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
     /**
      * Add a Узел to the КЧДерево.  Runs in O(lg(n)) time.
      *
-     * Returns да if a new Узел was добавленный, нет if обх was not.
+     * Возвращаетs да, если a new Узел was добавленный, нет if обх was not.
      *
      * This can also be используется to update a значение if обх is already in the tree.
      */
@@ -768,7 +768,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
     }
 
     /**
-     * Return the lowest-valued Узел in the tree
+     * Возвращает the lowest-valued Узел in the tree
      */
     Узел начало()
     {
@@ -1044,7 +1044,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
                         n.право = z.право;
                     }
                     // else, n is the direct child of z, which means there is
-                    // no need to update n's родитель, or n's право Узел (as n
+                    // no need to update n's родитель, либо n's право Узел (as n
                     // is the право Узел of z).
 
                     if(z.левый_лиУзел)

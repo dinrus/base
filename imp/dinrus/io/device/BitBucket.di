@@ -2,7 +2,8 @@
 
 private import io.device.Conduit;
 
-class Битник : Провод
+extern(D)
+ class Битник : Провод
 {
         override ткст вТкст ();
         override т_мера размерБуфера ();

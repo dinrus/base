@@ -82,9 +82,9 @@ gc,
 	 //В этом модуле находятся важнейшие настройки для языка Динрус:
 	 //например, определения основных глобальных типов или
 	 //список импортируемых языковой средой функций и классов.
-sync, thread, stdrus, tpl.all, runtime, exception, global, sys.Common;
+sync, thread, stdrus, tpl.all, runtime, exception, global, sys.common;
 /+
-Модуль sys.Common содержит открытый доступ к модулям:
+Модуль sys.common содержит открытый доступ к модулям:
 
 	sys.WinConsts, 
 	 //В этом модуле: константы (их перчни) для API ОС.
