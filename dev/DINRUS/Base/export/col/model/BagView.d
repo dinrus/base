@@ -23,7 +23,7 @@ public interface ОбзорРюкзака(З) : Обзор!(З)
          * в_ создай a series of Рюкзак, each differing из_ the
          * другой only in that they contain добавьitional элементы.
          *
-         * @param the элемент в_ добавь в_ the new Рюкзак
+         * @param добавляемый элемент в_ the new Рюкзак
          * Возвращает: the new Рюкзак c, with the совпадает as this except that
          * c.occurrencesOf(элемент) == occurrencesOf(элемент)+1
          * Выводит исключение: IllegalElementException if !canInclude(элемент)

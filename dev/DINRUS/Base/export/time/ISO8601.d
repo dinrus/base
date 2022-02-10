@@ -942,7 +942,7 @@ Privates used by Всё дата and время
         return да;
 
     // s is the Массив of characters which may come следщ
-    // (i.e. which *p may be)
+    // (т.е. which *p may be)
     // sorted in ascending order
     T t = *p;
     foreach (c; s)

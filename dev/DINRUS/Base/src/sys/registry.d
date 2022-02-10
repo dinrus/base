@@ -926,11 +926,12 @@ unittest
 
 export extern(D) class Ключ
 {
+/+
     invariant
     {
         assert(!(null is m_hkey));
     }
-
++/
 /// \имя Construction
 //@{
 export:
@@ -1337,11 +1338,12 @@ private:
 
 export extern(D) class Значение
 {
+/+
     invariant
     {
         assert(!(null is m_key));
     }
-
++/
 export:
     this(Ключ ключ, ткст имя, ПТипЗначенияРеестра тип)
     in
@@ -1591,11 +1593,12 @@ private:
 
 export extern(D) class РядИмёнКлючей
 {
+/+
     invariant
     {
         assert(!(null is m_key));
     }
-
++/
 /// Construction
 export:
     this(Ключ ключ)
@@ -1720,11 +1723,12 @@ private:
 
 export extern(D) class РядКлючей
 {
+/+
     invariant
     {
         assert(!(null is m_key));
     }
-
++/
 /// Construction
 export:
     this(Ключ ключ)
@@ -1861,10 +1865,12 @@ private:
 
 export extern(D) class РядИмёнЗначений
 {
+/+
     invariant
     {
         assert(!(null is m_key));
     }
+	+/
 
 /// Construction
 export:
@@ -1984,10 +1990,12 @@ private:
 
 export extern(D) class РядЗначений
 {
+/+
     invariant
     {
         assert(!(null is m_key));
     }
+	+/
 
 /// Construction
 export:

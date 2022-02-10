@@ -163,7 +163,7 @@ copy %this%\export\io\protocol\*.d  %R%\io\protocol\*.di
 
 :Base
 :::Creating respond file
-%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d>>%this%\objs.rsp
+%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\lib\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d>>%this%\objs.rsp
 
 :::Make DinrusBase.dll
 

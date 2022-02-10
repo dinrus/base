@@ -14,7 +14,7 @@
   <verbose>0</verbose>
   <vtls>0</vtls>
   <vgc>0</vgc>
-  <symdebug>3</symdebug>
+  <symdebug>1</symdebug>
   <symdebugref>0</symdebugref>
   <optimize>1</optimize>
   <cpu>0</cpu>
@@ -40,7 +40,6 @@
   <preservePaths>1</preservePaths>
   <warnings>1</warnings>
   <infowarnings>1</infowarnings>
-  <checkProperty>0</checkProperty>
   <genStackFrame>0</genStackFrame>
   <pic>0</pic>
   <cov>0</cov>
@@ -52,6 +51,7 @@
   <dip25>0</dip25>
   <dip1000>0</dip1000>
   <dip1008>0</dip1008>
+  <dip1021>0</dip1021>
   <transition_field>0</transition_field>
   <revert_import>0</revert_import>
   <preview_dtorfields>0</preview_dtorfields>
@@ -60,6 +60,10 @@
   <preview_intpromote>0</preview_intpromote>
   <preview_fixAliasThis>0</preview_fixAliasThis>
   <preview_markdown>0</preview_markdown>
+  <preview_rvaluerefparam>0</preview_rvaluerefparam>
+  <preview_nosharedaccess>0</preview_nosharedaccess>
+  <preview_in>0</preview_in>
+  <preview_inclincontracts>0</preview_inclincontracts>
   <transition_vmarkdown>0</transition_vmarkdown>
   <compiler>0</compiler>
   <otherDMD>1</otherDMD>
@@ -67,7 +71,7 @@
   <ccTransOpt>1</ccTransOpt>
   <addDepImp>0</addDepImp>
   <program>$(DINRUS)\dmd.exe</program>
-  <imppath>src</imppath>
+  <imppath>src;..\..\..\imp\dinrus</imppath>
   <fileImppath />
   <outdir>$(PlatformName)\$(ConfigurationName)</outdir>
   <objdir>$(OutDir)</objdir>
@@ -109,7 +113,7 @@
   <libpaths>$(DINRUS)\..\lib</libpaths>
   <deffile>res\base.def</deffile>
   <resfile>res\base.res</resfile>
-  <exefile>\Dinrus.BaseD.dll</exefile>
+  <exefile>\DinrusBase.dll</exefile>
   <pdbfile>$(IntDir)\DinrusBaseD.pdb</pdbfile>
   <impfile>$(IntDir)\DinrusBaseD.lib</impfile>
   <mapfile>$(IntDir)\$(SafeProjectName).map</mapfile>
@@ -127,7 +131,7 @@
   <lib>2</lib>
   <subsystem>1</subsystem>
   <multiobj>0</multiobj>
-  <singleFileCompilation>2</singleFileCompilation>
+  <singleFileCompilation>0</singleFileCompilation>
   <oneobj>0</oneobj>
   <mscoff>0</mscoff>
   <trace>0</trace>
@@ -161,7 +165,6 @@
   <preservePaths>0</preservePaths>
   <warnings>1</warnings>
   <infowarnings>1</infowarnings>
-  <checkProperty>0</checkProperty>
   <genStackFrame>0</genStackFrame>
   <pic>0</pic>
   <cov>0</cov>
@@ -173,6 +176,7 @@
   <dip25>0</dip25>
   <dip1000>0</dip1000>
   <dip1008>0</dip1008>
+  <dip1021>0</dip1021>
   <transition_field>0</transition_field>
   <revert_import>0</revert_import>
   <preview_dtorfields>0</preview_dtorfields>
@@ -181,6 +185,10 @@
   <preview_intpromote>0</preview_intpromote>
   <preview_fixAliasThis>0</preview_fixAliasThis>
   <preview_markdown>0</preview_markdown>
+  <preview_rvaluerefparam>0</preview_rvaluerefparam>
+  <preview_nosharedaccess>0</preview_nosharedaccess>
+  <preview_in>0</preview_in>
+  <preview_inclincontracts>0</preview_inclincontracts>
   <transition_vmarkdown>0</transition_vmarkdown>
   <compiler>0</compiler>
   <otherDMD>1</otherDMD>
@@ -284,7 +292,6 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <preservePaths>0</preservePaths>
   <warnings>0</warnings>
   <infowarnings>0</infowarnings>
-  <checkProperty>0</checkProperty>
   <genStackFrame>0</genStackFrame>
   <pic>0</pic>
   <cov>0</cov>
@@ -296,6 +303,7 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <dip25>0</dip25>
   <dip1000>0</dip1000>
   <dip1008>0</dip1008>
+  <dip1021>0</dip1021>
   <transition_field>0</transition_field>
   <revert_import>0</revert_import>
   <preview_dtorfields>0</preview_dtorfields>
@@ -304,6 +312,10 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <preview_intpromote>0</preview_intpromote>
   <preview_fixAliasThis>0</preview_fixAliasThis>
   <preview_markdown>0</preview_markdown>
+  <preview_rvaluerefparam>0</preview_rvaluerefparam>
+  <preview_nosharedaccess>0</preview_nosharedaccess>
+  <preview_in>0</preview_in>
+  <preview_inclincontracts>0</preview_inclincontracts>
   <transition_vmarkdown>0</transition_vmarkdown>
   <compiler>0</compiler>
   <otherDMD>0</otherDMD>
@@ -405,7 +417,6 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <preservePaths>0</preservePaths>
   <warnings>0</warnings>
   <infowarnings>0</infowarnings>
-  <checkProperty>0</checkProperty>
   <genStackFrame>0</genStackFrame>
   <pic>0</pic>
   <cov>0</cov>
@@ -417,6 +428,7 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <dip25>0</dip25>
   <dip1000>0</dip1000>
   <dip1008>0</dip1008>
+  <dip1021>0</dip1021>
   <transition_field>0</transition_field>
   <revert_import>0</revert_import>
   <preview_dtorfields>0</preview_dtorfields>
@@ -425,6 +437,10 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <preview_intpromote>0</preview_intpromote>
   <preview_fixAliasThis>0</preview_fixAliasThis>
   <preview_markdown>0</preview_markdown>
+  <preview_rvaluerefparam>0</preview_rvaluerefparam>
+  <preview_nosharedaccess>0</preview_nosharedaccess>
+  <preview_in>0</preview_in>
+  <preview_inclincontracts>0</preview_inclincontracts>
   <transition_vmarkdown>0</transition_vmarkdown>
   <compiler>0</compiler>
   <otherDMD>0</otherDMD>
@@ -487,6 +503,9 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <filesToClean>*.obj;*.cmd;*.build;*.json;*.dep;*.tlog</filesToClean>
  </Config>
  <Folder name="DinrusBaseDLL">
+  <Folder name="lib">
+   <File path="src\lib\zlib.d" />
+  </Folder>
   <Folder name="rt">
    <File path=".\src\rt\aaA.d" />
    <File path=".\src\rt\aApply.d" />
@@ -504,7 +523,6 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
    <File path=".\src\rt\cast.d" />
    <File path=".\src\rt\charset.d" />
    <File path=".\src\rt\cmath2.d" />
-   <File path=".\src\rt\compat.d" />
    <File path=".\src\rt\complex.c" />
    <File path=".\src\rt\critical.c" />
    <File path=".\src\rt\deh.c" />
@@ -546,7 +564,6 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
    <File path=".\src\std\regexp.d" />
    <File path=".\src\std\string.d" />
    <File path=".\src\std\system.d" />
-   <File path="src\std\traits.d" />
    <File path=".\src\std\uni.d" />
    <File path=".\src\std\uri.d" />
    <File path=".\src\std\utf.d" />
@@ -557,7 +574,9 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
    <Folder name="com">
     <File path="src\sys\com\activex.d" />
     <File path="src\sys\com\com.d" />
+    <File path="src\sys\com\msscript.d" />
    </Folder>
+   <File path="src\sys\common.d" />
    <File path=".\src\sys\memory.d" />
    <File path=".\src\sys\registry.d" />
    <File path=".\src\sys\uuid.d" />
@@ -590,13 +609,12 @@ copy  $(OutDir)\Dinrus.Base.dll $(DINRUS)\..\dev\DINRUS\bin\Dinrus.Base.dll</pos
   <File path=".\src\object_.d" />
   <File path="src\osutil.d" />
   <File path=".\src\runtime.d" />
+  <File path="src\runtimetraits.d" />
   <File path=".\src\stdrus.d" />
   <File path="src\stdrusex.d" />
   <File path=".\src\stringz.d" />
   <File path=".\src\sync.d" />
   <File path=".\src\thread.d" />
-  <File path="src\typestruct.d" />
   <File path=".\src\win.d" />
-  <File path=".\src\zlib.d" />
  </Folder>
 </DProject>

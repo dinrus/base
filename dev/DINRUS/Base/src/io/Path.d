@@ -1,49 +1,4 @@
-﻿/*******************************************************************************
-
-        Альтернатива ФПуть. Используйте, когда не требуется редактировать
-        фичи путей. Например, если всё, что необходимо сделать, - 
-        проверить, имеется ли какой-то путь, то использование этого модуля 
-        будет более приемлемо, чем использование ФПуть:
-        ---
-        if (есть_ли ("какой_то/файл/путь")) 
-            ...
-        ---
-
-        These functions may be less efficient than ФПуть because they 
-        generally прикрепи a пусто в_ the имяф for each underlying O/S
-        вызов. Use Путь when you need pedestrian access в_ the файл-system, 
-        and are not manИПulating the путь components. Use ФПуть where
-        путь-editing or mutation is desired.
-
-        We encourage the use of "named import" with this module, such as
-        ---
-        import Путь = io.Path;
-
-        if (Путь.есть_ли ("some/файл/путь")) 
-            ...
-        ---
-
-        Also резопрing here is a lightweight путь-парсер, which splits a 
-        фпуть преобр_в constituent components. ФПуть is based upon the
-        same ПутеПарсер:
-        ---
-        auto p = Путь.разбор ("some/файл/путь");
-        auto путь = p.путь;
-        auto имя = p.имя;
-        auto суффикс = p.суффикс;
-        ...
-        ---
-
-        Путь normalization and образец-совпадают is also hosted here via
-        the нормализуй() and образец() functions. See the doc towards the
-        конец of this module.
-
-        Compile with -version=Win32SansUnicode в_ enable Win95 & Win32s 
-        файл support.
-
-*******************************************************************************/
-
-module io.Path;
+﻿module io.Path;
 
 private import  sys.common;
 public  import  time.Time : Время, ИнтервалВремени;
@@ -975,7 +930,7 @@ export struct ФС
         Note that образцы of adjacent '.' разделители are treated specially
         in that they will be assigned в_ the имя where there is no distinct
         суффикс. In добавьition, a '.' at the старт of a имя signifies it does 
-        not belong в_ the суффикс i.e. ".файл" is a имя rather than a суффикс.
+        not belong в_ the суффикс т.е. ".файл" is a имя rather than a суффикс.
         Образцы of intermediate '.' characters will иначе be assigned
         в_ the суффикс, such that "файл....суффикс" включает the dots within
         the суффикс itself. See метод расш() for a суффикс without dots.

@@ -78,7 +78,7 @@ private
         бкрат      длина_названия_файла = 0;
         бкрат      экстрадлина_поля = 0;
 
-        debug(ZIP) проц dump()
+        debug(ZIP) проц дамп()
         {
             Стдош
             ("ЛокалФайлЗаг.Данные {")("\n")
@@ -146,7 +146,7 @@ private
             читайРовно(ист, массив_данн);
             version( БигЭндиан ) свопВсе(данные);
 
-            //debug(ZIP) данные.dump;
+            //debug(ZIP) данные.дамп;
 
             auto врем = new ббайт[данные.длина_названия_файла];
             читайРовно(ист, врем);
@@ -218,7 +218,7 @@ private
         бцел        external_file_attributes = 0;
         цел         relative_offset_of_local_header;
 
-        debug(ZIP) проц dump()
+        debug(ZIP) проц дамп()
         {
             Стдош
             ("ФайлЗаг.Данные {\n")
@@ -341,7 +341,7 @@ private
             ист = ист[Данные.sizeof..$];
             version( БигЭндиан ) свопВсе(*данные);
 
-            //debug(ZIP) данные.dump;
+            //debug(ZIP) данные.дамп;
 
             ткст function(ббайт[]) conv_fn;
             if( используетУтф8 )
@@ -383,7 +383,7 @@ private
         бцел        offset_of_start_of_cd_from_starting_disk;
         бкрат      file_comment_length;
 
-        debug(ZIP) проц dump()
+        debug(ZIP) проц дамп()
         {
             Стдош
             .форматнс("EndOfCDRecord.Данные {}","{")
@@ -445,7 +445,7 @@ private
             ист = ист[_data.length..$];
             version( БигЭндиан ) свопВсе(данные);
 
-            //данные.dump;
+            //данные.дамп;
 
             комментарий_файла = cast(ткст) ист[0..данные.file_comment_length].dup;
         }

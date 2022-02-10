@@ -486,9 +486,9 @@ alias HANDLE* PHANDLE, LPHANDLE;
 
 
  version (Windows) 
-                 alias ук Дескр;     
+                 alias ук Дескр;
              else
-                typedef цел Дескр = -1; 
+                typedef цел Дескр = -1;
 			
 alias ук  ДЕСКР;
 alias ДЕСКР гук, лук, экз;

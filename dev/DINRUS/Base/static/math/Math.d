@@ -81,7 +81,7 @@ body
         dec     ECX                 ;
         jne     L2                  ;
         fxch    ST(1)               ; // ST1 = r, ST0 = x
-        fstp    ST(0)               ; // dump x
+        fstp    ST(0)               ; // дамп x
         align   4                   ;
     return_ST:                      ;
         ;
@@ -107,7 +107,7 @@ body
         dec     ECX                 ;
         jne     L2                  ;
         fxch    ST(1)               ; // ST1 = r, ST0 = x
-        fstp    ST(0)               ; // dump x
+        fstp    ST(0)               ; // дамп x
         align   4                   ;
     return_ST:                      ;
         ;

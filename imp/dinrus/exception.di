@@ -1,5 +1,4 @@
 ﻿module exception;
-pragma(lib,"dinrus.lib");
 
 типПроверОбр   проверОбр   = пусто;
 типСледОбр    трОбр    = пусто;

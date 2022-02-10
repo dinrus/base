@@ -1,18 +1,4 @@
-﻿/*******************************************************************************
-
-    copyright:  Copyright © 2007 Daniel Keep.  Все права защищены.
-
-    license:    BSD стиль: $(LICENSE)
-
-    version:    The Great Namechange: February 2008
-
-                Initial release: December 2007
-
-    author:     Daniel Keep
-
-*******************************************************************************/
-
-module io.vfs.ZipFolder;
+﻿module io.vfs.ZipFolder;
 
 import Путь = io.Path;
 import io.device.File : Файл;
@@ -168,7 +154,7 @@ private
             else
             {
                 // Ok; we need в_ сделай a temporary файл в_ сохрани вывод in.
-                // If we already have a zИП Запись, we need в_ dump that преобр_в
+                // If we already have a zИП Запись, we need в_ дамп that преобр_в
                 // the temp. файл и удали the зипЗапись.
                 if( файл.зипЗапись !is пусто )
                 {

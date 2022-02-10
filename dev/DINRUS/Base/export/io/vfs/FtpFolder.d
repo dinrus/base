@@ -1,14 +1,4 @@
-﻿/*******************************************************************************
-     copyright:      Copyright (c) 2007-2008 Dinrus. Все права защищены
-
-     license:        BSD стиль: $(LICENSE)
-
-     version:        August 2008: Initial version
-
-     author:         Lester L. Martin II
-*******************************************************************************/
-
-module io.vfs.FtpFolder;
+﻿module io.vfs.FtpFolder;
 
 private
 {

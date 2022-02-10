@@ -1,59 +1,55 @@
 /*
- * Copyright (C) 2008 by Steven Schveighoffer
- * all rights reserved.
- *
- * Примеры of how special iterators can be used.
- *
- * Currently only implemented for Tango.
+ * Примеры использования обходчиков
+ * из библиотеки col базового пакета Динруса.
  */
 
 import col.Iterators;
 import col.ArrayList;
 import io.Stdout;
 
-void print(V)(Обходчик!(V) s, char[] message)
+проц печатай(V)(Обходчик!(V) s, ткст сооб)
 {
-    Стдвыв(message ~ " [");
+    Стдвыв(сооб ~ " [");
     foreach(i; s)
         Стдвыв(" ")(i);
     Стдвыв(" ]").нс;
 }
 
-void print(K, V)(Ключник!(K, V) s, char[] message)
+проц печатай(K, V)(Ключник!(K, V) s, ткст сооб)
 {
-    Стдвыв(message ~ " [");
+    Стдвыв(сооб ~ " [");
     foreach(k, v; s)
         Стдвыв(" ")(k)("=>")(v);
     Стдвыв(" ]").нс;
 }
 
-void main()
+проц main()
 {
-    auto x = new МассивСписок!(int);
-    for(int i = 0; i < 10; i++)
+    auto x = new МассивСписок!(цел);
+    for(цел i = 0; i < 10; i++)
         x.добавь(i + 1);
 
-    print!(uint, int)(x, "исходный список");
+    печатай!(бцел, цел)(x, "исходный список");
 
     //
     // use a filter iterator to filter only elements you want.
     //
     // Prints only even elements
     //
-    print!(int)(new ФильтрОбходчик!(int)(x, function bool(ref int i) {return i % 2 == 0;}), "только чётные элементы");
+    печатай!(цел)(new ФильтрОбходчик!(цел)(x, function бул(ref цел i) {return i % 2 == 0;}), "только чётные элементы");
 
     //
     // use a transform iterator to change elements as they are iterated.
     //
     // Changes all elements to floating point, multiplied by 1.5
     //
-    print!(float)(new ТрансформОбходчик!(float, int)(x, function void(ref int i, ref float result) {result = i * 1.5;}), "умножено на 1.5");
+    печатай!(плав)(new ТрансформОбходчик!(плав, цел)(x, function проц(ref цел i, ref плав результат) {результат = i * 1.5;}), "умножено на 1.5");
 
     //
     // use a chain iterator to chain multiple iterators together
     //
-    // print x three times
-    print!(int)(new ОбходчикЦепи!(int)(x, x, x), "печатает элементы 3 раза");
+    // печатай x three times
+    печатай!(цел)(new ОбходчикЦепи!(цел)(x, x, x), "печатает элементы 3 раза");
 
     //
     // this function can convert any iterator to an array.  You can also do
@@ -61,28 +57,28 @@ void main()
     // but this version does not create an extra class on the heap, and is
     // more optimized.
     //
-    auto a = вМассив!(int)(x);
+    auto a = вМассив!(цел)(x);
     Стдвыв("преобразован в массив: ")(a).нс;
 
     //
     // one can use the keyed transform iterator to transform keyed iterators
     // to normal iterators
     //
-    print!(long)(new ТрансформКлючник!(int, long, uint, int)(x, function void(ref uint idx, ref int v, ref int ignored, ref long result)
-        { result = 0x1_0000_0000L * idx + v;}), "индексы и значения комбинированы");
+    печатай!(дол)(new ТрансформКлючник!(цел, дол, бцел, цел)(x, function проц(ref бцел idx, ref цел v, ref цел ignored, ref дол результат)
+        { результат = 0x1_0000_0000L * idx + v;}), "индексы и значения комбинированы");
 
     //
     // chained keyed iterator
     //
-    print!(uint, int)(new КлючникЦепи!(uint, int)(x, x, x),  "печатает элементы 3 раза (с ключами)");
+    печатай!(бцел, цел)(new КлючникЦепи!(бцел, цел)(x, x, x),  "печатает элементы 3 раза (с ключами)");
 
     //
     // keyed filter iterators
     //
-    print!(uint, int)(new ФильтрКлючник!(uint, int)(x, function bool(ref uint idx, ref int v){return idx % 2 == 0;}),  "печатает значения под чётными индексами");
+    печатай!(бцел, цел)(new ФильтрКлючник!(бцел, цел)(x, function бул(ref бцел idx, ref цел v){return idx % 2 == 0;}),  "печатает значения под чётными индексами");
 
     //
     // add all elements to an AA
     //
-    Стдвыв("преобразован в АМ: ")(вАссоцМасс!(uint, int)(x)).нс;
+    Стдвыв("преобразован в АМ: ")(вАссоцМасс!(бцел, цел)(x)).нс;
 }

@@ -31,7 +31,7 @@ private import  io.model: ФайлКонст, ИнфОФайле;
         Note that образцы of adjacent '.' разделители are treated specially
         in that they will be assigned в_ the имя where there is no distinct
         суффикс. In добавьition, a '.' at the старт of a имя signifies it does
-        not belong в_ the суффикс i.e. ".файл" is a имя rather than a суффикс.
+        not belong в_ the суффикс т.е. ".файл" is a имя rather than a суффикс.
         Образцы of intermediate '.' characters will иначе be assigned
         в_ the суффикс, such that "файл....суффикс" включает the dots within
         the суффикс itself. See метод расш() for a суффикс without dots.

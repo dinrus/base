@@ -521,7 +521,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
                 if (дерево is пусто)
                    {
                    дерево = new RBPairT(ключ, элемент);
-                   incCount();
+                   инкрСчёт();
                    }
                 else
                    {
@@ -546,7 +546,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
                              else
                                 {
                                 дерево = cast(RBPairT)(t.вставьЛевый(new RBPairT(ключ, элемент), дерево));
-                                incCount();
+                                инкрСчёт();
                                 return ;
                                 }
                              }
@@ -557,7 +557,7 @@ deprecated public class КартаДерево(К, T) : КоллекцияКар
                              else
                                 {
                                 дерево = cast(RBPairT)(t.вставьПравый(new RBPairT(ключ, элемент), дерево));
-                                incCount();
+                                инкрСчёт();
                                 return ;
                                 }
                              }

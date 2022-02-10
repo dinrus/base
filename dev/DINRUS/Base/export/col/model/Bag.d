@@ -5,7 +5,8 @@ private import  col.model.BagView,
                 col.model.Dispenser;
 
 /**
- * Bags are собериions supporting multИПle occurrences of элементы.
+ * Рюкзаки - это колекции, поддерживающие неоднократное присутствуе
+ * одних и тех же элементов.
  * author: Doug Lea
 **/
 

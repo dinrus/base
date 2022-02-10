@@ -298,7 +298,7 @@ interface ИСелектор
      * таймаут  = ИнтервалВремени with the maximum amount времени that the
      *            selector will жди for события из_ the conduits; the
      *            amount времени is relative в_ the текущ system время
-     *            (i.e. just the число of milliseconds that the selector
+     *            (т.е. just the число of milliseconds that the selector
      *            имеется в_ жди for the события).
      *
      * Возвращает:
@@ -324,7 +324,7 @@ interface ИСелектор
      * таймаут  = the maximum amount времени in сек that the
      *            selector will жди for события из_ the conduits; the
      *            amount времени is relative в_ the текущ system время
-     *            (i.e. just the число of milliseconds that the selector
+     *            (т.е. just the число of milliseconds that the selector
      *            имеется в_ жди for the события).
      *
      * Возвращает:

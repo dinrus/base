@@ -9624,7 +9624,7 @@
 
 		//вяжи(функция_4805)("_?dropMimeData@QTreeWidget@@MAE_NPAVQTreeWidgetItem@@HPBVQMimeData@@W4DropAction@Qt@@@Z", биб);
 
-		//вяжи(функция_4806)("_?dump@QGraphicsLinearLayout@@QBEXH@Z", биб);
+		//вяжи(функция_4806)("_?дамп@QGraphicsLinearLayout@@QBEXH@Z", биб);
 
 		//вяжи(функция_4807)("_?duplex@QPrinter@@QBE?AW4DuplexMode@1@XZ", биб);
 

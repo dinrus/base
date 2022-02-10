@@ -1,9 +1,9 @@
 ﻿module col.impl.Cell;
 
 /**
- * Ячейка is the основа of a bunch of implementation classes
- * for списки и the like.
- * The основа version just holds an Объект as its значение элемента
+ * Ячейка - это основа целой грозди классов, реализующих
+ * списки и им подобное.
+ * Базовая версия просто хранит како-либо Объект, как своё значение элемента.
 **/
 
 public class Ячейка (T)

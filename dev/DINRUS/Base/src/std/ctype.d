@@ -164,7 +164,7 @@ int isprint(dchar б)
   }
 цел печат_ли(дим б) {return  isprint(б);}
 /**
- * Возвращаетs !=0 if б is in the ascii character set, i.e. in the range 0..0x7F.
+ * Возвращаетs !=0 if б is in the ascii character set, т.е. in the range 0..0x7F.
  */
 int isascii(dchar б)  { return б <= 0x7F; }
 цел аски_ли(дим б){return  isascii(б);}

@@ -519,7 +519,7 @@ private:
     // конец nodes for forward and reverse iteration.
     // Unfortunately it wastes Т.sizeof bytes on useless payload данные.
     // We could make Узел a class and then use inheritance to create AnchorNode and PayloadNode
-    // subclasses, but then we have overhead of N*reference.sizeof (i.e. O(N) overhead).
+    // subclasses, but then we have overhead of N*reference.sizeof (т.е. O(N) overhead).
     Узел якорь_;
 
     // Keep track of размер so that 'длина' checks are O(1) 

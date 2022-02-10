@@ -10,7 +10,7 @@ module io.selector.Selector;
  * A multИПlexor of провод I/O события.
  *
  * A Селектор can жди for I/O события (Чит, Зап, etc.) for multИПle
- * conduits efficiently (i.e. without consuming CPU cycles).
+ * conduits efficiently (т.е. without consuming CPU cycles).
  *
  * The Селектор is an alias for your system's most efficient I/O multИПlexor,
  * which will be determined during compilation.
@@ -34,7 +34,7 @@ module io.selector.Selector;
  * This метод also accepts an optional third parameter в_ associate a
  * пользователь-defined объект в_ the провод. These three параметры together define
  * a КлючВыбора, which is что you'll принять when the провод is "selected"
- * (i.e. Приёмs an событие).
+ * (т.е. Приёмs an событие).
  *
  * If you need в_ modify your провод's registration you need в_ use the
  * повториРег() метод, which works like регистрируй(), but expects в_ be passed

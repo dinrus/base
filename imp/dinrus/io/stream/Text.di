@@ -1,11 +1,8 @@
 ﻿module io.stream.Text;
 
 private import io.stream.Lines;
-
 private import io.stream.Format;
-
 private import io.stream.Buffered;
-
 private import io.model;
 
 /*******************************************************************************

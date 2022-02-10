@@ -7,7 +7,7 @@ import crypto.cipher.Cipher;
  * разработанная Vincent Rijmen и Joan Daemen.
  * 
  * Соответствует: FIPS-197
- * Ссылки: http://csrc.nist.gov/publications/fИПs/fips197/fips-197.pdf
+ * Ссылки: http://csrc.nist.gov/publications/fids/fips197/fips-197.pdf
  */
 extern(D) class АЭС : ШифрБлок
 {

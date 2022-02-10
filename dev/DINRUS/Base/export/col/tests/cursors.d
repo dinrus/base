@@ -1,17 +1,13 @@
 /*
- * Copyright (C) 2008 by Steven Schveighoffer
- * all rights reserved.
- *
- * Примеры of how cursors can be used.
- *
- * Currently only implemented for Tango.
+ * Примеры использования курсоров
+ * из библиотеки col базового пакета Динруса.
  */
 import col.LinkList;
 import io.Stdout;
 
-void print(Обходчик!(int) s, char[] message)
+void печатай(Обходчик!(цел) s, ткст сооб)
 {
-    Стдвыв(message ~ " [");
+    Стдвыв(сооб ~ " [");
     foreach(i; s)
         Стдвыв(" ")(i);
     Стдвыв(" ]").нс;
@@ -19,33 +15,33 @@ void print(Обходчик!(int) s, char[] message)
 
 void main()
 {
-    auto list = new СвязкаСписок!(int);
-    list.добавь([1,5,6,8,9,2,3,11,2,3,5,7]);
-    print(list, "список заполнен");
+    auto список = new СвязкаСписок!(цел);
+    список.добавь([1,5,6,8,9,2,3,11,2,3,5,7]);
+    печатай(список, "список заполнен");
 
     //
-    // cursors can be used to keep references to specific elements in a linked
-    // list.
+    // Курсоры можно использовать для сохранения ссылок на
+	// определённые элементы в линкованном списке.
     //
-    auto c = list.найди(9);
+    auto c = список.найди(9);
     Стдвыв.форматнс("c указывает на {}", c.значение);
 
-    auto c2 = list.найди(6);
+    auto c2 = список.найди(6);
     Стдвыв.форматнс("c2 указывает на {}", c2.значение);
 
     //
-    // now, I can remove c2 without affecting c.  Note that for linked list,
-    // this is O(1) removal.  Note that removal gives me the next valid
-    // iterator.
+    // Теперь можно удалить c2, не воздействуя на c. Для линкованного списка
+    // это удаление O(1). После удаления мы получаем следующий валидный
+    // обходчик.
     //
-    c2 = list.удали(c2);
-    print(list, "после удаления 6");
+    c2 = список.удали(c2);
+    печатай(список, "после удаления 6");
     Стдвыв.форматнс("c теперь указывает на {}", c.значение);
     Стдвыв.форматнс("c2 теперь указывает на {}", c2.значение);
 
     //
-    // cursors have different behaviors for different collection and
-    // implementation types.  Each collection documentation discusses what is
-    // and is not allowed, and the run time of each cursor-based function.
+    // Курсоры по разному ведут себя с разными коллекциями и типами
+    // реализаций. В документации к каждой коллекции пояснено что можно,
+    // а что нельзя, и описан рантайм каждой функции, основанной на курсоре.
     //
 }

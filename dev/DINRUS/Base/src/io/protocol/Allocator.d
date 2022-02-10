@@ -1,14 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: October 2004      
-                        Outback release: December 2006
-        
-        author:         Kris
-
         Allocators в_ use in conjunction with the Читатель class. These are
         intended в_ manage Массив allocation for a variety of Читатель.получи()
         methods

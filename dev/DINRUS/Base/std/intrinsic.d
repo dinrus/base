@@ -138,7 +138,7 @@ int bts(uint *p, uint bitnum);
 
 
 /**
- * Swaps bytes in a 4 byte uint end-to-end, i.e. byte 0 becomes
+ * Swaps bytes in a 4 byte uint end-to-end, т.е. byte 0 becomes
 	byte 3, byte 1 becomes byte 2, byte 2 becomes byte 1, byte 3
 	becomes byte 0.
  */

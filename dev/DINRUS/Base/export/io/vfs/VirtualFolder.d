@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2007 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Oct 2007: Initial version
-
-        author:         Kris
-
-*******************************************************************************/
-
-module io.vfs.VirtualFolder;
+﻿module io.vfs.VirtualFolder;
 
 private import exception;
 

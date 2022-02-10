@@ -723,7 +723,7 @@ unittest
  * Converts UTC time into a text string of the form:
  * "Www Mmm dd hh:mm:ss GMT+-TZ yyyy".
  * For example, "Tue Apr 02 02:04:57 GMT-0800 1996".
- * If time is invalid, i.e. is d_time_nan,
+ * If time is invalid, т.е. is d_time_nan,
  * the string "Invalid дата" is returned.
  *
  * Пример:

@@ -249,20 +249,6 @@ export:
     public abstract цел выбери(ИнтервалВремени таймаут);
 
     /**
-     * Causes the первый вызов в_ выбери() that имеется not yet returned в_ return
-     * immediately.
-     *
-     * If другой нить is currently блокed in an вызов в_ any of the
-     * выбери() methods then that вызов will return immediately. If no
-     * выделение operation is currently in ход then the следщ invocation
-     * of one of these methods will return immediately. In any case the значение
-     * returned by that invocation may be non-zero. Subsequent invocations of
-     * the выбери() methods will блок as usual unless this метод is invoked
-     * again in the meantime.
-     */
-    // public abstract проц неСпи();
-
-    /**
      * Возвращает результирующий набор селекций из вызова любого метода выбери().
      *
      * Примечания:
@@ -287,7 +273,7 @@ export:
     public abstract т_мера счёт();
 
     /**
-     * Препставляет продолжительность времени в виде Си-структуры значврем.
+     * Представляет продолжительность времени в виде Си-структуры значврем.
     */
     public значврем* вЗначВрем(значврем* tv, ИнтервалВремени интервал)
     in

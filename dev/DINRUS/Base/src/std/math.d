@@ -382,7 +382,7 @@ real tan(real x)
         jc      trigerr                 ; // x is NAN, infinity, либо empty
                                           // 387's can handle denormals
 SC18:   fptan                           ;
-        fstp    ST(0)                   ; // dump X, which is always 1
+        fstp    ST(0)                   ; // дамп X, which is always 1
         fstsw   AX                      ;
         sahf                            ;
         jnp     Lret                    ; // C2 = 1 (x is out of range)
@@ -399,7 +399,7 @@ SC17:   fprem1                          ;
 
 trigerr:
         jnp     Lret                    ; // if theta is NAN, return theta
-        fstp    ST(0)                   ; // dump theta
+        fstp    ST(0)                   ; // дамп theta
     }
     return real.nan;
 
@@ -2755,7 +2755,7 @@ body
                 dec     ECX                     ;
                 jne     L2                      ;
                 fxch    ST(1)                   ; // ST1 = r, ST0 = x
-                fstp    ST(0)                   ; // dump x
+                fstp    ST(0)                   ; // дамп x
                 align   4                       ;
         return_ST:                              ;
                 ;
@@ -2783,7 +2783,7 @@ body
                 dec     ECX                     ;
                 jne     L2                      ;
                 fxch    ST(1)                   ; // ST1 = r, ST0 = x
-                fstp    ST(0)                   ; // dump x
+                fstp    ST(0)                   ; // дамп x
                 align   4                       ;
         return_ST:                              ;
                 ;
@@ -2811,7 +2811,7 @@ body
                 dec     ECX                     ;
                 jne     L2                      ;
                 fxch    ST(1)                   ; // ST1 = r, ST0 = x
-                fstp    ST(0)                   ; // dump x
+                fstp    ST(0)                   ; // дамп x
                 align   4                       ;
         return_ST:                              ;
                 ;

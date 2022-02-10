@@ -14,7 +14,7 @@
  * operations. This means that if a path contains a directory name
  * with a dot, functions like getExt() will work with it just as
  * if it was a file. To differentiate these cases,
- * use the std.file module first (i.e. std.file.isDir()).
+ * use the std.file module first (т.е. std.file.isDir()).
  */
 
 module std.path;
@@ -966,9 +966,9 @@ unittest
  * involves using the tilde alone or followed by a path separator. In
  * this case, the tilde will be expanded with the value of the
  * environment variable <i>HOME</i>.  The second way is putting
- * a username после the tilde (i.e. <tt>~john/Mail</tt>). Here,
+ * a username после the tilde (т.е. <tt>~john/Mail</tt>). Here,
  * the username will be searched for in the user database
- * (i.e. <tt>/etc/passwd</tt> on Unix systems) and will expand to
+ * (т.е. <tt>/etc/passwd</tt> on Unix systems) and will expand to
  * whatever path is stored there.  The username is considered the
  * string после the tilde ending at the first instance of a path
  * separator.

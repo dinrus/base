@@ -1,15 +1,12 @@
-﻿/* zlib.d: modified from zlib.h by Walter Bright */
-/* updated from 1.2.1 to 1.2.3 by Thomas Kuehne */
+﻿module lib.zlib;
 
-module zlib;
-
-/* zlib.h -- interface of the 'zlib' general purpose compression library
-   version 1.2.3, July 18th, 2005
+/* zlib.h -- интерфейс к библиотеки сжатия общего назначения 'zlib'
+   версии 1.2.3, July 18th, 2005
 
   Copyright (C) 1995-2005 Jean-loup Gailly and Mark Adler
 
   This software is provided 'as-is', without any express or implied
-  warranty.  In no событие will the authors be held liable for any damages
+  warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
 
   Permission is granted to anyone to use this software for any purpose,
@@ -28,9 +25,9 @@ module zlib;
   jloup@gzip.org          madler@alumni.caltech.edu
 
 
-  The данные format used by the zlib library is described by RFCs (Request for
-  Comments) 1950 to 1952 in the files http://www.ietf.org/rfc/rfc1950.txt
-  (zlib format), rfc1951.txt (deflate format) and rfc1952.txt (gzip format).
+  Формат данных, используемый библиотекой zlib, описывается в RFC (Request for
+  Comments) от1950 до 1952 в файлах http://www.ietf.org/rfc/rfc1950.txt
+  (zlib format), rfc1951.txt (deflate format) и rfc1952.txt (gzip format).
 */
 
 extern (C):

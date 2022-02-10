@@ -24,7 +24,7 @@
 
     <таблица border=1 cellspacing=0 cellpadding=5>
     <caption>Operators</caption>
-    $(TR $(TD X|Y) $(TD alternation, i.e. X or Y) )
+    $(TR $(TD X|Y) $(TD alternation, т.е. X or Y) )
     $(TR $(TD (X)) $(TD совпадают brackets - creates a подст-сверь) )
     $(TR $(TD (?X)) $(TD non-совпадают brackets - only groups X, no подст-сверь is создан) )
     $(TR $(TD [Z]) $(TD character class specification, Z is a ткст of characters or character ranges, e.g. [a-zA-Z0-9_.\-]) )

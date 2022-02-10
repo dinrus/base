@@ -1,10 +1,4 @@
-﻿/*******************************************************************************
-  copyright:   Copyright (c) 2006 Juan Jose Comellas. Все права защищены
-  license:     BSD стиль: $(LICENSE)
-  author:      Juan Jose Comellas <juanjo@comellas.com.ar>
-*******************************************************************************/
-
-module io.selector.EpollSelector;
+﻿module io.selector.EpollSelector;
 
 
 version (linux)
@@ -216,7 +210,7 @@ version (linux)
          *
          * Параметры:
          * провод      = провод that will be associated в_ the selector;
-         *                must be a действителен провод (i.e. not пусто и открой).
+         *                must be a действителен провод (т.е. not пусто и открой).
          * события       = bit маска of Событие значения that represent the события
          *                that will be tracked for the провод.
          * атачмент   = optional объект with application-specific данные that
@@ -324,7 +318,7 @@ version (linux)
          * таймаут  = ИнтервалВремени with the maximum amount времени that the
          *            selector will жди for события из_ the conduits; the
          *            amount времени is relative в_ the текущ system время
-         *            (i.e. just the число of milliseconds that the selector
+         *            (т.е. just the число of milliseconds that the selector
          *            имеется в_ жди for the события).
          *
          * Возвращает:

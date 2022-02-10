@@ -179,7 +179,7 @@ public class СелекторВыбора: АбстрактныйСелекто�
      *
      * Параметры:
      * провод      = провод that will be associated в_ the selector;
-     *                must be a действителен провод (i.e. not пусто и открой).
+     *                must be a действителен провод (т.е. not пусто и открой).
      * события       = bit маска of Событие значения that represent the события
      *                that will be tracked for the провод.
      * атачмент   = optional объект with application-specific данные that
@@ -354,7 +354,7 @@ public class СелекторВыбора: АбстрактныйСелекто�
      * таймаут  = ИнтервалВремени with the maximum amount времени that the
      *            selector will жди for события из_ the conduits; the
      *            amount времени is relative в_ the текущ system время
-     *            (i.e. just the число of milliseconds that the selector
+     *            (т.е. just the число of milliseconds that the selector
      *            имеется в_ жди for the события).
      *
      * Возвращает:
@@ -383,7 +383,7 @@ public class СелекторВыбора: АбстрактныйСелекто�
         if (_readSet.инициализован)
         {
             debug (selector)
-                _readSet.dump("_readSet");
+                _readSet.дамп("_readSet");
 
             version (Windows)
                 handlesAvailable = handlesAvailable || (_readSet.length > 0);
@@ -393,7 +393,7 @@ public class СелекторВыбора: АбстрактныйСелекто�
         if (_writeSet.инициализован)
         {
             debug (selector)
-                _writeSet.dump("_writeSet");
+                _writeSet.дамп("_writeSet");
 
             version (Windows)
                 handlesAvailable = handlesAvailable || (_writeSet.length > 0);
@@ -403,7 +403,7 @@ public class СелекторВыбора: АбстрактныйСелекто�
         if (_exceptionSet.инициализован)
         {
             debug (selector)
-                _exceptionSet.dump("_exceptionSet");
+                _exceptionSet.дамп("_exceptionSet");
 
             version (Windows)
                 handlesAvailable = handlesAvailable || (_exceptionSet.length > 0);
@@ -606,7 +606,7 @@ version (Windows)
     /**
      * Helper class использован by the выбери()-based Селектор в_ сохрани handles.
      * On Windows the handles are kept in an Массив of бцелs и the первый
-     * элемент of the Массив stores the Массив "length" (i.e. число of handles
+     * элемент of the Массив stores the Массив "length" (т.е. число of handles
      * in the Массив). Everything is stored so that the исконный выбери() API
      * can use the НаборДескр without добавьitional conversions by just casting it
      * в_ a набор_уд*.
@@ -738,7 +738,7 @@ version (Windows)
             /**
              * Dump the contents of a НаборДескр преобр_в стдвыв.
              */
-            проц dump(ткст имя = пусто)
+            проц дамп(ткст имя = пусто)
             {
                 if (_буфер !is пусто && _буфер.length > 0 && _буфер[0] > 0)
                 {
@@ -872,7 +872,7 @@ else version (Posix)
             /**
              * Dump the contents of a НаборДескр преобр_в стдвыв.
              */
-            проц dump(ткст имя = пусто)
+            проц дамп(ткст имя = пусто)
             {
                 if (_буфер !is пусто && _буфер.length > 0)
                 {

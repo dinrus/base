@@ -222,7 +222,7 @@ in implemented structs and routines.
         т_плав* укз();
 
         /*****
-        Standard operators that have meaning exactly the same as for Вектор3, i.e. do
+        Standard operators that have meaning exactly the same as for Вектор3, т.е. do
         component-wise operations.
 
         Note that division operators do no cheks of value of k, so in case of division
@@ -438,7 +438,7 @@ in implemented structs and routines.
 
 
         /***
-        Standard operators that have meaning exactly the same as for Вектор4, i.e. do
+        Standard operators that have meaning exactly the same as for Вектор4, т.е. do
         component-wise operations. So alpha component equaly in rights takes place in all
         operations, to affect just RGB part use swizzling operations.
 

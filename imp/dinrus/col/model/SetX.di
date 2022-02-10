@@ -24,7 +24,7 @@ public interface Набор(T) : ОбзорНабора!(T), Расходчик!
     /**
      * Include the indicated элемент in the collection.
      * No effect if the элемент is already present.
-     * @param элемент the элемент в_ добавь
+     * @param элемент добавляемый элемент
      * Возвращает: condition:
      * <PRE>
      * имеется(элемент) &&

@@ -102,7 +102,7 @@ else static assert(false, "Нет доступных методов аллока
 static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 {
     /**
-     * Map memory.
+     * Картировать память.
      */
     ук ос_памВкарту(т_мера члобайт)
     {
@@ -111,10 +111,10 @@ static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 
 
     /**
-     * Commit memory.
+     * Подать память.
      * Возвращает:
-     *      0       success
-     *      !=0     failure
+     *      0       успех
+     *      !=0     провал
      */
     цел ос_памКоммит(ук ова, т_мера смещ, т_мера члобайт)
     {   ук p;
@@ -125,10 +125,10 @@ static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 
 
     /**
-     * Decommit memory.
+     * Вынуть память.
      * Возвращает:
-     *      0       success
-     *      !=0     failure
+     *      0       успех
+     *      !=0     провал
      */
     цел ос_памДекоммит(ук ова, т_мера смещ, т_мера члобайт)
     {
@@ -137,11 +137,11 @@ static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 
 
     /**
-     * Unmap memory allocated with ос_памВкарту().
-     * Memory must have already been decommitted.
+     * Вынуть из карты память, размещённую ос_памВкарту().
+     * Память должна уже быть вынута.
      * Возвращает:
-     *      0       success
-     *      !=0     failure
+     *      0       успех
+     *      !=0     провал
      */
     цел ос_памИЗкарты(ук ова, т_мера члобайт)
     {

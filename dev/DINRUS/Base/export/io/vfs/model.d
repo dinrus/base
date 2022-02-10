@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2007 Dinrus. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Jul 2007: Initial version
-
-        author:         Lars Ivar, Kris
-
-*******************************************************************************/
-
-module io.vfs.model;
+﻿module io.vfs.model;
 
 private import time.Time :
 Время;

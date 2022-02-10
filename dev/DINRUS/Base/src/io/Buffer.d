@@ -567,7 +567,7 @@ export:
         return ист.length;
     }
 
-    final override ИПровод провод ()
+    final ИПровод провод ()
     {
         if (бвывод)
             return бвывод.провод;
@@ -577,12 +577,12 @@ export:
     }
 
 
-    final override т_мера размерБуфера ()
+    final т_мера размерБуфера ()
     {
         return 32 * 1024;
     }
 
-    final override бул жив_ли ()
+    final бул жив_ли ()
     {
         return да;
     }
@@ -599,7 +599,7 @@ export:
         return бввод;
     }
 
-    final override проц открепи ()
+    final проц открепи ()
     {
     }
 

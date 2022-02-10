@@ -64,13 +64,13 @@
         создаётся несколько экземпляров Локаль, которые кэшируются
         соответствующим образом.
 
-        Стдвыв.выкладка can also be used for formatting without outputting
-        в_ the console such as in the following example:
+        Стдвыв.выкладка может также использоваться для форматирования
+		без вывода в консоль, как в следующем примере:
         ---
-        ткст ткт = Стдвыв.выкладка.преобразуй("{} and {}", 42, "abc");
-        //ткт is "42 and abc"
+        ткст ткт = Стдвыв.выкладка.преобразуй("{} и {}", 42, "abc");
+        //ткт = "42 и abc"
         ---
-        This can be useful if you already have Стдвыв imported.
+        Это может быть использовано, когда Стдвыв уже импортирован.
 
         Note also that the вывод-поток in use is exposed by these
         global instances ~ this can be leveraged, for экземпляр, в_ копируй a

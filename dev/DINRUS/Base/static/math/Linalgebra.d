@@ -1818,7 +1818,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица22 инверсия()
@@ -1841,7 +1841,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Inverts this matrix.
 
-        In case if matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         проц инвертируй()
@@ -1909,7 +1909,7 @@ private template ЛинейнаяАлгебра(т_плав)
         that case M=Q*S.
 
         Method is useful to decompose your matrix into вращение 'Q' и масштабируй+shear 'S'. If you
-        didn't use shear transform matrix S will be diagonal, i.e. represent масштабируй. This can
+        didn't use shear transform matrix S will be diagonal, т.е. represent масштабируй. This can
         have many applications, particulary you can use method for suppressing errors in pure
         вращение matrices после дол multiplication chain.
 
@@ -2495,7 +2495,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица33 инверсия()
@@ -2523,7 +2523,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Inverts this matrix.
 
-        In case if matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         проц инвертируй()
@@ -2594,7 +2594,7 @@ private template ЛинейнаяАлгебра(т_плав)
         that case M=Q*S.
 
         Method is useful to decompose your matrix into вращение 'Q' и масштабируй+shear 'S'. If you
-        didn't use shear transform matrix S will be diagonal, i.e. represent масштабируй. This can
+        didn't use shear transform matrix S will be diagonal, т.е. represent масштабируй. This can
         have many applications, particulary you can use method for suppressing errors in чисто
         вращение matrices после дол multiplication chain.
 
@@ -3322,7 +3322,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица44 инверсия()
@@ -3356,7 +3356,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Inverts this matrix.
 
-        In case if matrix is singular (i.e. детерминанта = 0) результат matrix will имеется
+        In case if matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         проц инвертируй()

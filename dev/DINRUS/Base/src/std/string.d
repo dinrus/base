@@ -2750,7 +2750,7 @@ unittest
  *	of characters, as "a-e" represents the same pattern as "abcde".
  *	"a-fA-F0-9" represents all the hex characters.
  *	If the first character of a pattern is '^', then the pattern
- *	is negated, i.e. "^0-9" means any character except a digit.
+ *	is negated, т.е. "^0-9" means any character except a digit.
  *	The functions inPattern, <b>countchars</b>, <b>removeschars</b>,
  *	and <b>squeeze</b>
  *	use patterns.

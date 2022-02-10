@@ -988,7 +988,7 @@ private:
 
             if( иофСтатМасс_ли(тип) )
             {
-                // Just dump straight
+                // Just дамп straight
                 укз[0 .. тип.tsize] = this.значение.куча[0 .. тип.tsize];
             }
             else

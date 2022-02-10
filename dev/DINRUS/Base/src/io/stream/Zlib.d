@@ -17,7 +17,7 @@
 
 module io.stream.Zlib;
 
-private import zlib;
+private import lib.zlib;
 private import stringz : изТкст0;
 private import exception : ВВИскл;
 private import io.device.Conduit : ФильтрВвода, ФильтрВывода;

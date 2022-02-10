@@ -15,7 +15,7 @@ module std.zlib;
 
 //debug=zlib;		// uncomment to turn on debugging эхо's
 
-private import zlib;
+private import lib.zlib;
 
 alias adler32 адлер32;
 alias crc32 кс32;
@@ -72,7 +72,7 @@ alias ZlibException ИсклЗлиб;
 
 uint adler32(uint adler, void[] buf)
 {
-    return zlib.adler32(adler, cast(ubyte *)buf, buf.length);
+    return lib.zlib.adler32(adler, cast(ubyte *)buf, buf.length);
 }
 
 unittest
@@ -94,7 +94,7 @@ unittest
 
 uint crc32(uint crc, void[] buf)
 {
-    return zlib.crc32(crc, cast(ubyte *)buf, buf.length);
+    return lib.zlib.crc32(crc, cast(ubyte *)buf, buf.length);
 }
 
 unittest
@@ -130,7 +130,7 @@ body
 
     destlen = srcbuf.length + ((srcbuf.length + 1023) / 1024) + 12;
     destbuf = new ubyte[destlen];
-    err = zlib.compress2(destbuf.ptr, &destlen, cast(ubyte *)srcbuf, srcbuf.length, level);
+    err = lib.zlib.compress2(destbuf.ptr, &destlen, cast(ubyte *)srcbuf, srcbuf.length, level);
     if (err)
     {	delete destbuf;
 	throw new ZlibException(err);
@@ -167,7 +167,7 @@ void[] uncompress(void[] srcbuf, uint destlen = 0u, int winbits = 15)
 
     while (1)
     {
-	zlib.z_stream zs;
+	lib.zlib.z_stream zs;
 
 	destbuf = new ubyte[destlen];
 	
@@ -177,28 +177,28 @@ void[] uncompress(void[] srcbuf, uint destlen = 0u, int winbits = 15)
 	zs.next_out = destbuf.ptr;
 	zs.avail_out = destlen;
 
-	err = zlib.inflateInit2(&zs, winbits);
+	err = lib.zlib.inflateInit2(&zs, winbits);
 	if (err)
 	{   delete destbuf;
 	    throw new ZlibException(err);
 	}
-	err = zlib.inflate(&zs, Z_NO_FLUSH);
+	err = lib.zlib.inflate(&zs, Z_NO_FLUSH);
 	switch (err)
 	{
 	    case Z_OK:
-		zlib.inflateEnd(&zs);
+		lib.zlib.inflateEnd(&zs);
 		destlen = destbuf.length * 2;
 		continue;
 
 	    case Z_STREAM_END:
 		destbuf.length = zs.total_out;
-		err = zlib.inflateEnd(&zs);
+		err = lib.zlib.inflateEnd(&zs);
 		if (err != Z_OK)
 		    goto Lerr;
 		return destbuf;
 
 	    default:
-		zlib.inflateEnd(&zs);
+		lib.zlib.inflateEnd(&zs);
 	    Lerr:
 		delete destbuf;
 		throw new ZlibException(err);
@@ -529,7 +529,7 @@ alias flush слей;
 	zs.next_out = destbuf.ptr;
 	zs.avail_out = destbuf.length;
 
-	err = zlib.inflate(&zs, Z_NO_FLUSH);
+	err = lib.zlib.inflate(&zs, Z_NO_FLUSH);
 	if (err == Z_OK && zs.avail_out == 0)
 	{
 	    extra ~= destbuf;
@@ -543,7 +543,7 @@ alias flush слей;
 	    error(err);
 	}
 	destbuf = destbuf.ptr[0 .. zs.next_out - destbuf.ptr];
-	err = zlib.inflateEnd(&zs);
+	err = lib.zlib.inflateEnd(&zs);
 	inited = 0;
 	if (err)
 	    error(err);
