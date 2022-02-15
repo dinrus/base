@@ -91,7 +91,7 @@ version (Posix)
          *                it will grow dynamically if needed.
          * maxEvents    = maximum amount of провод события that will be
          *                returned in the выделение установи per вызов в_ выбери();
-         *                this значение is currently not использован by this selector.
+         *                this значение на данный момент not использован by this selector.
          */
         public проц открой(бцел размер = ДефРазмер, бцел maxEvents = ДефРазмер)
         in
@@ -188,7 +188,7 @@ version (Posix)
          *
          * Примечания:
          * Unregistering a пусто провод is allowed и no исключение is thrown
-         * if this happens.
+         * если это happens.
          *
          * Выводит исключение:
          * ИсклОтменённогоПровода, если the провод had not been previously

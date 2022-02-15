@@ -21,7 +21,7 @@
 
         Surrogate-pairs are dealt with in a non-optimal fashion when
         transcoding between utf16 и utf8. Such cases are consопрered
-        в_ be boundary-conditions for this module.
+        в_ be boundary-conditions для этого module.
 
         There are three common cases where the ввод may be incomplete,
         включая each 'wопрening' case of utf8 => utf16, utf8 => utf32,
@@ -73,7 +73,7 @@ export дим[] вТкст (дим[] ист, дим[] приёмн, бцел* в
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
         For example:
@@ -89,11 +89,11 @@ export дим[] вТкст (дим[] ист, дим[] приёмн, бцел* в
         ---
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -124,7 +124,7 @@ export ткст вТкст (шим[] ввод, ткст вывод=пусто, �
                 break;
             }
 
-            // reallocate the вывод буфер
+            // reallocate the буфер вывода
             цел длин = pOut - вывод.ptr;
             вывод.length = длин + длин / 2;
             pOut = вывод.ptr + длин;
@@ -163,16 +163,16 @@ export ткст вТкст (шим[] ввод, ткст вывод=пусто, �
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -252,16 +252,16 @@ export шим[] вТкст16 (ткст ввод, шим[] вывод=пусто,
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -292,7 +292,7 @@ export ткст вТкст (дим[] ввод, ткст вывод=пусто, �
                 break;
             }
 
-            // reallocate the вывод буфер
+            // reallocate the буфер вывода
             цел длин = pOut - вывод.ptr;
             вывод.length = длин + длин / 2;
             pOut = вывод.ptr + длин;
@@ -339,16 +339,16 @@ export ткст вТкст (дим[] ввод, ткст вывод=пусто, �
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -434,16 +434,16 @@ export дим[] вТкст32 (ткст ввод, дим[] вывод=пусто,
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -473,7 +473,7 @@ export шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто,
                 break;
             }
 
-            // reallocate the вывод буфер
+            // reallocate the буфер вывода
             цел длин = pOut - вывод.ptr;
             вывод.length = длин + длин / 2;
             pOut = вывод.ptr + длин;
@@ -504,16 +504,16 @@ export шим[] вТкст16 (дим[] ввод, шим[] вывод=пусто,
         enough в_ encompass the entire transcoding; failing в_ do
         so will cause the вывод в_ be moved onto the куча instead.
 
-        Возвращает срез of the вывод буфер, corresponding в_ the
+        Возвращает срез of the буфер вывода, corresponding в_ the
         преобразованый characters. For optimum performance, the returned
         буфер should be specified as 'вывод' on subsequent calls.
 
         Where 'взято' is предоставленный, it will be установи в_ the число of
-        элементы consumed из_ the ввод, и the вывод буфер
+        элементы consumed из_ the ввод, и the буфер вывода
         will not be resized (or allocated). This represents a
         Потокing режим, where slices of the ввод are processed
         in sequence rather than все at one время (should use 'взято'
-        as an индекс for slicing преобр_в unconsumed ввод).
+        как индекс for slicing преобр_в unconsumed ввод).
 
 *******************************************************************************/
 
@@ -701,7 +701,7 @@ T[] изТкст32(T) (дим[] s, T[] приёмн)
 
 /*******************************************************************************
 
-        Adjust the контент such that no partial encodings exist on the
+        Adjust the контент such that no partial encodings есть_ли on the
         лево sопрe of the предоставленный текст.
 
         Возвращает срез of the ввод
@@ -725,7 +725,7 @@ T[] отрежьЛево(T) (T[] s)
 
 /*******************************************************************************
 
-        Adjust the контент such that no partial encodings exist on the
+        Adjust the контент such that no partial encodings есть_ли on the
         право sопрe of the предоставленный текст.
 
         Возвращает срез of the ввод

@@ -91,7 +91,7 @@ ubyte[256] UTF8stride =
 /**
  * stride() returns the length of a UTF-32 sequence starting at index i
  * in string s.
- * Возвращаетs: The return value will always be 1.
+ * Возвращаетs: The return value will всегда be 1.
  */
 
 бцел stride(дим[] s, т_мера i)
@@ -305,7 +305,7 @@ body
   if (!(p < конец))
     return СИМ_ОШИБКИ;
 
-  // Ошибка if second байт is not a trail байт.
+  // Ошибка if second байт не trail байт.
   if (!ведомыйБайт_ли(*p))
     return СИМ_ОШИБКИ;
 

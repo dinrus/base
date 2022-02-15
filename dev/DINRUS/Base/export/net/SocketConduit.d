@@ -11,10 +11,10 @@ class СокетПровод : Провод, ИВыбираемый
         package Сокет                  сокет_;
       //  private бул                    таймаут;
 
-        // freelist support
+        // фрилист support
        // private СокетПровод           следщ;   
       //  private бул                    fromList;
-      //  private static СокетПровод    freelist;
+      //  private static СокетПровод    фрилист;
 
         this ();
 

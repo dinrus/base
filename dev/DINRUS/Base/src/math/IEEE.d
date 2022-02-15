@@ -50,7 +50,7 @@
  *  PLUSMN = &plusmn;
  *  INFIN = &infin;
  *  PLUSMNINF = &plusmn;&infin;
- *  ПИ = &pi;
+ *  ПИ = &пи;
  *  LT = &lt;
  *  GT = &gt;
  *  SQRT = &корень;
@@ -327,7 +327,7 @@ debug(UnitTest)
  * If x == y, the результат is y.
  *
  * Примечания:
- * This function is not generally very useful; it's almost always better в_ use
+ * This function is not generally very useful; it's almost всегда better в_ use
  * the faster functions следщВыше() or следщНиже() instead.
  *
  * IEEE 754 requirements не реализован:
@@ -365,9 +365,9 @@ debug(UnitTest)
 	}
 
 	/******************************************
-	 * Extracts the exponent of x as a signed integral значение.
+	 * Extracts the exponent of x как signed integral значение.
 	 *
-	 * If x is not a special значение, the результат is the same as
+	 * If x не special значение, the результат is the same as
 	 * $(D cast(цел)логб(x)).
 	 *
 	 * Примечания: This function is consistent with IEEE754R, but it
@@ -462,7 +462,7 @@ debug(UnitTest)
 	}
 
 	/*****************************************
-	 * Extracts the exponent of x as a signed integral значение.
+	 * Extracts the exponent of x как signed integral значение.
 	 *
 	 * If x is subnormal, it is treated as if it were normalized.
 	 * For a positive, finite x:
@@ -1047,7 +1047,7 @@ enum ПРежимОкругления : крат
  *
  * Возвращает the old rounding режим.
  *
- * When changing the rounding режим, it is almost always necessary в_ restore it
+ * When changing the rounding режим, it is almost всегда necessary в_ restore it
  * at the конец of the function. Typical usage:
 ---
     auto oldrounding = установиИ3еОкругление(ПРежимОкругления.ВВЕРХ);
@@ -1137,7 +1137,7 @@ enum ПКонтрольТочности : крат
     ТОЧНОСТЬ32 = 0x000
 };
 
-/** Набор the число of биты of точность использован by 'реал'.
+/** Устанавливает число of биты of точность использован by 'реал'.
  *
  * Возвращает: the old точность.
  * This is not supported on все platforms.
@@ -1334,7 +1334,7 @@ debug(UnitTest)
 
     unittest
     {
-        static реал vals[][3] = // x,фрэксп,эксп
+        static реал значч[][3] = // x,фрэксп,эксп
         [
             [0.0,   0.0,    0],
             [-0.0,  -0.0,   0],
@@ -1355,11 +1355,11 @@ debug(UnitTest)
         assert(идентичен_ли(-НЧ(0xABC), знач));
         assert(eptr ==цел.min);
 
-        for (i = 0; i < vals.length; i++)
+        for (i = 0; i < значч.length; i++)
         {
-            реал x = vals[i][0];
-            реал e = vals[i][1];
-            цел эксп = cast(цел)vals[i][2];
+            реал x = значч[i][0];
+            реал e = значч[i][1];
+            цел эксп = cast(цел)значч[i][2];
             знач = фрэксп(x, eptr);
 //        printf("фрэксп(%La) = %La, should be %La, eptr = %d, should be %d\n", x, знач, e, eptr, эксп);
             assert(идентичен_ли(e, знач));
@@ -1468,7 +1468,7 @@ debug(UnitTest)
 /**
  * Calculate the следщ largest floating точка значение после x.
  *
- * Возвращает the least число greater than x that is representable as a реал;
+ * Возвращает the least число greater than x that is representable как реал;
  * thus, it gives the следщ точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -1741,7 +1741,7 @@ package
 /**
  * Calculate the следщ smallest floating точка значение перед x.
  *
- * Возвращает the greatest число less than x that is representable as a реал;
+ * Возвращает the greatest число less than x that is representable как реал;
  * thus, it gives the previous точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -1834,7 +1834,7 @@ debug(UnitTest)
         // AND with 0x7FFF в_ form the абсолютный значение.
         // To avoопр out-by-1 ошибки, we вычти 1 so it круги down
         // if the exponents were different. This means 'bitsdiff' is
-        // always 1 lower than we want, except that if bitsdiff==0,
+        // всегда 1 lower than we want, except that if bitsdiff==0,
         // they could have 0 or 1 биты in common.
 
         static if (X.mant_dig==64 || X.mant_dig==113)   // real80 or квадрупл
@@ -2077,7 +2077,7 @@ debug(UnitTest)
  * и 111 биты for a 128-битные quad.
 */
 /**
- * Созд a $(NAN), storing an целое insопрe the payload.
+ * Создаёт $(NAN), storing an целое insопрe the payload.
  *
  * For 80-битные or 128-битные reals, the largest possible payload is 0x3FFF_FFFF_FFFF_FFFF.
  * For doubles, it is 0x3_FFFF_FFFF_FFFF.
@@ -2149,7 +2149,7 @@ export реал НЧ(бдол payload)
  * Extract an integral payload из_ a $(NAN).
  *
  * Возвращает:
- * the целое payload as a бдол.
+ * the целое payload как бдол.
  *
  * For 80-битные or 128-битные reals, the largest possible payload is 0x3FFF_FFFF_FFFF_FFFF.
  * For doubles, it is 0x3_FFFF_FFFF_FFFF.

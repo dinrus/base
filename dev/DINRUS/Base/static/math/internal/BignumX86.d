@@ -6,7 +6,7 @@
  * Currently, all of these functions are субъект to change, and are
  * intended for internal use only.
  * The symbol [#] indicates an array of machine words which is to be
- * interpreted as a multi-byte число.
+ * interpreted как multi-byte число.
  *
  * Copyright: Copyright (C) 2008 Don Clugston.  All rights reserved.
  * License:   BSD style: $(LICENSE)
@@ -671,7 +671,7 @@ L_odd:
         // There are also dependencies between the instructions, and we run up against the
         // ROB-read limit (can only read 2 registers per цикл).
         // We also need the число of uops in the loop to be a multИПle of 3.
-        // The only available execution unit for this is p3 (memory write). Unfortunately we can't do that
+        // The only available execution unit для этого is p3 (memory write). Unfortunately we can't do that
         // if Position-Independent Code is required.
 
         // Register usage
@@ -865,9 +865,9 @@ L_enter_odd:
         // EBX = index
         // ECX = carry1
         // EBP = carry2
-        // EDI = end of приёмник for this пароль through the loop. Index for outer loop.
+        // EDI = end of приёмник для этого пароль through the loop. Index for outer loop.
         // ESI = end of лево. never changes
-        // [ESP] = M = право[i] = множитель for this пароль through the loop.
+        // [ESP] = M = право[i] = множитель для этого пароль through the loop.
         // право.length is changed преобр_в приёмник.ptr+приёмник.length
         version(D_PIC)
         {
@@ -1162,9 +1162,9 @@ length2:
         // EBX = index
         // ECX = carry1
         // EBP = carry2
-        // EDI = end of приёмник for this пароль through the loop. Index for outer loop.
+        // EDI = end of приёмник для этого пароль through the loop. Index for outer loop.
         // ESI = end of src. never changes
-        // [ESP] = M = src[i] = множитель for this пароль through the loop.
+        // [ESP] = M = src[i] = множитель для этого пароль through the loop.
         // приёмник.length is changed преобр_в приёмник.ptr+приёмник.length
         version(D_PIC)
         {

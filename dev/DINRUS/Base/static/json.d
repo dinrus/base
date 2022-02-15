@@ -7,12 +7,12 @@
  * License:	Boost Software License - Version 1.0 - August 17th, 2003
  */
 
-module json;
+module джейсон;
 
 import stdrus:tostring=вТкст, убери, уберисправа, уберислева, разбей, замени, найди, сравни, сравнлюб, ткствцел,ткствдробь;
 import stdrus: межбукв_ли, подставь, РегВыр, скажиф;
 
-/// This is the interface implemented by all classes that represent JSON objects.
+/// This is the interface implemented by all classes that represent JSON объекты.
 interface ТипДжейСОН {
 
 	ткст вТкст();
@@ -37,15 +37,15 @@ interface ТипДжейСОН {
 	/// Функция преобразования в НуллДжейСОН.
 	/// Returns: The casted reference or пусто on a failed cast.
 	НуллДжейСОН вНуллДжейСОН();
-	/// Associative массив index function for objects describing associative массив-like attributes.
-	/// Returns: The chosen index or a пусто reference if the index does not exist.
+	/// Associative массив index function for объекты describing associative массив-like attributes.
+	/// Returns: The chosen index or a пусто reference if the index does not есть_ли.
 	ТипДжейСОН opIndex(ткст ключ);
 	/// Allow foreach over the object with ткст ключ.
 	цел opApply(цел delegate(ткст,ТипДжейСОН) дг);
 	/// Allow foreach over the object with ткст ключ и ref value.
 	цел opApply(цел delegate(ткст,ref ТипДжейСОН) дг);
-	/// Array index function for objects describing массив-like attributes.
-	/// Returns: The chosen index or a пусто reference if the index does not exist.
+	/// Array index function for объекты describing массив-like attributes.
+	/// Returns: The chosen index or a пусто reference if the index does not есть_ли.
 	ТипДжейСОН opIndex(цел ключ);
 	/// Allow foreach over the object with integer ключ.
 	цел opApply(цел delegate(цел,ТипДжейСОН) дг);
@@ -83,7 +83,7 @@ extern(D):
  * writef("Generated JSON ткст: ");writef(jstr);writef("\n");
  * writef("Regenerated JSON ткст: ");writef(читайДжейСОН(jstr).вТкст);writef("\n");
  * --------------------------------
- * Возвращаетs: A ОбъектДжейСОН with no имя that is the root of the document that was read.
+ * Возвращаетs: A ОбъектДжейСОН with no имя that is the root of the документ that was read.
  * Выводит исключение: ОшибкаДжейСОН on any parsing errors.
  */
 ОбъектДжейСОН читайДжейСОН(ткст ист) {
@@ -177,7 +177,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 		return (ключ in _ветви)?_ветви[ключ]:пусто;
 	}
 	/// Allow the user to дай the number of элементы in this object
-	/// Returns: The number of ветвь узелs contained внутри this ОбъектДжейСОН
+	/// Returns: The number of ветвь узлы contained внутри this ОбъектДжейСОН
 	цел длина() {return _ветви.length;}
 	/// Оператор overload for foreach iteration through the object with значения only
 	цел opApply(цел delegate(ТипДжейСОН) дг) {
@@ -266,7 +266,7 @@ class ОбъектДжейСОН:ТипДжейСОН {
 			// rip the , in preparation for the next loop
 			исток = уберислева(исток[1..$]);
 			// make sure we don't have a ",}", since I'm assuming it's not allowed
-			if (исток[0] == '}') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by '}') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
+			if (исток[0] == '}') throw new ОшибкаДжейСОН("Пустой массив элементы (',' followed by '}') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
 		}
 		// rip off the } и be done with it
 		исток = уберислева(исток[1..$]);
@@ -292,7 +292,7 @@ class МассивДжейСОН:ТипДжейСОН {
 		return _ветви[ключ];
 	}
 	/// Allow the user to дай the number of элементы in this object
-	/// Returns: The number of ветвь узелs contained внутри this ОбъектДжейСОН
+	/// Returns: The number of ветвь узлы contained внутри this ОбъектДжейСОН
 	цел длина() {return _ветви.length;}
 	/// Оператор overload for foreach iteration through the массив with значения only
 	цел opApply(цел delegate(ТипДжейСОН) дг) {
@@ -373,7 +373,7 @@ class МассивДжейСОН:ТипДжейСОН {
 			// rip the , in preparation for the next loop
 			исток = уберислева(исток[1..$]);
 			// make sure we don't have a ",]", since I'm assuming it's not allowed
-			if (исток[0] == ']') throw new ОшибкаДжейСОН("Empty массив элементы (',' followed by ']') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
+			if (исток[0] == ']') throw new ОшибкаДжейСОН("Пустой массив элементы (',' followed by ']') are not allowed. Fill the space or remove the comma.\nThis ошибка occurred перед: "~исток);
 		}
 		// rip off the ] и be done with it
 		исток = уберислева(исток[1..$]);
@@ -382,7 +382,7 @@ class МассивДжейСОН:ТипДжейСОН {
 	mixin(конвфункцииАМ);
 }
 
-/// ТкстДжейСОН represents a JSON ткст.  Internal representation is escaped for faster parsing и JSON generation.
+/// ТкстДжейСОН represents a JSON ткст.  Internal representation is эскапирован for faster parsing и JSON generation.
 class ТкстДжейСОН:ТипДжейСОН {
 
 	/// The boring default constructor.
@@ -450,7 +450,7 @@ class БулДжейСОН:ТипДжейСОН {
 
 	/// The boring constructor, again.
 	this(){}
-	/// Only a bit of ввод for this constructor.
+	/// Only a bit of ввод для этого constructor.
 	this(бул данные) {_данные = данные;}
 	/// Allow установиting of the hidden bit.
 	проц установи(бул данные) {_данные = данные;}
@@ -550,7 +550,7 @@ class ЧислоДжейСОН:ТипДжейСОН {
 		} else if (исток[i] <= '9' && исток[i] >= '1') {
 			while (исток[i] >= '0' && исток[i] <= '9') i++;
 		} else throw new ОшибкаДжейСОН("Произошла ошибка парсинга числа при парсировании числа,\n начинающегося с: "~исток);
-		// if the next сим is not a '.', we know we're done with fractional parts 
+		// if the next сим не '.', we know we're done with fractional parts 
 		if (исток[i] == '.') {
 			i++;
 			while (исток[i] >= '0' && исток[i] <= '9') i++;

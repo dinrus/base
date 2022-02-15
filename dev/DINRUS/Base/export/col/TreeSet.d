@@ -90,7 +90,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
  *   З значение -> the значение which is pointed to by this позиция (cannot be a
  *                property)
  *   Узел следщ -> the следщ Узел in the tree as defined by the compare
- *                function, либо конец if no other nodes exist.
+ *                function, либо конец if no other nodes есть_ли.
  *   Узел предш -> the previous Узел in the tree as defined by the compare
  *                function.
  *
@@ -99,13 +99,13 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
  * tree, the 
  *
  * Узел начало -> must be a Узел that points to the very первый valid
- * элемент in the tree, либо конец if no elements exist.
+ * элемент in the tree, либо конец if no elements есть_ли.
  *
  * Узел конец -> must be a Узел that points to just past the very последн
  * valid элемент.
  *
  * Узел найди(З з) -> returns a Узел that points to the элемент that
- * содержит з, либо конец if the элемент doesn'т exist.
+ * содержит з, либо конец if the элемент doesn'т есть_ли.
  *
  * Узел удали(Узел p) -> removes the given элемент from the tree,
  * returns the следщ valid элемент or конец if p was последн in the tree.
@@ -224,7 +224,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
         курсор обх = начало;
         бул чистить_ли;
         цел возврдг = 0;
-        курсор _конец = конец; // cache конец so обх isn'т always being generated
+        курсор _конец = конец; // cache конец so обх isn'т всегда being generated
         while(!возврдг && обх != _конец)
         {
             //

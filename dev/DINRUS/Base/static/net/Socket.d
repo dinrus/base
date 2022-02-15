@@ -265,7 +265,7 @@ class Сокет
 
         /***********************************************************************
 
-                Созд a new исконный сокет экземпляр for this Сокет
+                Создаёт new исконный сокет экземпляр для этого Сокет
 
         ***********************************************************************/
 
@@ -424,7 +424,7 @@ class Сокет
         /**
          * Акцепт an incoming connection. If the сокет is блокируется, прими
          * waits for a connection request. Выводит исключение СокетПриёмИскл if unable
-         * куда прими. See accepting for use with производный classes.
+         * куда прими. See accepting для использования с производный classes.
          */
         Сокет прими ()
         {
@@ -453,7 +453,7 @@ class Сокет
                 The глуши function shuts down the connection of the сокет.
                 Depending on the аргумент значение, it will:
 
-                    -   stop receiving данные for this сокет. If further данные
+                    -   stop receiving данные для этого сокет. If further данные
                         arrives, it is rejected.
 
                     -   stop trying куда transmit данные из_ this сокет. Also
@@ -1394,7 +1394,7 @@ unittest
 
 *******************************************************************************/
 
-//a установи of СОКЕТs for Сокет.выбери()
+//набор of СОКЕТs for Сокет.выбери()
 class НаборСокетов
 {
         private бцел  члоБайт; //Win32: excludes бцел.размер "счёт"

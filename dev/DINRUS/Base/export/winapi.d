@@ -79,7 +79,7 @@ extern (Windows)
     alias uint UINT;
     alias uint *PUINT;
 
-// ULONG_PTR must be able to store a pointer as an integral type
+// ULONG_PTR must be able to store a pointer как integral type
 version (Win64)
 {
     alias  long INT_PTR;
@@ -763,7 +763,7 @@ enum
 //
 // The FILE_READ_DATA and FILE_WRITE_DATA константы are also defined in
 // devioctl.h as FILE_READ_ACCESS and FILE_WRITE_ACCESS. The values for these
-// константы *MUST* always be in sync.
+// константы *MUST* всегда be in sync.
 // The values are redefined in devioctl.h because they must be available to
 // both DOS and NT.
 //
@@ -1138,18 +1138,18 @@ struct CONTEXT
     // The flags values within this flag control the contents of
     // a CONTEXT record.
     //
-    // If the context record is used as an input parameter, then
+    // If the context record is used как input parameter, then
     // for each portion of the context record controlled by a flag
     // whose value is set, it is assumed that that portion of the
     // context record contains valid context. If the context record
     // is being used to modify a threads context, then only that
     // portion of the threads context will be modified.
     //
-    // If the context record is used as an IN OUT parameter to capture
+    // If the context record is used как IN OUT parameter to capture
     // the context of a thread, then only those portions of the thread's
     // context corresponding to set flags will be returned.
     //
-    // The context record is never used as an OUT only parameter.
+    // The context record is never used как OUT only parameter.
     //
 
     DWORD ContextFlags;

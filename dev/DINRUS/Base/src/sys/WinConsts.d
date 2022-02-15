@@ -850,7 +850,7 @@ const DWORD
 	IMAGE_SCN_MEM_WRITE              = 0x80000000;
 
 /*	The following константы are mostlydocumented at
- *	http://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/pecoff.doc
+ *	http://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/pecoff.док
  *	but don't seem to be defined in the HTML docs.
  */
 enum : SHORT {
@@ -1124,7 +1124,7 @@ enum {
 	IMAGE_REL_BASED_HIGHADJ,
 	IMAGE_REL_BASED_MIPS_JMPADDR
 }
-// End of константы documented in pecoff.doc
+// End of константы documented in pecoff.док
 
 const size_t IMAGE_ARCHIVE_START_SIZE = 8;
 
@@ -2755,7 +2755,7 @@ enum ПФлагиАИ: цел
          НеАвторитатив = 0x00004000,     /// LUP_NON_AUTHORITATIVE
          Безопасно = 0x00008000,                /// LUP_SECURE
          ВозврПредпочитаемыеИмена = 0x00010000,/// LUP_RETURN_PREFERRED_NAMES
-         ПКДН = 0x00020000,                  /// Return the FQDN in ai_canonname
+         ПКДН = 0x00020000,                  /// Возвращает FQDN in ai_canonname
          ФайлСервер = 0x00040000,            /// Resolving fileserver имя resolution 
          Маска = (Пассив | КанонИмя | НумерикХост | НумерикСлужба | КонфигАдра),
          Дефолт = (В4Картир | КонфигАдра),

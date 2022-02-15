@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2005 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: December 2005      
-        
-        author:         Kris
-
-*******************************************************************************/
-
-module io.UnicodeFile;
+﻿module io.UnicodeFile;
 
 private import io.device.File;
 
@@ -128,7 +116,7 @@ class ФайлЮ(T)
 
         /***********************************************************************
 
-                Return the associated файл путь
+                Возвращает associated файл путь
 
         ***********************************************************************/
 
@@ -139,7 +127,7 @@ class ФайлЮ(T)
         
         /***********************************************************************
 
-                Return the current кодировка. This is either the originally
+                Возвращает current кодировка. This is either the originally
                 specified кодировка, либо a производный one obtained by inspecting
                 the файл контент for a мпб. The latter is performed as часть
                 of the читай() метод.
@@ -153,7 +141,7 @@ class ФайлЮ(T)
         
         /***********************************************************************
 
-                Return the associated мпб экземпляр. Use this в_ найди ещё
+                Возвращает associated мпб экземпляр. Use this в_ найди ещё
                 information about the кодировка статус
 
         ***********************************************************************/
@@ -165,7 +153,7 @@ class ФайлЮ(T)
 
         /***********************************************************************
 
-                Return the контент of the файл. The контент is inspected 
+                Возвращает контент of the файл. The контент is inspected 
                 for a мпб сигнатура, which is очищенный. An исключение is
                 thrown if a сигнатура is present when, according в_ the
                 кодировка тип, it should not be. Conversely, An исключение
@@ -182,7 +170,7 @@ class ФайлЮ(T)
 
         /***********************************************************************
 
-                Набор the файл контент and length в_ reflect the given Массив.
+                Устанавливает файл контент and length в_ reflect the given Массив.
                 The контент will be кодирован accordingly.
 
         ***********************************************************************/

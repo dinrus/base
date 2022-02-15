@@ -1382,7 +1382,7 @@ private final class TNFA(т_сим)
     }
 
     /* ********************************************************************************************
-        Print the TNFA (tabular представление of the delta function)
+        Print the TNFA (tabular представление of the дельта function)
     **********************************************************************************************/
     debug(TangoRegex) проц выведи()
     {
@@ -1752,7 +1752,7 @@ private final class TNFA(т_сим)
                 default:
                     фраги ~= constructSingleChar(c, pred_type);
                     break;
-//                            throw new ИсклРегВыр(Формат.преобразуй("Unknown escape sequence \\{}", c));
+//                            throw new ИсклРегВыр(Формат.преобразуй("Unknown искейп sequence \\{}", c));
                 }
                 break;
 
@@ -2149,7 +2149,7 @@ private:
         tag2.predicate.тип = predicate_t.Тип.epsilon;
         if ( тэг > 0 )
         {
-            // сделай sure the тэг indeces for bracket x are always
+            // сделай sure the тэг indeces for bracket x are всегда
             // x*2 for the opening bracket и x*2+1 for the closing bracket
             tag1.тэг = тэг++;
             tag2.тэг = тэг;
@@ -2816,7 +2816,7 @@ Louter:
     }
 
     /* ********************************************************************************************
-        Print the TDFA (tabular представление of the delta function)
+        Print the TDFA (tabular представление of the дельта function)
     **********************************************************************************************/
     debug(TangoRegex) проц выведи()
     {
@@ -2926,7 +2926,7 @@ private:
     }
 
     /* ********************************************************************************************
-        Represents a состояние in the NFA в_ DFA conversion.
+        Представляет состояние in the NFA в_ DFA conversion.
         Contains the установи of states (StateElements) the NFA might be in at the same время и the
         corresponding DFA состояние that we создай.
     **********************************************************************************************/
@@ -3139,7 +3139,7 @@ private:
         disjoint.length = следщ;
 
         // совмести isolated ranges преобр_в sets of ranges
-        // no range in a установи may occur separated из_ the другие in any predicate
+        // no range in набор may occur separated из_ the другие in any predicate
         predicate_t[]   preds;
         preds.length = 1;
 Lmerge:
@@ -4132,7 +4132,7 @@ Laccept:
     }
 
     /**********************************************************************************************
-        Return the срез of the ввод that precedes the matched substring.
+        Возвращает срез of the ввод that precedes the matched substring.
         If no сверь was найдено, пусто is returned.
     **********************************************************************************************/
     т_сим[] pre()
@@ -4144,7 +4144,7 @@ Laccept:
     }
 
     /**********************************************************************************************
-        Return the срез of the ввод that follows the matched substring.
+        Возвращает срез of the ввод that follows the matched substring.
         If no сверь was найдено, the whole срез of the ввод that was processed in the последний тест.
     **********************************************************************************************/
     т_сим[] post()
@@ -4460,7 +4460,7 @@ Laccept:
                 }
                 if ( equalCommands )
                 {
-                    // use existing группа for this состояние
+                    // use existing группа для этого состояние
                     finisherGroup[fg] ~= fs;
                     haveFinisher = да;
                     break;
@@ -4553,7 +4553,7 @@ alias RegExpT!(сим) Regex;
 
 debug(utf) import rt.core.stdc.stdio;
 // the following блок is stolen из_ phobos.
-// the copyright notice applies for this блок only.
+// the copyright notice applies для этого блок only.
 /*
  *  Copyright (C) 2003-2004 by Digital Mars, www.digitalmars.com
  *  Written by Walter Bright

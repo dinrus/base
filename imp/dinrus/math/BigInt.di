@@ -202,7 +202,7 @@ public:
         assert(y!=0);
         бцел u = y < 0 ? -y : y;
         цел rem = БольшБцел.modInt(данные, u);
-        // x%y always имеется the same знак as x.
+        // x%y всегда имеется the same знак as x.
         // This is not the same as mathematical mod.
         return знак? -rem : rem;
     }
@@ -212,7 +212,7 @@ public:
         assert(y!=0);
         бцел u = y < 0 ? -y : y;
         данные = БольшБцел.modInt(данные, u);
-        // x%y always имеется the same знак as x.
+        // x%y всегда имеется the same знак as x.
         // This is not the same as mathematical mod.
         return *this;
     }
@@ -308,17 +308,17 @@ public:
         цел cmp = данные.opCmp(y.данные);
         return знак? -cmp: cmp;
     }
-    /// Returns the значение of this БольшЦел as a дол,
+    /// Returns the значение of this БольшЦел как дол,
     /// or +- дол.max if outsопрe the representable range.
     дол вДол() ;
-    /// Returns the значение of this БольшЦел as an цел,
+    /// Returns the значение of this БольшЦел как цел,
     /// or +- дол.max if outsопрe the representable range.
     дол вЦел() ;
     /// Число of significant бцелs which are использован in storing this число.
-    /// The абсолютный значение of this БольшЦел is always < 2^(32*бцелДлина)
+    /// The абсолютный значение of this БольшЦел is всегда < 2^(32*бцелДлина)
     цел бцелДлина() ;
     /// Число of significant ulongs which are использован in storing this число.
-    /// The абсолютный значение of this БольшЦел is always < 2^(64*бдолДлина)
+    /// The абсолютный значение of this БольшЦел is всегда < 2^(64*бдолДлина)
     цел бдолДлина() ;
 
     /// Return x raised в_ the power of y

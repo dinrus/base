@@ -468,14 +468,14 @@ alias укз ptr;
             return s;
         }
 
-        /// Return the one-нормаль of the вектор (sum of элементы' absolute значения)
+        /// Возвращает one-нормаль of the вектор (sum of элементы' absolute значения)
         Скаляр норм1() {
             Скаляр возвр=0;
             foreach(знач; значения_) возвр += абс(знач);
             return возвр;
         }
 
-        /// Return the infinity-нормаль of the вектор (макс элемент std.math.absolute value)
+        /// Возвращает infinity-нормаль of the вектор (макс элемент std.math.absolute value)
         Скаляр бескнорм() {
             Скаляр возвр= -Скаляр.max;
             foreach(знач; значения_) {

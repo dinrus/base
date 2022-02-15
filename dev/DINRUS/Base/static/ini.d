@@ -729,7 +729,7 @@ public:
 	}
 
 
-	/// Finds a _section; returns пусто if one имяd имя does not exist.
+	/// Finds a _section; returns пусто if one имяd имя does not есть_ли.
 	РазделИни раздел(ткст имя)
 	{
 		foreach(РазделИни isec; исекции)
@@ -748,7 +748,7 @@ public:
 	}
 
 
-	/// The раздел is created if one имяd имя does not exist.
+	/// The раздел is created if one имяd имя does not есть_ли.
 	/// Возвращает: Section имяd имя.
 	РазделИни добавьРаздел(ткст имя)
 	{

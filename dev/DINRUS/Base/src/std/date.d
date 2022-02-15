@@ -901,8 +901,8 @@ string toTimeString(d_time time)
 
 
 /******************************************
- * Parses s as a textual дата string, and returns it as a d_time.
- * If the string is not a valid дата, d_time_nan is returned.
+ * Parses s как textual дата string, and returns it как d_time.
+ * If the string не valid дата, d_time_nan is returned.
  */
 
 d_time parse(string s)

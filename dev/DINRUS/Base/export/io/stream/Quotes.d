@@ -65,7 +65,7 @@ class Кавычки(T) : Обходчик!(T)
     protected т_мера скан (проц[] данные)
     {
         T    quote = 0;
-        цел  escape = 0;
+        цел  искейп = 0;
         auto контент = (cast(T*) данные.ptr) [0 .. данные.length / T.sizeof];
 
         foreach (i, c; контент)
@@ -73,13 +73,13 @@ class Кавычки(T) : Обходчик!(T)
         if (quote)
         {
             if (c is '\\')
-                ++escape;
+                ++искейп;
             else
             {
                 // matched the начальное quote сим?
-                if (c is quote && escape % 2 is 0)
+                if (c is quote && искейп % 2 is 0)
                     quote = 0;
-                escape = 0;
+                искейп = 0;
             }
         }
         else

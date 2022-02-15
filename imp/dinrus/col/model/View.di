@@ -70,10 +70,10 @@ public interface Обзор(T)
         
         /**
          * Report whether the Обзор COULD contain элемент,
-         * i.e., that it is действителен with respect в_ the Обзор's
+         * т.е., that it is действителен with respect в_ the Обзор's
          * элемент скринер if it имеется one.
          * Always returns нет if элемент == пусто.
-         * A constant function: if позволяет(знач) is ever да it is always да.
+         * A constant function: if позволяет(знач) is ever да it is всегда да.
          * (This property is not in any way enforced however.)
          * No другой spurious effects.
          * Возвращает: да, если non-пусто и проходки элемент скринер проверь
@@ -86,7 +86,7 @@ public interface Обзор(T)
          * Always returns 0 if элемент == пусто.
          * Otherwise T.равно is использован в_ тест for equality.
          * @param элемент the элемент в_ look for
-         * Возвращает: the число of occurrences (always nonnegative)
+         * Возвращает: the число of occurrences (всегда nonnegative)
         **/
         public бцел экземпляры (T элемент);
 
@@ -146,7 +146,7 @@ public interface Обзор(T)
         public цел opApply (цел delegate (inout T значение) дг);
 
         /**
-         expose collection контент as an Массив
+         expose collection контент как Массив
         **/
 
         public T[] вМассив ();
@@ -181,7 +181,7 @@ public interface Обзор(T)
         /**
          * Check the consistency of internal состояние, и raise исключение if
          * not ОК.
-         * These should be `best-effort' проверьs. You cannot always locally
+         * These should be `best-effort' проверьs. You cannot всегда locally
          * determine full consistency, but can usually approximate it,
          * и оцени the most important представление invariants.
          * The most common kinds of проверьs are кэш проверьs. Например,

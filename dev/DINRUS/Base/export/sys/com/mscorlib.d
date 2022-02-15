@@ -2263,8 +2263,8 @@ interface ISymbolMethod : IDispatch {
   /*[id(0x60020002)]*/ int GetSequencePoints( SAFEARRAY offsets,  SAFEARRAY documents,  SAFEARRAY lines,  SAFEARRAY columns,  SAFEARRAY endLines,  SAFEARRAY endColumns);
   /*[id(0x60020003)]*/ int get_RootScope(out ISymbolScope pRetVal);
   /*[id(0x60020004)]*/ int GetScope(int offset, out ISymbolScope pRetVal);
-  /*[id(0x60020005)]*/ int GetOffset(ISymbolDocument document, int line, int column, out int pRetVal);
-  /*[id(0x60020006)]*/ int GetRanges(ISymbolDocument document, int line, int column,  out  SAFEARRAY  pRetVal);
+  /*[id(0x60020005)]*/ int GetOffset(ISymbolDocument документ, int line, int column, out int pRetVal);
+  /*[id(0x60020006)]*/ int GetRanges(ISymbolDocument документ, int line, int column,  out  SAFEARRAY  pRetVal);
   /*[id(0x60020007)]*/ int GetParameters(out SAFEARRAY pRetVal);
   /*[id(0x60020008)]*/ int GetNamespace(out ISymbolNamespace pRetVal);
   /*[id(0x60020009)]*/ int GetSourceStartEnd(SAFEARRAY docs, SAFEARRAY  lines, SAFEARRAY columns, out short pRetVal);
@@ -2286,7 +2286,7 @@ interface ISymbolReader : IDispatch {
   /*[id(0x60020004)]*/ int GetMethod_2(SymbolToken Method, int Version, out ISymbolMethod pRetVal);
   /*[id(0x60020005)]*/ int GetVariables(SymbolToken parent,  out  SAFEARRAY  pRetVal);
   /*[id(0x60020006)]*/ int GetGlobalVariables( out  SAFEARRAY  pRetVal);
-  /*[id(0x60020007)]*/ int GetMethodFromDocumentPosition(ISymbolDocument document, int line, int column, out ISymbolMethod pRetVal);
+  /*[id(0x60020007)]*/ int GetMethodFromDocumentPosition(ISymbolDocument документ, int line, int column, out ISymbolMethod pRetVal);
   /*[id(0x60020008)]*/ int GetSymAttribute(SymbolToken parent, wchar* name,  out  SAFEARRAY  pRetVal);
   /*[id(0x60020009)]*/ int GetNamespaces( out  SAFEARRAY  pRetVal);
 }
@@ -2322,7 +2322,7 @@ interface ISymbolWriter : IDispatch {
   /*[id(0x60020002)]*/ int SetUserEntryPoint(SymbolToken entryMethod);
   /*[id(0x60020003)]*/ int OpenMethod(SymbolToken Method);
   /*[id(0x60020004)]*/ int CloseMethod();
-  /*[id(0x60020005)]*/ int DefineSequencePoints(ISymbolDocumentWriter document,   SAFEARRAY offsets,  SAFEARRAY lines,  SAFEARRAY columns,  SAFEARRAY endLines,  SAFEARRAY endColumns);
+  /*[id(0x60020005)]*/ int DefineSequencePoints(ISymbolDocumentWriter документ,   SAFEARRAY offsets,  SAFEARRAY lines,  SAFEARRAY columns,  SAFEARRAY endLines,  SAFEARRAY endColumns);
   /*[id(0x60020006)]*/ int OpenScope(int StartOffset, out int pRetVal);
   /*[id(0x60020007)]*/ int CloseScope(int EndOffset);
   /*[id(0x60020008)]*/ int SetScopeRange(int scopeID, int StartOffset, int EndOffset);

@@ -352,7 +352,7 @@ private T aCas(T)(ref   T знач, T новЗнач, T оцениваетсяВ
         return aCasT!(T,ushort)(знач,новЗнач,оцениваетсяВ);
     } else static if (T.sizeof==4){
         return aCasT!(T,бцел)(знач,новЗнач,оцениваетсяВ);
-    } else static if (T.sizeof==8){ // unclear if it is always supported...
+    } else static if (T.sizeof==8){ // unclear if it is всегда supported...
         return aCasT!(T,ulong)(знач,новЗнач,оцениваетсяВ);
     } else {
         static assert(0,"неверный тип "~T.stringof);

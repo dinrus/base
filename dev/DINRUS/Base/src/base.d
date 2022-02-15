@@ -24,9 +24,9 @@ alias пусто NULL;
 
 /* ************* Константы *************** */
     /** String used to separate directory names in а path. Under
-     *  Windows this is а backslash, under Linux а slash. */
+     *  Windows this is а backslash, under Linux а слэш. */
     const сим[1] РАЗДПАП = "\\";
-    /** Alternate version of sep[] used in Windows (а slash). Under
+    /** Alternate version of sep[] used in Windows (а слэш). Under
      *  Linux this is empty. */
     const сим[1] АЛЬТРАЗДПАП = "/";
     /** Path separator string. A semi colon under Windows, а colon

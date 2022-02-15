@@ -1818,7 +1818,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица22 инверсия()
@@ -2495,7 +2495,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица33 инверсия()
@@ -3322,7 +3322,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица44 инверсия()

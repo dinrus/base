@@ -164,7 +164,7 @@ export ткст вТкст(ОРДЖ_ФЛАГ f)
 public enum ОРДЖК
 {
     УСПЕХ                      =   0,          /// Operation was successful
-    ДЖАРФАЙЛ_НЕ_ОТКРЫВАЕТСЯ,                        /// The given файл does not exist, либо cannot be accessed
+    ДЖАРФАЙЛ_НЕ_ОТКРЫВАЕТСЯ,                        /// The given файл does not есть_ли, либо cannot be accessed
     НЕТ_ЗАПИСЕЙ,                                  /// The бд файл contained no записи
     НЕТ_ПАМЯТИ,                               /// The API suffered память exhaustion
     ФАЙЛ_НЕ_ЧИТАЕТСЯ,                               /// A read operation failed
@@ -380,7 +380,7 @@ private:
  * Classes
  */
 
-/// Represents a поле in the бд
+/// Представляет поле in the бд
 export class Поле
 {
 /* \имя Construction */
@@ -475,7 +475,7 @@ private:
     Запись  m_record;
 }
 
-/// Represents a запись in the бд, consisting of a set of поля
+/// Представляет запись in the бд, consisting of a set of поля
 export class Запись
 {
 /* \имя Types */
@@ -782,7 +782,7 @@ private:
                 bContinuing =   false;
             }
 
-/+ // This is currently commented out as it seems unlikely to be sensible to 
+/+ // This на данный момент commented out as it seems unlikely to be sensible to 
    // order the Fields globally. The reasoning is that if the Fields are used
    // globally then it's more likely that their ordering in the бд source
    // is meaningful. If someone really needs an all-Fields array ordered, they

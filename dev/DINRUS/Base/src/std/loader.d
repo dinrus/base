@@ -124,7 +124,7 @@ public void ExeModule_Uninit()
  *
  * \note The value of the хэндл returned may not be a valid хэндл for your operating
  * system, and you <b>must not</b> attempt to use it with any other operating system
- * or other APIs. It is only valid for use with the ExeModule library.
+ * or other APIs. It is only valid для использования с the ExeModule library.
  */
 public HXModule ExeModule_Load(in string moduleName)
 {
@@ -607,7 +607,7 @@ public:
 
     /** Retrieves the named symbol.
      *
-     * \return A pointer to the symbol, либо null if it does not exist
+     * \return A pointer to the symbol, либо null if it does not есть_ли
      */
     void *findSymbol(in string symbolName)
     {

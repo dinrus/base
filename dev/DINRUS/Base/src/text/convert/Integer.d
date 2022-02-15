@@ -21,7 +21,7 @@ private import exception;
         разбирает целое значение из предоставленного 'цифры' ткст. 
 
         The ткст is inspected for a знак и an optional корень 
-        префикс. A корень may be предоставленный as an аргумент instead, 
+        префикс. A корень may be предоставленный как аргумент instead, 
         whereupon it must сверь the префикс (where present). When
         корень is установи в_ zero, conversion will default в_ десяток.
 
@@ -48,7 +48,7 @@ private import exception;
         Parse an целое значение из_ the предоставленный 'цифры' ткст.
 
         The ткст is inspected for a знак и an optional корень
-        префикс. A корень may be предоставленный as an аргумент instead,
+        префикс. A корень may be предоставленный как аргумент instead,
         whereupon it must сверь the префикс (where present). When
         корень is установи в_ zero, conversion will default в_ десяток.
 
@@ -306,7 +306,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
               // пиши optional префикс ткст ...
               приёмн [длин .. длин + префикс.length] = префикс;
 
-              // return срез of предоставленный вывод буфер
+              // return срез of предоставленный буфер вывода
               return приёмн [длин .. $];                               
               }
            }
@@ -320,7 +320,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
         Parse an целое значение из_ the предоставленный 'цифры' ткст. 
 
         The ткст is inspected for a знак и an optional корень 
-        префикс. A корень may be предоставленный as an аргумент instead, 
+        префикс. A корень may be предоставленный как аргумент instead, 
         whereupon it must сверь the префикс (where present). When
         корень is установи в_ zero, conversion will default в_ десяток.
 
@@ -485,7 +485,7 @@ T[] форматёр(T) (T[] приёмн, дол i, сим тип, сим pre, 
         быстро & dirty текст-в_-unsigned цел converter. Use only when you
         know что the контент is, либо use разбор() or преобразуй() instead.
 
-        Return the разобрано бцел
+        Возвращает разобрано бцел
         
 ******************************************************************************/
 

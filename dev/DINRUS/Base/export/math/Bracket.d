@@ -67,7 +67,7 @@ private:
 /** Find корень by bracketing, allowing termination condition в_ be specified
  *
  * Параметры:
- * tolerance   Defines the termination condition. Return да when acceptable
+ * tolerance   Defines the termination condition. Возвращает да when acceptable
  *             bounds have been obtained.
  */
 БрэкетРез!(T, R) найдиКорень(T,R)(R delegate(T) f, T ax, T bx, R fax, R fbx,

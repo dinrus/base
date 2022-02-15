@@ -371,7 +371,7 @@ char[] decode(char[] encodedURI)
 
 /*******************************
  * Decodes the URI string encodedURI into a UTF-8 string and returns it. All
- * escape sequences are decoded.
+ * искейп sequences are decoded.
  */
 
 char[] decodeComponent(char[] encodedURIComponent)
@@ -384,7 +384,7 @@ char[] decodeComponent(char[] encodedURIComponent)
 
 /*****************************
  * Encodes the UTF-8 string uri into a URI and returns that URI. Any character
- * not a valid URI character is escaped. The '#' character is not escaped.
+ * not a valid URI character is эскапирован. The '#' character is not эскапирован.
  */
 
 char[] encode(char[] uri)
@@ -397,7 +397,7 @@ char[] encode(char[] uri)
 
 /********************************
  * Encodes the UTF-8 string uriComponent into a URI and returns that URI.
- * Any character not a letter, digit, либо one of -_.!~*'() is escaped.
+ * Any character not a letter, digit, либо one of -_.!~*'() is эскапирован.
  */
 
 char[] encodeComponent(char[] uriComponent)

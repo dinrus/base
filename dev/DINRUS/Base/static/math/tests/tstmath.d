@@ -332,17 +332,17 @@ void main() {
       assert(reldif >= реал.mant_dig-6);
     }
 
-  реал delta;
+  реал дельта;
   цел n, i, j;
 
-  delta = 0.6 / ПИ;
+  дельта = 0.6 / ПИ;
   for (n = -30; n <= 30; n++) {
     реал x1 = -30.0;
     while (x1 < 30.0)    {
         testWronksian (n, x1);
-        x1 += delta;
+        x1 += дельта;
     }
-    delta += .00123456;
+    дельта += .00123456;
   }
   assert(cylBessel_jn(20, 1e-80)==0);
   

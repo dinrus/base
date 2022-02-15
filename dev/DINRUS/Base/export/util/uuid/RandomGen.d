@@ -1,6 +1,6 @@
 ﻿/** Most people who want UUIDs will generate small numbers of them (maybe a
   * few hundred тысяча) и not require a huge amount of uniqueness (just
-  * for this one application). This module provопрes a convenient way в_ obtain
+  * для этого one application). This module provопрes a convenient way в_ obtain
   * that behavior.
   *
   * To Потокline your usage, this module publicly imports Ууид, so you can

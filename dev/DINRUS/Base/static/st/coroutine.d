@@ -6,7 +6,7 @@
  * аргументы.
  *
  * If you define your coroutine as being both eager, и with an input type of
- * проц, then the coroutine will be usable as an обходчик in foreach
+ * проц, then the coroutine will be usable как обходчик in foreach
  * statements.
  *
  * Version:     0.1

@@ -527,7 +527,7 @@ export:
 alias ЩитОшиб SwitchError;
 
 /**
- * Represents a text processing error.
+ * Представляет text processing error.
  */
 export extern (D) class ТекстИскл : ОтслежИскл
 {
@@ -915,7 +915,7 @@ export extern (D) class АргИскл : Исключение {
 }
 
 /**
- * The exception thrown when a null reference is passed to a method that does not accept it as a valid argument.
+ * The exception thrown when a null reference is passed to a method that does not accept it как valid argument.
  */
 export extern (D) class ПустойАргИскл : АргИскл {
 

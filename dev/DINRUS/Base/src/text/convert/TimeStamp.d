@@ -102,7 +102,7 @@ export дим[] вТкст32 (Время время)
 
         Converts в_ the форматируй "Sun, 06 Nov 1994 08:49:37 GMT", и
         returns a populated срез of the предоставленный буфер. Note that
-        RFC1123 форматируй is always in абсолютный GMT время, и a thirty-
+        RFC1123 форматируй is всегда in абсолютный GMT время, и a thirty-
         элемент буфер is sufficient for the produced вывод
 
         Выводит исключение an исключение where the supplied время is не_годится
@@ -497,7 +497,7 @@ T[] формат8601(T) (T[] вывод, Время t)
         "Decimal fractions may also be добавьed в_ any of the three время элементы.
         A десяток точка, either a comma or a dot (without any preference as
         stated most recently in resolution 10 of the 22nd General Conference
-        CGPM in 2003), is использован as a разделитель between the время элемент и
+        CGPM in 2003), is использован как разделитель between the время элемент и
         its дво."
 
 ******************************************************************************/
@@ -524,7 +524,7 @@ T[] формат8601(T) (T[] вывод, Время t)
         "Decimal fractions may also be добавьed в_ any of the three время элементы.
         A десяток точка, either a comma or a dot (without any preference as
         stated most recently in resolution 10 of the 22nd General Conference
-        CGPM in 2003), is использован as a разделитель between the время элемент и
+        CGPM in 2003), is использован как разделитель between the время элемент и
         its дво."
 
 ******************************************************************************/

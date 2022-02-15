@@ -1,52 +1,52 @@
 ﻿module st.stackthread;
 
-//Module imports
+//Импорты модуля
 private import st.stackcontext, stdrus;
 
-/// The приоритет of a стэк thread determines its order in
-/// the планировщик.  Higher приоритет threads go первый.
+/// Приоритет стэк-потока определяет его порядок в
+/// планировщике.  Первыми выполняются нити с наивысшим приоритетом.
 alias цел т_приоритет;
 
-/// The default приоритет for a стэк thread is 0.
+/// Дефолтный приоритет для стэк-потока равен 0.
 const т_приоритет ДЕФ_ПРИОРИТЕТ_СТЭКНИТИ = 0;
 
-/// Maximum thread приоритет
+/// Максимальный приоритет
 const т_приоритет МАКС_ПРИОРИТЕТ_СТЭКНИТИ = 0x7fffffff;
 
-/// Minimum thread приоритет
+/// Минимальный приоритет
 const т_приоритет МИН_ПРИОРИТЕТ_СТЭКНИТИ = 0x80000000;
 
-/// The состояние of a стэк thread
+/// Состояние стэк-потока
 enum ПСостояниеНити
 {
-    Готов,      /// Нить is готов to пуск
-    Выполняется,    /// Нить is currently выполняется
-    Завершён,       /// Нить имеется terminated
-    Подвешен,  /// Нить is suspended
+    Готов,      /// Нить готова к пуску
+    Выполняется,    /// Нить на данный момент выполняется
+    Завершён,       /// Нить завершилась
+    Подвешен,  /// Нить приостановлена
 }
 
-/// The состояние of the планировщик
+/// Состояние планировщика
 enum ПСостояниеПланировщика
 {
-    Готов,      /// Scheduler is готов to пуск a thread
-    Выполняется,    /// Scheduler is выполняется a timeslice
+    Готов,      /// Планировщик готов к пуску нити
+    Выполняется,    /// Планировщик выполняется
 }
 
-//Timeslices
+//Срезы времени
 private ОчередьПриоритетовСН активный_срез;
 private ОчередьПриоритетовСН следующий_срез;
 
-//Scheduler состояние
+//Планировщик - состояние
 private ПСостояниеПланировщика сост_планировщ;
     
-//Start time of the time slice
+//Время старта среза времени
 private бдол sched_t0;
 
-//Currently active стэк thread
+//Активный на данный момент стэк-поток
 private СтэкНить sched_st;
 
 
-//Initialize the планировщик
+//Инициализует планировщик
 static this()
 {
     активный_срез = new ОчередьПриоритетовСН();
@@ -171,7 +171,7 @@ class СтэкНить
     
     /**
      * Grabs the thread's приоритет.  Intended for use
-     * as a property.
+     * как property.
      *
      * Возвращает: The стэк thread's приоритет.
      */
@@ -196,12 +196,12 @@ class СтэкНить
     public final ПСостояниеНити дайСостояние();
     
     /**
-     * Возвращает: True if the thread is готов to пуск.
+     * Возвращает: True if the thread готова к пуску.
      */
     public final бул готов();
     
     /**
-     * Возвращает: True if the thread is currently выполняется.
+     * Возвращает: True if the thread на данный момент выполняется.
      */
     public final бул выполняется();
     
@@ -233,7 +233,7 @@ class СтэкНить
     
     /**
      * Run the стэк threaauxd.  This method may be overloaded
-     * by classes which inherit from стэк thread, as an
+     * by classes which inherit from стэк thread, как
      * alternative to passing delegates.
      *
      * Выводит исключение: Anything.
@@ -273,7 +273,7 @@ class СтэкНить
 
 /******************************************************
  * The ОчередьПриоритетовСН is использован by the планировщик to
- * order the objects in the стэк threads.  For the
+ * order the объекты in the стэк threads.  For the
  * moment, the implementation is binary heap, but future
  * versions might use a binomial heap for performance
  * improvements.
@@ -415,7 +415,7 @@ private проц сн_отмени(СтэкНить st);
 /**
  * Restarts the entire timeslice from the beginning.
  * This имеется no effect if the последний timeslice was started
- * from the beginning.  If a slice is currently выполняется,
+ * from the beginning.  If a slice на данный момент выполняется,
  * then the текущ thread will continue to execute until
  * it жниs normally.
  */

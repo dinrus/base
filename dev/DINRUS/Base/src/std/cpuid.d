@@ -7,7 +7,7 @@ import base, std.string: format;
 
 version(D_InlineAsm_X86)
 {
- /// Returns everything as a printable string
+ /// Returns everything как printable string
     char[] toString()
     {
 	char[] feats;

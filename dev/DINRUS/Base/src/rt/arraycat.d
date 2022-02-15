@@ -26,7 +26,7 @@
  */
 
 /*
- *  Modified by Sean Kelly <sean@f4.ca> for use with Tango.
+ *  Modified by Sean Kelly <sean@f4.ca> для использования с Tango.
  */
 
 module rt.arraycat;

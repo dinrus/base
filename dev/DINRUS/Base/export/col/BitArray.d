@@ -367,7 +367,7 @@ Ldone:
      * Operates on все биты in this Массив.
      *
      * Параметры:
-     *  дг = The supplied код as a delegate.
+     *  дг = The supplied код как delegate.
      */
     цел opApply( цел delegate(ref бул) дг )
     {
@@ -503,7 +503,7 @@ Ldone:
      *  правткт = The Массив в_ compare against.
      *
      * Возвращает:
-     *  A значение less than zero if this Массив sorts перед the supplied Массив,
+     *  A значение less than zero если это Массив sorts перед the supplied Массив,
      *  zero if the массивы are equavalent, and a значение greater than zero if
      *  this Массив sorts после the supplied Массив.
      */
@@ -563,7 +563,7 @@ Ldone:
      * Convert this Массив в_ a проц Массив.
      *
      * Возвращает:
-     *  This Массив represented as a проц Массив.
+     *  This Массив represented как проц Массив.
      */
     проц[] opCast()
     {

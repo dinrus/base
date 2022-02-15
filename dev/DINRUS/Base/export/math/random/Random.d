@@ -112,7 +112,7 @@
             (P. L'Ecuyer и R. Simard, ACM Transactions on Mathematical Software (2007),
             33, 4, Article 22, for KISS, see CMWC движок for the другой)
       )
-      $(LI  floating точка униформа generator always initializes the full mantissa, the
+      $(LI  floating точка униформа generator всегда initializes the full mantissa, the
             only flaw is a (*very* small) predilection of 0 as least important bit
             (IEEE круги в_ 0 in case of tie).
             Using a метод that initializes the full mantissa was shown в_ improve the
@@ -126,7 +126,7 @@
       $(LI  гамма distribued numbers uses a метод recently proposed by Marsaglia и
             Tsang. The метод is very быстро, и should be good.
             My (Fawzi's) feeling is that the transformation h(x)=(1+d*x)^3 might lose
-            a couple of биты of точность in some cases, but it is unclear if this
+            a couple of биты of точность in some cases, but it is unclear если это
             might become visible in (*very* extensive) tests or not.
       )
        the basic исток can be easily be изменён with something else
@@ -1368,8 +1368,8 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
 
     //-------- various distributions available -----------
 
-    /// generators of нормаль numbers (сигма=1,мю=0) of the given тип
-    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 pi)*сигма)
+    /// generators of нормаль numbers (сигма=1,мю=0) указанного типа
+    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 пи)*сигма)
     НормальныйИсточник!(СлуччисГ,T) нормальныйИсточник(T)()
     {
         static if(is(T==плав))
@@ -1390,7 +1390,7 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
         else static assert(0,T.stringof~" не реализовано нормального источника");
     }
 
-    /// generators of эксп distribued numbers (бета=1) of the given тип
+    /// generators of эксп distribued numbers (бета=1) указанного типа
     /// f=1/бета*эксп(-x/бета)
     ЭкспИсточник!(СлуччисГ,T) экспИсточник(T)()
     {
@@ -1413,7 +1413,7 @@ final class СлуччисГ(ТИсток=ДефолтныйДвижок)
     }
 
     /// generators of нормаль numbers with a different default сигма/мю
-    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 pi)*сигма)
+    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 пи)*сигма)
     НормальныйИсточник!(СлуччисГ,T).НормальнаяДистрибуция нормальД(T)(T сигма=cast(T)1,T мю=cast(T)0)
     {
         return нормальныйИсточник!(T).нормальД(сигма,мю);

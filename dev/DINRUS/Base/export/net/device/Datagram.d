@@ -30,7 +30,7 @@ package import net.device.Socket;
         подключись(), метод пиши() must be supplied with an адрес и метод
         читай() should be supplied with one куда опрentify where данные originated.
         
-        Note that when использован as a listener, you must первый вяжи the сокет
+        Note that when использован как listener, you must первый вяжи the сокет
         куда a local адаптер. This can be achieved by binding the сокет куда
         an АдресИнтернета constructed with a порт only (АДР_ЛЮБОЙ), thus
         requesting the OS куда присвой the адрес of a local network адаптер
@@ -41,7 +41,7 @@ class Датаграмма : Сокет
 {
         /***********************************************************************
         
-                Созд a читай/пиши datagram сокет
+                Создаёт читай/пиши datagram сокет
 
         ***********************************************************************/
 

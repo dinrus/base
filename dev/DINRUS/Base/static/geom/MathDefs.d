@@ -95,8 +95,8 @@ T рабоч_уарг(T)(T _уарг)
 }
 
 /** returns the угол determined by its _кос и the знак of its _син
-    результат is positive if the угол is in [0:pi]
-    и negative if it is in [pi:2pi]
+    результат is positive if the угол is in [0:пи]
+    и negative if it is in [пи:2pi]
 */
 T угол(T)(T _кос_угла, T _син_угла)
 {

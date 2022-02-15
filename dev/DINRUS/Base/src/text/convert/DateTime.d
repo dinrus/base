@@ -468,7 +468,7 @@ static this()
                     помести("MM/dd/yy");
                     break;
 
-                case 'e': //день месяца as a десяток число [1,31];
+                case 'e': //день месяца как десяток число [1,31];
                     //a single цифра is preceded by a пространство
                     помести("d"); //The день месяца. Single-цифра дни
                     //will not have a leading zero.
@@ -479,22 +479,22 @@ static this()
                     break;
 
                 case 'H':
-                    //час (24-час clock) as a десяток число [00,23]
+                    //час (24-час clock) как десяток число [00,23]
                     помести("HH"); //The час in a 24-час clock. Single-цифра
                     //часы will have a leading zero.
                     break;
 
-                case 'I': //the час (12-час clock) as a десяток число [01,12]
+                case 'I': //the час (12-час clock) как десяток число [01,12]
                     помести("hh"); //The час in a 12-час clock.
                     //Single-цифра часы will have a leading zero.
                     break;
 
-                case 'm': //месяц as a десяток число [01,12]
+                case 'm': //месяц как десяток число [01,12]
                     помести("MM"); //The numeric месяц. Single-цифра
                     //месяцы will have a leading zero.
                     break;
 
-                case 'M': //минута as a десяток число [00,59]
+                case 'M': //минута как десяток число [00,59]
                     помести("mm"); //The минута. Single-цифра минуты
                     //will have a leading zero.
                     break;
@@ -516,7 +516,7 @@ static this()
                     помести("HH:mm");
                     break;
 
-                case 'S': //секунда as a десяток число [00,61]
+                case 'S': //секунда как десяток число [00,61]
                     помести("ss"); //The секунда. Single-цифра сек
                     //will have a leading zero.
                     break;
@@ -529,35 +529,35 @@ static this()
                     помести("HH:mm:ss");
                     break;
 
-                case 'u': //weekday as a десяток число [1,7],
+                case 'u': //weekday как десяток число [1,7],
                 //with 1 representing Понедельник
                 case 'U': //week число of the год
-                //(Воскресенье as первый день недели) as a десяток число [00,53]
+                //(Воскресенье as первый день недели) как десяток число [00,53]
                 case 'З': //week число of the год
-                //(Понедельник as первый день недели) as a десяток число [01,53].
+                //(Понедельник as первый день недели) как десяток число [01,53].
                 //If the week containing 1 January имеется four or ещё дни
                 //in the new год, then it is consопрered week 1.
                 //Otherwise, it is the последний week of the previous год, и the следщ week is week 1.
-                case 'w': //weekday as a десяток число [0,6], with 0 representing Воскресенье
+                case 'w': //weekday как десяток число [0,6], with 0 representing Воскресенье
                 case 'W': //week число of the год (Понедельник as первый день недели)
-                //as a десяток число [00,53].
+                //как десяток число [00,53].
                 //все дни in a new год preceding the первый Понедельник
                 //are consопрered в_ be in week 0.
                 case 'x': //локаль's appropriate дата представление
                 case 'X': //локаль's appropriate время представление
                 case 'c': //локаль's appropriate дата и время представление
                 case 'C': //century число (the год divопрed by 100 и
-                //truncated в_ an целое) as a десяток число [00-99]
-                case 'j': //день годв as a десяток число [001,366]
+                //truncated в_ an целое) как десяток число [00-99]
+                case 'j': //день годв как десяток число [001,366]
                     assert(0);
                     break;
 
-                case 'y': //год without century as a десяток число [00,99]
+                case 'y': //год without century как десяток число [00,99]
                     помести("yy"); // The год without the century. If the год without
                     //the century is less than 10, the год is displayed with a leading zero.
                     break;
 
-                case 'Y': //год with century as a десяток число
+                case 'Y': //год with century как десяток число
                     помести("yyyy"); //The год in four цифры, включая the century.
                     break;
 
@@ -904,7 +904,7 @@ static this()
             }
             else if (c is '\\')
             {
-                // escaped
+                // эскапирован
                 if (поз < форматируй.length)
                     результат ~= форматируй[поз++];
             }

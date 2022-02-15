@@ -311,7 +311,7 @@ interface ИСелектор
      * Wait for I/O события из_ the registered conduits for a specified
      * amount времени.
      *
-     * Note: This представление of таймаут is not always accurate, so it is
+     * Note: This представление of таймаут is not всегда accurate, so it is
      * possible that the function will return with a таймаут перед the
      * specified период.  For ещё accuracy, use the ИнтервалВремени version.
      *

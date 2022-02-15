@@ -1218,10 +1218,10 @@ alias Век3д   Color3d;
 
     (*hsv)[2] = cmax;				// знач
 
-    плав delta = cmax - cmin;
+    плав дельта = cmax - cmin;
 
     if( cmax > 0 )
-        (*hsv)[1] = delta / cmax;		// с
+        (*hsv)[1] = дельта / cmax;		// с
     else
     {
         // rgb = (0,0,0)		// с = 0, знач is undefined
@@ -1232,11 +1232,11 @@ alias Век3д   Color3d;
 
     плав х;
     if( 0 == imax )
-        х = ( rgb[1] - rgb[2] ) / delta;		// between yellow & magenta
+        х = ( rgb[1] - rgb[2] ) / дельта;		// between yellow & magenta
     else if( 1 == imax )
-        х = 2. + ( rgb[1] - rgb[0] ) / delta;	// between cyan & yellow
+        х = 2. + ( rgb[1] - rgb[0] ) / дельта;	// between cyan & yellow
     else
-        х = 4. + ( rgb[0] - rgb[1] ) / delta;	// between magenta & cyan
+        х = 4. + ( rgb[0] - rgb[1] ) / дельта;	// between magenta & cyan
 
     х /= 6.0;				// [0,1] интервал
     if( х < 0 )

@@ -17,16 +17,16 @@ Object _d_toObject(void* p)
     {
         o = cast(Object)p;
         ClassInfo oc = o.classinfo;
-        Interface *pi = **cast(Interface ***)p;
+        Interface *пи = **cast(Interface ***)p;
 
         /* Interface.offset lines up with ClassInfo.name.ptr,
          * so we rely on pointers never being less than 64K,
          * and Objects never being greater.
          */
-        if (pi.offset < 0x10000)
+        if (пи.offset < 0x10000)
         {
-            //printf("\tpi.offset = %d\n", pi.offset);
-            o = cast(Object)(p - pi.offset);
+            //printf("\tpi.offset = %d\n", пи.offset);
+            o = cast(Object)(p - пи.offset);
         }
     }
     return o;
@@ -44,10 +44,10 @@ Object _d_interface_cast(void* p, ClassInfo c)
     //printf("_d_interface_cast(p = %p, c = '%.*s')\n", p, c.name);
     if (p)
     {
-        Interface *pi = **cast(Interface ***)p;
+        Interface *пи = **cast(Interface ***)p;
 
-        //printf("\tpi.offset = %d\n", pi.offset);
-        o = cast(Object)(p - pi.offset);
+        //printf("\tpi.offset = %d\n", пи.offset);
+        o = cast(Object)(p - пи.offset);
         return _d_dynamic_cast(o, c);
     }
     return o;

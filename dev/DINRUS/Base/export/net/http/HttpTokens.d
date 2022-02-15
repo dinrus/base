@@ -41,7 +41,7 @@ struct ТокенППГТ
 
 /******************************************************************************
 
-        Maintains a установи of HTTP токены. These токены include заголовки, запрос-
+        Maintains набор of HTTP токены. These токены include заголовки, запрос-
         параметры, и anything else vaguely related. Всё ввод и вывод
         are supported, though a subclass may choose в_ expose as читай-only.
 
@@ -67,7 +67,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Construct a установи of токены based upon the given delimiter,
+                Construct набор of токены based upon the given delimiter,
                 и an indication of whether saопр delimiter should be
                 consопрered часть of the left sопрe (effectively the имя).
 
@@ -130,8 +130,8 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the значение of the provопрed заголовок, либо пусто if the
-                заголовок does not exist
+                Возвращает значение of the provопрed заголовок, либо пусто if the
+                заголовок does not есть_ли
 
         **********************************************************************/
 
@@ -139,8 +139,8 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the целое значение of the provопрed заголовок, либо the
-                provопрed default-vaule if the заголовок does not exist
+                Возвращает целое значение of the provопрed заголовок, либо the
+                provопрed default-vaule if the заголовок does not есть_ли
 
         **********************************************************************/
 
@@ -148,8 +148,8 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Return the дата значение of the provопрed заголовок, либо the
-                provопрed default-значение if the заголовок does not exist
+                Возвращает дата значение of the provопрed заголовок, либо the
+                provопрed default-значение if the заголовок does not есть_ли
 
         **********************************************************************/
 
@@ -191,7 +191,7 @@ class ТокеныППГТ
 
         /**********************************************************************
 
-                Созд a фильтр for iterating over the токены совпадают
+                Создаёт фильтр for iterating over the токены совпадают
                 a particular имя.
 
         **********************************************************************/
@@ -270,7 +270,7 @@ class ТокеныППГТ
 
                 Добавь a токен with the given имя. The контент is provопрed
                 via the specified delegate. We stuff this имя & контент
-                преобр_в the вывод буфер, и карта a new Токен onto the
+                преобр_в the буфер вывода, и карта a new Токен onto the
                 appropriate буфер срез.
 
         **********************************************************************/

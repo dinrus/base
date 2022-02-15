@@ -21,7 +21,7 @@ public  import  net.device.Datagram;
         MulticastConduit Отправкаs и Приёмs данные on a multicast группа, as
         described by a class-D адрес. To шли данные, the реципиент группа
         should be handed в_ the пиши() метод. To принять, the сокет is
-        bound в_ an available local адаптер/порт as a listener и must
+        bound в_ an available local адаптер/порт как listener и must
         объедини() the группа перед it becomes eligible for ввод из_ there. 
 
         While MulticastConduit is a flavour of datagram, it doesn't support
@@ -60,7 +60,7 @@ class Мультикаст : Датаграмма
 
         /***********************************************************************
         
-                Созд a записываемый multicast сокет
+                Создаёт записываемый multicast сокет
 
         ***********************************************************************/
 
@@ -68,7 +68,7 @@ class Мультикаст : Датаграмма
 
         /***********************************************************************
         
-                Созд a читай/пиши multicast сокет
+                Создаёт читай/пиши multicast сокет
 
                 This flavour is necessary only for a multicast Приёмr
                 (e.g. use this ctor in conjunction with СОКЕТListener).
@@ -101,7 +101,7 @@ class Мультикаст : Датаграмма
 
         /***********************************************************************
                 
-                Набор the число of hops (время в_ live) of this сокет. 
+                Устанавливает число of hops (время в_ live) of this сокет. 
                 Convenient значения are
                 ---
                 Хост:           packets are restricted в_ the same хост

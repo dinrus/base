@@ -288,7 +288,7 @@ version (linux)
          *
          * Примечания:
          * Unregistering a пусто провод is allowed и no исключение is thrown
-         * if this happens.
+         * если это happens.
          *
          * Выводит исключение:
          * ИсклОтменённогоПровода, если the провод had not been previously

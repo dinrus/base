@@ -8,7 +8,7 @@
 
         author:         Kris
 
-        Потокs for свопping эндиан-order. The поток is treated as a установи
+        Потокs for свопping эндиан-order. The поток is treated as набор
         of same-sized elements. Note that partial elements are not mutated
 
 *******************************************************************************/

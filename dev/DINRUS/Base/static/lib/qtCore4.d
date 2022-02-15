@@ -4298,7 +4298,7 @@
 
 		//вяжи(функция_2142)("_?errorString@QXmlStreamReader@@QBE?AVQString@@XZ", биб);
 
-		//вяжи(функция_2143)("_?escape@QRegExp@@SA?AVQString@@ABV2@@Z", биб);
+		//вяжи(функция_2143)("_?искейп@QRegExp@@SA?AVQString@@ABV2@@Z", биб);
 
 		//вяжи(функция_2144)("_?event@QAbstractAnimation@@MAE_NPAVQEvent@@@Z", биб);
 
@@ -4876,11 +4876,11 @@
 
 		//вяжи(функция_2431)("_?hasAttribute@QXmlStreamAttributes@@QBE_NABVQString@@@Z", биб);
 
-		//вяжи(функция_2432)("_?hasChildren@QAbstractItemModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_2432)("_?естьОтпрыски@QAbstractItemModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_2433)("_?hasChildren@QAbstractListModel@@EBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_2433)("_?естьОтпрыски@QAbstractListModel@@EBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_2434)("_?hasChildren@QAbstractTableModel@@EBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_2434)("_?естьОтпрыски@QAbstractTableModel@@EBE_NABVQModelIndex@@@Z", биб);
 
 		//вяжи(функция_2435)("_?hasColor@QMimeData@@QBE_NXZ", биб);
 
@@ -14872,7 +14872,7 @@
 
 		//вяжи(функция_7429)("_?errorString@QXmlStreamReader@@QBE?AVQString@@XZ", биб);
 
-		//вяжи(функция_7430)("_?escape@QRegExp@@SA?AVQString@@ABV2@@Z", биб);
+		//вяжи(функция_7430)("_?искейп@QRegExp@@SA?AVQString@@ABV2@@Z", биб);
 
 		//вяжи(функция_7431)("_?event@QAbstractAnimation@@MAE_NPAVQEvent@@@Z", биб);
 
@@ -15450,11 +15450,11 @@
 
 		//вяжи(функция_7718)("_?hasAttribute@QXmlStreamAttributes@@QBE_NABVQString@@@Z", биб);
 
-		//вяжи(функция_7719)("_?hasChildren@QAbstractItemModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_7719)("_?естьОтпрыски@QAbstractItemModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_7720)("_?hasChildren@QAbstractListModel@@EBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_7720)("_?естьОтпрыски@QAbstractListModel@@EBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_7721)("_?hasChildren@QAbstractTableModel@@EBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_7721)("_?естьОтпрыски@QAbstractTableModel@@EBE_NABVQModelIndex@@@Z", биб);
 
 		//вяжи(функция_7722)("_?hasColor@QMimeData@@QBE_NXZ", биб);
 

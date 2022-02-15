@@ -48,7 +48,7 @@ Cumulative ни в каком дистрибутиве function for the Норм
 The нормаль (or Gaussian, либо bell-shaped) ни в каком дистрибутиве is
 defined as:
 
-normalDist(x) = 1/$(SQRT) &pi; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt
+normalDist(x) = 1/$(SQRT) &пи; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt
     = 0.5 + 0.5 * матош(x/квкор(2))
     = 0.5 * матошфунк(- x/квкор(2))
 
@@ -85,7 +85,7 @@ export реал normalDistributionCompl(реал a)
  * For small аргументы 0 < p < эксп(-2), the program computes
  * z = квкор( -2 лог(p) );  then the approximation is
  * x = z - лог(z)/z  - (1/z) P(1/z) / Q(1/z) .
- * For larger аргументы,  x/квкор(2 pi) = w + w^3 R(w^2)/S(w^2)) ,
+ * For larger аргументы,  x/квкор(2 пи) = w + w^3 R(w^2)/S(w^2)) ,
  * where w = p - 0.5 .
  */
 export реал normalDistributionInv(реал p)
@@ -113,7 +113,7 @@ debug(UnitTest)
  * Computes the integral из_ minus infinity в_ t of the Student
  * t ни в каком дистрибутиве with целое nu > 0 degrees of freedom:
  *
- *   $(GAMMA)( (nu+1)/2) / ( квкор(nu &pi;) $(GAMMA)(nu/2) ) *
+ *   $(GAMMA)( (nu+1)/2) / ( квкор(nu &пи;) $(GAMMA)(nu/2) ) *
  * $(INTEGRATE -&infin;, t) $(POWER (1+$(POWER x, 2)/nu), -(nu+1)/2) dx
  *
  * Can be использован в_ тест whether the means of two normally distributed populations
@@ -277,7 +277,7 @@ debug(UnitTest)
 // According в_ statsoft.com, studentsDistributionInv(10, 0.995)= 3.16927.
 
 // The остаток значения listed here are из_ Excel, и are unlikely в_ be accurate
-// in the последний десяток places. However, they are helpful as a sanity проверь.
+// in the последний десяток places. However, they are helpful как sanity проверь.
 
 //  Microsoft Excel 2003 gives TINV(2*(1-0.995), 10) == 3.16927267160917
         assert(isfeqabs(studentsTDistributionInv(10, 0.995), 3.169_272_67L, 0.000_000_005L));

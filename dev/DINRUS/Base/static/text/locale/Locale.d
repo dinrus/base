@@ -4,7 +4,7 @@
         module with support for cuture- и region-specific formatting
         of numerics, дата, время, и валюта.
 
-        Use as a standalone форматёр in the same manner as Выкладка, or
+        Use как standalone форматёр in the same manner as Выкладка, or
         комбинируй with другой entities such as Стдвыв. To активируй a French
         Стдвыв, do the following:
         ---
@@ -22,7 +22,7 @@
         supported by Локаль - along with placement of '$', '-', и '.'
         regional-specifics.
 
-        Локаль is currently utf8 only. Support for Всё Utf16 и utf32
+        Локаль на данный момент utf8 only. Support for Всё Utf16 и utf32
         may be включен at a later время
 
 ******************************************************************************/

@@ -2,7 +2,7 @@
 
         copyright:      Copyright (c) 2006 Dinrus. Все права защищены
 
-        license:        BSD стиль: see doc/license.txt for details
+        license:        BSD стиль: see док/license.txt for details
 
         version:        Initial release: Feb 2006
 

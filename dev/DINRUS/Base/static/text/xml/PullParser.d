@@ -10,7 +10,7 @@ private import Utf = text.convert.Utf : вТкст;
 
 /*******************************************************************************
 
-        Use -version=пробел в_ retain пробел as данные узелs. We
+        Use -version=пробел в_ retain пробел as данные узлы. We
         see a %25 increase in токен счёт и 10% throughput drop when
         parsing "hamlet.xml" with this опция включен (pullparser alone)
 
@@ -49,9 +49,9 @@ public enum ПТипТокенаРЯР {Готово, НачальныйЭлем
         Токен based xml Parser.  Templated в_ operate with ткст, шим[], 
         и дим[] контент. 
 
-        The парсер is constructed with some tradeoffs relating в_ document
+        The парсер is constructed with some tradeoffs relating в_ документ
         integrity. It is generally optimized for well-formed documents, и
-        currently may читай past a document-конец for those that are not well
+        currently may читай past a документ-конец for those that are not well
         formed. There are various compilation опции в_ активируй проверьs и
         balances, depending on как things should be handled. We'll settle
         on a common configuration over the следщ few weeks, but for сейчас все
@@ -71,8 +71,8 @@ class PullParser(Ch = сим)
 {
         public цел                      глубина;
         public Ch[]                     префикс;    
-        public Ch[]                     НеобрValue;
-        public Ch[]                     localName;     
+        public Ch[]                     НеобрЗначение;
+        public Ch[]                     локалИмя;     
         public ПТипТокенаРЯР             тип = ПТипТокенаРЯР.Нет;
 
         package XmlText!(Ch)            текст;
@@ -101,7 +101,7 @@ class PullParser(Ch = сим)
                 auto e = текст.конец;
                 auto p = текст.точка;
         
-                // at конец of document?
+                // at конец of документ?
                 if (p >= e)
                     return endOfInput;
 version (stripwhite)
@@ -156,7 +156,7 @@ version (partialwhite)
                              --q;
 }                
                       текст.точка = p;
-                      НеобрValue = q [0 .. p - q];
+                      НеобрЗначение = q [0 .. p - q];
                       return тип = ПТипТокенаРЯР.Данные;
                       }
                    return endOfInput;
@@ -205,12 +205,12 @@ version (partialwhite)
                                while (*q > 63 || текст.attributeName[*q])
                                       ++q;
 
-                               localName = p[0 .. q - p];
+                               локалИмя = p[0 .. q - p];
                                }
                             else 
                                {
                                префикс = пусто;
-                               localName = p[0 .. q - p];
+                               локалИмя = p[0 .. q - p];
                                }
 
                             while (*q <= 32) 
@@ -238,7 +238,7 @@ version (partialwhite)
                             if (*q != ':') 
                                {
                                префикс = пусто;
-                               localName = p [0 .. q - p];
+                               локалИмя = p [0 .. q - p];
                                }
                             else
                                {
@@ -246,7 +246,7 @@ version (partialwhite)
                                p = ++q;
                                while (*q > 63 || текст.attributeName[*q])
                                       ++q;
-                               localName = p[0 .. q - p];
+                               локалИмя = p[0 .. q - p];
                                }  
                                                       
                             текст.точка = q;
@@ -277,12 +277,12 @@ version (partialwhite)
                    while (*q > 63 || текст.attributeName[*q])
                           ++q;
 
-                   localName = p[0 .. q - p];
+                   локалИмя = p[0 .. q - p];
                    }
                 else 
                    {
                    префикс = пусто;
-                   localName = p[0 .. q - p];
+                   локалИмя = p[0 .. q - p];
                    }
                 
                 if (*q <= 32) 
@@ -307,7 +307,7 @@ version (partialwhite)
                                while (*++q != quote) {}
                                if (q < e)
                                   {
-                                  НеобрValue = p[0 .. q - p];
+                                  НеобрЗначение = p[0 .. q - p];
                                   текст.точка = q + 1;   // пропусти конец quote
                                   return тип = ПТипТокенаРЯР.Атрибут;
                                   }
@@ -329,7 +329,7 @@ version (partialwhite)
         {
                 if (текст.точка[0] is '/' && текст.точка[1] is '>')
                    {
-                   localName = префикс = пусто;
+                   локалИмя = префикс = пусто;
                    текст.точка += 2;
                    return тип = ПТипТокенаРЯР.ПустойКонечныйЭлемент;
                    }
@@ -355,7 +355,7 @@ version (partialwhite)
                       if (p[0..3] == "-->") 
                          {
                          текст.точка = p + 3;
-                         НеобрValue = q [0 .. p - q];
+                         НеобрЗначение = q [0 .. p - q];
                          return тип = ПТипТокенаРЯР.Комментарий;
                          }
                       ++p;
@@ -383,7 +383,7 @@ version (partialwhite)
                       if (p[0..3] == "]]>") 
                          {
                          текст.точка = p + 3;                      
-                         НеобрValue = q [0 .. p - q];
+                         НеобрЗначение = q [0 .. p - q];
                          return тип = ПТипТокенаРЯР.СиДанные;
                          }
                       ++p;
@@ -410,7 +410,7 @@ version (partialwhite)
 
                       if (p[1] == '>') 
                          {
-                         НеобрValue = q [0 .. p - q];
+                         НеобрЗначение = q [0 .. p - q];
                          текст.точка = p + 2;
                          return тип = ПТипТокенаРЯР.ПИ;
                          }
@@ -438,7 +438,7 @@ version (partialwhite)
                       {
                       if (*p is '>') 
                          {
-                         НеобрValue = q [0 .. p - q];
+                         НеобрЗначение = q [0 .. p - q];
                          префикс = пусто;
                          текст.точка = p + 1;
                          return тип = ПТипТокенаРЯР.Доктип;
@@ -511,26 +511,26 @@ version (partialwhite)
 
         /***********************************************************************
         
-                Return the необр значение of the текущ токен
+                Возвращает необр значение of the текущ токен
 
         ***********************************************************************/
 
         final Ch[] значение()
         {
-                return НеобрValue;
+                return НеобрЗначение;
         }
         
         /***********************************************************************
         
-                Return the имя of the текущ токен
+                Возвращает имя of the текущ токен
 
         ***********************************************************************/
 
         final Ch[] имя()
         {
                 if (префикс.length)
-                    return префикс ~ ":" ~ localName;
-                return localName;
+                    return префикс ~ ":" ~ локалИмя;
+                return локалИмя;
         }
                 
         /***********************************************************************
@@ -682,48 +682,48 @@ debug (UnitTest)
 	        assert(itr.значение == "элемент [ <!ELEMENT элемент (#PCDATA)>]");
 	        assert(itr.тип == ПТипТокенаРЯР.Доктип);
 	        assert(itr.следщ);
-	        assert(itr.localName == "элемент");
+	        assert(itr.локалИмя == "элемент");
 	        assert(itr.тип == ПТипТокенаРЯР.НачальныйЭлемент);
 	        assert(itr.глубина == 0);
 	        assert(itr.следщ);
-	        assert(itr.localName == "атр");
+	        assert(itr.локалИмя == "атр");
 	        assert(itr.значение == "1");
 	        assert(itr.следщ);
 	        assert(itr.тип == ПТипТокенаРЯР.Атрибут);
-	        assert(itr.localName == "attr2");
+	        assert(itr.локалИмя == "attr2");
 	        assert(itr.значение == "two");
 	        assert(itr.следщ);
 	        assert(itr.значение == "коммент");
 	        assert(itr.следщ);
-	        assert(itr.НеобрValue == "тест&amp;&#x5a;");
+	        assert(itr.НеобрЗначение == "тест&amp;&#x5a;");
 	        assert(itr.следщ);
 	        assert(itr.префикс == "qual");
-	        assert(itr.localName == "элем");
+	        assert(itr.локалИмя == "элем");
 	        assert(itr.следщ);
 	        assert(itr.тип == ПТипТокенаРЯР.ПустойКонечныйЭлемент);
 	        assert(itr.следщ);
-	        assert(itr.localName == "el2");
+	        assert(itr.локалИмя == "el2");
 	        assert(itr.глубина == 1);
 	        assert(itr.следщ);
-	        assert(itr.localName == "attr3");
+	        assert(itr.локалИмя == "attr3");
 	        assert(itr.значение == "3three", itr.значение);
 	        assert(itr.следщ);
-	        assert(itr.НеобрValue == "sdlgjsh");
+	        assert(itr.НеобрЗначение == "sdlgjsh");
 	        assert(itr.следщ);
-	        assert(itr.localName == "el3");
+	        assert(itr.локалИмя == "el3");
 	        assert(itr.глубина == 2);
 	        assert(itr.следщ);
 	        assert(itr.тип == ПТипТокенаРЯР.ПустойКонечныйЭлемент);
 	        assert(itr.следщ);
 	        assert(itr.значение == "данные");
 	        assert(itr.следщ);
-	      //  assert(itr.qvalue == "pi", itr.qvalue);
+	      //  assert(itr.qvalue == "пи", itr.qvalue);
 	      //  assert(itr.значение == "тест");
-	        assert(itr.НеобрValue == "pi тест", itr.НеобрValue);
+	        assert(itr.НеобрЗначение == "пи тест", itr.НеобрЗначение);
 	        assert(itr.следщ);
-	        assert(itr.localName == "el2");
+	        assert(itr.локалИмя == "el2");
 	        assert(itr.следщ);
-	        assert(itr.localName == "элемент");
+	        assert(itr.локалИмя == "элемент");
 	        assert(!itr.следщ);
 	}
 	
@@ -734,7 +734,7 @@ debug (UnitTest)
 	
 	static const ткст testXML = "<?xml version=\"1.0\" ?><!DOCTYPE элемент [ <!ELEMENT элемент (#PCDATA)>]><элемент "
 	    "атр=\"1\" attr2=\"two\"><!--коммент-->тест&amp;&#x5a;<qual:элем /><el2 attr3 = "
-	    "'3three'><![CDATA[sdlgjsh]]><el3 />данные<?pi тест?></el2></элемент>";
+	    "'3three'><![CDATA[sdlgjsh]]><el3 />данные<?пи тест?></el2></элемент>";
 	
 	unittest
 	{       

@@ -34,9 +34,9 @@ version(Windows)
 {
 
     /** String used to separate directory names in a path. Under
-     *  Windows this is a backslash, under Linux a slash. */
+     *  Windows this is a backslash, under Linux a слэш. */
     const char[1] sep = "\\";
-    /** Alternate version of sep[] used in Windows (a slash). Under
+    /** Alternate version of sep[] used in Windows (a слэш). Under
      *  Linux this is empty. */
     const char[1] altsep = "/";
     /** Path separator string. A semi colon under Windows, a colon
@@ -51,9 +51,9 @@ version(Windows)
 version(Posix)
 {
     /** String used to separate directory names in a path. Under
-     *  Windows this is a backslash, under Linux a slash. */
+     *  Windows this is a backslash, under Linux a слэш. */
     const char[1] sep = "/";
-    /** Alternate version of sep[] used in Windows (a slash). Under
+    /** Alternate version of sep[] used in Windows (a слэш). Under
      *  Linux this is empty. */
     const char[0] altsep;
     /** Path separator string. A semi colon under Windows, a colon
@@ -402,7 +402,7 @@ unittest
  * Возвращаетs: If a colon is found, all the characters to its left
  * plus the colon are returned.  Otherwise, null is returned.
  *
- * Under Linux, this function always returns null immediately.
+ * Under Linux, this function всегда returns null immediately.
  *
  * Выводит исключение: Nothing.
  *
@@ -786,7 +786,7 @@ int fncharmatch(dchar c1, dchar c2)
  * Matches a pattern against a filename.
  *
  * Some characters of pattern have special a meaning (they are
- * <i>meta-characters</i>) and <b>can't</b> be escaped. These are:
+ * <i>meta-characters</i>) and <b>can't</b> be эскапирован. These are:
  * <p><table>
  * <tr><td><b>*</b></td>
  *     <td>Matches 0 or more instances of any character.</td></tr>
@@ -857,7 +857,7 @@ int fnmatch(string filename, string pattern)
     }
     body
     {
-	int pi;
+	int пи;
 	int ni;
 	char pc;
 	char nc;
@@ -866,17 +866,17 @@ int fnmatch(string filename, string pattern)
 	int anymatch;
 
 	ni = 0;
-	for (pi = 0; pi < pattern.length; pi++)
+	for (пи = 0; пи < pattern.length; пи++)
 	{
-	    pc = pattern[pi];
+	    pc = pattern[пи];
 	    switch (pc)
 	    {
 		case '*':
-		    if (pi + 1 == pattern.length)
+		    if (пи + 1 == pattern.length)
 			goto match;
 		    for (j = ni; j < filename.length; j++)
 		    {
-			if (fnmatch(filename[j .. filename.length], pattern[pi + 1 .. pattern.length]))
+			if (fnmatch(filename[j .. filename.length], pattern[пи + 1 .. pattern.length]))
 			    goto match;
 		    }
 		    goto nomatch;
@@ -893,20 +893,20 @@ int fnmatch(string filename, string pattern)
 		    nc = filename[ni];
 		    ni++;
 		    not = 0;
-		    pi++;
-		    if (pattern[pi] == '!')
+		    пи++;
+		    if (pattern[пи] == '!')
 		    {	not = 1;
-			pi++;
+			пи++;
 		    }
 		    anymatch = 0;
 		    while (1)
 		    {
-			pc = pattern[pi];
+			pc = pattern[пи];
 			if (pc == ']')
 			    break;
 			if (!anymatch && fncharmatch(nc, pc))
 			    anymatch = 1;
-			pi++;
+			пи++;
 		    }
 		    if (!(anymatch ^ not))
 			goto nomatch;
@@ -978,9 +978,9 @@ unittest
  * match the value stored in the user database.
  *
  * When the environment variable version is used, the path won't
- * be modified if the environment variable doesn't exist or it
+ * be modified if the environment variable doesn't есть_ли or it
  * is empty. When the database version is used, the path won't be
- * modified if the user doesn't exist in the database or there is
+ * modified if the user doesn't есть_ли in the database or there is
  * not enough memory to выполни the query.
  *
  * Возвращаетs: inputPath with the tilde expanded, либо just inputPath
@@ -1065,7 +1065,7 @@ unittest
 	assert(expandTilde("~/") == "dmd/test/");
 	assert(expandTilde("~") == "dmd/test");
 
-	// The same, but with a variable ending in a slash.
+	// The same, but with a variable ending in a слэш.
 	ret = setenv("HOME", "dmd/test/\0", 1);
 	assert(ret == 0);
 	assert(expandTilde("~/") == "dmd/test/");

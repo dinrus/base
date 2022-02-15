@@ -30,7 +30,7 @@ export:
 
 /*********************************
  * Convert a series of ткст to C-style 0 terminated строки, using 
- * врм as a workspace and прм as a place to put the resulting сим*'s.
+ * врм как workspace and прм как place to put the resulting сим*'s.
  * This is handy for efficiently converting multiple строки at once.
  *
  * Возвращаетs a populated slice of прм

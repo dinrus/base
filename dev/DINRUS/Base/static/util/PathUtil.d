@@ -33,7 +33,7 @@ private enum
 
     On Windows, \ will be преобразованый в_ / prior в_ normalization.
 
-    MultИПle consecutive forward slashes are replaced with a single forward slash.
+    MultИПle consecutive forward slashes are replaced with a single forward слэш.
 
     Note that any число of .. segments at the front is ignored,
     unless it is an абсолютный путь, in which case they are removed.
@@ -266,7 +266,7 @@ debug (UnitTest)
             Matches a образец against a имяф.
 
             Some characters of образец have special a meaning (they are
-            <i>meta-characters</i>) and <b>can't</b> be escaped. These are:
+            <i>meta-characters</i>) and <b>can't</b> be эскапирован. These are:
             <p><table>
             <tr><td><b>*</b></td>
             <td>Matches 0 or ещё instances of any character.</td></tr>
@@ -338,7 +338,7 @@ debug (UnitTest)
         }
             body
             {
-            цел pi;
+            цел пи;
             цел ni;
             сим pc;
             сим nc;
@@ -347,18 +347,18 @@ debug (UnitTest)
             цел anymatch;
 
             ni = 0;
-            for (pi = 0; pi < образец.length; pi++)
+            for (пи = 0; пи < образец.length; пи++)
             {
-            pc = образец[pi];
+            pc = образец[пи];
             switch (pc)
             {
             case '*':
-            if (pi + 1 == образец.length)
+            if (пи + 1 == образец.length)
             goto match;
             for (j = ni; j < имяф.length; j++)
             {
             if (совпадение(имяф[j .. имяф.length],
-            образец[pi + 1 .. образец.length]))
+            образец[пи + 1 .. образец.length]))
             goto match;
         }
             goto nomatch;
@@ -375,21 +375,21 @@ debug (UnitTest)
             nc = имяф[ni];
             ni++;
             not = 0;
-            pi++;
-            if (образец[pi] == '!')
+            пи++;
+            if (образец[пи] == '!')
             {
             not = 1;
-            pi++;
+            пи++;
         }
             anymatch = 0;
             while (1)
             {
-            pc = образец[pi];
+            pc = образец[пи];
             if (pc == ']')
             break;
             if (!anymatch && charMatch(nc, pc))
             anymatch = 1;
-            pi++;
+            пи++;
         }
             if (!(anymatch ^ not))
             goto nomatch;

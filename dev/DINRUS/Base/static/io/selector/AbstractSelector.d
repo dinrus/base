@@ -252,9 +252,9 @@ export:
      * Causes the первый вызов в_ выбери() that имеется not yet returned в_ return
      * immediately.
      *
-     * If другой нить is currently блокed in an вызов в_ any of the
+     * If другой нить на данный момент блокed in an вызов в_ any of the
      * выбери() methods then that вызов will return immediately. If no
-     * выделение operation is currently in ход then the следщ invocation
+     * выделение operation на данный момент in ход then the следщ invocation
      * of one of these methods will return immediately. In any case the значение
      * returned by that invocation may be non-zero. Subsequent invocations of
      * the выбери() methods will блок as usual unless this метод is invoked

@@ -94,7 +94,7 @@ private
  * матошфунк(x) = 1 - матош(x), и имеется high relative accuracy for
  * значения of x far из_ zero. (For значения near zero, use матош(x)).
  *
- *  1 - матош(x) =  2/ $(SQRT)(&pi;)
+ *  1 - матош(x) =  2/ $(SQRT)(&пи;)
  *     $(INTEGRAL x, $(INFINITY)) эксп( - $(POWER t, 2)) dt
  *
  *
@@ -182,7 +182,7 @@ private
  *
  * The integral is
  *
- *  матош(x) =  2/ $(SQRT)(&pi;)
+ *  матош(x) =  2/ $(SQRT)(&пи;)
  *     $(INTEGRAL 0, x) эксп( - $(POWER t, 2)) dt
  *
  * The magnitude of x is limited в_ about 106.56 for IEEE 80-bit
@@ -280,7 +280,7 @@ export реал экспикс2(реал x, цел знак)
     if (знак < 0)
         x = -x;
 
-    /* Represent x as an exact multИПle of M plus a резопрual.
+    /* Represent x как exact multИПle of M plus a резопрual.
        M is a power of 2 chosen so that эксп(m * m) does not перебор
        or недобор и so that |x - m| is small.  */
     реал m = MINV * пол(M * x + 0.5L);
@@ -312,7 +312,7 @@ package
     The нормаль (or Gaussian, либо bell-shaped) ни в каком дистрибутиве is
     defined as:
 
-    normalDist(x) = 1/$(SQRT) &pi; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt
+    normalDist(x) = 1/$(SQRT) &пи; $(INTEGRAL -$(INFINITY), x) эксп( - $(POWER t, 2)/2) dt
         = 0.5 + 0.5 * матош(x/квкор(2))
         = 0.5 * матошфунк(- x/квкор(2))
 
@@ -371,7 +371,7 @@ package
      * For small аргументы 0 < p < эксп(-2), the program computes
      * z = квкор( -2 лог(p) );  then the approximation is
      * x = z - лог(z)/z  - (1/z) P(1/z) / Q(1/z) .
-     * For larger аргументы,  x/квкор(2 pi) = w + w^3 R(w^2)/S(w^2)) ,
+     * For larger аргументы,  x/квкор(2 пи) = w + w^3 R(w^2)/S(w^2)) ,
      * where w = p - 0.5 .
      */
     реал нормДистрибуцииИнвРеализ(реал p)

@@ -3,7 +3,7 @@
 alias stdrus.скажифнс ск;
 alias util.worktools.удалиФайлы уд;
 
-const ткст[] расш = [ "*.obj", "*.map", "*.bak"];//,"*.dep", "*.tmp"];
+const ткст[] расш = [ "*.obj", "*.map", "*.bak","*.rsp"];//,"*.dep", "*.tmp"];
 const ткст[] файлы = ["CDinr.lib","la.lib", "st.lib", "geom.lib", "mesh.lib", "math.lib", "util.lib", "col.lib", "dlib.lib", "dinrus2.lib", "dinrus2_dbg.lib", "io.lib", "crypto.lib", "time.lib", "text.lib"];
 const ткст ТП;
 

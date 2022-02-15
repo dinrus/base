@@ -303,7 +303,7 @@ void getTimes(char[] name, out d_time ftc, out d_time fta, out d_time ftm)
 
 
 /***************************************************
- * Does file name[] (or directory) exist?
+ * Does file name[] (or directory) есть_ли?
  * Возвращает 1 if it does, 0 if not.
  */
 
@@ -342,7 +342,7 @@ uint getAttributes(string name)
 
 /****************************************************
  * Is name[] a file?
- * Выводит исключение: ФайлИскл if name[] doesn't exist.
+ * Выводит исключение: ФайлИскл if name[] doesn't есть_ли.
  */
 
 int isfile(char[] name)
@@ -352,7 +352,7 @@ int isfile(char[] name)
 
 /****************************************************
  * Is name[] a directory?
- * Выводит исключение: ФайлИскл if name[] doesn't exist.
+ * Выводит исключение: ФайлИскл if name[] doesn't есть_ли.
  */
 
 int isdir(char[] name)
@@ -1131,7 +1131,7 @@ void getTimes(string name, out d_time ftc, out d_time fta, out d_time ftm)
 
 
 /****************************************************
- * Does file/directory exist?
+ * Does file/directory есть_ли?
  */
 
 int exists(char[] name)
@@ -1304,7 +1304,7 @@ alias name имя;
     }
 
     /* This is to support lazy evaluation, because doing stat's is
-     * expensive and not always needed.
+     * expensive and not всегда needed.
      */
 
     void doStat()

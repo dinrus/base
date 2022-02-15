@@ -226,7 +226,7 @@ struct Матрица(Т, цел M, цел N)
         return квкор(квнорм());
     }
 
-    /// Return the one-нормаль of the matrix (sum of элементы' absolute значения)
+    /// Возвращает one-нормаль of the matrix (sum of элементы' absolute значения)
     Скаляр норм1()
     {
         Скаляр возвр=0;
@@ -234,7 +234,7 @@ struct Матрица(Т, цел M, цел N)
         return возвр;
     }
 
-    /// Return the infinity-нормаль of the matrix (макс absolute value элемент)
+    /// Возвращает infinity-нормаль of the matrix (макс absolute value элемент)
     Скаляр бескнорм()
     {
         Скаляр возвр= -Скаляр.max;

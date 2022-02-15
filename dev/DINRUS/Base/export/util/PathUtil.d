@@ -9,7 +9,7 @@
 
     On Windows, \ will be преобразованый в_ / prior в_ normalization.
 
-    MultИПle consecutive forward slashes are replaced with a single forward slash.
+    MultИПle consecutive forward slashes are replaced with a single forward слэш.
 
     Note that any число of .. segments at the front is ignored,
     unless it is an абсолютный путь, in which case they are removed.
@@ -31,7 +31,7 @@
             Matches a образец against a имяф.
 
             Some characters of образец have special a meaning (they are
-            <i>meta-characters</i>) and <b>can't</b> be escaped. These are:
+            <i>meta-characters</i>) and <b>can't</b> be эскапирован. These are:
             <p><table>
             <tr><td><b>*</b></td>
             <td>Matches 0 or ещё instances of any character.</td></tr>

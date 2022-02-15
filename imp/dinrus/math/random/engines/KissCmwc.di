@@ -10,7 +10,7 @@ private import Целое = text.convert.Integer;
 /+ CMWC и KISS random число generators combined, for extra security wrt. plain CMWC и
 + Marisaglia, Journal of Modern Applied Statistical Methods (2003), vol.2,No.1,p 2-13
     + a simple safe и быстро RNG that проходки все statistical tests, имеется a large сей, и is reasonably быстро
-    + This is the движок, *never* use it directly, always use it though a СлуччисГ class
+    + This is the движок, *never* use it directly, всегда use it though a СлуччисГ class
         +/
         struct KissCmwc(бцел cmwc_r=1024U,бдол cmwc_a=987769338UL)
     {

@@ -396,7 +396,7 @@ All 1-bit deltas, all 2-bit deltas, all deltas composed of top bits of
   tested both on random keys and on keys that were nearly all zero.
   These deltas all cause every bit of c to change between 1/3 and 2/3
   of the time (well, only 113/400 to 287/400 of the time for some
-  2-bit delta).  These deltas all cause at least 80 bits to change
+  2-bit дельта).  These deltas all cause at least 80 bits to change
   among (a,b,c) when the mix is run either forward or backward (yes it
   is reversible).
 This implies that a hash using mix64 has no funnels.  There may be
@@ -426,7 +426,7 @@ hash() -- hash a variable-length key into a 64-bit value
   len   : the length of the key, counting by bytes
   level : can be any 8-byte value
 Returns a 64-bit value.  Every bit of the key affects every bit of
-the return value.  No funnels.  Every 1-bit and 2-bit delta achieves
+the return value.  No funnels.  Every 1-bit and 2-bit дельта achieves
 avalanche.  About 41+5len instructions.
 
 The best hash table sizes are powers of 2.  There is no need to do

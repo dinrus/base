@@ -58,7 +58,7 @@ const char[6] whitespace = " \t\v\r\n\f";			/// ASCII whitespace
 const dchar LS = '\u2028';	/// UTF line separator
 const dchar PS = '\u2029';	/// UTF paragraph separator
 
-/// Newline sequence for this system
+/// Newline sequence для этого system
 version (Windows)
     const char[2] newline = "\r\n";
 else version (Posix)
@@ -2557,7 +2557,7 @@ char[] toString(creal r)
  * Convert value to string in _radix radix.
  *
  * radix must be a value from 2 to 36.
- * value is treated as a signed value only if radix is 10.
+ * value is treated как signed value only if radix is 10.
  * The characters A through Z are used to represent values 10 through 36.
  */
 char[] toString(long value, uint radix)
@@ -3315,7 +3315,7 @@ final bool числовой_ли(in char[] s, in bool bAllowSep = false)
     char   c;
 
     //writefln("числовой_ли(char[], bool = false) called!");
-    // Empty string, return false
+    // Пустой string, return false
     if (iLen == 0)
         return false;
     
@@ -3363,7 +3363,7 @@ final bool числовой_ли(in char[] s, in bool bAllowSep = false)
             if (i + 1 < iLen)
             {
                 // Look forward for the sign, and if 
-                // missing then this is not a number.
+                // missing then это не number.
                 if (sx[i + 1] != '-' && sx[i + 1] != '+')
                     return false;
                 else
@@ -3446,7 +3446,7 @@ final bool числовой_ли(in char[] s, in bool bAllowSep = false)
     return true;
 }
 
-/// Allow any object as a parameter
+/// Allow any object как parameter
 bool числовой_ли(...)
 {
     return числовой_ли(_arguments, _argptr);

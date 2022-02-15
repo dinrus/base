@@ -755,7 +755,7 @@ class МассивСписок(З) : СКлючом!(бцел, З), Список
             _массив = _массив ~ з;
 
             //
-            // no need to change the изменение, we are a new ancestor.
+            // no need to change the изменение, we are a new предок.
             //
         }
 
@@ -1161,7 +1161,7 @@ class МассивСписок(З) : СКлючом!(бцел, З), Список
     {
         //
         // can'т really do this without extra library помощь.  Luckily, the
-        // function to сортируй an массив is always defined by the runtime.  We
+        // function to сортируй an массив is всегда defined by the runtime.  We
         // just need to доступ обх.  However, обх требует that we pass in a
         // ИнфОТипе structure to do all the dirty work.  What we need is a
         // derivative of the real ИнфОТипе structure with the сравни function
@@ -1184,7 +1184,7 @@ class МассивСписок(З) : СКлючом!(бцел, З), Список
     {
         //
         // can'т really do this without extra library помощь.  Luckily, the
-        // function to сортируй an массив is always defined by the runtime.  We
+        // function to сортируй an массив is всегда defined by the runtime.  We
         // just need to доступ обх.  However, обх требует that we pass in a
         // ИнфОТипе structure to do all the dirty work.  What we need is a
         // derivative of the real ИнфОТипе structure with the сравни function

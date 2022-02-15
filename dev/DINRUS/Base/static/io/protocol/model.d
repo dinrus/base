@@ -222,7 +222,7 @@ abstract class ИЧитатель   // could be an interface, but that causes po
         
                 This is the mechanism использован for binding arbitrary classes 
                 в_ the IO system. If a class реализует ИЧитаемое, it can
-                be использован as a мишень for ИЧитатель получи() operations. That is, 
+                be использован как мишень for ИЧитатель получи() operations. That is, 
                 implementing ИЧитаемое is intended в_ трансформируй any class 
                 преобр_в an ИЧитатель adaptor for the контент held therein.
 
@@ -236,7 +236,7 @@ abstract class ИЧитатель   // could be an interface, but that causes po
 
         /***********************************************************************
         
-                Return the буфер associated with this читатель
+                Возвращает буфер associated with this читатель
 
         ***********************************************************************/
 
@@ -382,7 +382,7 @@ abstract class ИПисатель  // could be an interface, but that causes poo
         
                 This is the mechanism использован for binding arbitrary classes 
                 в_ the IO system. If a class реализует ИЗаписываемое, it can
-                be использован as a мишень for ИПисатель помести() operations. That is, 
+                be использован как мишень for ИПисатель помести() operations. That is, 
                 implementing ИЗаписываемое is intended в_ трансформируй any class 
                 преобр_в an ИПисатель adaptor for the контент held therein
 
@@ -414,7 +414,7 @@ abstract class ИПисатель  // could be an interface, but that causes poo
 
         /***********************************************************************
         
-                Return the associated буфер
+                Возвращает associated буфер
 
         ***********************************************************************/
 

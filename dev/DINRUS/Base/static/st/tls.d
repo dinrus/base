@@ -456,7 +456,7 @@ unittest
 
     assert(tls2.знач.x == 10);
 
-    //Try out objects
+    //Try out объекты
     static class TestClass
     {
         цел x = 10;

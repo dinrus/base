@@ -7,7 +7,7 @@ private import  col.model.View,
  *
  *
  * KeySorted is a mixin interface for Collections that
- * are always in sorted order with respect в_ a Сравнитель
+ * are всегда in sorted order with respect в_ a Сравнитель
  * held by the Коллекция.
  * <P>
  * KeySorted Collections guarantee that enumerations

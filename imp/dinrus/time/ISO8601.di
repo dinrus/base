@@ -849,7 +849,7 @@ enum :  байт { ПЛОХ, НАЙДЕНО, НЕ_НАЙДЕНО }
     return НАЙДЕНО;
 }
 
-// the ДВ is always UTC, so this just добавьs the смещение в_ the дата fields
+// the ДВ is всегда UTC, so this just добавьs the смещение в_ the дата fields
 // другой опция would be в_ добавь время зона fields в_ ДВ and have this заполни them
 
 байт дайВременнуюЗону(T)(ref T* p, т_мера длин, ref ПолнаяДата пд, ббайт разделители, бул delegate(T[]) готово)
@@ -978,7 +978,7 @@ Extract an целое из_ the ввод, прими no ещё than max цифр
 
 \+ +++++++++++++++++++++++++++++++++++++++ +/
 
-// note: код relies on these always being positive, failing if *p == '-'
+// note: код relies on these всегда being positive, failing if *p == '-'
 
 цел парсируйЦел(T)(ref T* p, т_мера max)
 {
@@ -1037,7 +1037,7 @@ Extract an целое из_ the ввод, прими no ещё than max цифр
     d.знач += ИнтервалВремени.изМиллисек (n);
 }
 
-// годы and секунды always just получи the ДВ значение
+// годы and секунды всегда just получи the ДВ значение
 цел годы (ПолнаяДата d)
 {
     return Грегориан.генерный.дайГод      (d.знач);

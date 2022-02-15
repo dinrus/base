@@ -487,7 +487,7 @@ export struct ИнтервалВремени
 
     /**
      * Конструирует ИнтервалВремени из_ the given интервал.  The интервал
-     * represents сек as a дво.  This допускается Всё whole и
+     * represents сек как дво.  This допускается Всё whole и
      * fractional сек в_ be passed in.
      *
      * Параметры: значение = The интервал в_ преобразуй in сек.
@@ -690,7 +690,7 @@ export struct ИнтервалВремени
 
 /******************************************************************************
 
-        Represents a точка во времени.
+        Представляет точка во времени.
 
         Примечания: Время represents dates и times between 12:00:00
         mопрnight on January 1, 10000 BC и 11:59:59 PM on December 31,
@@ -758,7 +758,7 @@ export struct Время
 
     /**********************************************************************
 
-            $(I Свойство.) Retrieves the число of тики for this Время.
+            $(I Свойство.) Retrieves the число of тики для этого Время.
             This значение can be использован в_ construct другой Время struct by
             writing:
 
@@ -955,7 +955,7 @@ export struct Время
 
 /******************************************************************************
 
-        Represents a время of день. This is different из_ ИнтервалВремени in that
+        Представляет время of день. This is different из_ ИнтервалВремени in that
         each component is represented внутри the limits of everyday время,
         rather than из_ the старт of the Эпоха. Effectively, the ВремяДня
         эпоха is the первый секунда of each день.

@@ -271,7 +271,7 @@ version (Windows)
 {
 /*******************************************************************************
 
-        Adjust the content such that no partial encodings exist on the 
+        Adjust the content such that no partial encodings есть_ли on the 
         right side of the provided text.
 
         Returns a slice of the input

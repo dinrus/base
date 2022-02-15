@@ -229,7 +229,7 @@ export:
 
                 /***************************************************************
 
-                        return a срез representing файл контент as a 
+                        return a срез representing файл контент как 
                         память-mapped Массив. Use this в_ remap контент
                         each время the файл размер is изменён
 

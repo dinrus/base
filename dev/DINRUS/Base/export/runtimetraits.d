@@ -153,11 +153,11 @@ struct примениИнтерфейсы
  * For functions and delegates, returns нет (is this the way it should be?). */
 бул типЗначение_ли (ИнфОТипе тип);
 
-/** The ключ тип of the given тип. For an Массив, т_мера; for an associative
+/** The ключ тип указанного типа. For an Массив, т_мера; for an associative
  * Массив T[U], U. */
 ИнфОТипе типКлюч (ИнфОТипе тип);
 
-/** The значение тип of the given тип -- given T[] or T[n], T; given T[U],
+/** The значение тип указанного типа -- given T[] or T[n], T; given T[U],
  * T; given T*, T; anything else, пусто. */
 ИнфОТипе типЗначение (ИнфОТипе тип);
 

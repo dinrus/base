@@ -152,7 +152,7 @@ private:
 	end,
 	colon,
 	minus,
-	slash,
+	слэш,
 	ampm,
 	plus,
 	tz,
@@ -180,11 +180,11 @@ private:
 		case ':':	результат = DP.colon; goto ret_inc;
 		case '+':	результат = DP.plus;  goto ret_inc;
 		case '-':	результат = DP.minus; goto ret_inc;
-		case '/':	результат = DP.slash; goto ret_inc;
+		case '/':	результат = DP.слэш; goto ret_inc;
 		case '.':
 		    version(DATE_DOT_DELIM)
 		    {
-			результат = DP.slash;
+			результат = DP.слэш;
 			goto ret_inc;
 		    }
 		    else
@@ -539,7 +539,7 @@ private:
 			    break;
 
 			case DP.minus:
-			case DP.slash:	// n1/ ? ? ?
+			case DP.слэш:	// n1/ ? ? ?
 			    dp = parseCalendarDate(n1);
 			    if (dp == DP.err)
 				goto case_error;
@@ -598,7 +598,7 @@ private:
 		year = number;
 		dp = nextToken();
 	    }
-	    else if (dp == DP.minus || dp == DP.slash)
+	    else if (dp == DP.minus || dp == DP.слэш)
 	    {   // day/month/year
 		dp = nextToken();
 		if (dp != DP.number)
@@ -613,7 +613,7 @@ private:
 	n2 = number;
 	//message(DTEXT("\tn2 = %d\n"), n2);
 	dp = nextToken();
-	if (dp == DP.minus || dp == DP.slash)
+	if (dp == DP.minus || dp == DP.слэш)
 	{
 	    dp = nextToken();
 	    if (dp != DP.number)

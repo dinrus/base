@@ -643,7 +643,7 @@ export extern(D) class Нить
          * результат of deleting any Нить Объект is undefined.
          *
          * Параметры:
-         *  дг = The supplied code as a delegate.
+         *  дг = The supplied code как delegate.
          *
          * Возвращает:
          *  Zero if all elemented are visited, nonzero if not.
@@ -1134,7 +1134,7 @@ export extern(D) class Нить
         // NOTE: If нить_иниц itself performs any allocations then the thread
         //       routines reserved for garbage collector use may be called while
         //       нить_иниц is being processed.  However, since no memory should
-        //       exist to be scanned at this point, it is sufficient for these
+        //       есть_ли to be scanned at this point, it is sufficient for these
         //       functions to detect the condition and return immediately.
             //скажинс("Начало инициализации нити");
         
@@ -1153,7 +1153,7 @@ export extern(D) class Нить
 
 
     /**
-     * Registers the calling thread for use with Tango.  If this routine is called
+     * Registers the calling thread для использования с Tango.  If this routine is called
      * for a thread which is already registered, the результат is undefined.
      */
     export extern (C) проц нить_прикрепиЭту()
@@ -1704,7 +1704,7 @@ export extern(D) class Нить
     private:
         //
         // A wrapper for the stored data.  This is needed for determining whether
-        // set has ever been called for this thread (and therefore whether the
+        // set has ever been called для этого thread (and therefore whether the
         // default value should be returned) and also to flatten the differences
         // between data that is smaller and lаргer than (ук).sizeof.  The
         // obvious tradeoff here is an extra per-thread allocation for each
@@ -2300,7 +2300,7 @@ export extern (D) class Фибра
          *
          * Параметры:
          *  фн = The thread function.
-         *  разм = The stack size for this fiber.
+         *  разм = The stack size для этого fiber.
          *
          * In:
          *  фн must not be null.
@@ -2326,7 +2326,7 @@ export extern (D) class Фибра
          *
          * Параметры:
          *  дг = The thread function.
-         *  разм = The stack size for this fiber.
+         *  разм = The stack size для этого fiber.
          *
          * In:
          *  дг must not be null.
@@ -2353,7 +2353,7 @@ export extern (D) class Фибра
          */
     export  ~this()
         {
-            // NOTE: A live reference to this Объект will exist on its associated
+            // NOTE: A live reference to this Объект will есть_ли on its associated
             //       stack from the first time its вызови() метод has been called
             //       until its execution completes with Состояние.ТЕРМ.  Thus, the only
             //       times this dtor should be called are either if the fiber has
@@ -2413,7 +2413,7 @@ export extern (D) class Фибра
               m_ucur = null;
 
             // NOTE: If the fiber has terminated then the stack pointers must be
-            //       сбрось.  This ensures that the stack for this fiber is not
+            //       сбрось.  This ensures that the stack для этого fiber is not
             //       scanned if the fiber has terminated.  This is necessary to
             //       prevent any references lingering on the stack from delaying
             //       the collection of otherwise dead OBJECTs.  The most notable
@@ -2552,8 +2552,8 @@ export extern (D) class Фибра
 
         /**
          * A fiber may occupy one of three states: ЗАДЕРЖ, ВЫП, and ТЕРМ.  The ЗАДЕРЖ
-         * состояние applies to any fiber that is suspended and готов to be called.
-         * The ВЫП состояние will be set for any fiber that is currently executing.
+         * состояние applies to any fiber that приостановлена and готов to be called.
+         * The ВЫП состояние will be set for any fiber that на данный момент executing.
          * And the ТЕРМ состояние is set when a fiber terminates.  Once a fiber
          * terminates, it must be сбрось before it may be called again.
          */
@@ -2569,7 +2569,7 @@ export extern (D) class Фибра
          * Gets the current состояние of this fiber.
          *
          * Возвращает:
-         *  The состояние of this fiber as an enumerated value.
+         *  The состояние of this fiber как enumerated value.
          */
     export  final Состояние состояние()
         {
@@ -2653,7 +2653,7 @@ export extern (D) class Фибра
          *
          * Возвращает:
          *  The fiber Объект representing the calling fiber or null if no fiber
-         *  is currently active.  The результат of deleting this Объект is undefined.
+         *  на данный момент active.  The результат of deleting this Объект is undefined.
          */
     export  static Фибра дайЭту()
         {
@@ -2694,7 +2694,7 @@ export extern (D) class Фибра
 
 
         //
-        // Allocate a new stack for this fiber.
+        // Allocate a new stack для этого fiber.
         //
     export  final проц разместиСтэк( т_мера разм )
         in
@@ -2709,10 +2709,10 @@ export extern (D) class Фибра
 
             // NOTE: This instance of Нить.Контекст is dynamic so Фибра OBJECTs
             //       can be collected by the GC so дол as no user level references
-            //       to the Объект exist.  If м_кткст were not dynamic then its
+            //       to the Объект есть_ли.  If м_кткст were not dynamic then its
             //       presence in the global context list would be enough to keep
             //       this Объект alive indefinitely.  An alternative to allocating
-            //       room for this struct explicitly would be to mash it into the
+            //       room для этого struct explicitly would be to mash it into the
             //       base of the stack being allocated below.  However, doing so
             //       requires too much special logic to be worthwhile.
             м_кткст = new Нить.Контекст;

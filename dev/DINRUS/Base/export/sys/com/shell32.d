@@ -193,7 +193,7 @@ interface FolderItemVerbs : ИДиспетчер {
   /*[id(0x60020001)]*/ цел get_Application(out ИДиспетчер ppid);
   // Get Parent object
   /*[id(0x60020002)]*/ цел get_Parent(out ИДиспетчер ppid);
-  // Return the specified verb
+  // Возвращает specified verb
   /*[id(0x60020003)]*/ цел Item(ВАРИАНТ index, out FolderItemVerb ppid);
   // Enumerates the figures
   /*[id(0xFFFFFFFC)]*/ цел _NewEnum(out Инкогнито ppunk);
@@ -221,7 +221,7 @@ interface FolderItems : ИДиспетчер {
   /*[id(0x60020001)]*/ цел get_Application(out ИДиспетчер ppid);
   // Get Parent object
   /*[id(0x60020002)]*/ цел get_Parent(out ИДиспетчер ppid);
-  // Return the figure for the given index
+  // Возвращает figure для заданного index
   /*[id(0x60020003)]*/ цел Item(ВАРИАНТ index, out FolderItem ppid);
   // Enumerates the figures
   /*[id(0xFFFFFFFC)]*/ цел _NewEnum(out Инкогнито ppunk);

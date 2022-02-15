@@ -12,7 +12,7 @@
         Unittests are записано against вывод из_ ICU4j
 
         This Module tries в_ minimize Memory allocation и usage. You can
-        always пароль the вывод буфер that should be использован в_ the case маппинг
+        всегда пароль the буфер вывода that should be использован в_ the case маппинг
         function, which will be resized if necessary.
 
 *******************************************************************************/
@@ -29,7 +29,7 @@ alias text.convert.Utf.вТкст вТкст;
  *
  * Параметры:
  *     ввод = Строка to be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 deprecated ткст блокВЗаг(ткст ввод, ткст вывод = пусто, дим[] working = пусто) {
@@ -78,7 +78,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 ткст вЗаг(ткст ввод, ткст вывод = пусто) {
@@ -134,7 +134,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 шим[] вЗаг(шим[] ввод, шим[] вывод = пусто) {
@@ -188,7 +188,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 дим[] вЗаг(дим[] ввод, дим[] вывод = пусто) {
@@ -230,7 +230,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 ткст вПроп(ткст ввод, ткст вывод = пусто) {
@@ -286,7 +286,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 шим[] вПроп(шим[] ввод, шим[] вывод = пусто) {
@@ -341,7 +341,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 дим[] вПроп(дим[] ввод, дим[] вывод = пусто) {
@@ -383,7 +383,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 ткст вФолд(ткст ввод, ткст вывод = пусто) {
@@ -432,7 +432,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 шим[] вФолд(шим[] ввод, шим[] вывод = пусто) {
@@ -480,7 +480,7 @@ deprecated ткст блокВЗаг(ткст ввод, ткст вывод = п
  *
  * Параметры:
  *     ввод = Строка в_ be case mapped
- *     вывод = this вывод буфер will be использован unless too small
+ *     вывод = this буфер вывода will be использован unless too small
  * Возвращает: the case mapped ткст
  */
 дим[] вФолд(дим[] ввод, дим[] вывод = пусто) {

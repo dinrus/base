@@ -67,7 +67,7 @@ abstract class Дайджест
            Примечания:
                If the буфер is not large enough в_ hold the
                дайджест, a new буфер is allocated и returned.
-               The algorithm состояние is always сбрось после a вызов в_
+               The algorithm состояние is всегда сбрось после a вызов в_
                двоичныйДайджест. Use the размерДайджеста метод в_ найди out как
                large the буфер имеется в_ be.
 
@@ -91,7 +91,7 @@ abstract class Дайджест
 
     /*********************************************************************
 
-           Computes the дайджест as a hex ткст и resets the состояние
+           Computes the дайджест как hex ткст и resets the состояние
 
            Параметры:
                буфер = a буфер can be supplied in which the дайджест
@@ -101,7 +101,7 @@ abstract class Дайджест
            Примечания:
                 If the буфер is not large enough в_ hold the hex дайджест,
                 a new буфер is allocated и returned. The algorithm
-                состояние is always сбрось после a вызов в_ гексДайджест.
+                состояние is всегда сбрось после a вызов в_ гексДайджест.
 
     *********************************************************************/
 

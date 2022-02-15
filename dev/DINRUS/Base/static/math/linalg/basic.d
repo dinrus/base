@@ -86,7 +86,7 @@ However the cost of such possibility is little calculation overhead.
     // AND with 0x7FFF to form the absolute value.
     // To avoid out-by-1 errors, we subtract 1 so it круги down
     // if the exponents were different. This means 'bitsdiff' is
-    // always 1 lower than we want, except that if bitsdiff==0,
+    // всегда 1 lower than we want, except that if bitsdiff==0,
     // they could have 0 or 1 биты in common.
     цел bitsdiff = ( ((pa[4]&0x7FFF) + (pb[4]&0x7FFF)-1)>>1) - pd[4];
 

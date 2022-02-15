@@ -118,7 +118,7 @@ export extern (D) class Object
     }
 	
 	 /**
-     * Возвращаетs !=0 if this object does have the same contents as obj.
+     * Возвращаетs !=0 если это object does have the same contents as obj.
      */
    export  цел opEquals(Object o) //цел in Phobos
     {
@@ -1365,7 +1365,7 @@ export:
 	Object o2 = *cast(Object*)p2;
 	цел c = 0;
 
-	// Regard null references as always being "less than"
+	// Regard null references as всегда being "less than"
 	if (o1 !is o2)
 	{
 	    if (o1)
@@ -1423,8 +1423,8 @@ export:
 
     hash_t getHash(ук p)
     {
-	Interface* pi = **cast(Interface ***)*cast(ук*)p;
-	Object o = cast(Object)(*cast(ук*)p - pi.offset);
+	Interface* пи = **cast(Interface ***)*cast(ук*)p;
+	Object o = cast(Object)(*cast(ук*)p - пи.offset);
 	assert(o);
 	return o.toHash();
     }
@@ -1433,10 +1433,10 @@ export:
 
     override цел equals(ук p1, ук p2)
     {
-	Interface* pi = **cast(Interface ***)*cast(ук*)p1;
-	Object o1 = cast(Object)(*cast(ук*)p1 - pi.offset);
-	pi = **cast(Interface ***)*cast(ук*)p2;
-	Object o2 = cast(Object)(*cast(ук*)p2 - pi.offset);
+	Interface* пи = **cast(Interface ***)*cast(ук*)p1;
+	Object o1 = cast(Object)(*cast(ук*)p1 - пи.offset);
+	пи = **cast(Interface ***)*cast(ук*)p2;
+	Object o2 = cast(Object)(*cast(ук*)p2 - пи.offset);
 
 	return o1 == o2 || (o1 && o1.opCmp(o2) == 0);
     }
@@ -1445,13 +1445,13 @@ export:
 
     цел compare(ук p1, ук p2)
     {
-	Interface* pi = **cast(Interface ***)*cast(ук*)p1;
-	Object o1 = cast(Object)(*cast(ук*)p1 - pi.offset);
-	pi = **cast(Interface ***)*cast(ук*)p2;
-	Object o2 = cast(Object)(*cast(ук*)p2 - pi.offset);
+	Interface* пи = **cast(Interface ***)*cast(ук*)p1;
+	Object o1 = cast(Object)(*cast(ук*)p1 - пи.offset);
+	пи = **cast(Interface ***)*cast(ук*)p2;
+	Object o2 = cast(Object)(*cast(ук*)p2 - пи.offset);
 	цел c = 0;
 
-	// Regard null references as always being "less than"
+	// Regard null references as всегда being "less than"
 	if (o1 != o2)
 	{
 	    if (o1)
@@ -1515,7 +1515,7 @@ export:
 	    //эхо("getHash() using default hash\n");
 	    // A sorry hash algorithm.
 	    // Should use the one for strings.
-	    // BUG: relies on the GC not moving objects
+	    // BUG: relies on the GC not moving объекты
 	    for (т_мера i = 0; i < init.length; i++)
 	    {	h = h * 9 + *cast(ббайт*)p;
 		p++;
@@ -1536,7 +1536,7 @@ export:
 	else if (xopEquals)
 	    c = (*xopEquals)(p1, p2);
 	else
-	    // BUG: relies on the GC not moving objects
+	    // BUG: relies on the GC not moving объекты
 	    c = (сравбуф(p1, p2, init.length) == 0);
 	return c;
     }
@@ -1546,7 +1546,7 @@ export:
     {
 	цел c = 0;
 
-	// Regard null references as always being "less than"
+	// Regard null references as всегда being "less than"
 	if (p1 != p2)
 	{
 	    if (p1)
@@ -1555,7 +1555,7 @@ export:
 		else if (xopCmp)
 		    c = (*xopCmp)(p2, p1);
 		else
-		    // BUG: relies on the GC not moving objects
+		    // BUG: relies on the GC not moving объекты
 		    c = сравбуф(p1, p2, init.length);
 	    }
 	    else
@@ -1962,7 +1962,7 @@ export:
 export extern (C):
 
 /********************************
- * Compiler Ассистент-метод для operator == for class objects.
+ * Compiler Ассистент-метод для operator == for class объекты.
  */
 
 int _d_obj_eq(Object o1, Object o2)
@@ -1972,7 +1972,7 @@ int _d_obj_eq(Object o1, Object o2)
 
 
 /********************************
- * Compiler Ассистент-метод для operator <, <=, >, >= for class objects.
+ * Compiler Ассистент-метод для operator <, <=, >, >= for class объекты.
  */
 
 int _d_obj_cmp(Object o1, Object o2)
@@ -2055,7 +2055,7 @@ export:
         Объект o2 = *cast(Объект*)p2;
         цел c = 0;
 
-        // Regard null references as always being "less than"
+        // Regard null references as всегда being "less than"
         if (!(o1 is o2))
         {
             if (o1)
@@ -3235,7 +3235,7 @@ export:
                 if (o1 is o2)
                     continue;
 
-                // Regard null references as always being "less than"
+                // Regard null references as всегда being "less than"
                 if (o1)
                 {
                     if (!o2)

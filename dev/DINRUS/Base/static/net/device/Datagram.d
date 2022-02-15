@@ -20,7 +20,7 @@ package import net.device.Socket, net.device.Berkeley;
         Datagrams предоставляет a low-overhead, non-reliable данные transmission
         mechanism.
 
-        Datagrams are not 'подключен' in the same manner as a ПУТ сокет; you
+        Datagrams are not 'подключен' in the same manner как ПУТ сокет; you
         don't need в_ слушай() or прими() в_ принять a datagram, и данные
         may arrive из_ multИПle sources. A datagram сокет may, however,
         still use the подключись() метод like a ПУТ сокет. When подключен,
@@ -30,7 +30,7 @@ package import net.device.Socket, net.device.Berkeley;
         подключись(), метод пиши() must be supplied with an адрес и метод
         читай() should be supplied with one в_ опрentify where данные originated.
         
-        Note that when использован as a listener, you must первый вяжи the сокет
+        Note that when использован как listener, you must первый вяжи the сокет
         в_ a local адаптер. This can be achieved by binding the сокет в_
         an АдресИнтернета constructed with a порт only (АДР_ЛЮБОЙ), thus
         requesting the OS в_ присвой the адрес of a local network адаптер
@@ -41,7 +41,7 @@ class Датаграмма : Сокет
 {
         /***********************************************************************
         
-                Созд a читай/пиши datagram сокет
+                Создаёт читай/пиши datagram сокет
 
         ***********************************************************************/
 

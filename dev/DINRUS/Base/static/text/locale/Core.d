@@ -666,7 +666,7 @@ extern(D) class ФорматЧисла : ИСлужбаФормата
     /**
      * $(I Свойство.) Retrieves the форматируй образец for негатив numbers.
      * Возвращает: The форматируй образец for негатив numbers. For инвариантныйФормат, the default is 1 (representing "-n").
-     * Примечания: The following таблица shows действителен значения for this property.
+     * Примечания: The following таблица shows действителен значения для этого property.
      *
      * <таблица class="definitionTable">
      * <tr><th>Значение</th><th>образец</th></tr>

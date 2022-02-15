@@ -160,8 +160,8 @@ extern (C) void _d_delinterface(ук * p)
 {
     if (*p)
     {
-        Interface* pi = **cast(Interface ***)*p;
-        Object     o  = cast(Object)(*p - pi.offset);
+        Interface* пи = **cast(Interface ***)*p;
+        Object     o  = cast(Object)(*p - пи.offset);
 
         _d_delclass(&o);
         *p = null;

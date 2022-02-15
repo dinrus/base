@@ -6,7 +6,7 @@
  * Currently, all of these functions are субъект to change, and are
  * intended for internal use only.
  * The symbol [#] indicates an array of machine words which is to be
- * interpreted as a multi-byte число.
+ * interpreted как multi-byte число.
  *
  * Copyright: Copyright (C) 2008 Don Clugston.  All rights reserved.
  * License:   BSD style: $(LICENSE)

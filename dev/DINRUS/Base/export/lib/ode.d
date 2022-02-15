@@ -590,7 +590,7 @@ private проц грузи(Биб биб)
     вяжи(dMaxDifference)("dMaxDifference", биб);
     вяжи(dMaxDifferenceLowerTriangle)("dMaxDifferenceLowerTriangle", биб);
 
-    // objects.h
+    // объекты.h
     вяжи(dWorldCreate)("dWorldCreate", биб);
     вяжи(dWorldDestroy)("dWorldDestroy", биб);
     вяжи(dWorldSetGravity)("dWorldSetGravity", биб);
@@ -1173,7 +1173,7 @@ extern(C)
     дРеал function(in дРеал*, in дРеал*, цел, цел) dMaxDifference;
     дРеал function(in дРеал*, in дРеал*, цел) dMaxDifferenceLowerTriangle;
 
-    // objects.h
+    // объекты.h
     дИДМира function() dWorldCreate;
     проц function(дИДМира) dWorldDestroy;
     проц function(дИДМира, дРеал, дРеал, дРеал) dWorldSetGravity;

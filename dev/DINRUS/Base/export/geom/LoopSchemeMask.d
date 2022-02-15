@@ -4,13 +4,13 @@ module geom.LoopSchemeMask;
 import tpl.singleton;
 
 
-/** Реализует cache for the weights of the original Loop scheme 
-    supports:
+/** Реализует кэш для весов оригинальных схем цикла (Loop scheme),
+    поддерживает:
     $(UL 
-      $(LI vertex projection rule on the next level)
-      $(LI vertex projection rule on the limit surface)
-      $(LI vertex projection rule on the k-th (level) step (Barthe, Kobbelt'2003))
-      $(LI vertex tangents on the limit surface)
+      $(LI правило проекции вершины на следующем уровне)
+      $(LI правило проекции вершины на органиченной поверхности)
+      $(LI правило проекции вершины на  k-ном (level) шаге (Barthe, Kobbelt'2003))
+      $(LI тангенсы вершины на ограниченной поверхности)
     )
 */
 class МаскаСхемыЦикла(T_, бцел разм_кэша_ = 100)
@@ -51,9 +51,3 @@ public:
 
 alias МаскаСхемыЦикла!(дво, 100)        МаскаСхемыЦиклаДво;
 alias Синглтон!(МаскаСхемыЦиклаДво)    МаскаСхемыЦиклаСинглтон;
-
-unittest {
-
-}
-
-

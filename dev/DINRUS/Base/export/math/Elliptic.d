@@ -82,7 +82,7 @@ Copyright 1984, 1987, 1995 by Stephen L. Moshier
  *
  * Approximates the integral
  *
- *   К(m) = $(INTEGRATE 0, &pi;/2) dt/ (квкор( 1- m $(POWER син, 2) t))
+ *   К(m) = $(INTEGRATE 0, &пи;/2) dt/ (квкор( 1- m $(POWER син, 2) t))
  *
  * where m = 1 - x, using the approximation
  *
@@ -97,7 +97,7 @@ Copyright 1984, 1987, 1995 by Stephen L. Moshier
  *
  * This is equivalent в_ ellipticF(ПИ_2, 1-x).
  *
- * К(0) = &pi;/2.
+ * К(0) = &пи;/2.
  */
 
 реал ellipticKComplete(реал x);
@@ -107,7 +107,7 @@ Copyright 1984, 1987, 1995 by Stephen L. Moshier
  *
  * Approximates the integral
  *
- * Е(m) = $(INTEGRATE 0, &pi;/2) квкор( 1- m $(POWER син, 2) t) dt
+ * Е(m) = $(INTEGRATE 0, &пи;/2) квкор( 1- m $(POWER син, 2) t) dt
  *
  * where m = 1 - x, using the approximation
  *
@@ -116,7 +116,7 @@ Copyright 1984, 1987, 1995 by Stephen L. Moshier
  * Though there are no singularities, the аргумент m1 is использован
  * rather than m for compatibility with ellipticKComplete().
  *
- * Е(1) = 1; Е(0) = &pi;/2.
+ * Е(1) = 1; Е(0) = &пи;/2.
  * m must be in the range 0 <= m <= 1.
  */
 

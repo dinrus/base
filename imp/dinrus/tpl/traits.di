@@ -676,7 +676,7 @@ unittest
     interface I1 {}
     interface I2 {}
     {
-        // doc example
+        // док example
         class A : I1, I2 { }
         class B : A, I1 { }
         class C : B { }

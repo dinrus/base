@@ -180,14 +180,14 @@ struct Матрица(Т, цел M, цел N)
         return квкор(квнорм());
     }
 
-    /// Return the one-нормаль of the matrix (sum of elements' absolute values)
+    /// Возвращает one-нормаль of the matrix (sum of elements' absolute values)
     Скаляр норм1() {
         Скаляр возвр=0;
         foreach(v; значения_) возвр += абс(v);
         return возвр;
     }
 
-    /// Return the infinity-нормаль of the matrix (макс absolute value element)
+    /// Возвращает infinity-нормаль of the matrix (макс absolute value element)
     Скаляр бескнорм() {
         Скаляр возвр= -Скаляр.max;
         foreach(v; значения_) {

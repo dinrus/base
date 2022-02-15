@@ -1237,7 +1237,7 @@ export:
     ///
     /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The ткст значение to set
-    /// \param asEXPAND_SZ If true, the значение will be stored as an expandable environment ткст, otherwise as a normal ткст
+    /// \param asEXPAND_SZ If true, the значение will be stored как expandable environment ткст, otherwise как normal ткст
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, ткст значение, булево asEXPAND_SZ)
     {
@@ -1374,7 +1374,7 @@ export:
         return m_type;
     }
 
-    /// Obtains the current значение of the значение as a ткст.
+    /// Obtains the current значение of the значение как ткст.
     ///
     /// \return The contents of the значение
     /// \note If the значение's тип is Ткст0Развёрт the returned значение is <b>not</b> expanded; Value_EXPAND_SZ() should be called
@@ -1394,7 +1394,7 @@ export:
         return значение;
     }
 
-    /// Obtains the current значение as a ткст, within which any environment
+    /// Obtains the current значение как ткст, within which any environment
     /// variables have undergone expansion
     ///
     /// \return The contents of the значение
@@ -1422,7 +1422,7 @@ export:
         return stdrus.вТкст(newValue.ptr);	// remove trailing 0
     }
 
-    /// Obtains the current значение as an array of strings
+    /// Obtains the current значение как array of strings
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not МногоТкст0
@@ -1441,7 +1441,7 @@ export:
         return значение;
     }
 
-    /// Obtains the current значение as a 32-bit unsigned integer, ordered correctly according to the current architecture
+    /// Obtains the current значение как 32-bit unsigned integer, ordered correctly according to the current architecture
     ///
     /// \return The contents of the значение
     /// \note An exception is thrown for all types other than Бцел, БцелЛЕ and БцелБЕ.
@@ -1460,7 +1460,7 @@ export:
         return значение;
     }
 
-    /// Obtains the значение as a 64-bit unsigned integer, ordered correctly according to the current architecture
+    /// Obtains the значение как 64-bit unsigned integer, ordered correctly according to the current architecture
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бцел64
@@ -1479,7 +1479,7 @@ export:
         return значение;
     }
 
-    /// Obtains the значение as a binary blob
+    /// Obtains the значение как binary blob
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бинарный
@@ -2097,10 +2097,10 @@ unittest
     Ключ HKCR    =   Реестр.кореньКлассов;
     Ключ CLSID   =   HKCR.дайКлюч("CLSID");
 
-//  foreach(Ключ ключ; CLSID.ключи) // Still cannot use a property as a freachable quantity without calling the prop function
+//  foreach(Ключ ключ; CLSID.ключи) // Still cannot use a property как freachable quantity without calling the prop function
     foreach(Ключ ключ; CLSID.ключи())
     {
-//      foreach(Значение val; ключ.Values) // Still cannot use a property as a freachable quantity without calling the prop function
+//      foreach(Значение val; ключ.Values) // Still cannot use a property как freachable quantity without calling the prop function
         foreach(Значение val; ключ.значения())
         {
         }

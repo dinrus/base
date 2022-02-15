@@ -314,7 +314,7 @@ export extern(D) юткст[] разбериСтроку(юткст исток,
             if (stdrus.межбукв_ли(c))
             {
                 // It was a space, so it is potentially a trailing space,
-                // thus I метка its spot (if it's the первый in a установи of spaces.)
+                // thus I метка its spot (if it's the первый in набор of spaces.)
                 if (местоУборки == -1)
                     местоУборки = рез[вхоСема].length;
             }
@@ -568,7 +568,7 @@ export extern(D)
             }
 
             /**
-               * Созд a displayable stdrus.фм of the date-time.
+               * Создаёт displayable stdrus.фм of the date-time.
                *
                * The display stdrus.фм is yyyy/mm/dd HH:MM:SS.TTTT
                *
@@ -1194,9 +1194,9 @@ unittest{
     string can contain special токены ...
        '*'   Represents zero or more characters in the text.
        '?'   Represents exactly one character in the text.
-       '\'   Is the escape pattern. The next text character
+       '\'   Is the искейп pattern. The next text character
              must exactly сверь the character following the
-             escape character. This is использован to сверь the
+             искейп character. This is использован to сверь the
              токены if they appear in the text.
 
 
@@ -1236,7 +1236,7 @@ body {
             }
             else while( lPX < образец.length && lTX < текст.length)
             {
-                // Skip over any escape lead-in сим.
+                // Skip over any искейп lead-in сим.
                 if (образец[lPX] == kEscape && lPX < образец.length - 1)
                     lPX++;
 
@@ -1272,7 +1272,7 @@ body {
         {
             if (образец[lPX] == kEscape)
             {
-                // Skip over the escape lead-in сим.
+                // Skip over the искейп lead-in сим.
                 lPX++;
             }
 
@@ -2208,8 +2208,8 @@ static this()
 
 enum ОпцПолучения
 {
-    Есть = 'e',   // Must exist otherwise Get fails.
-    Всегда = 'a'    // Get always returns something, even if it's just
+    Есть = 'e',   // Must есть_ли otherwise Get fails.
+    Всегда = 'a'    // Get всегда returns something, even if it's just
                    //   empty строки for a missing файл.
 };
 
@@ -2241,7 +2241,7 @@ export extern(D):
 
 }
 
-// Чит a entire файл in to a установи of строки (strings).
+// Чит a entire файл in to набор of строки (strings).
 ткст[] дайТекстПострочно(ткст имяф, ОпцПолучения опц = ОпцПолучения.Всегда)
 {
     auto текст = дайТекст(имяф, опц);
@@ -2251,7 +2251,7 @@ export extern(D):
 
 enum ОпцСоздания
 {
-    Новый = 'n',      // Must create a new файл, thus it cannot already exist.
+    Новый = 'n',      // Must create a new файл, thus it cannot already есть_ли.
     Создать = 'c',   // Can either create or replace; it doesn't matter.
     Заменить = 'r'   // Must replace an existing файл.
 };
@@ -2728,7 +2728,7 @@ export extern(D):
         This returns нет if the путь was not created. That
         could occur if the путь already exists or if you do not
         permissions to create the путь on the device, либо if
-        device is read-only or doesn't exist.
+        device is read-only or doesn't есть_ли.
 
         This returns true if the путь was created.
     */
@@ -2976,7 +2976,7 @@ LBL_CheckDirs:
             // If the файл is in the текущ путь we can stop looking.
             if(stdrus.естьФайлВКэш(lPath ~ фимя))
             {
-                // Return the путь we actually found it in.
+                // Возвращает путь we actually found it in.
                 путьККомпилятору = lPath;
                 break;
             }

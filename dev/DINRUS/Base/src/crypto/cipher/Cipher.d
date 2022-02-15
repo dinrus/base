@@ -138,7 +138,7 @@ class СимметричныйКлюч : Шифр.Параметры
     }
 
     /**
-     * Набор the ключ held by this объект.
+     * Устанавливает ключ held by this объект.
      *
      * Параметры:
      *     новКлюч = Нов ключ в_ be held.
@@ -175,10 +175,10 @@ class ПараметрыIV : Шифр.Параметры
     }
 
     /**
-     * Набор the IV held by this объект.
+     * Устанавливает IV held by this объект.
      *
      * Параметры:
-     *     newIV = The new IV for this parameter объект.
+     *     newIV = The new IV для этого parameter объект.
      * Возвращает: The new IV.
      */
    export ббайт[] iv(проц[] newIV)
@@ -186,14 +186,14 @@ class ПараметрыIV : Шифр.Параметры
         return _iv = cast(ббайт[]) newIV;
     }
 
-    /** Возвращает: The параметры for this объект. */
+    /** Возвращает: The параметры для этого объект. */
    export Шифр.Параметры параметры()
     {
         return _парамы;
     }
 
     /**
-     * Набор the параметры held by this объект.
+     * Устанавливает параметры held by this объект.
      *
      * Параметры:
      *     newParams = The new параметры в_ be held.

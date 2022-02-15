@@ -11,7 +11,7 @@
   - "AMD Geode(TM) GX Processors Data Book", AMD, Publication ID 31505E, (2005).
   - "AMD K6 Processor Code Optimisation", Advanced Micro Devices, Rev D (2000).
   - "Application note 106: Software Customization for the 6x86 Family", Cyrix Corporation, Rev 1.5 (1998)
-  - http://ftp.intron.ac/pub/document/cpu/cpuid.htm
+  - http://ftp.intron.ac/pub/документ/cpu/cpuid.htm
   - "Geode(TM) GX1 Processor Series Low Power Integrated X86 Solution", National Semiconductor, (2002)
   - "The VIA Isaiah Architecture", G. Glenn Henry, Centaur Technology, Inc (2008).
   - http://www.sandpile.org/ia32/cpuid.htm
@@ -130,7 +130,7 @@ static this()
 
 /// информация о цпб
 ///
-/// if you think x86,sparc,arm,ppc,... should be always defined, but throw or return пусто
+/// if you think x86,sparc,arm,ppc,... should be всегда defined, but throw or return пусто
 /// post a ticket explaining why
 class ИнфОЦПБ
 {
@@ -1056,7 +1056,7 @@ public:
             else maxThreads = maxCores;
         }
 
-        // Return да, если the cpuid instruction is supported.
+        // Возвращает да, если the cpuid instruction is supported.
         // BUG(WONTFIX): Doesn't work for Cyrix 6x86 and 6x86L.
         бул hasCPUID()
         {

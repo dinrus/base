@@ -128,7 +128,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
  *   З значение -> the значение which is pointed to by this позиция (cannot be a
  *                property)
  *   Узел следщ -> the следщ Узел in the tree as defined by the compare
- *                function, либо конец if no other nodes exist.
+ *                function, либо конец if no other nodes есть_ли.
  *   Узел предш -> the previous Узел in the tree as defined by the compare
  *                function.
  *
@@ -138,13 +138,13 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
  * false.
  *
  * Узел начало -> must be a Узел that points to the very первый valid
- * элемент in the tree, либо конец if no elements exist.
+ * элемент in the tree, либо конец if no elements есть_ли.
  *
  * Узел конец -> must be a Узел that points to just past the very последн
  * valid элемент.
  *
  * Узел найди(З з) -> returns a Узел that points to the элемент that
- * содержит з, либо конец if the элемент doesn'т exist.
+ * содержит з, либо конец if the элемент doesn'т есть_ли.
  *
  * Узел удали(Узел p) -> removes the given элемент from the tree,
  * returns the следщ valid элемент or конец if p was последн in the tree.
@@ -324,7 +324,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
         курсор обх = начало;
         бул чистить_ли;
         цел возврдг = 0;
-        курсор _конец = конец; // cache конец so обх isn'т always being generated
+        курсор _конец = конец; // cache конец so обх isn'т всегда being generated
         while(!возврдг && обх != _конец)
         {
             //
@@ -645,7 +645,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
 
     /**
      * assign the given значение to the элемент with the given ключ.  If the ключ
-     * does not exist, adds the ключ and значение to the collection.
+     * does not есть_ли, adds the ключ and значение to the collection.
      *
      * Runs in O(lg(n)) time.
      */
@@ -656,7 +656,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * установи a ключ and значение pair.  If the pair didn'т already exist, добавь обх.
+     * установи a ключ and значение pair.  If the pair didn'т already есть_ли, добавь обх.
      *
      * returns this.
      */
@@ -667,7 +667,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * установи a ключ and значение pair.  If the pair didn'т already exist, добавь обх.
+     * установи a ключ and значение pair.  If the pair didn'т already есть_ли, добавь обх.
      * былДобавлен is установи to true if the pair was добавленный.
      *
      * returns this.
@@ -769,7 +769,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     /**
      * Compare this ДеревоКарта with another Карта
      *
-     * Возвращаетs 0 if o is not a Карта object, is null, либо the ДеревоКарта does not
+     * Возвращаетs 0 if o не Карта object, is null, либо the ДеревоКарта does not
      * contain the same ключ/значение pairs as the given map.
      * Возвращаетs 1 if exactly the ключ/значение pairs contained in the given map are
      * in this ДеревоКарта.

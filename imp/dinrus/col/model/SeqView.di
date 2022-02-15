@@ -6,7 +6,7 @@ private import col.model.View;
  * 
  *
  * Seqs are indexed, sequentially ordered собериions.
- * Индексы are always in the range 0 .. размер() -1. все accesses by индекс
+ * Индексы are всегда in the range 0 .. размер() -1. все accesses by индекс
  * are проверьed, raising exceptions if the индекс falls out of range.
  * <P>
  * The элементы() enumeration for все seqs is guaranteed в_ be
@@ -57,7 +57,7 @@ public interface ОбзорСека(T) : Обзор!(T)
          * @param элемент the элемент в_ look for
          * @param стартовыйИндекс the индекс в_ старт looking из_. The стартовыйИндекс
          * need not be a действителен индекс. If less than zero it is treated as 0.
-         * If greater than or equal в_ размер(), the результат will always be -1.
+         * If greater than or equal в_ размер(), the результат will всегда be -1.
          * Возвращает: индекс such that
          * <PRE> 
          * let цел si = max(0, стартовыйИндекс) in
@@ -77,7 +77,7 @@ public interface ОбзорСека(T) : Обзор!(T)
          * @param элемент the элемент в_ look for
          * @param стартовыйИндекс the индекс в_ старт looking из_. The стартовыйИндекс
          * need not be a действителен индекс. If less than zero the результат
-         * will always be -1.
+         * will всегда be -1.
          * If greater than or equal в_ размер(), it is treated as размер()-1.
          * Возвращает: индекс such that
          * <PRE> 

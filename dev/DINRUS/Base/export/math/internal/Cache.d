@@ -18,7 +18,7 @@
   - "AMD K6 Processor Code Optimisation", Advanced Micro Devices, Rev D (2000).
   - "Application note 106: Software Customization for the 6x86 Family",
       Cyrix Corporation, Rev 1.5 (1998)
-  - http://ftp.intron.ac/pub/document/cpu/cpuid.htm
+  - http://ftp.intron.ac/pub/документ/cpu/cpuid.htm
   - "Geode(TM) GX1 Processor Series Low Power Integrated X86 Solution",
       National Semiconductor, (2002)
   - "The VIA Isaiah Architecture", G. Glenn Henry, Centaur Technology, Inc (2008).
@@ -298,7 +298,7 @@ version(Really_D_InlineAsm_X86)
 
     проц cpuidX86();
 
-// Return да, если the cpuid instruction is supported.
+// Возвращает да, если the cpuid instruction is supported.
 // BUG(WONTFIX): Doesn't work for Cyrix 6x86 и 6x86L.
     бул hasCPUID();
 }

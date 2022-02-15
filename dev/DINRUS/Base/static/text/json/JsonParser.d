@@ -1,4 +1,4 @@
-﻿module text.json.JsonParser;
+﻿module text.джейсон.JsonParser;
 
 private import col.Stack;
 
@@ -6,11 +6,11 @@ private import col.Stack;
 
 *******************************************************************************/
 
-class JsonParser(T)
+class ПарсерДжейсон(T)
 {
         public enum Токен
                {
-               Empty, Имя, Строка, Число, НачниОбъект, ЗавершиОбъект, 
+               Пустой, Имя, Строка, Число, НачниОбъект, ЗавершиОбъект, 
                НачниМассив, ЗавершиМассив, Да, Нет, Пусто
                }
 
@@ -32,9 +32,9 @@ class JsonParser(T)
 
         protected Обходчик              стр;
         private Стэк!(Состояние, 16)       состояние;
-        private T*                      curLoc;
-        private цел                     curLen;
-        private Состояние                   curState; 
+        private T*                      текЛок;
+        private цел                     текДлин;
+        private Состояние                   текСост; 
         protected Токен                 текТип;
         
         /***********************************************************************
@@ -52,28 +52,28 @@ class JsonParser(T)
         
         final бул следщ ()
         {
-                auto p = стр.ptr;
+                auto п = стр.ptr;
                 auto e = стр.конец;
 
-                while (*p <= 32 && p < e) 
-                       ++p; 
+                while (*п <= 32 && п < e) 
+                       ++п; 
 
-                if ((стр.ptr = p) >= e) 
+                if ((стр.ptr = п) >= e) 
                      return нет;
 
-                if (curState is Состояние.Массив) 
-                    return parseArrayValue;
+                if (текСост is Состояние.Массив) 
+                    return разборЗначенияМассива;
 
                 switch (текТип)
                        {
                        case Токен.Имя:
-                            return parseMemberValue;
+                            return разборЗначенияЧлена;
 
                        default:                
                             break;
                        }
 
-                return parseMemberName;
+                return разборИмениЧлена;
         }
         
         /***********************************************************************
@@ -91,29 +91,29 @@ class JsonParser(T)
         
         final T[] значение ()
         {
-                return curLoc [0 .. curLen];
+                return текЛок [0 .. текДлин];
         }
         
         /***********************************************************************
         
         ***********************************************************************/
         
-        бул сбрось (T[] json = пусто)
+        бул сбрось (T[] джейсон = пусто)
         {
                 состояние.очисть;
-                стр.сбрось (json);
-                текТип = Токен.Empty;
-                curState = Состояние.Объект;
+                стр.сбрось (джейсон);
+                текТип = Токен.Пустой;
+                текСост = Состояние.Объект;
 
-                if (json.length)
+                if (джейсон.length)
                    {
-                   auto p = стр.ptr;
+                   auto п = стр.ptr;
                    auto e = стр.конец;
 
-                   while (*p <= 32 && p < e) 
-                          ++p; 
-                   if (p < e)
-                       return старт (*(стр.ptr = p));
+                   while (*п <= 32 && п < e) 
+                          ++п; 
+                   if (п < e)
+                       return старт (*(стр.ptr = п));
                    }
                 return нет;
         }
@@ -135,11 +135,11 @@ class JsonParser(T)
         {
                 static ткст itoa (ткст буф, цел i)
                 {
-                        auto p = буф.ptr+буф.length;
+                        auto п = буф.ptr+буф.length;
                         do {
-                           *--p = '0' + i % 10;
+                           *--п = '0' + i % 10;
                            } while (i /= 10);
-                        return p[0..(буф.ptr+буф.length)-p];
+                        return п[0..(буф.ptr+буф.length)-п];
                 }
                 сим[16] врем =void;
                 ожидалось (токен ~ " @ввод[" ~ itoa(врем, точка-стр.текст.ptr)~"]");
@@ -149,7 +149,7 @@ class JsonParser(T)
         
         ***********************************************************************/
         
-        private проц unexpectedEOF (ткст сооб)
+        private проц неожиданныйКФ (ткст сооб)
         {
                 throw new Исключение ("неожиданный конец ввода: " ~ сооб);
         }
@@ -173,39 +173,39 @@ class JsonParser(T)
         
         ***********************************************************************/
         
-        private бул parseMemberName ()
+        private бул разборИмениЧлена ()
         {
-                auto p = стр.ptr;
+                auto п = стр.ptr;
                 auto e = стр.конец;
 
-                if(*p is '}') 
+                if(*п is '}') 
                     return вынь (Токен.ЗавершиОбъект);
                 
-                if(*p is ',') 
-                    ++p;
+                if(*п is ',') 
+                    ++п;
                 
-                while (*p <= 32) 
-                       ++p;
+                while (*п <= 32) 
+                       ++п;
 
-                if (*p != '"')
-                    if (*p == '}')
-                        ожидалось ("имя атрибута после (a potentially trailing) ','", p);
+                if (*п != '"')
+                    if (*п == '}')
+                        ожидалось ("имя атрибута после (потенциальный трейлинг) ','", п);
                     else
-                       ожидалось ("'\"' перед именем атрибута", p);
+                       ожидалось ("'\"' перед именем атрибута", п);
 
-                curLoc = p+1;
+                текЛок = п+1;
                 текТип = Токен.Имя;
 
-                while (++p < e) 
-                       if (*p is '"' && !escaped(p))
+                while (++п < e) 
+                       if (*п is '"' && !эскапирован(п))
                            break;
 
-                if (p < e) 
-                    curLen = p - curLoc;
+                if (п < e) 
+                    текДлин = п - текЛок;
                 else
-                   unexpectedEOF ("в имени атрибута");
+                   неожиданныйКФ ("в имени атрибута");
 
-                стр.ptr = p + 1;
+                стр.ptr = п + 1;
                 return да;
         }
         
@@ -213,17 +213,17 @@ class JsonParser(T)
         
         ***********************************************************************/
         
-        private бул parseMemberValue ()
+        private бул разборЗначенияЧлена ()
         {
-                auto p = стр.ptr;
+                auto п = стр.ptr;
 
-                if(*p != ':') 
-                   ожидалось ("':' перед значением атрибута", p);
+                if(*п != ':') 
+                   ожидалось ("':' перед значением атрибута", п);
 
                 auto e = стр.конец;
-                while (++p < e && *p <= 32) {}
+                while (++п < e && *п <= 32) {}
 
-                return разбериЗначение (*(стр.ptr = p));
+                return разбериЗначение (*(стр.ptr = п));
         }
         
         /***********************************************************************
@@ -241,7 +241,7 @@ class JsonParser(T)
                             return сунь (Токен.НачниМассив, Состояние.Массив);
         
                        case '"':
-                            return doString;
+                            return делайТкст;
         
                        case 'n':
                             if (сверь ("null", Токен.Пусто))
@@ -269,24 +269,24 @@ class JsonParser(T)
         
         ***********************************************************************/
         
-        private бул doString ()
+        private бул делайТкст ()
         {
-                auto p = стр.ptr;
+                auto п = стр.ptr;
                 auto e = стр.конец;
 
-                curLoc = p+1;
+                текЛок = п+1;
                 текТип = Токен.Строка;
                 
-                while (++p < e) 
-                       if (*p is '"' && !escaped(p))
+                while (++п < e) 
+                       if (*п is '"' && !эскапирован(п))
                            break;
 
-                if (p < e) 
-                    curLen = p - curLoc;
+                if (п < e) 
+                    текДлин = п - текЛок;
                 else
-                   unexpectedEOF ("в ткст");
+                   неожиданныйКФ ("в ткст");
 
-                стр.ptr = p + 1;
+                стр.ptr = п + 1;
                 return да;
         }
         
@@ -296,30 +296,30 @@ class JsonParser(T)
         
         private бул parseNumber ()
         {
-                auto p = стр.ptr;
+                auto п = стр.ptr;
                 auto e = стр.конец;
-                auto c = *(curLoc = p);
+                auto c = *(текЛок = п);
 
                 текТип = Токен.Число;
 
                 if (c is '-' || c is '+')
-                    c = *++p;
+                    c = *++п;
 
-                while (c >= '0' && c <= '9') c = *++p;                 
+                while (c >= '0' && c <= '9') c = *++п;                 
 
                 if (c is '.')
-                    while (c = *++p, c >= '0' && c <= '9') {}                 
+                    while (c = *++п, c >= '0' && c <= '9') {}                 
 
                 if (c is 'e' || c is 'Е')
-                    while (c = *++p, c >= '0' && c <= '9') {}
+                    while (c = *++п, c >= '0' && c <= '9') {}
 
-                if (p < e) 
-                    curLen = p - curLoc;
+                if (п < e) 
+                    текДлин = п - текЛок;
                 else
-                   unexpectedEOF ("после числа");
+                   неожиданныйКФ ("после числа");
 
-                стр.ptr = p;
-                return curLen > 0;
+                стр.ptr = п;
+                return текДлин > 0;
         }
         
         /***********************************************************************
@@ -331,10 +331,10 @@ class JsonParser(T)
                 auto i = имя.length;
                 if (стр.ptr[0 .. i] == имя)
                    {
-                   curLoc = стр.ptr;
+                   текЛок = стр.ptr;
                    текТип = токен;
                    стр.ptr += i;
-                   curLen = i;
+                   текДлин = i;
                    return да;
                    }
                 return нет;
@@ -346,11 +346,11 @@ class JsonParser(T)
         
         private бул сунь (Токен токен, Состояние следщ)
         {
-                curLen = 0;
+                текДлин = 0;
                 текТип = токен;
-                curLoc = стр.ptr++;
-                состояние.сунь (curState);
-                curState = следщ;
+                текЛок = стр.ptr++;
+                состояние.сунь (текСост);
+                текСост = следщ;
                 return да;
         }
         
@@ -360,10 +360,10 @@ class JsonParser(T)
         
         private бул вынь (Токен токен)
         {
-                curLen = 0;
+                текДлин = 0;
                 текТип = токен;
-                curLoc = стр.ptr++;
-                curState = состояние.вынь;
+                текЛок = стр.ptr++;
+                текСост = состояние.вынь;
                 return да;
         }
 
@@ -371,31 +371,31 @@ class JsonParser(T)
         
         ***********************************************************************/
         
-        private бул parseArrayValue ()
+        private бул разборЗначенияМассива ()
         {
-                auto p = стр.ptr;
-                if (*p is ']') 
+                auto п = стр.ptr;
+                if (*п is ']') 
                     return вынь (Токен.ЗавершиМассив);
                 
-                if (*p is ',') 
-                    ++p;
+                if (*п is ',') 
+                    ++п;
 
                 auto e = стр.конец;
-                while (p < e && *p <= 32) 
-                       ++p;
+                while (п < e && *п <= 32) 
+                       ++п;
 
-                return разбериЗначение (*(стр.ptr = p));
+                return разбериЗначение (*(стр.ptr = п));
         }
 
         /***********************************************************************
         
         ***********************************************************************/
         
-        private цел escaped (T* p)
+        private цел эскапирован (T* п)
         {
                 цел i;
 
-                while (*--p is '\\')
+                while (*--п is '\\')
                        ++i;
                 return i & 1;
         }
@@ -405,12 +405,12 @@ class JsonParser(T)
 
 debug(UnitTest)
 {       
-                const static ткст json = 
+                const static ткст джейсон = 
                 "{"
                         "\"glossary\": {"
-                        "\"титул\": \"example glossary\","
+                        "\"title\": \"example glossary\","
                                 "\"GlossDiv\": {"
-                                " 	\"титул\": \"S\","
+                                " 	\"title\": \"S\","
                                 "	\"GlossList\": {"
                                 "       \"GlossEntry\": {"
                                 "           \"ID\": \"SGML\","
@@ -419,14 +419,14 @@ debug(UnitTest)
                                 "			\"Acronym\": \"SGML\","
                                 "			\"Abbrev\": \"ISO 8879:1986\","
                                 "			\"GlossDef\": {"
-                        "                \"para\": \"A meta-markup language, использован в_ создай markup languages such as DocBook.\","
+                        "                \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\","
                                 "				\"GlossSeeAlso\": [\"GML\", \"XML\"]"
                         "            },"
                                 "			\"GlossSee\": \"markup\","
                                 "			\"ANumber\": 12345.6e7"
-                                "			\"Да\": да"
-                                "			\"Нет\": нет"
-                                "			\"Пусто\": пусто"
+                                "			\"True\": true"
+                                "			\"False\": false"
+                                "			\"Null\": null"
                         "        }"
                                 "    }"
                         "}"
@@ -435,150 +435,150 @@ debug(UnitTest)
        
 unittest
 {
-        auto p = new JsonParser!(сим)(json);
-        assert(p);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "glossary", p.значение);
-        assert(p.следщ);
-        assert(p.значение == "", p.значение);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "титул", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "example glossary", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossDiv", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "титул", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "S", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossList", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossEntry", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "ID", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "SGML", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "SortAs", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "SGML", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossTerm", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "Standard Generalized Markup Language", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "Acronym", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "SGML", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "Abbrev", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "ISO 8879:1986", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossDef", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.НачниОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "para", p.значение);
-        assert(p.следщ);
+        auto п = new ПарсерДжейсон!(сим)(джейсон);
+        assert(п);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "glossary", п.значение);
+        assert(п.следщ);
+        assert(п.значение == "", п.значение);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "title", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "example glossary", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossDiv", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "титул", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "S", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossList", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossEntry", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "ID", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "SGML", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "SortAs", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "SGML", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossTerm", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "Standard Generalized Markup Language", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "Acronym", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "SGML", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "Abbrev", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "ISO 8879:1986", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossDef", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.НачниОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "para", п.значение);
+        assert(п.следщ);
 
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "A meta-markup language, использован в_ создай markup languages such as DocBook.", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossSeeAlso", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.НачниМассив);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "GML", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "XML", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиМассив);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "GlossSee", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Строка);
-        assert(p.значение == "markup", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "ANumber", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Число);
-        assert(p.значение == "12345.6e7", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "Да", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Да);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "Нет", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Нет);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Имя);
-        assert(p.значение == "Пусто", p.значение);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.Пусто);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(p.следщ);
-        assert(p.тип == p.Токен.ЗавершиОбъект);
-        assert(!p.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "A meta-markup language, used to create markup languages such as DocBook.", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossSeeAlso", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.НачниМассив);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "GML", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "XML", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиМассив);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "GlossSee", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Строка);
+        assert(п.значение == "markup", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "ANumber", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Число);
+        assert(п.значение == "12345.6e7", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "True", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Да);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "False", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Нет);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Имя);
+        assert(п.значение == "Null", п.значение);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.Пусто);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(п.следщ);
+        assert(п.тип == п.Токен.ЗавершиОбъект);
+        assert(!п.следщ);
 
-        assert(p.состояние.размер == 0);
-
-}
+        assert(п.состояние.размер == 0);
 
 }
 
+}
 
-debug (JsonParser)
+
+debug (ПарсерДжейсон)
 {
         проц main()
         {
-                auto json = new JsonParser!(сим);
+                auto джейсон = new ПарсерДжейсон!(сим);
         }
 }
 

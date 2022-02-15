@@ -712,7 +712,7 @@ unittest
     interface I1 {}
     interface I2 {}
     {
-        // doc example
+        // док example
         class A : I1, I2 { }
         class B : A, I1 { }
         class C : B { }
@@ -1241,7 +1241,7 @@ template типАтом_ли(Т)
 }
 
 /**
- * complex type for the given type
+ * complex type для заданного type
  */
 template КомплексныйТипИз(Т){
     static if(is(Т==плав)||is(Т==ifloat)||is(Т==cfloat)){
@@ -1254,7 +1254,7 @@ template КомплексныйТипИз(Т){
 }
 
 /**
- * реал type for the given type
+ * реал type для заданного type
  */
 template РеальныйТипИз(Т){
     static if(is(Т==плав)|| is(Т==ifloat)|| is(Т==cfloat)){
@@ -1267,7 +1267,7 @@ template РеальныйТипИз(Т){
 }
 
 /**
- * imaginary type for the given type
+ * imaginary type для заданного type
  */
 template МнимыйТипИз(Т){
     static if(is(Т==плав)|| is(Т==ifloat)|| is(Т==cfloat)){

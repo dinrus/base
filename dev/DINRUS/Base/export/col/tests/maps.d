@@ -58,7 +58,7 @@ void main()
     //
     // you can do intersect/remove operations
     //
-    // removes all but the 5, 50, and 26 elements.  Note that 89 is not a key
+    // removes all but the 5, 50, and 26 elements.  Note that 89 не key
     // in the set
     //
     hashMap.накладка(new МассивСписок!(int)([5, 50, 26, 89]));

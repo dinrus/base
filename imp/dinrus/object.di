@@ -24,7 +24,7 @@ version(Dinrus2)
 		if (typeid(lhs) is typeid(правткт) && typeid(lhs).opEquals(typeid(правткт)))
 				/* CTFE doesn't like typeid much. 'is' works, but opEquals doesn't
 				(issue 7147). But CTFE also guarantees that equal TypeInfos are
-				always identical. So, no opEquals needed during CTFE. */
+				всегда identical. So, no opEquals needed during CTFE. */
 		{
 			return true;
 		}

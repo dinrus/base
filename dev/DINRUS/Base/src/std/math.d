@@ -55,8 +55,8 @@ template floatTraits(T) {
  // EXPMASK is a ushort маска to select the exponent portion (without sign)
  // POW2MANTDIG = pow(2, real.mant_dig) is the value such that
  //  (smallest_denormal)*POW2MANTDIG == real.min
- // EXPPOS_SHORT is the index of the exponent when represented as a ushort array.
- // SIGNPOS_BYTE is the index of the sign when represented as a ubyte array.
+ // EXPPOS_SHORT is the index of the exponent when represented как ushort array.
+ // SIGNPOS_BYTE is the index of the sign when represented как ubyte array.
  static if (T.mant_dig == 24) { // float
     const ushort EXPMASK = 0x7F80;
     const ushort EXPBIAS = 0x3F00;
@@ -260,7 +260,7 @@ unittest
  *  conj(x + iy) = x - iy
  *
  * Note that z * conj(z) = $(POWER z.re, 2) - $(POWER z.im, 2)
- * is always a real number
+ * is всегда a real number
  */
 creal conj(creal z)
 {
@@ -382,7 +382,7 @@ real tan(real x)
         jc      trigerr                 ; // x is NAN, infinity, либо empty
                                           // 387's can handle denormals
 SC18:   fptan                           ;
-        fstp    ST(0)                   ; // дамп X, which is always 1
+        fstp    ST(0)                   ; // дамп X, which is всегда 1
         fstsw   AX                      ;
         sahf                            ;
         jnp     Lret                    ; // C2 = 1 (x is out of range)
@@ -394,7 +394,7 @@ SC17:   fprem1                          ;
         fstsw   AX                      ;
         sahf                            ;
         jp      SC17                    ;
-        fstp    ST(1)                   ; // remove pi from stack
+        fstp    ST(1)                   ; // remove пи from stack
         jmp     SC18                    ;
 
 trigerr:
@@ -412,7 +412,7 @@ Lret:
 
 unittest
 {
-    static real vals[][2] =     // angle,tan
+    static real значч[][2] =     // angle,tan
     [
             [   0,   0],
             [   .5,  .5463024898],
@@ -447,10 +447,10 @@ unittest
     ];
     int i;
 
-    for (i = 0; i < vals.length; i++)
+    for (i = 0; i < значч.length; i++)
     {
-        real x = vals[i][0];
-        real r = vals[i][1];
+        real x = значч[i][0];
+        real r = значч[i][1];
         real t = tan(x);
 
         //эхо("tan(%Lg) = %Lg, should be %Lg\n", x, t, r);
@@ -791,7 +791,7 @@ real exp(real x) {
 real expm1(real x) 
 {
     version(Naked_D_InlineAsm_X86) {
-      enum { PARAMSIZE = (real.sizeof+3)&(0xFFFF_FFFC) } // always a multiple of 4
+      enum { PARAMSIZE = (real.sizeof+3)&(0xFFFF_FFFC) } // всегда a multiple of 4
       asm {
         /*  expm1() for x87 80-bit reals, IEEE754-2008 conformant.
          * Author: Don Clugston.
@@ -877,7 +877,7 @@ L_largenegative:
 real exp2(real x) 
 {
     version(Naked_D_InlineAsm_X86) {
-      enum { PARAMSIZE = (real.sizeof+3)&(0xFFFF_FFFC) } // always a multiple of 4
+      enum { PARAMSIZE = (real.sizeof+3)&(0xFFFF_FFFC) } // всегда a multiple of 4
       asm {
         /*  exp2() for x87 80-bit reals, IEEE754-2008 conformant.
          * Author: Don Clugston.
@@ -1121,7 +1121,7 @@ real frexp(real value, out int exp)
 
 unittest
 {
-    static real vals[][3] =     // x,frexp,exp
+    static real значч[][3] =     // x,frexp,exp
     [
         [0.0,   0.0,    0],
         [-0.0,  -0.0,   0],
@@ -1137,10 +1137,10 @@ unittest
 
     int i;
 
-    for (i = 0; i < vals.length; i++) {
-        real x = vals[i][0];
-        real e = vals[i][1];
-        int exp = cast(int)vals[i][2];
+    for (i = 0; i < значч.length; i++) {
+        real x = значч[i][0];
+        real e = значч[i][1];
+        int exp = cast(int)значч[i][2];
         int eptr;
         real v = frexp(x, eptr);
 //        эхо("frexp(%La) = %La, should be %La, eptr = %d, should be %d\n",
@@ -1171,9 +1171,9 @@ unittest
 }
 
 /******************************************
- * Extracts the exponent of x as a signed integral value.
+ * Extracts the exponent of x как signed integral value.
  *
- * If x is not a special value, the результат is the same as
+ * If x не special value, the результат is the same as
  * $(D cast(int)logb(x)).
  *
  *      $(TABLE_SV
@@ -1283,7 +1283,7 @@ real log2(real x)
 
 
 /*****************************************
- * Extracts the exponent of x as a signed integral value.
+ * Extracts the exponent of x как signed integral value.
  *
  * If x is subnormal, it is treated as if it were normalized.
  * For a positive, finite x:
@@ -1463,7 +1463,7 @@ real hypot(real x, real y)
 
 unittest
 {
-    static real vals[][3] =     // x,y,hypot
+    static real значч[][3] =     // x,y,hypot
     [
         [ 0,      0,      0],
         [ 0,      -0,     0],
@@ -1476,11 +1476,11 @@ unittest
         [ real.nan, real.nan, real.nan],
     ];
 
-    for (int i = 0; i < vals.length; i++)
+    for (int i = 0; i < значч.length; i++)
     {
-        real x = vals[i][0];
-        real y = vals[i][1];
-        real z = vals[i][2];
+        real x = значч[i][0];
+        real y = значч[i][1];
+        real z = значч[i][2];
         real h = hypot(x, y);
         assert(mfeq(z, h, .0000001));
     }
@@ -1970,14 +1970,14 @@ unittest
 /******************************************
  * Creates a quiet NAN with the information from tagp[] embedded in it.
  *
- * BUGS: DMD always returns real.nan, ignoring the payload.
+ * BUGS: DMD всегда returns real.nan, ignoring the payload.
  */
 real nan(char[] tagp) { return cidrus.нечислод(tagp); }
 
 /**
  * Calculate the next largest floating point value после x.
  *
- * Возвращает the least number greater than x that is representable as a real;
+ * Возвращает the least number greater than x that is representable как real;
  * thus, it gives the next point on the IEEE number line.
  *
  *  $(TABLE_SV
@@ -2111,7 +2111,7 @@ float nextUp(float x)
 /**
  * Calculate the next smallest floating point value перед x.
  *
- * Возвращает the greatest number less than x that is representable as a real;
+ * Возвращает the greatest number less than x that is representable как real;
  * thus, it gives the previous point on the IEEE number line.
  *
  *  $(TABLE_SV
@@ -2156,7 +2156,7 @@ unittest {
  * If x == y, the результат is y.
  *
  * Remarks:
- * This function is not generally very useful; it's almost always better to use
+ * This function is not generally very useful; it's almost всегда better to use
  * the faster functions nextUp() or nextDown() instead.
  *
  * IEEE 754 requirements not implemented on Windows:
@@ -2509,7 +2509,7 @@ int feqrel(X)(X x, X y)
     // AND with 0x7FFF to form the absolute value.
     // To avoid out-by-1 errors, we subtract 1 so it круги down
     // if the exponents were different. This means 'bitsdiff' is
-    // always 1 lower than we want, except that if bitsdiff==0,
+    // всегда 1 lower than we want, except that if bitsdiff==0,
     // they could have 0 or 1 bits in common.
 
  static if (X.mant_dig==64 || X.mant_dig==113) { // real80 or quadruple

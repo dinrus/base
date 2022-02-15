@@ -158,7 +158,7 @@ class ВыводЗлиб : ФильтрВывода
 
         This enumeration represents several pre-defined compression levels.
 
-        Any целое between -1 and 9 включительно may be used as a уровень,
+        Any целое between -1 and 9 включительно may be used как уровень,
         although the symbols in this enumeration should suffice for most
         use-cases.
 
@@ -264,7 +264,7 @@ class ВыводЗлиб : ФильтрВывода
         Compresses the given данные в_ the underlying провод.
 
         Возвращает the число of байты из_ ист that were compressed; пиши
-        should always используй все данные предоставленный в_ it, although it may not be
+        should всегда используй все данные предоставленный в_ it, although it may not be
         immediately записано в_ the underlying вывод поток.
 
     ***************************************************************************/

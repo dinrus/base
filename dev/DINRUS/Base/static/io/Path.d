@@ -35,7 +35,7 @@
         ---
 
         Путь normalization and образец-совпадают is also hosted here via
-        the нормализуй() and образец() functions. See the doc towards the
+        the нормализуй() and образец() functions. See the док towards the
         конец of this module.
 
         Compile with -version=Win32SansUnicode в_ enable Win95 & Win32s 
@@ -312,7 +312,7 @@ extern(D) struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the complete текст of this фпуть
+                Возвращает complete текст of this фпуть
 
         ***********************************************************************/
 
@@ -320,7 +320,7 @@ extern(D) struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the корень of this путь. Roots are constructs such as
+                Возвращает корень of this путь. Roots are constructs such as
                 "c:"
 
         ***********************************************************************/
@@ -329,7 +329,7 @@ extern(D) struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the файл путь. Paths may старт and конец with a "/".
+                Возвращает файл путь. Paths may старт and конец with a "/".
                 The корень путь is "/" and an unspecified путь is returned as
                 an пустой ткст. Directory пути may be разбей such that the
                 дир имя is placed преобр_в the 'имя' member; дир
@@ -380,7 +380,7 @@ extern(D) struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the имя of this файл, либо дир.
+                Возвращает имя of this файл, либо дир.
 
         ***********************************************************************/
 
@@ -475,7 +475,7 @@ extern(D) struct ПутеПарсер
 extern(D):
 /*******************************************************************************
 
-        Does this путь currently exist?
+        Does this путь currently есть_ли?
 
 *******************************************************************************/
 
@@ -516,7 +516,7 @@ extern(D):
 
 /*******************************************************************************
 
-        Return the файл length (in байты)
+        Возвращает файл length (in байты)
 
 *******************************************************************************/
 
@@ -561,7 +561,7 @@ extern(D):
 
 /*******************************************************************************
 
-        Набор the использовался and изменён timestamps указанного файл
+        Устанавливает использовался and изменён timestamps указанного файл
 
         Since 0.99.9
 
@@ -622,12 +622,12 @@ extern(D):
         все родитель папки. The путь should not contain '.' or '..'
         segments, which can be removed via the нормализуй() function.
 
-        Note that each segment is создан as a папка, включая the
+        Note that each segment is создан как папка, включая the
         trailing segment.
 
         Выводит исключение: ВВИскл upon system ошибки
 
-        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but as a 
+        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but как 
         файл instead of a папка
 
 *******************************************************************************/
@@ -681,7 +681,7 @@ extern(D):
 
         коллируй все файлы and папки из_ the given путь whose имя matches
         the given образец. Folders will be traversed where рекурсия is включен, 
-        and a установи of совпадают names is returned as filepaths (включая those 
+        and набор of совпадают names is returned as filepaths (включая those 
         папки which match the образец)
 
         Note: allocates память for returned пути
@@ -694,7 +694,7 @@ extern(D):
 
 /*******************************************************************************
 
-        Join a установи of путь specs together. A путь разделитель is
+        Join набор of путь specs together. A путь разделитель is
         potentially inserted between each of the segments.
 
         Note: may размести память
@@ -801,7 +801,7 @@ extern(D):
         Matches a образец against a имяф.
 
         Some characters of образец have special a meaning (they are
-        <i>meta-characters</i>) and <b>can't</b> be escaped. These are:
+        <i>meta-characters</i>) and <b>can't</b> be эскапирован. These are:
         <p><table>
         <tr><td><b>*</b></td>
         <td>Matches 0 or ещё instances of any character.</td></tr>
@@ -852,7 +852,7 @@ extern(D):
         ---
 
         MultИПle consecutive forward slashes are replaced with a single 
-        forward slash. On Windows, \ will be преобразованый в_ / prior в_ any
+        forward слэш. On Windows, \ will be преобразованый в_ / prior в_ any
         normalization.
 
         Note that any число of .. segments at the front is ignored,

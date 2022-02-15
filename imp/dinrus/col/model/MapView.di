@@ -5,7 +5,7 @@ private import  col.model.View,
 
 /**
  * Maps maintain keyed элементы. Any kind of Объект 
- * may serve as a ключ for an элемент.
+ * may serve как ключ for an элемент.
 **/
 
 public interface ОбзорКарты(К, З) : Обзор!(З)
@@ -13,7 +13,7 @@ public interface ОбзорКарты(К, З) : Обзор!(З)
         public override ОбзорКарты!(К,З) дубликат();
         public alias дубликат dup;
         /**
-         * Report whether the MapT COULD include ключ as a ключ
+         * Report whether the MapT COULD include ключ как ключ
          * Always returns нет if ключ is пусто
         **/
 
@@ -80,7 +80,7 @@ public interface ОбзорКарты(К, З) : Обзор!(З)
         /**
          * Возвращает ключ associated with элемент. There may be any
          * число of ключи associated with any элемент, but this returns only
-         * one of them (any arbitrary one), либо нет if no such ключ есть_ли.
+         * one of them (any arbitrary one), либо нет, если такового нет ключ есть_ли.
          * @param ключ, a place в_ return a located ключ
          * @param элемент, a значение в_ try в_ найди a ключ for.
          * Возвращает: да where значение is найдено; нет иначе

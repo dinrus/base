@@ -107,7 +107,7 @@ version (Posix)
 
 /******************************************************************************
 
-        Return the индекс позиция of a текст образец внутри ист, or
+        Возвращает индекс позиция of a текст образец внутри ист, or
         ист.length upon failure.
 
         This is a case-insensitive ищи (with thanks в_ Nietsnie)

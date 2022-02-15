@@ -221,7 +221,7 @@ struct Вектор (З, цел Размер = 0)
 
     /**********************************************************************
 
-            Return the вектор as an Массив of значения, where the первый
+            Возвращает вектор как Массив of значения, where the первый
             Массив Запись represents the oldest значение.
 
             Doing a foreach() on the returned Массив will traverse in

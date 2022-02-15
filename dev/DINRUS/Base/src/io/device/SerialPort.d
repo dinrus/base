@@ -80,7 +80,7 @@ export:
             Most Posix systems have chosen в_ support at least higher speeds
             though.
 
-            See also: maxSpeed
+            Смотрите также: maxSpeed
 
             Выводит исключение: ВВИскл if скорость is unsupported.
 
@@ -124,7 +124,7 @@ export:
 
             Возвращает:
             A ткст Массив of все the serial порты that could be найдено, in
-            alphabetical order. Every ткст is formatted as a valid аргумент
+            alphabetical order. Every ткст is formatted как valid аргумент
             в_ the constructor, but the порт may not be accessible.
 
     ***************************************************************************/

@@ -42,7 +42,7 @@
  ******************************************************/
 module st.stackthread;
 
-//Module imports
+//Импорты модуля
 private import st.stackcontext, stdrus;
 
 /// Приоритет стэкового потока определяет его порядок в
@@ -1592,7 +1592,7 @@ body
 /**
  * Restarts the entire timeslice from the beginning.
  * This имеется no effect if the последний timeslice was started
- * from the beginning.  If a slice is currently выполняется,
+ * from the beginning.  If a slice на данный момент выполняется,
  * then the текущ thread will continue to execute until
  * it жниs normally.
  */

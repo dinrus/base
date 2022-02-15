@@ -108,7 +108,7 @@ version(Posix)
     /// \brief A performance counter that uses the most accurate measurement APIs available on the host machine
     ///
     /// This class attempts to use the high performance hardware counter as its measurement resource, but failing 
-    /// that it defaults to less accurate resources in order to guarantee that meaningful measurements are always
+    /// that it defaults to less accurate resources in order to guarantee that meaningful measurements are всегда
     /// available to application code
     ///
     /// \ingroup group_synsoft_linux_perf
@@ -961,7 +961,7 @@ else version(Windows)
     /// \brief A performance counter that uses the most accurate measurement APIs available on the host machine
     ///
     /// This class attempts to use the high performance hardware counter as its measurement resource, but failing 
-    /// that it defaults to less accurate resources in order to guarantee that meaningful measurements are always
+    /// that it defaults to less accurate resources in order to guarantee that meaningful measurements are всегда
     /// available to application code
     ///
     /// \ingroup group_synsoft_win32._perf

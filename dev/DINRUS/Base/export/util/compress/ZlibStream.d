@@ -207,7 +207,7 @@ class ВводЗлиб : ФильтрВвода
         // never получи it wrong.  That saопр, the default значение of 15 is REALLY
         // unlikely в_ change: values below that aren't terribly useful, and
         // values higher than 15 are already used for другой purposes.
-        // Also, this leads в_ less код which is always good.  :D
+        // Also, this leads в_ less код which is всегда good.  :D
         this(поток, Кодировка.init);
     }
     
@@ -252,7 +252,7 @@ class ВводЗлиб : ФильтрВвода
         {
             case Z_NEED_DICT:
                 // Whilst not technically an ошибка, this should never happen
-                // for general-use код, so treat it as an ошибка.
+                // for general-use код, so treat it как ошибка.
             case Z_DATA_ERROR:
             case Z_MEM_ERROR:
                 туши_зп();
@@ -321,7 +321,7 @@ class ВыводЗлиб : ФильтрВывода
 
         This enumeration represents several pre-defined compression levels.
 
-        Any целое between -1 and 9 включительно may be used as a уровень,
+        Any целое between -1 and 9 включительно may be used как уровень,
         although the symbols in this enumeration should suffice for most
         use-cases.
 
@@ -487,7 +487,7 @@ class ВыводЗлиб : ФильтрВывода
         Compresses the given данные в_ the underlying провод.
 
         Возвращает the число of байты из_ ист that were compressed; пиши
-        should always используй все данные предоставленный в_ it, although it may not be
+        should всегда используй все данные предоставленный в_ it, although it may not be
         immediately записано в_ the underlying вывод поток.
 
     ***************************************************************************/
@@ -524,7 +524,7 @@ class ВыводЗлиб : ФильтрВывода
             }
             while( out_buffer.length > 0 );
         }
-        // Loop while we are still using up the whole вывод буфер
+        // Loop while we are still using up the whole буфер вывода
         while( zs.avail_out == 0 );
 
         assert( zs.avail_in == 0, "неудачное сжатие всех предложенных данных" );
@@ -716,7 +716,7 @@ class ИсклЗлиб : ВВИскл
 
 /* *****************************************************************************
 
-    This section содержит a simple unit тест for this module.  It is скрытый
+    This section содержит a simple unit тест для этого module.  It is скрытый
     behind a version statement because it introduces добавьitional dependencies.
 
 ***************************************************************************** */
@@ -828,7 +828,7 @@ unittest
         +/
         
         // We aren't going в_ тест that we can сожми в_ a gzip поток
-        // since gzip itself always добавьs stuff like the имяф, timestamps,
+        // since gzip itself всегда добавьs stuff like the имяф, timestamps,
         // etc.  We'll just сделай sure we can DECOMPRESS gzip Потокs.
         scope decomp_gz = new Массив(message_gz.dup);
         scope decomp = new ВводЗлиб(decomp_gz);

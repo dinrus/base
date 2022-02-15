@@ -868,7 +868,7 @@ float toFloat(in char[] s)
     return f;
         
   Lerr:
-    conv_error(s ~ " not representable as a float");
+    conv_error(s ~ " not representable как float");
     assert(0);
 }
  
@@ -943,7 +943,7 @@ double toDouble(in char[] s)
     return f;
         
   Lerr:
-    conv_error(s ~ " not representable as a double");
+    conv_error(s ~ " not representable как double");
     assert(0);
 }
 
@@ -1020,7 +1020,7 @@ real toReal(in char[] s)
     return f;
         
   Lerr:
-    conv_error(s ~ " not representable as a real");
+    conv_error(s ~ " not representable как real");
     assert(0);
 }
 

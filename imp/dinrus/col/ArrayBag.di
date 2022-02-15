@@ -130,7 +130,7 @@ deprecated public class РюкзакМассив(T) : КоллекцияРюкз
     }
 
     /**
-     * Набор the размер чанка в_ be использован when добавим new buffers в_ the
+     * Устанавливает размер чанка в_ be использован when добавим new buffers в_ the
      * список during future добавь() operations.
      * Any значение greater than 0 is ОК. (A значение of 1 makes this a
      * преобр_в very медленно simulation of a linked список!)

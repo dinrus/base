@@ -907,7 +907,7 @@ private:
                 }
             }
 
-        // If we dопрn't найди it, then we'll assume that this is not a valid
+        // If we dопрn't найди it, then we'll assume that это не valid
         // архив.
         if( eocd_loc == -1 )
             ИсклЗип.missingdir;
@@ -1427,7 +1427,7 @@ private:
 // ЗаписьЗип
 
 /**
- * This class is used в_ represent a single Запись in an архив.
+ * This class is used для представления single Запись in an архив.
  * Specifically, it combines meta-данные about the файл (see the инфо field)
  * along with the two basic operations on an Запись: открой and проверь.
  */
@@ -2227,7 +2227,7 @@ static this()
         if( !((32 <= c && c <= 126) || c == 0) )
         {
             /* We got a character not in CP 437: we need в_ создай a буфер в_
-             * hold the new ткст.  Since UTF-8 is *always* larger than CP
+             * hold the new ткст.  Since UTF-8 is *всегда* larger than CP
              * 437, we need, at most, an Массив of the same число of elements.
              */
             auto r = new ббайт[s.length];

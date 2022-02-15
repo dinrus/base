@@ -9,7 +9,7 @@ private import io.vfs.VirtualFolder;
 /*******************************************************************************
         
         LinkedFolder is производный из_ ВиртуальнаяПапка, и behaves exactly the 
-        same in все but one aspect: it treats mounted папки as an ordered 
+        same in все but one aspect: it treats mounted папки как ordered 
         список of alternatives в_ look for a файл. This supports the notion of 
         файл 'overrопрes', whereby "customized" файлы can be inserted преобр_в a 
         chain of alternatives.

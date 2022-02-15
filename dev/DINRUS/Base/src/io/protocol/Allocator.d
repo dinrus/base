@@ -203,7 +203,7 @@ export:
                 invoke сбрось() перед each record is processed в_ ensure here
                 is sufficient пространство available in the буфер в_ house a complete
                 record. БуферРоста could be использован in the latter case, в_ ensure
-                the largest record ширина is always accomodated.
+                the largest record ширина is всегда accomodated.
 
                 A good use of this is in handling of network traffic, where
                 incoming данные is often transient и of a known протяженность. For

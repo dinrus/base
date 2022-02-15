@@ -105,7 +105,7 @@ enum Mangle : char
 
 // return the TypeInfo for a primitive type and null otherwise.
 // This is required since for arrays of ints we only have the mangled
-// char to work from. If arrays always subclassed TypeInfo_Array this
+// char to work from. If arrays всегда subclassed TypeInfo_Array this
 // routine could go away.
 private TypeInfo primitiveTypeInfo(Mangle m) 
 {
@@ -173,7 +173,7 @@ private TypeInfo primitiveTypeInfo(Mangle m)
  * specification for its type, and the
  * characters are sequentially passed to putc.
  * If a char[], wchar[], либо dchar[]
- * argument is encountered, it is interpreted as a format string. As many
+ * argument is encountered, it is interpreted как format string. As many
  * arguments as specified in the format string are consumed and formatted
  * according to the format specifications in that string and passed to putc. If
  * there are too few remaining arguments, a ОшФормата is thrown. If there are
@@ -297,7 +297,7 @@ $(I FormatChar):
     If the ширина is a $(B *), the следщ argument, which must be
     of type $(B int), is taken as the ширина.
     If the ширина is negative, it is as if the $(B -) was given
-    as a $(I Flags) character.
+    как $(I Flags) character.
 
     <dt>$(I Precision)
     <dd> Gives the precision for numeric conversions.
@@ -335,7 +335,7 @@ $(I FormatChar):
 
 	<dt>$(B 'b','d','o','x','X')
 	<dd> The corresponding argument must be an integral type
-	and is formatted as an integer. If the argument is a signed type
+	and is formatted как integer. If the argument is a signed type
 	and the $(I FormatChar) is $(B d) it is converted to
 	a signed string of characters, otherwise it is treated as
 	unsigned. An argument of type $(B bool) is formatted as '1'
@@ -1075,7 +1075,7 @@ void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list argptr)
 
 	    /* For performance reasons, this code takes advantage of the
 	     * fact that most format strings will be ASCII, and that the
-	     * format specifiers are always ASCII. This means we only need
+	     * format specifiers are всегда ASCII. This means we only need
 	     * to deal with UTF in a couple of isolated spots.
 	     */
 

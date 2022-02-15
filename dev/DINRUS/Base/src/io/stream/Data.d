@@ -105,7 +105,7 @@ export:
                 пространство must be sufficiently large enough в_ house все of
                 the массив, and the actual число of байты is returned.
 
-                Note that the размер of the массив is записано as an целое
+                Note that the размер of the массив is записано как целое
                 prefixing the массив контент itself.  Use читай(проц[]) в_ 
                 eschew this префикс.
 
@@ -265,7 +265,7 @@ export:
 /*******************************************************************************
 
         A simple way в_ пиши binary данные в_ an arbitrary ИПотокВывода,
-        such as a файл:
+        such как файл:
         ---
         auto вывод = new ВыводДанных (new Файл ("путь", Файл.ЗапСозд));
         вывод.цел32   (1024);
@@ -330,7 +330,7 @@ export:
         /***********************************************************************
 
                 Write an массив в_ the мишень поток. Note that the размер 
-                of the массив is записано as an целое prefixing the массив 
+                of the массив is записано как целое prefixing the массив 
                 контент itself. Use пиши(проц[]) в_ eschew this префикс.
 
         ***********************************************************************/

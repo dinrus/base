@@ -880,8 +880,8 @@ export:
 	  /***
 	   * Change the current позиция of the stream. whence is either ППозКурсора.Уст, in
 	   which case the смещение is an absolute index from the beginning of the stream,
-	   ППозКурсора.Тек, in which case the смещение is a delta from the current
-	   позиция, or ППозКурсора.Кон, in which case the смещение is a delta from the end of
+	   ППозКурсора.Тек, in which case the смещение is a дельта from the current
+	   позиция, or ППозКурсора.Кон, in which case the смещение is a дельта from the end of
 	   the stream (negative or zero смещениеs only make sense in that case). This
 	   returns the new файл позиция.
 	   */

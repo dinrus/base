@@ -5,7 +5,7 @@ private import  col.model.View,
 
 /**
  *
- * Расходчик is the корень interface of все изменяемый собериions; i.e.,
+ * Расходчик is the корень interface of все изменяемый собериions; т.е.,
  * собериions that may have элементы dynamically добавьed, removed,
  * и/or replaced in accord with their collection semantics.
  *
@@ -35,14 +35,14 @@ public interface Расходчик(T) : Обзор!(T)
      * with новЭлемент имеется the same effect as just removing старЭлемент.
      * Возвращает: condition:
      * <PRE>
-     * let цел delta = старЭлемент.равно(новЭлемент)? 0 :
+     * let цел дельта = старЭлемент.равно(новЭлемент)? 0 :
      *               max(1, PREV(this).экземпляры(старЭлемент) in
-     *  экземпляры(старЭлемент) == PREV(this).экземпляры(старЭлемент) - delta &&
+     *  экземпляры(старЭлемент) == PREV(this).экземпляры(старЭлемент) - дельта &&
      *  экземпляры(новЭлемент) ==  (this instanceof Набор) ?
-     *         max(1, PREV(this).экземпляры(старЭлемент) + delta):
-     *                PREV(this).экземпляры(старЭлемент) + delta) &&
+     *         max(1, PREV(this).экземпляры(старЭлемент) + дельта):
+     *                PREV(this).экземпляры(старЭлемент) + дельта) &&
      *  no другой элемент changes &&
-     *  Версия change iff delta != 0
+     *  Версия change iff дельта != 0
      * </PRE>
      * Выводит исключение: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
     **/
@@ -58,14 +58,14 @@ public interface Расходчик(T) : Обзор!(T)
      * with новЭлемент имеется the same effect as just removing старЭлемент.
      * Возвращает: condition:
      * <PRE>
-     * let цел delta = старЭлемент.равно(новЭлемент)? 0 :
+     * let цел дельта = старЭлемент.равно(новЭлемент)? 0 :
                        PREV(this).экземпляры(старЭлемент) in
-     *  экземпляры(старЭлемент) == PREV(this).экземпляры(старЭлемент) - delta &&
+     *  экземпляры(старЭлемент) == PREV(this).экземпляры(старЭлемент) - дельта &&
      *  экземпляры(новЭлемент) ==  (this instanceof Набор) ?
-     *         max(1, PREV(this).экземпляры(старЭлемент) + delta):
-     *                PREV(this).экземпляры(старЭлемент) + delta) &&
+     *         max(1, PREV(this).экземпляры(старЭлемент) + дельта):
+     *                PREV(this).экземпляры(старЭлемент) + дельта) &&
      *  no другой элемент changes &&
-     *  Версия change iff delta != 0
+     *  Версия change iff дельта != 0
      * </PRE>
      * Выводит исключение: IllegalElementException if имеется(старЭлемент) и !допускается(новЭлемент)
     **/

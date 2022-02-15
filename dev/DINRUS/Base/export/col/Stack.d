@@ -255,7 +255,7 @@ struct Стэк (З, цел Размер = 0)
 
     /**********************************************************************
 
-            Return the стэк as an Массив of значения, where the первый
+            Возвращает стэк как Массив of значения, where the первый
             Массив Запись represents the oldest значение.
 
             Doing a foreach() on the returned Массив will traverse in

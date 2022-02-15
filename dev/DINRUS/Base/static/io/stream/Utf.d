@@ -167,7 +167,7 @@ class ЮВывод (S, T) : ФильтрВывода, ФильтрВывода.�
         
                 Write в_ the вывод поток из_ a исток Массив. The предоставленный 
                 ист контент is преобразованый as necessary. Note that an attached
-                вывод буфер must be at least four байты wide в_ accommodate
+                буфер вывода must be at least four байты wide в_ accommodate
                 a conversion.
 
                 Возвращает the число of байты consumed из_ ист, which may be

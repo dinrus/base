@@ -6,7 +6,7 @@ public  import col.Container;
 
 /******************************************************************************
 
-        СтэкКарта extends the basic hashmap тип by добавим a предел в_ 
+        СтэкКарта extends the basic хэшкарта тип by добавим a предел в_ 
         the число of items contained at any given время. In добавьition, 
         СтэкКарта retains the order in which элементы were добавьed, и
         employs that during foreach() traversal. добавьitions в_ the карта
@@ -77,7 +77,7 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
 
         /***********************************************************************
 
-                Извлing обрвызов for the hashmap, acting as a trampoline
+                Извлing обрвызов for the хэшкарта, acting как trampoline
 
         ***********************************************************************/
 
@@ -324,7 +324,7 @@ class СтэкКарта (К, З, alias Хэш = Контейнер.хэш,
 
         /**********************************************************************
         
-                A doubly-linked список Запись, использован as a wrapper for queued 
+                A doubly-linked список Запись, использован как wrapper for queued 
                 кэш записи. 
         
         **********************************************************************/

@@ -25,7 +25,7 @@
             ...
         ---
 
-        Note that where some functions expect a т_мера as an аргумент, the
+        Note that where some functions expect a т_мера как аргумент, the
         D template-совпадают algorithm will краш where an цел is предоставленный
         instead. This is the typically the cause of "template не найден"
         ошибки. Also note that имя overloading is not supported cleanly
@@ -308,7 +308,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 
 /******************************************************************************
 
-        Return the индекс of the следщ экземпляр of 'свер' starting at
+        Возвращает индекс of the следщ экземпляр of 'свер' starting at
         позиция 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ 0
@@ -326,7 +326,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 
 /******************************************************************************
 
-        Return the индекс of the приор экземпляр of 'свер' starting
+        Возвращает индекс of the приор экземпляр of 'свер' starting
         just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
@@ -344,7 +344,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 
 /******************************************************************************
 
-        Return the индекс of the следщ экземпляр of 'свер' starting at
+        Возвращает индекс of the следщ экземпляр of 'свер' starting at
         позиция 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ 0
@@ -364,7 +364,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 
 /******************************************************************************
 
-        Return the индекс of the приор экземпляр of 'свер' starting
+        Возвращает индекс of the приор экземпляр of 'свер' starting
         just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
@@ -387,7 +387,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
 
 /******************************************************************************
 
-        Return the индекс of the следщ экземпляр of 'свер' starting at
+        Возвращает индекс of the следщ экземпляр of 'свер' starting at
         позиция 'старт', либо исток.length where there is no свер. 
 
         Parameter 'старт' дефолты в_ 0
@@ -421,7 +421,7 @@ T[] подставь(T) (T[] исток, T[] свер, T[] замена)
    
 /******************************************************************************
 
-        Return the индекс of the приор экземпляр of 'свер' starting
+        Возвращает индекс of the приор экземпляр of 'свер' starting
         just перед 'старт', либо исток.length where there is no свер.
 
         Parameter 'старт' дефолты в_ исток.length
@@ -502,10 +502,10 @@ T[] хвост(T) (T[] ист, T[] образец, out T[] голова)
         разбей the предоставленный Массив wherever a delimiter-установи экземпляр is
         найдено, и return the результатant segments. The разграничители are
         excluded из_ each of the segments. Note that разграничители are
-        matched as a установи of alternates rather than as a образец.
+        matched as набор of alternates rather than как образец.
 
         Splitting on a single delimiter is consопрerably faster than
-        splitting upon a установи of alternatives. 
+        splitting upon набор of alternatives. 
 
         Note that the ист контент is not duplicated by this function, 
         but is sliced instead.
@@ -543,7 +543,7 @@ T[][] разбей(T) (T[] ист, T[] образец)
 
 /******************************************************************************
 
-        Convert текст преобр_в a установи of строки, where each строка is опрentified
+        Convert текст преобр_в набор of строки, where each строка is опрentified
         by a \n or \r\n combination. The строка terminator is очищенный из_
         each результатant Массив
 
@@ -565,7 +565,7 @@ T[][] вСтроки(T) (T[] ист)
 
 /******************************************************************************
 
-        Return the indexed строка, where each строка is опрentified by a \n 
+        Возвращает indexed строка, where each строка is опрentified by a \n 
         or \r\n combination. The строка terminator is очищенный из_ the 
         результатant строка
 
@@ -586,7 +586,7 @@ T[] строкаУ(T) (T[] ист, т_мера индекс)
 /******************************************************************************
 
         Combine a series of текст segments together, each appended with 
-        a постфикс образец. An optional вывод буфер can be предоставленный в_
+        a постфикс образец. An optional буфер вывода can be предоставленный в_
         avoопр куча activity - it should be large enough в_ contain the 
         entire вывод, иначе the куча will be использован instead.
 
@@ -603,12 +603,12 @@ T[] объедини(T) (T[][] ист, T[] постфикс=пусто, T[] пр
 /******************************************************************************
 
         Combine a series of текст segments together, each prepended with 
-        a префикс образец. An optional вывод буфер can be предоставленный в_ 
+        a префикс образец. An optional буфер вывода can be предоставленный в_ 
         avoопр куча activity - it should be large enough в_ contain the 
         entire вывод, иначе the куча will be использован instead.
 
-        Note that, unlike объедини(), the вывод буфер is specified первый
-        such that a установи of trailing strings can be предоставленный. 
+        Note that, unlike объедини(), the буфер вывода is specified первый
+        such that набор of trailing strings can be предоставленный. 
 
         Возвращает действителен срез of the вывод, containing the concatenated
         текст.
@@ -623,12 +623,12 @@ T[] префикс(T) (T[] приёмн, T[] префикс, T[][] ист...)
 /******************************************************************************
 
         Combine a series of текст segments together, each appended with an 
-        optional постфикс образец. An optional вывод буфер can be предоставленный
+        optional постфикс образец. An optional буфер вывода can be предоставленный
         в_ avoопр куча activity - it should be large enough в_ contain the 
         entire вывод, иначе the куча will be использован instead.
 
-        Note that, unlike объедини(), the вывод буфер is specified первый
-        such that a установи of trailing strings can be предоставленный. 
+        Note that, unlike объедини(), the буфер вывода is specified первый
+        such that набор of trailing strings can be предоставленный. 
 
         Возвращает действителен срез of the вывод, containing the concatenated
         текст.
@@ -643,12 +643,12 @@ T[] постфикс(T) (T[] приёмн, T[] постфикс, T[][] ист...
 /******************************************************************************
 
         Combine a series of текст segments together, each псеп_в_начале и/or 
-        postfixed with optional strings. An optional вывод буфер can be 
+        postfixed with optional strings. An optional буфер вывода can be 
         предоставленный в_ avoопр куча activity - which should be large enough в_ 
         contain the entire вывод, иначе the куча will be использован instead.
 
-        Note that, unlike объедини(), the вывод буфер is specified первый
-        such that a установи of trailing strings can be предоставленный. 
+        Note that, unlike объедини(), the буфер вывода is specified первый
+        such that набор of trailing strings can be предоставленный. 
 
         Возвращает действителен срез of the вывод, containing the concatenated
         текст.
@@ -814,7 +814,7 @@ T[] повтори(T) (T[] ист, т_мера счёт, T[] приёмн=пус
         length is reached. Note that we return 'length' upon failure
         (Массив контент совпадает) и a 0-based индекс upon success.
 
-        Use this as a faster opEquals. Also provопрes the basis for a
+        Use this как faster opEquals. Also provопрes the basis for a
         faster opCmp, since the индекс of the первый mismatched character
         can be использован в_ determine the return значение
 
@@ -863,7 +863,7 @@ T[] повтори(T) (T[] ист, т_мера счёт, T[] приёмн=пус
 
         Обходчик в_ isolate строки.
 
-        Converts текст преобр_в a установи of строки, where each строка is опрentified
+        Converts текст преобр_в набор of строки, where each строка is опрentified
         by a \n or \r\n combination. The строка terminator is очищенный из_
         each результатant Массив.
 
@@ -888,10 +888,10 @@ T[] повтори(T) (T[] ист, т_мера счёт, T[] приёмн=пус
         Splits the предоставленный Массив wherever a delimiter-установи экземпляр is
         найдено, и return the результатant segments. The разграничители are
         excluded из_ each of the segments. Note that разграничители are
-        matched as a установи of alternates rather than as a образец.
+        matched as набор of alternates rather than как образец.
 
         Splitting on a single delimiter is consопрerably faster than
-        splitting upon a установи of alternatives.
+        splitting upon набор of alternatives.
 
         ---
         foreach (segment; разграничители ("one,two;three", ",;"))
@@ -960,7 +960,7 @@ T[] повтори(T) (T[] ист, т_мера счёт, T[] приёмн=пус
 
         Arranges текст strings in order, using индексы в_ specify where
         each particular аргумент should be positioned внутри the текст. 
-        This is handy for collating I18N components, либо as a simplistic
+        This is handy for collating I18N components, либо как simplistic
         и lightweight форматёр. Индексы range из_ zero through nine. 
         
         ---
@@ -1029,19 +1029,19 @@ T[] выкладка(T) (T[] вывод, T[][] выкладка ...)
 
 /******************************************************************************
 
-        Convert 'escaped' симвы в_ нормаль ones: \t => ^t for example.
+        Convert 'эскапирован' симвы в_ нормаль ones: \t => ^t for example.
         Supports \" \' \\ \a \b \f \n \r \t \знач
         
 ******************************************************************************/
 
 T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
 {
-        цел delta;
+        цел дельта;
         auto s = ист.ptr;
         auto длин = ист.length;
 
         // возьми a Просмотр первый в_ see if there's anything
-        if ((delta = индексУ (s, '\\', длин)) < длин)
+        if ((дельта = индексУ (s, '\\', длин)) < длин)
            {
            // сделай some room if not enough предоставленный
            if (приёмн.length < ист.length)
@@ -1050,10 +1050,10 @@ T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
 
            // копируй segments over, a чанк at a время
            do {
-              d [0 .. delta] = s [0 .. delta];
-              длин -= delta;
-              s += delta;
-              d += delta;
+              d [0 .. дельта] = s [0 .. дельта];
+              длин -= дельта;
+              s += дельта;
+              d += дельта;
 
               // bogus trailing '\'
               if (длин < 2)
@@ -1102,7 +1102,7 @@ T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
               *d++ = c;  
               длин -= 2;           
               s += 2;
-              } while ((delta = индексУ (s, '\\', длин)) < длин);
+              } while ((дельта = индексУ (s, '\\', длин)) < длин);
 
            // копируй хвост too
            d [0 .. длин] = s [0 .. длин];
@@ -1121,7 +1121,7 @@ T[] убериИскейп(T) (T[] ист, T[] приёмн = пусто)
           уровень : can be any 4-байт значение
 
         Возвращает 32-bit значение.  Every bit of the ключ affects every bit of
-        the return значение.  Every 1-bit и 2-bit delta achieves avalanche.
+        the return значение.  Every 1-bit и 2-bit дельта achieves avalanche.
 
         About 4.3*длин + 80 X86 instructions, with excellent pИПelining
 

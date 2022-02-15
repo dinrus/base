@@ -606,7 +606,7 @@ extern(D) struct Время
 
 /******************************************************************************
 
-        Represents a время of день. This is different из_ ИнтервалВремени in that
+        Представляет время of день. This is different из_ ИнтервалВремени in that
         each component is represented внутри the limits of everyday время,
         rather than из_ the старт of the Эпоха. Effectively, the ВремяДня
         эпоха is the первый секунда of each день.

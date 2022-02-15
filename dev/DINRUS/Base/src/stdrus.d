@@ -2081,7 +2081,7 @@ auto args = _arguments;
 
 	    /* For performance причины, this код takes advantage of the
 	     * fact that most format strings will be ASCII, and that the
-	     * format specifiers are always ASCII. This means we only need
+	     * format specifiers are всегда ASCII. This means we only need
 	     * to deal with UTF in a couple of isolated spots.
 	     */
 
@@ -3205,7 +3205,7 @@ export extern(D) ткст подставь(ткст текст, ткст обр�
 	    смещение += замена.length - (eo - so);
 
 	    if (последниндкс == eo)
-		последниндкс++;		// always consume some source
+		последниндкс++;		// всегда consume some source
 	    else
 		последниндкс = eo;
 	}
@@ -3434,7 +3434,7 @@ export extern (D) class РегВыр
 	глоб		= 1,	// has the g attribute
 	любрег	= 2,	// has the i attribute
 	многострок	= 4,	// if treat as multiple lines separated
-				// by newlines, or as a single строка
+				// by newlines, or как single строка
 	тчксовплф	= 8,	// if . matches \n
     }
 
@@ -3623,7 +3623,7 @@ export проц компилируй(рсим[] образец, рсим[] ат�
 
 	    результат ~= ввод[псовп[0].рснач .. eo];
 	    if (последниндкс == eo)
-		последниндкс++;		// always consume some source
+		последниндкс++;		// всегда consume some source
 	    else
 		последниндкс = eo;
 	}
@@ -3675,7 +3675,7 @@ export проц компилируй(рсим[] образец, рсим[] ат�
 	    смещение += замена.length - (eo - so);
 
 	    if (последниндкс == eo)
-		последниндкс++;		// always consume some source
+		последниндкс++;		// всегда consume some source
 	    else
 		последниндкс = eo;
 	}
@@ -4772,7 +4772,7 @@ export цел разборАтома()
 		    case 'x':
 		    case 'u':
 		    case '0':
-			c = cast(сим)escape();
+			c = cast(сим)искейп();
 			goto Lbyte;
 
 		    case '1': case '2': case '3':
@@ -5045,7 +5045,7 @@ class Range
 		    default:
 			break;
 		}
-		c2 = escape();
+		c2 = искейп();
 		goto Lrange;
 
 	    case '-':
@@ -5125,7 +5125,7 @@ Lerr:
 }
 
 // p is following the \ сим
-цел escape()
+цел искейп()
 in
 {
     assert(p < образец.length);
@@ -6061,7 +6061,7 @@ export:
     if (длинаБуф == 0) {
       // буфер is empty so fill it if possible
       if ((длин < буфер.length) && (читаемый())) {
-	// читай in данные if the буфер is currently empty
+	// читай in данные if the буфер на данный момент empty
 	длинаБуф = п.читайБлок(буфер.ptr, буфер.length);
 	позИстокаБуф = длинаБуф;
 	позПотока += длинаБуф;
@@ -7051,7 +7051,7 @@ else				static assert(0);
 	}
 
 	/**
-	 * Returns entire file contents as an array.
+	 * Returns entire file contents как array.
 	 */
 	проц[] opSlice()
 	{
@@ -7060,7 +7060,7 @@ else				static assert(0);
 	}
 
 	/**
-	 * Returns срез of file contents as an array.
+	 * Returns срез of file contents как array.
 	 */
 	проц[] opSlice(бдол i1, бдол i2)
 	{
@@ -7094,7 +7094,7 @@ else				static assert(0);
 	}
 
 
-	// return да if the given position is currently mapped
+	// return да if the given position на данный момент mapped
 	private цел mapped(бдол i) 
 	{
 		debug (РПФайл) скажифнс("РПФайл.mapped(%lld, %lld, %d)\n", i,старт, 
@@ -9757,7 +9757,7 @@ export:
     }
 
     /*****************************
-     * Wait for this thread to terminate.
+     * Wait для этого thread to terminate.
      * Simply returns if thread has already terminated.
      * Выводит исключение: $(B ОшибкаНити) if the thread hasn't begun yet or
      * is called on itself.
@@ -9777,7 +9777,7 @@ export:
     }
 
     /******************************
-     * Wait for this thread to terminate or until миллисек time has
+     * Wait для этого thread to terminate or until миллисек time has
      * elapsed, whichever occurs first.
      * Simply returns if thread has already terminated.
      * Выводит исключение: $(B ОшибкаНити) if the thread hasn't begun yet or
@@ -10071,7 +10071,7 @@ private
           
     /********************************************
      * Returns the хэндл of the current thread.
-     * This is needed because ДайТекущуюНить() always returns -2 which
+     * This is needed because ДайТекущуюНить() всегда returns -2 which
      * is a pseudo-хэндл representing the current thread.
      * The returned thread хэндл is a windows resource and must be explicitly
      * closed.

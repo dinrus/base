@@ -170,7 +170,7 @@ export struct Куранты
 
                 /***************************************************************
 
-                        Набор fields в_ represent a local version of the 
+                        Набор fields для представления local version of the 
                         current UTC время. все значения must fall внутри 
                         the домен supported by the OS
 
@@ -183,7 +183,7 @@ export struct Куранты
 
                 /***************************************************************
 
-                        Набор fields в_ represent a local version of the 
+                        Набор fields для представления local version of the 
                         предоставленный UTC время. все значения must fall внутри 
                         the домен supported by the OS
 

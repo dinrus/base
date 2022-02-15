@@ -5,7 +5,7 @@ extern(Windows) бцел ФункцНити(ук данные)
 { 
    
  
-// Initialize the НЛХ index for this thread. 
+// Initialize the НЛХ index для этого thread. 
  
    данные = cast(ук) РазместиЛок(ППамять.Лук, 256); 
    if (! УстановиЗначениеНлх(индНлх, данные)) 
@@ -117,7 +117,7 @@ void main()
 
     assert(tls2.знач.x == 10);
 
-    //Try out objects
+    //Try out объекты
     static class TestClass
     {
         цел x = 10;

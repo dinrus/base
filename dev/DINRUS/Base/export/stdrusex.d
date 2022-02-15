@@ -320,14 +320,14 @@ static this()
 +/
 enum ОпцПолучения
 {
-    Есть = 'e',   // Must exist otherwise Get fails.
-    Всегда = 'a'    // Get always returns something, even if it's just
+    Есть = 'e',   // Must есть_ли otherwise Get fails.
+    Всегда = 'a'    // Get всегда returns something, even if it's just
                    //   empty строки for a missing файл.
 };
 
 enum ОпцСоздания
 {
-    Новый = 'n',      // Must create a new файл, thus it cannot already exist.
+    Новый = 'n',      // Must create a new файл, thus it cannot already есть_ли.
     Создать = 'c',   // Can either create or replace; it doesn't matter.
     Заменить = 'r'   // Must replace an existing файл.
 };

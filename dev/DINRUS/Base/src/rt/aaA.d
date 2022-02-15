@@ -754,7 +754,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
             assert(0);  // ???
     }
 
-    /* Algorithm: Visit each key/value pair in e1. If that key doesn't exist
+    /* Algorithm: Visit each key/value pair in e1. If that key doesn't есть_ли
      * in e2, либо if the value in e1 doesn't match the one in e2, the arrays
      * are not equal, and exit early.
      * After all pairs are checked, the arrays must be equal.
@@ -773,7 +773,7 @@ int _aaEqual(TypeInfo tiRaw, AA e1, AA e2)
             auto pvalue = pkey + ключразм;
             //printf("key = %d, value = %g\n", *cast(int*)pkey, *cast(double*)pvalue);
 
-            // We have key/value for e1. See if they exist in e2
+            // We have key/value for e1. See if they есть_ли in e2
 
             auto key_hash = keyti.getHash(pkey);
             //printf("hash = %d\n", key_hash);

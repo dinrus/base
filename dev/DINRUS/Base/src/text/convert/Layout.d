@@ -711,8 +711,8 @@ class Выкладка(T)
             auto x = *cast(ук*) p;
             if (x)
             {
-                auto pi = **cast(Interface ***) x;
-                auto o = cast(Объект)(*cast(ук*)p - pi.смещение);
+                auto пи = **cast(Interface ***) x;
+                auto o = cast(Объект)(*cast(ук*)p - пи.смещение);
                 return Utf.изТкст8 (o.вТкст, результат);
             }
             break;

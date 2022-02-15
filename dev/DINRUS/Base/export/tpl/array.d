@@ -411,7 +411,7 @@ else
                 return буф.length;
             }
 
-            static if( is( alloca ) ) // always нет, alloca usage should be rethought
+            static if( is( alloca ) ) // всегда нет, alloca usage should be rethought
             {
                 т_мера[] функц = (cast(т_мера*) alloca( (обрзц.length + 1) * т_мера.sizeof ))[0 .. обрзц.length + 1];
             }
@@ -575,7 +575,7 @@ else
                 return буф.length;
             }
 
-            static if( is( alloca ) ) // always нет, alloca usage should be rethought
+            static if( is( alloca ) ) // всегда нет, alloca usage should be rethought
             {
                 т_мера[] функц = (cast(т_мера*) alloca( (обрзц.length + 1) * т_мера.sizeof ))[0 .. обрзц.length + 1];
             }
@@ -1449,7 +1449,7 @@ version( TangoDoc )
      *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
      *         в_ allow temporary slices в_ be изменён.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed as a
+     *         результат of this operation, even though it may be viewed как
      *         sопрe-effect.
      *  обрзц  = The образец в_ match against.
      *  пред = The evaluation predicate, which should return да, если e1 is
@@ -1550,7 +1550,7 @@ version( TangoDoc )
      *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
      *         в_ allow temporary slices в_ be изменён.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed as a
+     *         результат of this operation, even though it may be viewed как
      *         sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если the
      *         element satisfies the condition and нет if not.  This
@@ -1658,7 +1658,7 @@ version( TangoDoc )
      *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
      *         в_ allow temporary slices в_ be изменён.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed as a
+     *         результат of this operation, even though it may be viewed как
      *         sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если e1 is
      *         equal в_ e2 and нет if not.  This predicate may be any
@@ -1837,7 +1837,7 @@ version( TangoDoc )
      *         в_ allow temporary slices в_ be sorted.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
-     *         as a sопрe-effect.
+     *         как sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если the
      *         element satisfies the condition and нет if not.  This
      *         predicate may be any callable тип.
@@ -1951,7 +1951,7 @@ else
 version( TangoDoc )
 {
     /**
-     * Partitions буф with чис - 1 as a pivot such that the first чис elements
+     * Partitions буф with чис - 1 как pivot such that the first чис elements
      * will be less than or equal в_ the remaining elements in the Массив.
      * Comparisons will be performed using the supplied predicate or '<' if
      * Неук is supplied.  The algorithm is not required в_ be stable.
@@ -1961,7 +1961,7 @@ version( TangoDoc )
      *         в_ allow temporary slices в_ be sorted.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
-     *         as a sопрe-effect.
+     *         как sопрe-effect.
      *  чис  = The число of elements which are consопрered significant in
      *         this Массив, where чис - 1 is the pivot around which partial
      *         sorting will occur.  Например, if чис is буф.length / 2
@@ -2086,7 +2086,7 @@ version( TangoDoc )
      *         allow temporary slices в_ be sorted.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
-     *         as a sопрe-effect.
+     *         как sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.
@@ -2121,7 +2121,7 @@ else
             {
                 for( т_мера i = r; i > l; --i )
                 {
-                    // своп the min element в_ буф[0] в_ act as a sentinel
+                    // своп the min element в_ буф[0] в_ act как sentinel
                     if( пред( буф[i], буф[i - 1] ) )
                         exch( i, i - 1 );
                 }
@@ -2179,7 +2179,7 @@ else
                 if( r - l < MIN_LENGTH )
                             return insertionSort( l, r );
 
-                // HEURISTIC: If the recursion depth is too great, assume this
+                // HEURISTIC: If the рекурсия depth is too great, assume this
                 //            is a worst-case Массив and краш в_ куча сортируй.
                 if( d-- == 0 )
                 {
@@ -2188,7 +2188,7 @@ else
                     return;
                 }
 
-                // HEURISTIC: Use the median-of-3 значение as a pivot.  Swap this
+                // HEURISTIC: Use the median-of-3 значение как pivot.  Swap this
                 //            преобр_в r so быстросорт remains untouched.
                 exch( r, medianOf( l, l + (r - l) / 2, r ) );
 
@@ -2651,7 +2651,7 @@ else
 version( TangoDoc )
 {
     /**
-     * Computes the union of setA and setB as a установи operation and returns the
+     * Computes the union of setA and setB as набор operation and returns the
      * retult in a new sorted Массив.  Всё setA and setB are required в_ be
      * sorted.  If either setA or setB contain duplicates, the результат will
      * contain the larger число of duplicates из_ setA and setB.  When an
@@ -2737,7 +2737,7 @@ else
 version( TangoDoc )
 {
     /**
-     * Computes the intersection of setA and setB as a установи operation and
+     * Computes the intersection of setA and setB as набор operation and
      * returns the retult in a new sorted Массив.  Всё setA and setB are
      * required в_ be sorted.  If either setA or setB contain duplicates, the
      * результат will contain the smaller число of duplicates из_ setA and setB.
@@ -3005,7 +3005,7 @@ version( TangoDoc )
      *  буф  = The Массив в_ преобразуй.  This parameter is not marked 'ref' в_
      *         allow temporary slices в_ be sorted.  As буф is not resized in
      *         any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed as a
+     *         результат of this operation, even though it may be viewed как
      *         sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
@@ -3373,7 +3373,7 @@ else
 version( TangoDoc )
 {
     /**
-     * Sorts буф as a куча using the supplied predicate or '<' if Неук is
+     * Sorts буф как куча using the supplied predicate or '<' if Неук is
      * supplied.  Calling сделайКучу and сортируйКучу on an Массив in succession
      * есть the effect of sorting the Массив using the heapsort algorithm.
      *
@@ -3382,7 +3382,7 @@ version( TangoDoc )
      *         allow temporary slices в_ be sorted.  As буф is not resized
      *         in any way, omitting the 'ref' qualifier есть no effect on
      *         the результат of this operation, even though it may be viewed
-     *         as a sопрe-effect.
+     *         как sопрe-effect.
      *  пред = The evaluation predicate, which should return да, если e1 is
      *         less than e2 and нет if not.  This predicate may be any
      *         callable тип.

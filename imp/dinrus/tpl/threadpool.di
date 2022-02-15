@@ -217,7 +217,7 @@ private
     /**
       Put a дело преобр_в the обойма for eventual execution.
 
-      Предупреждение: Acts as a stack, not a queue as you would expect
+      Предупреждение: Acts как stack, not a queue as you would expect
      */
     проц добавь(ДДела дело, Арги арги)
     {

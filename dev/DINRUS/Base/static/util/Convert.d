@@ -117,7 +117,7 @@ version( TangoDoc )
      * -----
      *
      * The "вТкст_" метод corresponding в_ the destination ткст тип will be
-     * tried first.  If this метод does not exist, then the function will
+     * tried first.  If this метод does not есть_ли, then the function will
      * look for другой "вТкст_" метод из_ which it will преобразуй the результат.
      * Failing this, it will try "вТкст" and преобразуй the результат в_ the
      * appropriate кодировка.
@@ -439,7 +439,7 @@ template unsupported_backwards(ткст desc="")
                   ~" из "~ctfe_trim(S.stringof)~".");
 }
 
-// TN works out the c_case имя of the given тип.
+// TN works out the c_case имя указанного типа.
 template TN(T:T[])
 {
     static if( is( T == сим ) )

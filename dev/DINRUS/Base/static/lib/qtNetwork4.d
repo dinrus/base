@@ -1290,7 +1290,7 @@
 
 		//вяжи(функция_638)("_?method@QHttpRequestHeader@@QBE?AVQString@@XZ", биб);
 
-		//вяжи(функция_639)("_?migrate@QNetworkSession@@QAEXXZ", биб);
+		//вяжи(функция_639)("_?мигрируй@QNetworkSession@@QAEXXZ", биб);
 
 		//вяжи(функция_640)("_?minorVersion@QHttpRequestHeader@@UBEHXZ", биб);
 

@@ -494,7 +494,7 @@ else version( D_InlineAsm_X86 )
         //       (notably the AMD64).  This implies that the hoist-загрузи barrier
         //       op requires an ordering instruction, which also extends this
         //       requirement в_ acquire ops (though hoist-сохрани should not need
-        //       one if support is добавьed for this later).  However, since no
+        //       one if support is добавьed для этого later).  However, since no
         //       modern architectures will reorder dependent loads в_ occur
         //       перед the загрузи they depend on (except the Alpha), необр loads
         //       are actually a possible means of ordering specific sequences
@@ -853,7 +853,7 @@ else version( D_InlineAsm_X86 )
                     mov DL, новзнач;
                     mov AL, равноС;
                     mov ECX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     cmpxchg [ECX], DL;
                     setz AL;
                 }
@@ -870,7 +870,7 @@ else version( D_InlineAsm_X86 )
                     mov DX, новзнач;
                     mov AX, равноС;
                     mov ECX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     cmpxchg [ECX], DX;
                     setz AL;
                 }
@@ -887,7 +887,7 @@ else version( D_InlineAsm_X86 )
                     mov EDX, новзнач;
                     mov EAX, равноС;
                     mov ECX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     cmpxchg [ECX], EDX;
                     setz AL;
                 }
@@ -911,7 +911,7 @@ else version( D_InlineAsm_X86 )
                         mov RDX, новзнач;
                         mov RAX, равноС;
                         mov RCX, знач;
-                        lock; // lock always needed в_ сделай this op atomic
+                        lock; // lock всегда needed в_ сделай this op atomic
                         cmpxchg [RCX], RDX;
                         setz AL;
                     }
@@ -939,7 +939,7 @@ else version( D_InlineAsm_X86 )
                             mov EAX, [EDI];
                             mov EDX, 4[EDI];
                             mov EDI, знач;
-                            lock; // lock always needed в_ сделай this op atomic
+                            lock; // lock всегда needed в_ сделай this op atomic
                             cmpxch8b [EDI];
                             setz AL;
                             pop EBX;
@@ -992,7 +992,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     inc [EAX];
                     mov AL, [EAX];
                 }
@@ -1007,7 +1007,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     inc крат ptr [EAX];
                     mov AX, [EAX];
                 }
@@ -1022,7 +1022,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     inc int ptr [EAX];
                     mov EAX, [EAX];
                 }
@@ -1044,7 +1044,7 @@ else version( D_InlineAsm_X86 )
                     volatile asm
                     {
                         mov RAX, знач;
-                        lock; // lock always needed в_ сделай this op atomic
+                        lock; // lock всегда needed в_ сделай this op atomic
                         inc qword ptr [RAX];
                         mov RAX, [RAX];
                     }
@@ -1104,7 +1104,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     dec [EAX];
                     mov AL, [EAX];
                 }
@@ -1119,7 +1119,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     dec крат ptr [EAX];
                     mov AX, [EAX];
                 }
@@ -1134,7 +1134,7 @@ else version( D_InlineAsm_X86 )
                 volatile asm
                 {
                     mov EAX, знач;
-                    lock; // lock always needed в_ сделай this op atomic
+                    lock; // lock всегда needed в_ сделай this op atomic
                     dec int ptr [EAX];
                     mov EAX, [EAX];
                 }
@@ -1156,7 +1156,7 @@ else version( D_InlineAsm_X86 )
                     volatile asm
                     {
                         mov RAX, знач;
-                        lock; // lock always needed в_ сделай this op atomic
+                        lock; // lock всегда needed в_ сделай this op atomic
                         dec qword ptr [RAX];
                         mov RAX, [RAX];
                     }
@@ -1494,7 +1494,7 @@ struct Атомный( T )
                        "мс must be one of: псинх.необр, псинх.hlb, псинх.acq, псинх.пследвтн" );
 
         /**
-         * Refreshes the contents of this значение из_ main память.  This
+         * Refreshes the contents этого значения из_ main память.  This
          * operation is Всё lock-free and atomic.
          *
          * Возвращает:

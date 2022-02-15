@@ -8688,11 +8688,11 @@
 
 		//вяжи(функция_4337)("_?deleteWidget@QWidgetAction@@MAEXPAVQWidget@@@Z", биб);
 
-		//вяжи(функция_4338)("_?delta@QGraphicsSceneWheelEvent@@QBEHXZ", биб);
+		//вяжи(функция_4338)("_?дельта@QGraphicsSceneWheelEvent@@QBEHXZ", биб);
 
-		//вяжи(функция_4339)("_?delta@QPanGesture@@QBE?AVQPointF@@XZ", биб);
+		//вяжи(функция_4339)("_?дельта@QPanGesture@@QBE?AVQPointF@@XZ", биб);
 
-		//вяжи(функция_4340)("_?delta@QWheelEvent@@QBEHXZ", биб);
+		//вяжи(функция_4340)("_?дельта@QWheelEvent@@QBEHXZ", биб);
 
 		//вяжи(функция_4341)("_?depth@QColormap@@QBEHXZ", биб);
 
@@ -8920,23 +8920,23 @@
 
 		//вяжи(функция_4453)("_?docName@QPrinter@@QBE?AVQString@@XZ", биб);
 
-		//вяжи(функция_4454)("_?document@QAbstractTextDocumentLayout@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4454)("_?документ@QAbstractTextDocumentLayout@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4455)("_?document@QGraphicsTextItem@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4455)("_?документ@QGraphicsTextItem@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4456)("_?document@QPlainTextEdit@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4456)("_?документ@QPlainTextEdit@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4457)("_?document@QSyntaxHighlighter@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4457)("_?документ@QSyntaxHighlighter@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4458)("_?document@QTextBlock@@QBEPBVQTextDocument@@XZ", биб);
+		//вяжи(функция_4458)("_?документ@QTextBlock@@QBEPBVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4459)("_?document@QTextControl@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4459)("_?документ@QTextControl@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4460)("_?document@QTextCursor@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4460)("_?документ@QTextCursor@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4461)("_?document@QTextEdit@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4461)("_?документ@QTextEdit@@QBEPAVQTextDocument@@XZ", биб);
 
-		//вяжи(функция_4462)("_?document@QTextObject@@QBEPAVQTextDocument@@XZ", биб);
+		//вяжи(функция_4462)("_?документ@QTextObject@@QBEPAVQTextDocument@@XZ", биб);
 
 		//вяжи(функция_4463)("_?documentChanged@QPlainTextDocumentLayout@@MAEXHHH@Z", биб);
 
@@ -9920,7 +9920,7 @@
 
 		//вяжи(функция_4953)("_?errorSymbol@Parser@QCss@@QAE?AUSymbol@2@XZ", биб);
 
-		//вяжи(функция_4954)("_?escape@Qt@@YA?AVQString@@ABV2@@Z", биб);
+		//вяжи(функция_4954)("_?искейп@Qt@@YA?AVQString@@ABV2@@Z", биб);
 
 		//вяжи(функция_4955)("_?escapeButton@QMessageBox@@QBEPAVQAbstractButton@@XZ", биб);
 
@@ -11432,17 +11432,17 @@
 
 		//вяжи(функция_5709)("_?hasAutoScroll@QAbstractItemView@@QBE_NXZ", биб);
 
-		//вяжи(функция_5710)("_?hasChildren@QDirModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_5710)("_?естьОтпрыски@QDirModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_5711)("_?hasChildren@QFileSystemModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_5711)("_?естьОтпрыски@QFileSystemModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_5712)("_?hasChildren@QProxyModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_5712)("_?естьОтпрыски@QProxyModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_5713)("_?hasChildren@QSortFilterProxyModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_5713)("_?естьОтпрыски@QSortFilterProxyModel@@UBE_NABVQModelIndex@@@Z", биб);
 
-		//вяжи(функция_5714)("_?hasChildren@QStandardItem@@QBE_NXZ", биб);
+		//вяжи(функция_5714)("_?естьОтпрыски@QStandardItem@@QBE_NXZ", биб);
 
-		//вяжи(функция_5715)("_?hasChildren@QStandardItemModel@@UBE_NABVQModelIndex@@@Z", биб);
+		//вяжи(функция_5715)("_?естьОтпрыски@QStandardItemModel@@UBE_NABVQModelIndex@@@Z", биб);
 
 		//вяжи(функция_5716)("_?hasClipOperations@QPaintEngineExPrivate@@QBE_NXZ", биб);
 

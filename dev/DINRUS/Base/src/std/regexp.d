@@ -110,7 +110,7 @@
 
 	\xXX starts out a 1 or 2 digit hex sequence. X
 	is a hex character. If the first character после the \x
-	is not a hex character, the value of the sequence is 'x'
+	не hex character, the value of the sequence is 'x'
 	and the XX are not consumed.
 	For maximal portability, use exactly 2 digits.
 
@@ -280,7 +280,7 @@ char[] sub(char[] string, char[] pattern, char[] delegate(RegExp) дг, char[] a
 	    offset += replacement.length - (eo - so);
 
 	    if (lastindex == eo)
-		lastindex++;		// always consume some source
+		lastindex++;		// всегда consume some source
 	    else
 		lastindex = eo;
 	}
@@ -383,7 +383,7 @@ int rfind(rchar[] string, char[] pattern, char[] attributes = null)
     {   int eo = r.pmatch[0].rm_eo;
 	i = r.pmatch[0].rm_so;
 	if (lastindex == eo)
-	    lastindex++;		// always consume some source
+	    lastindex++;		// всегда consume some source
 	else
 	    lastindex = eo;
     }
@@ -729,7 +729,7 @@ alias replaceOld замениСтарый;
 	global		= 1,	// has the g атрибут
 	ignoreCase	= 2,	// has the i атрибут
 	multiline	= 4,	// if treat as multiple lines separated
-				// by newlines, либо as a single line
+				// by newlines, либо как single line
 	dotmatchlf	= 8,	// if . matches \n
     }
 
@@ -1006,7 +1006,7 @@ public rchar[][] match(rchar[] string)
 
 	    результат ~= input[pmatch[0].rm_so .. eo];
 	    if (lastindex == eo)
-		lastindex++;		// always consume some source
+		lastindex++;		// всегда consume some source
 	    else
 		lastindex = eo;
 	}
@@ -1089,7 +1089,7 @@ public rchar[] replace(rchar[] string, rchar[] format)
 	    offset += replacement.length - (eo - so);
 
 	    if (lastindex == eo)
-		lastindex++;		// always consume some source
+		lastindex++;		// всегда consume some source
 	    else
 		lastindex = eo;
 	}
@@ -2272,7 +2272,7 @@ int parseAtom()
 		    case 'x':
 		    case 'u':
 		    case '0':
-			c = cast(char)escape();
+			c = cast(char)искейп();
 			goto Lbyte;
 
 		    case '1': case '2': case '3':
@@ -2545,7 +2545,7 @@ int parseRange()
 		    default:
 			break;
 		}
-		c2 = escape();
+		c2 = искейп();
 		goto Lrange;
 
 	    case '-':
@@ -2625,7 +2625,7 @@ void error(char[] msg)
 }
 
 // p is following the \ char
-int escape()
+int искейп()
 in
 {
     assert(p < pattern.length);

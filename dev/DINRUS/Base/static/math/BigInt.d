@@ -197,7 +197,7 @@ public:
         assert(y!=0);
         бцел u = y < 0 ? -y : y;
         цел rem = БольшБцел.modInt(данные, u);
-        // x%y always имеется the same знак as x.
+        // x%y всегда имеется the same знак as x.
         // This is not the same as mathematical mod.
         return знак? -rem : rem; 
     }
@@ -206,7 +206,7 @@ public:
         assert(y!=0);
         бцел u = y < 0 ? -y : y;
         данные = БольшБцел.modInt(данные, u);
-        // x%y always имеется the same знак as x.
+        // x%y всегда имеется the same знак as x.
         // This is not the same as mathematical mod.
         return *this;
     }
@@ -286,23 +286,23 @@ public:
         цел cmp = данные.opCmp(y.данные);
         return знак? -cmp: cmp;
     }
-    /// Возвращает the значение of this БольшЦел as a дол,
+    /// Возвращает the значение of this БольшЦел как дол,
     /// or +- дол.max if outsопрe the representable range.
     дол вДол() {
         return (знак ? -1 : 1)* 
           (данные.бдолДлина() == 1  && (данные.возьмиБдол(0) <= cast(бдол)(дол.max)) ? cast(дол)(данные.возьмиБдол(0)): дол.max);
     }
-    /// Возвращает the значение of this БольшЦел as an цел,
+    /// Возвращает the значение of this БольшЦел как цел,
     /// or +- дол.max if outsопрe the representable range.
     дол вЦел() {
         return (знак ? -1 : 1)* 
           (данные.бцелДлина() == 1  && (данные.возьмиБцел(0) <= cast(бцел)(цел.max)) ? cast(цел)(данные.возьмиБцел(0)): цел.max);
     }
     /// Число of significant бцелs which are использован in storing this число.
-    /// The абсолютный значение of this БольшЦел is always < 2^(32*бцелДлина)
+    /// The абсолютный значение of this БольшЦел is всегда < 2^(32*бцелДлина)
     цел бцелДлина() { return данные.бцелДлина(); }
     /// Число of significant ulongs which are использован in storing this число.
-    /// The абсолютный значение of this БольшЦел is always < 2^(64*бдолДлина)
+    /// The абсолютный значение of this БольшЦел is всегда < 2^(64*бдолДлина)
     цел бдолДлина() { return данные.бдолДлина(); } 
     
     /// Return x raised в_ the power of y

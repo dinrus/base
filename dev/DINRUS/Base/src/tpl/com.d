@@ -308,8 +308,8 @@ template ком_каст_безоп(T) {  alias ком_каст_реализ!(T,
  * Возвращает: Ссылку на интерфейс, идентифицируемый T.
  * Примеры:
  * ---
- * if (auto doc = создайКо!(IXMLDOMDocument3)(ууид_у!(DOMDocument60))) {
- *   scope(exit) doc.Release();
+ * if (auto док = создайКо!(IXMLDOMDocument3)(ууид_у!(DOMDocument60))) {
+ *   scope(exit) док.Release();
  * }
  * ---
  */

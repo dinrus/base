@@ -59,7 +59,7 @@ module io.selector.Selector;
  * выбери(Interval.max). In that case we don't have a таймаут и
  * выбери() блокs until a провод Приёмs an событие.
  *
- * When выбери() returns you will принять an целое; if this целое is
+ * When выбери() returns you will принять an целое; если это целое is
  * bigger than 0, it indicates the число of conduits that have been selected.
  * If this число is 0, the it means that the selector reached a таймаут, и
  * if it's -1, then it means that there was an ошибка. A нормаль блок that deals 

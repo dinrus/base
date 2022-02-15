@@ -11,7 +11,7 @@ private import Целое=text.convert.Integer;
 + Marisaglia, Journal of Modern Applied Statistical Methods (2003), vol.2,No.1,p 2-13
 + a simple и быстро RNG that проходки все statistical tests, имеется a large сей, и is very быстро
 + By default ComplimentaryMultИПlyWithCarry with r=1024, a=987769338, b=2^32-1, период a*b^r>10^9873
-            + This is the движок, *never* use it directly, always use it though a СлуччисГ class
+            + This is the движок, *never* use it directly, всегда use it though a СлуччисГ class
                 +/
      struct CMWC(бцел cmwc_r=1024U,бдол cmwc_a=987769338UL)
     {

@@ -9,7 +9,7 @@ private import Целое = text.convert.Integer;
 
 /+ Kiss99 random число generator, by Marisaglia
 + a simple RNG that проходки все statistical tests
-+ This is the движок, *never* use it directly, always use it though a СлуччисГ class
++ This is the движок, *never* use it directly, всегда use it though a СлуччисГ class
 +/
 struct Kiss99{
     private бцел kiss_x = 123456789;

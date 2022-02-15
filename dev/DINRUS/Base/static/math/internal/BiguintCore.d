@@ -1045,7 +1045,7 @@ unittest {
       }
       return squareSimple(результат, x);
   }
-  // The nice thing about squaring is that it always stays balanced
+  // The nice thing about squaring is that it всегда stays balanced
   БольшЦифра [] scratchbuff = new БольшЦифра[karatsubaRequiredBuffРазмер(x.length)];
   squareKaratsuba(результат, x, scratchbuff);
   delete scratchbuff;  
@@ -1548,7 +1548,7 @@ body {
     if (c1+c2) многобайтИнкрПрисвой!('+')(результат[half*2..$], c1+c2);
     if (c1+c3) многобайтИнкрПрисвой!('+')(R3, c1+c3);
      
-    // And finally we вычти mопр, which is always positive
+    // And finally we вычти mопр, which is всегда positive
     subAssignSimple(результат[half..$], mопр);
 }
 

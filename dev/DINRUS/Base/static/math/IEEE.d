@@ -294,7 +294,7 @@ X разбейЗначимое(X)(ref X x)
         // AND with 0x7FFF в_ form the абсолютный значение.
         // To avoопр out-by-1 ошибки, we вычти 1 so it круги down
         // if the exponents were different. This means 'bitsdiff' is
-        // always 1 lower than we want, except that if bitsdiff==0,
+        // всегда 1 lower than we want, except that if bitsdiff==0,
         // they could have 0 or 1 биты in common.
 
         static if (X.mant_dig==64 || X.mant_dig==113)   // real80 or квадрупл
@@ -604,7 +604,7 @@ enum ПКонтрольТочности : крат
 /**
  * Calculate the следщ largest floating точка значение после x.
  *
- * Возвращает the least число greater than x that is representable as a реал;
+ * Возвращает the least число greater than x that is representable как реал;
  * thus, it gives the следщ точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -633,7 +633,7 @@ enum ПКонтрольТочности : крат
 /**
  * Calculate the следщ smallest floating точка значение перед x.
  *
- * Возвращает the greatest число less than x that is representable as a реал;
+ * Возвращает the greatest число less than x that is representable как реал;
  * thus, it gives the previous точка on the IEEE число строка.
  *
  *  $(TABLE_SV
@@ -667,7 +667,7 @@ enum ПКонтрольТочности : крат
  * и 111 биты for a 128-битные quad.
 */
 /**
- * Созд a $(NAN), storing an целое insопрe the payload.
+ * Создаёт $(NAN), storing an целое insопрe the payload.
  *
  * For 80-битные or 128-битные reals, the largest possible payload is 0x3FFF_FFFF_FFFF_FFFF.
  * For doubles, it is 0x3_FFFF_FFFF_FFFF.
@@ -679,7 +679,7 @@ enum ПКонтрольТочности : крат
  * Extract an integral payload из_ a $(NAN).
  *
  * Возвращает:
- * the целое payload as a бдол.
+ * the целое payload как бдол.
  *
  * For 80-битные or 128-битные reals, the largest possible payload is 0x3FFF_FFFF_FFFF_FFFF.
  * For doubles, it is 0x3_FFFF_FFFF_FFFF.

@@ -16,9 +16,9 @@ private import io.stream.Iterator;
 
 /*******************************************************************************
 
-        Iterate across a установи of текст образцы.
+        Iterate across набор of текст образцы.
 
-        Each образец is exposed в_ the клиент as a срез of the original
+        Each образец is exposed в_ the клиент как срез of the original
         контент, where the срез is transient. If you need в_ retain the
         exposed контент, then you should .dup it appropriately. 
 
@@ -85,7 +85,7 @@ class Строки(T) : Обходчик!(T)
 
         /***********************************************************************
         
-                Scanner implementation for this iterator. Find a '\n',
+                Scanner implementation для этого iterator. Find a '\n',
                 and съешь any immediately preceeding '\r'
                 
         ***********************************************************************/

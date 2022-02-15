@@ -39,7 +39,7 @@ public interface ПараметрыХэш
     public цел корзины();
 
     /**
-     * Набор the desired число корзин in the хэш таблица.
+     * Устанавливает desired число корзин in the хэш таблица.
      * Any значение greater than or equal в_ one is ОК.
      * if different than текущ корзины, causes a version change
      * Выводит исключение: ИсклНелегальногоАргумента if newCap less than 1
@@ -57,7 +57,7 @@ public interface ПараметрыХэш
     public плав пороговыйФакторЗагрузки();
 
     /**
-     * Набор the текущ desired фактор загрузки. Any значение greater than 0 is ОК.
+     * Устанавливает текущ desired фактор загрузки. Any значение greater than 0 is ОК.
      * The текущ загрузи is проверьed against it, possibly causing перемерь.
      * Выводит исключение: ИсклНелегальногоАргумента if desired is 0 or less
     **/

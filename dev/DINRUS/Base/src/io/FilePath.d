@@ -8,7 +8,7 @@
         version:        Nov 2006: Australian version
         version:        Feb 2007: Mutating version
         version:        Mar 2007: Folded FileProxy in
-        version:        Nov 2007: VFS dictates '/' always be used
+        version:        Nov 2007: VFS dictates '/' всегда be used
         version:        Feb 2008: разбей файл-system calls преобр_в a struct
 
         author:         Kris
@@ -95,7 +95,7 @@ export :
             may разбей what is иначе a logically valid путь. That is,
             the 'имя' of a файл is typically the путь segment following
             a правейший путь-разделитель. The intent is в_ treat файлы and
-            directories in the same manner; as a имя with an optional
+            directories in the same manner; как имя with an optional
             ancestral structure. It is possible в_ bias the interpretation
             by добавим a trailing путь-разделитель в_ the аргумент. Doing so
             will результат in an пустой имя атрибут.
@@ -104,7 +104,7 @@ export :
             be an explicit .dup, whereas aliasing appeared в_ be rare by
             сравнение. We also noted a large proportion interacting with
             C-oriented OS calls, implying the postfix of a пусто terminator.
-            Thus, ФПуть combines Всё as a single operation.
+            Thus, ФПуть combines Всё как single operation.
 
             Note that Win32 '\' characters are normalized в_ '/' instead.
 
@@ -117,7 +117,7 @@ export :
 
     /***********************************************************************
 
-            Return the complete текст of this фпуть
+            Возвращает complete текст of this фпуть
 
     ***********************************************************************/
 
@@ -139,11 +139,11 @@ export :
 
     /***********************************************************************
 
-            Return the complete текст of this фпуть as a пусто
-            terminated ткст for use with a C api. Use вТкст
+            Возвращает complete текст of this фпуть как пусто
+            terminated ткст для использования с a C api. Use вТкст
             instead for any D api.
 
-            Note that the nul is always embedded within the ткст
+            Note that the nul is всегда embedded within the ткст
             maintained by ФПуть, so there's no куча overhead when
             making a C вызов
 
@@ -156,7 +156,7 @@ export :
 
     /***********************************************************************
 
-            Return the корень of this путь. Roots are constructs such as
+            Возвращает корень of this путь. Roots are constructs such as
             "c:"
 
     ***********************************************************************/
@@ -168,7 +168,7 @@ export :
 
     /***********************************************************************
 
-            Return the файл путь. Paths may старт and конец with a "/".
+            Возвращает файл путь. Paths may старт and конец with a "/".
             The корень путь is "/" and an unspecified путь is returned as
             an пустой ткст. Directory пути may be разбей such that the
             дир имя is placed преобр_в the 'имя' member; дир
@@ -207,7 +207,7 @@ export :
 
     /***********************************************************************
 
-            Return the имя of this файл, либо дир.
+            Возвращает имя of this файл, либо дир.
 
     ***********************************************************************/
 
@@ -599,7 +599,7 @@ export :
 
     /***********************************************************************
 
-            Join a установи of путь specs together. A путь разделитель is
+            Join набор of путь specs together. A путь разделитель is
             potentially inserted between each of the segments.
 
     ***********************************************************************/
@@ -640,7 +640,7 @@ export :
 
     /***********************************************************************
 
-            Return an adjusted путь such that non-пустой instances always
+            Return an adjusted путь such that non-пустой instances всегда
             have a trailing разделитель
 
     ***********************************************************************/
@@ -652,7 +652,7 @@ export :
 
     /***********************************************************************
 
-            Return an adjusted путь such that non-пустой instances always
+            Return an adjusted путь such that non-пустой instances всегда
             have a псеп_в_начале разделитель
 
     ***********************************************************************/
@@ -734,7 +734,7 @@ export :
             segments. Related methods include PathUtil.нормализуй() and
             абсолютный()
 
-            Note that each segment is создан as a папка, включая the
+            Note that each segment is создан как папка, включая the
             trailing segment.
 
             Возвращает: a chaining reference (this)
@@ -806,7 +806,7 @@ export :
 
     /***********************************************************************
 
-            Does this путь currently exist?
+            Does this путь currently есть_ли?
 
     ***********************************************************************/
 
@@ -886,7 +886,7 @@ export :
 
     /***********************************************************************
 
-            Return the файл length (in байты)
+            Возвращает файл length (in байты)
 
     ***********************************************************************/
 
@@ -1043,7 +1043,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the complete текст of this фпуть
+            Возвращает complete текст of this фпуть
 
     ***********************************************************************/
 
@@ -1051,7 +1051,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the complete текст of this фпуть
+            Возвращает complete текст of this фпуть
 
     ***********************************************************************/
 
@@ -1059,7 +1059,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the корень of this путь. Roots are constructs such as
+            Возвращает корень of this путь. Roots are constructs such as
             "c:"
 
     ***********************************************************************/
@@ -1068,7 +1068,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the файл путь. Paths may старт and конец with a "/".
+            Возвращает файл путь. Paths may старт and конец with a "/".
             The корень путь is "/" and an unspecified путь is returned as
             an пустой ткст. Directory пути may be разбей such that the
             дир имя is placed преобр_в the 'имя' member; дир
@@ -1080,7 +1080,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the имя of this файл, либо дир, excluding a
+            Возвращает имя of this файл, либо дир, excluding a
             суффикс.
 
     ***********************************************************************/
@@ -1150,7 +1150,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Does this путь currently exist?
+            Does this путь currently есть_ли?
 
     ***********************************************************************/
 
@@ -1185,7 +1185,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Return the файл length (in байты)
+            Возвращает файл length (in байты)
 
     ***********************************************************************/
 

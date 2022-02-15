@@ -31,7 +31,7 @@ import io.device.File;
  *  {
  *      scope temp = new ВремФайл;
  *      
- *      // Use temp as a нормаль провод; it will be automatically закрыт when
+ *      // Use temp как нормаль провод; it will be automatically закрыт when
  *      // it goes out of scope.
  *  }
  * -----

@@ -359,7 +359,7 @@ extern (C) int _adEq(Array a1, Array a2, TypeInfo ti)
     auto p2 = a2.ptr;
 
     if (sz == 1)
-        // We should really have a ti.isPOD() check for this
+        // We should really have a ti.isPOD() check для этого
         return (cidrus.memcmp(p1, p2, a1.length) == 0);
 
     for (size_t i = 0; i < a1.length; i++)
@@ -407,7 +407,7 @@ extern (C) int _adCmp(Array a1, Array a2, TypeInfo ti)
     void *p2 = a2.ptr;
 
     if (sz == 1)
-    {   // We should really have a ti.isPOD() check for this
+    {   // We should really have a ti.isPOD() check для этого
         auto c = cidrus.memcmp(p1, p2, len);
         if (c)
             return c;

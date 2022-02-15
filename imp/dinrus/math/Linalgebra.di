@@ -1733,7 +1733,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Whether this matrix represents pure вращение. I.e. hasn't масштабируй admixture.
+        Возвращает: Whether this matrix represents pure вращение. т.е. hasn't масштабируй admixture.
         Params:
             отнпрец, абспрец = Parameters passed to равны function while calculations.
                                Have the same meaning as in равны function.
@@ -1818,7 +1818,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица22 инверсия()
@@ -1860,7 +1860,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Frobenius _norm of matrix. I.e. square корень from sum of all элементы' squares.
+        Возвращает: Frobenius _norm of matrix. т.е. square корень from sum of all элементы' squares.
         Ссылки:
             $(LINK http://en.wikipedia.org/wiki/Frobenius_norm#Frobenius_norm).
         */
@@ -1870,7 +1870,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Square of Frobenius _norm of matrix. I.e. sum of all элементы' squares.
+        Возвращает: Square of Frobenius _norm of matrix. т.е. sum of all элементы' squares.
 
         Method doesn't need calculation of square корень.
 
@@ -2323,7 +2323,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Whether this matrix represents pure вращение. I.e. hasn't масштабируй admixture.
+        Возвращает: Whether this matrix represents pure вращение. т.е. hasn't масштабируй admixture.
         Params:
             отнпрец, абспрец = Parameters passed to равны function while calculations.
                                Have the same meaning as in равны function.
@@ -2495,7 +2495,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица33 инверсия()
@@ -2542,7 +2542,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Frobenius _norm of matrix. I.e. square корень from sum of all элементы' squares.
+        Возвращает: Frobenius _norm of matrix. т.е. square корень from sum of all элементы' squares.
         Ссылки:
             $(LINK http://en.wikipedia.org/wiki/Frobenius_norm#Frobenius_norm).
         */
@@ -2552,7 +2552,7 @@ private template ЛинейнаяАлгебра(т_плав)
         }
 
         /**
-        Возвращает: Square of Frobenius _norm of matrix. I.e. sum of all элементы' squares.
+        Возвращает: Square of Frobenius _norm of matrix. т.е. sum of all элементы' squares.
 
         Method doesn't need calculation of square корень.
 
@@ -3322,7 +3322,7 @@ private template ЛинейнаяАлгебра(т_плав)
         /**
         Возвращает: Inverse копируй of this matrix.
 
-        In case if this matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
+        In case если это matrix is singular (т.е. детерминанта = 0) результат matrix will имеется
         infinity элементы. You can проверь this with нормален_ли() method.
         */
         Матрица44 инверсия()

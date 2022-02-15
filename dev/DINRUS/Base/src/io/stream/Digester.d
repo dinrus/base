@@ -69,7 +69,7 @@ export:
 
     /********************************************************************
 
-            Return the Дайджест экземпляр we were создан with. Use this
+            Возвращает Дайджест экземпляр we were создан with. Use this
             в_ access the результатant binary or hex дайджест значение
 
     *********************************************************************/
@@ -85,7 +85,7 @@ export:
 
         Inject a дайджест фильтр преобр_в an вывод поток, updating the дайджест
         as information flows through it. Here's an example where we calculate
-        an MD5 дайджест as a sопрe-effect of copying a файл:
+        an MD5 дайджест как sопрe-effect of copying a файл:
         ---
         auto вывод = new ДайджестВывод(new ФайлВывод("вывод"), new Мд5);
         вывод.копируй (new ФайлВвод("ввод"));
@@ -131,7 +131,7 @@ export:
 
     /********************************************************************
 
-            Return the Дайджест экземпляр we were создан with. Use this
+            Возвращает Дайджест экземпляр we were создан with. Use this
             в_ access the результатant binary or hex дайджест значение
 
     *********************************************************************/

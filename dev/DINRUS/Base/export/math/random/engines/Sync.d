@@ -10,7 +10,7 @@ import sync: Стопор;
 
 /+ Makes a synchronized движок out of the движок Е, so multИПle нить доступ is ok
 + (but if you need multИПle нить доступ think about having генератор случайных чисел per нить)
-+ This is the движок, *never* use it directly, always use it though a СлуччисГ class
++ This is the движок, *never* use it directly, всегда use it though a СлуччисГ class
 +/
 struct Синх(Е){
     Е движок;

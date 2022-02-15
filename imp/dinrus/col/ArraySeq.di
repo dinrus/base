@@ -105,7 +105,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /**
          * Возвращает текущ internal буфер ёмкость (zero if no буфер allocated).
-         * Возвращает: ёмкость (always greater than or equal в_ размер())
+         * Возвращает: ёмкость (всегда greater than or equal в_ размер())
         **/
 
         public final цел ёмкость()
@@ -114,7 +114,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Набор the internal буфер ёмкость в_ max(размер(), newCap).
+         * Устанавливает internal буфер ёмкость в_ max(размер(), newCap).
          * That is, if given an аргумент less than the текущ
          * число of элементы, the ёмкость is just установи в_ the
          * текущ число of элементы. Thus, элементы are never lost
@@ -649,7 +649,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /***********************************************************************
 
-                expose collection контент as an Массив
+                expose collection контент как Массив
 
         ************************************************************************/
 

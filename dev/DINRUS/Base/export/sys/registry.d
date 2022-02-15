@@ -163,7 +163,7 @@ extern(D) class Ключ
     ///
     /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The ткст значение to set
-    /// \param asEXPAND_SZ If true, the значение will be stored as an expandable environment ткст, otherwise as a normal ткст
+    /// \param asEXPAND_SZ If true, the значение will be stored как expandable environment ткст, otherwise как normal ткст
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, ткст значение, булево asEXPAND_SZ);
 
@@ -212,40 +212,40 @@ extern(D) class Значение
     /// The тип of значение
     ПТипЗначенияРеестра тип();
 
-    /// Obtains the current значение of the значение as a ткст.
+    /// Obtains the current значение of the значение как ткст.
     ///
     /// \return The contents of the значение
     /// \note If the значение's тип is Ткст0Развёрт the returned значение is <b>not</b> expanded; Value_EXPAND_SZ() should be called
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Ткст0, Ткст0Развёрт, Бцел(_*) or Бцел64(_*):
     ткст значение_Ткст0();
 
-    /// Obtains the current значение as a ткст, within which any environment
+    /// Obtains the current значение как ткст, within which any environment
     /// variables have undergone expansion
     ///
     /// \return The contents of the значение
     /// \note This function works with the same значение-types as Value_SZ().
     ткст значение_Ткст0Развёрт();
 	
-    /// Obtains the current значение as an array of strings
+    /// Obtains the current значение как array of strings
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not МногоТкст0
     ткст[] многострочноеТкст0Значение();
 	
-    /// Obtains the current значение as a 32-bit unsigned integer, ordered correctly according to the current architecture
+    /// Obtains the current значение как 32-bit unsigned integer, ordered correctly according to the current architecture
     ///
     /// \return The contents of the значение
     /// \note An exception is thrown for all types other than Бцел, БцелЛЕ and БцелБЕ.
     бцел значениеБцел();
 	
-    /// Obtains the значение as a 64-bit unsigned integer, ordered correctly according to the current architecture
+    /// Obtains the значение как 64-bit unsigned integer, ordered correctly according to the current architecture
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бцел64
     бдол значениеБдол();
 	
 
-    /// Obtains the значение as a binary blob
+    /// Obtains the значение как binary blob
     ///
     /// \return The contents of the значение
     /// \note Выводит исключение a ИсклРеестра if the тип of the значение is not Бинарный

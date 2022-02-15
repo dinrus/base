@@ -21,9 +21,9 @@ public class ИсклСелектора: Исключение
      *
      * Параметры:
      * файл     = имя of the исток файл where the исключение was thrown; you
-     *            would normally use __FILE__ for this parameter.
+     *            would normally use __FILE__ для этого parameter.
      * строка     = строка число of the исток файл where the исключение was
-     *            thrown; you would normally use __LINE__ for this parameter.
+     *            thrown; you would normally use __LINE__ для этого parameter.
      */
     public this(ткст сооб, ткст файл, бцел строка)
     {
@@ -44,9 +44,9 @@ public class ИсклОтменённогоПровода: ИсклСелект�
      *
      * Параметры:
      * файл     = имя of the исток файл where the исключение was thrown; you
-     *            would normally use __FILE__ for this parameter.
+     *            would normally use __FILE__ для этого parameter.
      * строка     = строка число of the исток файл where the исключение was
-     *            thrown; you would normally use __LINE__ for this parameter.
+     *            thrown; you would normally use __LINE__ для этого parameter.
      */
     public this(ткст файл, бцел строка)
     {
@@ -66,9 +66,9 @@ public class ИсклРегистрируемогоПровода: ИсклСе�
      *
      * Параметры:
      * файл     = имя of the исток файл where the исключение was thrown; you
-     *            would normally use __FILE__ for this parameter.
+     *            would normally use __FILE__ для этого parameter.
      * строка     = строка число of the исток файл where the исключение was
-     *            thrown; you would normally use __LINE__ for this parameter.
+     *            thrown; you would normally use __LINE__ для этого parameter.
      */
     public this(ткст файл, бцел строка)
     {
@@ -88,9 +88,9 @@ public class ИсклПрерванногоСистВызова: ИсклСел�
      *
      * Параметры:
      * файл     = имя of the исток файл where the исключение was thrown; you
-     *            would normally use __FILE__ for this parameter.
+     *            would normally use __FILE__ для этого parameter.
      * строка     = строка число of the исток файл where the исключение was
-     *            thrown; you would normally use __LINE__ for this parameter.
+     *            thrown; you would normally use __LINE__ для этого parameter.
      */
     public this(ткст файл, бцел строка)
     {
@@ -109,9 +109,9 @@ public class ВнеПамИскл: ИсклСелектора
      *
      * Параметры:
      * файл     = имя of the исток файл where the исключение was thrown; you
-     *            would normally use __FILE__ for this parameter.
+     *            would normally use __FILE__ для этого parameter.
      * строка     = строка число of the исток файл where the исключение was
-     *            thrown; you would normally use __LINE__ for this parameter.
+     *            thrown; you would normally use __LINE__ для этого parameter.
      */
     public this(ткст файл, бцел строка)
     {

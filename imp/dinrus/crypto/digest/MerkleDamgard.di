@@ -21,7 +21,7 @@ public  import crypto.digest.Digest;
         protected проц трансформируй(ббайт[] данные);
         ---
 
-        In добавьition there exist two further abstract methods; these methods
+        In добавьition there есть_ли two further abstract methods; these methods
         have пустой default implementations since in some cases they are not
         требуется$(CLN)
         ---

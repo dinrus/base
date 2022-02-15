@@ -370,7 +370,7 @@ struct Бокс
     }
 
     /**
-     * Attempt to convert the boxed value into a string using std.string.format;
+     * Пытается конвертировать боксированное значение в ткст, используя stdrus.форматДелай;
      * this will throw if that function cannot handle it. If the box is
      * uninitialized then this returns "".    
      */

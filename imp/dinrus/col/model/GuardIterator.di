@@ -28,7 +28,7 @@ public interface СтражОбходчик(З) : Обходчик!(З)
          * not yet been traversed. When повреждён() is да, this 
          * число may (or may not) be greater than zero even if ещё() 
          * is нет. Исключение recovery mechanics may be able в_
-         * use this as an indication that recovery of some сортируй is
+         * use this как indication that recovery of some сортируй is
          * warranted. However, it is not necessarily a foolproof indication.
          * <P>
          * You can also use it в_ pack enumerations преобр_в массивы. For example:

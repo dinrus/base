@@ -16,9 +16,9 @@ private import io.stream.Iterator;
 
 /*******************************************************************************
 
-        Iterate over a установи of delimited, optionally-quoted, текст fields.
+        Iterate over набор of delimited, optionally-quoted, текст fields.
 
-        Each field is exposed в_ the клиент as a срез of the original
+        Each field is exposed в_ the клиент как срез of the original
         контент, where the срез is transient. If you need в_ retain the
         exposed контент, then you should .dup it appropriately.
 
@@ -76,7 +76,7 @@ class Кавычки(T) : Обходчик!(T)
     protected т_мера скан (проц[] данные)
     {
         T    quote = 0;
-        цел  escape = 0;
+        цел  искейп = 0;
         auto контент = (cast(T*) данные.ptr) [0 .. данные.length / T.sizeof];
 
         foreach (i, c; контент)
@@ -84,13 +84,13 @@ class Кавычки(T) : Обходчик!(T)
         if (quote)
         {
             if (c is '\\')
-                ++escape;
+                ++искейп;
             else
             {
                 // matched the начальное quote сим?
-                if (c is quote && escape % 2 is 0)
+                if (c is quote && искейп % 2 is 0)
                     quote = 0;
-                escape = 0;
+                искейп = 0;
             }
         }
         else

@@ -28,8 +28,8 @@ private
     enum ТипЗаписи { Пап, Файл }
    
     /*
-     * Entries are что сделай up the internal дерево that describes the
-     * filesystem of the архив.  Each Запись is either a дир or a файл.
+     * Записи создают  внутреннее дерево, которое описывает
+     * файловую систему архива. Каждая запись это либо папка, либо файл.
      */
     struct Запись
     {
@@ -63,7 +63,7 @@ private
         }
 
         /*
-         * Updates the ИнфОВфс structure for this Запись.
+         * Обновляет структуру ИнфОВфс для данной записи.
          */
         проц сделайИнфОВфс()
         {
@@ -108,13 +108,13 @@ private
         }
 
         /*
-         * Opens a Файл Запись for reading.
+         * Открывает Файл.Запись для чтения.
          *
-         * BUG: Currently, if a пользователь opens a new or unmodified файл for ввод,
-         * и then opens it for вывод, the two Потокs will be working with
-         * different underlying conduits.  This means that the результат of
-         * откройВвод should probably be wrapped in some kind of switching
-         * поток that can обнови when the backing сохрани for the файл changes.
+         * BUG: На данный момент, если пользователь открывает новый или неизменённый файл для ввода,
+         * и затем открывает его для вывода, эти два потока будут работать с
+         * разными низлежащими проводами. Это означает, что результат выполнения
+         * откройВвод, вероятнее всего, следует обмотать в какого-то рода переключающий
+         * поток, который сможет обновиться, когда фоновое хранилище файла будет изменено.
          */
         ИПотокВвода откройВвод()
         in
@@ -139,7 +139,7 @@ private
         }
 
         /*
-         * Opens a файл Запись for вывод.
+         * Открывает файловую Запись для вывода.
          */
         ИПотокВывода откройВывод()
         in
@@ -515,7 +515,7 @@ private:
         корень.полное_имя = корень.имя = "/";
 
         // If the пользователь allowed writing, also allow creating a new архив.
-        // Note that we MUST drop out here if the архив DOES NOT exist,
+        // Note that we MUST drop out here if the архив DOES NOT есть_ли,
         // since Путь.isWriteable will throw an исключение if called on a
         // non-existent путь.
         if( !this.толькочтен_ли && !Путь.есть_ли(путь) )
@@ -531,7 +531,7 @@ private:
             // Normalise имя
             auto имя = ФПуть(зипЗапись.инфо.имя).стандарт.вТкст;
 
-            // If the последний character is '/', treat as a дир и пропусти
+            // If the последний character is '/', treat как дир и пропусти
             // TODO: is there a better way of detecting this?
             if( имя[$-1] == '/' )
                 continue;
@@ -576,7 +576,7 @@ private:
                 // Make sure the файл isn't already there (you never know!)
                 assert( !(h in curent.пап.ветви) );
 
-                // Созд a new файл Запись for it.
+                // Создаёт new файл Запись for it.
                 {
                     // BUG: Bug_HeapCorruption
                     // with ZIPTest, on the сбросьАрхив operation, on
@@ -686,7 +686,7 @@ class ПодпапкаЗип : ПапкаВфс, СинхВфс
     body
     {
         // Locate the папка in question.  We do this by "walking" the
-        // путь components.  If we найди a component that doesn't exist,
+        // путь components.  If we найди a component that doesn't есть_ли,
         // then we создай a ЗаписьПодпапкиЗип for the остаток.
         Запись* curent = this.запись;
 
@@ -711,7 +711,7 @@ class ПодпапкаЗип : ПапкаВфс, СинхВфс
                 ht = t;
             }
             else
-                // If the следщ component doesn't exist, return a папка Запись.
+                // If the следщ component doesn't есть_ли, return a папка Запись.
                 // If the хвост is пустой, return a папка Запись as well (let
                 // the ЗаписьПодпапкиЗип do the последний отыщи.)
                 return new ЗаписьПодпапкиЗип(архив, curent, ht);
@@ -968,7 +968,7 @@ class ФайлЗип : ФайлВфс
     body
     {
         // If we've only got a родитель и a имя, this means we don't actually
-        // exist; EXISTENTIAL CRISIS TEIM!!!
+        // есть_ли; EXISTENTIAL CRISIS TEIM!!!
         return !!запись;
     }
 
@@ -1698,7 +1698,7 @@ import io.device.Conduit : Провод;
 //import io.model : ИПровод, ИПотокВвода, ИПотокВывода;
 
 /**
- * The dummy поток classes are использован в_ предоставляет simple, пустой поток objects
+ * The dummy поток classes are использован в_ предоставляет simple, пустой поток объекты
  * where one is требуется, but Неук is available.
  *
  * Note that, currently, these classes return 'пусто' for the underlying
@@ -1958,7 +1958,7 @@ class WrapSeekInputПоток : ИПотокВвода //, ИПровод.ИШа
     //alias ИПровод.ИШаг.Якорь Якорь;
 
     /**
-     * Созд a new wrap поток из_ the given исток.
+     * Создаёт new wrap поток из_ the given исток.
      */
     this(ИПотокВвода исток)
     in
@@ -2055,7 +2055,7 @@ class WrapSeekOutputПоток : ИПотокВывода//, ИПровод.ИШ
     //alias ИПровод.ИШаг.Якорь Якорь;
 
     /**
-     * Созд a new wrap поток из_ the given исток.
+     * Создаёт new wrap поток из_ the given исток.
      */
     this(ИПотокВывода исток)
     in

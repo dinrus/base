@@ -283,7 +283,7 @@ struct КЧУзел(З)
                 Узел тек = this;
                 while(да)
                 {
-                    // because root is always black, _родитель._родитель always exists
+                    // because root is всегда black, _родитель._родитель всегда exists
                     if(тек._родитель.левый_лиУзел)
                     {
                         // родитель is лево Узел, y is 'uncle', could be null
@@ -439,7 +439,7 @@ struct КЧУзел(З)
             возвр = y;
         }
 
-        // if this has less than 2 children, удали обх
+        // если это has less than 2 children, удали обх
         if(_лево !is null)
             x = _лево;
         else
@@ -557,7 +557,7 @@ struct КЧУзел(З)
     }
 
     /**
-     * Возвращает наилевейший descendant этого Узел.
+     * Возвращает наилевейший потомок этого Узел.
      */
     Узел наилевейший()
     {
@@ -568,7 +568,7 @@ struct КЧУзел(З)
     }
 
     /**
-     * Возвращает наиправейший descendant этого Узел.
+     * Возвращает наиправейший потомок этого Узел.
      */
     Узел наиправейший()
     {
@@ -621,7 +621,7 @@ struct КЧУзел(З)
         //
         // duplicate this and all child nodes
         //
-        // The recursion should be lg(n), so we shouldn'т have to worry about
+        // The рекурсия should be lg(n), so we shouldn'т have to worry about
         // stack size.
         //
         Узел copy = разм(значение);
@@ -799,7 +799,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
     }
 
     /**
-     * Find a Узел in the tree with a given значение.  Returns конец if no such
+     * Find a Узел in the tree with a given значение.  Returns конец, если такового нет
      * Узел exists.
      */
     Узел найди(З з)
@@ -1035,7 +1035,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
                     if(n.родитель !is z)
                     {
                         //
-                        // n is a descendant of z, but not the immediate
+                        // n is a потомок of z, but not the immediate
                         // child, we need to link n's родитель to n's право
                         // child.  Note that n must be a лево child or else
                         // n's родитель would have been the следщ Узел.

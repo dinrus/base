@@ -41,7 +41,7 @@ void __ULDIV__()
 	 * ([n2,n1]<<32 + n0)/(d1<<32 + d0)
 	 * becomes:
 	 * ([n2,n1]<<32)/(d1<<32 + d0) + n0/(d1<<32 + d0)
-	 * The second divide is always 0.
+	 * The second divide is всегда 0.
 	 * Ignore the d0 in the first divide, which will yield a quotient
 	 * that might be too high by 1 (because d1 is left justified).
 	 * We can tell if it's too big if:

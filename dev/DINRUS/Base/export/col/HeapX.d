@@ -17,7 +17,7 @@ private import exception;
   * not do significant куча allocation, not modify the collection, и complete in linear время. This
   * combination is not possible with a куча. 
   *
-  * Note: always пароль by reference when modifying a куча. 
+  * Note: всегда пароль by reference when modifying a куча. 
   *
   * The template аргументы в_ the куча are:
   *     T       = the элемент тип
@@ -238,7 +238,7 @@ struct Куча (T, alias Сравни = minHeapCompare!(T), alias Move = defaul
 
 /** A minheap implementation. This will have the smallest item as the верх of the куча. 
   *
-  * Note: always пароль by reference when modifying a куча. 
+  * Note: всегда пароль by reference when modifying a куча. 
   *
 */
 
@@ -249,7 +249,7 @@ template МинКуча(T)
 
 /** A maxheap implementation. This will have the largest item as the верх of the куча. 
   *
-  * Note: always пароль by reference when modifying a куча. 
+  * Note: всегда пароль by reference when modifying a куча. 
   *
 */
 

@@ -170,7 +170,7 @@ enum{strictFences = false}
             volatile asm {
                 mov AL, новзнач;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [ECX], AL;
             }
         }
@@ -178,7 +178,7 @@ enum{strictFences = false}
             volatile asm {
                 mov AX, новзнач;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [ECX], AX;
             }
         }
@@ -186,7 +186,7 @@ enum{strictFences = false}
             volatile asm {
                 mov EAX, новзнач;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [ECX], EAX;
             }
         }
@@ -209,7 +209,7 @@ enum{strictFences = false}
             volatile asm {
                 mov AL, новзнач;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [RCX], AL;
             }
         }
@@ -217,7 +217,7 @@ enum{strictFences = false}
             volatile asm {
                 mov AX, новзнач;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [RCX], AX;
             }
         }
@@ -225,7 +225,7 @@ enum{strictFences = false}
             volatile asm {
                 mov EAX, новзнач;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [RCX], EAX;
             }
         }
@@ -233,7 +233,7 @@ enum{strictFences = false}
             volatile asm {
                 mov RAX, новзнач;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 xchg [RCX], RAX;
             }
         }
@@ -277,7 +277,7 @@ private T aCas(T)(ref   T знач, T новзнач, T равно){
         return aCasT!(T,ushort)(знач,новзнач,равно);
     } else static if (T.sizeof==4){
         return aCasT!(T,бцел)(знач,новзнач,равно);
-    } else static if (T.sizeof==8){ // unclear if it is always supported...
+    } else static if (T.sizeof==8){ // unclear if it is всегда supported...
         return aCasT!(T,ulong)(знач,новзнач,равно);
     } else {
         static assert(0,"неверный тип "~T.stringof);
@@ -304,7 +304,7 @@ version(D_InlineAsm_X86) {
                 mov DL, новзнач;
                 mov AL, равно;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [ECX], DL;
             }
         }
@@ -313,7 +313,7 @@ version(D_InlineAsm_X86) {
                 mov DX, новзнач;
                 mov AX, равно;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [ECX], DX;
             }
         }
@@ -322,7 +322,7 @@ version(D_InlineAsm_X86) {
                 mov EDX, новзнач;
                 mov EAX, равно;
                 mov ECX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [ECX], EDX;
             }
         }
@@ -360,7 +360,7 @@ version(D_InlineAsm_X86) {
                     mov EAX, [EDI];
                     mov EDX, 4[EDI];
                     mov EDI, знач;
-                    lock; // блокируй always needed to make this op atomic
+                    lock; // блокируй всегда needed to make this op atomic
                     cmpxch8b [EDI];
                     lea EDI, рез;
                     mov [EDI], EAX;
@@ -387,7 +387,7 @@ version(D_InlineAsm_X86) {
                 mov DL, новзнач;
                 mov AL, равно;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [RCX], DL;
             }
         }
@@ -396,7 +396,7 @@ version(D_InlineAsm_X86) {
                 mov DX, новзнач;
                 mov AX, равно;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [RCX], DX;
             }
         }
@@ -405,7 +405,7 @@ version(D_InlineAsm_X86) {
                 mov EDX, новзнач;
                 mov EAX, равно;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [RCX], EDX;
             }
         }
@@ -414,7 +414,7 @@ version(D_InlineAsm_X86) {
                 mov RDX, новзнач;
                 mov RAX, равно;
                 mov RCX, posVal;
-                lock; // блокируй always needed to make this op atomic
+                lock; // блокируй всегда needed to make this op atomic
                 cmpxchg [RCX], RDX;
             }
         }
@@ -537,7 +537,7 @@ version (D_InlineAsm_X86){
                 {
                     mov RAX, знач;
                     mov RDX, incV;
-                    lock; // блокируй always needed to make this op atomic
+                    lock; // блокируй всегда needed to make this op atomic
                     xadd qword ptr [RAX],RDX;
                     mov рез[EBP],RDX;
                 }

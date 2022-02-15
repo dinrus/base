@@ -36,14 +36,14 @@ class СокетПровод : Провод, ИВыбираемый
     package Сокет                  сокет_;
     private бул                    таймаут;
 
-    // freelist support
+    // фрилист support
     private СокетПровод           следщ;
     private бул                    fromList;
-    private static СокетПровод    freelist;
+    private static СокетПровод    фрилист;
 
     /***********************************************************************
 
-            Созд a Потокing Internet Сокет
+            Создаёт Потокing Internet Сокет
 
     ***********************************************************************/
 
@@ -76,7 +76,7 @@ class СокетПровод : Провод, ИВыбираемый
 
     /***********************************************************************
 
-            Return the имя of this устройство
+            Возвращает имя of this устройство
 
     ***********************************************************************/
 
@@ -87,7 +87,7 @@ class СокетПровод : Провод, ИВыбираемый
 
     /***********************************************************************
 
-            Return the сокет wrapper
+            Возвращает сокет wrapper
 
     ***********************************************************************/
 
@@ -123,7 +123,7 @@ class СокетПровод : Провод, ИВыбираемый
 
     /***********************************************************************
 
-            Набор the читай таймаут в_ the specified интервал. Набор a
+            Устанавливает читай таймаут в_ the specified интервал. Устанавливает
             значение of zero в_ disable таймаут support.
 
             The интервал is in units of сек, where 0.500 would
@@ -176,7 +176,7 @@ class СокетПровод : Провод, ИВыбираемый
     /***********************************************************************
 
             Bind the сокет. This is typically использован в_ конфигурируй a
-            listening сокет (such as a сервер or multicast сокет).
+            listening сокет (such как сервер or multicast сокет).
             The адрес given should describe a local адаптер, or
             specify the порт alone (АДР_ЛЮБОЙ) в_ have the OS присвой
             a local адаптер адрес.
@@ -197,7 +197,7 @@ class СокетПровод : Провод, ИВыбираемый
 
             The глуши function shuts down the connection of the сокет:
 
-                -   stops receiving данные for this сокет. If further данные
+                -   stops receiving данные для этого сокет. If further данные
                     arrives, it is rejected.
 
                 -   stops trying в_ transmit данные из_ this сокет. Also
@@ -217,7 +217,7 @@ class СокетПровод : Провод, ИВыбираемый
 
             Release this СокетПровод
 
-            Note that one should always disconnect a СокетПровод
+            Note that one should всегда disconnect a СокетПровод
             under нормаль conditions, и generally invoke глуши
             on все подключен СОКЕТs передhand
 
@@ -227,7 +227,7 @@ class СокетПровод : Провод, ИВыбираемый
     {
         сокет_.открепи;
 
-        // вымести if this came из_ the free-список,
+        // вымести если это came из_ the free-список,
         // иначе just жди for the СМ в_ укз it
         if (fromList)
             вымести (this);
@@ -343,10 +343,10 @@ class СокетПровод : Провод, ИВыбираемый
     {
         СокетПровод s;
 
-        if (freelist)
+        if (фрилист)
         {
-            s = freelist;
-            freelist = s.следщ;
+            s = фрилист;
+            фрилист = s.следщ;
         }
         else
         {
@@ -364,8 +364,8 @@ class СокетПровод : Провод, ИВыбираемый
 
     private static synchronized проц вымести (СокетПровод s)
     {
-        s.следщ = freelist;
-        freelist = s;
+        s.следщ = фрилист;
+        фрилист = s;
     }
 }
 

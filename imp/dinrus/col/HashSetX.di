@@ -565,7 +565,7 @@ debug (ХэшНабор)
         
         проц main()
         {
-                // установи for benchmark, with a установи of целыйs. We
+                // установи for benchmark, with набор of целыйs. We
                 // use a чанк разместитель, и presize the бакет[]
                 auto тест = new ХэшНабор!(цел);
                 тест.корзины = 700_000;

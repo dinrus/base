@@ -80,7 +80,7 @@ alias expandedData расжатыеДанные;
      */
     string name;
 
-    ubyte[] extra;		/// Read/Write: extra data for this member.
+    ubyte[] extra;		/// Read/Write: extra data для этого member.
     string comment;		/// Read/Write: comment associated with this member.
     ubyte[] compressedData;	/// Read Only: data of member in compressed form.
     ubyte[] expandedData;	/// Read/Write: data of member in uncompressed form.

@@ -630,7 +630,7 @@ export struct ФС
 
                 /***************************************************************
 
-                        Return the файл length (in байты)
+                        Возвращает файл length (in байты)
 
                 ***************************************************************/
 
@@ -712,7 +712,7 @@ export struct ФС
 
                 /***************************************************************
 
-                        Набор the использовался and изменён timestamps of the
+                        Устанавливает использовался and изменён timestamps of the
                         specified файл
 
                 ***************************************************************/
@@ -982,7 +982,7 @@ export struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the complete текст of this фпуть
+                Возвращает complete текст of this фпуть
 
         ***********************************************************************/
 
@@ -993,7 +993,7 @@ export struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the корень of this путь. Roots are constructs such as
+                Возвращает корень of this путь. Roots are constructs such as
                 "c:"
 
         ***********************************************************************/
@@ -1005,7 +1005,7 @@ export struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the файл путь. Paths may старт and конец with a "/".
+                Возвращает файл путь. Paths may старт and конец with a "/".
                 The корень путь is "/" and an unspecified путь is returned as
                 an пустой ткст. Directory пути may be разбей such that the
                 дир имя is placed преобр_в the 'имя' member; дир
@@ -1073,7 +1073,7 @@ export struct ПутеПарсер
 
         /***********************************************************************
 
-                Return the имя of this файл, либо дир.
+                Возвращает имя of this файл, либо дир.
 
         ***********************************************************************/
 
@@ -1251,7 +1251,7 @@ export struct ПутеПарсер
 
 /*******************************************************************************
 
-        Does this путь currently exist?
+        Does this путь currently есть_ли?
 
 *******************************************************************************/
 
@@ -1305,7 +1305,7 @@ export Время создан (ткст имя)
 
 /*******************************************************************************
 
-        Return the файл length (in байты)
+        Возвращает файл length (in байты)
 
 *******************************************************************************/
 
@@ -1370,7 +1370,7 @@ export ФС.Штампы штампыВремени (ткст имя)
 
 /*******************************************************************************
 
-        Набор the использовался and изменён timestamps указанного файл
+        Устанавливает использовался and изменён timestamps указанного файл
 
         Since 0.99.9
 
@@ -1454,12 +1454,12 @@ export проц создайПапку (ткст имя)
         все родитель папки. The путь should not contain '.' or '..'
         segments, which can be removed via the нормализуй() function.
 
-        Note that each segment is создан as a папка, включая the
+        Note that each segment is создан как папка, включая the
         trailing segment.
 
         Выводит исключение: ВВИскл upon system ошибки
 
-        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but as a 
+        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but как 
         файл instead of a папка
 
 *******************************************************************************/
@@ -1542,7 +1542,7 @@ export ФС.Листинг ветви (ткст путь, бул все=нет)
 
         коллируй все файлы and папки из_ the given путь whose имя matches
         the given образец. Folders will be traversed where рекурсия is включен, 
-        and a установи of совпадают names is returned as filepaths (включая those 
+        and набор of совпадают names is returned as filepaths (включая those 
         папки which match the образец)
 
         Note: allocates память for returned пути
@@ -1568,7 +1568,7 @@ export ткст[] коллируй (ткст путь, ткст образец, 
 
 /*******************************************************************************
 
-        Join a установи of путь specs together. A путь разделитель is
+        Join набор of путь specs together. A путь разделитель is
         potentially inserted between each of the segments.
 
         Note: may размести память
@@ -1740,7 +1740,7 @@ debug(UnitTest)
         Matches a образец against a имяф.
 
         Some characters of образец have special a meaning (they are
-        <i>meta-characters</i>) and <b>can't</b> be escaped. These are:
+        <i>meta-characters</i>) and <b>can't</b> be эскапирован. These are:
         <p><table>
         <tr><td><b>*</b></td>
         <td>Matches 0 or ещё instances of any character.</td></tr>
@@ -1804,7 +1804,7 @@ in
 }
 body
 {
-        цел pi;
+        цел пи;
         цел ni;
         сим pc;
         сим nc;
@@ -1828,18 +1828,18 @@ body
         }
 
         ni = 0;
-        for (pi = 0; pi < образец.length; pi++)
+        for (пи = 0; пи < образец.length; пи++)
             {
-            pc = образец [pi];
+            pc = образец [пи];
             switch (pc)
                    {
                    case '*':
-                        if (pi + 1 == образец.length)
+                        if (пи + 1 == образец.length)
                             goto match;
                         for (j = ni; j < имяф.length; j++)
                             {
                             if (совпадение(имяф[j .. имяф.length],
-                                образец[pi + 1 .. образец.length]))
+                                образец[пи + 1 .. образец.length]))
                                goto match;
                             }
                         goto nomatch;
@@ -1856,21 +1856,21 @@ body
                         nc = имяф[ni];
                         ni++;
                         not = 0;
-                        pi++;
-                        if (образец[pi] == '!')
+                        пи++;
+                        if (образец[пи] == '!')
                            {
                            not = 1;
-                           pi++;
+                           пи++;
                            }
                         anymatch = 0;
                         while (1)
                               {
-                              pc = образец[pi];
+                              pc = образец[пи];
                               if (pc == ']')
                                   break;
                               if (!anymatch && charMatch(nc, pc))
                                    anymatch = 1;
-                              pi++;
+                              пи++;
                               }
                         if (!(anymatch ^ not))
                               goto nomatch;
@@ -1939,7 +1939,7 @@ debug (UnitTest)
         ---
 
         MultИПle consecutive forward slashes are replaced with a single 
-        forward slash. On Windows, \ will be преобразованый в_ / prior в_ any
+        forward слэш. On Windows, \ will be преобразованый в_ / prior в_ any
         normalization.
 
         Note that any число of .. segments at the front is ignored,

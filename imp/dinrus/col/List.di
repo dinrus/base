@@ -125,7 +125,7 @@ struct ОбходСписка(Т, бул резерв_ли = нет) {
         } return M;
     }
 
-    /// Return the value referred to by the обходчик
+    /// Возвращает value referred to by the обходчик
     Т знач() { assert(укз_ !is пусто); return укз_.данные; }
 
     /// Возвращает указатель to the value referred to by the обходчик
@@ -514,7 +514,7 @@ protected:
 
 private:
 
-    // Note there's always an "anchor" node, and nodes are stored in circular manner.
+    // Note there's всегда an "anchor" node, and nodes are stored in circular manner.
     // This makes it work well with STL style iterators that need a distinct начало and
     // конец nodes for forward and reverse iteration.
     // Unfortunately it wastes Т.sizeof bytes on useless payload данные.

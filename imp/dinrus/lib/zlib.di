@@ -138,10 +138,10 @@ alias gz_header* gz_headerp;
    On 16-bit systems, the functions zalloc and zfree must be able to allocate
    exactly 65536 bytes, but will not be required to allocate more than this
    if the symbol MAXSEG_64K is defined (see zconf.h). WARNING: On MSDOS,
-   pointers returned by zalloc for objects of exactly 65536 bytes *must*
+   pointers returned by zalloc for объекты of exactly 65536 bytes *must*
    have their offset normalized to zero. The default allocation function
    provided by this library ensures this (see zutil.c). To reduce memory
-   requirements and avoid any allocation of 64K objects, at the expense of
+   requirements and avoid any allocation of 64K объекты, at the expense of
    compression ratio, compile the library with -DMAX_WBITS=14 (see zconf.h).
 
    The fields total_in and total_out can be used for statistics or
@@ -243,7 +243,7 @@ int deflateInit(z_streamp strm, int level)
    compression (currently equivalent to level 6).
 
      deflateInit returns Z_OK if success, Z_MEM_ERROR if there was not
-   enough memory, Z_STREAM_ERROR if level is not a valid compression level,
+   enough memory, Z_STREAM_ERROR if level не valid compression level,
    Z_VERSION_ERROR if the zlib library version (zlib_version) is incompatible
    with the version assumed by the caller (ZLIB_VERSION).
    msg is set to null if there is no error message.  deflateInit does not
@@ -339,7 +339,7 @@ int deflate(z_streamp strm, int flush);
 
 int deflateEnd(z_streamp strm);
 /*
-     All dynamically allocated данные structures for this stream are freed.
+     All dynamically allocated данные structures для этого stream are freed.
    This function discards any unprocessed input and does not flush any
    pending output.
 
@@ -415,7 +415,7 @@ int inflate(z_streamp strm, int flush);
     The Z_BLOCK option assists in appending to or combining deflate streams.
   Also to assist in this, on return inflate() will set strm->data_type to the
   number of unused bits in the last byte taken from strm->nрасш_in, plus 64
-  if inflate() is currently decoding the last block in the deflate stream,
+  if inflate() на данный момент decoding the last block in the deflate stream,
   plus 128 if inflate() returned immediately после decoding an end-of-block
   code or decoding the complete header up to just перед the first byte of the
   deflate stream. The end-of-block will not be indicated until all of the
@@ -430,13 +430,13 @@ int inflate(z_streamp strm, int flush);
   Z_FINISH. In this case all pending input is processed and all pending
   output is flushed; avail_out must be large enough to hold all the
   uncompressed данные. (The size of the uncompressed данные may have been saved
-  by the compressor for this purpose.) The next operation on this stream must
+  by the compressor для этого purpose.) The next operation on this stream must
   be inflateEnd to deallocate the decompression state. The use of Z_FINISH
   is never required, but can be used to inform inflate that a faster approach
   may be used for the single inflate() call.
 
-     In this implementation, inflate() always flushes as much output as
-  possible to the output buffer, and always uses the faster approach on the
+     In this implementation, inflate() всегда flushes as much output as
+  possible to the output buffer, and всегда uses the faster approach on the
   first call. So the only effect of the flush parameter in this implementation
   is on the return value of inflate(), as noted below, либо when it returns early
   because Z_BLOCK is used.
@@ -475,7 +475,7 @@ int inflate(z_streamp strm, int flush);
 
 int inflateEnd(z_streamp strm);
 /*
-     All dynamically allocated данные structures for this stream are freed.
+     All dynamically allocated данные structures для этого stream are freed.
    This function discards any unprocessed input and does not flush any
    pending output.
 
@@ -509,7 +509,7 @@ int deflateInit2(z_streamp strm,
    this version of the library.
 
      The windowBits parameter is the base two logarithm of the window size
-   (the size of the history buffer). It should be in the range 8..15 for this
+   (the size of the history buffer). It should be in the range 8..15 для этого
    version of the library. Larger values of this parameter результат in better
    compression at the expense of memory usage. The default value is 15 if
    deflateInit is used instead.
@@ -529,7 +529,7 @@ int deflateInit2(z_streamp strm,
    for the internal compression state. memLevel=1 uses minimum memory but
    is медленно and reduces compression ratio; memLevel=9 uses maximum memory
    for optimal speed. The default value is 8. See zconf.h for total memory
-   usage as a function of windowBits and memLevel.
+   usage как function of windowBits and memLevel.
 
      The strategy parameter is used to tune the compression algorithm. Use the
    value Z_DEFAULT_STRATEGY for normal данные, Z_FILTERED for данные produced by a
@@ -547,7 +547,7 @@ int deflateInit2(z_streamp strm,
    applications.
 
       deflateInit2 returns Z_OK if success, Z_MEM_ERROR if there was not enough
-   memory, Z_STREAM_ERROR if a parameter is invalid (such as an invalid
+   memory, Z_STREAM_ERROR if a parameter is invalid (such как invalid
    method). msg is set to null if there is no error message.  deflateInit2 does
    not выполни any compression: this will be done by deflate().
 */
@@ -584,14 +584,14 @@ int deflateSetDictionary(z_streamp strm, ubyte* dictionary, uint  dictLength);
 
      deflateSetDictionary returns Z_OK if success, либо Z_STREAM_ERROR if a
    parameter is invalid (such as NULL dictionary) or the stream state is
-   inconsistent (for example if deflate has already been called for this stream
+   inconsistent (for example if deflate has already been called для этого stream
    or if the compression method is bsort). deflateSetDictionary does not
    выполни any compression: this will be done by deflate().
 */
 
 int deflateCopy(z_streamp dest, z_streamp source);
 /*
-     Sets the destination stream as a complete copy of the source stream.
+     Sets the destination stream как complete copy of the source stream.
 
      This function can be useful when several compression strategies will be
    tried, for example when there are several ways of pre-processing the input
@@ -661,7 +661,7 @@ int inflateGetHeader(z_streamp strm, gz_headerp head);
    elsewhere so that they can be eventually freed.
 
       If inflateGetHeader is not used, then the header information is simply
-   discarded.  The header is always checked for validity, including the header
+   discarded.  The header is всегда checked for validity, including the header
    CRC if present.  inflateReset() will reset the process to discard the header
    information.  The application would need to call inflateGetHeader() again to
    retrieve the header from the next gzip stream.
@@ -770,10 +770,10 @@ int inflateInit2(z_streamp strm, int windowBits)
    determines the window size. inflate() will then process raw deflate данные,
    not looking for a zlib or gzip header, not generating a check value, and not
    looking for any check values for comparison at the end of the stream. This
-   is for use with other formats that use the deflate compressed данные format
+   is для использования с other formats that use the deflate compressed данные format
    such as zip.  Those formats provide their own check values. If a custom
    format is developed using the raw deflate format for compressed данные, it is
-   recommended that a check value such as an adler32 or a crc32 be applied to
+   recommended that a check value such как adler32 or a crc32 be applied to
    the uncompressed данные as is done in the zlib, gzip, and zip formats.  For
    most applications, the zlib format should be used as is. Note that comments
    above on the use in deflateInit2() applies to the magnitude of windowBits.
@@ -785,7 +785,7 @@ int inflateInit2(z_streamp strm, int windowBits)
    a crc32 instead of an adler32.
 
      inflateInit2 returns Z_OK if success, Z_MEM_ERROR if there was not enough
-   memory, Z_STREAM_ERROR if a parameter is invalid (such as a null strm). msg
+   memory, Z_STREAM_ERROR if a parameter is invalid (such как null strm). msg
    is set to null if there is no error message.  inflateInit2 does not выполни
    any decompression apart from reading the zlib header if present: this will
    be done by inflate(). (So nрасш_in and avail_in may be modified, but nрасш_out
@@ -829,7 +829,7 @@ int inflateSync(z_streamp strm);
 
 int inflateCopy (z_streamp dest, z_streamp source);
 /*
-     Sets the destination stream as a complete copy of the source stream.
+     Sets the destination stream как complete copy of the source stream.
 
      This function can be useful when randomly accessing a large stream.  The
    first pass through the stream can periodically record the inflate state,
@@ -945,7 +945,7 @@ int inflateBack(z_stream* strm,
    initialized.  In the case of Z_BUF_ERROR, an input or output error can be
    distinguished using strm->nрасш_in which will be Z_NULL only if in() returned
    an error.  If strm->next is not Z_NULL, then the Z_BUF_ERROR was due to
-   out() returning non-zero.  (in() will always be called перед out(), so
+   out() returning non-zero.  (in() will всегда be called перед out(), so
    strm->nрасш_in is assured to be defined if out() returns non-zero.)  Note
    that inflateBack() cannot return Z_OK.
 */
@@ -1271,7 +1271,7 @@ void gzclearerr (gzFile file);
      Update a running Adler-32 checksum with the bytes buf[0..len-1] and
    return the updated checksum. If buf is NULL, this function returns
    the required initial value for the checksum.
-   An Adler-32 checksum is almost as reliable as a CRC32 but can be computed
+   An Adler-32 checksum is almost as reliable как CRC32 but can be computed
    much faster. Usage example:
 
      uint adler = adler32(0L, Z_NULL, 0);

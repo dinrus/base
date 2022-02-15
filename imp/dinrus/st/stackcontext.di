@@ -25,7 +25,7 @@ const т_мера МИН_РАЗМЕР_СТЕКА = 0x1000;
 enum ПСостояниеКонтекста
 {
     Готов,      /// When a КонтекстСтэка is in готов состояние, it may be пуск
-    Выполняется,    /// When a КонтекстСтэка is выполняется, it is currently in use, и cannot be пуск
+    Выполняется,    /// When a КонтекстСтэка is выполняется, it на данный момент in use, и cannot be пуск
     Завершён,       /// When a КонтекстСтэка is завершён, it may no longer be пуск
 }
 
@@ -136,7 +136,7 @@ public class ОшибкаКонтекста : Ошибка
  *      ctx3.пуск();     // Prints "Going to throw"
  * }
  *
- * //A final example illustrating контекст nesting
+ * //A final example illustrating контекст гнездование
  * //
  * КонтекстСтэка A, B;
  *
@@ -174,12 +174,12 @@ public class ОшибкаКонтекста : Ошибка
 public final class КонтекстСтэка
 {
     /**
-     * Созд a КонтекстСтэка with the given стэк размер,
+     * Создаёт КонтекстСтэка with the given стэк размер,
      * using a delegate.
      *
      * Параметры:
      *  fn = The delegate we will be выполняется.
-     *  размер_стэка = The размер of the стэк for this thread
+     *  размер_стэка = The размер of the стэк для этого thread
      *  in байты.  Note, Must be greater than the minimum
      *  стэк размер.
      *
@@ -189,12 +189,12 @@ public final class КонтекстСтэка
      */
     public this(проц delegate() fn, т_мера размер_стэка = ДЕФ_РАЗМЕР_СТЕКА);
     /**
-     * Созд a КонтекстСтэка with the given стэк размер,
+     * Создаёт КонтекстСтэка with the given стэк размер,
      * using a function pointer.
      *
      * Параметры:
      *  fn = The function pointer we are using
-     *  размер_стэка = The размер of the стэк for this thread
+     *  размер_стэка = The размер of the стэк для этого thread
      *  in байты.  Note, Must be greater than the minimum
      *  стэк размер.
      *
@@ -274,7 +274,7 @@ public final class КонтекстСтэка
     
     /**
      * Immediately sets the контекст состояние to завершён. This
-     * can be использован as an alternative to deleting the 
+     * can be использован как alternative to deleting the 
      * контекст since it releases any GC references, и
      * may be easily reallocateauxd.
      *
@@ -302,7 +302,7 @@ public final class КонтекстСтэка
     public бул готов();
     
     /**
-     * Возвращает: True if the контекст is currently выполняется
+     * Возвращает: True if the контекст на данный момент выполняется
      */
     public бул выполняется();
     
@@ -313,7 +313,7 @@ public final class КонтекстСтэка
     
     /**
      * Возвращает: The currently выполняется стэк контекст.
-     *  пусто if no контекст is currently выполняется.
+     *  пусто if no контекст на данный момент выполняется.
      */
     public static КонтекстСтэка дайВыполняемый();
     
@@ -406,7 +406,7 @@ static this();
 
 /********************************************************
  * SYSTEM SPECIFIC FUNCTIONS
- *  All information below this can be regarded as a
+ *  All information below this can be regarded как
  *  black box.  The details of the implementation are
  *  irrelevant to the workings of the rest of the
  *  контекст data.

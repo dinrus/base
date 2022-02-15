@@ -11,7 +11,7 @@ import math.ErrorFunction:матошфунк;
 import math.random.Ziggurat;
 import tpl.traits: типРеал_ли;
 
-/// class that returns gaussian (нормаль) distributed numbers (f=эксп(-0.5*x*x)/квкор(2*pi))
+/// class that returns gaussian (нормаль) distributed numbers (f=эксп(-0.5*x*x)/квкор(2*пи))
 class НормальныйИсточник(СлучГ,T){
     static assert(типРеал_ли!(T),T.stringof~" недопустимо, поддерживаются только переменные с плавающей запятой");
     /// probability ни в каком дистрибутиве (non normalized, should be divопрed by квкор(2*ПИ))
@@ -72,7 +72,7 @@ class НормальныйИсточник(СлучГ,T){
         return исток.рандомирОп(op,a);
     }
     /// нормаль ни в каком дистрибутиве with different default сигма и мю
-    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 pi)*сигма)
+    /// f=эксп(-x*x/(2*сигма^2))/(квкор(2 пи)*сигма)
     struct НормальнаяДистрибуция{
         T сигма,мю;
         НормальныйИсточник исток;

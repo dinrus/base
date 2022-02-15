@@ -86,7 +86,6 @@
 *******************************************************************************/
 module io.Stdout;
 
-
 private import io.Console;
 private import io.stream.Format;
 private import text.convert.Layout;
