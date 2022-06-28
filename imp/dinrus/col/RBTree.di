@@ -688,7 +688,7 @@ struct КЧДерево(З, alias функСравнить, alias обновлФ
     }
 
     /**
-     * Add a Узел to the КЧДерево.  Runs in O(lg(n)) time.
+     * Add a Узел to the КЧДерево.  Выполняется за время O(lg(n)).
      *
      * Возвращаетs да, если a new Узел was добавленный, нет if обх was not.
      *

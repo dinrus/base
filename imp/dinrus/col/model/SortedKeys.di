@@ -6,13 +6,13 @@ private import  col.model.View,
 /**
  *
  *
- * KeySorted is a mixin interface for Collections that
- * are всегда in sorted order with respect в_ a Сравнитель
- * held by the Коллекция.
+ * KeySorted - это mixin-интерфес лоя Коллекций, которые
+ * всегда в отсортированном порядке, благодаря Сравнителю,
+ * который имеется у Коллекции.
  * <P>
- * KeySorted Collections guarantee that enumerations
- * appear in sorted order;  that is if a и b are two Keys
- * obtained in succession из_ ключи().nextElement(), that
+ * Коллекции с отсортированными ключами гарантируют, что перечисления
+ * представляются в отсортированном порядке;  т.е. если a и b -
+ * это два Ключа, полученных от ключи().nextElement(), то
  * <PRE>
  * сравнитель(a, b) <= 0.
  * </PRE>
@@ -22,7 +22,7 @@ public interface СортированныеКлючи(К, З) : Обзор!(З)
 {
 
         /**
-         * Report the Сравнитель использован for ordering
+         * Репортирует Сравнитель для использования при упорядочивании.
         **/
 
         public Сравнитель!(К) сравнитель();

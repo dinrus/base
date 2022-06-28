@@ -310,7 +310,7 @@ debug(UnitTest)
  * fDistributionComplInv, finds the аргумент x such that the integral
  * из_ x в_ infinity of the F density is equal в_ the given probability y.
  *
- * Can be использован в_ тест whether the means of multИПle normally distributed
+ * Can be использован в_ тест whether the means of Несколько normally distributed
  * populations, все with the same стандарт deviation, are equal;
  * or в_ тест that the стандарт deviations of two normally distributed
  * populations are equal.

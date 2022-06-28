@@ -11,13 +11,13 @@ IShellDispatch оболочка = Shell.создайКо!(IShellDispatch);
     if (папка !is пусто) {
       высвободиПосле (папка, {
 
-        // Get the collection of FolderItem objects.
+        // Get the collection of FolderItem объекты.
         FolderItems элты;
         папка.Items(элты);
         if (элты !is пусто) {
           высвободиПосле (элты, {
 
-            // Iterate through all the FolderItem objects.
+            // Iterate through all the FolderItem объекты.
             цел счёт;
             элты.get_Count(счёт);
             for (цел и = 0; и < счёт; и++) {

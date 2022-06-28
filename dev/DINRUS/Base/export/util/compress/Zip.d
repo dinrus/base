@@ -1440,7 +1440,7 @@ class ЗаписьЗип
     ИнфоОЗаписиЗип инфо;
 
     /**
-     * Size (in байты) of the файл's uncompressed contents.
+     * Size (в байтах) of the файл's uncompressed contents.
      */
     бцел размер()
     {

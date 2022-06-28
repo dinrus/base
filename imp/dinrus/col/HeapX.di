@@ -9,20 +9,20 @@ private import exception;
 бул maxHeapCompare(T)(T a, T b) {return a >= b;}
 проц defaultHeapSwap(T)(T t, бцел индекс) {}
 
-/** A куча is a данные structure where you can вставь items in random order и выкинь them in sorted order. 
-  * Pushing an элемент преобр_в the куча takes O(lg n) и popping the верх of the куча takes O(lg n). Heaps are 
-  * thus popular for sorting, among другой things.
+/** Куча - структура данных, куда можно вставлять элементы в случайном порядке и вынимать в отсортированном. 
+  * Помещение элемента в кучу занимает O(lg n) времени, а выемка верха кучи - O(lg n). Поэтому 
+  * кучи применябтся для сортировки, среди прочего.
   * 
-  * No opApply is предоставленный, since most people would expect this в_ return the contents in sorted order,
-  * not do significant куча allocation, not modify the collection, и complete in linear время. This
-  * combination is not possible with a куча. 
+  * Операция opApply не предоставлена, но многие ожидали, что именно она возвратит контент отсортированным,
+  * не проводится значительных размещений, нет изменения коллекции, и завершается всё в линейном времени.
+  * Эта комбинация с кучей невозможна. 
   *
   * Note: всегда пароль by reference when modifying a куча. 
   *
-  * The template аргументы в_ the куча are:
-  *     T       = the элемент тип
-  *     Сравни = a function called when ordering элементы. Its сигнатура should be бул(T, T).
-  *               see minHeapCompare() и maxHeapCompare() for examples.
+  * Шаблонными аргументами к куче являются:
+  *     T       = тип элемента
+  *     Сравни = функция, вызываемая при упорядочивании элементов. Её сигнатура должна быть бул(T, T).
+  *               См., например,  minHeapCompare() и maxHeapCompare().
   *     Move    = a function called when свопping элементы. Its сигнатура should be проц(T, бцел).
   *               The default does nothing, и should suffice for most users. You 
   *               probably want в_ keep this function small; it's called O(лог N) 
@@ -129,7 +129,7 @@ struct Куча (T, alias Сравни = minHeapCompare!(T), alias Move = defaul
                 return куча[0];
         }
 
-        /** Возвращает the число of элементы in this куча. */
+        /** Возвращает the число элементов в this куча. */
         бцел размер ()
         {
                 return следщ;

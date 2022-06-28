@@ -5,10 +5,6 @@
  * Число рядов и колонок фиксируется при компиляции.
  * Storage is column major like FORTRAN or OpenGL.
  *
- * Authors:  William V. Baxter III (OLM Digital, Inc.)
- * Date: 23 Nov 2007
- * Copyright: (C) 2007-2008  William Baxter, OLM Digital, Inc.
- * License: ZLIB/LIBPNG
  */
 //===========================================================================
 

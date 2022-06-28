@@ -52,7 +52,7 @@ deprecated public class СекСвязка(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Special version of constructor needed by клонируй()
+         * Особая версия конструктора needed by клонируй()
         **/
 
         protected this (Предикат s, ЯчейкаССТ l, цел c)
@@ -463,7 +463,7 @@ deprecated public class СекСвязка(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
-         * Временная ёмкость: O(число of элементы in e).
+         * Временная ёмкость: O(число элементов в e).
          * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(Обходчик!(T) e)
@@ -473,7 +473,7 @@ deprecated public class СекСвязка(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
-         * Временная ёмкость: O(n + число of элементы in e).
+         * Временная ёмкость: O(n + число элементов в e).
          * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(Обходчик!(T) e)
@@ -486,7 +486,7 @@ deprecated public class СекСвязка(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
-         * Временная ёмкость: O(n + число of элементы in e).
+         * Временная ёмкость: O(n + число элементов в e).
          * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, Обходчик!(T) e)

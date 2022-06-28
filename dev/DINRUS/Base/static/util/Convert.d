@@ -1095,7 +1095,7 @@ D toFromUDT(D,S)(S значение)
 {
     // Try значение.в_* first
     static if( is( typeof(mixin("значение.to_"~TN!(D)~"()")) : D ) )
-        return mixin("значение.to_"~TN!(D)~"()");
+        return mixin("значение.в_"~TN!(D)~"()");
 
     else static if( is( typeof(mixin("значение.в_"
                                      ~ctfe_camelCase(TN!(D))~"()")) : D ) )
@@ -1105,8 +1105,8 @@ D toFromUDT(D,S)(S значение)
         return значение.в_!(D)();
 
     // Ok, try D.из_* сейчас
-    else static if( is( typeof(mixin("D.from_"~TN!(S)~"(значение)")) : D ) )
-        return mixin("D.from_"~TN!(S)~"(значение)");
+    else static if( is( typeof(mixin("D.из_"~TN!(S)~"(значение)")) : D ) )
+        return mixin("D.из_"~TN!(S)~"(значение)");
 
     else static if( is( typeof(mixin("D.из_"
                                      ~ctfe_camelCase(TN!(S))~"(значение)")) : D ) )

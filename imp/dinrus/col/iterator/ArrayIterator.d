@@ -6,7 +6,7 @@ private import col.model.GuardIterator;
 
 
 /**
- * ОбходчикМассива допускается you в_ use массивы as Iterators
+ * ОбходчикМассива допускает использование массивов в качестве итераторов.
 **/
 
 public class ОбходчикМассива(T) : СтражОбходчик!(T)
@@ -16,7 +16,7 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
     private цел разм_;
 
     /**
-     * Build an enumeration that returns successive элементы of the Массив
+     * Строит перечисление, которое возвращает последовательные элементы массива.
     **/
     public this (T масс[])
     {
@@ -46,7 +46,7 @@ public class ОбходчикМассива(T) : СтражОбходчик!(T)
 
     /**
      * Реализует col.impl.Collection.CollectionIterator.повреждён.
-     * Always нет. Inconsistency cannot be reliably detected for массивы
+     * Всегда нет. Легко надёжно обнаружить неконсистентность для массивов.
      * Возвращает: нет
      * См_Также: col.impl.Collection.CollectionIterator.повреждён
     **/

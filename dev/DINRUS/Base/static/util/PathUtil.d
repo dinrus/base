@@ -33,7 +33,7 @@ private enum
 
     On Windows, \ will be преобразованый в_ / prior в_ normalization.
 
-    MultИПle consecutive forward slashes are replaced with a single forward слэш.
+    Несколько consecutive forward slashes are replaced with a single forward слэш.
 
     Note that any число of .. segments at the front is ignored,
     unless it is an абсолютный путь, in which case they are removed.

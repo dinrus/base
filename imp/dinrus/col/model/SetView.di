@@ -7,7 +7,7 @@ private import col.model.View;
  * an элемент only if it is not already present.
  * They also добавь a guarantee:
  * With sets,
- * you can be sure that the число of occurrences of any
+ * you can be sure that число случаев of any
  * элемент is either zero or one.
  *
  * 
@@ -25,7 +25,7 @@ public interface ОбзорНабора(T) : Обзор!(T)
 version (VERBOSE)
 {
         /**
-         * Construct a new Коллекция that is a клонируй of сам except
+         * Конструирует новый Коллекция that is a клонируй of сам except
          * that it имеется indicated элемент. This can be использован
          * в_ создай a series of собериions, each differing из_ the
          * другой only in that they contain добавьitional элементы.
@@ -33,7 +33,7 @@ version (VERBOSE)
          * @param элемент the элемент в_ include in the new collection
          * Возвращает: a new collection c, with the совпадает as this, except that
          * c.имеется(элемент)
-         * Выводит исключение: IllegalElementException if !canInclude(элемент)
+         * Выводит исключение: ИсклНедопустимыйЭлемент if !canInclude(элемент)
         **/
 
         public Набор включая (T элемент);

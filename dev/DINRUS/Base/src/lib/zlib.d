@@ -298,7 +298,7 @@ int deflate(z_streamp strm, int flush);
     If flush is set to Z_FULL_FLUSH, all output is flushed as with
   Z_SYNC_FLUSH, and the compression state is reset so that decompression can
   restart from this point if previous compressed данные has been damaged or if
-  random access is desired. Using Z_FULL_FLUSH too often can seriously degrade
+  random access is требуется. Using Z_FULL_FLUSH too often can seriously degrade
   compression.
 
     If deflate returns with avail_out == 0, this function must be called again
@@ -472,7 +472,7 @@ int inflate(z_streamp strm, int flush);
   inflate() can be called again with more input and more output space to
   continue decompressing. If Z_DATA_ERROR is returned, the application may then
   call inflateSync() to look for a good compression block if a partial recovery
-  of the данные is desired.
+  of the данные is требуется.
 */
 
 

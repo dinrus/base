@@ -4,16 +4,6 @@
 /**
  * Шаблоны для проведения работы над строками при компиляции.
  *
- * Macros:
- *	WIKI = Phobos/StdMetastrings
- * Copyright:
- *	Public Domain
- */
-
-/*
- * Authors:
- *	Walter Bright, Digital Mars, www.digitalmars.com
- *	Don Clugston
  */
 
 module tpl.metastrings;

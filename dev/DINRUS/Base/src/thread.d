@@ -734,7 +734,7 @@ export extern(D) class Нить
          * assumed that any ключ passed to this function is valid.
          *
          * Параметры:
-         *  ключ = The location which holds the desired data.
+         *  ключ = The location which holds the требуется data.
          *
          * Возвращает:
          *  The data associated with the supplied ключ.

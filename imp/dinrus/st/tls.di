@@ -31,7 +31,7 @@ private extern(C)
     цел pthread_key_delete(pthread_key_t);
     цел pthread_key_create(pthread_key_t*, проц function(ук));
     цел pthread_setspecific(pthread_key_t, ук);
-    укpthread_getspecific(pthread_key_t);
+    укp thread_getspecific(pthread_key_t);
     
     const цел EAGAIN = 11;
     const цел ENOMEM = 12;

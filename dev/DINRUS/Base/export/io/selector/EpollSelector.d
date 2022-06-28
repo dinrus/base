@@ -181,7 +181,7 @@ version (linux)
          * создан in the previous вызов в_ открой().
          *
          * Примечания:
-         * It can be called multИПle times without harmful sопрe-effects.
+         * It can be called Несколько times without harmful sопрe-effects.
          */
         public проц закрой()
         {

@@ -8,8 +8,8 @@ module math.random.engines.Sync;
 private import Целое = text.convert.Integer;
 import sync: Стопор;
 
-/+ Makes a synchronized движок out of the движок Е, so multИПle нить доступ is ok
-+ (but if you need multИПle нить доступ think about having генератор случайных чисел per нить)
+/+ Makes a synchronized движок out of the движок Е, so Несколько нить доступ is ok
++ (but if you need Несколько нить доступ think about having генератор случайных чисел per нить)
 + This is the движок, *never* use it directly, всегда use it though a СлуччисГ class
 +/
 struct Синх(Е){

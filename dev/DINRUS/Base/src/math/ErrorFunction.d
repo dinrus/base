@@ -280,7 +280,7 @@ export реал экспикс2(реал x, цел знак)
     if (знак < 0)
         x = -x;
 
-    /* Represent x как exact multИПle of M plus a резопрual.
+    /* Represent x как exact Несколько of M plus a резопрual.
        M is a power of 2 chosen so that эксп(m * m) does not перебор
        or недобор и so that |x - m| is small.  */
     реал m = MINV * пол(M * x + 0.5L);

@@ -138,14 +138,14 @@ export class Еврейский : Календарь {
     auto low = minYear_, high = maxYear_;
     // Perform a binary ищи.
     while (low <= high) {
-      auto mопр = low + (high - low) / 2;
-      auto startDay = дайНачалоГода(mопр);
+      auto средн = low + (high - low) / 2;
+      auto startDay = дайНачалоГода(средн);
       if (день < startDay)
-        high = mопр - 1;
-      else if (день >= startDay && день < дайНачалоГода(mопр + 1))
-        return mопр;
+        high = средн - 1;
+      else if (день >= startDay && день < дайНачалоГода(средн + 1))
+        return средн;
       else
-        low = mопр + 1;
+        low = средн + 1;
     }
     return low;
   }

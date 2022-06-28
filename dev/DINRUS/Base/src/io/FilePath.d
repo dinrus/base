@@ -1,60 +1,9 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Oct 2004: Initial version
-        version:        Nov 2006: Australian version
-        version:        Feb 2007: Mutating version
-        version:        Mar 2007: Folded FileProxy in
-        version:        Nov 2007: VFS dictates '/' всегда be used
-        version:        Feb 2008: разбей файл-system calls преобр_в a struct
-
-        author:         Kris
-
-        ФПуть provопрes a means в_ efficiently edit путь components and
-        of accessing the underlying файл system.
-
-        Use module Путь.d instead when you need pedestrian access в_ the
-        файл-system, and are not mutating the путь components themselves
-
-*******************************************************************************/
-
+﻿
 module io.FilePath;
 
 private import  io.Path;
 private import  io.model: ФайлКонст, ИнфОФайле;
 private import cidrus: memmove;
-
-/*******************************************************************************
-
-        Models a файл путь. These are ожидалось в_ be used as the constructor
-        аргумент в_ various файл classes. The intention is that they easily
-        преобразуй в_ другой representations such as абсолютный, canonical, либо Url.
-
-        Файл пути containing non-ansi characters should be UTF-8 кодирован.
-        Supporting Unicode in this manner was deemed в_ be ещё suitable
-        than provопрing a шим version of ФПуть, and is Всё consistent
-        & compatible with the approach taken with the Уир class.
-
-        ФПуть is designed в_ be transformed, thus each mutating метод
-        modifies the internal контент. See module Путь.d for a lightweight
-        immutable variation.
-
-        Note that образцы of adjacent '.' разделители are treated specially
-        in that they will be assigned в_ the имя where there is no distinct
-        суффикс. In добавьition, a '.' at the старт of a имя signifies it does
-        not belong в_ the суффикс т.е. ".файл" is a имя rather than a суффикс.
-        Образцы of intermediate '.' characters will иначе be assigned
-        в_ the суффикс, such that "файл....суффикс" включает the dots within
-        the суффикс itself. See метод расш() for a суффикс without dots.
-
-        Note that Win32 '\' characters are преобразованый в_ '/' by default via
-        the ФПуть constructor.
-
-*******************************************************************************/
-
 
 export class ФПуть : ПросмотрПути
 {
@@ -886,7 +835,7 @@ export :
 
     /***********************************************************************
 
-            Возвращает файл length (in байты)
+            Возвращает файл length (в байтах)
 
     ***********************************************************************/
 
@@ -1185,7 +1134,7 @@ interface ПросмотрПути
 
     /***********************************************************************
 
-            Возвращает файл length (in байты)
+            Возвращает файл length (в байтах)
 
     ***********************************************************************/
 

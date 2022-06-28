@@ -72,7 +72,7 @@ export  abstract class Sha01 : МерклеДамгард
                 the блок размер
 
                 Примечания:
-                Specifies the размер (in байты) of the блок of данные в_ пароль в_
+                Specifies the размер (в байтах) of the блок of данные в_ пароль в_
                 each вызов в_ трансформируй(). For SHA0 the размерБлока is 64.
 
         ***********************************************************************/
@@ -87,7 +87,7 @@ export  abstract class Sha01 : МерклеДамгард
                 the length паддинг размер
 
                 Примечания:
-                Specifies the размер (in байты) of the паддинг which uses the
+                Specifies the размер (в байтах) of the паддинг which uses the
                 length of the данные which имеется been ciphered, this паддинг is
                 carried out by the падДлин метод. For SHA0 the добавьРазмер is 0.
 
@@ -125,7 +125,7 @@ export  abstract class Sha01 : МерклеДамгард
 
                 Примечания:
                 Fills the passed буфер срез with добавьРазмер() байты of паддинг
-                based on the length in байты of the ввод данные which имеется been
+                based on the length в байтах of the ввод данные which имеется been
                 ciphered.
 
         ***********************************************************************/

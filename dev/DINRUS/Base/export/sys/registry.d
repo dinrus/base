@@ -106,7 +106,7 @@ extern(D) class Ключ
     /// Returns the named sub-ключ of this ключ
     ///
     /// \param имя The имя of the subkey to aquire. If имя is null (or the empty-ткст), then the called ключ is duplicated
-    /// \param доступ The desired доступ; one of the ПРежимДоступаКРеестру enumeration
+    /// \param доступ The требуется доступ; one of the ПРежимДоступаКРеестру enumeration
     /// \return The aquired ключ. 
     /// \note This function never returns null. If a ключ corresponding to the requested имя is not found, a ИсклРеестра is thrown
     Ключ дайКлюч(ткст имя, ПРежимДоступаКРеестру доступ);
@@ -137,7 +137,7 @@ extern(D) class Ключ
     /// \note If a значение corresponding to the requested имя is not found, a ИсклРеестра is thrown
     проц установиЗначение(ткст имя, бцел значение);
 
-    /// Sets the named значение with the given 32-bit unsigned integer значение, according to the desired байт-ordering
+    /// Sets the named значение with the given 32-bit unsigned integer значение, according to the требуется байт-ordering
     ///
     /// \param имя The имя of the значение to set. If null, либо the empty ткст, sets the default значение
     /// \param значение The 32-bit unsigned значение to set

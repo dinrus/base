@@ -23,6 +23,7 @@ const ткст КОНФИГ_РУЛАДЫДОП;
 const ткст КОНФИГ_РУЛАДЫДОП_ГИП;
 const ткст КОНФИГ_ДИНРУС;
 const ткст КОНФИГ_ДИНРУС2;
+const ткст КОНФИГ_Д2;
 const ткст КОНФИГ_ДИНРУСДОП;
 const ткст КОНФИГ_ДИНРУСДОП_ГИП;
 const ткст РЕБИЛД_КОНФ;
@@ -33,7 +34,7 @@ static this()
 КОНФИГ_РЕБИЛДА = рг(
 "profile=phobos
 
-compiler=%DINRUS%\\dmd.exe
+compiler=%DINRUS%\\drc.exe
 inifile=%DINRUS%\\sc.ini
 
 exeext=.exe
@@ -61,7 +62,7 @@ noversion=BigEndian
 
 
 [compile]
-cmd=%DINRUS%\\dmd.exe -c $i
+cmd=%DINRUS%\\drc.exe -c $i
 response=@
 
 flag=$i
@@ -73,7 +74,7 @@ version=-version=$i
 
 [link]
 oneatatime=yes
-cmd=%DINRUS%\\dmd.exe $i -of$o
+cmd=%DINRUS%\\drc.exe $i -of$o
 response=@
 
 libdir=-L+$i\\
@@ -149,6 +150,37 @@ LIB=\"%DINRUS%\\..\\lib64\"
 ; -----------------------------------------------------------------------------
 [Environment32mscoff]
 LIB=\"%DINRUS%\\..\\lib32mscoff\"
+	");
+	
+КОНФИГ_Д2 = рг(
+	"	
+[Version]
+version=7.51 Build 020
+
+
+; environment for both 32/64 bit
+;DINRUS2 CONSOLE SINGLE
+[Environment]
+
+INCLUDE=\"%DINRUS%\\..\\include\"
+DFLAGS=\"-I%DINRUS%\\..\\dev\\D2\\src\\phobos\" \"-I%DINRUS%\\..\\dev\\D2\\src\\druntime\\import\" \"-I%DINRUS%\\..\\imp\\dinrus2\" -O -version=Dinrus2 -defaultlib=phobos.lib -debuglib=phobos.lib\"
+
+; optlink only reads from the Environment section so we need this redundancy
+; from the Environment32 section (bugzilla 11302)
+LIB=\"%DINRUS%\\..\\lib\\d2\"
+LINKCMD=%DINRUS%\\dmlink.exe
+
+[Environment32]
+LIB=\"%DINRUS%\\..\\lib\\d2\"
+LINKCMD=%DINRUS%\\optlink.exe
+
+
+[Environment64]
+LIB=\"%DINRUS%\\..\\lib\\d2\\x64\"
+
+; -----------------------------------------------------------------------------
+[Environment32mscoff]
+LIB=\"%DINRUS%\\..\\lib\\d2\\mscoff32\"
 	");
 	
 КОНФИГ_ДИНРУСДОП = рг(
@@ -231,7 +263,7 @@ DFLAGS=\"-I%DINRUS%\\..\\imp\\rulada_eng\" -O -version=Rulada -defaultlib=rulada
 LINKCMD=%DINRUS%\\optlink.exe
 	");
 	
-	РЕБИЛД_КОНФ = рг("%DINRUS%\\..\\etc\\rebuild\\dmd-win");
+	РЕБИЛД_КОНФ = рг("%DINRUS%\\..\\etc\\rebuild\\drc-win");
 	СЦ_ИНИ = рг("%DINRUS%\\sc.ini");
 }
 
@@ -351,6 +383,21 @@ return нет;
 	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(СЦ_ИНИ));
 	нс;
 	скажинс(" ВЕРСИЯ = ДИНРУС2 КОНСОЛЬ ");
+	}
+	catch(ФайлИскл фи)
+	{
+	}
+
+}
+
+проц версияД2()
+{
+	try
+	{
+	запиши_в(СЦ_ИНИ, КОНФИГ_Д2);
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(СЦ_ИНИ));
+	нс;
+	скажинс(" ВЕРСИЯ = Д2 КОНСОЛЬ ");
 	}
 	catch(ФайлИскл фи)
 	{

@@ -34,7 +34,7 @@ struct ОбходСписка(Т, бул резерв_ли = нет)
     private static ОбходСписка opCall(указатель_на_узел иниц) ;
     Т знач();
     Т* укз();
-    цел opEquals(ref ОбходСписка other);
+    цел opEquals(ref ОбходСписка другой);
     проц opPostInc();
     проц opAddAssign(цел i) ;
     проц opPostDec() ;
@@ -77,8 +77,8 @@ struct Список(Т)
     проц сотри();
 	бул opIn_r(Т данные);
 	обходчик найди(Т данные);
-	цел opApply(цел delegate(ref Т) dg);
-	цел opApplyReverse(цел delegate(ref Т) dg);
+	цел opApply(цел delegate(ref Т) делег);
+	цел opApplyReverse(цел delegate(ref Т) делег);
     обходчик начало() ;
     обходчик конец() ;
     реверсОбходчик начало_рев() ;
@@ -131,8 +131,8 @@ struct ОбходСписка(Т, бул резерв_ли = нет) {
     /// Возвращает указатель to the value referred to by the обходчик
     Т* укз() { assert(укз_ !is пусто); return &укз_.данные; }
     
-    цел opEquals(ref ОбходСписка other) {
-        return укз_ is other.укз_;
+    цел opEquals(ref ОбходСписка другой) {
+        return укз_ is другой.укз_;
     }
 
     /// обход++
@@ -275,9 +275,9 @@ public:
     /// returns the обходчик to the node following the removed node.
     обходчик удали(обходчик обход)
     {
-        Узел* curr = обход.укз_;
-        бул bad_iter = (curr is пусто) || (curr is &якорь_);
-        if (bad_iter) {
+        Узел* текущ = обход.укз_;
+        бул плохой_обх = (текущ is пусто) || (текущ is &якорь_);
+        if (плохой_обх) {
             throw new неверный_обходчик("Список.удали: неверный обходчик");
         }
         debug {
@@ -285,10 +285,10 @@ public:
         }
         обходчик nрасш_iter = обход; ++nрасш_iter;
 
-        curr.следщ.предш = curr.предш;
-        curr.предш.следщ = curr.следщ;
+        текущ.следщ.предш = текущ.предш;
+        текущ.предш.следщ = текущ.следщ;
       
-        delete curr;
+        delete текущ;
       
         размерСписка_--;
 
@@ -342,31 +342,31 @@ public:
     }
 
 	// foreach обходчик forwards 
-	цел opApply(цел delegate(ref Т) dg)
+	цел opApply(цел delegate(ref Т) делег)
 	{
-		Узел* curr=голова;
-        if (curr is пусто) return 0; // special case for unitialized список
-		while (curr !is &якорь_)
+		Узел* текущ=голова;
+        if (текущ is пусто) return 0; // special case for unitialized список
+		while (текущ !is &якорь_)
 		{
-            Узел* следщ = curr.следщ;
-			цел result = dg(curr.данные);
-			if(result) return result;
-            curr = следщ;
+            Узел* следщ = текущ.следщ;
+			цел рез = делег(текущ.данные);
+			if(рез) return рез;
+            текущ = следщ;
 		}
 		return 0; 
 	}
 
 	// foreach обходчик backwards 
-	цел opApplyReverse(цел delegate(ref Т) dg)
+	цел opApplyReverse(цел delegate(ref Т) делег)
 	{
-		Узел* curr = хвост;
-        if (curr is пусто) return 0; // special case for unitialized список
-		while (curr !is &якорь_)
+		Узел* текущ = хвост;
+        if (текущ is пусто) return 0; // special case for unitialized список
+		while (текущ !is &якорь_)
 		{
-            Узел* предш = curr.предш;
-			цел result = dg(curr.данные);
-			if(result) return result;
-            curr = предш;
+            Узел* предш = текущ.предш;
+			цел рез = делег(текущ.данные);
+			if(рез) return рез;
+            текущ = предш;
 		}
 		return 0; 
 	}

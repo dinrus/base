@@ -6,16 +6,16 @@ private import  col.model.Dispenser,
 /**
  *
  *
- * Сортируемый is a mixin interface for MutableCollections
- * supporting a сортируй метод that accepts
- * a пользователь-supplied Сравнитель with a сравни метод that
- * accepts any two Objects и returns -1/0/+1 depending on whether
- * the первый is less than, equal в_, либо greater than the секунда.
+ * Сортируемый - это mixin-интерфейс для MutableCollections,
+ * поддерживающий метод сортировки, принимающий предлагаемый
+ * пользователем Сравнитель (компаратор) с методом сравнения,
+ * принимающим любые два Объекта и возвращающим -1/0/+1, в зависимости от
+ * того, первый меньше ли второго, равен ли ему, либо больше него.
  * <P>
- * After sorting, but in the absence of другой mutative operations,
- * Сортируемый Collections guarantee that enumerations
- * appear in sorted order;  that is if a и b are two элементы
- * obtained in succession из_ nextElement(), that
+ * После сортировки, но в отсутсвии иных мутативных операций,
+ * Сортируемые Коллекции гарантируют, что перечисления будут
+ * представлены в отсортированном порядке; т.е. если a и b -
+ * это два элемента, получаемых последовательно от nextElement(), то
  * <PRE>
  * сравнитель(a, b) <= 0.
  * </PRE>
@@ -25,7 +25,7 @@ public interface Сортируемый(T) : Расходчик!(T)
 {
 
         /**
-         * Sort the текущ элементы with respect в_ cmp.сравни.
+         * Сортирует текущие элементы в соответствии с cmp.сравни.
         **/
 
         public проц сортируй(Сравнитель!(T) cmp);

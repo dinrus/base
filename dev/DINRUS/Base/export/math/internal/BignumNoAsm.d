@@ -8,9 +8,6 @@
  * on currently unsupported processors.
  * The X86 asm version is about 30 times faster than the D version(DMD).
  *
- * Copyright: Copyright (C) 2008 Don Clugston.  All rights reserved.
- * License:   BSD style: $(LICENSE)
- * Authors:   Don Clugston
  */
 
 module math.internal.BignumNoAsm;

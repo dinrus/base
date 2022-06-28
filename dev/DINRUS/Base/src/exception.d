@@ -130,7 +130,7 @@ export:
       - CorruptedIteratorException
 
     - ИсклНелегальногоАргумента
-      - IllegalElementException
+      - ИсклНедопустимыйЭлемент
 
     - ТекстИскл
       - RegexException
@@ -780,7 +780,7 @@ alias НевернАргИскл ИсклНелегальногоАргумен�
 
 /**
  *
- * IllegalElementException is thrown by Collection methods
+ * ИсклНедопустимыйЭлемент is thrown by Collection methods
  * that add (or replace) elements (and/or keys) when their
  * arguments are null or do not pass screeners.
  *
@@ -794,7 +794,7 @@ export:
 		
     }
 }
-alias НевернЭлемИскл IllegalElementException;
+alias НевернЭлемИскл ИсклНедопустимыйЭлемент;
 
 /**
  * Thrown on past-the-end errors by iterators and containers.

@@ -1,0 +1,15 @@
+
+osc1(
+    type(sine)
+)
+
+osc2(
+    type(sine)
+    tune(36)
+)
+
+mix(-1)
+fm({0.1 + 0.1 * env1})
+
+envelope(0.01 0.02 0.5 0.65)
+env1(0.01 0.02 0.5 0.35)

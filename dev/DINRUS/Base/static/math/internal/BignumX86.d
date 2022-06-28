@@ -660,7 +660,7 @@ L_odd:
     }
 
 // The inner multИПly-and-add loop, together with the Even entry точка.
-// MultИПles by M_ADDRESS which should be "ESP+LASTPARAM" or "ESP". OP must be "add" or "sub"
+// Несколькоs by M_ADDRESS which should be "ESP+LASTPARAM" or "ESP". OP must be "add" or "sub"
 // This is the most time-critical код in the BigInt library.
 // It is used by Всё MulAdd, multИПlyAccumulate, and triangleAccumulate
     сим [] асмУмножьДоб_внутрцикл(сим [] OP, сим [] M_ADDRESS)
@@ -670,7 +670,7 @@ L_odd:
         // (unit p2) for initializing registers to zero.
         // There are also dependencies between the instructions, and we run up against the
         // ROB-read limit (can only read 2 registers per цикл).
-        // We also need the число of uops in the loop to be a multИПle of 3.
+        // We also need the число of uops in the loop to be a Несколько of 3.
         // The only available execution unit для этого is p3 (memory write). Unfortunately we can't do that
         // if Position-Independent Code is required.
 
@@ -724,7 +724,7 @@ L_odd:
                mov EAX, [ESI+4*EBX];
                adc ECX, EDX;
                " ~
-               (using_PIC ? "" : "   mov storagenop, EDX; ") // make #uops in loop a multИПle of 3, can't do this in PIC режим.
+               (using_PIC ? "" : "   mov storagenop, EDX; ") // make #uops in loop a Несколько of 3, can't do this in PIC режим.
                ~ "
                mul int ptr [" ~ M_ADDRESS ~ "];
                " ~ OP ~ " [-4+EDI+4*EBX], EBP;

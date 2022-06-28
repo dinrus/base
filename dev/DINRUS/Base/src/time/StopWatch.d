@@ -13,38 +13,8 @@ version (Win32)
 
 version (Posix)
 {
-        private import rt.core.stdc.posix.sys.время;
+        private import rt.core.stdc.posix.sys.time;
 }
-
-/*******************************************************************************
-
-        Timer for measuring small intervals, such as the duration of a 
-        subroutine or другой reasonably small период.
-        ---
-        Секундомер elapsed;
-
-        elapsed.старт;
-
-        // do something
-        // ...
-
-        дво i = elapsed.stop;
-        ---
-
-        The measured интервал is in units of сек, using floating-
-        точка в_ represent fractions. This approach is ещё flexible 
-        than целое arithmetic since it migrates trivially в_ ещё
-        capable таймер hardware (there no implicit granularity в_ the
-        measurable intervals, except the limits of fp представление)
-
-        Секундомер is accurate в_ the протяженность of что the underlying OS
-        supports. On linux systems, this accuracy is typically 1 us at 
-        best. Win32 is generally ещё precise. 
-
-        There is some minor overhead in using Секундомер, so возьми that преобр_в 
-        account
-
-*******************************************************************************/
 
 export struct Секундомер
 {
@@ -54,34 +24,16 @@ export struct Секундомер
         version (Win32)
                  private static дво микросекунда;
 
-        /***********************************************************************
-                
-                Start the таймер
-
-        ***********************************************************************/
-        
         export проц старт()
         {
                 пущен = таймер;
         }
-
-        /***********************************************************************
-                
-                Стоп the таймер и return elapsed duration since старт()
-
-        ***********************************************************************/
         
        export дво стоп()
         {
                 return множитель * (таймер - пущен);
         }
 
-        /***********************************************************************
-                
-                Return elapsed время since the последний старт() as микросекунды
-
-        ***********************************************************************/
-        
        export бдол микросек()
         {
                 version (Posix)
@@ -90,12 +42,6 @@ export struct Секундомер
                 version (Win32)
                          return cast(бдол) ((таймер - пущен) * микросекунда);
         }
-
-        /***********************************************************************
-                
-                Setup timing information for later use
-
-        ***********************************************************************/
 
         export static this()
         {
@@ -108,12 +54,6 @@ export struct Секундомер
                         множитель = 1.0 / freq;       
                 }
         }
-
-        /***********************************************************************
-                
-                Возвращает текущ время как Interval
-
-        ***********************************************************************/
 
         private static бдол таймер()
         {

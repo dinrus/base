@@ -280,18 +280,18 @@ void getTimes(char[] name, out d_time ftc, out d_time fta, out d_time ftm)
 	ПДАН filefindbuf;
 
 	findhndl = НайдиПервыйФайл(name, &filefindbuf);
-	ftc = std.date.FILETIME2d_time(&filefindbuf.времяСоздания);
-	fta = std.date.FILETIME2d_time(&filefindbuf.времяПоследнегоДоступа);
-	ftm = std.date.FILETIME2d_time(&filefindbuf.времяПоследнейЗаписи);
+	ftc = std.date.FILETIME2d_time(filefindbuf.времяСоздания);
+	fta = std.date.FILETIME2d_time(filefindbuf.времяПоследнегоДоступа);
+	ftm = std.date.FILETIME2d_time(filefindbuf.времяПоследнейЗаписи);
     }
     else
     {
 	ПДАН_А filefindbuf;
 
 	findhndl = НайдиПервыйФайлА(name, &filefindbuf);
-	ftc = std.date.FILETIME2d_time(&filefindbuf.времяСоздания);
-	fta = std.date.FILETIME2d_time(&filefindbuf.времяПоследнегоДоступа);
-	ftm = std.date.FILETIME2d_time(&filefindbuf.времяПоследнейЗаписи);
+	ftc = std.date.FILETIME2d_time(filefindbuf.времяСоздания);
+	fta = std.date.FILETIME2d_time(filefindbuf.времяПоследнегоДоступа);
+	ftm = std.date.FILETIME2d_time(filefindbuf.времяПоследнейЗаписи);
     }
 
     if (findhndl == cast(ук)-1)
@@ -499,9 +499,9 @@ struct DirEntry
 	name = std.path.join(path, std.utf.toUTF8(wbuf[0 .. wlength]));
 
 	size = (cast(ulong)fd.размерФайлаВ << 32) | fd.размерФайлаН;
-	creationTime = std.date.FILETIME2d_time(&fd.времяСоздания);
-	lastAccessTime = std.date.FILETIME2d_time(&fd.времяПоследнегоДоступа);
-	lastWriteTime = std.date.FILETIME2d_time(&fd.времяПоследнейЗаписи);
+	creationTime = std.date.FILETIME2d_time(fd.времяСоздания);
+	lastAccessTime = std.date.FILETIME2d_time(fd.времяПоследнегоДоступа);
+	lastWriteTime = std.date.FILETIME2d_time(fd.времяПоследнейЗаписи);
 	attributes = fd.атрибутыФайла;
     }
 
@@ -510,9 +510,9 @@ struct DirEntry
 	size_t clength = wcslen(fd.имяФайла.ptr);
 	name = std.path.join(path, std.utf.toUTF8(fd.имяФайла[0 .. clength]));
 	size = (cast(ulong)fd.размерФайлаВ << 32) | fd.размерФайлаН;
-	creationTime = std.date.FILETIME2d_time(&fd.времяСоздания);
-	lastAccessTime = std.date.FILETIME2d_time(&fd.времяПоследнегоДоступа);
-	lastWriteTime = std.date.FILETIME2d_time(&fd.времяПоследнейЗаписи);
+	creationTime = std.date.FILETIME2d_time(fd.времяСоздания);
+	lastAccessTime = std.date.FILETIME2d_time(fd.времяПоследнегоДоступа);
+	lastWriteTime = std.date.FILETIME2d_time(fd.времяПоследнейЗаписи);
 	attributes = fd.атрибутыФайла;
     }
 

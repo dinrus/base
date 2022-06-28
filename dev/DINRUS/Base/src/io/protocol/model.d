@@ -18,7 +18,7 @@ private import io.model;
         
 *******************************************************************************/
 
-abstract class ИПротокол
+class ИПротокол
 {
         enum Тип
         {
@@ -90,7 +90,7 @@ abstract class ИПротокол
 
 *******************************************************************************/
 
-abstract class ИРазместитель
+class ИРазместитель
 {
         /***********************************************************************
         
@@ -188,7 +188,7 @@ abstract class ИРазместитель
         
 *******************************************************************************/
 
-abstract class ИЧитатель   // could be an interface, but that causes poor codegen
+class ИЧитатель   // could be an interface, but that causes poor codegen
 {
         alias получи opCall;
 
@@ -348,7 +348,7 @@ interface ИЧитаемое
 
 *******************************************************************************/
 
-abstract class ИПисатель  // could be an interface, but that causes poor codegen
+class ИПисатель  // could be an interface, but that causes poor codegen
 {
         alias помести opCall;
 

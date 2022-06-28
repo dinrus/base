@@ -965,12 +965,19 @@ version (Win32)
 	//return c.time.time(null) * TicksPerSecond;
     }
 
-    static d_time FILETIME2d_time(ФВРЕМЯ *ft)
-    {   СИСТВРЕМЯ st;
+    static d_time FILETIME2d_time(ФВРЕМЯ ft)
+    { 
 
-	if (!ФВремяВСистВремя(ft, &st))
-	    return d_time_nan;
-	return SYSTEMTIME2d_time(&st, 0);
+	try{
+		СИСТВРЕМЯ st = ФВремяВСистВремя(&ft);
+		return SYSTEMTIME2d_time(&st, 0);
+		}
+		catch(Exception ex)
+		{
+		 return d_time_nan;
+		}	
+	    
+	
     }
 
     static d_time SYSTEMTIME2d_time(СИСТВРЕМЯ *st, d_time t)

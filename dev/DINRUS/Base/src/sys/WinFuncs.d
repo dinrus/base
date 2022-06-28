@@ -2005,21 +2005,21 @@ FARPROC GetProcAddress(экз hModule, ткст0 lpProcName);//
 ук GetProcessHeap();//
 бцел GetProcessHeaps(бцел, ук*);//
 
-проц GetSystemTime(СИСТВРЕМЯ* lpSystemTime);//
+проц GetSystemTime(СИСТВРЕМЯ* св);//
 бул GetFileTime(ук hFile, ФВРЕМЯ *lpCreationTime, ФВРЕМЯ *lpLastAccessTime, ФВРЕМЯ *lpLastWriteTime);//
 проц GetSystemTimeAsFileTime(ФВРЕМЯ* lpSystemTimeAsFileTime);//
-бул SetSystemTime(СИСТВРЕМЯ* lpSystemTime);//
+бул SetSystemTime(СИСТВРЕМЯ* св);//
 бул SetFileTime(ук hFile, in ФВРЕМЯ *lpCreationTime, in ФВРЕМЯ *lpLastAccessTime, in ФВРЕМЯ *lpLastWriteTime);//
-проц GetLocalTime(СИСТВРЕМЯ* lpSystemTime);//
-бул SetLocalTime(СИСТВРЕМЯ* lpSystemTime);//
+проц GetLocalTime(СИСТВРЕМЯ* св);//
+бул SetLocalTime(СИСТВРЕМЯ* св);//
 бул SystemTimeToTzSpecificLocalTime(ИНФОЧП* lpTimeZoneInformation, СИСТВРЕМЯ* lpUniversalTime, СИСТВРЕМЯ* lpLocalTime);//
 бцел GetTimeZoneInformation(ИНФОЧП* lpTimeZoneInformation);//
 бул SetTimeZoneInformation(ИНФОЧП* lpTimeZoneInformation);//
 
-бул SystemTimeToFileTime(in СИСТВРЕМЯ *lpSystemTime, ФВРЕМЯ* lpFileTime);//
+бул SystemTimeToFileTime(in СИСТВРЕМЯ *св, ФВРЕМЯ* lpFileTime);//
 бул FileTimeToLocalFileTime(in ФВРЕМЯ *lpFileTime, ФВРЕМЯ* lpLocalFileTime);//
 бул LocalFileTimeToFileTime(in ФВРЕМЯ *lpLocalFileTime, ФВРЕМЯ* lpFileTime);//
-бул FileTimeToSystemTime(in ФВРЕМЯ *lpFileTime, СИСТВРЕМЯ* lpSystemTime);//
+бул FileTimeToSystemTime(in ФВРЕМЯ *lpFileTime, СИСТВРЕМЯ* св);//
 бул FileTimeToDosDateTime(in ФВРЕМЯ *lpFileTime, бкрат* lpFatDate, бкрат* lpFatTime);//
 бул DosDateTimeToFileTime(бкрат wFatDate, бкрат wFatTime, ФВРЕМЯ* lpFileTime);//
 бул SetSystemTimeAdjustment(бцел dwTimeAdjustment, бул bTimeAdjustmentDisabled);//
@@ -3611,22 +3611,24 @@ return cast(экз)GetModuleHandleW(toUTF16z(имя));
 
 бул ДайФВремя(ук файл, sys.WinStructs.ФВРЕМЯ *времяСоздания, sys.WinStructs.ФВРЕМЯ *времяПоследнегоДоступа, sys.WinStructs.ФВРЕМЯ *времяПоследнейЗаписи)
 	{
-	return cast(бул) GetFileTime(cast(ук) файл, cast(ФВРЕМЯ*) времяСоздания, cast(ФВРЕМЯ*) времяПоследнегоДоступа, cast(ФВРЕМЯ*) времяПоследнейЗаписи);
+	return cast(бул) GetFileTime(cast(ук) файл, времяСоздания, времяПоследнегоДоступа, времяПоследнейЗаписи);
 	}
 
-проц ДайСистВремяКакФВремя(sys.WinStructs.ФВРЕМЯ* сисВремКакФВрем)
+ФВРЕМЯ ДайСистВремяКакФВремя()
 	{
-	GetSystemTimeAsFileTime(cast(ФВРЕМЯ*)  сисВремКакФВрем);
+	sys.WinStructs.ФВРЕМЯ сисВремКакФВрем;
+	GetSystemTimeAsFileTime(&сисВремКакФВрем);
+	return сисВремКакФВрем;
 	}
 
 бул УстановиСистВремя(sys.WinStructs.СИСТВРЕМЯ* систВрем)
 	{
-	return cast(бул) SetSystemTime(cast(СИСТВРЕМЯ*) систВрем);
+	return cast(бул) SetSystemTime(систВрем);
 	}
 
 бул УстановиФВремя(ук файл, in sys.WinStructs.ФВРЕМЯ *времяСоздания, in sys.WinStructs.ФВРЕМЯ *времяПоследнДоступа, in sys.WinStructs.ФВРЕМЯ *времяПоследнЗаписи)
 	{
-	return cast(бул) SetFileTime(cast(ук) файл, cast(ФВРЕМЯ*) времяСоздания, cast(ФВРЕМЯ*) времяПоследнДоступа, cast(ФВРЕМЯ*) времяПоследнЗаписи);
+	return cast(бул) SetFileTime(cast(ук) файл, времяСоздания, времяПоследнДоступа, времяПоследнЗаписи);
 	}
 
 проц ДайМестнВремя(sys.WinStructs.СИСТВРЕМЯ *систВремя)
@@ -3654,9 +3656,11 @@ return cast(экз)GetModuleHandleW(toUTF16z(имя));
 	return cast(бул) SetTimeZoneInformation(cast(ИНФОЧП*) инфОЧП);
 	}
 
-бул СистВремяВФВремя(in sys.WinStructs.СИСТВРЕМЯ *систВрем, sys.WinStructs.ФВРЕМЯ *фВрем)
+ФВРЕМЯ СистВремяВФВремя(in sys.WinStructs.СИСТВРЕМЯ *систВрем)
 	{
-	return cast(бул) SystemTimeToFileTime(cast(СИСТВРЕМЯ*) систВрем, cast(ФВРЕМЯ*) фВрем);
+	 ФВРЕМЯ фВрем;
+	 if(!SystemTimeToFileTime(систВрем, &фВрем)){throw new Exception("СистВремяВФВремя - неудачное преобразование", __FILE__,__LINE__);}
+	 return фВрем;
 	}
 
 бул ФВремяВМестнФВремя(in sys.WinStructs.ФВРЕМЯ *фВрем, sys.WinStructs.ФВРЕМЯ *местнФВрем)
@@ -3669,9 +3673,101 @@ return cast(экз)GetModuleHandleW(toUTF16z(имя));
 	return cast(бул) LocalFileTimeToFileTime(cast(ФВРЕМЯ*) локФВрем, cast(ФВРЕМЯ*) фВрем);
 	}
 
-бул ФВремяВСистВремя(in sys.WinStructs.ФВРЕМЯ *фВрем, sys.WinStructs.СИСТВРЕМЯ *систВрем)
+СИСТВРЕМЯ ФВремяВСистВремя(in sys.WinStructs.ФВРЕМЯ *фВрем)
 	{
-	return cast(бул) FileTimeToSystemTime(cast(ФВРЕМЯ*) фВрем, cast(СИСТВРЕМЯ*) систВрем);
+	/+
+	TIME_FIELDS TimeFields;
+		union БОЛЬШЕЦЕЛ //LARGE_INTEGER
+	 {
+		struct {
+			бцел младшЧасть;
+			цел старшЧасть;
+		}
+		дол квадрЧасть; alias дол инт64; //!
+	}
+    БОЛЬШЕЦЕЛ бцВремя;
+
+		struct ФВРЕМЯ //FILETIME
+	{
+	бцел датаВремяМладш;
+	бцел датаВремяСтарш;
+	}
+
+    бцВремя.младшЧасть = фВрем.датаВремяМладш;
+    бцВремя.старшЧасть = фВрем.датаВремяСтарш;
+    if (бцВремя.квадрЧасть < 0)
+    {
+        УстановиПоследнОшибку(ERROR_INVALID_PARAMETER);
+        return FALSE;
+    }
+
+    RtlTimeToTimeFields(&бцВремя, &TimeFields);
+......................................
+	VOID
+NTAPI
+RtlTimeToTimeFields(IN PLARGE_INTEGER бцВремя,
+                    OUT PTIME_FIELDS TimeFields)
+{
+    const UCHAR *месяцы;
+    ULONG секундВдне, текГод;
+    ULONG LeapYear, текМесяц;
+    ULONG дни;
+    ULONGLONG IntTime = бцВремя.квадрЧасть;
+
+    /* Извлечь миллисекунды из времени и преобразовать время в секунды */
+
+    IntTime = IntTime / TICKSPERSEC;
+
+    /* Разбить время на дни и секунды в дне */
+    дни = (ULONG)(IntTime / SECSPERDAY);
+    секундВдне = IntTime % SECSPERDAY;
+
+    /* Вычислить время дня */
+    секундВдне = секундВдне % SECSPERHOUR;
+
+
+    /* Вычислить год */
+    текГод = EPOCHYEAR;
+    текГод += дни / DAYSPERLEAPYEAR;
+    дни -= DaysSinceEpoch(текГод);
+    while (TRUE)
+    {
+        LeapYear = IsLeapYear(текГод);
+        if (дни < YearLengths[LeapYear])
+        {
+            break;
+        }
+        текГод++;
+        дни = дни - YearLengths[LeapYear];
+    }
+
+    /* Вычислить месяц года */
+    LeapYear = IsLeapYear(текГод);
+    месяцы = MonthLengths[LeapYear];
+    for (текМесяц = 0; дни >= месяцы[текМесяц]; текМесяц++)
+    {
+        дни = дни - месяцы[текМесяц];
+    }
+}
+.........................................
+
+    св.год = (CSHORT)текГод;
+    св.месяц =  (CSHORT)(текМесяц + 1);
+    св.день = (CSHORT)(дни + 1(CSHORT)(секундВдне / SECSPERHOUR);
+    св.минута = (CSHORT)(секундВдне / SECSPERMIN);
+    св.секунда = (CSHORT)(секундВдне % SECSPERMIN);
+    св.миллисекунды = (CSHORT)((IntTime % TICKSPERSEC) / TICKSPERMSEC);
+    св.день_недели = (CSHORT)((EPOCHWEEKDAY + дни) % DAYSPERWEEK);
+
+    return TRUE;
+	+/
+
+	//ФВРЕМЯ фв = void;
+	//фв.датаВремяМладш = фВрем.датаВремяМладш;
+	//фв.датаВремяСтарш = фВрем.датаВремяСтарш;
+	 СИСТВРЕМЯ св;
+	 if(!FileTimeToSystemTime(фВрем, &св)){throw new Exception("ФВремяВСистВремя - неудачное преобразование", __FILE__,__LINE__);}
+	 return св;
 	}
 
 бул ФВремяВДатВремяДОС(in sys.WinStructs.ФВРЕМЯ *фвр, убкрат фатДата, убкрат фатВремя)
@@ -4405,7 +4501,7 @@ return cast(ук) MapViewOfFile(cast(ук) объектФМап, cast(бцел) 
 		return VarDecAdd( дес1,  дес2,  рез);
 		}
 		
-	цел ДесВарОтними(ref ДЕСЯТОК дес1, ref ДЕСЯТОК дес2, out ДЕСЯТОК рез)
+	цел ДесВарвычти(ref ДЕСЯТОК дес1, ref ДЕСЯТОК дес2, out ДЕСЯТОК рез)
 		{
 		return VarDecSub( дес1,  дес2,  рез);
 		}
@@ -4496,7 +4592,7 @@ return cast(ук) MapViewOfFile(cast(ук) объектФМап, cast(бцел) 
 	return cast(цел) VarOr( варЛев,  варПрав,  варРез);
 	}
 	
-цел ОтнимиВар(ref ВАРИАНТ варЛев, ref ВАРИАНТ варПрав, out ВАРИАНТ варРез)
+цел вычтиВар(ref ВАРИАНТ варЛев, ref ВАРИАНТ варПрав, out ВАРИАНТ варРез)
 	{
 	return cast(цел) VarSub( варЛев,  варПрав,  варРез);
 	}

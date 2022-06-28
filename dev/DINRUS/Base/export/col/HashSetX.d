@@ -12,7 +12,7 @@ private import  col.impl.LLCell,
 
 
 /**
- * Хэш таблица implementation of установи
+* Реализация набора с хэш-таблицей
 **/
 
 deprecated public class ХэшНабор(T) : КоллекцияНаборов!(T), ПараметрыХэш
@@ -23,22 +23,22 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         alias КоллекцияНаборов!(T).удалиВсе  удалиВсе;
 
 
-        // переменные экземпляра
+        // Переменные экземпляра
 
         /**
-         * The таблица. Each Запись is a список. Пусто if no таблица allocated
+        * Таблица. Каждая запись является списком. Пусто, если нет размещённой таблицы.
         **/
         private ЯчейкаССТ таблица[];
         /**
-         * The порог фактор загрузки
+        * Пороговый фактор загрузки.
         **/
         private плав факторЗагрузки;
 
 
-        // constructors
+        // Конструкторы
 
         /**
-         * Создаётn пустой ХэшedSet.
+         * Создаёт пустой ХэшНабор.
         **/
 
         public this ()
@@ -47,7 +47,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Создаётn пустой ХэшedSet using given элемент скринер
+        * Создаёт пустой ХэшНабор, используя заданный скриннер элементов.
         **/
 
         public this (Предикат скринер)
@@ -56,7 +56,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Special version of constructor needed by клонируй()
+        * Особая версия конструктора, необходимая для клонируй().
         **/
 
         protected this (Предикат s, плав f)
@@ -67,7 +67,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Создаётn independent копируй of the таблица. Does not клонируй элементы.
+        * Создаёт независимую копию этй таблицы. Не клонирует элементы.
         **/
 
         public final ХэшНабор!(T) дубликат()
@@ -89,12 +89,10 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
 
-        // ХэшTableParams methods
+        // Методы параметров ХэшТаблицы
 
         /**
-         * Реализует col.ХэшTableParams.корзины.
-         * Временная ёмкость: O(1).
-         * См_Также: col.ХэшTableParams.корзины.
+        * Реализует параметр корзины.
         **/
 
         public final цел корзины()
@@ -103,29 +101,26 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Реализует col.ХэшTableParams.корзины.
-         * Временная ёмкость: O(n).
-         * См_Также: col.ХэшTableParams.корзины.
+        * То же.Установщик.
         **/
 
-        public final проц корзины(цел newCap)
+        public final проц корзины(цел новЁмк)
         {
-                if (newCap is корзины())
+                if (новЁмк is корзины())
                     return ;
                 else
-                   if (newCap >= 1)
-                       перемерь(newCap);
+                   if (новЁмк >= 1)
+                       перемерь(новЁмк);
                    else
                       {
                       сим[16] врем;
-                      throw new ИсклНелегальногоАргумента("Impossible Хэш таблица размер:" ~ itoa(врем, newCap));
+                      throw new ИсклНелегальногоАргумента("Невозможный размер хэш-таблицы:" ~ itoa(врем, новЁмк));
                       }
         }
 
         /**
-         * Реализует col.ХэшTableParams.thresholdLoadfactor
-         * Временная ёмкость: O(1).
-         * См_Также: col.ХэшTableParams.thresholdLoadfactor
+        * Реализует параметр пороговыйФакторЗагрузки.
+        * Временная ёмкость: O(1).
         **/
 
         public final плав пороговыйФакторЗагрузки()
@@ -134,16 +129,14 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
         /**
-         * Реализует col.ХэшTableParams.thresholdLoadfactor
-         * Временная ёмкость: O(n).
-         * См_Также: col.ХэшTableParams.thresholdLoadfactor
+        * То же. Установщик.
         **/
 
-        public final проц пороговыйФакторЗагрузки(плав desired)
+        public final проц пороговыйФакторЗагрузки(плав требуется)
         {
-                if (desired > 0.0)
+                if (требуется > 0.0)
                    {
-                   факторЗагрузки = desired;
+                   факторЗагрузки = требуется;
                    проверьФакторЗагрузки();
                    }
                 else
@@ -151,15 +144,12 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         }
 
 
-
-
-
         // Методы коллекции
 
         /**
          * Реализует col.impl.Collection.Коллекция.содержит
          * Временная ёмкость: O(1) average; O(n) worst.
-         * См_Также: col.impl.Collection.Коллекция.содержит
+
         **/
         public final бул содержит(T элемент)
         {
@@ -176,7 +166,6 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * Реализует col.impl.Collection.Коллекция.экземпляры
          * Временная ёмкость: O(n).
-         * См_Также: col.impl.Collection.Коллекция.экземпляры
         **/
         public final бцел экземпляры(T элемент)
         {
@@ -189,7 +178,6 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * Реализует col.impl.Collection.Коллекция.элементы
          * Временная ёмкость: O(1).
-         * См_Также: col.impl.Collection.Коллекция.элементы
         **/
         public final СтражОбходчик!(T) элементы()
         {
@@ -199,8 +187,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * Реализует col.model.View.Обзор.opApply
          * Временная ёмкость: O(n).
-         * См_Также: col.model.View.Обзор.opApply
-        **/
+         **/
         цел opApply (цел delegate (inout T значение) дг)
         {
                 auto scope обходчик = new ОбходчикЯчейки!(T)(this);
@@ -212,7 +199,6 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * Реализует col.impl.Collection.Коллекция.очисть.
          * Временная ёмкость: O(1).
-         * См_Также: col.impl.Collection.Коллекция.очисть
         **/
         public final проц очисть()
         {
@@ -223,7 +209,6 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * Реализует col.impl.Collection.Коллекция.exclude.
          * Временная ёмкость: O(1) average; O(n) worst.
-         * См_Также: col.impl.Collection.Коллекция.exclude
         **/
         public final проц удалиВсе(T элемент)
         {
@@ -341,7 +326,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
 
         /**
          * Check в_ see if we are past фактор загрузки порог. If so, перемерь
-         * so that we are at half of the desired порог.
+         * so that we are at half of the требуется порог.
          * Also while at it, проверь в_ see if we are пустой so can just
          * отвяжи таблица.
         **/
@@ -358,8 +343,8 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
                    плав ft = таблица.length;
                    if (fc / ft > факторЗагрузки)
                       {
-                      цел newCap = 2 * cast(цел)(fc / факторЗагрузки) + 1;
-                      перемерь(newCap);
+                      цел новЁмк = 2 * cast(цел)(fc / факторЗагрузки) + 1;
+                      перемерь(новЁмк);
                       }
                    }
         }
@@ -378,9 +363,9 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
         /**
          * перемерь таблица в_ new ёмкость, rehashing все элементы
         **/
-        protected final проц перемерь(цел newCap)
+        protected final проц перемерь(цел новЁмк)
         {
-                ЯчейкаССТ newtab[] = new ЯчейкаССТ[newCap];
+                ЯчейкаССТ newtab[] = new ЯчейкаССТ[новЁмк];
 
                 if (таблица !is пусто)
                    {
@@ -390,7 +375,7 @@ deprecated public class ХэшНабор(T) : КоллекцияНаборов!(
                        while (p !is пусто)
                              {
                              ЯчейкаССТ n = p.следщ();
-                             цел h = (p.хэшЭлемента() & 0x7FFFFFFF) % newCap;
+                             цел h = (p.хэшЭлемента() & 0x7FFFFFFF) % новЁмк;
                              p.следщ(newtab[h]);
                              newtab[h] = p;
                              p = n;

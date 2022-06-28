@@ -5,54 +5,48 @@ private import  col.model.IteratorX;
 
 /**
  *
- * InterleavingIterators allow you в_ комбинируй the элементы
- * of two different enumerations as if they were one enumeration
- * перед they are seen by their `consumers'.
- * This sometimes допускается you в_ avoопр having в_ use a
- * Коллекция объект в_ temporarily комбинируй two sets of Коллекция элементы()
- * that need в_ be собериed together for common processing.
+ * Перемежающиеся итераторы позволяют комбинировать элементы
+ * двух разных перечислений, как если бы они были в одном перечне,
+ * перед тем как попадут к своим `потребителям'.
+ * Иногда это позволяет избегать использования объекта Коллекция,
+ * чтобы временно скомбинировать два набора элементы() коллекции,
+ * которые нужно собрать вместе для общей обработки.
  * <P>
- * The элементы are revealed (via получи()) in a purely
- * interleaved fashion, alternating between the первый и секунда
- * enumerations unless one of them имеется been exhausted, in which case
- * все остаток элементы of the другой are revealed until it too is
- * exhausted.
+ * Эти элементы обнаруживаются (с помощью получи()) чисто
+ * перемежающимся образом, чередуясь между первой и второй эннумерацией,
+ * пока одна из них не истощится, в случае чего все остальные
+ * элементы другой коллекции ипользуются, пока она тоже не закончится.
  * <P>
- * InterleavingIterators work as wrappers around другой Iterators.
- * To build one, you need two existing Iterators.
- * Например, if you want в_ process together the элементы of
- * two Collections a и b, you could пиши something of the form:
+ * Перемежающиеся обходчики - это обёртки вокруг других обходчиков.
+ * Чтобы построить такой, нужно два уже существующих итератора.
+ * Например, если нужно обработать вместе все элементы двух
+ * коллекций a и b, можно написать что-то в форме:
  * <PRE>
- * Обходчик items = ПеремежающийОбходчик(a.элементы(), b.элементы());
- * while (items.ещё())
- *  doSomethingWith(items.получи());
+ * Обходчик элты = ПеремежающийОбходчик(a.элементы(), b.элементы());
+ * while (элты.ещё())
+ *  делаем_чтото_с(элты.получи());
  * </PRE>
  *
-        author: Doug Lea
- * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
- *
-**/
+ */
 
 
 public class ПеремежающийОбходчик(T) : Обходчик!(T)
 {
 
     /**
-     * The первый исток; nulled out once it is exhausted
+     * Первый исток; обнуляется когда исчерпан.
     **/
 
     private Обходчик!(T) перв_;
 
     /**
-     * The секунда исток; nulled out once it is exhausted
+     * Второй исток; обнуляется когда исчерпан.
     **/
 
     private Обходчик!(T) втор_;
 
     /**
-     * The исток currently being использован
+     * Исток, используемый сейчас.
     **/
 
     private Обходчик!(T) текущ_;
@@ -60,7 +54,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
 
 
     /**
-     * Создаётn enumeration interleaving элементы из_ перв и втор
+     * Создаёт перечисление из смеси элементов первой и второй.
     **/
 
     public this (Обходчик!(T) перв, Обходчик!(T) втор)
@@ -111,7 +105,7 @@ public class ПеремежающийОбходчик(T) : Обходчик!(T)
     }
 
     /**
-     * Alternate sources
+     * Поменять источники.
     **/
 
     private final проц флип()

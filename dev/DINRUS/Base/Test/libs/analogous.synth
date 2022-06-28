@@ -1,0 +1,46 @@
+
+// Blatant ripoff of the eponymous patch for Synth1
+
+osc1(
+    type(saw)
+)
+
+osc2(
+    type(rectangle)
+    shape({0.25 + 0.15*lfo1})
+    tune(-11.95)
+)
+
+mix(0)
+gain(0.5)
+//fm(0.08)
+
+envelope(0.10 0.15 0.75 0.15)
+env1    (0.25 0.15 0.15 0.15)   // filter envelope
+
+filter(
+    type(lp12)
+    cutoff({f * (0.65 + 15*env1)})
+    resonance(0.5)
+)
+
+lfo1(
+    type(triangle)
+    rate(2)
+)
+
+
+effects(
+    chorus(
+        voices(2)
+        depth(0.005)
+        amount(0.3)
+        rate(1)
+    )
+
+    delay(
+        time(0.25)
+        amount(0.5)
+        feedback(0.35)
+    )
+)

@@ -8,7 +8,7 @@ $(КРАСНЫЙ Warning: This module is considered out-dated and not up to Phob
 Classes and functions for creating and parsing XML
 
 The basic architecture of this module is that there are standalone functions,
-classes for constructing an XML document from scratch (Tag, Element and
+classes for constructing an XML документ from scratch (Tag, Element and
 Document), and also classes for parsing a pre-existing XML file (ElementParser
 and DocumentParser). The parsing classes <i>may</i> be used to build a
 Document, but that is not their primary purpose. The handling capabilities of
@@ -36,10 +36,10 @@ void main()
     check(s);
 
     // Make a DOM tree
-    auto doc = new Document(s);
+    auto док = new Document(s);
 
     // Plain-print it
-    writeln(doc);
+    writeln(док);
 }
 ------------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ void main()
     xml.parse();
 
     // Put it задний together again;
-    auto doc = new Document(new Tag("catalog"));
+    auto док = new Document(new Tag("catalog"));
     foreach(book;books)
     {
         auto element = new Element("book");
@@ -105,11 +105,11 @@ void main()
         element ~= new Element("publish-date",book.pubDate);
         element ~= new Element("description", book.description);
 
-        doc ~= element;
+        док ~= element;
     }
 
     // Pretty-print it
-    writefln(join(doc.pretty(3),"\n"));
+    writefln(join(док.pretty(3),"\n"));
 }
 -------------------------------------------------------------------------------
 Macros:
@@ -134,7 +134,7 @@ import std.ascii;
 import std.string;
 import std.encoding;
 
-enum cdata = "<![CDATA[";
+enum сиданные = "<![CDATA[";
 
 /**
  * Возвращаетs true if the character is a character according to the XML standard
@@ -331,7 +331,7 @@ bool isExtender(dchar c)
 }
 
 /**
- * Encodes a string by replacing all characters which need to be escaped with
+ * Encodes a string by replacing all characters which need to be эскапирован with
  * appropriate predefined XML entities.
  *
  * encode() escapes certain characters (ampersand, quote, apostrophe, less-than
@@ -530,7 +530,7 @@ unittest
 }
 
 /**
- * Класс representing an XML document.
+ * Класс representing an XML документ.
  *
  * Standards: $(LINK2 http://www.w3.org/TR/1998/REC-xml-19980210, XML 1.0)
  *
@@ -579,7 +579,7 @@ class Document : Element
      * Constructs a Document from a Tag.
      *
      * Params:
-     *      tag = the start tag of the document.
+     *      tag = the start tag of the документ.
      */
     this(const(Tag) tag)
     {
@@ -599,11 +599,11 @@ class Document : Element
          */
         override bool opEquals(Object o)
         {
-            const doc = toType!(const Document)(o);
+            const док = toType!(const Document)(o);
             return
-                (prolog != doc.prolog            ) ? false : (
-                (super  != cast(const Element)doc) ? false : (
-                (epilog != doc.epilog            ) ? false : (
+                (prolog != док.prolog            ) ? false : (
+                (super  != cast(const Element)док) ? false : (
+                (epilog != док.epilog            ) ? false : (
             true )));
         }
 
@@ -621,14 +621,14 @@ class Document : Element
          */
         override int opCmp(Object o)
         {
-            const doc = toType!(const Document)(o);
+            const док = toType!(const Document)(o);
             return
-                ((prolog != doc.prolog            )
-                    ? ( prolog < doc.prolog             ? -1 : 1 ) :
-                ((super  != cast(const Element)doc)
-                    ? ( cast()super  < cast()cast(const Element)doc ? -1 : 1 ) :
-                ((epilog != doc.epilog            )
-                    ? ( epilog < doc.epilog             ? -1 : 1 ) :
+                ((prolog != док.prolog            )
+                    ? ( prolog < док.prolog             ? -1 : 1 ) :
+                ((super  != cast(const Element)док)
+                    ? ( cast()super  < cast()cast(const Element)док ? -1 : 1 ) :
+                ((epilog != док.epilog            )
+                    ? ( epilog < док.epilog             ? -1 : 1 ) :
             0 )));
         }
 
@@ -645,7 +645,7 @@ class Document : Element
 
         /**
          * Возвращаетs the string representation of a Document. (That is, the
-         * complete XML of a document).
+         * complete XML of a документ).
          */
         override string toString()
         {
@@ -670,7 +670,7 @@ class Element : Item
     Element[] elements; /// The element's child elements
 
     /**
-     * Constructs an Element given a name and a string to be used as a Text
+     * Constructs an Element given a name and a string to be used как Text
      * interior.
      *
      * Params:
@@ -1278,7 +1278,7 @@ class Comment : Item
      */
     override string toString() const { return "<!--" ~ content ~ "-->"; }
 
-    override @property bool isEmptyXML() const { return false; } /// Returns false always
+    override @property bool isEmptyXML() const { return false; } /// Returns false всегда
 }
 
 /**
@@ -1355,9 +1355,9 @@ class CData : Item
     /**
      * Возвращаетs a string representation of this CData section
      */
-    override string toString() const { return cdata ~ content ~ "]]>"; }
+    override string toString() const { return сиданные ~ content ~ "]]>"; }
 
-    override @property bool isEmptyXML() const { return false; } /// Returns false always
+    override @property bool isEmptyXML() const { return false; } /// Returns false всегда
 }
 
 /**
@@ -1516,7 +1516,7 @@ class XMLInstruction : Item
      */
     override string toString() const { return "<!" ~ content ~ ">"; }
 
-    override @property bool isEmptyXML() const { return false; } /// Returns false always
+    override @property bool isEmptyXML() const { return false; } /// Returns false всегда
 }
 
 /**
@@ -1595,7 +1595,7 @@ class ProcessingInstruction : Item
      */
     override string toString() const { return "<?" ~ content ~ "?>"; }
 
-    override @property bool isEmptyXML() const { return false; } /// Returns false always
+    override @property bool isEmptyXML() const { return false; } /// Returns false всегда
 }
 
 /**
@@ -1656,7 +1656,7 @@ class DocumentParser : ElementParser
      * This is enforced by the function's in contract.
      *
      * Params:
-     *      xmlTрасш_ = the entire XML document as text
+     *      xmlTрасш_ = the entire XML документ as text
      *
      */
     this(string xmlTрасш_)
@@ -1925,7 +1925,7 @@ class ElementParser
      * --------------
      * // Call this function whenever an XML instruction is encountered
      * // (Note: XML instructions may only occur preceding the root tag of a
-     * // document).
+     * // документ).
      * onPI = (string s)
      * {
      *     // Your code here
@@ -2245,7 +2245,7 @@ private
 
         try
         {
-            checkLiteral(cdata,s);
+            checkLiteral(сиданные,s);
             checkEnd("]]>",s);
         }
         catch(Err e) { fail(e); }
@@ -2443,7 +2443,7 @@ private
                      if (s.startsWith("&"))        { checkReference(s); }
                 else if (s.startsWith("<!--"))     { checkComment(s); }
                 else if (s.startsWith("<?"))       { checkPI(s); }
-                else if (s.startsWith(cdata)) { checkCDSect(s); }
+                else if (s.startsWith(сиданные)) { checkCDSect(s); }
                 else if (s.startsWith("</"))       { break; }
                 else if (s.startsWith("<"))        { checkElement(s); }
                 else                               { checkCharData(s); }
@@ -2496,7 +2496,7 @@ private
             c += n;
             s = s[1..$];
         }
-        if (!isChar(c)) fail(format("U+%04X is not a legal character",c));
+        if (!isChar(c)) fail(format("U+%04X не legal character",c));
         if (s.length == 0 || s[0] != ';') fail("expected ;");
         else s = s[1..$];
     }
@@ -2617,12 +2617,12 @@ private
 }
 
 /**
- * Check an entire XML document for well-formedness
+ * Check an entire XML документ for well-formedness
  *
  * Params:
- *      s = the document to be checked, passed as a string
+ *      s = the документ to be checked, passed как string
  *
- * Выводит исключение: CheckException if the document is not well formed
+ * Выводит исключение: CheckException if the документ is not well formed
  *
  * CheckException's toString() method will yield the complete hierarchy of
  * parse failure (the XML equivalent of a stack trace), giving the line and
@@ -2634,7 +2634,7 @@ void check(string s)
     {
         checkChars(s);
         checkDocument(s);
-        if (s.length != 0) throw new Err(s,"Junk found после document");
+        if (s.length != 0) throw new Err(s,"Junk found после документ");
     }
     catch(Err e)
     {
@@ -2735,8 +2735,8 @@ EOS";
 unittest
 {
     string s = `<tag attr="&quot;value&gt;" />`;
-    auto doc = new Document(s);
-    assert(doc.toString() == s);
+    auto док = new Document(s);
+    assert(док.toString() == s);
 }
 
 /** The base class for exceptions thrown by this module */

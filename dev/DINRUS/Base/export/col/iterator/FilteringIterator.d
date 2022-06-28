@@ -5,30 +5,30 @@ private import col.model.IteratorX;
 
 /**
  *
- * FilteringIterators allow you в_ фильтр out элементы из_
- * другой enumerations перед they are seen by their `consumers'
- * (т.е., the callers of `получи').
+ * Фильтрующие итераторы позволяют отфильтровывать элементы из
+ * другого перечисления перед их появлением в "поле зрения" их `потребителей'
+ * (т.е., вызывающих `получи' функций).
  *
- * FilteringIterators work as wrappers around другой Iterators.
- * To build one, you need an existing Обходчик (perhaps one
- * из_ coll.элементы(), for some Коллекция coll), и a Предикат
- * объект (т.е., implementing interface Предикат). 
- * Например, if you want в_ screen out everything but Panel
- * объекты из_ a collection coll that might hold things другой than Panels,
- * пиши something of the form:
+ * ФильтрОбходчики работают как обёртки вокруг других итераторов.
+ * Чтобы построить его, нужен существующий Обходчик (это может быть один
+ * из coll.элементы(), для вызова какой-либо Коллекции), и объект Предикат
+ * (т.е., реализующий интерфейс Предикат). 
+ * Например, если вы хотите экранировать (скрыть) всё, кроме объектов Panel,
+ * из коллекции "колл", в которой могут быть иные вещи, не только Panels,
+ * пишим что-то типа:
  * ---
- * Обходчик e = coll.элементы();
- * Обходчик panels = ФильтрОбходчик(e, IsPanel);
- * while (panels.ещё())
- *  doSomethingWith(cast(Panel)(panels.получи()));
+ * Обходчик e = колл.элементы();
+ * Обходчик панели = ФильтрОбходчик(e, IsPanel);
+ * while (панели.ещё())
+ *  делаю_ЧтоТо_с(cast(Panel)(панели.получи()));
  * ---
- * To use this, you will also need в_ пиши a little class of the form:
+ * Чтобы использовать это, нужно также написать небольшой класс в форме:
  * ---
  * class IsPanel : Предикат {
- *  бул predicate(Объект знач) { return cast(Panel) знач !is пусто; }
+ *  бул предикат(Объект знач) { return cast(Panel) знач !is пусто; }
  * }
  * ---
- * См_Также: col.Предикат.predicate
+ * См_Также: col.Предикат.предикат
  * author: Doug Lea
  *
 **/
@@ -40,38 +40,38 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         // переменные экземпляра
 
         /**
-         * The enumeration we are wrapping
+         * Оборачиваемое нами перечисление.
         **/
 
         private Обходчик!(T) ист_;
 
         /**
-         * The screening predicate
+         * Экранирующий предикат.
         **/
 
         private Предикат пред_;
 
         /**
-         * The sense of the predicate. Нет means в_ invert
-        **/
+         * Смысл предиката. Нет означает "инвертировать"
+		 **/
 
         private бул знак_;
 
         /**
-         * The следщ элемент в_ hand out
+         * Следующий элемент.
         **/
 
         private T добыча_;
 
         /**
-         * Да if we have a следщ элемент 
+         * Да, если следующий элемент имеется. 
         **/
 
         private бул естьСледщ_;
 
         /**
-         * Создаёт Фильтр using ист for the элементы, и p as the скринер,
-         * selecting only those элементы of ист for which p is да
+         * Создаёт Фильтр, используя ист для элементов, и p как скринер,
+         * выбирая только те элементы ист, для которых p is да.
         **/
 
         public this (Обходчик!(T) ист, Предикат p)
@@ -80,16 +80,16 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
         }
 
         /**
-         * Создаёт Фильтр using ист for the элементы, и p as the скринер,
-         * selecting only those элементы of ист for which p.predicate(знач) == sense.
-         * A значение of да for sense selects only значения for which p.predicate
-         * is да. A значение of нет selects only those for which it is нет.
+         * Создаёт Фильтр, используя ист для элементов, и p как скринер,
+         * выбирая только те элементы ист, для которых p.предикат(знач) == смысл.
+         * Значение да для смысл выбирает только значения, для которых p.предикат
+         * is да. Значение нет выбирает только те, для которых он is нет.
         **/
-        public this (Обходчик!(T) ист, Предикат p, бул sense)
+        public this (Обходчик!(T) ист, Предикат p, бул смысл)
         {
                 ист_ = ист;
                 пред_ = p;
-                знак_ = sense;
+                знак_ = смысл;
                 найдиСледщ();
         }
 
@@ -133,7 +133,7 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
 
 
         /**
-         * Traverse through ист_ элементы finding one passing predicate
+         * Траверсирует по элементам ист_ , находя то, которое передаёт предикат.
         **/
         private final проц найдиСледщ()
         {
@@ -161,4 +161,3 @@ public class ФильтрОбходчик(T) : Обходчик!(T)
                     }
         }
 }
-

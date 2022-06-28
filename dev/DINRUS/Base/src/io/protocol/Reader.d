@@ -1,102 +1,10 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Oct 2004: Initial release      
-                        Dec 2006: Outback release
-        
-        author:         Kris
-
-*******************************************************************************/
-
-module io.protocol.Reader;
+﻿module io.protocol.Reader;
 
 private import  io.Buffer;
 
-public  import             io.model;
+public  import   io.model;
 
 public  import  io.protocol.model;
-
-
-/*******************************************************************************
-
-        Читатель основа-class. Each читатель operates upon an ИБуфер, which is
-        предоставленный at construction время. Читательs are simple converters of данные,
-        и have reasonably rigопр rules regarding данные форматируй. Например,
-        each request for данные expects the контент в_ be available; an исключение
-        is thrown where this is not the case. If the данные is arranged in a ещё
-        relaxed fashion, consider using ИБуфер directly instead.
-
-        все readers support the full установи of исконный данные типы, plus a full
-        выделение of Массив типы. The latter can be configured в_ произведи
-        either a копируй (.dup) of the буфер контент, либо a срез. See classes
-        КопияКучи, СрезБуфера и СрезКучи for ещё on this topic. Applications
-        can disable память management by configuring a Читатель with one of the
-        binary oriented protocols, и ensuring the optional протокол 'префикс'
-        is disabled.
-
-        Читательs support Java-esque получи() notation. However, the Dinrus
-        стиль is в_ place IO элементы внутри their own parenthesis, like
-        so:
-        
-        ---
-        цел счёт;
-        ткст verse;
-        
-        читай (verse) (счёт);
-        ---
-
-        Note that each элемент читай is distict; this стиль is affectionately
-        known as "whisper". The код below illustrates basic operation upon a
-        память буфер:
-        
-        ---
-        auto буф = new Буфер (256);
-
-        // карта same буфер преобр_в Всё читатель и писатель
-        auto читай = new Читатель (буф);
-        auto пиши = new Писатель (буф);
-
-        цел i = 10;
-        дол j = 20;
-        дво d = 3.14159;
-        ткст c = "fred";
-
-        // пиши данные using whisper syntax
-        пиши (c) (i) (j) (d);
-
-        // читай them задний again
-        читай (c) (i) (j) (d);
-
-
-        // same thing again, but using помести() syntax instead
-        пиши.помести(c).помести(i).помести(j).помести(d);
-        читай.получи(c).получи(i).получи(j).получи(d);
-        ---
-
-        Note that certain protocols, such as the basic binary implementation, 
-        expect в_ retrieve the число of Массив элементы из_ the исток. For
-        example: when reading an Массив из_ a файл, the число of элементы 
-        is читай из_ the файл also, и the configurable память-manager is
-        invoked в_ предоставляет the Массив пространство. If контент is not arranged in
-        such a manner you may читай Массив контент directly either by creating
-        a Читатель with a протокол configured в_ sопрestep Массив-prefixing, or
-        by accessing буфер контент directly (via the methods exposed there)
-        e.g.
-
-        ---
-        проц[10] данные;
-                
-        читатель.буфер.заполни (данные);
-        ---
-
-        Читательs may also be использован with any class implementing the ИЧитаемое
-        interface, along with any struct implementing an equivalent метод
-        
-*******************************************************************************/
-
 
 export class Читатель : ИЧитатель
 {       
@@ -107,7 +15,7 @@ export class Читатель : ИЧитатель
 
         // память-manager for Массив requests
         private ИРазместитель              память;
-        private ИПротокол.Разместитель     allocator_;
+        private ИПротокол.Разместитель     разместитель_;
 
         // the назначено serialization протокол
         private ИПротокол.ЧитательМассива   массивы;
@@ -128,7 +36,7 @@ export class Читатель : ИЧитатель
                 auto b = cast(ИБуферированный) поток;
                 буфер_ = b ? b.буфер : объБуфер (поток.провод);
 
-                allocator_ = &размести;
+                разместитель_ = &размести;
                 элементы   = &читайЭлемент;
                 массивы     = &читайМассив;
         }
@@ -143,7 +51,7 @@ export class Читатель : ИЧитатель
 
         this (ИПротокол протокол)
         {
-                allocator_ = &размести;
+                разместитель_ = &размести;
                 элементы   = &протокол.читай;
                 массивы     = &протокол.читайМассив;
                 буфер_    = протокол.буфер;
@@ -159,7 +67,7 @@ export class Читатель : ИЧитатель
         this (ИРазместитель разместитель)
         {
                 this (разместитель.протокол);
-                allocator_ = &разместитель.размести;
+                разместитель_ = &разместитель.размести;
         }
 
         /***********************************************************************
@@ -583,9 +491,9 @@ export class Читатель : ИЧитатель
         
         ***********************************************************************/
 
-        private ИЧитатель загрузиМассив (проц[]* x, бцел ширина, ИПротокол.Тип тип)
+        final ИЧитатель загрузиМассив (проц[]* x, бцел ширина, ИПротокол.Тип тип)
         {
-                *x = массивы (x.ptr, x.length * ширина, тип, allocator_) [0 .. $/ширина];
+                *x = массивы (x.ptr, x.length * ширина, тип, разместитель_) [0 .. $/ширина];
                 return this;
         }
         
@@ -593,7 +501,7 @@ export class Читатель : ИЧитатель
 
         ***********************************************************************/
 
-        private проц[] размести (ИПротокол.Читатель читатель, бцел байты, ИПротокол.Тип тип)
+        final проц[] размести (ИПротокол.Читатель читатель, бцел байты, ИПротокол.Тип тип)
         {
                 return читатель ((new проц[байты]).ptr, байты, тип);
         }
@@ -602,7 +510,7 @@ export class Читатель : ИЧитатель
 
         ***********************************************************************/
 
-        private проц[] читайЭлемент (ук приёмн, бцел байты, ИПротокол.Тип тип)
+        final проц[] читайЭлемент (ук приёмн, бцел байты, ИПротокол.Тип тип)
         {
                 return буфер_.читайРовно (приёмн, байты);
         }
@@ -611,7 +519,7 @@ export class Читатель : ИЧитатель
 
         ***********************************************************************/
 
-        private проц[] читайМассив (ук приёмн, бцел байты, ИПротокол.Тип тип, ИПротокол.Разместитель размести)
+        final проц[] читайМассив (ук приёмн, бцел байты, ИПротокол.Тип тип, ИПротокол.Разместитель размести)
         {
                 читайЭлемент (&байты, байты.sizeof, ИПротокол.Тип.UInt);
                 return размести (&читайЭлемент, байты, тип); 

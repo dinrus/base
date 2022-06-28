@@ -7,28 +7,26 @@ private import  col.model.View,
 /**
  *
  *
- * ElementSorted is a mixin interface for Collections that
- * are всегда in sorted order with respect в_ a Сравнитель
- * held by the Коллекция.
+ * ElementSorted - это mixin-интерфейс для Коллекций, которые
+ * всегда в отсортированном порядке, благодаря Сравнителю,
+ * имеющемуся у Коллекции.
  * <P>
- * ElementSorted Collections guarantee that enumerations
- * appear in sorted order;  that is if a и b are two Elements
- * obtained in succession из_ элементы().nextElement(), that
+ * Коллекции с отсортированными элементами гарантируют, что перечисления
+ * представлены в отсортированном порядке; т.е. если a и b - это два
+ * элемента, полученных последовательно от элементы().nextElement(), то
  * <PRE>
  * сравнитель(a, b) <= 0.
  * </PRE>
  *
         author: Doug Lea
  * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
 **/
 
 public interface СортированныеЗначения(T) : Обзор!(T)
 {
 
         /**
-         * Report the Сравнитель использован for ordering
+         * Репортирует Сравнитель, спользуемый для упорядочивания.
         **/
 
         public Сравнитель!(T) сравнитель();

@@ -687,7 +687,7 @@ private проц инвариант()
      * OutOfMemoryException.
      *
      * Параметры:
-     *  разм = The desired allocation размер in байтs.
+     *  разм = The требуется allocation размер in байтs.
      *  ba = A bitmask of the attributes to установи on this block.
      *
      * Возвращает:

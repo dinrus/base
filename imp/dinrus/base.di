@@ -460,17 +460,17 @@ alias bool *убул, PBOOLEAN;
 
 ////////////////////////////
 
-alias int цел, т_рав, т_фпоз,
+alias int цел, цел32, ц32, т_рав, т_фпоз,
 	equals_t, fexcept_t, fpos_t;
 alias int *уцел;
 
-alias uint бцел;
+alias uint бцел, бцел32, бц32;
 alias uint *убцел;
 
-alias long дол;
+alias long дол, цел64, ц64;
 alias long *удол;
 
-alias ulong бдол;
+alias ulong бдол, бцел64, бц64;
 alias ulong *убдол;
 alias real реал;
 alias real *уреал;
@@ -495,10 +495,10 @@ alias byte *убайт;
 alias ubyte ббайт;
 alias ubyte *уббайт;
 
-alias short крат;
+alias short крат, цел16, ц16;
 alias short *украт;
 
-alias ushort бкрат;
+alias ushort бкрат, бцел16, бц16;
 alias ushort *убкрат;
 
 alias float плав, float_t;
@@ -690,13 +690,13 @@ struct Пространство
     ук Верх;
 };
 
-struct Массив
+struct ДМассив
 {
 	т_мера длина;
 	байт *данные;
 	ук укз;
 }
-alias Массив Array ;
+alias ДМассив Array ;
 
 
 struct Complex

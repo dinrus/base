@@ -1,5 +1,0 @@
-@echo off
-dinrusex
-rem This assumes dcollections.lib is in your link path
-for %%i in (*.d) do dmd %%i -L+DinrusTango.lib
-pause

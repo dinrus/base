@@ -8,8 +8,7 @@ module util.Convert;
 
 private import exception;
 private import tpl.traits;
-private import tpl.tuple :
-Кортеж;
+private import tpl.tuple:Кортеж;
 
 private import math.Math;
 private import text.convert.Utf;
@@ -21,31 +20,31 @@ private import Ascii = text.Ascii;
 version( TangoDoc )
 {
     /**
-     * Attempts в_ выполни a значение-preserving conversion of the given значение
-     * из_ тип S в_ тип D.  If the conversion cannot be performed in any
-     * контекст, a компилируй-время ошибка will be issued describing the типы
-     * involved.  If the conversion fails at run-время because the destination
-     * тип could not represent the значение being преобразованый, a
-     * ИсклПреобразования will be thrown.
+     * Пытается выполнить преобразование с сохранением значения данного значения
+     * из тип S в тип D. Если это преобразование не может быть выполнено ни в каком
+     * контексте, будет выведена ошибка времени компиляции, описывающая участвовавшие
+     * типы. Если это преобразование не срабатывает в рантайм, так как целевой
+     * тип не может представить преобразуемое значение, будет выведено
+     * ИсклПреобразования.
      *
-     * Например, в_ преобразуй the ткст "123" преобр_в an equivalent целое
-     * значение, you would use:
+     * Например, чтобы преобразовать ткст "123" в эквивалентное целое
+     * значение, используется:
      *
      * -----
      * auto знач = в_!(цел)("123");
      * -----
      *
-     * You may also specify a default значение which should be returned in the
-     * событие that the conversion cannot take place:
+     * Можно также указать дефолтное значение, которое будет возвращено в случае,
+     * если преобразование невозможно:
      *
      * -----
      * auto знач = в_!(цел)("abc", 456);
      * -----
      *
-     * The function will attempt в_ preserve the ввод значение as exactly as
-     * possible, given the limitations of the destination форматируй.  For
-     * экземпляр, converting a floating-точка значение в_ an целое will cause it
-     * в_ округли the значение в_ the nearest целое значение.
+     * Эта функция попытается сохранить вводное значение как можно точнее,
+     * при наличии ограничений целевого формата.  Например,
+     * преобразование значения с плавающей точкой в целое вызовет 
+     * округление этого значения до ближайшего целого значения.
      *
      * Below is a complete список of conversions between built-in типы and
      * strings.  Capitalised names indicate classes of типы.  Conversions

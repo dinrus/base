@@ -313,7 +313,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
      * удали the элемент pointed at by the given курсор, returning an
      * курсор that points to the следщ элемент in the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор удали(курсор обх)
     {
@@ -325,7 +325,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
      * найди the instance of a значение in the collection.  Returns конец if the
      * значение is not present.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор найди(З з)
     {
@@ -337,7 +337,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
     /**
      * Возвращаетs true if the given значение exists in the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     бул содержит(З з)
     {
@@ -348,7 +348,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
      * Removes the элемент that has the значение з.  Returns true if the значение
      * was present and was removed.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоНабор удали(З з)
     {
@@ -362,7 +362,7 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
      * Removes the элемент that has the значение з.  Returns true if the значение
      * was present and was removed.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоНабор удали(З з, ref бул былУдалён)
     {
@@ -380,10 +380,10 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
     }
 
     /**
-     * Adds a значение to the collection.
+     * Добавляет значение в эту коллекцию.
      * Возвращаетs true.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоНабор добавь(З з)
     {
@@ -392,10 +392,10 @@ class ДеревоНабор(З, alias ШаблРеализац = КЧДерев
     }
 
     /**
-     * Adds a значение to the collection.
+     * Добавляет значение в эту коллекцию.
      * Возвращаетs true.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоНабор добавь(З з, ref бул былДобавлен)
     {

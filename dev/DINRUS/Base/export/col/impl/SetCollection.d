@@ -6,8 +6,8 @@ private import  col.impl.Collection;
 
 /**
  *
- * КоллекцияНаборов extends MutableImpl в_ предоставляет
- * default implementations of some Набор operations. 
+ * КоллекцияНаборов расширяет MutableImpl, предоставляя
+ * дефолтные реализации некоторых операций Набора. 
  * 
 **/
 
@@ -19,7 +19,7 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
 
 
         /**
-         * Инициализует при версии 0, an пустой счёт, и пусто скринер
+         * Инициализует при версии 0, пустой счёт, и пусто скринер
         **/
 
         protected this ()
@@ -28,7 +28,7 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
         }
 
         /**
-         * Инициализует при версии 0, an пустой счёт, и supplied скринер
+         * Инициализует при версии 0, пустой счёт, и supplied скринер
         **/
         protected this (Предикат скринер)
         {
@@ -49,7 +49,7 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
 
         version (VERBOSE)
         {
-        // Default implementations of Набор methods
+        // Дефолтные реализации методов Набора
 
         /**
          * Реализует col.Набор.включая
@@ -68,8 +68,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
                 Реализует col.impl.Collection.Коллекция.удалиВсе
                 См_Также: col.impl.Collection.Коллекция.удалиВсе
 
-                Has в_ be here rather than in the superclass в_ satisfy
-                D interface опрioms
+                Должно находиться здесь. а не в суперклассе, чтобы удовлетворять
+                идиомам интерфейса в Динрусе.
 
         ************************************************************************/
 
@@ -84,8 +84,8 @@ public abstract class КоллекцияНаборов(T) : Коллекция!(
                 Реализует col.impl.Collection.Коллекция.removeElements
                 См_Также: col.impl.Collection.Коллекция.removeElements
 
-                Has в_ be here rather than in the superclass в_ satisfy
-                D interface опрioms
+                Должно находиться здесь. а не в суперклассе, чтобы удовлетворять
+                идиомам интерфейса в Динрусе.
 
         ************************************************************************/
 

@@ -10,6 +10,8 @@ private import text.convert.Layout;
 
 public Выкладка!(сим) Формат;
 
+alias Формат фмт;
+
 static this()
 {
     Формат = Выкладка!(сим).экземпляр;

@@ -56,7 +56,7 @@ export abstract class Шифр
 /** Interface for a стандарт блок cipher. */
 abstract class ШифрБлок : Шифр
 {
-    /** Возвращает: The блок размер in байты that this cipher will operate on. */
+    /** Возвращает: The блок размер в байтах that this cipher will operate on. */
     abstract бцел размерБлока();
 }
 
@@ -108,7 +108,7 @@ abstract class ПаддингБлокаШифра
 
 
 
-/** Объект representing и wrapping a symmetric ключ in байты. */
+/** Объект representing и wrapping a symmetric ключ в байтах. */
 class СимметричныйКлюч : Шифр.Параметры
 {
     private ббайт[] _ключ;

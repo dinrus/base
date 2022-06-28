@@ -1,11 +1,4 @@
-﻿/*********************************************************
-   Copyright: (C) 2008 by Steven Schveighoffer.
-              All rights reserved
-
-   License: $(LICENSE)
-
-**********************************************************/
-module col.TreeMultiset;
+﻿module col.TreeMultiset;
 
 public import col.model.Multiset;
 public import col.Functions;
@@ -61,76 +54,75 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
 +/
 
 /**
- * Implementation of the Мультинабор interface using Красный-Чёрный trees.  this
- * допускается for O(lg(n)) insertion, removal, and lookup times.  It also creates
- * a sorted установи of elements.  З must be comparable.
+ * Реализация интерфейса Мультинабор с использованием Красно-Чёрных деревьев. 
+ * Позволяет делать за время O(lg(n)) вставки, удаления и поиск. Также создаёт
+ * отсортированный набор элементов.  З должно быть совместимо.
  *
- * Adding an элемент does not invalidate any cursors.
+ * Добавление элемента не повреждает никаких курсоров.
  *
- * Removing an элемент only invalidates the cursors that were pointing at
- * that элемент.
+ * Удаление элемента повреждает только те курсоры, которые указывали на
+ * этот элемент.
  *
- * You can replace the Tree implementation with a custom implementation, the
- * implementation must be a struct template which can be instantiated with a
- * single template argument З, and must implement the following members
- * (non-function members can be properties unless otherwise specified):
+ * Можно заменить реализацию Дерево любой кастомной реализацией, эта
+ * реализация должна быть шаблоном структуры, экземпляр которого создаётся
+ * единственный шаблонным аргументом З, и должен реализовывать следующие члены
+ * (члены-нефункции могут быть свойствами, если не указано иное):
  *
- * parameters -> must be a struct with at least the following members:
- *   функцСравнения -> the compare function to use (should be a
+ * параметры -> должно быть структурой, как минимум со следующими членами:
+ *   функцСравнения -> используемая функция сравнения (должна быть
  *                      ФункцСравнения!(З))
  * 
- * проц установка(parameters p) -> initializes the tree with the given parameters.
+ * проц установка(параметры p) -> инициализует это дерево с заданными параметрами.
  *
- * бцел счёт -> счёт of the elements in the tree
+ * бцел счёт -> счёт элементов в этом дереве
  *
- * Узел -> must be a struct/class with the following members:
- *   З значение -> the значение which is pointed to by this позиция (cannot be a
- *                property)
- *   Узел следщ -> the следщ Узел in the tree as defined by the compare
- *                function, либо конец if no other nodes есть_ли.
- *   Узел предш -> the previous Узел in the tree as defined by the compare
- *                function.
+ * Узел -> должно быть struct/class со следующими членами:
+ *   З значение -> значение, на которое указывает эта позиция (не может быть
+ *                свойством)
+ *   Узел следщ -> следующий Узел в этом дереве, как определено функцией сравнения,
+ *                либо конец, если нет иных узлов.
+ *   Узел предш -> предыдущий Узел в этом дереве, как определено функцией сравнения.
  *
- * бул добавь(З з) -> добавь the given значение to the tree according to the order
- * defined by the compare function.  If the элемент already exists in the
- * tree, the function should добавь обх после all equivalent elements.
+ * бул добавь(З з) -> добавляет заданное значение в это дерево, согласно порядку,
+ * определённому функцией сравнения. Если элемент уже существует в дереве,
+ * эта функция должна добавлять обх после всех эквивалентных элементов.
  *
- * Узел начало -> must be a Узел that points to the very первый valid
- * элемент in the tree, либо конец if no elements есть_ли.
+ * Узел начало -> должно быть Узлом, который указывает на самый первый валидный
+ * элемент в этом дереве, либо концом, если элементов больше нет.
  *
- * Узел конец -> must be a Узел that points to just past the very последн
- * valid элемент.
+ * Узел конец -> должно быть Узлом, указывающим сразу после самого последнего
+ * валидного элемента.
  *
- * Узел найди(З з) -> returns a Узел that points to the первый элемент in the
- * tree that содержит з, либо конец if the элемент doesn'т есть_ли.
+ * Узел найди(З з) -> возвращает Узел, указывающий на первый элемент в этом
+ * дереве, который содержит з, либо конец, если этого элемента нет.
  *
- * Узел удали(Узел p) -> removes the given элемент from the tree,
- * returns the следщ valid элемент or конец if p was последн in the tree.
+ * Узел удали(Узел p) -> удаляет данный элемент из этого дерева,
+ * возвращает следующий валидный элемент или конец, если p был последним в этом дереве.
  *
- * проц зачисть() -> removes all elements from the tree, sets счёт to 0.
+ * проц зачисть() -> удаляет все элементы из этого дерева, устанавливает счёт в 0.
  *
- * бцел считайВсе(З з) -> returns the number of elements with the given значение.
+ * бцел считайВсе(З з) -> возвращает число элементов с заданным значением.
  *
- * Узел удалиВсе(З з) -> removes all the given values from the tree.
+ * Узел удалиВсе(З з) -> удаляет все заданные значения из этого дерева.
  */
 class ДеревоМультинабор(З, alias ШаблРеализац = КЧДеревоДуб, alias функцСравнения=ДефСравнить) : Мультинабор!(З)
 {
     /**
-     * convenience alias
+     * Удобный алиас
      */
     alias ШаблРеализац!(З, функцСравнения) Реализ;
 
     private Реализ _дерево;
 
     /**
-     * курсор for the tree multiset
+     * Курсор для дерева-мультинабора.
      */
     struct курсор
     {
         private Реализ.Узел укз; alias укз ptr;
 
         /**
-         * дай the значение in this элемент
+         * Даёт значение этого элемента.
          */
         З значение()
         {
@@ -138,8 +130,8 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
         }
 
         /**
-         * increment this курсор, returns what the курсор was перед
-         * incrementing.
+         * Инкрементирует этот курсор, возвращает курсок, который был перед
+         * инкрементацией.
          */
         курсор opPostInc()
         {
@@ -149,8 +141,8 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
         }
 
         /**
-         * decrement this курсор, returns what the курсор was перед
-         * decrementing.
+         * Декрементирует этот курсор, возвращает курсор, который был перед
+         * декрементацией.
          */
         курсор opPostDec()
         {
@@ -160,10 +152,11 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
         }
 
         /**
-         * increment the курсор by the given amount.
+		 * Инкрементирует курсор на заданное количество.
          *
-         * This is an O(прир) operation!  You should only use this operator in
-         * the form:
+         * Это операция O(прир)! Этот оператор используется только
+         * в форме:
+         *
          *
          * ++i;
          */
@@ -177,10 +170,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
         }
 
         /**
-         * decrement the курсор by the given amount.
+         * Декрементирует курсор на заданное количество.
          *
-         * This is an O(прир) operation!  You should only use this operator in
-         * the form:
+         * Это операция O(прир)! Этот оператор используется только
+         * в форме:
          *
          * --i;
          */
@@ -194,7 +187,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
         }
 
         /**
-         * compare two cursors for equality
+         * Сравнивает два курсора на равенство.
          */
         бул opEquals(курсор обх)
         {
@@ -203,12 +196,12 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Iterate through the elements of the collection, specifying which ones
-     * should be removed.
+     * Итерирует по элементам этой коллекции, определяет, какие из них
+     * следует удалить.
      *
-     * Use like this:
+     * Пример использования:
      * -------------
-     * // удали all odd elements
+     * // Удаляет все нечётные элементы.
      * foreach(ref чистить_ли, з; &treeMultiset.очистить)
      * {
      *   чистить_ли = ((з % 1) == 1);
@@ -244,7 +237,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * iterate over the collection's values
+     * Итерирует по значениям этой коллекции.
      */
     цел opApply(цел delegate(ref З з) дг)
     {
@@ -256,7 +249,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Instantiate the tree multiset
+     * Создаёт экземпляр этого дерева-мультинабора.
      */
     this()
     {
@@ -264,7 +257,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     //
-    // for dup
+    // для dup
     //
     private this(ref Реализ дубИз)
     {
@@ -272,7 +265,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Clear the collection of all elements
+     * Очищает коллекцию от всех элементов.
      */
     ДеревоМультинабор зачисть()
     {
@@ -281,7 +274,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * returns number of elements in the collection
+     * Возвращает число элементов в этой коллекции.
      */
     бцел длина()
     {
@@ -290,7 +283,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
 	alias длина length;
 
     /**
-     * returns a курсор to the первый элемент in the collection.
+     * Возвращает курсор на первый элемент в этой коллекции.
      */
     курсор начало()
     {
@@ -300,8 +293,8 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * returns a курсор that points just past the последн элемент in the
-     * collection.
+     * Возвращает курсор, указывающий сразу после последнего элементв в
+     * этой коллекции.
      */
     курсор конец()
     {
@@ -311,10 +304,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * удали the элемент pointed at by the given курсор, returning an
-     * курсор that points to the следщ элемент in the collection.
+     * Удаляет элемент, на который указывает данный курсор, возвращая
+     * курсор, указывающий на следующий элемент в этой коллекции.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор удали(курсор обх)
     {
@@ -323,10 +316,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * найди the первый instance of a given значение in the collection.  Returns
-     * конец if the значение is not present.
+     * Находит первый экземпляр данного значения в этой коллекции. Возвращает
+     * конец, если это значение отсутствует.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор найди(З з)
     {
@@ -336,9 +329,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Возвращаетs true if the given значение exists in the collection.
+     * Возвращает да, если данное значение существует в коллекции.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     бул содержит(З з)
     {
@@ -346,10 +339,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Removes the первый элемент that has the значение з.  Returns true if the
-     * значение was present and was removed.
+     * Удаляет первый элемент со значением з. Врзвращает да, если
+     * это значение имелось и было удалено.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоМультинабор удали(З з)
     {
@@ -360,10 +353,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Removes the первый элемент that has the значение з.  Returns true if the
-     * значение was present and was removed.
+     * Удаляет первый элемент со значением з. Возвращает да, если
+     * это значение имелось и было удалено.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоМультинабор удали(З з, ref бул былУдалён)
     {
@@ -381,10 +374,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds a значение to the collection.
-     * Возвращаетs this.
+     * Добавляет значение в эту коллекцию.
+     * Возвращает this.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоМультинабор добавь(З з)
     {
@@ -393,12 +386,12 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds a значение to the collection. Sets былДобавлен to true if the значение was
-     * добавленный.
+     * Добавляет значение в эту коллекцию. Устанавливает былДобавлен в да, если значение
+     * добавленно.
      *
      * Возвращаетs this.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоМультинабор добавь(З з, ref бул былДобавлен)
     {
@@ -435,10 +428,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds all the values from массив to the collection.
+     * Добавляет все значения из массива в коллекцию.
      *
-     * Runs in O(m lg(n)) time, where m is the number of elements in
-     * массив.
+     * Выполняется за время O(m lg(n)), где m - число элементов в
+     * массиве.
      */
     ДеревоМультинабор добавь(З[] массив)
     {
@@ -448,11 +441,11 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Adds all the values from массив to the collection.  Sets члоДобавленных to the
-     * number of elements добавленный from the массив.
+     * Добавляет все значения из массива в коллекцию. Устанавливает члоДобавленных в
+     * число добавленных из массива элементов.
      *
-     * Runs in O(m lg(n)) time, where m is the number of elements in
-     * массив.
+     * Выполняется за время O(m lg(n)), где m - число элементов в
+     * массиве.
      */
     ДеревоМультинабор добавь(З[] массив, ref бцел члоДобавленных)
     {
@@ -463,9 +456,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Возвращаетs the number of elements in the collection that are equal to з.
+     * Возвращает число элеметнов в этой коллекции, равное з.
      *
-     * Runs in O(m lg(n)) time, where m is the number of elements that are з.
+     * Выполняется за время O(m lg(n)), где m - число элементов, равное з.
      */
     бцел счёт(З з)
     {
@@ -473,9 +466,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Removes all the elements that are equal to з.
+     * Удаляет все элементы, равные з.
      *
-     * Runs in O(m lg(n)) time, where m is the number of elements that are з.
+     * Выполняется за время O(m lg(n)), где m i- число элементов в з.
      */
     ДеревоМультинабор удалиВсе(З з)
     {
@@ -484,10 +477,10 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
     
     /**
-     * Removes all the elements that are equal to з.  Sets члоУдалённых to the
-     * number of elements removed from the multiset.
+     * Удаляет все элементы, равные з.  Устанавливает члоУдалённых в
+     * число элементов, удалённых из этого мультинабора.
      *
-     * Runs in O(m lg(n)) time, where m is the number of elements that are з.
+     * Выполняется за время O(m lg(n)), где m - число элементов в з.
      */
     ДеревоМультинабор удалиВсе(З з, ref бцел члоУдалённых)
     {
@@ -496,7 +489,7 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * duplicate this tree multiset
+     * Делает дубликат этого дерева-мультинабора.
      */
     ДеревоМультинабор dup()
     {
@@ -504,9 +497,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * дай the most convenient элемент in the установи.  This is the элемент that
-     * would be iterated первый.  Therefore, calling удали(дай()) is
-     * guaranteed to be less than an O(n) operation.
+     * Выдаёт наиболее удобный элемент в этом наборе. Это элемент, который
+     * итерировался бы первым. Следовательно, вызов удали(дай())
+     * гарантировано меньше операции O(n).
      */
     З дай()
     {
@@ -514,9 +507,9 @@ class ДеревоМультинабор(З, alias ШаблРеализац = К
     }
 
     /**
-     * Remove the most convenient элемент from the установи, and return its значение.
-     * This is equivalent to удали(дай()), except that only one lookup is
-     * performed.
+     * Удаляет наиболее подходящий  элемент из набора, и возвращает его значение.
+     * Это равноценно удали(дай()), за исключением того, что выполняется
+     * только один поиск.
      */
     З изыми()
     {

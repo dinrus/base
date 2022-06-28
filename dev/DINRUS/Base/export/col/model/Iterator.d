@@ -76,13 +76,6 @@ interface ЧистящийКлючи(К, З) : Чистящий!(З)
      * foreach(ref чистить_ли, к, з; &чистящий.чисть_ключ){
      * ...
      * -----
-     *
-     * TODO: note this should have the name очистить, but because of asonine
-     * lookup rules, обх makes обх difficult to specify this version over the
-     * base version.  Once this is fixed, обх's highly likely that this goes
-     * тыл to the name очистить.
-     *
-     * See bugzilla #2498
      */
     цел чисть_ключ(цел delegate(ref бул чистить_ли, ref К к, ref З з) дг);
 }

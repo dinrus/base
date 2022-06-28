@@ -71,7 +71,7 @@ public abstract class АбстрактныйОбходчик(T) : СтражОб
     }
 
     /**
-     * Subclass utility.
+     * Утилита подкласса.
      * Пытается декрементировать ещё, выводя исключения.
      * if it is already zero or if повреждён()
      * Always вызов as the первый строка of получи.

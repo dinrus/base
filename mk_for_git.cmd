@@ -7,7 +7,7 @@
 @set R=%this%\..\Base-Git\imp\dinrus
 @set BIN=%this%\..\Base-Git\bin
 @set LDIR=%this%\..\Base-Git\lib
-@set DMD=%DINRUS%\dmd.exe
+@set DMD=%DINRUS%\drc.exe
 @set DMC=%DINRUS%\dmc.exe
 @set LIB=%DINRUS%\dmlib.exe
 @set IMPLIB=%DINRUS%\implib.exe

@@ -26,7 +26,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     // переменные экземпляра
 
     /**
-     * The корень of the дерево. Пусто if пустой.
+     * Корень этого дерева. Пусто, если он пустой.
     **/
 
     package КЧЯчейкаТ дерево;
@@ -39,7 +39,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     // constructors
 
     /**
-     * Создаётn пустой дерево.
+     * Создаёт пустое дерево.
      * Initialize в_ use DefaultComparator for ordering
     **/
     public this ()
@@ -48,7 +48,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     }
 
     /**
-     * Создаётn пустой дерево, using the supplied элемент скринер.
+     * Создаёт пустое дерево, using the supplied элемент скринер.
      * Initialize в_ use DefaultComparator for ordering
     **/
 
@@ -58,7 +58,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     }
 
     /**
-     * Создаётn пустой дерево, using the supplied элемент сравнитель for ordering.
+     * Создаёт пустое дерево, using the supplied элемент сравнитель for ordering.
     **/
     public this (КомпараторТ c)
     {
@@ -66,7 +66,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     }
 
     /**
-     * Создаётn пустой дерево, using the supplied элемент скринер и сравнитель
+     * Создаёт пустое дерево, using the supplied элемент скринер и сравнитель
     **/
     public this (Предикат s, КомпараторТ c)
     {
@@ -74,7 +74,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
     }
 
     /**
-     * Special version of constructor needed by клонируй()
+     * Особая версия конструктора needed by клонируй()
     **/
 
     protected this (Предикат s, КомпараторТ cmp, КЧЯчейкаТ t, цел n)
@@ -107,7 +107,7 @@ deprecated public class РюкзакДерево(T) : КоллекцияРюкз
 
 
     /**
-     * Создаётn independent копируй of the дерево. Does not клонируй элементы.
+     * Создаёт независимую копию of the дерево. Не клонирует элементы.
     **/
 
     public РюкзакДерево!(T) дубликат()

@@ -1,11 +1,4 @@
-﻿/*********************************************************
-   Copyright: (C) 2008 by Steven Schveighoffer.
-              All rights reserved
-
-   License: $(LICENSE)
-
-**********************************************************/
-module col.TreeMap;
+﻿module col.TreeMap;
 
 public import col.model.Map;
 public import col.Functions;
@@ -436,7 +429,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * удали the элемент pointed at by the given курсор, returning an
      * курсор that points to the следщ элемент in the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор удали(курсор обх)
     {
@@ -477,7 +470,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * найди the instance of a ключ in the collection.  Returns конец if the ключ
      * is not present.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     курсор найди(К к)
     {
@@ -499,7 +492,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Removes the первый элемент that has the значение з.  Returns true if the
+     * Удаляет первый элемент со значением з.  Returns true if the
      * значение was present and was removed.
      *
      * Runs in O(n) time.
@@ -511,7 +504,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     }
 
     /**
-     * Removes the первый элемент that has the значение з.  Returns true if the
+     * Удаляет первый элемент со значением з.  Returns true if the
      * значение was present and was removed.
      *
      * Runs in O(n) time.
@@ -535,7 +528,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * Removes the элемент that has the given ключ.  Returns true if the
      * элемент was present and was removed.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоКарта удалиПо(К ключ)
     {
@@ -549,7 +542,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * Removes the элемент that has the given ключ.  Returns true if the
      * элемент was present and was removed.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     ДеревоКарта удалиПо(К ключ, ref бул былУдалён)
     {
@@ -633,7 +626,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * Возвращаетs the значение that is stored at the элемент which has the given
      * ключ.  Выводит исключение an exception if the ключ is not in the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     З opIndex(К ключ)
     {
@@ -647,7 +640,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
      * assign the given значение to the элемент with the given ключ.  If the ключ
      * does not есть_ли, adds the ключ and значение to the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     З opIndexAssign(З значение, К ключ)
     {
@@ -712,7 +705,7 @@ class ДеревоКарта(К, З, alias ШаблРеализац=КЧДере
     /**
      * Возвращаетs true if the given ключ is in the collection.
      *
-     * Runs in O(lg(n)) time.
+     * Выполняется за время O(lg(n)).
      */
     бул имеетКлюч(К ключ)
     {

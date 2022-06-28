@@ -27,37 +27,9 @@ version( Win32 )
 
     enum : DWORD { FILE_FLAG_OPEN_REPARSE_POINT = 0x00200000 }
 
-    version( Win32SansUnicode )
-    {
-        import sys.common :
-            ДайВерсиюДопА, ИНФОВЕРСИИОС_А, ПФайл,  ДайВремПутьА;
-
-  alias ИНФОВЕРСИИОС_А  ИнфОВерсииОС;
-
-        ткст GetTempPath()
-        {
-            auto длин = ДайВремПутьА(0, пусто);
-            if( длин == 0 )
-                throw new Исключение("не удалось получить временный путь");
-
-            auto результат = new сим[длин+1];
-            длин = ДайВремПутьА(длин+1, результат.ptr);
-            if( длин == 0 )
-                throw new Исключение("не удалось получить временный путь");
-            return Путь.стандарт(результат[0..длин]);
-        }
-    }
-    else
-    {
-        import sys.common :
-            ШирСимВМультиБайт,
-            ДайВерсиюДоп, ИНФОВЕРСИИОС,
-            ПФайл,
-            ДайВремПуть;
-
           alias sys.WinStructs.ИНФОВЕРСИИОС  ИнфОВерсииОС;
 
-        ткст GetTempPath()
+        ткст дайВрмПуть()
         {
             auto длин = sys.WinFuncs.ДайВремПуть(0, пусто);
             if( длин == 0 )
@@ -69,12 +41,12 @@ version( Win32 )
                 throw new Исключение("не удалось получить временный путь");
 
             auto пап = new сим [длин * 3];
+           
             auto i = sys.WinFuncs.ШирСимВМультиБайт (ПКодСтр.УТФ8, cast(ПШирСим) 0, результат.ptr, длин, 
                                           cast(PCHAR) пап.ptr, пап.length, пусто, 0);
             return Путь.стандарт (пап[0..i]);
         }
-    }
-
+    
     // Determines if reparse points (aka: symlinks) are supported.  Support
     // was introduced in Windows Vista.
     бул reparseSupported()
@@ -84,14 +56,8 @@ version( Win32 )
 
         проц e(){throw new Исключение("не удалось определить версию Windows");};
 
-        version( Win32SansUnicode )
-        {
-            if( !ДайВерсиюДопА(&инфоверииОС) ) e();
-        }
-        else
-        {
             if( !sys.WinFuncs.ДайВерсиюДоп(&инфоверииОС) ) e();
-        }
+        
 
         return (инфоверииОС.версияМажор >= 6);
     }
@@ -101,80 +67,15 @@ else version( Posix )
 {
     import rt.core.stdc.posix.pwd : getpwnam;
     import rt.core.stdc.posix.unistd : доступ, getuопр, lseek, отвяжи, W_OK;
-    import rt.core.stdc.posix.sys.типы : off_t;
+    import rt.core.stdc.posix.sys.types : off_t;
     import rt.core.stdc.posix.sys.stat : stat, stat_t;
     import sys.consts.fcntl : O_NOFOLLOW;
     import rt.core.stdc.posix.stdlib : getenv;
     import cidrus : strlen;
 }
 
-/******************************************************************************
- *
- * The ВремФайл class aims в_ предоставляет a safe way of creating and destroying
- * temporary файлы.  The ВремФайл class will automatically закрой temporary
- * файлы when the объект is destroyed, so it is recommended that you сделай
- * appropriate use of scoped destruction.
- *
- * Temporary файлы can be создан with one of several styles, much like нормаль
- * Files.  ВремФайл styles have the following свойства:
- *
- * $(UL
- * $(LI $(B ОпцУдаления): this determines whether the файл should be destroyed
- * as soon as it is закрыт (transient,) or continue в_ persist even after the
- * application есть terminated (permanent.))
- * )
- *
- * Eventually, this will be expanded в_ give you greater control over the
- * temporary файл's свойства.
- *
- * For the typical use-case (creating a файл в_ temporarily сохрани данные too
- * large в_ fit преобр_в память,) the following is sufficient:
- *
- * -----
- *  {
- *      scope temp = new ВремФайл;
- *      
- *      // Use temp как нормаль провод; it will be automatically закрыт when
- *      // it goes out of scope.
- *  }
- * -----
- *
- * $(B Important):
- * It is recommended that you $(I do not) use файлы создан by this class в_
- * сохрани sensitive information.  There are several known issues with the
- * текущ implementation that could allow an attacker в_ доступ the contents
- * of these temporary файлы.
- *
- * $(B Todo): Detail security свойства and guarantees.
- *
- ******************************************************************************/
-
-
 export class ВремФайл : Файл
 {
-
-
-
-    /+enum Visibility : ббайт
-    {
-        /**
-         * The temporary файл will have читай and пиши доступ в_ it restricted
-         * в_ the текущ пользователь.
-         */
-        User,
-        /**
-         * The temporary файл will have читай and пиши доступ available в_ any
-         * пользователь on the system.
-         */
-        World
-    }+/
-
-    /**************************************************************************
-     * 
-     * This enumeration is used в_ control whether the temporary файл should
-     * persist after the ВремФайл объект есть been destroyed.
-     *
-     **************************************************************************/
 
     enum ОпцУдаления : ббайт
     {
@@ -188,35 +89,6 @@ export class ВремФайл : Файл
          */
         Навсегда
     }
-
-    /+enum Sensitivity : ббайт
-    {
-        /**
-         * ВКорзину файлы will be truncated в_ zero length immediately
-         * перед closure в_ prevent casual filesystem inspection в_ recover
-         * their contents.
-         *
-         * No добавьitional action is taken on permanent файлы.
-         */
-        Нет,
-        /**
-         * ВКорзину файлы will be zeroed-out перед truncation, в_ маска their
-         * contents из_ ещё thorough filesystem inspection.
-         *
-         * This опция is not compatible with permanent файлы.
-         */
-        Low
-        /+
-        /**
-         * ВКорзину файлы will be overwritten первый with zeroes, then with
-         * ones, and then with a random 32- or 64-bit образец (dependant on
-         * which is most efficient.)  The файл will then be truncated.
-         *
-         * This опция is not compatible with permanent файлы.
-         */
-        Medium
-        +/
-    }+/
 
     /**************************************************************************
      * 
@@ -251,15 +123,15 @@ export class ВремФайл : Файл
     // СтильВремфл we've opened with
     private СтильВремфл _style;
 
-export:
+
     ///
-    this(СтильВремфл стиль = СтильВремфл.init)
+    export this(СтильВремфл стиль = СтильВремфл.init)
     {
         открой (стиль);
     }
 
     ///
-    this(ткст префикс, СтильВремфл стиль = СтильВремфл.init)
+    export this(ткст префикс, СтильВремфл стиль = СтильВремфл.init)
     {
         открой (префикс, стиль);
     }
@@ -269,7 +141,7 @@ export:
      * Указывает the стиль that this ВремФайл was создан with.
      *
      **************************************************************************/
-    СтильВремфл стильВремфл()
+    export СтильВремфл стильВремфл()
     {
         return _style;
     }
@@ -295,9 +167,9 @@ export:
 
     version( Win32 )
     {
-        private static const DEFAULT_LENGTH = 6;
-        private static const DEFAULT_PREFIX = "~t";
-        private static const DEFAULT_SUFFIX = ".temp";
+        private static const ДефДЛИНА = 6;
+        private static const ДефПРЕФИКС = "~t";
+        private static const ДефСУФФИКС = ".temp";
 
         private static const JUNK_CHARS = 
             "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -308,9 +180,9 @@ export:
          * создан.  The returned путь is safe в_ измени.
          *
          **********************************************************************/
-        public static ткст времфлПуть()
+        export static ткст времфлПуть()
         {
-            return GetTempPath;
+            return дайВрмПуть;
         }
 
         /*
@@ -342,11 +214,11 @@ export:
     }
     else version( Posix )
     {
-        private static const DEFAULT_LENGTH = 6;
-        private static const DEFAULT_PREFIX = ".temp";
+        private static const ДефДЛИНА = 6;
+        private static const ДефПРЕФИКС = ".temp";
 
         // Use "~" в_ work around a bug in DMD where it elопрes пустой constants
-        private static const DEFAULT_SUFFIX = "~";
+        private static const ДефСУФФИКС = "~";
 
         private static const JUNK_CHARS = 
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -438,9 +310,9 @@ export:
     /*
      * Generates a new random файл имя, sans дир.
      */
-    private ткст randomName(бцел length=DEFAULT_LENGTH,
-            ткст префикс=DEFAULT_PREFIX,
-            ткст суффикс=DEFAULT_SUFFIX)
+    private ткст randomName(бцел length=ДефДЛИНА,
+            ткст префикс=ДефПРЕФИКС,
+            ткст суффикс=ДефСУФФИКС)
     {
         auto junk = new сим[length];
         scope(exit) delete junk;
@@ -451,80 +323,9 @@ export:
         return префикс~junk~суффикс;
     }
     
-    override проц открепи()
+    export override проц открепи()
     {
         static assert( !is(Sensitivity) );
         super.открепи();
     }
 }
-
-/+
-version( TempFile_SelfTest ):
-
-import io.Console : Кввод;
-import io.Stdout : Стдвыв;
-
-проц main()
-{
-    Стдвыв(r"
-Please ensure that the transient file no longer to once the ВремФайл
-объект is destroyed, and that the permanent file does.  You should also check
-the following on Всё:
-
- * the файл should be owned by you,
- * the хозяин should have читай and пиши permissions,
- * no другой permissions should be установи on the файл.
-
-For POSIX systems:
-
- * the temp дир should be owned by either корень or you,
- * if anyone другой than корень or you can пиши в_ it, the sticky bit should be
-   установи,
- * if the дир is записываемый by anyone другой than корень or the пользователь, and the
-   sticky bit is *not* установи, then creating the temporary файл should краш.
-
-You might want в_ delete the permanent one afterwards, too. :)")
-    .нс;
-
-    Стдвыв.форматнс("Creating a transient file:");
-    {
-        scope времФайл = new ВремФайл(/*ВремФайл.UserPermanent*/);
-
-        Стдвыв.форматнс(" .. путь: {}", времФайл);
-
-        времФайл.пиши("ВКорзину temp файл.");
-
-        ткст буфер = new сим[1023];
-        времФайл.сместись(0);
-        буфер = буфер[0..времФайл.читай(буфер)];
-
-        Стдвыв.форматнс(" .. contents: \"{}\"", буфер);
-
-        Стдвыв(" .. нажми Enter to destroy ВремФайл объект.").нс;
-        Кввод.копируйнс();
-    }
-
-    Стдвыв.нс;
-
-    Стдвыв.форматнс("Creating a permanent файл:");
-    {
-        scope времФайл = new ВремФайл(ВремФайл.Навсегда);
-
-        Стдвыв.форматнс(" .. путь: {}", времФайл);
-
-        времФайл.пиши("Навсегда temp файл.");
-
-        ткст буфер = new сим[1023];
-        времФайл.сместись(0);
-        буфер = буфер[0..времФайл.читай(буфер)];
-
-        Стдвыв.форматнс(" .. contents: \"{}\"", буфер);
-
-        Стдвыв(" .. нажми Enter в_ destroy ВремФайл объект.").слей;
-        Кввод.копируйнс();
-    }
-
-    Стдвыв("\nDone.").нс;
-}
-
-+/

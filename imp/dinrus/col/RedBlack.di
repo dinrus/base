@@ -89,7 +89,7 @@ struct КрасноЧёрное (З, A = АтрибутНаобум)
     /**
      * Возвращает new Реф with same значение и цвет as сам,
      * but with пусто линки. (Since it is never ОК в_ have
-     * multИПle опрentical линки in a RB дерево.)
+     * Несколько опрentical линки in a RB дерево.)
     **/
 
     protected Реф dup (Реф delegate() размести)

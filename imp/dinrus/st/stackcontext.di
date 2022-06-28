@@ -180,7 +180,7 @@ public final class КонтекстСтэка
      * Параметры:
      *  fn = The delegate we will be выполняется.
      *  размер_стэка = The размер of the стэк для этого thread
-     *  in байты.  Note, Must be greater than the minimum
+     *  в байтах.  Note, Must be greater than the minimum
      *  стэк размер.
      *
      * Выводит исключение:
@@ -195,7 +195,7 @@ public final class КонтекстСтэка
      * Параметры:
      *  fn = The function pointer we are using
      *  размер_стэка = The размер of the стэк для этого thread
-     *  in байты.  Note, Must be greater than the minimum
+     *  в байтах.  Note, Must be greater than the minimum
      *  стэк размер.
      *
      * Выводит исключение:

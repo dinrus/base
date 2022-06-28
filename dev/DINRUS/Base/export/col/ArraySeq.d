@@ -11,20 +11,20 @@ private import  col.impl.SeqCollection,
 
 /**
  *
- * Dynamically allocated и resized Arrays.
+ * Динамически размещаемые в памяти и изменяемые в размере Массивы.
  * 
- * Beyond implementing its interfaces, добавьs methods
- * в_ исправь capacities. The default heuristics for resizing
- * usually work fine, but you can исправь them manually when
- * you need в_.
+ * За реализациями этих интерфейсов, добавляются методы
+ * для исправления ёмкостей. Дефолтная эвристика изменения размера,
+ * как правило, работает отлично, но при необходимости ёмкости можно
+ * менять вручную.
  *
- * ArraySeqs are generally like java.util.Vectors. But unlike them,
- * ArraySeqs do not actually размести массивы when they are constructed.
- * Among другой consequences, you can исправь the ёмкость `for free'
- * после construction but перед добавим элементы. You can исправь
- * it at другой times as well, but this may lead в_ ещё expensive
- * resizing. Also, unlike Vectors, they release their internal массивы
- * whenever they are пустой.
+ * ArraySeqs в основном подобны java.util.Vectors. Но в отличие от них,
+ * ArraySeqs при своём конструировании в действительности не размещают массивов.
+ * Среди прочего, можно исправлять ёмкость `свободно'
+ * после конструкции, но перед добавкой элементов. Можно исправить
+ * это в другое время, но это может повлечь её более ресурсозатратную
+ * операцию. Также, в отличие от Vectors, они освобождают свои внутренние массивы,
+ * когда опустошаются.
  *
 **/
 
@@ -34,7 +34,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         alias КоллекцияСек!(T).удалиВсе  удалиВсе;
 
         /**
-         * The minimum ёмкость of any non-пустой буфер
+         * Минимальная ёмкость любого непустого буфера.
         **/
 
         public static цел минЁмкость = 16;
@@ -43,16 +43,16 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // переменные экземпляра
 
         /**
-         * The элементы, либо пусто if no буфер yet allocated.
+         * Элементы, либо пусто, если ещё не размещён буфер.
         **/
 
         package T Массив[];
 
 
-        // constructors
+        // конструкторы
 
         /**
-         * Создаёт new пустой СекМассив. 
+         * Создаёт новый пустой СекМассив. 
         **/
 
         public this ()
@@ -61,7 +61,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Создаётn пустой СекМассив with given элемент скринер
+         * Создаёт пустой СекМассив с заданным скринером элементов.
         **/
 
         public this (Предикат скринер)
@@ -70,7 +70,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Special version of constructor needed by клонируй()
+         * Особая версия конструктора, необходимая для метода клонируй().
         **/
         package this (Предикат s, T[] b, цел c)
         {
@@ -80,7 +80,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Создаётn independent копируй. The элементы themselves are not cloned
+         * Создаёт независимую копию. Сами элементы не клонируются.
         **/
 
         public final СекМассив!(T) дубликат()
@@ -101,11 +101,11 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
                    }
         }
 
-        // methods introduced _in СекМассив
+        // методы, введённые в СекМассив
 
         /**
-         * Возвращает текущ internal буфер ёмкость (zero if no буфер allocated).
-         * Возвращает: ёмкость (всегда greater than or equal в_ размер())
+         * Возвращает текущую ёмкость внутреннего буфера (ноль, если буферы не размещены).
+         * Возвращает: ёмкость (всегда большую или равную размер())
         **/
 
         public final цел ёмкость()
@@ -114,42 +114,42 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * Устанавливает internal буфер ёмкость в_ max(размер(), newCap).
-         * That is, if given an аргумент less than the текущ
-         * число of элементы, the ёмкость is just установи в_ the
-         * текущ число of элементы. Thus, элементы are never lost
-         * by настройка the ёмкость. 
+         * Устанавливает ёмкость внутреннего буфера в макс(размер(), новЁмк).
+         * То есть, если дан аргумент меньший текущего числа
+         * элементов, то ёмкость просто установится в
+         * текущее число элементов. Таким образом, при настройке ёмкости
+         * элементы никогда не теряются. 
          * 
-         * @param newCap the desired ёмкость.
-         * Возвращает: condition: 
+         * @param новЁмк требуемая ёмкость.
+         * Возвращает: условие: 
          * <PRE>
          * ёмкость() >= размер() &&
-         * version() != PREV(this).version() == (ёмкость() != PREV(this).ёмкость())
+         * версия() != ПРЕДШ(this).версия() == (ёмкость() != ПРЕДШ(this).ёмкость())
          * </PRE>
         **/
 
-        public final проц ёмкость(цел newCap)
+        public final проц ёмкость(цел новЁмк)
         {
-                if (newCap < счёт)
-                    newCap = счёт;
+                if (новЁмк < счёт)
+                    новЁмк = счёт;
 
-                if (newCap is 0)
+                if (новЁмк is 0)
                    {
                    очисть();
                    }
                 else
                    if (Массив is пусто)
                       {
-                      Массив = new T[newCap];
+                      Массив = new T[новЁмк];
                       инкрВерсию();
                       }
                    else
-                      if (newCap !is Массив.length)
+                      if (новЁмк !is Массив.length)
                          {
-                         //T newArray[] = new T[newCap];
+                         //T newArray[] = new T[новЁмк];
                          //newArray[0..счёт] = Массив[0..счёт];
                          //Массив = newArray;
-                         Массив ~= new T[newCap - Массив.length];
+                         Массив ~= new T[новЁмк - Массив.length];
                          инкрВерсию();
                          }
         }
@@ -212,7 +212,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
 
-        // Сек methods:
+        // Методы Сека:
 
         /**
          * Реализует col.model.Seq.Сек.голова.
@@ -306,7 +306,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
 
-        // MutableCollection methods
+        // Методы MutableCollection
 
         /**
          * Реализует col.impl.Collection.Коллекция.очисть.
@@ -374,7 +374,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
 
-        // SortableCollection methods:
+        // Методы SortableCollection:
 
 
         /**
@@ -383,17 +383,17 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
          * Uses a быстросорт-based algorithm.
          * См_Также: col.SortableCollection.сортируй
         **/
-        public проц сортируй(Сравнитель!(T) cmp)
+        public проц сортируй(Сравнитель!(T) сравн)
         {
                 if (счёт > 0)
                    {
-                   быстрСорт(Массив, 0, счёт - 1, cmp);
+                   быстрСорт(Массив, 0, счёт - 1, сравн);
                    инкрВерсию();
                    }
         }
 
 
-        // MutableSeq methods
+        // Методы MutableSeq
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
@@ -518,8 +518,8 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.приставь.
-         * Временная ёмкость: O(n + число of элементы in e) if (e 
-         * instanceof CollectionIterator) else O(n * число of элементы in e)
+         * Временная ёмкость: O(n + число элементов в e) if (e 
+         * instanceof CollectionIterator) else O(n * число элементов в e)
          * См_Также: col.impl.SeqCollection.КоллекцияСек.приставь
         **/
         public final проц приставь(Обходчик!(T) e)
@@ -529,7 +529,7 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.добавь.
-         * Временная ёмкость: O(число of элементы in e) 
+         * Временная ёмкость: O(число элементов в e) 
          * См_Также: col.impl.SeqCollection.КоллекцияСек.добавь
         **/
         public final проц добавь(Обходчик!(T) e)
@@ -539,8 +539,8 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /**
          * Реализует col.impl.SeqCollection.КоллекцияСек.добавьПо.
-         * Временная ёмкость: O(n + число of элементы in e) if (e 
-         * instanceof CollectionIterator) else O(n * число of элементы in e)
+         * Временная ёмкость: O(n + число элементов в e) if (e 
+         * instanceof CollectionIterator) else O(n * число элементов в e)
          * См_Также: col.impl.SeqCollection.КоллекцияСек.добавьПо
         **/
         public final проц добавьПо(цел индекс, Обходчик!(T) e)
@@ -574,62 +574,62 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         }
 
         /**
-         * An implementation of Quicksort using medians of 3 for partitions.
-         * Used internally by сортируй.
-         * It is public и static so it can be использован  в_ сортируй plain
-         * массивы as well.
-         * @param s, the Массив в_ сортируй
-         * @param lo, the least индекс в_ сортируй из_
-         * @param hi, the greatest индекс
-         * @param cmp, the сравнитель в_ use for comparing элементы
+         * Реализация Quicksort с использованием медиан 3 для отделов.
+         * Используется внутреннее методом сортируй.
+         * Она публична и статична, и может быть использована для сортировки плоских
+         * массивов.
+         * @param s, сортируемый Массив
+         * @param ми, наименьший индекс, от которого идёт сортировка
+         * @param би, наибольший индекс
+         * @param сравн, сравнитель, используемый при сравнении элементов
         **/
 
-        public final static проц быстрСорт(T s[], цел lo, цел hi, Сравнитель!(T) cmp)
+        public final static проц быстрСорт(T s[], цел ми, цел би, Сравнитель!(T) сравн)
         {
-                if (lo >= hi)
+                if (ми >= би)
                     return;
 
                 /*
-                   Use median-of-three(lo, mопр, hi) в_ pick a partition. 
+                   Use median-of-three(ми, средн, би) в_ pick a partition. 
                    Also обменяй them преобр_в relative order while we are at it.
                 */
 
-                цел mопр = (lo + hi) / 2;
+                цел средн = (ми + би) / 2;
 
-                if (cmp(s[lo], s[mопр]) > 0)
+                if (сравн(s[ми], s[средн]) > 0)
                    {
-                   T врем = s[lo];
-                   s[lo] = s[mопр];
-                   s[mопр] = врем; // обменяй
+                   T врем = s[ми];
+                   s[ми] = s[средн];
+                   s[средн] = врем; // обменяй
                    }
 
-                if (cmp(s[mопр], s[hi]) > 0)
+                if (сравн(s[средн], s[би]) > 0)
                    {
-                   T врем = s[mопр];
-                   s[mопр] = s[hi];
-                   s[hi] = врем; // обменяй
+                   T врем = s[средн];
+                   s[средн] = s[би];
+                   s[би] = врем; // обменяй
 
-                   if (cmp(s[lo], s[mопр]) > 0)
+                   if (сравн(s[ми], s[средн]) > 0)
                       {
-                      T tmp2 = s[lo];
-                      s[lo] = s[mопр];
-                      s[mопр] = tmp2; // обменяй
+                      T tmp2 = s[ми];
+                      s[ми] = s[средн];
+                      s[средн] = tmp2; // обменяй
                       }
                    }
 
-                цел лево = lo + 1;           // старт one past lo since already handled lo
-                цел право = hi - 1;          // similarly
+                цел лево = ми + 1;           // старт one past ми since already handled ми
+                цел право = би - 1;          // similarly
                 if (лево >= право)
                     return;                  // if three or fewer we are готово
 
-                T partition = s[mопр];
+                T partition = s[средн];
 
                 for (;;)
                     {
-                    while (cmp(s[право], partition) > 0)
+                    while (сравн(s[право], partition) > 0)
                            --право;
 
-                    while (лево < право && cmp(s[лево], partition) <= 0)
+                    while (лево < право && сравн(s[лево], partition) <= 0)
                            ++лево;
 
                     if (лево < право)
@@ -643,13 +643,13 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
                        break;
                     }
 
-                быстрСорт(s, lo, лево, cmp);
-                быстрСорт(s, лево + 1, hi, cmp);
+                быстрСорт(s, ми, лево, сравн);
+                быстрСорт(s, лево + 1, би, сравн);
         }
 
         /***********************************************************************
 
-                expose collection контент как Массив
+                Выставить контент коллекции как Массив.
 
         ************************************************************************/
 
@@ -661,22 +661,22 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
         // Вспомогательные методы
 
         /**
-         * Main метод в_ control буфер sizing.
-         * The heuristic использован for growth is:
+         * Главный метод для контроля размера буфера.
+         * Используется следующая эвристика для роста:
          * <PRE>
-         * if out of пространство:
-         *   if need less than минЁмкость, grow в_ минЁмкость
-         *   else grow by average of requested размер и минЁмкость.
+         * если нехватка пространства:
+         *   если нужно меньше, чем минЁмкость, наращивание до минЁмкость
+         *   иначе нарост до среднего от требуемого размера и минЁмкости.
          * </PRE>
          * <P>
-         * For small buffers, this causes them в_ be about 1/2 full.
-         * while for large buffers, it causes them в_ be about 2/3 full.
+         * Для маленьких буферов, это вызывает у них наполнение на около 1/2.
+         * В то время как для больших буферов,- на около 2/3.
          * <P>
-         * For shrinkage, the only thing we do is отвяжи the буфер if it is пустой.
-         * @param inc, the amount of пространство в_ grow by. Negative значения mean shrink.
-         * Возвращает: condition: исправь record of счёт, и if any of
-         * the above conditions apply, размести и копируй преобр_в a new
-         * буфер of the appropriate размер.
+         * Для эластичности, единственно, что выполняем,- отвязку буфера, если он пустой.
+         * @param inc количество пространства для роста. Отрицательное значение означает сжатие.
+         * Возвращает: условие: исправить запись счёта, и, если применимо любое
+         * из вышеописанных условий, разместить и копировать в новый
+         * буфер соответствующего размера.
         **/
 
         private final проц ростПо_(цел inc)
@@ -689,21 +689,21 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
                    if (needed > текущ)
                       {
                       инкрВерсию();
-                      цел newCap = needed + (needed + минЁмкость) / 2;
+                      цел новЁмк = needed + (needed + минЁмкость) / 2;
 
-                      if (newCap < минЁмкость)
-                          newCap = минЁмкость;
+                      if (новЁмк < минЁмкость)
+                          новЁмк = минЁмкость;
 
                       if (Массив is пусто)
                          {
-                         Массив = new T[newCap];
+                         Массив = new T[новЁмк];
                          }
                       else
                          {
-                         //T newArray[] = new T[newCap];
+                         //T newArray[] = new T[новЁмк];
                          //newArray[0..счёт] = Массив[0..счёт];
                          //Массив = newArray;
-                         Массив ~= new T[newCap - Массив.length];
+                         Массив ~= new T[новЁмк - Массив.length];
                          }
                       }
                    }
@@ -835,8 +835,8 @@ deprecated public class СекМассив(T) : КоллекцияСек!(T), С
 
         /***********************************************************************
 
-                opApply() имеется migrated here в_ mitigate the virtual вызов
-                on метод получи()
+                opApply() мигрировал сюда, чтобы осуществлять виртуальный вызов
+                метода получи().
                 
         ************************************************************************/
 

@@ -1,6 +1,6 @@
 ﻿module io.FileSystem;
 
-private import sys.common, sys.WinConsts, sys.WinFuncs, sys.WinStructs;
+private import sys.common;
 
 private import io.FilePath;
 

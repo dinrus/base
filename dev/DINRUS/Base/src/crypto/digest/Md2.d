@@ -78,7 +78,7 @@ export class Мд2 : МерклеДамгард
                 the блок размер
 
                 Примечания:
-                Specifies the размер (in байты) of the блок of данные в_ пароль в_
+                Specifies the размер (в байтах) of the блок of данные в_ пароль в_
                 each вызов в_ трансформируй(). For MD2 the размерБлока is 16.
 
         ***********************************************************************/
@@ -96,7 +96,7 @@ export class Мд2 : МерклеДамгард
                 the length паддинг размер
 
                 Примечания:
-                Specifies the размер (in байты) of the паддинг which uses the
+                Specifies the размер (в байтах) of the паддинг which uses the
                 length of the данные which имеется been ciphered, this паддинг is
                 carried out by the падДлин метод. For MD2 the добавьРазмер is 
                 0
@@ -125,7 +125,7 @@ export class Мд2 : МерклеДамгард
         export override проц падСооб (ббайт[] данные)
         {
                 /* Pдобавим is performed as follows: "i" байты of значение "i" 
-                 * are appended в_ the сообщение so that the length in байты 
+                 * are appended в_ the сообщение so that the length в байтах 
                  * of the псеп_в_конце сообщение becomes congruent в_ 0, modulo 16. 
                  * At least one байт и at most 16 байты are appended.
                  */

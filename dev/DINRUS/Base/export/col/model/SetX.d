@@ -6,14 +6,11 @@ private import  col.model.SetView,
 
 /**
  *
- * MutableSets support an include operations в_ добавь
- * an элемент only if it not present.
+ * MutableSets поддерживают операцию включения, добавляющюю элемент
+ * только тогда, когда он отсутствует.
  *
         author: Doug Lea
  * @version 0.93
- *
- * <P> For an introduction в_ this package see <A HREF="индекс.html"> Overview </A>.
- *
 **/
 
 public interface Набор(T) : ОбзорНабора!(T), Расходчик!(T)
@@ -22,30 +19,30 @@ public interface Набор(T) : ОбзорНабора!(T), Расходчик!
     public alias дубликат dup;
 
     /**
-     * Include the indicated элемент in the collection.
-     * No effect if the элемент is already present.
+     * Включает указанный элемент в эту коллекцию.
+     * Без эффекта, если этот элемент уже имеется.
      * @param элемент добавляемый элемент
-     * Возвращает: condition:
+     * Возвращает: условие:
      * <PRE>
      * имеется(элемент) &&
      * no spurious effects &&
-     * Версия change iff !PREV(this).имеется(элемент)
+     * Версия меняется, если !PREV(this).имеется(элемент)
      * </PRE>
-     * Выводит исключение: IllegalElementException if !canInclude(элемент)
+     * Выводит исключение: ИсклНедопустимыйЭлемент if !canInclude(элемент)
     **/
 
     public проц добавь (T элемент);
 
 
     /**
-     * Include все элементы of the enumeration in the collection.
+     * Включает все элементы этого перечисления в коллекцию.
      * По поведению равнозначно
      * <PRE>
      * while (e.ещё()) include(e.получи());
      * </PRE>
-     * @param e the элементы в_ include
-     * Выводит исключение: IllegalElementException if !canInclude(элемент)
-     * Выводит исключение: ИсклПовреждённыйОбходчик propagated if thrown
+     * @param e включаемые элементы
+     * Выводит исключение: ИсклНедопустимыйЭлемент, если !можноВключить(элемент)
+     * Выводит исключение: ИсклПовреждённыйОбходчик
     **/
 
     public проц добавь (Обходчик!(T) e);

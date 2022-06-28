@@ -630,7 +630,7 @@ export struct ФС
 
                 /***************************************************************
 
-                        Возвращает файл length (in байты)
+                        Возвращает файл length (в байтах)
 
                 ***************************************************************/
 
@@ -947,8 +947,8 @@ export struct ФС
 
 export struct ПутеПарсер
 {       
-        package ткст  fp;                     // фпуть with trailing
-        package цел     конец_,                   // перед any trailing 0
+         ткст  fp;                     // фпуть with trailing
+         цел     конец_,                   // перед any trailing 0
                         расш_,                   // после правейший '.'
                         имя_,                  // файл/Пап имя
                         том_,                // путь перед имя
@@ -1305,7 +1305,7 @@ export Время создан (ткст имя)
 
 /*******************************************************************************
 
-        Возвращает файл length (in байты)
+        Возвращает файл length (в байтах)
 
 *******************************************************************************/
 
@@ -1938,7 +1938,7 @@ debug (UnitTest)
         <segment>/.. are removed
         ---
 
-        MultИПle consecutive forward slashes are replaced with a single 
+        Несколько consecutive forward slashes are replaced with a single 
         forward слэш. On Windows, \ will be преобразованый в_ / prior в_ any
         normalization.
 

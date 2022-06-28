@@ -22,7 +22,7 @@ package import net.device.Socket, net.device.Berkeley;
 
         Datagrams are not 'подключен' in the same manner как ПУТ сокет; you
         don't need в_ слушай() or прими() в_ принять a datagram, и данные
-        may arrive из_ multИПle sources. A datagram сокет may, however,
+        may arrive из_ Несколько sources. A datagram сокет may, however,
         still use the подключись() метод like a ПУТ сокет. When подключен,
         the читай() и пиши() methods will be restricted в_ a single адрес
         rather than being открой instead. That is, applying подключись() will сделай

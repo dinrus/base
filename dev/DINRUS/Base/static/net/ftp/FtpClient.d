@@ -260,7 +260,7 @@ struct ИнфОФайлеФтп
      **********************************************************************/
     ПТипФайлаФтп тип = ПТипФайлаФтп.Неизвестен;
     /**********************************************************************
-     Размер in байты (8 bit octets), либо бдол.max if not available.
+     Размер в байтах (8 bit octets), либо бдол.max if not available.
      Since: 0.99.8
      **********************************************************************/
     бдол размер = бдол.max;
@@ -1480,11 +1480,11 @@ class СоединениеФтп: Telnet
             parse_word();
             parse_word();
 
-            // Group or размер in байты
+            // Group or размер в байтах
             ткст group_or_size = parse_word();
             т_мера oldpos = поз;
 
-            // Размер in байты or месяц
+            // Размер в байтах or месяц
             ткст size_or_month = parse_word();
 
             if(!Текст.содержит("0123456789", size_or_month[0]))
@@ -1676,7 +1676,7 @@ class СоединениеФтп: Telnet
                     throw new ИсклФтп(
                         "КЛИЕНТ: Плохой ответ LIST от сервера", "501");
 
-                // If there are multИПle строки, try в_ return the correct one.
+                // If there are Несколько строки, try в_ return the correct one.
                 if(temp.length != 1)
                     foreach(ИнфОФайлеФтп инфо; temp)
                 {

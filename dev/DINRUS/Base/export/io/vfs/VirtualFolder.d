@@ -306,7 +306,7 @@ class ВиртуальнаяПапка : ХостВфс
 
             Close и/or synchronize changes made в_ this папка. Each
             driver should возьми advantage of this as appropriate, perhaps
-            combining multИПle файлы together, либо possibly copying в_ a
+            combining Несколько файлы together, либо possibly copying в_ a
             remote location
 
     ***********************************************************************/

@@ -7,7 +7,7 @@
 @set R=%DINRUS%\..\imp\dinrus
 @set LIBS=%DINRUS%\..\lib\sysimport
 @set LDIR=%DINRUS%\..\lib
-@set DMD=%DINRUS%\dmd.exe
+@set DMD=%DINRUS%\drc.exe
 @set DMC=%DINRUS%\dmc.exe
 @set LIB=%DINRUS%\dmlib.exe
 @set IMPLIB=%DINRUS%\implib.exe
@@ -130,12 +130,12 @@ mkdir %R%\text\convert
 mkdir %R%\text\json
 mkdir %R%\text\locale
 mkdir %R%\text\xml
-copy %this%\static\text\*.d %R%\text\*.di
-copy %this%\static\text\json\*.d %R%\text\json\*.di
-copy %this%\static\text\digest\*.d %R%\text\digest\*.di
-copy %this%\static\text\locale\*.d %R%\text\locale\*.di
-copy %this%\static\text\xml\*.d %R%\text\xml\*.di
-copy %this%\static\text\convert\*.d %R%\text\convert\*.di
+copy %this%\export\text\*.d %R%\text\*.di
+copy %this%\export\text\json\*.d %R%\text\json\*.di
+copy %this%\export\text\digest\*.d %R%\text\digest\*.di
+copy %this%\export\text\locale\*.d %R%\text\locale\*.di
+copy %this%\export\text\xml\*.d %R%\text\xml\*.di
+copy %this%\export\text\convert\*.d %R%\text\convert\*.di
 
 rm -R  %R%\io
 mkdir %R%\io
@@ -163,7 +163,7 @@ copy %this%\export\io\protocol\*.d  %R%\io\protocol\*.di
 
 :Base
 :::Creating respond file
-%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\lib\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d>>%this%\objs.rsp
+%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\lib\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d %this%\src\col\*.d>>%this%\objs.rsp
 
 :::Make DinrusBase.dll
 
@@ -383,7 +383,7 @@ cls
 
 
 :Text
-%LS% -d %this%\static\text\*.d %this%\static\text\convert\*.d %this%\static\text\json\*.d %this%\static\text\digest\*.d %this%\static\text\locale\*.d %this%\static\text\xml\*.d>>%this%\text.rsp
+%LS% -d %this%\export\text\*.d %this%\export\text\convert\*.d %this%\export\text\json\*.d %this%\export\text\digest\*.d %this%\export\text\locale\*.d %this%\export\text\xml\*.d>>%this%\text.rsp
 %DMD% -lib -of%this%\text.lib @%this%\text.rsp 
 @if exist %this%\text.lib del %this%\text.rsp
 %LIB% -p256  %this%\Dinrus.lib %this%\text.lib
@@ -407,7 +407,7 @@ cls
 :IO
 
 ::%this%\static\io\selector\*.d %this%\static\io\vfs\*.d
-%LS% -d %this%\static\io\*.d %this%\static\io\device\*.d %this%\static\io\stream\*.d %this%\static\io\protocol\*.d>>%this%\io.rsp
+%LS% -d %this%\export\io\*.d %this%\export\io\device\*.d %this%\export\io\stream\*.d %this%\export\io\protocol\*.d>>%this%\io.rsp
 %DMD% -lib -of%this%\io.lib @%this%\io.rsp 
 @if exist %this%\io.lib del %this%\io.rsp
 %LIB% -p256  %this%\Dinrus.lib %this%\io.lib

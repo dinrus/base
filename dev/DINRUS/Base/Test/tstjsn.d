@@ -1,7 +1,7 @@
 ﻿module tstjsn;
 
 pragma(lib, "dinrus.lib");
-import stdrus, json;
+import stdrus, джейсон;
 
 void джейсон() {
 

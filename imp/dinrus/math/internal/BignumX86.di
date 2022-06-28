@@ -8,9 +8,6 @@
  * The symbol [#] indicates an array of machine words which is to be
  * interpreted как multi-byte число.
  *
- * Copyright: Copyright (C) 2008 Don Clugston.  All rights reserved.
- * License:   BSD style: $(LICENSE)
- * Authors:   Don Clugston
  */
 /**
  * In simple terms, there are 3 modern x86 microarchitectures:
@@ -124,7 +121,7 @@ public:
     бцел многобайтУмнож(бцел[] приёмник, бцел[] src, бцел множитель, бцел carry);
 
 // The inner multИПly-and-add loop, together with the Even entry точка.
-// MultИПles by M_ADDRESS which should be "ESP+LASTPARAM" or "ESP". OP must be "add" or "sub"
+// Несколькоs by M_ADDRESS which should be "ESP+LASTPARAM" or "ESP". OP must be "add" or "sub"
 // This is the most time-critical код in the BigInt library.
 // It is used by Всё MulAdd, multИПlyAccumulate, and triangleAccumulate
     сим [] асмУмножьДоб_внутрцикл(сим [] OP, сим [] M_ADDRESS) ;

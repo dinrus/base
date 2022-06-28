@@ -1420,11 +1420,11 @@ body {
         "Bigint Internal Ошибка: Asymmetric Karatsuba");
         
     // The subtractive version of Karatsuba multИПly uses the following результат:
-    // (Nx1 + x0)*(Ny1 + y0) = (N*N)*x1y1 + x0y0 + N * (x0y0 + x1y1 - mопр)
-    // where mопр = (x0-x1)*(y0-y1)
+    // (Nx1 + x0)*(Ny1 + y0) = (N*N)*x1y1 + x0y0 + N * (x0y0 + x1y1 - средн)
+    // where средн = (x0-x1)*(y0-y1)
     // requiring 3 multИПlies of length N, instead of 4.
     // The advantage of the subtractive over the аддитивный version is that
-    // the mопр multИПly cannot exceed length N. But there are subtleties:
+    // the средн multИПly cannot exceed length N. But there are subtleties:
     // (x0-x1),(y0-y1) may be негатив or zero. To keep it simple, we 
     // retain все of the leading zeros in the subtractions
     
@@ -1435,7 +1435,7 @@ body {
     БольшЦифра [] x1 = x[half .. $];    
     БольшЦифра [] y0 = y[0 .. half];
     БольшЦифра [] y1 = y[half .. $];
-    БольшЦифра [] mопр = scratchbuff[0 .. half*2];
+    БольшЦифра [] средн = scratchbuff[0 .. half*2];
     БольшЦифра [] newscratchbuff = scratchbuff[half*2 .. $];
     БольшЦифра [] результатLow = результат[0 .. 2*half];
     БольшЦифра [] результатHigh = результат[2*half .. $];
@@ -1443,10 +1443,10 @@ body {
     БольшЦифра [] xdiff= результат[0 .. half];
     БольшЦифра [] ydiff = результат[half .. half*2];
     
-    // First, we calculate mопр, и знак of mопр
+    // First, we calculate средн, и знак of средн
     бул mопрNegative = inplaceSub(xdiff, x0, x1)
                       ^ inplaceSub(ydiff, y0, y1);
-    mulKaratsuba(mопр, xdiff, ydiff, newscratchbuff);
+    mulKaratsuba(средн, xdiff, ydiff, newscratchbuff);
     
     // Low half of результат gets x0 * y0. High half gets x1 * y1
   
@@ -1475,7 +1475,7 @@ body {
     } else mulKaratsuba(результатHigh, x1, y1, newscratchbuff);
 
     /* We сейчас have результат = x0y0 + (N*N)*x1y1
-       Before добавим or subtracting mопр, we must calculate
+       Before добавим or subtracting средн, we must calculate
        результат += N * (x0y0 + x1y1)    
        We can do this with three half-length добавьitions. With a = x0y0, b = x1y1:
                       aHI aLO
@@ -1501,8 +1501,8 @@ body {
     if (c1+c2) многобайтИнкрПрисвой!('+')(результат[half*2..$], c1+c2);
     if (c1+c3) многобайтИнкрПрисвой!('+')(R3, c1+c3);
      
-    // And finally we вычти mопр
-    добавьOrSubAssignSimple(результат[half..$], mопр, !mопрNegative);
+    // And finally we вычти средн
+    добавьOrSubAssignSimple(результат[half..$], средн, !mопрNegative);
 }
 
 проц squareKaratsuba(БольшЦифра [] результат, БольшЦифра [] x, БольшЦифра [] scratchbuff)
@@ -1519,15 +1519,15 @@ body {
     
     БольшЦифра [] x0 = x[0 .. half];
     БольшЦифра [] x1 = x[half .. $];    
-    БольшЦифра [] mопр = scratchbuff[0 .. half*2];
+    БольшЦифра [] средн = scratchbuff[0 .. half*2];
     БольшЦифра [] newscratchbuff = scratchbuff[half*2 .. $];
      // initially use результат в_ сохрани temporaries
     БольшЦифра [] xdiff= результат[0 .. half];
     БольшЦифра [] ydiff = результат[half .. half*2];
     
-    // First, we calculate mопр. We don't need its знак
+    // First, we calculate средн. We don't need its знак
     inplaceSub(xdiff, x0, x1);
-    squareKaratsuba(mопр, xdiff, newscratchbuff);
+    squareKaratsuba(средн, xdiff, newscratchbuff);
   
     // Набор результат = x0x0 + (N*N)*x1x1
     squareKaratsuba(результат[0 .. 2*half], x0, newscratchbuff);
@@ -1548,8 +1548,8 @@ body {
     if (c1+c2) многобайтИнкрПрисвой!('+')(результат[half*2..$], c1+c2);
     if (c1+c3) многобайтИнкрПрисвой!('+')(R3, c1+c3);
      
-    // And finally we вычти mопр, which is всегда positive
-    subAssignSimple(результат[half..$], mопр);
+    // And finally we вычти средн, which is всегда positive
+    subAssignSimple(результат[half..$], средн);
 }
 
 /* Knuth's Algorithm D, as presented in 

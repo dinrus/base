@@ -103,7 +103,7 @@ export реал ellipticF(реал phi, реал m )
     if( фабс(t) > 10.0L ) {
     /* Transform the amplitude */
     e = 1.0L/(b*t);
-    /* ... but avoопр multИПle recursions.  */
+    /* ... but avoопр Несколько recursions.  */
     if( фабс(e) < 10.0L ){
         e = атан(e);
         if( npio2 == 0 )
@@ -177,7 +177,7 @@ export реал ellipticE(реал phi, реал m)
     if ( фабс(t) > 10.0L ) {
         /* Transform the amplitude */
         e = 1.0L/(b*t);
-        /* ... but avoопр multИПle recursions.  */
+        /* ... but avoопр Несколько recursions.  */
         if( фабс(e) < 10.0L ){
             e = атан(e);
             temp = Е + m * син( lphi ) * син( e ) - ellipticE( e, m );

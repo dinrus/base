@@ -2,9 +2,6 @@
  *
  * These functions are for internal use only.
  *
- * Copyright: Copyright (C) 2008 Don Clugston.  все rights reserved.
- * License:   BSD стиль: $(LICENSE)
- * Authors:   Don Clugston
  */
 /* References:
   - R.P. Brent и P. Zimmermann, "Modern Computer Arithmetic",

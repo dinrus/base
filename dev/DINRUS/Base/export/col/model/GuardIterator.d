@@ -4,43 +4,44 @@ private import col.model.IteratorX;
 
 /**
  *
- * CollectionIterator extends the стандарт
- * col.model.IteratorX interface with two добавьitional methods.
+ * CollectionIterator расширяет стандартный интерфейс
+ * col.model.IteratorX даумя дополнительными методами.
  * 
 **/
 
 public interface СтражОбходчик(З) : Обходчик!(З)
 {
         /**
-         * Возвращает да, если the collection that constructed this enumeration
-         * имеется been detectably изменён since construction of this enumeration.
-         * Ability и точность of detection of this condition can vary
-         * across collection class implementations.
-         * ещё() is нет whenever повреждён is да.
+         * Возвращает да, если построившая это перечисление коллекция
+         * была заметно изменена со вреени его построения.
+         * Способность и точность детекции этого условия может
+         * различаться между реализациями класса этой коллекции.
+         * ещё() is нет, а, если повреждён, is да.
          *
-         * Возвращает: да, если detectably повреждён.
+         * Возвращает: да, если заметно повреждён.
         **/
 
         public бул повреждён();
 
         /**
-         * Возвращает the число of элементы in the enumeration that have
-         * not yet been traversed. When повреждён() is да, this 
-         * число may (or may not) be greater than zero even if ещё() 
-         * is нет. Исключение recovery mechanics may be able в_
-         * use this как indication that recovery of some сортируй is
-         * warranted. However, it is not necessarily a foolproof indication.
+         * Возвращает число элементов в перечислении, которые пока не
+         * обходились. Когда повреждён() is да, это число может 
+         * (или не может) быть больше нуля, даже если ещё() 
+         * is нет. Механизмы восстановления после исключений могут
+         * использовать это как указание на то, что некоторого сорта
+         * восстановление гарантировано.
          * <P>
-         * You can also use it в_ pack enumerations преобр_в массивы. For example:
+         * Может также использоваться для упаковки перечислений в массивы.
+		 * Например:
          * <PRE>
-         * Объект масс[] = new Объект[e.numberOfRemainingElement()]
+         * Объект масс[] = new Объект[e.члоОставшихсяЭлтов()]
          * цел i = 0;
          * while (e.ещё()) масс[i++] = e.значение();
          * </PRE>
          * <P>
-         * For the converse case, 
+         * Для противного случая 
          * См_Также: col.iterator.ArrayIterator.ОбходчикМассива
-         * Возвращает: the число of untraversed элементы
+         * Возвращает: число непройденных элементов
         **/
 
         public бцел остаток();

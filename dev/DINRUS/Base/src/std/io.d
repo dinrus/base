@@ -322,162 +322,162 @@ int main()
 }
 ---
  */
-version = DIGITAL_MARS_STDIO;
-
 size_t readln(фук fp, inout ткст buf)
 {
     version (DIGITAL_MARS_STDIO)
     {
-	FLOCK(fp);
-	
-	scope(exit) {
-	try	{FUNLOCK(fp);
-	}
-	finally{}
-	}
+		FLOCK(fp);
+		
+		scope(exit)
+		{
+		try	{FUNLOCK(fp);
+		}
+		finally{}
+		}
 	 //char[] buf = rt.charset.fromMBSz(char* inbuf, 0);
 
-	if (__fhnd_info[fp._file] & ФУК_ШИМ)
-	{   /* Stream is in wide characters.
-	     * Read them and convert to chars.
-	     */
-		    static assert(wchar_t.sizeof == 2);
-	    buf.length = 0;
-	    int c2;
-	    for (int c = void; (c = FGETWC(fp)) != -1; )
-	    {
-		if ((c & ~0x7F) == 0)
-		{   buf ~= c;
-		    if (c == '\r'||c == '\n')
-			break;
-		}
-		else
-		{
-		    if (c >= 0xD800 && c <= 0xDBFF)
-		    {
-			if ((c2 = FGETWC(fp)) != -1 ||
-			    c2 < 0xDC00 && c2 > 0xDFFF)
+		if (__fhnd_info[fp._file] & ФУК_ШИМ)
+		{   /* Stream is in wide characters.
+			 * Read them and convert to chars.
+			 */
+		  static assert(wchar_t.sizeof == 2);
+			buf.length = 0;
+			int c2;
+			for (int c = void; (c = FGETWC(fp)) != -1; )
 			{
-			    ИсклСтдВВ("беспарный суррогат UTF-16");
+				if ((c & ~0x7F) == 0)
+				{   buf ~= c;
+					if (c == '\r'||c == '\n')
+					break;
+				}
+				else
+				{
+					if (c >= 0xD800 && c <= 0xDBFF)
+					{
+					if ((c2 = FGETWC(fp)) != -1 ||
+						c2 < 0xDC00 && c2 > 0xDFFF)
+					{
+						ИсклСтдВВ("беспарный суррогат UTF-16");
+					}
+					c = ((c - 0xD7C0) << 10) + (c2 - 0xDC00);
+					}
+					std.utf.encode(buf, c);
+				}
 			}
-			c = ((c - 0xD7C0) << 10) + (c2 - 0xDC00);
-		    }
-		    std.utf.encode(buf, c);
+			if (ошфл(cast(фук) fp))
+			ИсклСтдВВ("ошибка FGETWC при чтении шткст");
+			return buf.length;
 		}
-	    }
-	    if (ошфл(cast(фук) fp))
-		ИсклСтдВВ("ошибка FGETWC при чтении шткст");
-	    return buf.length;
-	}
 
-	auto разм = runtime.capacity(buf.ptr);
-	//auto разм = buf.length;
-	buf = buf.ptr[0 .. разм];
-	if (fp._flag & ВВНБФ)
-	{
-	    /* Use this for unbuffered I/O, when running
-	     * across buffer boundaries, либо for any but the common
-	     * cases.
-	     */
-	 L1:
-	    char *p;
-
-	    if (разм)
-	    {
-		p = buf.ptr;
-	    }
-	    else
-	    {
-		разм = 64;
-		p = cast(char*) runtime.malloc(разм);
-		runtime.hasNoPointers(p);
-		buf = p[0 .. разм];
-	    }
-	    size_t i = 0;
-	    for (int c; (c = FGETC(fp)) != -1; )
-	    {
-		if ((p[i] = cast(char)c) != '\n')
+		auto разм = runtime.capacity(buf.ptr);
+		//auto разм = buf.length;
+		buf = buf.ptr[0 .. разм];
+		
+		if (fp._flag & ВВНБФ)
 		{
-		    i++;
-		    if (i < разм)
-			continue;
-		    buf = p[0 .. i] ~ readln(fp);
-		    return buf.length;
+			/* Use this for unbuffered I/O, when running
+			 * across buffer boundaries, либо for any but the common
+			 * cases.
+			 */
+		 L1:
+			char *p;
+
+			if (разм)
+			{
+			p = buf.ptr;
+			}
+			else
+				{
+				разм = 64;
+				p = cast(char*) runtime.malloc(разм);
+				runtime.hasNoPointers(p);
+				buf = p[0 .. разм];
+				}
+			size_t i = 0;
+			for (int c; (c = FGETC(fp)) != -1; )
+			{
+			if ((p[i] = cast(char)c) != '\n')
+			{
+				i++;
+				if (i < разм)
+				continue;
+				buf = p[0 .. i] ~ readln(fp);
+				return buf.length;
+			}
+			else
+				{
+					buf = p[0 .. i + 1];
+					return i + 1;
+				}
+			}
+			if (ошфл(cast(фук) fp))
+			ИсклСтдВВ("ошибка FGETC при чтении ткст");
+			buf = p[0 .. i];
+			return i;
 		}
 		else
-		{
-		    buf = p[0 .. i + 1];
-		    return i + 1;
-		}
-	    }
-	    if (ошфл(cast(фук) fp))
-		ИсклСтдВВ("ошибка FGETC при чтении ткст");
-	    buf = p[0 .. i];
-	    return i;
-	}
-	else
-	{
-	    int u = fp._cnt;
-	    char* p = fp._ptr;
-	    int i;
-	    if (fp._flag & ВВТРАН)
-	    {   /* Translated mode ignores \r and treats ^Z as end-of-file
-		 */
-		char c;
-		while (1)
-		{
-		    if (i == u)		// if end of buffer
-			goto L1;	// give up
-		    c = p[i];
-		    i++;
-		    if (c != '\r')
-		    {
-			if (c == '\n')
-			    break;
-			if (c != 0x1A)
-			    continue;
-			goto L1;
-		    }
-		    else
-		    {   if (i != u && p[i] == '\n')
-			    break;
-			goto L1;
-		    }
-		}
-		if (i > разм)
-		{
-		    buf = cast(char[])runtime.malloc(i);
-		    runtime.hasNoPointers(buf.ptr);
-		}
-		if (i - 1)
-		    cidrus.memcpy(buf.ptr, p, i - 1);
-		buf[i - 1] = '\n';
-		if (c == '\r')
-		    i++;
-	    }
-	    else
-	    {
-		while (1)
-		{
-		    if (i == u)		// if end of buffer
-			goto L1;	// give up
-		    auto c = p[i];
-		    i++;
-		    if (c == '\n')
-			break;
-		}
-		if (i > разм)
-		{
-		    buf = cast(char[])runtime.malloc(i);
-		    runtime.hasNoPointers(buf.ptr);
-		}
-		cidrus.memcpy(buf.ptr, p, i);
-	    }
-	    fp._cnt -= i;
-	    fp._ptr += i;
-	    buf = buf[0 .. i];
-	    return i;
-	}
+			{
+				int u = fp._cnt;
+				char* p = fp._ptr;
+				int i;
+				if (fp._flag & ВВТРАН)
+				{   /* Translated mode ignores \r and treats ^Z as end-of-file
+				 */
+				char c;
+				while (1)
+				{
+					if (i == u)		// if end of buffer
+					goto L1;	// give up
+					c = p[i];
+					i++;
+					if (c != '\r')
+					{
+					if (c == '\n')
+						break;
+					if (c != 0x1A)
+						continue;
+					goto L1;
+					}
+					else
+					{   if (i != u && p[i] == '\n')
+						break;
+					goto L1;
+					}
+				}
+				if (i > разм)
+				{
+					buf = cast(char[])runtime.malloc(i);
+					runtime.hasNoPointers(buf.ptr);
+				}
+				if (i - 1)
+					cidrus.memcpy(buf.ptr, p, i - 1);
+				buf[i - 1] = '\n';
+				if (c == '\r')
+					i++;
+				}
+				else
+				{
+				while (1)
+				{
+					if (i == u)		// if end of buffer
+					goto L1;	// give up
+					auto c = p[i];
+					i++;
+					if (c == '\n')
+					break;
+				}
+				if (i > разм)
+				{
+					buf = cast(char[])runtime.malloc(i);
+					runtime.hasNoPointers(buf.ptr);
+				}
+				cidrus.memcpy(buf.ptr, p, i);
+				}
+				fp._cnt -= i;
+				fp._ptr += i;
+				buf = buf[0 .. i];
+				return i;
+			}
     }
     else version (GCC_IO)
     {

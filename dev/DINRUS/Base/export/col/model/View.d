@@ -10,31 +10,31 @@ private import col.model.GuardIterator;
 public interface Обзор(T) 
 {
         /**
-         * все Views implement дубликат
+         * Все Обзоры реализуют дубликат.
         **/
 
         public Обзор!(T) дубликат ();
         public alias дубликат dup;
 
         /**
-         * Report whether the Обзор содержит элемент.
+         * Репортирует о том, содержит ли этот обзор элемент.
          * По поведению равнозначно <CODE>экземпляры(элемент) &gt;= 0</CODE>.
-         * @param элемент the элемент в_ look for
-         * Возвращает: да, еслиf содержит at least one member that is equal в_ элемент.
+         * @param элемент искомый элемент
+         * Возвращает: да, если содержится как минимум один чден, равный элементу.
         **/
         public бул содержит (T элемент);
         public alias содержит opIn;
 
         /**
-         * Report the число of элементы in the Обзор.
-         * No другой spurious effects.
-         * Возвращает: число of элементы
+         * Репортирует число элементов в этом Обзоре.
+         * Никаких иных эффектов.
+         * Возвращает: число элементов
         **/
         public бцел размер ();
         public alias размер length;
 
         /**
-         * Report whether this Обзор имеется no элементы.
+         * Репортирует о том, что в этом Обзоре нет элементов.
          * По поведению равнозначно <CODE>размер() == 0</CODE>.
          * Возвращает: да, если размер() == 0
         **/
@@ -43,93 +43,94 @@ public interface Обзор(T)
 
 
         /**
-         * все собериions maintain a `version число'. The numbering
-         * схема is arbitrary, but is guaranteed в_ change upon every
-         * modification that could possibly affect an элементы() enumeration traversal.
-         * (This is да at least внутри the точность of the `цел' представление;
-         * performing ещё than 2^32 operations will lead в_ reuse of version numbers).
-         * Versioning
-         * <EM>may</EM> be conservative with respect в_ `замена' operations.
-         * For the sake of versioning replacements may be consопрered as
-         * removals followed by добавьitions. Thus version numbers may change 
-         * even if the old и new  элементы are опрentical.
+         * Все коллекции поддерживают `номер версии'. Схема нумерации
+         * произвольная, но гарантированно меняется при каждой модификации,
+         * которая может с вероятностью повлиять на обход элементы() перечисления.
+         * (Она верна, как минимум,в пределах точности представления `цел';
+         * выполнение более 2^32 операций ведёт к повторному использованию номеров
+		 * версии).
+         * Версификация
+         * <EM>может</EM> быть консервативной, благодаря операциям `замена'.
+         * Ради версификации замены (перемещения) могут пониматься как
+         * удаления, за которыми следует добавление. Так, номера версии могут меняться, 
+         * даже если старые и новые элементы идентичны.
          * <P>
-         * все элемент() enumerations for Mutable Collections track version
-         * numbers, и raise inconsistency exceptions if the enumeration is
-         * использован (via получи()) on a version другой than the one generated
-         * by the элементы() метод.
+         * Перечисления всех элемент()  для мутабельных коллекций отслеживает номера
+         * версии, и вызывают исключения неконсистентности перечисления, когда
+         * использована (через получи()) иная версия, чем та, что сгенерирована
+         * методом элементы().
          * <P>
-         * You can use versions в_ проверь if обнови operations actually have any effect
-         * on observable состояние.
-         * Например, очисть() will cause cause a version change only
-         * if the collection was previously non-пустой.
-         * Возвращает: the version число
+         * Версии можно использовать для проверки того, повлияли ли операции
+		 * обновления на самом деле на состояние наблюдаемого.
+         * Например, очисть() вызывает изменение версии только тогда,
+         * если коллекция заранее не пустая.
+         * Возвращает: номер версии
         **/
 
         public бцел изменение ();
         
         /**
-         * Report whether the Обзор COULD contain элемент,
-         * т.е., that it is действителен with respect в_ the Обзор's
-         * элемент скринер if it имеется one.
-         * Always returns нет if элемент == пусто.
-         * A constant function: if позволяет(знач) is ever да it is всегда да.
-         * (This property is not in any way enforced however.)
-         * No другой spurious effects.
-         * Возвращает: да, если non-пусто и проходки элемент скринер проверь
+         * Репортирует, мог бы  этот Обзор  содержать элемент,
+         * т.е., что он действителен, благодаря наличию
+         * скринера элементов Обзора.
+         * Всегда возвращает нет, если элемент == пусто.
+         * Константная функция: если позволяет(знач) всегда да, и у него всегда да.
+         * (Данное свойство ни коим образом не принудительное.)
+         * Отсутствуют иные спуриозные эффекты.
+         * Возвращает: да, если не-пусто
         **/
         public бул позволяет (T элемент);
 
 
         /**
-         * Report the число of occurrences of элемент in Обзор.
-         * Always returns 0 if элемент == пусто.
-         * Otherwise T.равно is использован в_ тест for equality.
-         * @param элемент the элемент в_ look for
-         * Возвращает: the число of occurrences (всегда nonnegative)
+         * Репортирует число случаев элемента в Обзоре.
+         * Всегда возвращает 0, если элемент == пусто.
+         * В ином случае используется T.равно для тестирования на равенство.
+         * @param элемент искомый элемент
+         * Возвращает: число случаев (всегда неотрицательное)
         **/
         public бцел экземпляры (T элемент);
 
         /**
-         * Возвращает an enumeration that may be использован в_ traverse through
-         * the элементы in the Обзор. Standard usage, for some
-         * ОбзорТ c, и some operation `use(T об)':
+         * Возвращает перечисление, которое может быть использовано для обхода
+         * по элементам в этом Обзоре. Сьандартное применение, для некоторого
+         * ОбзорТ c, и некой операции `используй(T об)':
          * <PRE>
          * for (Обходчик e = c.элементы(); e.ещё(); )
-         *   use(e.значение());
+         *   используй(e.значение());
          * </PRE>
-         * (The значения of получи very often need в_
-         * be coerced в_ типы that you know they are.)
+         * (Получаемое значения зачастую приходится
+         * согласовывать с известными типами.)
          * <P>
-         * все Views return экземпляры
-         * of ViewIterator, that can report the число of остаток
-         * элементы, и also выполни consistency проверьs so that
-         * for MutableViews, элемент enumerations may become 
-         * invalidated if the Обзор is изменён during such a traversal
-         * (which could in turn cause random effects on the ОбзорТ.
-         * TO prevent this,  ViewIterators 
-         * raise ИсклПовреждённыйОбходчик on попытки в_ доступ
-         * gets of altered Views.)
-         * Note: Since все Обзор implementations are synchronizable,
-         * you may be able в_ guarantee that элемент traversals will not be
-         * повреждён by using the D <CODE>synchronized</CODE> construct
-         * around код блокs that do traversals. (Use with care though,
-         * since such constructs can cause deadlock.)
+         * Все Обзоры возвращают экземпляры
+         * ViewIterator, способные репортировать число оставшихся
+         * элементов, а также выполнять проверку консистентности,
+         * так, что для MutableViews, перечисления элементов могут становиться 
+         * инвалидированными, если этот Обзор изменён при таком обходе
+         * (что в свою очередь может вызывать случайные эффекты у этого ОбзорТ.
+         * Для предотвращения этого,  ViewIterators 
+         * вызывают ИсклПовреждённыйОбходчик при попытках доступа и
+         * получения из изменённых Обзоров.)
+         * Примечание: Поскольку все реализации Обзор синхронизуемые,
+         * можно обеспечить гарантию того, что элементы обхода не будут
+         * повреждены, путём применения конструкта D <CODE>synchronized</CODE>
+         * вокпуг блоков кода, выполняющих обходы. (Используйте с предосторожностью,
+         * так как такие конструкты могут вызывать мёртвые блокировки.)
          * <P>
-         * Guarantees about the nature of the элементы returned by  получи of the
-         * returned Обходчик may vary accross подст-interfaces.
-         * In все cases, the enumerations предоставленный by элементы() are guaranteed в_
-         * step through (via получи) все элементы in the Обзор.
-         * Unless guaranteed иначе (for example in Сек), элементы() enumerations
-         * need not have any particular получи() ordering so дол as they
-         * allow traversal of все of the элементы. So, for example, two successive
-         * calls в_ элемент() may произведи enumerations with the same
-         * элементы but different получи() orderings.
-         * Again, подст-interfaces may предоставляет stronger guarantees. In
-         * particular, Seqs произведи enumerations with gets in
-         * индекс order, ElementSortedViews enumerations are in ascending 
-         * sorted order, и KeySortedViews are in ascending order of ключи.
-         * Возвращает: an enumeration e such that
+         * Гарантии о природе элементов, возвращаемых методом  получи этого
+         * Обходчика, могут быть разными по подинтерфейсам.
+         * Во всех случаях, перечисления, предоставляемые методом элементы(), гарантированно
+         * делают шаг (посредством метода "получи") через все элементы в этом Обзоре.
+         * Если не гарантируется иное (например, в Секе), то перечисления элементы()
+         * не нуждаются в наличии отдельного получи() для упорядочивания,так как
+         * у них допускается обход всех элементов. Так, например, два последовательных
+         * вызова элемент() может производить перечисления с одинаковыми
+         * элементами,но разным упорядочиванием получи().
+         * Опять же, подинтерфесы могут предоставлять более страныые гарантии. В
+         * частности, Секи производят перечисления с получениями в
+         * индексном порядке, перечисления ElementSortedViews - в возрастающем 
+         * отсортированном порядке, а KeySortedViews - в возрастающем порядке ключей.
+         * Возвращает: перечисление e, так чтобы
          * <PRE>
          *   e.остаток() == размер() &&
          *   foreach (знач in e) имеется(e) 
@@ -139,39 +140,40 @@ public interface Обзор(T)
         public СтражОбходчик!(T) элементы ();
 
         /**
-         traverse the collection контент. This is cheaper than using an
-         обходчик since there is no creation cost involved.
+         Обходит контент коллекции. Это эффективней, чем применение
+         обходчика, так как нет создания нового класса.
         **/
 
         public цел opApply (цел delegate (inout T значение) дг);
 
         /**
-         expose collection контент как Массив
+         Выставляет контент коллекции в виде массива.
         **/
 
         public T[] вМассив ();
 
         /**
-         * Report whether другой имеется the same элемент structure as this.
-         * That is, whether другой is of the same размер, и имеется the same 
-         * элементы() свойства.
-         * This is a useful version of equality testing. But is not named
-         * `равно' in часть because it may not be the version you need.
+         * Репортирует о том, такие же ли (одинаковы ли) элементы
+         * в другой коллекции, как в этой.
+         * То есть, другой является ли такого же размера, и имеет ли такие же 
+         * свойства элементы()?
+         * Это полезная функция тестирования на равенство. Но она не названа
+         * `равно', так как не всегда работает с одинаковой версией.
          * <P>
-         * The easiest way в_ decribe this operation is just в_
-         * explain как it is interpreted in стандарт подст-interfaces:
+         * Простейший способ описать эту операцию - просто объяснить, 
+         * как она интерпретируется в стандартных подинтерфейсах:
          * <UL>
-         *  <LI> Сек и ElementSortedView: другой.элементы() имеется the 
-         *        same order as this.элементы().
-         *  <LI> Рюкзак: другой.элементы имеется the same экземпляры each элемент as this.
-         *  <LI> Набор: другой.элементы имеется все элементы of this
-         *  <LI> Карта: другой имеется все (ключ, элемент) pairs of this.
-         *  <LI> KeySortedView: другой имеется все (ключ, элемент)
-         *       pairs as this, и with ключи enumerated in the same order as
+         *  <LI> Сек и ElementSortedView: другой.элементы() имеет такой 
+         *        же порядок, как this.элементы().
+         *  <LI> Рюкзак: другой.элементы имеет такие же экземпляры каждого элемента, как this.
+         *  <LI> Набор: другой.элементы имеет все элементы этого.
+         *  <LI> Карта: другой имеет все (ключ, элемент) пары этого.
+         *  <LI> KeySortedView: другой имеет все (ключ, элемент)
+         *       пары, как этот, и ключи перечисляются в том же порядке,как
          *       this.ключи().
          *</UL>
-         * @param другой, a Обзор
-         * Возвращает: да, если consопрered в_ have the same размер и элементы.
+         * @param другой  Обзор
+         * Возвращает: да, если полагается, что размер и элементы одинаковы.
         **/
 
         public бул совпадает (Обзор другой);
@@ -179,18 +181,18 @@ public interface Обзор(T)
 
 
         /**
-         * Check the consistency of internal состояние, и raise исключение if
-         * not ОК.
-         * These should be `best-effort' проверьs. You cannot всегда locally
-         * determine full consistency, but can usually approximate it,
-         * и оцени the most important представление invariants.
-         * The most common kinds of проверьs are кэш проверьs. Например,
-         * A linked список that also maintains a separate record of the
-         * число of items on the список should проверь that the recorded
-         * счёт совпадает the число of элементы в этом списке.
+         * Проверяет консистентность внутреннего состояния и вызывает исключение,
+         * если что-то не в порядке.
+         * Это должны быть наиболее эффективные проверки. Невозможно всегда локально
+         * определить полную консистентность, но всегда можно к этому стремиться,
+         * и оценивать наиболее важные инварианты представления.
+         * Наиболее общие виды проверок - это проверки кэша. Например,
+         * линкованный список, который также поддерживает отдельную запись
+         * числа элементов в списке, должен проверяться на совпадение
+         * записанного счёта и числа элементов в этом списке.
          * <P>
-         * This метод should either return normally or throw:
-         * Выводит исключение: ImplementationError if проверь fails
+         * Этот метод должен либо давать нормальный возврат, либо:
+         * Выводит исключение: ImplementationError, нсли проверка не удалась.
         **/
 
         public проц проверьРеализацию();

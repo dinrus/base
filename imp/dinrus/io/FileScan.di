@@ -114,6 +114,7 @@ class СканФайл
 debug (СканФайл)
 {
         import io.Stdout;
+        import io.FileScan;
 
         проц main()
         {
