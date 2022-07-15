@@ -2,7 +2,7 @@
 module lib.arc;
 
 import cidrus: ППозКурсора;
-pragma(lib, "DinrusArcDLL.lib");
+pragma(lib, "DinrusArcX86DLL.lib");
 
 
 interface ПотокВвода{  

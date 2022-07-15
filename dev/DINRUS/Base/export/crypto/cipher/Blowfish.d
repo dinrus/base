@@ -3,7 +3,7 @@
 private import crypto.cipher.Cipher;
 
 /** Реализация шифра Камбала (Blowfish), разработанная Bruce Schneier. */
-class Камбала : ШифрБлок
+extern(D) class Камбала : ШифрБлок
 {
     final override ткст имя();
     final override бцел размерБлока();

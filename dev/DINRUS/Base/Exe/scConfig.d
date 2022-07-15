@@ -17,7 +17,7 @@ alias stdrusex.раскройГлоб рг;
 //extern(C) проц сбросьЦветКонсоли();
 
 
-const ткст КОНФИГ_РЕБИЛДА;
+const ткст КОНФИГ_РЕБИЛДА, КОНФИГ_РЕБИЛДА_ТАНГО;
 const ткст КОНФИГ_РУЛАДЫ;
 const ткст КОНФИГ_РУЛАДЫДОП;
 const ткст КОНФИГ_РУЛАДЫДОП_ГИП;
@@ -43,6 +43,7 @@ objmodsep=-
 
 
 version=DigitalMars
+version=Dinrus
 noversion=GNU
 noversion=linux
 noversion=Unix
@@ -105,6 +106,82 @@ shlibs=no
 dylibs=no
 ");
 
+КОНФИГ_РЕБИЛДА_ТАНГО = рг(
+"profile=tango
+
+compiler=drc
+inifile=sc.ini
+
+exeext=.exe
+objext=obj
+objmodsep=-
+
+
+version=DigitalMars
+version=Rulada
+noversion=GNU
+noversion=linux
+noversion=Unix
+noversion=Posix
+version=Windows
+testversion=Win32
+testversion=Win64
+version=X86
+noversion=PPC
+noversion=X86_64
+version=D_InlineAsm
+version=D_InlineAsm_X86
+noversion=D_InlineAsm_PPC
+noversion=D_InlineAsm_X86_64
+version=LittleEndian
+noversion=BigEndian
+version=Tango
+
+
+[compile]
+cmd=drc -version=Tango -c $i
+response=@
+
+flag=$i
+incdir=-I$i
+libdir=-L-L$i
+optimize=-O
+version=-version=$i
+
+
+[link]
+oneatatime=yes
+cmd=drc $i -of$o
+response=@
+
+libdir=-L+$i\\
+lib=-L+$i.lib
+flag=-L$i
+gui=-L/subsystem:windows
+
+
+[liblink]
+safe=yes
+oneatatime=yes
+cmd=dmlib -c -p512 $o $i
+response=@
+
+libdir=
+lib=
+flag=
+
+
+[postliblink]
+cmd=echo $i
+
+
+[shliblink]
+shlibs=no
+
+[dyliblink]
+dylibs=no
+");
+
 КОНФИГ_ДИНРУС =рг(
 	"
 [Version]
@@ -117,8 +194,8 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib
-LINKCMD=%DINRUS%\\dmlink.exe
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=DinrusX86.lib -debuglib=DinrusX86_dbg.lib
+LINKCMD=%DINRUS%\\optlink.exe
 	");
 	
 КОНФИГ_ДИНРУС2 = рг(
@@ -136,16 +213,16 @@ DFLAGS=\"-I%DINRUS%\\..\\dev\\dinrus\\Runtime\\Dinrus2\\src\" \"-I%DINRUS%\\..\\
 
 ; optlink only reads from the Environment section so we need this redundancy
 ; from the Environment32 section (bugzilla 11302)
-LIB=\"%DINRUS%\\..\\lib\"
+LIB=\"%DINRUS%\\..\\lib\\d2\"
 LINKCMD=%DINRUS%\\dmlink.exe
 
 [Environment32]
-LIB=\"%DINRUS%\\..\\lib\"
+LIB=\"%DINRUS%\\..\\lib\\d2\"
 LINKCMD=%DINRUS%\\optlink.exe
 
 
 [Environment64]
-LIB=\"%DINRUS%\\..\\lib64\"
+LIB=\"%DINRUS%\\..\\lib\\d2\\x64\"
 
 ; -----------------------------------------------------------------------------
 [Environment32mscoff]
@@ -195,8 +272,8 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib
-LINKCMD=%DINRUS%\\dmlink.exe
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=DinrusX86.lib -debuglib=DinrusX86_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib
+LINKCMD=%DINRUS%\\optlink.exe
 	");
 	
 КОНФИГ_ДИНРУСДОП_ГИП =рг(
@@ -211,7 +288,7 @@ PATH=%DINRUS%\\..
 BIN=%DINRUS%
 INCLUDE=\"%DINRUS%\\..\\include\";%INCLUDE%
 LIB=\"%DINRUS%\\..\\lib\";\"%DINRUS%\\..\\lib\\rulada\";\"%DINRUS%\\..\\lib\\c\";\"%DINRUS%\\..\\lib\\sysimport\"
-DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=Dinrus.lib -debuglib=Dinrus_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib -L/exet:nt/su:windows:4.0
+DFLAGS=\"-I%DINRUS%\\..\\imp\\dinrus\" -O -version=Dinrus -defaultlib=DinrusX86.lib -debuglib=DinrusX86_dbg.lib -L+DinrusWin32.lib+DinrusConc.lib+DinrusDbi.lib+DinrusViz.lib+DImport.lib -L/exet:nt/su:windows:4.0
 LINKCMD=%DINRUS%\\optlink.exe
 	");
 	
@@ -273,20 +350,14 @@ version(UCRT) {if( _waccess(вЮ16н(файл), 2) != -1) return да;}
 return нет;
 }
 
-проц реконфигурируйРебилд()
-{
-	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА);
-}
-
-	
 проц версияДинрус()
 {
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУС);
-		скажифнс("Файл sc.ini изменён. Его текст теперь следующий:
-		%s", читай_из(СЦ_ИНИ));
+		скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(СЦ_ИНИ));
 	нс;
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА);
 	скажинс(" ВЕРСИЯ = ДИНРУС КОНСОЛЬ ");
 
 	}
@@ -301,9 +372,10 @@ return нет;
 	
 	try
 	{
-	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУСДОП);
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(СЦ_ИНИ));
+	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУСДОП);	
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(СЦ_ИНИ));
 	нс;
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА);
 	скажинс(" ВЕРСИЯ = ДИНРУС КОНСОЛЬ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ");
 	}
 	catch(ФайлИскл фи)
@@ -317,8 +389,9 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУСДОП_ГИП);
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(рг(СЦ_ИНИ)));
 	нс;
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА);
 	скажинс(" ВЕРСИЯ = ДИНРУС ДЛЯ ГИП-ПРИЛОЖЕНИЙ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ ");
 	}
 	catch(ФайлИскл фи)
@@ -332,8 +405,9 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_РУЛАДЫ);
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(рг(СЦ_ИНИ)));
 	нс;
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА_ТАНГО);
 	скажинс(" ВЕРСИЯ = РУЛАДА КОНСОЛЬ ");	
 	}
 	catch(ФайлИскл фи)
@@ -348,8 +422,11 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_РУЛАДЫДОП);	
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(рг(СЦ_ИНИ)));
 	нс;
+	скажи("Изменение конфигурации ребилда...");
+	нс;
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА_ТАНГО);
 	скажинс(" ВЕРСИЯ = РУЛАДА КОНСОЛЬ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ");
 	}
 	catch(ФайлИскл фи)
@@ -364,7 +441,10 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_РУЛАДЫДОП_ГИП);	
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(рг(СЦ_ИНИ)));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(рг(СЦ_ИНИ)));
+	нс;
+	скажи("Изменение конфигурации ребилда...");
+	запиши_в(РЕБИЛД_КОНФ, КОНФИГ_РЕБИЛДА_ТАНГО);
 	нс;
 	скажинс(" ВЕРСИЯ = РУЛАДА КОНСОЛЬ С ДОБАВОЧНЫМИ БИБЛИОТЕКАМИ для ГИП");
 	}
@@ -380,7 +460,7 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_ДИНРУС2);
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(СЦ_ИНИ));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(СЦ_ИНИ));
 	нс;
 	скажинс(" ВЕРСИЯ = ДИНРУС2 КОНСОЛЬ ");
 	}
@@ -395,7 +475,7 @@ return нет;
 	try
 	{
 	запиши_в(СЦ_ИНИ, КОНФИГ_Д2);
-	скажифнс("Файл sc.ini изменён. Его текст теперь следующий: %s", читай_из(СЦ_ИНИ));
+	скажифнс("Файл sc.ini изменён. Его текст теперь следующий:\n %s", читай_из(СЦ_ИНИ));
 	нс;
 	скажинс(" ВЕРСИЯ = Д2 КОНСОЛЬ ");
 	}

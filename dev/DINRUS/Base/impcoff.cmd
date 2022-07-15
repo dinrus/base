@@ -17,13 +17,13 @@ set def_file=%dll_file_no_ext%.def
 set lib_file=%dll_file_no_ext%_coff_%machine%.lib
 set lib_name=%dll_file_no_ext%
 
-"c:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\bin\Hostx64\x64\dumpbin.exe" /exports %dll_file% > %exports_file%
+"e:\dinrus\msvc32\bin\dumpbin.exe" /exports %dll_file% > %exports_file%
 
 echo LIBRARY %lib_name% > %def_file%
 echo EXPORTS >> %def_file%
 for /f "skip=19 tokens=1,4" %%A in (%exports_file%) do if NOT "%%B" == "" (echo %%B @%%A >> %def_file%)
 
-"c:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\bin\Hostx64\x64\lib.exe" /def:%def_file% /out:%lib_file% /machine:%machine%
+"e:\dinrus\msvc32\bin\lib.exe" /def:%def_file% /out:%lib_file% /machine:%machine%
 
 REM Clean up temporary intermediate files
-del %exports_file% %def_file% %dll_file_no_ext%.exp
+del %exports_file% %dll_file_no_ext%.exp

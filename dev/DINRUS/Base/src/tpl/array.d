@@ -872,7 +872,7 @@ version( TangoDoc )
      * Возвращает:
      *  Индекс первого совпадения или же буф.length, если совпадений не найдено.
      */
-    т_мера findAdj( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
+    т_мера НайдиСмежн( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
 
 }
 else
@@ -900,18 +900,18 @@ else
     }
 
 
-    template findAdj( Буф )
+    template НайдиСмежн( Буф )
     {
-        т_мера findAdj( Буф буф )
+        т_мера НайдиСмежн( Буф буф )
         {
             return findAdj_!(ЭлемТипа!(Буф)).фн( буф );
         }
     }
 
 
-    template findAdj( Буф, Пред )
+    template НайдиСмежн( Буф, Пред )
     {
-        т_мера findAdj( Буф буф, Пред пред )
+        т_мера НайдиСмежн( Буф буф, Пред пред )
         {
             return findAdj_!(ЭлемТипа!(Буф), Пред).фн( буф, пред );
         }
@@ -922,10 +922,10 @@ else
     {
         unittest
         {
-            assert( findAdj( "aabcdef" ) == 0 );
-            assert( findAdj( "abcddef" ) == 3 );
-            assert( findAdj( "abcdeff" ) == 5 );
-            assert( findAdj( "abcdefg" ) == 7 );
+            assert( НайдиСмежн( "aabcdef" ) == 0 );
+            assert( НайдиСмежн( "abcddef" ) == 3 );
+            assert( НайдиСмежн( "abcdeff" ) == 5 );
+            assert( НайдиСмежн( "abcdefg" ) == 7 );
         }
     }
 }

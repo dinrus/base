@@ -1,17 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. все rights reserved
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Mar 2004 : Initial release
-        version:        Dec 2006 : South Pacific release
-        
-        author:         Kris
-
-*******************************************************************************/
-
-module net.device.Datagram;
+﻿module net.device.Datagram;
 
 package import net.device.Socket;
 
@@ -37,7 +24,7 @@ package import net.device.Socket;
 
 *******************************************************************************/
 
-class Датаграмма : Сокет
+extern(D) class Датаграмма : Сокет
 {
         /***********************************************************************
         
@@ -109,7 +96,6 @@ class Датаграмма : Сокет
 debug (Датаграмма)
 {
         import io.Console;
-
         import net.InternetAddress;
 
         проц main()
@@ -117,16 +103,16 @@ debug (Датаграмма)
                 auto адр = new АдресИнтернета ("127.0.0.1", 8080);
 
                 // слушай for datagrams on the local адрес
-                auto gram = new Датаграмма;
-                gram.вяжи (адр);
+                auto дг = new Датаграмма;
+                дг.вяжи (адр);
 
                 // пиши куда the local адрес
-                gram.пиши ("hello", адр);
+                дг.пиши ("hello", адр);
 
                 // we are listening also ...
                 сим[8] врем;
                 auto x = new АдресИнтернета;
-                auto байты = gram.читай (врем, x);
+                auto байты = дг.читай (врем, x);
                 Квывод (x) (врем[0..байты]).нс;
         }
 }

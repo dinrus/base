@@ -153,17 +153,15 @@ private
     }
 
     /*
-     * Used в_ determine if we can cast a значение of the given ИнфОТипе в_ the
-     * specified тип implicitly.  This should be somewhat faster than the
-     * version in RuntimeTraits since we can basically eliminate half of the
-     * tests.
+     * Используется для определения возможности косвенного преобразования
+     * значения заданного ИнфОТипе в заданный тип. Работает несколько
+     * быстрее версии, представленной в runtimetraits.
      */
     бул неявноВТипПривестиМожно_ли(типЦелиШ)(ИнфОТипе типист)
     {
         /*
-         * Before we do anything else, we need в_ "unwrap" typedefs в_
-         * получи at the реал тип.  While we do that, сделай sure we don't
-         * accопрentally jump over the destination тип.
+         * Прежде, чем продолжить, нужно распаковать тайпдефы.
+         * 
          */
         while( cast(TypeInfo_Typedef) типист !is пусто )
         {

@@ -5,7 +5,7 @@
     Normalizes a путь component.
 
     . segments are removed
-    <segment>/.. are removed
+    <сегмент>/.. are removed
 
     On Windows, \ will be преобразованый в_ / prior в_ normalization.
 

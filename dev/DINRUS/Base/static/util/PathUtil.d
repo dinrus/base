@@ -29,7 +29,7 @@ private enum
     Normalizes a путь component.
 
     . segments are removed
-    <segment>/.. are removed
+    <сегмент>/.. are removed
 
     On Windows, \ will be преобразованый в_ / prior в_ normalization.
 
@@ -134,22 +134,22 @@ private enum
 
         if (путь[инд] == '.')
         {
-            // покинь the current позиция at the старт of the segment
+            // покинь the current позиция at the старт of the сегмент
             auto i = инд + 1;
             if (i < путь.length && путь[i] == '.')
             {
                 i++;
                 if (i == путь.length || isSep(i))
                 {
-                    // It is a '..' segment. If the stack is not пустой, установи
+                    // It is a '..' сегмент. If the stack is not пустой, установи
                     // moveTo and the current позиция
-                    // в_ the старт позиция of the последний найдено regular segment.
+                    // в_ the старт позиция of the последний найдено regular сегмент.
                     if (nodeStackTop > 0)
                         moveTo = nodeStack[--nodeStackTop];
-                    // If no regular segment старт positions on the stack, drop the
-                    // .. segment if it is абсолютный путь
+                    // If no regular сегмент старт positions on the stack, drop the
+                    // .. сегмент if it is абсолютный путь
                     // or, иначе, advance moveTo and the current позиция в_
-                    // the character после the '..' segment
+                    // the character после the '..' сегмент
                     else if (!абс_ли)
                     {
                         if (moveTo != инд)
@@ -165,7 +165,7 @@ private enum
                 }
             }
 
-            // If it is '.' segment, пропусти it.
+            // If it is '.' сегмент, пропусти it.
             if (i == путь.length || isSep(i))
             {
                 инд = i;
@@ -173,15 +173,15 @@ private enum
             }
         }
 
-        // Удали excessive '/', '.' and/or '..' preceeding the segment.
+        // Удали excessive '/', '.' and/or '..' preceeding the сегмент.
         if (moveTo != инд)
             перемести();
 
-        // Push the старт позиция of the regular segment on the stack
+        // Push the старт позиция of the regular сегмент on the stack
         assert(nodeStackTop < NodeStackLength);
         nodeStack[nodeStackTop++] = инд;
 
-        // SkИП the regular segment and установи moveTo в_ the позиция после the segment
+        // SkИП the regular сегмент and установи moveTo в_ the позиция после the сегмент
         // (включая the trailing '/' if present)
         for(; инд < путь.length && !isSep(инд); инд++) {}
         moveTo = инд;

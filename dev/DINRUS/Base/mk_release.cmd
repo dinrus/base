@@ -19,8 +19,8 @@
 ::goto Lib
 
 :::Deleting previous objects
-@del %LDIR%\Dinrus.lib
-@del %LDIR%\Dinrus.bak
+@del %LDIR%\DinrusX86.lib
+@del %LDIR%\DinrusX86.bak
 @del %this%\*.rsp
 @del %this%\*.obj
 @del %this%\*.map
@@ -151,6 +151,21 @@ copy %this%\export\io\protocol\*.d  %R%\io\protocol\*.di
 ::copy %this%\export\io\selector\*.d  %R%\io\selector\*.di
 ::copy %this%\export\io\vfs\*.d  %R%\io\vfs\*.di
 
+rm -R  %R%\net
+mkdir %R%\net
+mkdir %R%\net\device
+mkdir %R%\net\ftp
+mkdir %R%\net\htpp
+mkdir %R%\net\model
+mkdir %R%\net\http\model
+
+copy %this%\export\net\*.d  %R%\net\*.di
+copy %this%\export\net\device\*.d  %R%\net\device\*.di
+copy %this%\export\net\ftp\*.d  %R%\net\ftp\*.di
+copy %this%\export\net\htpp\*.d  %R%\net\htpp\*.di
+copy %this%\export\net\model\*.d  %R%\net\model\*.di
+copy %this%\export\net\http\model\*.d  %R%\net\http\model\*.di
+
 :::Compiling C code
 
 %DMC% -c -o%this%\complex.obj %this%\src\rt\complex.c -I%DINRUS%\..\include
@@ -163,29 +178,29 @@ copy %this%\export\io\protocol\*.d  %R%\io\protocol\*.di
 
 :Base
 :::Creating respond file
-%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\lib\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d %this%\src\col\*.d>>%this%\objs.rsp
+%LS% -d %this%\src\std\*.d %this%\src\*.d %this%\src\lib\*.d %this%\src\tpl\*.d %this%\src\rt\*.d %this%\src\sys\*.d %this%\src\sys\com\*.d %this%\src\math\*.d %this%\src\math\random\*.d %this%\src\time\*.d %this%\src\time\chrono\*.d %this%\src\crypto\*.d %this%\src\crypto\digest\*.d %this%\src\crypto\cipher\*.d %this%\src\text\*.d %this%\src\text\convert\*.d %this%\src\text\locale\*.d %this%\src\io\*.d %this%\src\io\device\*.d %this%\src\io\stream\*.d %this%\src\io\protocol\*.d %this%\src\col\*.d %this%\src\net\*.d %this%\src\net\device\*.d %this%\src\net\ftp\*.d %this%\src\net\http\*.d %this%\src\net\http\model\*.d %this%\src\net\model\*.d>>%this%\objs.rsp
 
-:::Make DinrusBase.dll
+:::Make DinrusBaseX86.dll
 
 @if exist %DINRUS%\dinrus.exe %DINRUS%\dinrus.exe
 
-%DMD% -g -O -debug -of%this%\DinrusBase.dll @%this%\objs.rsp %this%\res\base.def %this%\res\base.res %LDIR%\minit.obj %LDIR%\DImport.lib %this%\Cdinr.lib
+%DMD% -g -O -debug -of%this%\DinrusBaseX86.dll @%this%\objs.rsp %this%\res\base.def %this%\res\base.res %LDIR%\minit.obj %LDIR%\DImport.lib %this%\Cdinr.lib
 
-@if not exist %this%\DinrusBase.dll pause
-@if exist %this%\DinrusBase.dll goto nextStep
+@if not exist %this%\DinrusBaseX86.dll pause
+@if exist %this%\DinrusBaseX86.dll goto nextStep
 @del %this%\objs.rsp
 @goto Base
 
 :nextStep
 :::Make its export lib
-%IMPLIB% /system %this%\Dinrus.lib %this%\DinrusBase.dll
-%IMPLIB% /system %this%\DinrusBaseDLL.lib %this%\DinrusBase.dll
-copy %this%\DinrusBaseDLL.lib %LDIR%
-::copy %this%\DinrusBase.dll %DINRUS%
-::copy %this%\DinrusBase.dll c:\Windows\system32
+%IMPLIB% /system /pagesize:256 %this%\DinrusX86.lib %this%\DinrusBaseX86.dll
+copy %this%\DinrusX86.lib %LDIR%\DinrusBaseX86DLL.lib 
+copy %this%\DinrusX86.lib %this%\DinrusBaseX86DLL.lib 
+::copy %this%\DinrusBaseX86.dll %DINRUS%
+::copy %this%\DinrusBaseX86.dll c:\Windows\system32
 
 :::To compress
-:%PACK% %this%\DinrusBase.dll
+:%PACK% %this%\DinrusBaseX86.dll
 
 :::Clean
 @del %this%\*.obj
@@ -284,18 +299,18 @@ copy %this%\DinrusBaseDLL.lib %LDIR%
 @if not exist %this%\dinrus2.lib pause
 cls
 @goto NextStep
-:::Ading static libraries to Dinrus.lib
+:::Ading static libraries to DinrusX86.lib
 :Join
-%LIB% -p256   %this%\Dinrus.lib  %this%\dinrus2.lib
+%LIB% -p256   %this%\DinrusX86.lib  %this%\dinrus2.lib
 
 :::Compiling codes from .\static folder
 
 :Lib
 
-%LS% -d %this%\export\lib\*.d >>%this%\lib.rsp
+%LS% -d %this%\static\lib\*.d >>%this%\lib.rsp
 %DMD% -lib -of%this%\dlib.lib @%this%\lib.rsp 
 @if exist %this%\dlib.lib del %this%\lib.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\dlib.lib
 @if exist %this%\dlib.lib goto Col
 @if not exist %this%\dlib.lib pause
 @del %this%\col.rsp
@@ -307,7 +322,7 @@ pause
 %LS% -d %this%\export\col\*.d  %this%\export\col\model\*.d %this%\export\col\impl\*.d %this%\export\col\iterator\*.d>>%this%\col.rsp
 %DMD% -lib -of%this%\col.lib @%this%\col.rsp 
 @if exist %this%\col.lib del %this%\col.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\col.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\col.lib
 @if exist %this%\col.lib goto Util
 @if not exist %this%\col.lib pause
 @del %this%\col.rsp
@@ -318,7 +333,7 @@ cls
 %LS% -d %this%\static\util\*.d %this%\static\util\uuid\*.d>>%this%\ut.rsp
 %DMD% -lib -of%this%\util.lib @%this%\ut.rsp 
 @if exist %this%\util.lib del %this%\ut.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\util.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\util.lib
 @if exist %this%\util.lib goto Mesh
 @if not exist %this%\util.lib pause
 @del %this%\ut.rsp
@@ -329,7 +344,7 @@ cls
 %LS% -d %this%\static\mesh\*.d>>%this%\mesh.rsp
 %DMD% -lib -of%this%\mesh.lib @%this%\mesh.rsp 
 @if exist %this%\mesh.lib del %this%\mesh.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\mesh.lib
 @if exist %this%\mesh.lib goto St
 @if not exist %this%\mesh.lib pause
 @del %this%\mesh.rsp
@@ -340,7 +355,7 @@ cls
 %LS% -d %this%\static\st\*.d>>%this%\st.rsp
 %DMD% -lib -of%this%\st.lib @%this%\st.rsp 
 @if exist %this%\st.lib del %this%\st.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\st.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\st.lib
 @if exist %this%\st.lib goto Geom
 @if not exist %this%\st.lib pause
 @del %this%\st.rsp
@@ -351,7 +366,7 @@ cls
 %LS% -d %this%\static\geom\*.d>>%this%\geom.rsp
 %DMD% -lib -of%this%\geom.lib @%this%\geom.rsp 
 @if exist %this%\geom.lib del %this%\geom.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\geom.lib
 @if exist %this%\geom.lib goto Math
 @if not exist %this%\geom.lib pause
 @del %this%\geom.rsp
@@ -362,7 +377,7 @@ cls
 %LS% -d %this%\static\math\*.d %this%\static\math\linalg\*.d %this%\static\math\internal\*.d %this%\static\math\random\*.d %this%\static\math\random\engines\*.d>>%this%\math.rsp
 %DMD% -lib -of%this%\math.lib @%this%\math.rsp 
 @if exist %this%\math.lib del %this%\math.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\math.lib
 @if exist %this%\math.lib goto Crypto
 @if not exist %this%\math.lib pause
 @del %this%\math.rsp
@@ -374,7 +389,7 @@ cls
 %LS% -d %this%\export\crypto\*.d %this%\export\crypto\cipher\*.d %this%\export\crypto\digest\*.d>>%this%\crypto.rsp
 %DMD% -lib -of%this%\crypto.lib @%this%\crypto.rsp 
 @if exist %this%\crypto.lib del %this%\crypto.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\crypto.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\crypto.lib
 @if exist %this%\crypto.lib goto Text
 @if not exist %this%\crypto.lib pause
 @del %this%\crypto.rsp
@@ -386,7 +401,7 @@ cls
 %LS% -d %this%\export\text\*.d %this%\export\text\convert\*.d %this%\export\text\json\*.d %this%\export\text\digest\*.d %this%\export\text\locale\*.d %this%\export\text\xml\*.d>>%this%\text.rsp
 %DMD% -lib -of%this%\text.lib @%this%\text.rsp 
 @if exist %this%\text.lib del %this%\text.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\text.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\text.lib
 @if exist %this%\text.lib goto Time
 @if not exist %this%\text.lib pause
 @del %this%\text.rsp
@@ -397,7 +412,7 @@ cls
 %LS% -d %this%\export\time\*.d  %this%\export\time\chrono\*.d>>%this%\time.rsp
 %DMD% -lib -of%this%\time.lib @%this%\time.rsp 
 @if exist %this%\time.lib del %this%\time.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\time.lib
+%LIB% -p256  %this%\DinrusX86.lib %this%\time.lib
 @if exist %this%\time.lib goto IO
 @if not exist %this%\time.lib pause
 @del %this%\time.rsp
@@ -410,12 +425,25 @@ cls
 %LS% -d %this%\export\io\*.d %this%\export\io\device\*.d %this%\export\io\stream\*.d %this%\export\io\protocol\*.d>>%this%\io.rsp
 %DMD% -lib -of%this%\io.lib @%this%\io.rsp 
 @if exist %this%\io.lib del %this%\io.rsp
-%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
-@if exist %this%\io.lib goto finish
+%LIB% -p256  %this%\DinrusX86.lib %this%\io.lib
+@if exist %this%\io.lib goto NET
 @if not exist %this%\io.lib pause
 @del %this%\io.rsp
 cls
 @goto IO
+
+:NET
+
+::%this%\static\io\selector\*.d %this%\static\io\vfs\*.d
+%LS% -d %this%\export\net\*.d %this%\export\net\device\*.d %this%\export\net\model\*.d %this%\export\net\http\model\*.d %this%\export\net\ftp\*.d %this%\export\net\http\*.d>>%this%\net.rsp
+%DMD% -lib -of%this%\net.lib @%this%\net.rsp 
+@if exist %this%\net.lib del %this%\net.rsp
+%LIB% -p256  %this%\DinrusX86.lib %this%\net.lib
+@if exist %this%\net.lib goto finish
+@if not exist %this%\net.lib pause
+@del %this%\net.rsp
+cls
+@goto NET
 
 :DRwin32
 :::Makin Dinrus_win32.lib
@@ -454,39 +482,39 @@ cd %this%
 
 :finish
 
-::%LIB% -p256  %this%\Dinrus.lib %this%\dlib.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\col.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\util.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\geom.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\mesh.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\st.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\math.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\crypto.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\time.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\text.lib
-::%LIB% -p256  %this%\Dinrus.lib %this%\io.lib
-::%LIB% -p256  %this%\Dinrus.lib %ARCDIR%\arc2.lib
-::%LIB% -p256  %this%\Dinrus.lib %MINIDDIR%\rminid.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\dlib.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\col.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\util.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\geom.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\mesh.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\st.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\math.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\crypto.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\time.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\text.lib
+::%LIB% -p256  %this%\DinrusX86.lib %this%\io.lib
+::%LIB% -p256  %this%\DinrusX86.lib %ARCDIR%\arc2.lib
+::%LIB% -p256  %this%\DinrusX86.lib %MINIDDIR%\rminid.lib
 
 :::Adding system imports
-::::%LIB% -p256  Dinrus.lib %LDIR%\export.lib
+::::%LIB% -p256  DinrusX86.lib %LDIR%\export.lib
 
-:::Copying Dinrus.lib to main Dinrus lib folder
+:::Copying DinrusX86.lib to main DinrusX86 lib folder
 
-::%LIB% -p256  Dinrus.lib %LDIR%\DImport.lib
-copy %this%\Dinrus.lib %LDIR%
-copy %this%\Dinrus.lib %LDIR%\Dinrus_dbg.lib
-copy %this%\Dinrus.lib %this%\Dinrus_dbg.lib
+::%LIB% -p256  DinrusX86.lib %LDIR%\DImport.lib
+copy %this%\DinrusX86.lib %LDIR%
+copy %this%\DinrusX86.lib %LDIR%\DinrusX86_dbg.lib
+copy %this%\DinrusX86.lib %this%\DinrusX86_dbg.lib
 
-::%PACK% %this%\DinrusBase.dll
-copy %this%\DinrusBase.dll %DINRUS%
+::%PACK% %this%\DinrusBaseX86.dll
+copy %this%\DinrusBaseX86.dll %DINRUS%
 
 
-%DMD% -O -lib -of%this%\DinrusDllMain.lib %this%\static\dllMain.d %LDIR%\minit.obj
-copy %this%\DinrusDllMain.lib  %LDIR%
+%DMD% -O -lib -of%this%\DinrusX86DllMain.lib %this%\static\dllMain.d %LDIR%\minit.obj
+copy %this%\DinrusX86DllMain.lib  %LDIR%
 
-%DMD% -O -lib -of%this%\DinrusExeMain.lib %this%\static\exeMain.d %LDIR%\minit.obj
-copy %this%\DinrusExeMain.lib  %LDIR%
+%DMD% -O -lib -of%this%\DinrusX86ExeMain.lib %this%\static\exeMain.d %LDIR%\minit.obj
+copy %this%\DinrusX86ExeMain.lib  %LDIR%
 
 
 goto Cleaning
@@ -503,7 +531,7 @@ del *.exe *.map
 cd %this%
 :Cleaning
 :::Cleaning
-%DMD% %this%\clean.d %this%\Dinrus.lib
+%DMD% %this%\clean.d %this%\DinrusX86.lib %this%\DinrusX86ExeMain.lib
 %this%\clean
 ::: same with the Dll - to bin folder
 

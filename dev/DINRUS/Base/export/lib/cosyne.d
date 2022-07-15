@@ -288,7 +288,7 @@ unittest{
 
 	static this()
 	{
-		КОС.заряжай("Dinrus.Cosyne.dll", &грузи );
+		КОС.заряжай("DinrusCosyneX86.dll", &грузи );
 		КОС.загружай();
 
 ТЭСТСИНТ =

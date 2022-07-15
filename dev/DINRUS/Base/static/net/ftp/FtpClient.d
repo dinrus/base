@@ -736,7 +736,7 @@ class СоединениеФтп: Telnet
             delete supportedFeatures_;
         else
         {
-            ткст[] строки = Текст.рабейнастр(ответ.сообщение);
+            ткст[] строки = Текст.разбейнастр(ответ.сообщение);
 
             // There are two ещё строки than features, but we also have FEAT.
             supportedFeatures_ = new ЭлтФтп[строки.length - 1];
@@ -1210,7 +1210,7 @@ class СоединениеФтп: Telnet
             this.завершиКомандуДанных(данные);
 
             // Each строка is something in that дир.
-            ткст[] строки = Текст.рабейнастр(cast(ткст) listing.срез());
+            ткст[] строки = Текст.разбейнастр(cast(ткст) listing.срез());
             scope(exit)
             delete строки;
 
@@ -1376,7 +1376,7 @@ class СоединениеФтп: Telnet
         this.завершиКомандуДанных(данные);
 
         // разбей out the строки.  Most of the время, it's one-в_-one.
-        ткст[] строки = Текст.рабейнастр(cast(ткст) listing.срез());
+        ткст[] строки = Текст.разбейнастр(cast(ткст) listing.срез());
         scope(exit)
         delete строки;
 

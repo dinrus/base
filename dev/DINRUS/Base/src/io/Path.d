@@ -1023,7 +1023,7 @@ export struct ПутеПарсер
                 Возвращает путь representing the родитель of this one. This
                 will typically return the current путь component, though
                 with a special case where the имя component is пустой. In 
-                such cases, the путь is scanned for a prior segment:
+                such cases, the путь is scanned for a prior сегмент:
                 ---
                 нормаль:  /x/y/z => /x/y
                 special: /x/y/  => /x
@@ -1454,26 +1454,26 @@ export проц создайПапку (ткст имя)
         все родитель папки. The путь should not contain '.' or '..'
         segments, which can be removed via the нормализуй() function.
 
-        Note that each segment is создан как папка, включая the
-        trailing segment.
+        Note that each сегмент is создан как папка, включая the
+        trailing сегмент.
 
         Выводит исключение: ВВИскл upon system ошибки
 
-        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but как 
+        Выводит исключение: ИсклНелегальногоАргумента if a сегмент есть_ли but как 
         файл instead of a папка
 
 *******************************************************************************/
 
 export проц создайПуть (ткст путь)
 {
-        проц тест (ткст segment)
+        проц тест (ткст сегмент)
         {
-                if (segment.length)
-                    if (! есть_ли (segment))
-                          создайПапку (segment);
+                if (сегмент.length)
+                    if (! есть_ли (сегмент))
+                          создайПапку (сегмент);
                     else
-                       if (! папка_ли (segment))
-                             throw new ИсклНелегальногоАргумента ("Путь.создайПуть :: файл/папка конфликтуют: " ~ segment);
+                       if (! папка_ли (сегмент))
+                             throw new ИсклНелегальногоАргумента ("Путь.создайПуть :: файл/папка конфликтуют: " ~ сегмент);
         }
 
         foreach (i, сим c; путь)
@@ -1935,7 +1935,7 @@ debug (UnitTest)
         Normalizes a путь component
         ---
         . segments are removed
-        <segment>/.. are removed
+        <сегмент>/.. are removed
         ---
 
         Несколько consecutive forward slashes are replaced with a single 
@@ -2044,25 +2044,25 @@ export ткст нормализуй (ткст путь, ткст буф = пу�
               if (путь[инд] == '.')
                  {
                  // покинь the current позиция at the старт of 
-                 // the segment
+                 // the сегмент
                  auto i = инд + 1;
                  if (i < путь.length && путь[i] == '.')
                     {
                     i++;
                     if (i == путь.length || isSep(i))
                        {
-                       // It is a '..' segment. If the stack is not 
+                       // It is a '..' сегмент. If the stack is not 
                        // пустой, установи moveTo and the current позиция
                        // в_ the старт позиция of the последний найдено 
-                       // regular segment
+                       // regular сегмент
                        if (nodeStackTop > 0)
                            moveTo = nodeStack[--nodeStackTop];
 
-                       // If no regular segment старт positions on the 
-                       // stack, drop the .. segment if it is абсолютный 
+                       // If no regular сегмент старт positions on the 
+                       // stack, drop the .. сегмент if it is абсолютный 
                        // путь or, иначе, advance moveTo and the 
                        // current позиция в_ the character после the 
-                       // '..' segment
+                       // '..' сегмент
                        else 
                           if (!абс_ли)
                              {
@@ -2079,7 +2079,7 @@ export ткст нормализуй (ткст путь, ткст буф = пу�
                        }
                     }
         
-                 // If it is '.' segment, пропусти it.
+                 // If it is '.' сегмент, пропусти it.
                  if (i == путь.length || isSep(i))
                     {
                     инд = i;
@@ -2088,17 +2088,17 @@ export ткст нормализуй (ткст путь, ткст буф = пу�
                  }
 
               // Удали excessive '/', '.' and/or '..' preceeding the 
-              // segment
+              // сегмент
               if (moveTo != инд)
                   перемести();
 
-              // Push the старт позиция of the regular segment on the 
+              // Push the старт позиция of the regular сегмент on the 
               // stack
               assert (nodeStackTop < NodeStackLength);
               nodeStack[nodeStackTop++] = инд;
 
-              // SkИП the regular segment and установи moveTo в_ the позиция 
-              // после the segment (включая the trailing '/' if present)
+              // SkИП the regular сегмент and установи moveTo в_ the позиция 
+              // после the сегмент (включая the trailing '/' if present)
               for (; инд < путь.length && !isSep(инд); инд++) 
                   {}
               moveTo = инд;

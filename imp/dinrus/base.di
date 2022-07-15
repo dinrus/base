@@ -46,7 +46,7 @@ public struct Версия
 
 version(SHARED)
 		{
-		pragma(lib, "DinrusDllMain.lib");
+		pragma(lib, "DinrusX86DllMain.lib");
 		extern (Windows) BOOL DllMain(экз экземп, бдол резон, ук резерв);
 		}
 		else
@@ -56,7 +56,7 @@ version(SHARED)
 
 version(EXE_BUILD)
 		{
-		pragma(lib, "DinrusExeMain.lib");
+		pragma(lib, "DinrusX86ExeMain.lib");
 		extern (C) цел main(цел аргчло, ткст0 *аргткст);
 		}
 	}

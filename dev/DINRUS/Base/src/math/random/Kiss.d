@@ -1,21 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2008. Все права защищены
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: May 2008
-
-        author:         Various
-
-        Since:          0.99.7
-
-        With gratitude в_ Dr Jurgen A Doornik. See his paper entitled
-        "Conversion of high-период random numbers в_ floating точка"
-
-*******************************************************************************/
-
-module math.random.Kiss;
+﻿module math.random.Kiss;
 import base;
 
 version (Win32)

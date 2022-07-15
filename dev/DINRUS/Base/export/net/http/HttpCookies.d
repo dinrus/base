@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. все rights reserved
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: April 2004
-
-        author:         Kris
-
-*******************************************************************************/
-
-module net.http.HttpCookies;
+﻿module net.http.HttpCookies;
 
 private import  io.device.Array;
 

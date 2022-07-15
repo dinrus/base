@@ -2,9 +2,6 @@
  * Модуль "Сигнал" обеспечивает базовую реализацию образца listener,
  * используя модель "Сигналов  Слотов" из Qt.
  *
- * Copyright: Copyright (C) 2005-2006 Sean Kelly.  Все права защищены.
- * License:   BSD стиль: $(LICENSE)
- * Authors:   Sean Kelly
  */
 module tpl.sigstruct;
 
@@ -13,14 +10,14 @@ private import tpl.array;
 
 
 /**
- * A signal is an событие which содержит a collection of listeners (called
- * slots).  When a signal is called, that вызов will be propagated в_ each
- * attached slot in a синхронно manner.  It is legal for a slot в_ вызов a
- * signal's прикрепи and открепи methods when it is signaled.  When this occurs,
- * прикрепи события will be queued and processed после the signal есть propagated
- * в_ все slots, but открепи события are processed immediately.  This ensures
- * that it is safe for slots в_ be deleted at any время, even within a slot
- * routine.
+ * Сигнал - это событие, которое содержит коллекцию датчиков или по-англ. 'listeners'
+ * (по-другому называемых слотами, англ. 'slots').  При вызове сигнала этот
+ * вызов распространяется по каждому прикреплённому слоту синхронным образом.
+ * Слот вполне законно может вызывать методы "прикрепи" и "открепи", когда есть сигнал.
+ * При этом события "прикрепи" выстраиваются в очередь и обрабатываются после того, как
+ * этот сигнал распространится на все слоты, а события "открепи" обрабатываются
+ * незамедлительно. Это гарантирует безопасное удаление слотов в любое время,
+ * даже во время процедуры со слотом.
  *
  * Пример:
  * -----------------------------------------------------------------------------
@@ -30,38 +27,37 @@ private import tpl.array;
  *     Сигнал!(Кнопка) нажми;
  * }
  *
- * проц wasPressed( Кнопка b )
+ * проц нажата( Кнопка b )
  * {
- *     printf( "Кнопка was pressed.\n" );
+ *     скажи( "Кнопка нажата.\n" );
  * }
  *
  * Кнопка b = new Кнопка;
  *
- * b.нажми.прикрепи( &wasPressed );
+ * b.нажми.прикрепи( &нажата );
  * b.нажми( b );
  *
  * -----------------------------------------------------------------------------
  *
- * Please note that this implementation does not use weak pointers в_ сохрани
- * references в_ slots.  This design was chosen because weak pointers are
- * inherently unsafe when combined with non-deterministic destruction, with
- * many of the same limitations as destructors in the same situation.  It is
- * still possible в_ obtain weak-pointer behavior, but this must be готово
- * through a proxy объект instead.
+ * Отметим, что в этой реализации не использьзованы слабые указатели, чтобы сохранить
+ * ссылки на слоты. Такой дизайн был выбран, потому как слабые указатели
+ * наследственно небезопасны, в сочетании с недетерминистической деструкцией, и с
+ * множеством ограничений, которые есть в тех же ситуациях у деструкторов.
+ * Конечно получить слабо-указательное поведение всё ещё можно, но это нужно
+ * реализовывать через объект-прокси.
  */
 struct Сигнал( Арги... )
 {
     alias проц delegate(Арги) СлотДг; ///
     alias проц function(Арги) СлотФн; ///
 
-    alias opCall вызов; /// Alias в_ simplify chained calling.
-
+    alias opCall вызов; /// Алиас для упрощения цепочечного вызова.
 
     /**
-     * The signal procedure.  When called, each of the attached slots will be
-     * called synchronously.
+     * Сигнальная процедура. При вызове каждый прикреплённый слот
+     * будет вызываться синхронно.
      *
-     * арги = The signal аргументы.
+     * арги = Аргументы сигнала.
      */
     проц opCall( Арги арги )
     {
@@ -91,11 +87,11 @@ struct Сигнал( Арги... )
 
 
     /**
-     * Attaches a delegate в_ this signal.  A delegate may be either attached
-     * or detached, so successive calls в_ прикрепи for the same delegate will
-     * have no effect.
+     * Прикрепляет делегат к этому сигналу. Делегат может быть либо
+     * прикреплён, либо откреплён, поэтому последующие вызовы "прикрепи"
+     * к одному и тому же делегату не будут иметь эффекта.
      *
-     * дг = The delegate в_ прикрепи.
+     * дг = Прикрепляемый делегат.
      */
     проц прикрепи( СлотДг дг )
     {
@@ -116,11 +112,11 @@ struct Сигнал( Арги... )
 
 
     /**
-     * Attaches a function в_ this signal.  A function may be either attached
-     * or detached, so successive calls в_ прикрепи for the same function will
-     * have no effect.
+     * Прикрепляет к этому сигналу функцию.  Функция может быть либо
+     * прикреплённой, либо откреплённой, поэтому последующие вызовы "прикрепи"
+     * к одной и той же функции не будут иметь эффекта.
      *
-     * фн = The function в_ прикрепи.
+     * дг = Прикрепляемая функция.
      */
     проц прикрепи( СлотФн фн )
     {
@@ -141,9 +137,9 @@ struct Сигнал( Арги... )
 
 
     /**
-     * Detaches a delegate из_ this signal.
+     * Открепляет делегат от этого сигнала.
      *
-     * дг = The delegate в_ открепи.
+     * дг = Открепляемый делегат.
      */
     проц открепи( СлотДг дг )
     {
@@ -157,9 +153,9 @@ struct Сигнал( Арги... )
 
 
     /**
-     * Detaches a function из_ this signal.
+     * Открепляет функцию от этого сигнала.
      *
-     * фн = The function в_ открепи.
+     * фн = Открепляемая функция.
      */
     проц открепи( СлотФн фн )
     {

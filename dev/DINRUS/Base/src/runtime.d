@@ -847,7 +847,7 @@ export extern (C) проц _moduleCtor2(ИнфОМодуле[] mi, бул skip)
  */
 
 // Starting the name with "_STD" means under linux a pointer to the
-// function gets put in the .dtors segment.
+// function gets put in the .dtors сегмент.
 
   export extern (C) проц _moduleDtor()
 	{

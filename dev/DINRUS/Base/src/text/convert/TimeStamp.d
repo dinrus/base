@@ -1,25 +1,4 @@
-﻿/*******************************************************************************
-
-        Converts between исконный и текст representations of HTTP время
-        значения. Internally, время is represented as UTC with an эпоха
-        fixed at Jan 1st 1970. The текст представление is formatted in
-        accordance with RFC 1123, и the парсер will прими one of
-        RFC 1123, RFC 850, либо анзисивремя форматы.
-
-        See http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html for
-        further detail.
-
-        Applying the D "import alias" mechanism в_ this module is highly
-        recommended, in order в_ предел namespace pollution:
-        ---
-        import TimeStamp = text.convert.TimeStamp;
-
-        auto t = TimeStamp.разбор ("Sun, 06 Nov 1994 08:49:37 GMT");
-        ---
-
-*******************************************************************************/
-
-module text.convert.TimeStamp;
+﻿module text.convert.TimeStamp;
 
 private import time.Time;
 
@@ -468,13 +447,13 @@ T[] формат8601(T) (T[] вывод, Время t)
 
     if (dt(p) >= 0                         &&
             *p++ == ' '                        &&
-            (врдня.часы = парсируйЦел(p, e)) > 0   &&
+            (врдня.часы(парсируйЦел(p, e))) > 0   &&
             *p++ == ':'                        &&
-            (врдня.минуты = парсируйЦел(p, e)) > 0 &&
+            (врдня.минуты(парсируйЦел(p, e))) > 0 &&
             (*p == 'A' || *p == 'P'))
     {
         if (*p is 'P')
-            врдня.часы += 12;
+             врдня.часы(врдня.часы() + 12);
 
         if (дата.год < 70)
             дата.год += 2000;

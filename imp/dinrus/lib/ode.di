@@ -927,7 +927,7 @@ static this() {
     }
     else
     {
-        char[] winlib = "ode_single.dll";
+        char[] winlib = "DinrusOdeSingleX86.dll";
         char[] linlib = "ode_double.dll";
     }
     ОДЕ.заряжай( winlib,  &грузи );

@@ -1,16 +1,4 @@
-﻿/*******************************************************************************
-
-        copyright:      Copyright (c) 2004 Kris Bell. все rights reserved
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: January 2006
-        
-        author:         Kris
-
-*******************************************************************************/
-
-module net.http.HttpPost;
+﻿module net.http.HttpPost;
 
 public import   net.Uri;
 

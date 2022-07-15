@@ -43,10 +43,10 @@ extern(C) ук адаптВхоУкз(ук укз);
     version( Win32 )
     {
         
-                    //
+              //
             // точка входа для нитей на Windows
             //
-            extern (Windows) бцел нить_точкаВхода( ук арг )
+           export extern (Windows) бцел нить_точкаВхода( ук арг )
             {
                 Нить  объ = cast(Нить) адаптВхоУкз(арг);
                 assert( объ );
@@ -58,14 +58,14 @@ extern(C) ук адаптВхоУкз(ук укз);
                 Нить.добавь( &объ.м_глав );
                 Нить.установиЭту( объ );
 
-                // NOTE: Пока не установлены указатели стека, не могут происходить
+                // ЗАМЕТКА: Пока не установлены указатели стека, не могут происходить
                 //      никакие размещения сборщиком мусора, а Нить.дайЭту 
                 //       возвращает рабочую ссылку на Объект данной нити
                 //       (последнее условие не строго соблюдается для
                 //       Win32, но ему нужно следовать ради
                 //       консистентности).
 
-                // TODO: Предполагается поместить сюда Объект автоматического исключения (с помощью
+                // ЗАДАЧА: Предполагается поместить сюда Объект автоматического исключения (с помощью
                 //       alloca) для OutOfMemoryError и что-л. для остслежки
                 //       происходящего исключения.
 
@@ -82,10 +82,10 @@ extern(C) ук адаптВхоУкз(ук укз);
 
 
             //
-            // copy of the same-named function in phobos.std.thread--it uses the
-            // Windows naming convention to be consistent with GetCurrentThreadId
+            // Копия одноимённой функции из phobos.std.thread-- используется
+            // конвенция именования Windows для консистентности с GetCurrentThreadId
             //
-    export  extern (Windows)    ук ДайДескрТекущейНити()
+    export  extern (Windows) ук ДайДескрТекущейНити()
             {
                 const бцел DUPLICATE_SAME_ACCESS = 0x00000002;
 
@@ -216,7 +216,7 @@ export extern(D) class Нить
          * In:
          *  Процедура может вызываться лишь единожды на экземпляр.
          *
-         * Throws:
+         * Выбрасывает:
          *  ОшибкаНити, если старт не удаётся.
          */
          
@@ -229,7 +229,7 @@ export extern(D) class Нить
         {
             version( Win32 ) {} 
 
-            // NOTE: Эта операция требует синхронизации во избежание
+            // ЗАМЕТКА: Эта операция требует синхронизации во избежание
             //       интерференции с СМ. Без данной блокировки нить
             //       может запуститься и разместить память до её добавления
             //       в глобальный список нитей, что сделает её несканируемой,
@@ -271,7 +271,7 @@ export extern(D) class Нить
         
                 if( ЖдиОдинОбъект( м_дескр, БЕСК ) != ЖДИ_ОБЪЕКТ_0 )
                     throw new ОшибкаНити( "Не удаётся присоединить нити" );
-                // NOTE: м_адр д.б.очищен до закрытия м_дескр, чтобы избежать
+                // ЗАМЕТКА: м_адр д.б.очищен до закрытия м_дескр, чтобы избежать
                 //       рейс-условия с пущена.  Операция метится волатильной,
                 //       чтобы предотвратить реордеринг компилятором.
                 volatile м_адр = м_адр.init;
@@ -387,19 +387,19 @@ export extern(D) class Нить
 
 
         /**
-         * The minimum scheduling приоритет that may be set for a thread.  On
-         * systems where multiple scheduling policies are defined, this value
-         * represents the minimum valid приоритет for the scheduling политика of
-         * the process.
+         * Минимальный планировочный приоритет, который может быть установлен для нити.
+         * На системах с определением нескольких планировочных политик, это значение
+         * представляет минимальный валидный приоритет для планировочной политики
+         * этого процесса.
          */
         static const цел МИНПРИОР;
 
 
         /**
-         * The maximum scheduling приоритет that may be set for a thread.  On
-         * systems where multiple scheduling policies are defined, this value
-         * represents the minimum valid приоритет for the scheduling политика of
-         * the process.
+         * Максимальный планировочный приоритет, который может быть установлен для нити.
+         * На системах с определением нескольких планировочных политик, это значение
+         * представляет максимальный валидный приоритет для планировочной политики
+         * этого процесса.
          */
         static const цел МАКСПРИОР;
 
@@ -473,7 +473,7 @@ export extern(D) class Нить
     export  static проц спи( дво период )
         in
         {
-            // NOTE: The fractional value added to период is to correct fp error.
+            // ЗАМЕТКА: The fractional value added to период is to correct fp error.
             assert( период * 1000 + 0.1 < бцел.max - 1 );
         }
         body
@@ -572,11 +572,11 @@ export extern(D) class Нить
 
 
         /**
-         * Forces a context switch to occur away from the calling thread.
+         * Заставляет переключатель контекста оказываться подалее от вызывающей нити.
          */
         export static проц жни()
         {
-                // NOTE: Sleep(1) is necessary because Sleep(0) does not give
+                // ЗАМЕТКА: Sleep(1) is necessary because Sleep(0) does not give
                 //       lower приоритет threads any timeslice, so looping on
                 //       Sleep(0) could be resource-intensive in some cases.
                 Спи( 1 );
@@ -590,15 +590,15 @@ export extern(D) class Нить
 
 
         /**
-         * Provides a reference to the calling thread.
+         * Предаставляет ссылку на вызывающую нить.
          *
          * Возвращает:
-         *  The thread Объект representing the calling thread.  The результат of
-         *  deleting this Объект is undefined.
+         *  Поточный объект, представляющий взывающую нить.
+		 * Результат удаления этого объекта непредсказуем.
          */
     export  static Нить дайЭту()
         {
-            // NOTE: This function may not be called until нить_иниц has
+            // ЗАМЕТКА: This function may not be called until нить_иниц has
             //       completed.  See нить_заморозьВсе for more information
             //       on why this might occur.
             return cast(Нить)адаптВыхУкз(ДайЗначениеНлх( см_эта ));
@@ -607,12 +607,12 @@ export extern(D) class Нить
 
 
         /**
-         * Provides a list of all threads currently being tracked by the system.
+         * Представляет список всех нитей, в данный момент отслеживаемых системой.
          *
          * Возвращает:
-         *  An array containing references to all threads currently being
-         *  tracked by the system.  The результат of deleting any contained
-         *  OBJECTs is undefined.
+         *  Массив, содержащий ссылки на все нити, в данный момент отслеживаемые
+         *  системой. Результат удаления любого из этих объектов
+         *  неизвестен.
          */
     export  static Нить[] дайВсе()
         {
@@ -784,7 +784,7 @@ export extern(D) class Нить
         // Инициализует объек Нить, не связанный ни с какой исполнимой функцией.
         // Используется для главной нити, инициализированной в нить_иниц().
         //
-    private this()
+    export this()
         {
             м_вызов = Вызов.НЕТ;
             м_тек = &м_глав;
@@ -937,7 +937,7 @@ export extern(D) class Нить
         ////////////////////////////////////////////////////////////////////////////
 
 
-        // NOTE: Процесс сканирования СМ выполняется следщ. обр.:
+        // ЗАМЕТКА: Процесс сканирования СМ выполняется следщ. обр.:
         //
         //          1. Заморозка всех нитей.
         //          2. Сканирование стеков всех замороженных нитей на наличие корней.
@@ -1038,7 +1038,7 @@ export extern(D) class Нить
                     см_кнач = c.следщ;
                 --см_кдлин;
             }
-            // NOTE: Don't null out c.следщ or c.предщ because opApply currently
+            // ЗАМЕТКА: Don't null out c.следщ or c.предщ because opApply currently
             //       follows c.следщ after removing a node.  This could be easily
             //       addressed by simply returning the следщ node from this function,
             //       however, a context should never be re-added to the list anyway
@@ -1090,7 +1090,7 @@ export extern(D) class Нить
         {
             synchronized( slock )
             {
-                // NOTE: When a thread is removed from the global thread list its
+                // ЗАМЕТКА: When a thread is removed from the global thread list its
                 //       main context is invalid and should be removed as well.
                 //       It is possible that t.м_тек could reference more
                 //       than just the main context if the thread exited abnormally
@@ -1109,7 +1109,7 @@ export extern(D) class Нить
                     см_ннач = t.следщ;
                 --см_ндлин;
             }
-            // NOTE: Don't null out t.следщ or t.предщ because opApply currently
+            // ЗАМЕТКА: Don't null out t.следщ or t.предщ because opApply currently
             //       follows t.следщ after removing a node.  This could be easily
             //       addressed by simply returning the следщ node from this function,
             //       however, a thread should never be re-added to the list anyway
@@ -1131,7 +1131,7 @@ export extern(D) class Нить
      */
     export extern (C) проц нить_иниц()
     {
-        // NOTE: If нить_иниц itself performs any allocations then the thread
+        // ЗАМЕТКА: If нить_иниц itself performs any allocations then the thread
         //       routines reserved for garbage collector use may be called while
         //       нить_иниц is being processed.  However, since no memory should
         //       есть_ли to be scanned at this point, it is sufficient for these
@@ -1220,7 +1220,7 @@ export extern(D) class Нить
      */
     static ~this()
     {
-        // NOTE: The functionality related to garbage collection must be minimally
+        // ЗАМЕТКА: The functionality related to garbage collection must be minimally
         //       operable after this dtor completes.  Therefore, only minimal
         //       cleanup may occur.
 
@@ -1357,7 +1357,7 @@ export extern(D) class Нить
         }
 
 
-        // NOTE: We've got an odd chicken & egg problem here, because while the GC
+        // ЗАМЕТКА: We've got an odd chicken & egg problem here, because while the GC
         //       is required to call нить_иниц before calling any other thread
         //       routines, нить_иниц may allocate memory which could in turn
         //       trigger a collection.  Thus, нить_заморозьВсе, нить_сканируйВсе,
@@ -1381,7 +1381,7 @@ export extern(D) class Нить
         {
             if( ++suspendDepth > 1 )
                 return;
-            // NOTE: I'd really prefer not to check пущена внутри this loop but
+            // ЗАМЕТКА: I'd really prefer not to check пущена внутри this loop but
             //       not doing so could be problematic if threads are termianted
             //       abnormally and a new thread is created with the same thread
             //       address before the следщ GC пуск.  This situation might cause
@@ -1511,7 +1511,7 @@ export extern(D) class Нить
         }
 
 
-        // NOTE: See нить_заморозьВсе for the logic behind this.
+        // ЗАМЕТКА: See нить_заморозьВсе for the logic behind this.
         if( !флагМультипоточности && Нить.см_ннач )
         {
             if( --suspendDepth == 0 )
@@ -1592,14 +1592,14 @@ export extern(D) class Нить
             }
         }
 
-        // NOTE: Synchronizing on Нить.slock is not needed because this
+        // ЗАМЕТКА: Synchronizing on Нить.slock is not needed because this
         //       function may only be called after all other threads have
         //       been suspended from внутри the same блокируй.
         for( Нить.Контекст* c = Нить.см_кнач; c; c = c.следщ )
         {
             version( СТЭК_РАСТЁТ_ВНИЗ )
             {
-                // NOTE: We can't index past the bottom of the stack
+                // ЗАМЕТКА: We can't index past the bottom of the stack
                 //       so don't do the "+1" for СТЭК_РАСТЁТ_ВНИЗ.
                 if( c.встэк && c.встэк < c.нстэк )
                     scan( c.встэк, c.нстэк );
@@ -1834,7 +1834,7 @@ export extern (D)   class ГруппаНитей
             {
                 цел рез = 0;
 
-                // NOTE: This loop relies on the knowledge that м_все uses the
+                // ЗАМЕТКА: This loop relies on the knowledge that м_все uses the
                 //       Нить Объект for both the ключ and the mapped value.
                 foreach( Нить t; м_все.keys )
                 {
@@ -1862,7 +1862,7 @@ export extern (D)   class ГруппаНитей
         {
             synchronized( this )
             {
-                // NOTE: This loop relies on the knowledge that м_все uses the
+                // ЗАМЕТКА: This loop relies on the knowledge that м_все uses the
                 //       Нить Объект for both the ключ and the mapped value.
                 foreach( Нить t; м_все.keys )
                 {
@@ -1916,7 +1916,7 @@ export extern (D)   class ГруппаНитей
             version( AsmX86_64_Posix ) {} else
             version( AsmPPC_Posix ) {} else
             {
-                // NOTE: The ucontext implementation requires architecture specific
+                // ЗАМЕТКА: The ucontext implementation requires architecture specific
                 //       data definitions to operate so testing for it must be done
                 //       by checking for the existence of ucontext_t rather than by
                 //       a version identifier.  Please note that this is considered
@@ -1989,14 +1989,14 @@ export extern (D)   class ГруппаНитей
         }
 
 
-      // NOTE: If AsmPPC_Posix is defined then the context switch routine will
+      // ЗАМЕТКА: If AsmPPC_Posix is defined then the context switch routine will
       //       be defined externally until GDC supports inline PPC ASM.
       version( AsmPPC_Posix )
         extern (C) проц фибра_переклКонтекст( ук* oldp, ук newp );
       else
         export extern (C) проц фибра_переклКонтекст( ук* oldp, ук newp )
         {
-            // NOTE: The data pushed and popped in this routine must match the
+            // ЗАМЕТКА: The data pushed and popped in this routine must match the
             //       default stack created by Фибра.инициализуйСтэк or the initial
             //       switch into a new context will fail.
 
@@ -2353,7 +2353,7 @@ export extern (D) class Фибра
          */
     export  ~this()
         {
-            // NOTE: A live reference to this Объект will есть_ли on its associated
+            // ЗАМЕТКА: A live reference to this Объект will есть_ли on its associated
             //       stack from the first time its вызови() метод has been called
             //       until its execution completes with Состояние.ТЕРМ.  Thus, the only
             //       times this dtor should be called are either if the fiber has
@@ -2412,7 +2412,7 @@ export extern (D) class Фибра
             static if( is( ucontext_t ) )
               m_ucur = null;
 
-            // NOTE: If the fiber has terminated then the stack pointers must be
+            // ЗАМЕТКА: If the fiber has terminated then the stack pointers must be
             //       сбрось.  This ensures that the stack для этого fiber is not
             //       scanned if the fiber has terminated.  This is necessary to
             //       prevent any references lingering on the stack from delaying
@@ -2707,7 +2707,7 @@ export extern (D) class Фибра
             разм += РАЗМЕР_СТРАНИЦЫ - 1;
             разм -= разм % РАЗМЕР_СТРАНИЦЫ;
 
-            // NOTE: This instance of Нить.Контекст is dynamic so Фибра OBJECTs
+            // ЗАМЕТКА: This instance of Нить.Контекст is dynamic so Фибра OBJECTs
             //       can be collected by the GC so дол as no user level references
             //       to the Объект есть_ли.  If м_кткст were not dynamic then its
             //       presence in the global context list would be enough to keep
@@ -2742,7 +2742,7 @@ export extern (D) class Фибра
                     ук pbase = stack;
                 }
 
-                // allocate reserved stack segment
+                // allocate reserved stack сегмент
                 stack = VirtualAlloc( stack,
                                       разм,
                                       ППамять.Отправить,
@@ -2823,10 +2823,10 @@ export extern (D) class Фибра
         }
         body
         {
-            // NOTE: Since this routine is only ever expected to be called from
+            // ЗАМЕТКА: Since this routine is only ever expected to be called from
             //       the dtor, pointers to freed данные are not set to null.
 
-            // NOTE: м_кткст is guaranteed to be alive because it is held in the
+            // ЗАМЕТКА: м_кткст is guaranteed to be alive because it is held in the
             //       global context list.
             Нить.удали( м_кткст );
 
@@ -2878,7 +2878,7 @@ export extern (D) class Фибра
                 }
             }
 
-            // NOTE: On OS X the stack must be 16-byte aligned according to the
+            // ЗАМЕТКА: On OS X the stack must be 16-byte aligned according to the
             // IA-32 вызови spec.
             version( darwin )
             {
@@ -2963,7 +2963,7 @@ export extern (D) class Фибра
                 m_utxt.uc_stack.ss_sp   = м_пам;
                 m_utxt.uc_stack.ss_size = м_разм;
                 makecontext( &m_utxt, &фибра_точкаВхода, 0 );
-                // NOTE: If ucontext is being used then the top of the stack will
+                // ЗАМЕТКА: If ucontext is being used then the top of the stack will
                 //       be a pointer to the ucontext_t struct for that fiber.
                 push( cast(т_мера) &m_utxt );
             }
@@ -3008,7 +3008,7 @@ export extern (D) class Фибра
 
         static if( is( ucontext_t ) )
         {
-            // NOTE: The static ucontext instance is used to represent the context
+            // ЗАМЕТКА: The static ucontext instance is used to represent the context
             //       of the main application thread.
             static ucontext_t   sm_utxt = void;
             ucontext_t          m_utxt  = void;
@@ -3054,7 +3054,7 @@ export extern (D) class Фибра
             ук*  oldp = &нобъ.м_тек.встэк;
             ук   newp = м_кткст.встэк;
 
-            // NOTE: The order of operations here is very important.  The current
+            // ЗАМЕТКА: The order of operations here is very important.  The current
             //       stack top must be stored before м_блок is set, and суньКонтекст
             //       must not be called until after м_блок is set.  This process
             //       is intended to prevent a race condition with the заморозь
@@ -3071,7 +3071,7 @@ export extern (D) class Фибра
 
             фибра_переклКонтекст( oldp, newp );
 
-            // NOTE: As above, these operations must be performed in a strict order
+            // ЗАМЕТКА: As above, these operations must be performed in a strict order
             //       to prevent Bad Things from happening.
             нобъ.выньКонтекст();
             volatile нобъ.м_блок = false;
@@ -3088,7 +3088,7 @@ export extern (D) class Фибра
             ук*  oldp = &м_кткст.встэк;
             ук   newp = нобъ.м_тек.внутри.встэк;
 
-            // NOTE: The order of operations here is very important.  The current
+            // ЗАМЕТКА: The order of operations here is very important.  The current
             //       stack top must be stored before м_блок is set, and суньКонтекст
             //       must not be called until after м_блок is set.  This process
             //       is intended to prevent a race condition with the заморозь
@@ -3104,7 +3104,7 @@ export extern (D) class Фибра
 
             фибра_переклКонтекст( oldp, newp );
 
-            // NOTE: As above, these operations must be performed in a strict order
+            // ЗАМЕТКА: As above, these operations must be performed in a strict order
             //       to prevent Bad Things from happening.
             нобъ=Нить.дайЭту();
             volatile нобъ.м_блок = false;

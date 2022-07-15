@@ -77,7 +77,7 @@ alias ва_копируй va_copy;
 
 extern (C) template ва_арг_ди(T)
 {
-    T va_arg(inout va_list _argptr)
+    T ва_арг(inout спис_ва _argptr)
     {
 	T арг = *cast(T*)_argptr;
 	_argptr = _argptr + ((T.sizeof + int.sizeof - 1) & ~(int.sizeof - 1));

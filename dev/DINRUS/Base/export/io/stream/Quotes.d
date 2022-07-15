@@ -51,7 +51,7 @@ class Кавычки(T) : Обходчик!(T)
 
     this (T[] разделитель, ИПотокВвода поток = пусто)
     {
-        super (поток);
+        super.установи(поток);
         this.разделитель = разделитель;
     }
 
@@ -99,7 +99,7 @@ class Кавычки(T) : Обходчик!(T)
 
 debug (UnitTest)
 {
-    private import io.Stdout;
+    private import io.Stdout, io.stream.Quotes;
     private import text.Util;
     private import io.device.Array;
 
@@ -125,9 +125,9 @@ debug (UnitTest)
         auto b = new Массив (ожидалось.объедини (","));
         foreach (i, f; new Кавычки!(сим)(",", b))
         if (i >= ожидалось.length)
-            Стдвыв.форматнс ("uhoh: unexpected match: {}, {}", i, f);
+            Стдвыв.форматнс ("ах-ха-ха: неожижанное совпадение: {}, {}", i, f);
         else if (f != ожидалось[i])
-            Стдвыв.форматнс ("uhoh: bad match: {}, {}, {}", i, f, ожидалось[i]);
+            Стдвыв.форматнс ("ах-ха-ха: плохое совпадение: {}, {}, {}", i, f, ожидалось[i]);
     }
 }
 

@@ -344,7 +344,7 @@ extern(D) struct ПутеПарсер
                 Возвращает путь representing the родитель of this one. This
                 will typically return the current путь component, though
                 with a special case where the имя component is пустой. In 
-                such cases, the путь is scanned for a prior segment:
+                such cases, the путь is scanned for a prior сегмент:
                 ---
                 нормаль:  /x/y/z => /x/y
                 special: /x/y/  => /x
@@ -619,12 +619,12 @@ extern(D):
         сегментов  '.' или '..', которые можно удалить функцией
         нормализуй().
 
-        Note that each segment is создан как папка, включая the
-        trailing segment.
+        Note that each сегмент is создан как папка, включая the
+        trailing сегмент.
 
         Выводит исключение: ВВИскл upon system ошибки
 
-        Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but как 
+        Выводит исключение: ИсклНелегальногоАргумента if a сегмент есть_ли but как 
         файл instead of a папка
 
 *******************************************************************************/
@@ -845,7 +845,7 @@ extern(D):
         Normalizes a путь component
         ---
         . segments are removed
-        <segment>/.. are removed
+        <сегмент>/.. are removed
         ---
 
         Несколько consecutive forward slashes are replaced with a single 

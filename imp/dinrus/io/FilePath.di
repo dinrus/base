@@ -72,7 +72,7 @@ extern(D) class ФПуть : ПросмотрПути
 
             ФПуть assumes Всё путь & имя are present, and therefore
             may разбей what is иначе a logically valid путь. That is,
-            the 'имя' of a файл is typically the путь segment following
+            the 'имя' of a файл is typically the путь сегмент following
             a правейший путь-разделитель. The intent is в_ treat файлы and
             directories in the same manner; как имя with an optional
             ancestral structure. It is possible в_ bias the interpretation
@@ -147,7 +147,7 @@ extern(D) class ФПуть : ПросмотрПути
             Возвращает путь representing the родитель of this one. This
             will typically Возвращает current путь component, though
             with a special case where the имя component is пустой. In
-            such cases, the путь is scanned for a prior segment:
+            such cases, the путь is scanned for a prior сегмент:
             ---
             нормаль:  /x/y/z => /x/y
             special: /x/y/  => /x
@@ -519,14 +519,14 @@ extern(D) class ФПуть : ПросмотрПути
             segments. Related methods include PathUtil.нормализуй() and
             абсолютный()
 
-            Note that each segment is создан как папка, включая the
-            trailing segment.
+            Note that each сегмент is создан как папка, включая the
+            trailing сегмент.
 
             Возвращает: a chaining reference (this)
 
             Выводит исключение: ВВИскл upon systen ошибки
 
-            Выводит исключение: ИсклНелегальногоАргумента if a segment есть_ли but as
+            Выводит исключение: ИсклНелегальногоАргумента if a сегмент есть_ли but as
             a файл instead of a папка
 
     ***********************************************************************/

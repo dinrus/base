@@ -81,7 +81,7 @@ private
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Find
+// Поиск
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -138,17 +138,17 @@ else
             {
                 if( пред( буф[поз], обрзц[0] ) )
                 {
-                    т_мера mat = 0;
+                    т_мера мат = 0;
 
                     do
                     {
-                        if( ++mat >= обрзц.length )
+                        if( ++мат >= обрзц.length )
                             return поз - обрзц.length + 1;
                         if( ++поз >= буф.length )
                             return буф.length;
                     }
-                    while( пред( буф[поз], обрзц[mat] ) );
-                    поз -= mat;
+                    while( пред( буф[поз], обрзц[мат] ) );
+                    поз -= мат;
                 }
             }
             return буф.length;
@@ -178,29 +178,29 @@ else
     {
         unittest
         {
-            // найди element
+            // поиск элемента
             assert( найди( "", 'a' ) == 0 );
             assert( найди( "abc", 'a' ) == 0 );
             assert( найди( "abc", 'b' ) == 1 );
             assert( найди( "abc", 'c' ) == 2 );
             assert( найди( "abc", 'd' ) == 3 );
 
-            // пусто параметры
+            // пустые параметры
             assert( найди( "", "" ) == 0 );
             assert( найди( "a", "" ) == 1 );
             assert( найди( "", "a" ) == 0 );
 
-            // exact match
+            // точная сверка
             assert( найди( "abc", "abc" ) == 0 );
 
-            // simple substring match
+            // простая сверка подстроки
             assert( найди( "abc", "a" ) == 0 );
             assert( найди( "abca", "a" ) == 0 );
             assert( найди( "abc", "b" ) == 1 );
             assert( найди( "abc", "c" ) == 2 );
             assert( найди( "abc", "d" ) == 3 );
 
-            // multi-сим substring match
+            // многосимвольная сверка подстроки
             assert( найди( "abc", "ab" ) == 0 );
             assert( найди( "abcab", "ab" ) == 0 );
             assert( найди( "abc", "bc" ) == 1 );
@@ -276,17 +276,17 @@ else
             {
                 if( пред( буф[--поз], обрзц[0] ) )
                 {
-                    т_мера mat = 0;
+                    т_мера мат = 0;
 
                     do
                     {
-                        if( ++mat >= обрзц.length )
+                        if( ++мат >= обрзц.length )
                             return поз - обрзц.length + 1;
                         if( ++поз >= буф.length )
                             return буф.length;
                     }
-                    while( пред( буф[поз], обрзц[mat] ) );
-                    поз -= mat;
+                    while( пред( буф[поз], обрзц[мат] ) );
+                    поз -= мат;
                 }
             }
             while( поз > 0 );
@@ -317,29 +317,29 @@ else
     {
         unittest
         {
-            // найдрек element
+            // рекурсивный поиск элемента
             assert( найдрек( "", 'a' ) == 0 );
             assert( найдрек( "abc", 'a' ) == 0 );
             assert( найдрек( "abc", 'b' ) == 1 );
             assert( найдрек( "abc", 'c' ) == 2 );
             assert( найдрек( "abc", 'd' ) == 3 );
 
-            // пусто параметры
+            // пустые параметры
             assert( найдрек( "", "" ) == 0 );
             assert( найдрек( "a", "" ) == 1 );
             assert( найдрек( "", "a" ) == 0 );
 
-            // exact match
+            // точная сверка
             assert( найдрек( "abc", "abc" ) == 0 );
 
-            // simple substring match
+            // // простая сверка подстроки
             assert( найдрек( "abc", "a" ) == 0 );
             assert( найдрек( "abca", "a" ) == 3 );
             assert( найдрек( "abc", "b" ) == 1 );
             assert( найдрек( "abc", "c" ) == 2 );
             assert( найдрек( "abc", "d" ) == 3 );
 
-            // multi-сим substring match
+            // // многосимвольная сверка подстроки
             assert( найдрек( "abc", "ab" ) == 0 );
             assert( найдрек( "abcab", "ab" ) == 3 );
             assert( найдрек( "abc", "bc" ) == 1 );
@@ -351,7 +351,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// KMP Find
+// Комплексный Поиск
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -475,29 +475,29 @@ else
     {
         unittest
         {
-            // найди element
+            //поиск элемента
             assert( кнайди( "", 'a' ) == 0 );
             assert( кнайди( "abc", 'a' ) == 0 );
             assert( кнайди( "abc", 'b' ) == 1 );
             assert( кнайди( "abc", 'c' ) == 2 );
             assert( кнайди( "abc", 'd' ) == 3 );
 
-            // пусто параметры
+            // пустые параметры
             assert( кнайди( "", "" ) == 0 );
             assert( кнайди( "a", "" ) == 1 );
             assert( кнайди( "", "a" ) == 0 );
 
-            // exact match
+            // точная сверка
             assert( кнайди( "abc", "abc" ) == 0 );
 
-            // simple substring match
+            // // простая сверка подстроки
             assert( кнайди( "abc", "a" ) == 0 );
             assert( кнайди( "abca", "a" ) == 0 );
             assert( кнайди( "abc", "b" ) == 1 );
             assert( кнайди( "abc", "c" ) == 2 );
             assert( кнайди( "abc", "d" ) == 3 );
 
-            // multi-сим substring match
+            // // многосимвольная сверка подстроки
             assert( кнайди( "abc", "ab" ) == 0 );
             assert( кнайди( "abcab", "ab" ) == 0 );
             assert( кнайди( "abc", "bc" ) == 1 );
@@ -509,7 +509,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// KMP Реверсни Find
+// Комплексный Реверсный Поиск
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -650,22 +650,22 @@ else
             assert( кнайдрек( "abc", 'c' ) == 2 );
             assert( кнайдрек( "abc", 'd' ) == 3 );
 
-            // пусто параметры
+            // пустые параметры
             assert( кнайдрек( "", "" ) == 0 );
             assert( кнайдрек( "a", "" ) == 1 );
             assert( кнайдрек( "", "a" ) == 0 );
 
-            // exact match
+            // точная сверка
             assert( кнайдрек( "abc", "abc" ) == 0 );
 
-            // simple substring match
+            // // простая сверка подстроки
             assert( кнайдрек( "abc", "a" ) == 0 );
             assert( кнайдрек( "abca", "a" ) == 3 );
             assert( кнайдрек( "abc", "b" ) == 1 );
             assert( кнайдрек( "abc", "c" ) == 2 );
             assert( кнайдрек( "abc", "d" ) == 3 );
 
-            // multi-сим substring match
+            // // многосимвольная сверка подстроки
             assert( кнайдрек( "abc", "ab" ) == 0 );
             assert( кнайдрек( "abcab", "ab" ) == 3 );
             assert( кнайдрек( "abc", "bc" ) == 1 );
@@ -677,7 +677,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Find-If
+// Найди-Если
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -760,7 +760,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Реверсни Find-If
+// Реверсный Найди-Если
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -849,7 +849,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Find Adjacent
+// Поиск Смежного
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -868,12 +868,12 @@ version( TangoDoc )
      * Возвращает:
      *  Индекс первого совпадения или же буф.length, если совпадений не найдено.
      */
-    т_мера findAdj( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
+    т_мера НайдиСмежн( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
 
 }
 else
 {
-    template findAdj_( Элем, Пред = Равно_ли!(Элем) )
+    template НайдиСмежн_( Элем, Пред = Равно_ли!(Элем) )
     {
         static assert( ВызываемыйТип_ли!(Пред) );
 
@@ -896,20 +896,20 @@ else
     }
 
 
-    template findAdj( Буф )
+    template НайдиСмежн( Буф )
     {
-        т_мера findAdj( Буф буф )
+        т_мера НайдиСмежн( Буф буф )
         {
-            return findAdj_!(ЭлемТипа!(Буф)).фн( буф );
+            return НайдиСмежн_!(ЭлемТипа!(Буф)).фн( буф );
         }
     }
 
 
-    template findAdj( Буф, Пред )
+    template НайдиСмежн( Буф, Пред )
     {
-        т_мера findAdj( Буф буф, Пред пред )
+        т_мера НайдиСмежн( Буф буф, Пред пред )
         {
-            return findAdj_!(ЭлемТипа!(Буф), Пред).фн( буф, пред );
+            return НайдиСмежн_!(ЭлемТипа!(Буф), Пред).фн( буф, пред );
         }
     }
 
@@ -918,36 +918,36 @@ else
     {
         unittest
         {
-            assert( findAdj( "aabcdef" ) == 0 );
-            assert( findAdj( "abcddef" ) == 3 );
-            assert( findAdj( "abcdeff" ) == 5 );
-            assert( findAdj( "abcdefg" ) == 7 );
+            assert( НайдиСмежн( "aabcdef" ) == 0 );
+            assert( НайдиСмежн( "abcddef" ) == 3 );
+            assert( НайдиСмежн( "abcdeff" ) == 5 );
+            assert( НайдиСмежн( "abcdefg" ) == 7 );
         }
     }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Contains
+// Содержит
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), returning
-     * да, если an element совпадают обрзц is найдено.  Comparisons will be performed
-     * using the supplied predicate or '<' if Неук is supplied.
+     * Выполняет линейное сканирование буф $(LB)0 .. буф.length$(RP), возвращая
+     * да, если найдено совпадение элемента с обрзц. Сравнение выполняется с
+     * использованием предоставленного предиката или '<', если предоставлен Неук.
      *
      * Параметры:
-     *  буф  = The Массив в_ search.
-     *  обрзц  = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = массив для поиска.
+     *  обрзц  = искомый образец.
+     *  пред = предикат оценки, который должен вернуть да, если e1  равно
+     *          e2, и нет, если нет.  Этот предикат может быть любого
+     *         способного быть вызванным типа.
      *
      * Возвращает:
-     *  Да if an element equivalent в_ обрзц is найдено, нет if not.
+     *  Да, если элемент эквивалентен найденному обрзц, нет, если нет.
      */
     т_равно содержит( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
 
@@ -976,29 +976,29 @@ else
     {
         unittest
         {
-            // найди element
+            //поиск элемента
             assert( !содержит( "", 'a' ) );
             assert(  содержит( "abc", 'a' ) );
             assert(  содержит( "abc", 'b' ) );
             assert(  содержит( "abc", 'c' ) );
             assert( !содержит( "abc", 'd' ) );
 
-            // пусто параметры
+            // пустые параметры
             assert( !содержит( "", "" ) );
             assert( !содержит( "a", "" ) );
             assert( !содержит( "", "a" ) );
 
-            // exact match
+            // точная сверка
             assert(  содержит( "abc", "abc" ) );
 
-            // simple substring match
+            // // простая сверка подстроки
             assert(  содержит( "abc", "a" ) );
             assert(  содержит( "abca", "a" ) );
             assert(  содержит( "abc", "b" ) );
             assert(  содержит( "abc", "c" ) );
             assert( !содержит( "abc", "d" ) );
 
-            // multi-сим substring match
+            // // многосимвольная сверка подстроки
             assert(  содержит( "abc", "ab" ) );
             assert(  содержит( "abcab", "ab" ) );
             assert(  содержит( "abc", "bc" ) );
@@ -1010,31 +1010,31 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Mismatch
+// Несовпадение
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a parallel linear скан of bufA and bufB из_ $(LB)0 .. N$(RP)
-     * where N = min$(LP)bufA.length, bufB.length$(RP), returning the индекс of
-     * the first element in bufA which does not match the corresponding element
-     * in bufB or N if no не_совпадают occurs.  Comparisons will be performed using
-     * the supplied predicate or '==' if Неук is supplied.
+     * Выполняет параллельное линейное сканирование буфА и буфБ в диапазлне $(LB)0 .. N$(RP),
+     * где N = min$(LP)буфА.length, буфБ.length$(RP), возвращая индекс
+     * первого элемента в буфА, который не совпадает с соответсвующим элементом
+     * в буфБ или N, если несовпадения отсутствуют. Сравнение проводится с использованием
+     * предложенного предиката или '==', если предложен Неук.
      *
      * Параметры:
-     *  bufA = The Массив в_ evaluate.
-     *  bufB = The Массив в_ match against.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буфА = Оцениваемый массив.
+     *  буфБ = Массив для сравнения.
+     *  пред = Предикат оценки, который возвращает да, если e1 равно
+     *         e2 и нет, если нет. Этот предикат может быть любого
+     *         способного быть вызванным ("вызывабельного") типа.
      *
      * Возвращает:
-     *  The индекс of the first не_совпадают or N if the first N elements of bufA
-     * and bufB match, where N = min$(LP)bufA.length, bufB.length$(RP).
+     *  Индекс первого несовпадения, либо N, если первые N элементов буфА
+     * и буфБ совпадают, где N = min$(LP)буфА.length, буфБ.length$(RP).
      */
-    т_мера не_совпадают( Элем[] bufA, Элем[] bufB, Пред2Э пред = Пред2Э.init );
+    т_мера не_совпадают( Элем[] буфА, Элем[] буфБ, Пред2Э пред = Пред2Э.init );
 
 }
 else
@@ -1044,14 +1044,14 @@ else
         static assert( ВызываемыйТип_ли!(Пред) );
 
 
-        т_мера фн( Элем[] bufA, Элем[] bufB, Пред пред = Пред.init )
+        т_мера фн( Элем[] буфА, Элем[] буфБ, Пред пред = Пред.init )
         {
             т_мера  posA = 0,
             posB = 0;
 
-            while( posA < bufA.length && posB < bufB.length )
+            while( posA < буфА.length && posB < буфБ.length )
             {
-                if( !пред( bufB[posB], bufA[posA] ) )
+                if( !пред( буфБ[posB], буфА[posA] ) )
                     break;
                 ++posA, ++posB;
             }
@@ -1062,18 +1062,18 @@ else
 
     template не_совпадают( BufA, BufB )
     {
-        т_мера не_совпадают( BufA bufA, BufB bufB )
+        т_мера не_совпадают( BufA буфА, BufB буфБ )
         {
-            return не_совпадают_!(ЭлемТипа!(BufA)).фн( bufA, bufB );
+            return не_совпадают_!(ЭлемТипа!(BufA)).фн( буфА, буфБ );
         }
     }
 
 
     template не_совпадают( BufA, BufB, Пред )
     {
-        т_мера не_совпадают( BufA bufA, BufB bufB, Пред пред )
+        т_мера не_совпадают( BufA буфА, BufB буфБ, Пред пред )
         {
-            return не_совпадают_!(ЭлемТипа!(BufA), Пред).фн( bufA, bufB, пред );
+            return не_совпадают_!(ЭлемТипа!(BufA), Пред).фн( буфА, буфБ, пред );
         }
     }
 
@@ -1101,26 +1101,26 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Count
+// Счёт
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), returning
-     * a счёт of the число of elements совпадают обрзц.  Comparisons will be
-     * performed using the supplied predicate or '==' if Неук is supplied.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), возвращая
+     * число совпадающих с обрзц элементов. Сравнение выполняется с использованием
+     * предоставляемого предиката, либо '==', если предоставлен Неук.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.
-     *  обрзц  = The образец в_ match.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = Сканируемый массив.
+     *  обрзц  = Сверяемый образец.
+     *  пред = Предикат оценки, который должен возвращать да, если e1
+     *         равно e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements совпадают обрзц.
+     *  Число элементов, совпажающих с обрзц.
      */
     т_мера счёт( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
 
@@ -1179,24 +1179,24 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Count-If
+// Посчитай-Если
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), returning
-     * a счёт of the число of elements where пред returns да.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), возвращая
+     * счёт числа элементов, где пред возвращает да.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.
-     *  пред = The evaluation predicate, which should return да, если the
-     *         element is a valid match and нет if not.  This predicate
-     *         may be any callable тип.
+     *  буф  = Сканируемый массив.
+     *  пред = Предикат оценки, который должен возвращать да, если
+     *         элемент подходит для сравнения ,и нет, если нет.  Этот предикат
+     *         может быть любого вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements where пред returns да.
+     *  Число элементов, где пред возвращает да.
      */
     т_мера счётЕсли( Элем[] буф, Пред1Э пред = Пред1Э.init );
 
@@ -1261,27 +1261,27 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Замени
+// Замена
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), replacing
-     * occurrences of обрзц with знач.  Comparisons will be performed using the
-     * supplied predicate or '==' if Неук is supplied.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), заменяя
+     * случай с обрзц на знач. Сравнение выполняется с использованием
+     * поставляемого предиката, либо "==", если предоставлен Неук.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.
-     *  обрзц  = The образец в_ match.
-     *  знач  = The значение в_ подставь.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = Сканируемый массив.
+     *  обрзц  = Сверяемый образец.
+     *  знач  = Подставляемое значение.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 
+     *         равен e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements replaced.
+     *  Число заменённых элементов.
      */
     т_мера замени( Элем[] буф, Элем обрзц, Элем знач, Пред2Э пред = Пред2Э.init );
 
@@ -1343,25 +1343,25 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Замени-If
+// Замени-Если
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), replacing
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), заменяя
      * elements where пред returns да with знач.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.
-     *  знач  = The значение в_ подставь.
-     *  пред = The evaluation predicate, which should return да, если the
-     *         element is a valid match and нет if not.  This predicate
-     *         may be any callable тип.
+     *  буф  = Сканируемый массив.
+     *  знач  = Подставляемое значение.
+     *  пред = Предикат оценки, который должен возвращать да, если
+     *         элемент подходит для сверки, и нет, если нет.  Этот предикат
+     *         может быть любого вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements replaced.
+     *  Число заменённых элементов.
      */
     т_мера замениЕсли( Элем[] буф, Элем знач, Пред2Э пред = Пред2Э.init );
 
@@ -1429,31 +1429,31 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Удали
+// Удаление
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), moving все
-     * elements совпадают обрзц в_ the конец of the sequence.  The relative order of
-     * elements not совпадают обрзц will be preserved.  Comparisons will be
-     * performed using the supplied predicate or '==' if Неук is supplied.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), перемещая
+     * все элементы, совпадающие с обрзц, в конец этой последовательности. Относительный
+     * порядок элементов, не совпадающих с обрзц, сохраняется. Сравнение производиться с
+     * использованием поставляемого предиката, либо "==", если предоставлен Неук.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
-     *         в_ allow temporary slices в_ be изменён.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed как
-     *         sопрe-effect.
-     *  обрзц  = The образец в_ match against.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = Сканируемый массив. Этот параметр не отмечен меткой 'ref',
+     *         что позволяет изменять временные срезы.  Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref' не влияет на
+     *         результат этой операции, даже если это может казаться как
+     *         побочный эффект.
+     *  обрзц  = Образец для сверки.
+     *  пред = Предикат оценки, который должен возвращать да, если e1
+     *         равно e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements that do not match обрзц.
+     *  Число элементов, не совпадающих с обрзц.
      */
     т_мера удали( Элем[] буф, Элем обрзц, Пред2Э пред = Пред2Э.init );
 }
@@ -1531,29 +1531,29 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Удали-If
+// Удали-Если
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), moving все
-     * elements that satisfy пред в_ the конец of the sequence.  The relative
-     * order of elements that do not satisfy пред will be preserved.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), перемещая все
+     * элементы, удовлетворяющие пред в конец этой последовательности. Относительный
+     * порядок элементов, не удовлетворяющих пред, остаётся неизменным.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
-     *         в_ allow temporary slices в_ be изменён.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed как
-     *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если the
-     *         element satisfies the condition and нет if not.  This
-     *         predicate may be any callable тип.
+     *  буф  = Сканируемый массив.  Этот параметр не отмечен меткой 'ref'
+     *         что позволяет изменять временные срезы.  Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref' не влияет на
+     *         результат этой операции, даже если это может казаться как
+     *         побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если
+     *         элемент удовлетворяет условие ,и нет, если нет.  Этот
+     *         предикат может быть любого вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements that do not satisfy пред.
+     *  Число элементов, не удовлетворяющих пред.
      */
     т_мера удалиЕсли( Элем[] буф, Пред1Э пред );
 }
@@ -1644,24 +1644,24 @@ else
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)0 .. буф.length$(RP), moving все
-     * but the first element of each consecutive группа of duplicate elements в_
-     * the конец of the sequence.  The relative order of все remaining elements
-     * will be preserved.  Comparisons will be performed using the supplied
-     * predicate or '==' if Неук is supplied.
+     * Выполняет линейное сканирование буф в пределах $(LB)0 .. буф.length$(RP), перемещая все,
+     * кроме первого элемента, каждой последующей группы элементов-дубликатов в
+     * конец этой последовательности. Относительный порядок всех остальных элементов
+     * остаётся неизменным. Сравнение выполняется с использованием предоставляемого
+     * предиката, либо '==', если предоставлен Неук.
      *
      * Параметры:
-     *  буф  = The Массив в_ скан.  This parameter is not marked 'ref'
-     *         в_ allow temporary slices в_ be изменён.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed как
-     *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         equal в_ e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = Сканируемый массив.  Этот параметр не отмечен меткой 'ref'
+     *         что позволяет изменять временные срезы.  Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref' не влияет на
+     *         результат этой операции, даже если это может казаться как
+     *         побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если e1
+     *         равно e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
-     *  The число of distinct sub-sequences in буф.
+     *  Число отдельных последовательностей в буф.
      */
     т_мера distinct( Элем[] буф, Пред2Э пред = Пред2Э.init );
 }
@@ -1746,22 +1746,22 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Shuffle
+// Замешение
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Performs a linear скан of буф из_ $(LB)2 .. буф.length$(RP), exchanging
-     * each element with an element in the range $(LB)0 .. поз$(RP), where поз
-     * represents the current Массив позиция.
+     * Выполняет линейное сканирование буф в пределах $(LB)2 .. буф.length$(RP), обменивая
+     * каждый элемент на элемент в диапазоне $(LB)0 .. поз$(RP), где поз
+     * представляет текущую позицию в массиве.
      *
      * Параметры:
-     *  буф  = The Массив в_ shuffle.
-     *  oper = The рандомируй operation, which should return a число in the
-     *         range $(LB)0 .. N$(RP) for any supplied значение N.  This routine
-     *         may be any callable тип.
+     *  буф  = Замещаемый массив.
+     *  oper = Операция рандомирования, которая должна возвращать число в
+     *         диапазоне $(LB)0 .. N$(RP) для любого предоставленного значения N.
+     *         Эта процедура может быть любого вызывабельного типа.
      */
     проц shuffle( Элем[] буф, Опер1А oper = Опер1А.init );
 
@@ -1817,29 +1817,29 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Partition
+// Деление на части
 ////////////////////////////////////////////////////////////////////////////////
 
 
 version( TangoDoc )
 {
     /**
-     * Partitions буф such that все elements that satisfy пред will be placed
-     * перед the elements that do not satisfy пред.  The algorithm is not
-     * required в_ be stable.
+     * Делит на части буф так, что все элементы, удовлетворяющие пред, помещаются
+     * перед неудовлетворительными элементами. Алгоритм не обязательно
+     * должен быть стабильным.
      *
      * Параметры:
-     *  буф  = The Массив в_ partition.  This parameter is not marked 'ref'
-     *         в_ allow temporary slices в_ be sorted.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on
-     *         the результат of this operation, even though it may be viewed
-     *         как sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если the
-     *         element satisfies the condition and нет if not.  This
-     *         predicate may be any callable тип.
+     *  буф  = Разбиваемый масссив. Этот параметр не отмечен меткой 'ref',
+     *         повзоляя сортировать временные срезы. Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref'не влияет на
+     *         результат этой операции, даже если это может казаться
+     *         как побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если
+     *         элемент удовлетворяет условию ,и нет, если нет.  Этот
+     *         предикат может быть любого вызывабельного типа.
      *
      * Возвращает:
-     *  The число of elements that satisfy пред.
+     *  Число элементов, удовлетворяющих пред.
      */
     т_мера partition( Элем[] буф, Пред1Э пред );
 }
@@ -1940,7 +1940,7 @@ else
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Select
+// Выбор
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1948,26 +1948,26 @@ version( TangoDoc )
 {
     /**
      * Partitions буф with чис - 1 как pivot such that the first чис elements
-     * will be less than or equal в_ the remaining elements in the Массив.
-     * Comparisons will be performed using the supplied predicate or '<' if
-     * Неук is supplied.  The algorithm is not required в_ be stable.
+     * will be less than or равноthe remaining elements in the Массив.
+     * Сравнение выполняется с использованием supplied predicate or '<' if
+     * предоставлен Неук.  The Алгоритм не обязательно должен быть стабильным.
      *
      * Параметры:
-     *  буф  = The Массив в_ partition.  This parameter is not marked 'ref'
-     *         в_ allow temporary slices в_ be sorted.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on
-     *         the результат of this operation, even though it may be viewed
-     *         как sопрe-effect.
-     *  чис  = The число of elements which are consопрered significant in
+     *  буф  = The Массив в_ partition.  Этот параметр не отмечен меткой 'ref'
+     *         в_ allow temporary slices в_ be sorted.  Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref'не влияет на
+     *         the результат этой операции, даже если это может казаться
+     *         как побочный эффект.
+     *  чис  = Число элементов which are consопрered significant in
      *         this Массив, where чис - 1 is the pivot around which partial
      *         sorting will occur.  Например, if чис is буф.length / 2
      *         then выбери will effectively partition the Массив around its
      *         median значение, with the elements in the first half of the Массив
-     *         evaluating as less than or equal в_ the elements in the сукунда
+     *         evaluating as less than or равноthe elements in the сукунда
      *         half.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  The индекс of the pivot точка, which will be the lesser of чис - 1 and
@@ -2071,21 +2071,21 @@ else
 version( TangoDoc )
 {
     /**
-     * Sorts буф using the supplied predicate or '<' if Неук is supplied.  The
-     * algorithm is not required в_ be stable.  The current implementation is
-     * based on быстросорт, but uses a three-way partitioning схема в_ improve
-     * performance for ranges containing duplicate values (Bentley and McIlroy,
+     * Сортирует буф, используя предоставленный предикат, либо '<', если предоставлен Неук.
+     * Алгоритм не обязательно должен быть стабильным.  Текущая реализация
+     * основана на быстросорт, на использует троичную схему партицирования, улучшая
+     * производительность для диапазонов, содержащих значения-дубликаты (Bentley и McIlroy,
      * 1993).
      *
      * Параметры:
-     *  буф  = The Массив в_ сортируй.  This parameter is not marked 'ref' в_
-     *         allow temporary slices в_ be sorted.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on
-     *         the результат of this operation, even though it may be viewed
-     *         как sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = Сортируемый массив.  Этот парамет не помечен меткой 'ref', что
+     *         позволяет сортировать временные срезы. Так как буф не меняется в размерах
+     *         ни коим образом, отсутсвующий квалификатор 'ref' никак не влияет на
+     *         результат этой операции, даже если это рассматривать как
+     *         побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 
+     *         меньше e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      */
     проц сортируй( Элем, Пред2Э = Меньше_ли!(Элем) )( Элем[] буф, Пред2Э пред = Пред2Э.init );
 }
@@ -2193,7 +2193,7 @@ else
                 // each for ключи smaller than, equal в_, and larger than the
                 // partitioning element, знач:
                 //
-                // |--less than знач--|--equal в_ знач--|--greater than знач--[знач]
+                // |--less than знач--|--равнознач--|--greater than знач--[знач]
                 // l               j              i                   r
                 //
                 // This approach sorts ranges containing duplicate elements
@@ -2204,7 +2204,7 @@ else
                 // l         p        i         j           q          r
                 //
                 // Please note that this implementation varies из_ the typical
-                // algorithm by replacing the use of signed индекс values with
+                // algorithm by заменяя the use of signed индекс values with
                 // unsigned values.
 
                 Элем    знач = буф[r];
@@ -2316,19 +2316,19 @@ else
 version( TangoDoc )
 {
     /**
-     * Performs a binary search of буф, returning the индекс of the first
+     * Performs a binary search of буф, возвращая the индекс of the first
      * location where обрзц may be inserted without disrupting сортируй order.  If
      * the сортируй order of обрзц precedes все elements in буф then 0 will be
      * returned.  If the сортируй order of обрзц succeeds the largest element in буф
      * then буф.length will be returned.  Comparisons will be performed using
-     * the supplied predicate or '<' if Неук is supplied.
+     * the supplied predicate or '<' if предоставлен Неук.
      *
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  The индекс of the first match or буф.length if no match was найдено.
@@ -2400,19 +2400,19 @@ else
 version( TangoDoc )
 {
     /**
-     * Performs a binary search of буф, returning the индекс of the first
+     * Performs a binary search of буф, возвращая the индекс of the first
      * location beyond where обрзц may be inserted without disrupting сортируй order.
      * If the сортируй order of обрзц precedes все elements in буф then 0 will be
      * returned.  If the сортируй order of обрзц succeeds the largest element in буф
      * then буф.length will be returned.  Comparisons will be performed using
-     * the supplied predicate or '<' if Неук is supplied.
+     * the supplied predicate or '<' if предоставлен Неук.
      *
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  The индекс of the first match or буф.length if no match was найдено.
@@ -2484,16 +2484,16 @@ else
 version( TangoDoc )
 {
     /**
-     * Performs a binary search of буф, returning да, если an element equivalent
-     * в_ обрзц is найдено.  Comparisons will be performed using the supplied
-     * predicate or '<' if Неук is supplied.
+     * Performs a binary search of буф, возвращая да, если an element equivalent
+     * в_ обрзц is найдено.  Сравнение выполняется с использованием supplied
+     * predicate or '<' if предоставлен Неук.
      *
      * Параметры:
      *  буф = The sorted Массив в_ search.
      *  обрзц = The образец в_ search for.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  Да if an element equivalent в_ обрзц is найдено, нет if not.
@@ -2559,18 +2559,18 @@ version( TangoDoc )
 {
     /**
      * Performs a parallel linear скан of setA and setB из_ $(LB)0 .. N$(RP)
-     * where N = min$(LP)setA.length, setB.length$(RP), returning да, если setA
-     * включает все elements in setB and нет if not.  Всё setA and setB are
+     * where N = min$(LP)setA.length, setB.length$(RP), возвращая да, если setA
+     * включает все elements in setB ,и нет, если нет.  Всё setA and setB are
      * required в_ be sorted, and duplicates in setB require an equal число of
-     * duplicates in setA.  Comparisons will be performed using the supplied
-     * predicate or '<' if Неук is supplied.
+     * duplicates in setA.  Сравнение выполняется с использованием supplied
+     * predicate or '<' if предоставлен Неук.
      *
      * Параметры:
      *  setA = The sorted Массив в_ evaluate.
      *  setB = The sorted Массив в_ match against.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  да, если setA включает все elements in setB, нет if not.
@@ -2652,14 +2652,14 @@ version( TangoDoc )
      * sorted.  If either setA or setB contain duplicates, the результат will
      * contain the larger число of duplicates из_ setA and setB.  When an
      * overlap occurs, записи will be copied из_ setA.  Comparisons will be
-     * performed using the supplied predicate or '<' if Неук is supplied.
+     * performedиспользуя предоставленный предикат, либо '<', если предоставлен Неук.
      *
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  A new Массив containing the union of setA and setB.
@@ -2738,14 +2738,14 @@ version( TangoDoc )
      * required в_ be sorted.  If either setA or setB contain duplicates, the
      * результат will contain the smaller число of duplicates из_ setA and setB.
      * все записи will be copied из_ setA.  Comparisons will be performed
-     * using the supplied predicate or '<' if Неук is supplied.
+     *используя предоставленный предикат, либо '<', если предоставлен Неук.
      *
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  A new Массив containing the intersection of setA and setB.
@@ -2819,15 +2819,15 @@ version( TangoDoc )
     /**
      * Возвращает new Массив containing все elements in setA which are not
      * present in setB.  Всё setA and setB are required в_ be sorted.
-     * Comparisons will be performed using the supplied predicate or '<'
-     * if Неук is supplied.
+     * Сравнение выполняется с использованием supplied predicate or '<'
+     * if предоставлен Неук.
      *
      * Параметры:
      *  setA = The first sorted Массив в_ evaluate.
      *  setB = The сукунда sorted Массив в_ evaluate.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      *
      * Возвращает:
      *  A new Массив containing the elements in setA that are not in setB.
@@ -2907,15 +2907,15 @@ version( TangoDoc )
       * Возвращает new Массив containing все elements in setA which are not
       * present in setB and the elements in setB which are not present in
       * setA.  Всё setA and setB are required в_ be sorted.  Comparisons
-      * will be performed using the supplied predicate or '<' if Неук is
+      * will be performedиспользуя предоставленный предикат, либо '<', если Неук is
       * supplied.
       *
       * Параметры:
       *  setA = The first sorted Массив в_ evaluate.
       *  setB = The сукунда sorted Массив в_ evaluate.
-      *  пред = The evaluation predicate, which should return да, если e1 is
-      *         less than e2 and нет if not.  This predicate may be any
-      *         callable тип.
+      *  пред = Предикат оценки, который должен возвращать да, если e1 is
+      *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+      *         вызывабельного типа.
       *
       * Возвращает:
       *  A new Массив containing the elements in setA that are not in setB
@@ -2994,18 +2994,18 @@ else
 version( TangoDoc )
 {
     /**
-     * Converts буф в_ a куча using the supplied predicate or '<' if Неук is
+     * Converts буф в_ a кучаиспользуя предоставленный предикат, либо '<', если Неук is
      * supplied.
      *
      * Параметры:
-     *  буф  = The Массив в_ преобразуй.  This parameter is not marked 'ref' в_
-     *         allow temporary slices в_ be sorted.  As буф is not resized in
-     *         any way, omitting the 'ref' qualifier есть no effect on the
-     *         результат of this operation, even though it may be viewed как
-     *         sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = The Массив в_ преобразуй.  Этот параметр не отмечен меткой 'ref' в_
+     *         allow temporary slices в_ be sorted.  Так как буф не меняется в размере in
+     *         any way, пропуск квалификатора 'ref' не влияет на
+     *         результат этой операции, даже если это может казаться как
+     *         побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      */
     проц сделайКучу( Элем[] буф, Пред2Э пред = Пред2Э.init );
 }
@@ -3133,9 +3133,9 @@ version( TangoDoc )
      *  буф  = The куча в_ modify.  This parameter is marked 'ref' because
      *         буф.length will be altered.
      *  знач  = The element в_ push onto буф.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      */
     проц суньВКучу( ref Элем[] буф, Элем знач, Пред2Э пред = Пред2Э.init );
 }
@@ -3254,9 +3254,9 @@ version( TangoDoc )
      * Параметры:
      *  буф  = The куча в_ modify.  This parameter is marked 'ref' because
      *         буф.length will be altered.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      */
     проц выньИзКучи( ref Элем[] буф, Пред2Э пред = Пред2Э.init );
 }
@@ -3369,19 +3369,19 @@ else
 version( TangoDoc )
 {
     /**
-     * Sorts буф как куча using the supplied predicate or '<' if Неук is
+     * Сортирует буф как кучаиспользуя предоставленный предикат, либо '<', если Неук is
      * supplied.  Calling сделайКучу and сортируйКучу on an Массив in succession
      * есть the effect of sorting the Массив using the heapsort algorithm.
      *
      * Параметры:
-     *  буф  = The куча в_ сортируй.  This parameter is not marked 'ref' в_
-     *         allow temporary slices в_ be sorted.  As буф is not resized
-     *         in any way, omitting the 'ref' qualifier есть no effect on
-     *         the результат of this operation, even though it may be viewed
-     *         как sопрe-effect.
-     *  пред = The evaluation predicate, which should return да, если e1 is
-     *         less than e2 and нет if not.  This predicate may be any
-     *         callable тип.
+     *  буф  = The куча в_ сортируй.  Этот параметр не отмечен меткой 'ref' в_
+     *         allow temporary slices в_ be sorted.  Так как буф не меняется в размере
+     *         ни коим образом, пропуск квалификатора 'ref'не влияет на
+     *         the результат этой операции, даже если это может казаться
+     *         как побочный эффект.
+     *  пред = Предикат оценки, который должен возвращать да, если e1 is
+     *         less than e2 ,и нет, если нет.  Этот предикат может быть любого
+     *         вызывабельного типа.
      */
     проц сортируйКучу( Элем[] буф, Пред2Э пред = Пред2Э.init );
 }

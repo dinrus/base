@@ -34,23 +34,23 @@
 
 @if exist %DINRUS%\dinrus.exe %DINRUS%\dinrus.exe
 
-%DMD% -g -O -debug -of%this%\DinrusBase.dll @%this%\objs.rsp %this%\res\base.def %this%\res\base.res %LDIR%\minit.obj %LDIR%\DImport.lib %this%\Cdinr.lib
+%DMD% -g -O -debug -of%this%\DinrusBaseX86.dll @%this%\objs.rsp %this%\res\base.def %this%\res\base.res %LDIR%\minit.obj %LDIR%\DImport.lib %this%\Cdinr.lib
 
-@if not exist %this%\DinrusBase.dll pause
-@if exist %this%\DinrusBase.dll goto nextStep
+@if not exist %this%\DinrusBaseX86.dll pause
+@if exist %this%\DinrusBaseX86.dll goto nextStep
 @del %this%\objs.rsp
 @goto Base
 
 :nextStep
 :::Make its export lib
-%IMPLIB% /system %this%\DinrusBaseDLL.lib %this%\DinrusBase.dll
+%IMPLIB% /system %this%\DinrusBaseX86DLL.lib %this%\DinrusBaseX86.dll
 
 @del %this%\CDinr.lib
 @del %this%\*.rsp
 @del %this%\*.obj
 @del %this%\*.map
-call impcoff 64 %this%\DinrusBase.dll
-call impcoff 32 %this%\DinrusBase.dll
+::call impcoff 64 %this%\DinrusBaseX86.dll
+call impcoff 32 %this%\DinrusBaseX86.dll
 pause
 exit
 

@@ -1,16 +1,5 @@
 ﻿/*******************************************************************************
 
-        copyright:      Copyright (c) 2004 Kris Bell. все rights reserved
-
-        license:        BSD стиль: $(LICENSE)
-
-        version:        Initial release: April 2004      
-                        Outback release: December 2006
-        
-        author:         Kris    - original module
-        author:         h3r3tic - fixed a число of Post issues и
-                                  bugs in the 'парамы' construction
-
         Redirection handling guопрed via 
                     http://ppewww.ph.gla.ac.uk/~flavell/www/post-перенаправ.html
 

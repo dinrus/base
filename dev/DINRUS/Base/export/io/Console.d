@@ -1,5 +1,5 @@
 ﻿module io.Console;
-import  io.device.Device, io.stream.Buffered, io.device.Conduit;
+import  io.device.Device, io.stream.Buffered, io.device.Conduit, sys.common;
 
 enum Цвет : цел
 {
@@ -362,7 +362,7 @@ extern(D)
 ******************************************************************************/
 extern(D)
 {
- Консоль.Ввод дайКввод();
+ Консоль.Ввод дайКввод(); 
  Консоль.Вывод дайКвывод();
  Консоль.Вывод дайКош();
  Консоль.Провод дайПровод(т_мера укз);
@@ -383,8 +383,11 @@ static this ()
 {
 
 Кввод = дайКввод();
+assert (cast(ук)Кввод !is пусто || cast(ук)Кввод !is sys.WinConsts.НЕВЕРНХЭНДЛ, "КОНСВВОД отсутствует");
 Квывод = дайКвывод();
+assert (cast(ук)Квывод !is пусто || cast(ук)Квывод !is sys.WinConsts.НЕВЕРНХЭНДЛ, "КОНСВЫВОД отсутствует");
 Кош = дайКош();
+assert (cast(ук)Кош !is пусто || cast(ук)Кош !is sys.WinConsts.НЕВЕРНХЭНДЛ, "КОНСОШ отсутствует");
         
 }
 

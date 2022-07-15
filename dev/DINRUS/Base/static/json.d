@@ -7,7 +7,7 @@
  * License:	Boost Software License - Version 1.0 - August 17th, 2003
  */
 
-module джейсон;
+module json;
 
 import stdrus:tostring=вТкст, убери, уберисправа, уберислева, разбей, замени, найди, сравни, сравнлюб, ткствцел,ткствдробь;
 import stdrus: межбукв_ли, подставь, РегВыр, скажиф;

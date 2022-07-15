@@ -2,7 +2,7 @@
 
 import cidrus,  tpl.args;
 import std.string, std.utf, std.format, std.file, std.crc32;
-import win: скажинс;
+//import win: скажинс;
 
 alias isfile естьФайл;
 alias toUTF16 вЮ16;
@@ -62,13 +62,13 @@ interface ИГенернПотокВвода{
   цел opApply(цел delegate(inout бдол n, inout ткст строка) дг);  
   цел opApply(цел delegate(inout шим[] строка) дг);		   
   цел opApply(цел delegate(inout бдол n, inout шим[] строка) дг); 
-  ткст читайТкст(т_мера length);
-  шим[]читайТкстШ(т_мера length);
+  ткст читайТкст(т_мера длина);
+  шим[]читайТкстШ(т_мера длина);
   сим берис();
   шим бериш(); 
   сим отдайс(сим c);
   шим отдайш(шим c);
-  цел вчитайф(ИнфОТипе[] arguments, ук арги);
+  цел вчитайф(ИнфОТипе[] аргументы, ук арги);
   цел читайф(...); 
   т_мера доступно();
   бул кф();
@@ -109,7 +109,7 @@ interface ИГенернПотокВывода {
   т_мера выводф(ткст format, ...);	
   ИГенернПотокВывода пишиф(...);
   ИГенернПотокВывода пишифнс(...); 
-  ИГенернПотокВывода пишификс(ИнфОТипе[] arguments, ук аргук, цел newline = 0);  
+  ИГенернПотокВывода пишификс(ИнфОТипе[] аргументы, ук аргук, цел newline = 0);  
 
   проц слей();	
   проц закрой(); 
@@ -357,16 +357,16 @@ export:
 
 	  // reads a ткст of given length, throws
 	  // ИсключениеЧтения on error
-	  ткст читайТкст(т_мера length) {
-		ткст результат = new сим[length];
-		читайРовно(результат.ptr, length);
+	  ткст читайТкст(т_мера длина) {
+		ткст результат = new сим[длина];
+		читайРовно(результат.ptr, длина);
 		return результат;
 	  }
 
-	  // reads a Unicode ткст of given length, throws
+	  // reads a Unicode ткст of given длина, throws
 	  // ИсключениеЧтения on error
-	  шим[] читайТкстШ(т_мера length) {
-		auto результат = new шим[length];
+	  шим[] читайТкстШ(т_мера длина) {
+		auto результат = new шим[длина];
 		читайРовно(результат.ptr, результат.length * шим.sizeof);
 		return результат;
 	  }
@@ -443,37 +443,37 @@ export:
 		return c;
 	  }
 
-	  цел вчитайф(ИнфОТипе[] arguments, ук args) {
+	  цел вчитайф(ИнфОТипе[] аргументы, ук арги) {
 		ткст fmt;
 		цел j = 0;
 		цел count = 0, i = 0;
 		сим c = берис();
-		while ((j < arguments.length || i < fmt.length) && !кф()) {
+		while ((j < аргументы.length || i < fmt.length) && !кф()) {
 		  if (fmt.length == 0 || i == fmt.length) {
 		i = 0;
-		if (arguments[j] is typeid(сим[])) {
-		  fmt = ва_арг!(ткст)(args);
+		if (аргументы[j] is typeid(сим[])) {
+		  fmt = ва_арг!(ткст)(арги);
 		  j++;
 		  continue;
-		} else if (arguments[j] is typeid(цел*) ||
-			   arguments[j] is typeid(байт*) ||
-			   arguments[j] is typeid(крат*) ||
-			   arguments[j] is typeid(дол*)) {
+		} else if (аргументы[j] is typeid(цел*) ||
+			   аргументы[j] is typeid(байт*) ||
+			   аргументы[j] is typeid(крат*) ||
+			   аргументы[j] is typeid(дол*)) {
 		  fmt = "%d";
-		} else if (arguments[j] is typeid(бцел*) ||
-			   arguments[j] is typeid(ббайт*) ||
-			   arguments[j] is typeid(бкрат*) ||
-			   arguments[j] is typeid(бдол*)) {
+		} else if (аргументы[j] is typeid(бцел*) ||
+			   аргументы[j] is typeid(ббайт*) ||
+			   аргументы[j] is typeid(бкрат*) ||
+			   аргументы[j] is typeid(бдол*)) {
 		  fmt = "%d";
-		} else if (arguments[j] is typeid(плав*) ||
-			   arguments[j] is typeid(дво*) ||
-			   arguments[j] is typeid(реал*)) {
+		} else if (аргументы[j] is typeid(плав*) ||
+			   аргументы[j] is typeid(дво*) ||
+			   аргументы[j] is typeid(реал*)) {
 		  fmt = "%f";
-		} else if (arguments[j] is typeid(сим[]*) ||
-			   arguments[j] is typeid(шим[]*) ||
-			   arguments[j] is typeid(дим[]*)) {
+		} else if (аргументы[j] is typeid(сим[]*) ||
+			   аргументы[j] is typeid(шим[]*) ||
+			   аргументы[j] is typeid(дим[]*)) {
 		  fmt = "%s";
-		} else if (arguments[j] is typeid(сим*)) {
+		} else if (аргументы[j] is typeid(сим*)) {
 		  fmt = "%c";
 		}
 		  }
@@ -577,29 +577,29 @@ export:
 			}
 			if (neg)
 			  n = -n;
-			if (arguments[j] is typeid(цел*)) {
-			  цел* p = ва_арг!(цел*)(args);
+			if (аргументы[j] is typeid(цел*)) {
+			  цел* p = ва_арг!(цел*)(арги);
 			  *p = cast(цел)n;
-			} else if (arguments[j] is typeid(крат*)) {
-			  крат* p = ва_арг!(крат*)(args);
+			} else if (аргументы[j] is typeid(крат*)) {
+			  крат* p = ва_арг!(крат*)(арги);
 			  *p = cast(крат)n;
-			} else if (arguments[j] is typeid(байт*)) {
-			  байт* p = ва_арг!(байт*)(args);
+			} else if (аргументы[j] is typeid(байт*)) {
+			  байт* p = ва_арг!(байт*)(арги);
 			  *p = cast(байт)n;
-			} else if (arguments[j] is typeid(дол*)) {
-			  дол* p = ва_арг!(дол*)(args);
+			} else if (аргументы[j] is typeid(дол*)) {
+			  дол* p = ва_арг!(дол*)(арги);
 			  *p = n;
-			} else if (arguments[j] is typeid(бцел*)) {
-			  бцел* p = ва_арг!(бцел*)(args);
+			} else if (аргументы[j] is typeid(бцел*)) {
+			  бцел* p = ва_арг!(бцел*)(арги);
 			  *p = cast(бцел)n;
-			} else if (arguments[j] is typeid(бкрат*)) {
-			  бкрат* p = ва_арг!(бкрат*)(args);
+			} else if (аргументы[j] is typeid(бкрат*)) {
+			  бкрат* p = ва_арг!(бкрат*)(арги);
 			  *p = cast(бкрат)n;
-			} else if (arguments[j] is typeid(ббайт*)) {
-			  ббайт* p = ва_арг!(ббайт*)(args);
+			} else if (аргументы[j] is typeid(ббайт*)) {
+			  ббайт* p = ва_арг!(ббайт*)(арги);
 			  *p = cast(ббайт)n;
-			} else if (arguments[j] is typeid(бдол*)) {
-			  бдол* p = ва_арг!(бдол*)(args);
+			} else if (аргументы[j] is typeid(бдол*)) {
+			  бдол* p = ва_арг!(бдол*)(арги);
 			  *p = cast(бдол)n;
 			}
 			j++;
@@ -681,14 +681,14 @@ export:
 			}
 			if (neg)
 			  n = -n;
-			if (arguments[j] is typeid(плав*)) {
-			  плав* p = ва_арг!(плав*)(args);
+			if (аргументы[j] is typeid(плав*)) {
+			  плав* p = ва_арг!(плав*)(арги);
 			  *p = n;
-			} else if (arguments[j] is typeid(дво*)) {
-			  дво* p = ва_арг!(дво*)(args);
+			} else if (аргументы[j] is typeid(дво*)) {
+			  дво* p = ва_арг!(дво*)(арги);
 			  *p = n;
-			} else if (arguments[j] is typeid(реал*)) {
-			  реал* p = ва_арг!(реал*)(args);
+			} else if (аргументы[j] is typeid(реал*)) {
+			  реал* p = ва_арг!(реал*)(арги);
 			  *p = n;
 			}
 			j++;
@@ -703,8 +703,8 @@ export:
 		  ткст s;
 		  сим[]* p;
 		  т_мера strlen;
-		  if (arguments[j] is typeid(сим[]*)) {
-			p = ва_арг!(сим[]*)(args);
+		  if (аргументы[j] is typeid(сим[]*)) {
+			p = ва_арг!(сим[]*)(арги);
 			s = *p;
 		  }
 		  while (!пробел(c) && c != сим.init) {
@@ -718,17 +718,17 @@ export:
 			count++;
 		  }
 		  s = s[0 .. strlen];
-		  if (arguments[j] is typeid(сим[]*)) {
+		  if (аргументы[j] is typeid(сим[]*)) {
 			*p = s;
-		  } else if (arguments[j] is typeid(сим*)) {
+		  } else if (аргументы[j] is typeid(сим*)) {
 			s ~= 0;
-			auto q = ва_арг!(сим*)(args);
+			auto q = ва_арг!(сим*)(арги);
 			q[0 .. s.length] = s[];
-		  } else if (arguments[j] is typeid(шим[]*)) {
-			auto q = ва_арг!(шим[]*)(args);
+		  } else if (аргументы[j] is typeid(шим[]*)) {
+			auto q = ва_арг!(шим[]*)(арги);
 			*q = вЮ16(s);
-		  } else if (arguments[j] is typeid(дим[]*)) {
-			auto q = ва_арг!(дим[]*)(args);
+		  } else if (аргументы[j] is typeid(дим[]*)) {
+			auto q = ва_арг!(дим[]*)(арги);
 			*q = вЮ32(s);
 		  }
 		  j++;
@@ -736,7 +736,7 @@ export:
 		} break;
 
 		case 'c': {	// симacter(s)
-		  сим* s = ва_арг!(сим*)(args);
+		  сим* s = ва_арг!(сим*)(арги);
 		  if (width < 0)
 			width = 1;
 		  else
@@ -754,7 +754,7 @@ export:
 		} break;
 
 		case 'n': {	// number of симs читай so far
-		  цел* p = ва_арг!(цел*)(args);
+		  цел* p = ва_арг!(цел*)(арги);
 		  *p = count;
 		  j++;
 		  i++;
@@ -868,7 +868,7 @@ export:
 
 	  // writes данные to stream using ввыводф() syntax,
 	  // returns number of bytes written
-	  т_мера ввыводф(ткст format, спис_ва args) {
+	  т_мера ввыводф(ткст format, спис_ва арги) {
 		// shamelessly stolen from OutBuffer,
 		// by Walter's permission
 		сим[1024] буфер;
@@ -878,13 +878,13 @@ export:
 		т_мера count;
 		while (true) {
 		  version (Win32) {
-		count = вснвыводф(stdrus.вТкст(p), psize, f, args);
+		count = вснвыводф(stdrus.вТкст(p), psize, f, арги);
 		if (count != -1)
 		  break;
 		psize *= 2;
 		p = cast(сим*) разместа(psize);
 		  } else version (Posix) {
-		count = вснвыводф(stdrus.вТкст(p), psize, f, args);
+		count = вснвыводф(stdrus.вТкст(p), psize, f, арги);
 		if (count == -1)
 		  psize *= 2;
 		else if (count >= psize)
@@ -925,8 +925,8 @@ export:
 	  }
 
 	  // writes данные with optional trailing newline
-	  ИГенернПотокВывода пишификс(ИнфОТипе[] arguments, ук argptr, цел newline=0) {
-		doFormat(&doFormatCallback,arguments,argptr);
+	  ИГенернПотокВывода пишификс(ИнфОТипе[] аргументы, ук argptr, цел newline=0) {
+		doFormat(&doFormatCallback,аргументы,argptr);
 		if (newline) 
 		  пишиСтр("");
 		return this;

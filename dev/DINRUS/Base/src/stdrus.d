@@ -72,7 +72,7 @@ private  ук укМодуль_;
 			{
 			
 			ткст путь = Путь();
-			укМодуль_ = cast(ук)ЗагрузиБиблиотекуА(путь);
+			укМодуль_ = cast(ук)ЗагрузиБиблиотеку(путь);
 			if (укМодуль_ == null)
 				throw new ИсклВнешнМодуля(ДайПоследнююОшибку());
 			}
@@ -87,7 +87,7 @@ private  ук укМодуль_;
 		}
 		body
 		{
-		укМодуль_ = cast(ук) ЗагрузиБиблиотекуА(имяМодуля);
+		укМодуль_ = cast(ук) ЗагрузиБиблиотеку(имяМодуля);
 			if (null is укМодуль_)
 			throw new ИсклВнешнМодуля(ДайПоследнююОшибку());
 		}
@@ -139,7 +139,7 @@ private  ук укМодуль_;
 	
 	ткст имяФ = new сим[260];
 	
-	бцел cch = ДайИмяФайлаМодуляА(укМодуль_, &имяФ, имяФ.length);
+	бцел cch = ДайИмяФайлаМодуля(укМодуль_, имяФ, имяФ.length);
 	    if (cch == 0)
 		throw new ИсклВнешнМодуля(ДайПоследнююОшибку());
 
@@ -165,16 +165,26 @@ export extern(D)
 
 	ткст текстСисОшибки(бцел кодош){return  rt.syserror.sysErrorString(кодош);}
 
-	import std.loader;
+	ук дайСимволИМодуля(inout ук умодуль, in ткст имяСимвола)
+    in
+    {
+        assert(null !is умодуль);
+    }
+    body
+    {
+        ук символ = ДайАдресПроц(умодуль, имяСимвола);
+		цел м_номош;
+		ткст м_ошсооб;
 
-	цел иницМодуль(){return std.loader.ExeModule_Init();}
-	проц деиницМодуль(){return std.loader.ExeModule_Uninit();}
-	ук загрузиМодуль(in ткст имямод){return cast(ук) адаптВыхУкз(std.loader.ExeModule_Load(имямод));}
-	ук добавьСсылНаМодуль(ук умодуль){return cast(ук) std.loader.ExeModule_AddRef(cast(HXModule) умодуль);}
-	проц отпустиМодуль(inout ук умодуль){return std.loader.ExeModule_Release(cast(HXModule) умодуль);}
-	ук дайСимволИМодуля(inout ук умодуль, in ткст имяСимвола){return std.loader.ExeModule_GetSymbol(cast(HXModule) умодуль, имяСимвола);}
-	ткст ошибкаИМодуля(){return std.loader.ExeModule_Error();}	
+        if(null is символ)
+        {
+            м_номош = ДайПоследнююОшибку();
+			м_ошсооб = текстСисОшибки(м_номош);
+			exception.ошибка(м_ошсооб);
+        }
 
+        return символ;
+    }	
 
 	import std.intrinsic;
 
