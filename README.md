@@ -11,3 +11,5 @@
 Вот ссылки на некоторые из них:
 https://github.com/dinrus/base/releases/tag/v2021 - dinrus-base2021
 https://github.com/dinrus/base/releases/tag/v2018 - dinrus-base2018
+
+[Все релизы находятся по этой ссылке](https://github.com/dinrus/base/releases)
